@@ -1,0 +1,9 @@
+#!/bin/sh
+lambdas=`ls src/html`
+for f in $lambdas
+do
+  cd "src/html/$f"
+  rm -rf node_modules
+  npm update --production --save
+  cd ../../../
+done

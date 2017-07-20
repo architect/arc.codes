@@ -1,0 +1,7 @@
+{
+  "name": "arc-www-get-quickstart",
+  "dependencies": {
+    "@architect/docs": "^1.1.0",
+    "@architect/functions": "^1.0.3"
+  }
+}

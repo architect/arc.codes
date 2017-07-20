@@ -1,0 +1,29 @@
+{
+  "name": "@architect/arc.codes",
+  "version": "1.0.0",
+  "description": "https://arc.codes",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "AWS_REGION=us-west-2 AWS_PROFILE=jsf arc-deploy",
+    "start": "NODE_ENV=testing arc-sandbox",
+    "init": "./scripts/modules-init",
+    "update":"./scripts/modules-update"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arc-repos/arc.codes.git"
+  },
+  "keywords": [],
+  "author": "Brian LeRoux <b@brian.io>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/arc-repos/arc.codes/issues"
+  },
+  "homepage": "https://github.com/arc-repos/arc.codes#readme",
+  "devDependencies": {
+    "@architect/workflows": "^1.0.6",
+    "tap": "^10.7.0",
+    "tape": "^4.7.0",
+    "tiny-json-http": "^5.1.1"
+  }
+}

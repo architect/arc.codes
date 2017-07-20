@@ -1,0 +1,20 @@
+{
+  "Records": [{
+    "EventSource":"aws:sns",
+    "EventVersion": "1.0",
+    "EventSubscriptionArn": "arn:aws:sns:us-east-1:123456789012:lambda_topic:xxx",
+    "Sns": {
+        "Type": "Notification",
+        "MessageId": "95df01b4-ee98-5cb9-9903-4c221d41eb5e",
+        "TopicArn": "arn:aws:sns:us-east-1:123456789012:lambda_topic",
+        "Subject": "TestInvoke",
+        "Message": "{\"msg\":true}",
+        "Timestamp": "2015-04-02T07:36:57.451Z",
+        "SignatureVersion": "1",
+        "Signature": "xxx",
+        "SigningCertUrl": "..",
+        "UnsubscribeUrl": "..",
+        "MessageAttributes": {"key":{"Type":"String","Value":"value"}}
+    }
+  }]
+}

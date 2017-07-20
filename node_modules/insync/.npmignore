@@ -1,0 +1,2 @@
+# Do not include lib/ here because npm prepublish is also called on local npm install
+images/*
