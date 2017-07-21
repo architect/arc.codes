@@ -1,7 +1,7 @@
 {
   "name": "arc-www-get-guides",
   "dependencies": {
-    "@architect/docs": "^1.1.0",
+    "@architect/docs": "^30.0.3",
     "@architect/functions": "^1.0.3"
   }
 }
