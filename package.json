@@ -6,6 +6,7 @@
     "deploy": "AWS_REGION=us-west-2 AWS_PROFILE=jsf arc-deploy",
     "start": "NODE_ENV=testing arc-sandbox",
     "init": "./scripts/modules-init",
+    "link": "arc-modules-link",
     "update": "./scripts/modules-update",
     "test": "AWS_REGION=us-west-2 tape test.js | tap-spec"
   },
