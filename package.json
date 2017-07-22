@@ -4,7 +4,7 @@
   "description": "https://arc.codes",
   "scripts": {
     "deploy": "AWS_REGION=us-west-2 AWS_PROFILE=jsf arc-deploy",
-    "start": "NODE_ENV=testing arc-sandbox",
+    "start": "nodemon --watch ../arc-docs/ -e md --exec NODE_ENV=testing arc-sandbox",
     "init": "./scripts/modules-init",
     "link": "arc-modules-link",
     "update": "./scripts/modules-update",
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/arc-repos/arc.codes#readme",
   "devDependencies": {
     "@architect/workflows": "^1.0.6",
+    "nodemon": "^1.11.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.7.0",
     "tiny-json-http": "^5.1.1"
