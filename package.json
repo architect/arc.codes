@@ -7,7 +7,7 @@
     "start": "nodemon --watch ../arc-docs/ -e md --exec NODE_ENV=testing arc-sandbox",
     "init": "./scripts/modules-init",
     "link": "arc-modules-link",
-    "update": "./scripts/modules-update",
+    "update": "arc-modules-update",
     "test": "AWS_REGION=us-west-2 tape test.js | tap-spec"
   },
   "repository": {
