@@ -2,6 +2,6 @@
   "name": "arc-www-get-quickstart",
   "dependencies": {
     "@architect/docs": "^30.0.9",
-    "@architect/functions": "^1.0.3"
+    "@architect/functions": "^1.0.5"
   }
 }
