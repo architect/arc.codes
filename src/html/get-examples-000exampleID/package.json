@@ -2,6 +2,6 @@
   "name": "arc-www-get-examples-000exampleID",
   "dependencies": {
     "@architect/docs": "^30.0.9",
-    "@architect/functions": "^1.0.5"
+    "@architect/functions": "^1.3.0"
   }
 }
