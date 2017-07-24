@@ -7,6 +7,7 @@
     "start": "nodemon --watch ../arc-docs/ -e md --exec NODE_ENV=testing arc-sandbox",
     "init": "arc-modules-install",
     "link": "arc-modules-link",
+    "rm": "arc-modules-uninstall",
     "update": "arc-modules-update",
     "test": "AWS_REGION=us-west-2 tape test.js | tap-spec"
   },
@@ -27,5 +28,8 @@
     "tap-spec": "^4.1.1",
     "tape": "^4.7.0",
     "tiny-json-http": "^5.1.1"
+  },
+  "dependencies": {
+    "@architect/workflows": "^1.0.10"
   }
 }
