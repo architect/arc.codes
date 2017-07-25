@@ -4,7 +4,7 @@
   "description": "https://arc.codes",
   "scripts": {
     "deploy": "AWS_REGION=us-west-2 AWS_PROFILE=jsf arc-deploy",
-    "start": "nodemon --watch ../arc-docs/ -e md --exec NODE_ENV=testing arc-sandbox",
+    "start": "nodemon --watch ../arc-docs/ -e md,css,js --exec NODE_ENV=testing arc-sandbox",
     "init": "arc-modules-install",
     "link": "arc-modules-link",
     "update": "arc-modules-update",
