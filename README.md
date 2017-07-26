@@ -4,26 +4,26 @@
 
 [ ![Codeship Status for arc-repos/arc.codes](https://app.codeship.com/projects/69a79dc0-4fd3-0135-6f18-062897f7455f/status?branch=master)](https://app.codeship.com/projects/234163)
 
-## setup
+## Setup
 
-0. To deploy you need to setup an `[jsf]` profile in `.aws/credentials`. 
-1. Ensure that `arc-docs` is a sibling of this repo
-2. Initialize the repos by running `npm i && npm run init`
-3. Link to your local copy of `arc-docs` by running `npm run link ../arc-docs`
+0. To deploy, first set up a `[jsf]` profile in `~/.aws/credentials` with stubbed `aws_access_key_id`, `aws_secret_access_key`, and `region` env vars.
+1. Ensure that `arc-docs` is a sibling of this repo.
+2. Initialize the repos by running `npm i && npm run init`.
+3. Link to your local copy of `arc-docs` by running `npm run link ../arc-docs/`.
 
-## test
+## Test
 
 ```
 npm it
 ```
 
-## preview
+## Preview
 
 ```
 npm start
 ```
 
-## deploy
+## Deploy
 
 Anything that hits master green gets deployed automatically. You can deploy whatever you have locally by running:
 
