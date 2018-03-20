@@ -1,7 +1,7 @@
 {
   "name": "arc-www-get-index",
   "dependencies": {
-    "@architect/docs": "^30.1.33",
-    "@architect/functions": "^1.3.0"
+    "@architect/docs": "^30.1.47",
+    "@architect/functions": "^1.6.5"
   }
 }

@@ -3,7 +3,7 @@ lambdas=`ls src/html`
 for f in $lambdas
 do
   cd "src/html/$f"
-  rm -rf node_modules
-  npm i --production
+  npm rm @architect/docs @architect/functions --save 
+  npm i @architect/docs @architect/functions --save --production
   cd ../../../
 done
