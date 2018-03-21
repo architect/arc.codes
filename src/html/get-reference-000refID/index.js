@@ -1,5 +1,5 @@
 var arc = require('@architect/functions')
-var render = require('@architect/docs')
+var render = require('@architect/shared/render')
 
 function index(req, res) {
   res({
