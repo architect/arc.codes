@@ -36,12 +36,14 @@ The `.arc` format follows a few simple rules:
 `.arc` files are made up of the following sections:
 
 - `@app` defines the application namespace
-- `@html` section defines html routes (API Gateway and Lambda)
-- `@json`  defines json routes (API Gateway and Lambda)
-- `@events` defines application events you can publish and subscribe to (SNS)
-- `@scheduled` defines functions that run on a timed schedule (Cloudwatch Events)
-- `@tables` defines database tables and trigger functions for them (DynamoDB)
-- `@indexes` defines additional database table indexes (DynamoDB)
+- `@html` section defines html routes 
+- `@json`  defines json routes 
+- `@events` defines application events you can publish and subscribe to
+- `@slack` defines Slack API endpoints 
+- `@static` defines S3 buckets for static assets
+- `@scheduled` defines functions that run on a schedule
+- `@tables` defines DynamoDB database tables and trigger functions for them 
+- `@indexes` defines table global secondary indexes 
 
 This is a complete `.arc` file example:
 
@@ -97,7 +99,9 @@ The code was also immediately deployed to the cloud in isolated `staging` and `p
 
 The `.arc` format is terse, easy to read, and quickly learnable to author. The expressions in a `.arc` file unlock the formerly complex tasks of cloud infrastructure provisioning, deployment, and orchestration.
 
-## Implementing principles and practices
+---
+
+# Implementing principles and practices
 
 `architect` follows many of the principles pioneered by agile and championed by devops. Versioning infrastructure. Tight feedback loops for dev, while maintaining isolation between stages. Systems that are consistent, inspectable, transparent, and extensible.
 
