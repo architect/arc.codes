@@ -36,6 +36,7 @@
 - Guides
   - [Work Locally](/guides/offline)
   - [HTTP](/guides/http)
+  - [CORS](/guides/cors)
   - [Custom Domains](/guides/custom-dns)
   - Sharing Code
   - Persisting Data

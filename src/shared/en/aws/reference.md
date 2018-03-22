@@ -1,21 +1,36 @@
 # Reference
 
-## Workflows & functions
+## Workflows Reference
 
-- [Dev workflows using `npm run` scripts](/reference/npm-run-scripts)
-- [Authoring cloud functions](/reference/functions)
+- [`npm run create`](/reference/arc-create)
+- [`npm run deploy`](/reference/arc-deploy)
+- [`npm start`](/reference/arc-sandbox)
+- [`npm run dns`](/reference/arc-dns)
 
-## `.arc` file syntax reference:
+## Functions Reference
 
-- [@app](/reference/app)
-- [@domain](/reference/domain)
-- [@html](/reference/html)
-- [@json](/reference/json)
-- [@events](/reference/events)
-- [@scheduled](/reference/scheduled)
-- [@slack](/reference/slack)
-- [@tables](/reference/tables)
-- [@indexes](/reference/indexes)
+- [`arc.html.get`](/reference/html-get)
+- [`arc.html.post`](/reference/html-post)
+- [`arc.json.get`](/reference/json-get)
+- [`arc.json.post`](/reference/json-post)
+- [`arc.events.subscribe`](/reference/events-subscribe)
+- [`arc.events.publish`](/reference/events-publish)
+- [`arc.tables.insert`](/reference/tables-insert)
+- [`arc.tables.update`](/reference/tables-update)
+- [`arc.tables.destroy`](/reference/tables-destroy)
+
+## `.arc` Reference
+
+- [`@app`](/reference/app)
+- [`@domain`](/reference/domain)
+- [`@html`](/reference/html)
+- [`@json`](/reference/json)
+- [`@events`](/reference/events)
+- [`@scheduled`](/reference/scheduled)
+- [`@slack`](/reference/slack)
+- [`@static`](/reference/static)
+- [`@tables`](/reference/tables)
+- [`@indexes`](/reference/indexes)
 
 ## Also recommended
 
