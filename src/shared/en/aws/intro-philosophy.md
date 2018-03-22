@@ -1,5 +1,7 @@
 # Project Philosophy
 
+> `.arc` frees your architecture from infra and vendor cruft so you can focus on the real business logic of your app. Ship only the code that matters, iterate faster and enjoy unprecedented availability guarantees.
+
 The iron age of compute began with racked physical servers. Early cloud compute evolved past physical servers into virtual machines. Virtual machines eventually gave way to containers and quickly containers have given rise to *cloud functions*. Each cycle has taught new lessons in software architecture and this most recent iteration brings new challenges. 
 
 - Config and tooling is designed for the last generation of metaphors 

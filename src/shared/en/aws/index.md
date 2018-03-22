@@ -2,7 +2,7 @@
 
 <div style=background:lightblue;padding:10px;border-radius:7px;>`.arc` is a plaintext manifest for defining next generation cloud infrastructure</div>
 
-- **Create cloud infra in minutes** from an `.arc` manifest and version control your architecture
+- **Version control your architecture** and create cloud infra in minutes from an `.arc` manifest
 - **Deploy in seconds** with first class support for `staging` and `production`
 - **Work locally** while completely offline with a speedy in-memory database
 - **Primitives not Frameworks**; define app architecture agnostic of vendor arcana

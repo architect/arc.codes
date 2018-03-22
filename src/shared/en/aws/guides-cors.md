@@ -1,6 +1,6 @@
 # CORS
 
-What if you don’t have your entire application built using `.arc`? Maybe your front-end is hosted somewhere else, or you are starting out with a single Lambda function within a larger system.
+What if you don't have your entire application built using `.arc`? Maybe your front-end is hosted somewhere else, or you are starting out with a single Lambda function within a larger system.
 
 ```js
 // TODO Something searchable about the default CORS error you might get
@@ -21,7 +21,7 @@ get /
 
 1. Go to [API Gateway](https://console.aws.amazon.com/apigateway) in the AWS console
 2. Add CORS
-  - API Gateway → _the `.arc` API name_-production → Actions dropdown → Enable CORS
+  - API Gateway &rarr; _the `.arc` API name_-production → Actions dropdown → Enable CORS
   - Repeat for staging
   ![](https://placehold.it/800x600)
 3. Create API Key
@@ -57,7 +57,7 @@ window
 
 ## Restricting domains
 
-CORS isn’t really used to restrict requests from certain domains, but you can do that within your function.
+CORS isn't really used to restrict requests from certain domains, but you can do that within your function.
 
 Continuing from the default quickstart `/api` endpoint, your API might operate differently based on the domain the request came from (other other headers):
 
