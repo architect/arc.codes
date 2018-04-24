@@ -38,7 +38,7 @@
   - [HTTP](/guides/http)
   - [CORS](/guides/cors)
   - [Custom Domains](/guides/custom-dns)
-  - Sharing Code
+  - [Sharing Code](/guides/shared-deps)
   - Persisting Data
   - Logging and Monitoring
   - Static Assets
