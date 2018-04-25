@@ -2,14 +2,18 @@
 
 What if you don't have your entire application built using `.arc`? Maybe your front-end is hosted somewhere else, or you are starting out with a single Lambda function within a larger system.
 
-<!--
-TODO Something searchable about the default CORS error you might get
--->
+Perhaps you’ve set up an API using `.arc`, but are now getting an error message in your browser console like, “No 'Access-Control-Allow-Origin' header is present on the requested resource,” or, “CORS header ‘Access-Control-Allow-Origin’ missing,” when trying to access the API from your existing site.
 
-> For security reasons, browsers restrict cross-origin HTTP requests initiated from within scripts. For example, XMLHttpRequest and the Fetch API follow the same-origin policy. This means that a web application using those APIs can only request HTTP resources from the same domain the application was loaded from unless CORS headers are used.
-> <footer> MDN, [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)</footer>
+According to the MDN web docs, for security reasons, a web application using `window.fetch`, XMLHttpRequest, jQuery’s `$.ajax`,
 
-To make a request from your main application to your cloud function, you'll need to enable CORS within the AWS console. Given the initial [`.arc` file from the quickstart](/quickstart):
+> can only request HTTP resources from the same domain the application was loaded from unless CORS headers are used.
+> <footer> MDN web docs, [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)</footer>
+
+To set these headers, you’ll need to enable CORS within the AWS console, and then write the code to make your request from your existing site to your cloud function. 
+
+## Enabling CORS via the AWS console
+
+Given the initial [`.arc` file from the quickstart](/quickstart):
 
 ```arc
 @app
@@ -20,23 +24,36 @@ get /
 ```
 
 1. Go to [API Gateway](https://console.aws.amazon.com/apigateway) in the AWS console
-2. Add CORS
-  - API Gateway &rarr; _the `.arc` API name_-production &rarr; Actions dropdown &rarr; Enable CORS
-  - Repeat for staging
-  ![](https://placehold.it/800x600)
-3. Create API Key
-  ![](https://placehold.it/800x600)
+2. Add CORS by going to: API Gateway &rarr; _your API name_-production &rarr; Actions dropdown &rarr; Enable CORS
+  ![A screenshot showing where the Actions dropdown is in the API Gateway section of the AWS console](../../images/guide-cors-1.png)
+3. Repeat the previous step for staging
+4. Create API Key
+  ![A screenshot showing where to create an API Gateway API key](../../images/guide-cors-2.png)
+  If you ever need need to revoke access to one of the API keys you create, you can return to this section of the AWS console.
 
-Make a test request with API Key, ex:
+Now that you have an API key, you can use it to make a test request from your terminal. For example:
 
 ```sh
 curl --header "x-api-key: aA01etc1234567890234567890" https://example.execute-api.us-east-1.amazonaws.com/production/api/
 ```
 
-Then, within your client side application, you might do something like:
+With the default `.arc` file, this should return:
+
+```json
+{ "msg": "hello world" }
+```
+
+If you get the result you expect back, you’re ready to use the API and API key within your existing site or client-side application.
+
+## Using your API across domains
+
+Using `window.fetch`, this might look something like:
   
 ```javascript
+// The API key you just create
 var apiKey = 'aA01etc1234567890234567890'
+
+// The production URL to your API
 var api = 'https://example.execute-api.us-east-1.amazonaws.com/production/api/'
 
 window
@@ -93,6 +110,4 @@ exports.handler = arc.json.get(route)
 
 ## Conclusion
 
-- No longer getting CORS error
-- AWS handles the API keys
-- Your function checks the domain or other aspects of the header
+Now, you can make use of your `.arc` functions, within your existing static sties or client-side applications. This is a great way to ease into using cloud functions, or adding some “server-side” functionality to an otherwise static site.
