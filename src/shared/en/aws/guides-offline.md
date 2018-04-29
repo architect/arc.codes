@@ -48,14 +48,14 @@ Add the following to `package.json`:
 
 ```javascript
 {
-  "test": "NODE_ENV=testing AWS_PROFILE=xxx AWS_REGION=xxx tape test/*-test.js | tap-spec"
+  "test": "NODE_ENV=testing AWS_PROFILE=xxx AWS_REGION=xxx tape tests/*-test.js | tap-spec"
 }
 ```
 
 NOTE: you need to setup `AWS_PROFILE` and `AWS_REGION` per the quickstart.
 
 
-> Tip: while you can use any test runner and reporter combo you want the TAP family is strongly reccomended; test suites that inject globals cause more bugs than they fix
+> Tip: while you can use any test runner and reporter combo you want the TAP family is strongly recommended; test suites that inject globals cause more bugs than they fix
 
 Scaffold your two test files with an environment check; this a good practice to get the testing muscles warmed up.
 
