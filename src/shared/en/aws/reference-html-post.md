@@ -1,9 +1,9 @@
 # <a id=arc.html.post href=#arc.html.post>`arc.html.post`</a>
 
-## HTTP `POST` handler responds with HTTP status code `302` and Location redirect
+## HTTP `POST` handler aways responds with a redirect
 
-- HTTP `POST` routes can **only** call `res` with `location` key and value of the path to redirect to. 
-- `session` can also optionally be set.
+- HTTP `POST` routes can **only** call `res` with `location` key and value of the path to redirect to.
+- `session` can also optionally be set
 
 In the following example we define `validate` middleware:
 

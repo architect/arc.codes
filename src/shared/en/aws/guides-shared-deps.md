@@ -1,4 +1,4 @@
-# Shared Deps
+# Share Code
 
 > Cloud functions tend to share logic across an `@app`. The best way to do this is by creating a module you can share between them. 
 

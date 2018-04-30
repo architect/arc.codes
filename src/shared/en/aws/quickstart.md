@@ -1,6 +1,6 @@
 # Prerequisites
 
-This project assumes you are running Node `8.10.x` and npm `5.7.1` locally. Please keep in mind that AWS Lambda runs Node `6.10.x`.
+This project assumes you are running Node `8.10.x` and npm `6.0.x` locally. Please keep in mind that AWS Lambda runs Node `8.10.x`.
 
 ## AWS Setup
 

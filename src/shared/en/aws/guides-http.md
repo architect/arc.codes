@@ -1,4 +1,4 @@
-# HTTP
+# HTTP Functions
 
 > An `.arc` abstracts API Gateway configuration and provisioning; `@architect/functions` are powerful tools for working with HTTP
 

@@ -41,13 +41,13 @@ module.exports = function render (filename) {
         <section class=main>
         <section class="nav">
           <h1 id=nav-logo-main class=logo><a href="/">${green}</a></h1>
-          <button class="nav-toggle"><span class="ir">Toggle Navigation</span></button>
+          <button class=nav-toggle><span class="ir">Toggle Navigation</span></button>
           <nav>${md(nav)}</nav>
         </section>
           <section class=content><div class=inner>${logo}${md(body)}</div></section>
           <footer class=footer></footer>
         </section>
-        <script type="text/javascript" src=https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js></script>
+        <script src=https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js></script>
         <a href="https://github.com/arc-repos" class="github-corner" aria-label="View source on Github">${github}</a>
         <style type="text/css">.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
         <script type="text/javascript">
@@ -62,6 +62,9 @@ module.exports = function render (filename) {
                 body.classList.add('nav-open');
               }
             });
+
+            // cheesy selected nav hack
+            document.querySelector(\`li a[href="\${location.pathname}"]\`).style.color = '#00ff63'
           })();
         </script>
         <script type="text/javascript">

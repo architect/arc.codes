@@ -17,9 +17,7 @@ We call this situation *immutable infrastructure* to feel better! &#128150;
 
 Most of these constraints were borne out of necessity for speed; velocity aided by way of minimum essential capability. These items will be great topics of community discussion and future contribution, so file them as: _maybe someday_.
 
-- `PATCH`, `PUT`, `DELETE` are not supported, but maybe they shouldn't be (100% support everything browsers do: `GET` and `POST`)
+- `PATCH`, `PUT`, `DELETE` are currently not supported (but 100% support everything browsers do: `GET` and `POST`)
 - Routes must be unique (i.e. no overloading `Content-Type`); it's certainly possible to get around, but you probably don't want to do that anyhow
-- An `application/x-form-urlencoded` `POST` must respond with a redirect
-- Currently only `String` and `Number` types are supported for Partition and Sort keys in DynamoDB
 
 ## Next: [Check out the quickstart](/quickstart)

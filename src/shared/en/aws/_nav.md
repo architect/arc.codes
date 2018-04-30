@@ -7,6 +7,15 @@
   - [Prerequisites](/quickstart)
   - [Installation](/quickstart/install)
   - [Project Layout](/quickstart/arc-project-layout)
+- Guides
+  - [Work Locally](/guides/offline)
+  - [Share Code](/guides/shared-deps)
+  - [HTTP Functions](/guides/http)
+  - Static Assets
+  - [Persist Data](/guides/data)
+  - Logging and Monitoring
+  - [Setup a Custom Domain](/guides/custom-dns)
+  - [Implement CORS](/guides/cors)
 - Workflows Reference
   - [`npm run create`](/reference/arc-create)
   - [`npm run deploy`](/reference/arc-deploy)
@@ -33,12 +42,3 @@
   - [`@static`](/reference/static)
   - [`@tables`](/reference/tables)
   - [`@indexes`](/reference/indexes)
-- Guides
-  - [Work Locally](/guides/offline)
-  - [HTTP](/guides/http)
-  - [CORS](/guides/cors)
-  - [Custom Domains](/guides/custom-dns)
-  - [Sharing Code](/guides/shared-deps)
-  - Persisting Data
-  - Logging and Monitoring
-  - Static Assets
