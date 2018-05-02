@@ -1,14 +1,19 @@
 # Work Locally
 
-> Work offline to preview and test `.arc` defined code
+> Work locally and completely offline to preview and test `.arc` defined code with `arc-sandbox`
 
-Run an `.arc` locally with the `arc-sandox` binary exposed by `@architect/workflows`. The sandbox is also available as a module for writing tests.
+The sandbox is also available as a module for writing tests.
 
 ## Preview vs Test
 
-**Preview** running code in a web browser and **test** headlessly the terminal.
+Two use cases:
 
-Following the [quickstart](/quickstart) you should have everything wired up so `npm start` kicks up a local web server and creates tables and indexes defined in `.arc` for previewing your work in the flow without deployment. If you want to write tests (you do) against the infra without deployment you'll need to setup the sandbox as a module.
+1. **Preview** locally running code in a web browser
+2. **Test** headlessly in a terminal
+
+Following the [quickstart](/quickstart) you should have everything wired up so `npm start` kicks up a local web server and creates tables and indexes defined in `.arc` for previewing work. 
+
+If you want to write tests (you do) against the infra without deployment you'll need to setup the sandbox as a module.
 
 This guide will use the following example `.arc` file:
 
@@ -37,7 +42,7 @@ ppl
 
 ## Setup
 
-Setup an offline test suite:
+Setup a test suite:
 
 ```bash
 mkdir tests
@@ -54,8 +59,7 @@ Add the following to `package.json`:
 }
 ```
 
-NOTE: you need to setup `AWS_PROFILE` and `AWS_REGION` per the quickstart.
-
+NOTE: you need to setup `AWS_PROFILE` and `AWS_REGION` per the quickstart. 
 
 > ✨ Tip: while you can use any test runner and reporter combo you want the TAP family is strongly reccomended; test suites that require test runners to inject globals create difficult-to-debug situations
 
@@ -182,3 +186,5 @@ test('arc.sandbox.db.close', t=>{
   t.ok(true, 'closed')
 })
 ```
+<hr>
+## Next: [Share Code Between Functions](/guides/shared-deps)

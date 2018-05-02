@@ -72,3 +72,7 @@ exports.handler = arc.html.get(index)
 Now anytime you preview locally, run the tests or deploy the layout module gets updated. 
 
 > Caution! `src/shared` gets copied recursively into all Lambda node_modules whenever you do basically anything so you want to keep the direstory structure as flat as possible and the payloads as small possible as to not bloat your Lambda functions and suffer worse cold starts
+
+---
+
+## Next: [HTTP Functions](/guides/http)

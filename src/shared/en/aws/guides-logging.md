@@ -4,3 +4,6 @@
 - CloudWatch events offers a tonne of metrics
 - X Ray offers deeper service call introspection capabilities
 - There are many third party tools to further extend your app with structured logs
+
+<hr>
+## Next: [Setup Custom Domains](/guides/custom-dns)

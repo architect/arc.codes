@@ -5,7 +5,7 @@
 An example of a `hit-counter` event handler:
 
 ```javascript
-var arc = require('@smallwins/arc-prototype')
+var arc = require('@architect/functions')
 
 function count(payload, callback) {
   console.log(JSON.stringify(payload, null, 2))

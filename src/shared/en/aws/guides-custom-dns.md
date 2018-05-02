@@ -53,3 +53,7 @@ These instructions are adapted from the tutorial at [LEANX](http://www.leanx.eu/
 16. Add any Base Path Mappings as necessary for your application.
 17. Now the custom domain name will be created in AWS Cloudfront. It can take up to an hour before the domain becomes active.
 18. The final step is to create a new CNAME record in Cloudflare to link your custom domain to the Cloudfront url which you can copy from the Distribution Domain Name in the Custom Domain Names console. Ensure that the option 'DNS and HTTP proxy (CDN)' is selected for this CNAME after creation.
+
+
+<hr>
+## Next: [Setup CORS](/guides/cors)

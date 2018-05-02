@@ -21,3 +21,5 @@ This project is open source so you can help! Jump over to the [community page](/
 
 - `arc-docs` translations
 - Syntax highlighting for `.arc` in popular editors and Prism
+
+## Next: [Check out the quickstart](/quickstart)

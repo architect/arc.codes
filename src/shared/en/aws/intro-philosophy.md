@@ -129,3 +129,5 @@ The `.arc` format is terse, easy to read, and quickly learnable to author. The e
 
 - `arc-parser` is open, and `architect` tooling ignores `@sections` it does not know
 - Extend `.arc` with your own `@sections` and workflows with `npm` scripts
+
+## Next: [Check out the quickstart](/quickstart)

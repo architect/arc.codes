@@ -46,7 +46,10 @@ post /hello
 
 And `npm run deploy` ships your code to the cloud in seconds. <span class=cloud>&#x1f329;</span>
 
+---
+
 ## Next steps
 
 - [Follow the quickstart](/quickstart)
+- [Check out the guides](/guides/offline)
 - [Read the reference](/reference)

@@ -28,6 +28,8 @@ We ask that you do your part in helping us ensure a safe, positive, inclusive, c
 
 ## A very brief history
 
-Naming things is hard. `architect` started out as `arc` which itself was an acronym for `Amazon run commands`. But mostly we just call it `arc`.
+Naming things is hard but in this case it was pretty easy. The `.arc` manifest takes inspiration from UNIX 'run command' files (like .vimrc, bashrc, etc). `architect` started out as `arc` which itself was an acronym for `Amazon run commands`. But mostly we just call this thing `arc`.
 
 The code was developed building [Begin](https://begin.com) and granted to [JS Foundation](https://js.foundation/) in July of 2017 under the `Apache-2.0` license.
+
+## Next: [Check out the quickstart](/quickstart)

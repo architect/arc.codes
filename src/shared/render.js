@@ -65,6 +65,7 @@ module.exports = function render (filename) {
 
             // cheesy selected nav hack
             document.querySelector(\`li a[href="\${location.pathname}"]\`).style.color = '#00ff63'
+            document.querySelector(\`li a[href="\${location.pathname}"] code\`).style.color = '#00ff63'
           })();
         </script>
         <script type="text/javascript">

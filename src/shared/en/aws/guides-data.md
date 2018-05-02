@@ -2,7 +2,7 @@
 
 > Data is the core to most apps; `.arc` bakes first class DynamoDB support for its speed, flexibility and ease of use
 
-Durable persistence of structured data is the foundation for many kinds of applications. `@architect/data` is a very thin wrapper for `DynamoDB` and `DynamoDB.DocumentClient` that reads a `.arc` file and returns a client for creating, modifying, deleting and querying data from DynamoDB. In this guide you will build a simple note taking application covering the major points for working with Dynamo and `.arc`.
+Durable persistence of structured data is the foundation for most applications. `@architect/data` is a very thin wrapper for `DynamoDB` and `DynamoDB.DocumentClient` that reads a `.arc` file and returns a client for creating, modifying, deleting and querying data from DynamoDB. In this guide you will build a simple note taking application covering the major points for working with Dynamo and `.arc`.
 
 ## Generating the Data Layer
 
@@ -33,7 +33,7 @@ notes
 
 Running `npm run create` will generate routes and tables to model our persistence needs. Accounts have an `accountID` partition key. Notes also have an `accountID` partition key and a unique `noteID`. This is one way to model a "many-to-many" relationship in Dynamo. 
 
-And the following tables are created:
+The following DynamoDB tables are created:
 
 - `testapp-staging-accounts`
 - `testapp-production-accounts`
@@ -325,3 +325,6 @@ exports.handler = arc.html.get(route)
 ## Patterns
 
 - authoring for determinism: use a stateless client for performing stateful actions
+
+<hr>
+## Next: [Logging and Monitoring](/guides/logging)

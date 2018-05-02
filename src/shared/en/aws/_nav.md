@@ -11,26 +11,16 @@
   - [Work Locally](/guides/offline)
   - [Share Code](/guides/shared-deps)
   - [HTTP Functions](/guides/http)
-  - Static Assets
+  - [Static Assets](/guides/static-assets)
   - [Persist Data](/guides/data)
-  - Logging and Monitoring
-  - [Setup a Custom Domain](/guides/custom-dns)
+  - [Logging and Monitoring](/guides/logging)
+  - [Setup Custom Domains](/guides/custom-dns)
   - [Implement CORS](/guides/cors)
 - Workflows Reference
   - [`npm run create`](/reference/arc-create)
   - [`npm run deploy`](/reference/arc-deploy)
   - [`npm start`](/reference/arc-sandbox)
   - [`npm run dns`](/reference/arc-dns)
-- Functions Reference
-  - [`arc.html.get`](/reference/html-get)
-  - [`arc.html.post`](/reference/html-post)
-  - [`arc.json.get`](/reference/json-get)
-  - [`arc.json.post`](/reference/json-post)
-  - [`arc.events.subscribe`](/reference/events-subscribe)
-  - [`arc.events.publish`](/reference/events-publish)
-  - [`arc.tables.insert`](/reference/tables-insert)
-  - [`arc.tables.update`](/reference/tables-update)
-  - [`arc.tables.destroy`](/reference/tables-destroy)
 - `.arc` Reference
   - [`@app`](/reference/app)
   - [`@domain`](/reference/domain)
@@ -42,3 +32,26 @@
   - [`@static`](/reference/static)
   - [`@tables`](/reference/tables)
   - [`@indexes`](/reference/indexes)
+- Functions Reference
+  - [`arc.html.get`](/reference/html-get)
+  - [`arc.html.post`](/reference/html-post)
+  - [`arc.json.get`](/reference/json-get)
+  - [`arc.json.post`](/reference/json-post)
+  - [`arc.events.subscribe`](/reference/events-subscribe)
+  - [`arc.events.publish`](/reference/events-publish)
+  - [`arc.tables.insert`](/reference/tables-insert)
+  - [`arc.tables.update`](/reference/tables-update)
+  - [`arc.tables.destroy`](/reference/tables-destroy)
+
+<!--
+- Data Reference
+  - [`data._name`](/reference/data-name)
+  - [`data._db`](/reference/data-db)
+  - [`data._doc`](/reference/data-doc)
+  - [`get`](/reference/data-get)
+  - [`query`](/reference/data-query)
+  - [`scan`](/reference/data-scan)
+  - [`put`](/reference/data-put)
+  - [`update`](/reference/data-update)
+  - [`delete`](/reference/data-delete)
+-->

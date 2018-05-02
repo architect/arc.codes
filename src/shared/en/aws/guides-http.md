@@ -1,6 +1,6 @@
 # HTTP Functions
 
-> An `.arc` abstracts API Gateway configuration and provisioning; `@architect/functions` are powerful tools for working with HTTP
+> An `.arc` abstracts API Gateway configuration and provisioning; `@architect/functions` adds a very light but powerful API shim to Lambda for working with HTTP
 
 An `architect`app has HTTP `GET` and `POST` Lambda function handlers for the follow `Content-Type`'s:
 
@@ -336,4 +336,7 @@ function route(req, res) {
 exports.handler = arc.html.get(route)
 ```
 
-And that's it! You can find the entire [example repo here](https://github.com/arc-repos/arc-example-login-flow).
+And that's it! [Find the example repo here.](https://github.com/arc-repos/arc-example-login-flow)
+
+<hr>
+## Next: [Static Assets](/guides/static-assets)

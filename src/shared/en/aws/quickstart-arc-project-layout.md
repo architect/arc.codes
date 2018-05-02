@@ -49,3 +49,5 @@ Section        | Purpose
 `@static`      | Define S3 buckets for static assets
 `@tables`      | Define database tables and trigger functions for them (DynamoDB)
 `@indexes`     | Define additional database table indexes (DynamoDB)
+
+## Next: [Learn how to Work Locally](/guides/offline)

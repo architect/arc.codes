@@ -1,6 +1,9 @@
 @app
 arc-www
 
+@domain
+arc.codes
+
 @html
 
 get /
