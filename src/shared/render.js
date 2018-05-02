@@ -33,6 +33,7 @@ module.exports = function render (filename) {
         <html>
         <head>
           <title>${title}</title>
+          <meta charset=UTF-8>
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" type="text/css">
           <style type=text/css>${style}</style>

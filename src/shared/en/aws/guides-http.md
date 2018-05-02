@@ -37,8 +37,7 @@ exports.handler = arc.html.get(index)
 
 - `req._url` - transforms url paths `/` into `/staging` or `/production` appropriately on API Gateway
 - `req._verify` - verify a `csrf` token
-
-Continue reading to learn more about `req._url` and `req._verify` below.
+- `req._static` - resolves S3 bucket URLs; pass it a path and it returns the URL appropriate to `localhost:3333`, `staging` or `production`
 
 ## Response
 

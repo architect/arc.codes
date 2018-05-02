@@ -46,6 +46,8 @@ Running `npm run deploy` copies `.static` to the staging bucket. If you want ver
 
 Running `ARC_DEPLOY=production npm run deploy` copies `.static` to the production bucket. 
 
+> 🏌️‍♀️Protip: `npm run deploy static` will deploy the static assets _only_
+
 ## Linking
 
 Isolation is 🗝 to creating a continuous delivery pipeline. We want to work on our local machines, deploy to a staging environment and promote to production with total confidence the system is only improving. Static assets are no different!
@@ -82,6 +84,13 @@ function route(req, res) {
 
 exports.handler = arc.html.get(route)
 ```
+
+Go farther:
+
+- Enhance the build pipeline with a JS bundler
+- Build files with unique identifiers to bust caches
+- Setup a CloudFront distribution for the `production` bucket
+- Write a helper to include scripts on only the pages that need them
 
 <hr>
 ## Next: [Persist Data](/guides/data)
