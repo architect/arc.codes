@@ -150,7 +150,7 @@ function route(req, res) {
   let session = {}
   let authorized = req.body.email === 'b@brian.io' && req.body.password === 'lolwut'
   if (authorized) {
-    session.account = {name: 'brianleroux'}
+    session.account = {name: 'brianleroux', accountID: 'fake-account-id'}
   }
   res({session, location})
 }
