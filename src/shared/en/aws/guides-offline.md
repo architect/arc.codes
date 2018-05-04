@@ -1,15 +1,15 @@
-# Work Locally
+# Working Locally
 
 > Work locally and completely offline to preview and test `.arc` defined code with `arc-sandbox`
 
 The sandbox is also available as a module for writing tests.
 
-## Preview vs Test use cases
+## Previewing vs Testing
 
 Arc targets two use cases:
 
-1. **Preview** locally running code in a web browser
-2. **Test** headlessly in a terminal
+1. **Previewing** - code runs locally and can be opened in a web browser
+2. **Testing** - code runs headlessly in a terminal
 
 Following the [quickstart](/quickstart) you should have everything wired up so `npm start` kicks up a local web server and creates tables and indexes defined in `.arc` for previewing work. 
 
