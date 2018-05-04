@@ -40,8 +40,9 @@ Running `npm run create` creates the following code:
 |   |   `-- hello/
 |   |-- html
 |   |   `-- get-index/
-|   `-- json
-|       `-- get-posts/
+|   |-- json
+|   |   `-- get-posts/
+|   `-- shared/
 |-- .arc
 `-- package.json
 ```

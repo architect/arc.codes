@@ -103,8 +103,9 @@ Running `npm run create` in the same directory as the `.arc` file above generate
 |   |   `-- hit-counter/
 |   |-- scheduled
 |   |   `-- daily-affirmation/
-|   `-- tables
-|       `-- likes-update/
+|   |-- tables
+|   |   `-- likes-update/
+|   `-- shared/
 |-- .arc
 `-- package.json
 ```
