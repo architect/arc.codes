@@ -188,4 +188,4 @@ test('arc.sandbox.db.close', t=>{
 })
 ```
 <hr>
-## Next: [Share code between functions](/guides/shared-deps)
+## Next: [Share code between functions](/guides/sharing-common-code)

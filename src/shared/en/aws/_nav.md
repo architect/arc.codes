@@ -9,7 +9,7 @@
   - [Project Layout](/quickstart/arc-project-layout)
 - Guides
   - [Work Locally](/guides/offline)
-  - [Share Code](/guides/shared-deps)
+  - [Sharing Common Code](/guides/sharing-common-code)
   - [HTTP Functions](/guides/http)
   - [Static Assets](/guides/static-assets)
   - [Persist Data](/guides/data)
