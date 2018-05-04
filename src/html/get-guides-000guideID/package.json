@@ -2,6 +2,6 @@
   "name": "arc-www-get-guides-000guideID",
   "dependencies": {
     "@architect/docs": "^30.1.47",
-    "@architect/functions": "^1.6.5"
+    "@architect/functions": "^1.8.0"
   }
 }
