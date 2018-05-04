@@ -21,7 +21,7 @@ Things to understand:
 - `arc.html.get` accepts one or more functions that follow Express-style middleware signature: `(req, res, next)=>`
 - `req` is a plain JavaScript `Object` with `path`, `method`, `query`, `params`, `body` keys
 - `res` is a function that must be invoked with named params: 
-  - `html` a string value containing html content
+  - `html` a string value containing HTML content
   - or `location` with a URL value (a string starting w `/`)
   - `session` (optional) a plain `Object`
   - `status` (optional) HTTP error status code responses: `500`, `403`, or `404`

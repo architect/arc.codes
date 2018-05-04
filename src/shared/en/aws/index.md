@@ -7,9 +7,9 @@
 - **Work locally** while completely offline with a speedy in-memory database
 - **Primitives not Frameworks**; define app architecture agnostic of vendor arcana
 
-Leverage powerful Amazon Web Services cloud primitives without frustrating configuration: 
+Orchestrate and leverage powerful Amazon Web Services cloud primitives without frustrating configuration: 
 
-- [Lambda](https://aws.amazon.com/lambda/) for compute 
+- [Lambda](https://aws.amazon.com/lambda/) cloud functions for compute 
 - [API Gateway](https://aws.amazon.com/api-gateway/) for HTTP route handlers
 - [Route53](https://aws.amazon.com/route53) for DNS
 - [CloudFront](https://aws.amazon.com/cloudfront/) for CDN
@@ -31,7 +31,7 @@ get /hellos
 post /hello
 ```
 
-`npm run create` to generates lambda function code locally:
+`npm run create` to locally generate Lambda function code:
 
 ```bash
 /

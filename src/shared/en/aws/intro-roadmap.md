@@ -5,7 +5,7 @@ This project is open source so you can help! Jump over to the [community page](/
 ## In progress
 
 - `arc-env` env variables and configuration management
-- `@ws` support for web sockets invoking lambdas
+- `@ws` support for web sockets invoking Lambdas
 
 ## Recently shipped
 

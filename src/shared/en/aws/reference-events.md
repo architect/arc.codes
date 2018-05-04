@@ -24,7 +24,7 @@ Which generates the corresponding code:
 `-- package.json
 ```
 
-And the following deployment lambdas:
+And the following deployment Lambdas:
 
 - `testapp-staging-hit-counter`
 - `testapp-production-hit-counter`
