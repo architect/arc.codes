@@ -187,7 +187,7 @@ mkdir src/shared/middleware
 touch src/shared/middleware/auth.js
 ```
 
-The middleware checks for `req.session.account`. If it exists, execution is passed to the next fucntion in the middleware chain. If it does not exist the response is redirected `/`. <small> You can read more about middleware and sessions in the [HTTP Functions](/guides/http) guide.</small>
+The middleware checks for `req.session.account`. If it exists, execution is passed to the next fucntion in the middleware chain. If it does not exist the response is redirected `/`. We will incorporate this into routes we want to protect later in the guide.
 
 ```javascript
 // src/shared/middleware/auth.js
@@ -204,6 +204,8 @@ module.exports = function auth(req, res, next) {
   }
 }
 ```
+
+> 🏄‍♀️ Read more about middleware and sessions in the [HTTP Functions](/guides/http) guide
 
 ## Write a Note
 
