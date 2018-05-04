@@ -9,12 +9,12 @@ Virtual machines eventually gave way to containers and quickly containers have g
 Each cycle has taught new lessons in software architecture and this most recent iteration brings new challenges. 
 
 - Config and tooling is designed for the last generation of metaphors 
-- AWS is massive and overwhelming with many similar, but not the same, products with divergent interfaces between interlocking services
+- AWS is massive and overwhelming with many similar &mdash; but not the same &mdash; products with divergent interfaces between interlocking services
 - Deep proprietary knowledge is required to configure and maintain common infrastructure primitives
 - Configuration and infrastructure can drift, leaving systems in states that are difficult to repeat / reproduce, and thus scale
-- Painful manifest files; JSON is difficult to read, has no comments, and unforgiving to edit; YAML isn't much better and especially worse with deeply nested statements
+- Painful manifest files; JSON is difficult to read, has no comments, and is unforgiving to edit; YAML isn't much better and is in some ways far worse (i.e. deeply nested statements)
 
-_Some_ of these problems have been tamed with [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_Code), creating repeatable and reproducible systems. The tradeoff is you are committing AWS configuration knowledge into your revision control systems.
+_Some_ of these problems have been tamed with [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_Code), creating repeatable and reproducible systems. The trade-off there is: you're committing AWS configuration knowledge into your revision control systems.
 
 **`.arc` views infrastructure as a build artifact.** And we prefer to not check build artifacts in with our code.
 
@@ -42,8 +42,8 @@ The `.arc` format follows a few simple rules:
 `.arc` files are made up of the following sections:
 
 - `@app` defines the application namespace
-- `@html` section defines HTML routes 
-- `@json`  defines JSON routes 
+- `@html` defines HTML routes 
+- `@json` defines JSON routes 
 - `@events` defines application events you can publish and subscribe to
 - `@slack` defines Slack API endpoints 
 - `@static` defines S3 buckets for static assets
@@ -101,7 +101,7 @@ Running `npm run create` in the same directory as the `.arc` file above generate
 `-- package.json
 ```
 
-The code was also immediately deployed to the cloud in isolated `staging` and `production` environments.
+The code was also immediately deployed to the cloud in fully isolated `staging` and `production` environments.
 
 The `.arc` format is terse, easy to read, and quickly learnable to author. The expressions in a `.arc` file unlock the formerly complex tasks of cloud infrastructure provisioning, deployment, and orchestration.
 
@@ -109,7 +109,11 @@ The `.arc` format is terse, easy to read, and quickly learnable to author. The e
 
 # Implementing principles and practices
 
-`architect` follows many of the principles pioneered by agile and championed by devops. Versioning infrastructure. Tight feedback loops for dev, while maintaining isolation between stages. Systems that are consistent, inspectable, transparent, and extensible.
+`architect` follows many of the principles pioneered by agile and championed by devops, namely:
+
+- Versioned infrastructure
+- Tight feedback loops for dev, while maintaining isolation between stages
+- Systems that are consistent, inspectable, transparent, and extensible
 
 ### Architecture as text
 
@@ -119,7 +123,7 @@ The `.arc` format is terse, easy to read, and quickly learnable to author. The e
 
 ### Repeatable and consistent builds
 
-- `arc-create` only creates, and never destroys; it skips if what it was to generate already exists
+- `arc-create` only creates, and never destroys; it skips what already exists
 - Per above, `arc-create` is intended to be run and re-run as your system changes and grows
 - Use the AWS console to administer (i.e. remove infrastructure) or script destructive actions yourself; `architect` never destroys
 
