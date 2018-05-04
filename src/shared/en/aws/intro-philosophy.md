@@ -41,16 +41,16 @@ The `.arc` format follows a few simple rules:
 
 `.arc` files are made up of the following sections:
 
-- `@app` defines the application namespace
-- `@domain` defines DNS for a custom domain name
-- `@html` defines HTML routes 
-- `@json` defines JSON routes 
-- `@events` defines application events you can publish and subscribe to
-- `@scheduled` defines functions that run on a schedule
-- `@slack` defines Slack API endpoints 
-- `@static` defines S3 buckets for static assets
-- `@tables` defines DynamoDB database tables and trigger functions for them 
-- `@indexes` defines table global secondary indexes 
+- [`@app`](/reference/app) defines your application namespace
+- [`@domain`](/reference/domain) defines DNS for a custom domain name
+- [`@html`](/reference/html) defines HTML routes 
+- [`@json`](/reference/json) defines JSON routes 
+- [`@events`](/reference/events) defines application events you can publish and subscribe to
+- [`@scheduled`](/reference/scheduled) defines functions that run on a schedule
+- [`@slack`](/reference/slack) defines HTTP handlers to build apps for the Slack API
+- [`@static`](/reference/static) defines S3 buckets for static assets
+- [`@tables`](/reference/tables) defines DynamoDB database tables and trigger functions for them 
+- [`@indexes`](/reference/indexes) defines table global secondary indexes 
 
 This is a complete `.arc` file example:
 
