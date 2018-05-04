@@ -42,12 +42,13 @@ The `.arc` format follows a few simple rules:
 `.arc` files are made up of the following sections:
 
 - `@app` defines the application namespace
+- `@domain` defines DNS for a custom domain name
 - `@html` defines HTML routes 
 - `@json` defines JSON routes 
 - `@events` defines application events you can publish and subscribe to
+- `@scheduled` defines functions that run on a schedule
 - `@slack` defines Slack API endpoints 
 - `@static` defines S3 buckets for static assets
-- `@scheduled` defines functions that run on a schedule
 - `@tables` defines DynamoDB database tables and trigger functions for them 
 - `@indexes` defines table global secondary indexes 
 
@@ -57,6 +58,9 @@ This is a complete `.arc` file example:
 # .arc
 @app
 hello
+
+@domain
+hello.com
 
 @html
 get /
@@ -70,6 +74,10 @@ hit-counter
 
 @scheduled
 daily-affirmation rate(1 day)
+
+@static
+staging test-hello-bucket
+production hello-bucket
 
 @tables
 likes
