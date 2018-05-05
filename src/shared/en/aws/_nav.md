@@ -8,7 +8,7 @@
   - [Installation](/quickstart/install)
   - [Project Layout](/quickstart/arc-project-layout)
 - Guides
-  - [Work Locally](/guides/offline)
+  - [Working Locally](/guides/offline)
   - [Sharing Common Code](/guides/sharing-common-code)
   - [HTTP Functions](/guides/http)
   - [Static Assets](/guides/static-assets)
