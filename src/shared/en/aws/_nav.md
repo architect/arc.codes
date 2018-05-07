@@ -20,6 +20,7 @@
   - [`npm run create`](/reference/arc-create)
   - [`npm run deploy`](/reference/arc-deploy)
   - [`npm start`](/reference/arc-sandbox)
+  - [`npm run inventory`](/reference/arc-inventory)
   - [`npm run dns`](/reference/arc-dns)
 - `.arc` Reference
   - [`@app`](/reference/app)
