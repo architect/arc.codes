@@ -47,9 +47,10 @@ exports.handler = arc.html.get(index)
 - Optionally: `session` to assign to the current session
 - Optionally: `status` of `403`, `404` or `500` (`200` is default and `302` happens when `location` is set)
 
+
 ## Examples
 
-This is an example handler `200` response of `Content-Type: text/html`:
+Here we have an example handler `200` response of `Content-Type: text/html`:
 
 ```javascript
 var arc = require('@architect/functions')
@@ -160,8 +161,8 @@ All HTTP endpoints are sessions-enabled by default.
 
 Note:
 
-- HTTP endpoints are slower with sessions enabled becuase its marshalling data to and from DynamoDB
-- To disable session support, remove the `SESSION_TABLE_NAME` environment variable from the Lambda configuration in the AWS console (wherein session becomes a pass thru)
+- HTTP endpoints are slower with sessions enabled due to marshalling data to and from DynamoDB
+- To disable session support, remove the `SESSION_TABLE_NAME` environment variable from the Lambda configuration in the AWS console (wherein session becomes a passthrough)
 - If disabled you can also delete any corresponding session tables from DynamoDB
 
 ## Middleware Pattern
@@ -194,11 +195,11 @@ exports.handler = arc.html.get(log, ping, index)
 
 ## URLs
 
-API Gateway generates long urls that are hard to read. It also extends the URL base path with either `staging` or `production`, which means a link intended to point at `/` should actually point at `/staging` or `/production`. This pain point is eased if you set up a [custom domain name with DNS](/guides/custom-dns).
+API Gateway generates long URLs that are hard to read, and extends the URL base path with either `staging` or `production` &mdash; this means a link intended to point at `/` should actually point at `/staging` or `/production`. This pain point is eased if you set up a [custom domain name with DNS](/guides/custom-dns).
 
 `architect` also bundles a hidden helper function `req._url` for resolving URL paths that haven't yet been configured with DNS. This is helpful for early prototyping.
 
-Here is an example index page, protected by authentication middlewhare, that demonstrates `req._url` usage:
+Here is an example index page, protected by authentication middleware, that demonstrates `req._url` usage:
 
 ```javascript
 var arc = require('@architect/functions')
