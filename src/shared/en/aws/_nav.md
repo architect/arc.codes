@@ -14,7 +14,7 @@
   - [Static Assets](/guides/static-assets)
   - [Persist Data](/guides/data)
   - [Logging and Monitoring](/guides/logging)
-  - [Setup Custom Domains](/guides/custom-dns)
+  - [Assigning a Domain Name](/guides/custom-dns)
   - [Implement CORS](/guides/cors)
 - Workflows Reference
   - [`npm run create`](/reference/arc-create)
