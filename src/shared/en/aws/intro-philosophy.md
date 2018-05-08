@@ -134,7 +134,7 @@ The `.arc` format is terse, easy to read, and quickly learnable to author. The e
 
 - `arc-create` only creates, and never destroys; it skips what already exists
 - Per above, `arc-create` is intended to be run and re-run as your system changes and grows
-- Use the AWS console to administer (i.e. remove infrastructure) or script destructive actions yourself; `architect` never destroys
+- Use the AWS Console to administer (i.e. remove infrastructure) or script destructive actions yourself; `architect` never destroys
 
 ### Delivery is isolated from deployment
 

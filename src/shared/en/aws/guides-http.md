@@ -162,7 +162,7 @@ All HTTP endpoints are sessions-enabled by default.
 Note:
 
 - HTTP endpoints are slower with sessions enabled due to marshalling data to and from DynamoDB
-- To disable session support, remove the `SESSION_TABLE_NAME` environment variable from the Lambda configuration in the AWS console (wherein session becomes a passthrough)
+- To disable session support, remove the `SESSION_TABLE_NAME` environment variable from the Lambda configuration in the AWS Console (wherein session becomes a passthrough)
 - If disabled you can also delete any corresponding session tables from DynamoDB
 
 ## Middleware Pattern
