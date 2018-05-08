@@ -4,7 +4,7 @@ This project assumes you are running Node `8.10.x` and npm `6.0.x` locally. Plea
 
 ## AWS Setup
 
-You'll need an Amazon Web Services account and credentials set up your development machine. On *nix systems AWS Credentials are listed in:
+You'll need an Amazon Web Services account and credentials set up your development machine. On \*nix systems AWS Credentials are listed in:
 
 ```bash
 ~/.aws/credentials
