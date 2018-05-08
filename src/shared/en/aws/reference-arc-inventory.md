@@ -4,14 +4,14 @@
 
 Running `npm run inventory` displays an inventory of AWS resources represented by the current `.arc` file.
 
-## `npm run inventory verify`
+## Verify AWS Resources
 
 Running `npm run inventory verify` verifies AWS resources for the current `.arc` file exist.
 
-## `npm run inventory nuke`
+## Delete Everything Except DynamoDB Tables
 
-Running `npm run inventory nuke` deletes all AWS resources for the current `.arc` file except for **DynamoDB tables** and **Local code**. DynamoDB tables can be deleted with an additional environment variable (explained below). Your local code is yours to manage, but moreso, this means the `nuke` workflow allows for quick setup and teardown of a codebase across infra deployments. 
+Running `npm run inventory nuke` deletes all AWS resources for the current `.arc` file except for **DynamoDB tables**. DynamoDB tables can be deleted with an additional environment variable (explained below). This workflow makes it very fast to setup and teardown a single codebase across many infra deployments.
 
-## `ARC_NUKE=tables npm run inventory nuke`
+## Delete DynamoDB Tables
 
 Running `ARC_NUKE=tables npm run inventory nuke` deletes all DynamoDB tables for the current `.arc` file.
