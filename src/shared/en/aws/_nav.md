@@ -8,13 +8,13 @@
   - [Installation](/quickstart/install)
   - [Project Layout](/quickstart/arc-project-layout)
 - Guides
-  - [Work Locally](/guides/offline)
-  - [Share Code](/guides/shared-deps)
+  - [Working Locally](/guides/offline)
+  - [Sharing Common Code](/guides/sharing-common-code)
   - [HTTP Functions](/guides/http)
   - [Static Assets](/guides/static-assets)
   - [Persist Data](/guides/data)
   - [Logging and Monitoring](/guides/logging)
-  - [Setup Custom Domains](/guides/custom-dns)
+  - [Assigning a Domain Name](/guides/custom-dns)
   - [Implement CORS](/guides/cors)
 - Workflows Reference
   - [`npm run create`](/reference/arc-create)

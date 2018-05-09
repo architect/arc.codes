@@ -1,19 +1,19 @@
-# Work Locally
+# Working Locally
 
 > Work locally and completely offline to preview and test `.arc` defined code with `arc-sandbox`
 
 The sandbox is also available as a module for writing tests.
 
-## Preview vs Test
+## Previewing vs Testing
 
-Two use cases:
+Arc targets two use cases:
 
-1. **Preview** locally running code in a web browser
-2. **Test** headlessly in a terminal
+1. **Previewing** - code runs locally and can be opened in a web browser
+2. **Testing** - code runs headlessly in a terminal
 
 Following the [quickstart](/quickstart) you should have everything wired up so `npm start` kicks up a local web server and creates tables and indexes defined in `.arc` for previewing work. 
 
-If you want to write tests (you do) against the infra without deployment you'll need to setup the sandbox as a module.
+If you want to write tests (and we very much think you should!) against the infra without deployment you'll need to set up the sandbox as a module.
 
 This guide will use the following example `.arc` file:
 
@@ -42,7 +42,7 @@ ppl
 
 ## Setup
 
-Setup a test suite:
+Set up a test suite:
 
 ```bash
 mkdir tests
@@ -59,9 +59,9 @@ Add the following to `package.json`:
 }
 ```
 
-NOTE: you need to setup `AWS_PROFILE` and `AWS_REGION` per the quickstart. 
+Note: you need to setup `AWS_PROFILE` and `AWS_REGION` per the [installation guide](/quickstart/install). 
 
-> ✨ Tip: while you can use any test runner and reporter combo you want the TAP family is strongly reccomended; test suites that require test runners to inject globals create difficult-to-debug situations
+> ✨ Tip: while you can use any test runner and reporter combo you want, the TAP family is strongly recommended; test suites that require test runners to inject globals create difficult-to-debug situations
 
 Scaffold your two test files with an environment check; this a good practice to get the testing muscles warmed up.
 
@@ -77,7 +77,7 @@ test('env', t=> {
 ```
 
 ```javascript
-// tests/http-test.js
+// tests/db-test.js
 var test = require('tape')
 var arc = require('@architect/workflows')
 
@@ -87,11 +87,11 @@ test('env', t=> {
 })
 ```
 
-Check the tests by running `npm t`. (If things fail that's ok! That's why we have tests!!)
+Check the tests by running `npm t`. (It's ok if things fail &mdash; that's exactly why we have tests!)
 
 ## HTTP Testing
 
-In order to test HTTP routes we will need an HTTP client. Lets use tiny-json-http; it is a small, dependency free, module with a straigtforward interface. Install by running `npm i tiny-json-http --save-dev` and edit the http test:
+In order to test HTTP routes we will need an HTTP client. Lets use [tiny-json-http](https://github.com/brianleroux/tiny-json-http), a small, dependency free module with a straightforward interface. Install by running `npm i tiny-json-http --save-dev` and edit the HTTP test:
 
 ```javascript
 // tests/http-test.js
@@ -139,13 +139,14 @@ test('server.close', t=> {
 })
 ```
 
-As your app matures you will want to augment these tests with more elabarate response checks.
+As your app matures you will want to augment these tests with more elaborate response checks.
 
 ## DB Testing
 
-In an `.arc` defined project `NODE_ENV` is used for knowing where the code is running. This way apps with `NODE_ENV` set to `staging` or `production` will load the correct DynamoDB endpoints correctly. Your test suite and any client wrappers you author should follow suit.
+In an `.arc` defined project `NODE_ENV` is used for knowing where the code is running. This way apps with `NODE_ENV` set to `staging` or `production` will load the correct DynamoDB endpoints. Your test suite and any client wrappers you author should follow suit.
 
 ```javascript
+// tests/db-test.js
 var AWS = require('aws-sdk')
 var endpoint = new AWS.Endpoint('http://localhost:5000')
 var db = process.env.NODE_ENV === 'testing'? new AWS.DynamoDB({endpoint}) : new AWS.DynamoDB
@@ -187,4 +188,4 @@ test('arc.sandbox.db.close', t=>{
 })
 ```
 <hr>
-## Next: [Share Code Between Functions](/guides/shared-deps)
+## Next: [Sharing Common Code Between Functions](/guides/sharing-common-code)
