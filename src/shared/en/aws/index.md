@@ -35,13 +35,13 @@ post /hello
 
 ```bash
 /
-|- src
-|  '- html
-|     |- get-index/
-|     |- get-hellos/
-|     '- post-hello/
-|- .arc
-'- package.json
+├── src
+│   └── html
+│       ├── get-index/
+│       ├── get-hellos/
+│       └── post-hello/
+├── .arc
+└── package.json
 ```
 
 And `npm run deploy` ships your code to the cloud in seconds. <span class=cloud>&#x1f329;</span>

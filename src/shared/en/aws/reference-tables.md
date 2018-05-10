@@ -42,12 +42,12 @@ Function code will also be generated for the defined `people` Lambda triggers:
 
 ```bash
 /
-|-- tables
-|   |-- people-insert/
-|   |-- people-update/
-|   `-- people-destroy/
-|-- .arc
-`-- package.json
+├── tables
+│   ├── people-insert/
+│   ├── people-update/
+│   └── people-destroy/
+├── .arc
+└── package.json
 ```
 
 ## Next: [Defining DynamoDB table indexes with `@indexes`](/reference/indexes)

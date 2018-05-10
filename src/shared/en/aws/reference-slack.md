@@ -20,19 +20,19 @@ Given the `.arc` file above `npm run create` generates the following functions:
 
 ```bash
 /
-|-- html
-|   `--get-index/
-|-- slack
-|   |-- hello-bot-actions/
-|   |-- hello-bot-events/
-|   |-- hello-bot-options/
-|   |-- hello-bot-slash/
-|   |-- rando-emoji-actions/
-|   |-- rando-emoji-events/
-|   |-- rando-emoji-options/
-|   `-- rando-emoji-slash/
-|-- .arc
-`-- package.json
+├── html
+│   └── get-index/
+├── slack
+│   ├── hello-bot-actions/
+│   ├── hello-bot-events/
+│   ├── hello-bot-options/
+│   ├── hello-bot-slash/
+│   ├── rando-emoji-actions/
+│   ├── rando-emoji-events/
+│   ├── rando-emoji-options/
+│   └── rando-emoji-slash/
+├── .arc
+└── package.json
 ```
 
 Each bot gets API Gateway wired to Lambda handlers for:
@@ -63,17 +63,17 @@ Results in the following code:
 
 ```bash
 /
-|-- html
-|   |--get-sign-in-with-slack/
-|   |--get-add-to-slack/
-|   `--get-index/
-|-- slack
-|   |-- bot-actions/
-|   |-- bot-events/
-|   |-- bot-options/
-|   `-- bot-slash/
-|-- .arc
-`-- package.json
+├── html
+│   ├── get-sign-in-with-slack/
+│   ├── get-add-to-slack/
+│   └── get-index/
+├── slack
+│   ├── bot-actions/
+│   ├── bot-events/
+│   ├── bot-options/
+│   └── bot-slash/
+├── .arc
+└── package.json
 ```
 
 > Protip: all the generated handlers come installed with [Slack](https://www.npmjs.com/package/slack)

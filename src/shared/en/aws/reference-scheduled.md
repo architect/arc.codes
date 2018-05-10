@@ -17,11 +17,11 @@ Which generates the following code:
 
 ```bash
 /
-|-- scheduled
-|   |-- daily-update-buddy/
-|   `-- friyay-only/
-|-- .arc
-`-- package.json
+├── scheduled
+│   ├── daily-update-buddy/
+│   └── friyay-only/
+├── .arc
+└── package.json
 ```
 
 And the following deployment Lambdas:

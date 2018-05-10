@@ -26,14 +26,14 @@ The `.arc` above generates the following functions:
 
 ```bash
 /
-|-- html
-|   |-- get-index/
-|   |-- get-pages/
-|   |-- get-pages-000dateID/
-|   |-- get-contact/
-|   `-- post-contact/
-|-- .arc
-`-- package.json
+├── html
+│   ├── get-index/
+│   ├── get-pages/
+│   ├── get-pages-000dateID/
+│   ├── get-contact/
+│   └── post-contact/
+├── .arc
+└── package.json
 ```
 
 Note: The route `/pages/:dateID` corresponding handler deliberately looks a bit weird with the triple `000` so you can quickly identify URL params from URL parts. The Lambda deploy targets follow suit:

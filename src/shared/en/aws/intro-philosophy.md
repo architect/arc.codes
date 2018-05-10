@@ -93,21 +93,21 @@ Running `npm run create` in the same directory as the `.arc` file above generate
 
 ```bash
 /
-|-- src
-|   |-- html
-|   |   |-- get-index/
-|   |   `-- get-likes/
-|   |-- json
-|   |   `-- get-likes/
-|   |-- events
-|   |   `-- hit-counter/
-|   |-- scheduled
-|   |   `-- daily-affirmation/
-|   |-- tables
-|   |   `-- likes-update/
-|   `-- shared/
-|-- .arc
-`-- package.json
+├── src
+│   ├── html
+│   │   ├── get-index/
+│   │   └── get-likes/
+│   ├── json
+│   │   └── get-likes/
+│   ├── events
+│   │   └── hit-counter/
+│   ├── scheduled
+│   │   └── daily-affirmation/
+│   ├── tables
+│   │   └── likes-update/
+│   └── shared/
+├── .arc
+└── package.json
 ```
 
 The code was also immediately deployed to the cloud in fully isolated `staging` and `production` environments.

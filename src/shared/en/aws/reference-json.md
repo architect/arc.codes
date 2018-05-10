@@ -25,14 +25,14 @@ The `.arc` above generates the following REST-ish functions:
 
 ```bash
 /
-|-- json
-|   |-- get-notes/
-|   |-- get-notes-000noteID/
-|   |-- post-notes/
-|   |-- post-notes-000noteID/
-|   `-- post-notes-000noteID-delete/
-|-- .arc
-`-- package.json
+├── json
+│   ├── get-notes/
+│   ├── get-notes-000noteID/
+│   ├── post-notes/
+│   ├── post-notes-000noteID/
+│   └── post-notes-000noteID-delete/
+├── .arc
+└── package.json
 ```
 
 Note: The route `/notes/:noteID` corresponding handler deliberately looks a bit weird with the triple `000` so you can quickly identify URL params from URL parts. The Lambda deploy targets follow suit:

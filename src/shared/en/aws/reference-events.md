@@ -17,11 +17,11 @@ Which generates the corresponding code:
 
 ```bash
 /
-|-- events
-|   |-- hit-counter/
-|   `-- likes/
-|-- .arc
-`-- package.json
+├── events
+│   ├── hit-counter/
+│   └── likes/
+├── .arc
+└── package.json
 ```
 
 And the following deployment Lambdas:

@@ -19,15 +19,15 @@ You would have the following file system layout:
 
 ```bash
 /
-|-src
-| |-html
-| | |-get-index/
-| | |-get-about/
-| | |-get-contact/
-| | '-post-contact/
-| '-shared/
-|-.arc
-'-package.json
+├── src
+│   ├── html
+│   │   ├── get-index/
+│   │   ├── get-about/
+│   │   ├── get-contact/
+│   │   └── post-contact/
+│   └── hared/
+├── .arc
+└── package.json
 ```
 
 Sweet! However, what if a number of endpoints need to share a layout?
