@@ -5,6 +5,7 @@
   "scripts": {
     "init": "scripts/modules-init",
     "deploy": "AWS_REGION=us-west-2 AWS_PROFILE=jsf arc-deploy",
+    "create": "AWS_REGION=us-west-2 AWS_PROFILE=jsf arc-create",
     "start": "nodemon --watch src/shared/ -e md,css,js --exec NODE_ENV=testing arc-sandbox",
     "test": "AWS_REGION=us-west-2 tape test.js | tap-spec"
   },
@@ -26,7 +27,8 @@
     "tape": "^4.7.0"
   },
   "dependencies": {
-    "@architect/workflows": "^2.2.4",
+    "@architect/workflows": "^2.8.1",
+    "rimraf": "^2.6.2",
     "tiny-json-http": "^7.0.0"
   }
 }

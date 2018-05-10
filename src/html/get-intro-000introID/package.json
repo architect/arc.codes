@@ -1,6 +1,7 @@
 {
   "name": "arc-www-get-intro-000introID",
   "dependencies": {
+    "@architect/data": "^2.0.2",
     "@architect/docs": "^30.1.47",
     "@architect/functions": "^1.8.0"
   }
