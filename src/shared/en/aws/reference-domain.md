@@ -1,8 +1,7 @@
 # `@domain`
 
-## `@domain` sets up DNS for a custom domain name
+## `@domain` defines and assigns a domain name to your app
 
-### Syntax
 - Standard domain characters and syntax
 - Only use the FQDN
 - Do not include protocol or path
@@ -27,6 +26,6 @@ Running `npm run dns` will:
 - Setup `staging` and `production` Domains in API Gateway
 - Create corresponding Alias records in Route 53
 
-> Also see [workflows](/reference/npm-run-scripts#arc-dns) for working with `@domain`
+> Also see [workflows](/reference/arc-dns) for working with `@domain`
 
 ## Next: [Defining routes with `@html`](/reference/html)
