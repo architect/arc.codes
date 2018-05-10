@@ -2,6 +2,7 @@
 
 ## `@domain` defines and assigns a domain name to your app
 
+### Syntax
 - Standard domain characters and syntax
 - Only use the FQDN
 - Do not include protocol or path
