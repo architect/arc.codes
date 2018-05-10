@@ -6,7 +6,7 @@
 - Quickstart
   - [Prerequisites](/quickstart)
   - [Installation](/quickstart/install)
-  - [Project Layout](/quickstart/arc-project-layout)
+  - [.arc Project Layout](/quickstart/arc-project-layout)
 - Guides
   - [Working Locally](/guides/offline)
   - [Sharing Common Code](/guides/sharing-common-code)

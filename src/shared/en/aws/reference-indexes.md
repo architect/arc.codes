@@ -6,7 +6,7 @@ The syntax for defining `@tables` and `@indexes` is identical:
 
 - Partition key, defined by a `*`, is required
 - Sort key, defined by `**`, is optional
-- Currently only `String` an `Number` keys are implemented 
+- Currently only `String` and `Number` keys are implemented 
 
 The following `.arc` file defines a DynamoDB table with two Global Secondary Indexes:
 
