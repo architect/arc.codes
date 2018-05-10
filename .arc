@@ -5,7 +5,6 @@ arc-www
 arc.codes
 
 @html
-
 get /
 get /intro
 get /intro/:introID
@@ -17,3 +16,7 @@ get /guides
 get /guides/:guideID
 get /examples
 get /examples/:exampleID
+
+@static
+staging arc.codes-staging
+production arc.codes
