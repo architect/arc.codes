@@ -1,6 +1,15 @@
 # `@scheduled`
 
-## `@scheduled` functions are invoked at the times you specify
+## `@scheduled` functions are invoked at specified times
+
+### Syntax
+- Lowercase alphanumeric string
+- Maximum of 20 characters
+- Dashes allowed; underscores not allowed
+- Must begin with a letter
+- Followed by a valid `rate` or `cron` expression ([more info here](https://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html))
+
+### Example
 
 This `.arc` file defines some scheduled functions:
 

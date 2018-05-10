@@ -1,12 +1,20 @@
 # `@html`
 
-## `@html` section defines HTTP routes that return `text/html` content.
+## `@html` section defines HTTP routes that return `text/html` content
 
-`@html` routes:
+### Syntax
+- Each route begins with `get` or `post` followed by the desired path
+- Must have a `/` route defined
+- Additional routes must include leading slash
+- Dashes and underscores not allowed
+- Must begin with a letter
 
-- Must have an `/` route defined
-- Must be either an HTTP `POST` or `GET`
-- Can have Express-style URL parameters
+### Additional bits
+- Advised maximum of 100 characters
+- Optional Express-style URL parameters denoted with colons (`:`)
+- Currently only `GET` or `POST` methods are supported, [read more here](/intro/limits)
+
+### Example
 
 This `.arc` file defines some typical HTML routes:
 
@@ -36,7 +44,7 @@ The `.arc` above generates the following functions:
 └── package.json
 ```
 
-Note: The route `/pages/:dateID` corresponding handler deliberately looks a bit weird with the triple `000` so you can quickly identify URL params from URL parts. The Lambda deploy targets follow suit:
+Note: The route `/pages/:dateID` corresponding handler deliberately looks a bit weird with the triple `000`. This is so you can quickly differentiate URL params from URL parts. The Lambda deploy targets follow suit:
 
 - `testapp-staging-get-pages-000dateID`
 - `testapp-production-get-pages-000dateID`

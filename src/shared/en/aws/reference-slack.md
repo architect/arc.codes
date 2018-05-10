@@ -1,8 +1,30 @@
 # `@slack`
 
-## `@slack` defines Slack app HTTP handlers.
+## `@slack` defines Slack app HTTP handlers
 
-This `.arc` file defines two bots:
+Each defined Slack app gets a set of four HTTP handlers (API Gateway wired to Lambda) for:
+
+- **events** [Slack Events API](https://api.slack.com/events-api)
+- **actions** [Interactive Messages](https://api.slack.com/interactive-messages) (buttons and menus)
+- **options** [Dynamic Options](https://api.slack.com/docs/message-menus#menu_dynamic) (populating menus dynamically)
+- **slash** [Slash Commands](https://api.slack.com/slash-commands)
+
+Read more about [creating Slack apps here](https://api.slack.com/slack-apps#creating_apps).
+
+### Validation
+- Lowercase alphanumeric string
+- Maximum of 50 characters
+- Dashes allowed; underscores not allowed
+- Must begin with a letter
+
+### Additional bits
+- `@slack` requires at least one `@html` or `@json` route handler created
+  - You probably want to have `@html` `get` routes for [Add to Slack](https://api.slack.com/docs/slack-button) and [Sign in with Slack](https://api.slack.com/docs/sign-in-with-slack) buttons anyhow.
+- Protip: all the generated handlers come installed with [Slack](https://www.npmjs.com/package/slack)
+
+### Example
+
+This `.arc` file defines two Slack apps:
 
 ```arc
 @app
@@ -35,16 +57,7 @@ Given the `.arc` file above `npm run create` generates the following functions:
 └── package.json
 ```
 
-Each bot gets API Gateway wired to Lambda handlers for:
-
-- **events** [Slack Events API](https://api.slack.com/events-api)
-- **actions** [Interactive Messages](https://api.slack.com/interactive-messages) (buttons and menus)
-- **options** [Dynamic Options](https://api.slack.com/docs/message-menus#menu_dynamic) (populating menus dynamically)
-- **slash** [Slash Commands](https://api.slack.com/slash-commands)
-
-Note: `@slack` requires at least one `@html` or `@json` route handler created. You probably want to have `@html` `get` routes for [Add to Slack](https://api.slack.com/docs/slack-button) and [Sign in with Slack](https://api.slack.com/docs/sign-in-with-slack) buttons anyhow.
-
-This is a complete bot app example `.arc` file:
+This is a complete Slack app example `.arc` file:
 
 ```arc
 @app
@@ -64,8 +77,8 @@ Results in the following code:
 ```bash
 /
 ├── html
-│   ├── get-sign-in-with-slack/
 │   ├── get-add-to-slack/
+│   ├── get-sign-in-with-slack/
 │   └── get-index/
 ├── slack
 │   ├── bot-actions/
@@ -75,9 +88,5 @@ Results in the following code:
 ├── .arc
 └── package.json
 ```
-
-> Protip: all the generated handlers come installed with [Slack](https://www.npmjs.com/package/slack)
-
-Read more about [creating Slackbots here](https://api.slack.com/slack-apps#creating_apps).
 
 ## Next: [Defining tables with `@tables`](/reference/tables)

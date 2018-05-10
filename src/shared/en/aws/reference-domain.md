@@ -1,7 +1,13 @@
 # `@domain`
 
-## `@domain` sets up DNS for a custom domain name.
+## `@domain` sets up DNS for a custom domain name
 
+### Syntax
+- Standard domain characters and syntax
+- Only use the FQDN
+- Do not include protocol or path
+
+### Example
 For example, to create the domain [wut.click](https://wut.click):
 
 ```arc
@@ -16,7 +22,6 @@ get /
 ```
 
 Running `npm run dns` will:
-
 - Setup certificates with AWS Certificate Manager
 - Create a DNS Recordset on Route 53
 - Setup `staging` and `production` Domains in API Gateway
