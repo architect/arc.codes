@@ -27,7 +27,7 @@
     "tape": "^4.7.0"
   },
   "dependencies": {
-    "@architect/workflows": "^2.8.9",
+    "@architect/workflows": "^2.8.10",
     "rimraf": "^2.6.2",
     "tiny-json-http": "^7.0.0"
   }
