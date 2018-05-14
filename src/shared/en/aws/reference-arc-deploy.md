@@ -15,10 +15,10 @@ To use `npm run deploy`, add the following to your project's `package.json` scri
 ```
 
 ### Looking under the hood at `deploy`
-`arc`'s deploy process does quite a bit under the hood! In summary:
+`arc`'s deploy process does a number of things during each deploy! In summary:
 
 - Checks for valid `package.json` & `package-lock.json` files in each function
-- Removes each function's local `node_modules` folder and does a fresh install of modules
+- Removes each function's local `node_modules` folder and does a fresh install of all modules
 - Populates each function with [`arc` shared code](/guides/sharing-common-code) via `/src/shared`
 - Compresses and uploads each function directory to its corresponding Lambda
 
