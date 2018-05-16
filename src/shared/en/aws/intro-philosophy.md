@@ -25,7 +25,7 @@ _Some_ of these problems have been tamed with [infrastructure as code](https://e
 With `.arc` you:
 
 - Focus on defining your app architecture with a subset of service primitives as high level definitions
-- Use `npm scripts` to  generate local code, configure, provision, and deploy cloud infrastructure from the `.arc` manifest
+- Use `npx` to  generate local code, configure, provision, and deploy cloud infrastructure from the `.arc` manifest
 - You can still safely use the console tactically to access and administer primitives defined in `.arc`
 - The format, parser, and tooling are completely open to extension
 
@@ -89,7 +89,7 @@ likes
   date *String
 ```
 
-Running `npm run create` in the same directory as the `.arc` file above generates the following function code:
+Running `npx create` in the same directory as the `.arc` file above generates the following function code:
 
 ```bash
 /
@@ -145,6 +145,6 @@ The `.arc` format is terse, easy to read, and quickly learnable to author. The e
 ### Extensible and flexible systems
 
 - `arc-parser` is open, and `architect` tooling ignores `@sections` it does not know
-- Extend `.arc` with your own `@sections` and workflows with `npm` scripts
+- Extend `.arc` with your own `@sections` and workflows with `npx` scripts
 
 ## Next: [Check out the quickstart](/quickstart)

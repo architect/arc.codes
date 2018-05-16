@@ -38,7 +38,7 @@ hello-bot
 rando-emoji
 ```
 
-Given the `.arc` file above `npm run create` generates the following functions:
+Given the `.arc` file above `npx create` generates the following functions:
 
 ```bash
 /

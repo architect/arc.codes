@@ -36,8 +36,8 @@ Sweet! However, what if a number of endpoints need to share a layout?
 
 All code found in `/src/shared` is copied into every Lambda's `/node_modules/@architect/shared` directory when:
 
-- Running `npm start`
-- Running `npm run deploy`
+- Running `npx sandbox`
+- Running `npx deploy`
 - Using `arc.sandbox` in tests 
 
 Example: create `/src/shared/layout.js`:

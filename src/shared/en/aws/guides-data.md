@@ -33,9 +33,9 @@ notes
   noteID **String
 ```
 
-Running `npm run create` will generate routes and tables to model our persistence needs. The `accounts` table defined above will have an `accountID` partition key, while the `notes` table will have an `accountID` partition key and a unique `noteID`. This is one way to model a "many-to-many" relationship in Dynamo. 
+Running `npx create` will generate routes and tables to model our persistence needs. The `accounts` table defined above will have an `accountID` partition key, while the `notes` table will have an `accountID` partition key and a unique `noteID`. This is one way to model a "many-to-many" relationship in Dynamo. 
 
-So, at this point, `npm run create` will create the following Dynamo tables:
+So, at this point, `npx create` will create the following Dynamo tables:
 
 - `testapp-staging-accounts`
 - `testapp-production-accounts`
@@ -597,15 +597,7 @@ It can be helpful to inspect the data using the repl. To do that, first install 
 npm i @architect/data --save
 ```
 
-And add the repl to your npm run scripts in `package.json`:
-
-```javascript
-{
-  "repl": "ARC_LOCAL=true NODE_ENV=testing arc-repl"
-}
-```
-
-This opens a repl into your Dynamo schema running locally and in-memory. If you are running the app with `npm start` in another tab, it connects to that database.
+And now `npx repl` opens a repl into your Dynamo schema running locally and in-memory. If you are running the app with `npx sandbox` in another tab, it connects to that database.
 
 Try starting the repl and running: `data.notes.scan({}, console.log)` to see all the current notes. The repl can attach itself to the `staging` and `production` databases also by setting the appropriate `NODE_ENV` environment variable flag. 
 

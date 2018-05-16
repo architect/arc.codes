@@ -17,13 +17,13 @@ staging my-unique-bucket-staging
 production my-unique-bucket
 ```
 
-Running `npm run create` will generate the two designated `staging` and `production` S3 buckets.
+Running `npx create` will generate the two designated `staging` and `production` S3 buckets.
 
 > ⚠️ Warning: S3 buckets are _globally_ unique to all of AWS so you may have to try a few names
 
 ## Working Locally with `.static`
 
-Running `npm start` kicks up a sandbox web server (more here about [working locally](/guides/offline)). If the folder `.static` exists in the root of your project will be mounted to serve static assets along with any routes defined in `@html` or `@json`.
+Running `npx sandbox` kicks up a sandbox web server (more here about [working locally](/guides/offline)). If the folder `.static` exists in the root of your project will be mounted to serve static assets along with any routes defined in `@html` or `@json`.
 
 Most frontend JavaScript workflows involve some sort of build step, so the `.static` folder is a staging area for those build artifacts (along with whatever else you'd like to use it for, of course).
 
@@ -44,13 +44,13 @@ Running `npm start` builds the JS and starts a local web server on `http://local
 
 ## Deploying `.static`
 
-Running `npm run deploy` copies `.static` to the staging bucket. (If you want to version these assets in S3, you can [enable that feature](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) in the AWS Console.)
+Running `npx deploy` copies `.static` to the staging bucket. (If you want to version these assets in S3, you can [enable that feature](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) in the AWS Console.)
 
 Alternately you could consider these build artifacts (which they are) and treat your version control system as the place to manage versions (which it is). 😶
 
-Running `ARC_DEPLOY=production npm run deploy` copies `.static` to the production bucket. 
+Running `ARC_DEPLOY=production npx deploy` copies `.static` to the production bucket. 
 
-> 🏌️‍♀️Protip: `npm run deploy static` will deploy the static assets _only_
+> 🏌️‍♀️Protip: `npx deploy static` will deploy the static assets _only_
 
 ## Linking
 

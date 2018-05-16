@@ -40,7 +40,7 @@ get /
 get /posts # the posts go here
 ```
 
-Running `npm run create` creates the following code:
+Running `npx create` creates the following code:
 
 ```bash
 /
@@ -56,10 +56,10 @@ Running `npm run create` creates the following code:
 └── package.json
 ```
 
-The generated code was also immediately deployed to the built-in `staging` environment. Subsequent edits to the local code are deployed by running `npm run deploy`.
+The generated code was also immediately deployed to the built-in `staging` environment. Subsequent edits to the local code are deployed by running `npx deploy`.
 
-Happy with staging? Ship a release to production by running `ARC_DEPLOY=production npm run deploy`. 
+Happy with staging? Ship a release to production by running `ARC_DEPLOY=production npx deploy`. 
 
-Time to celebrate! &#x26c5; 
+Time to celebrate! ✨
 
 ## Next: [Learn how to work locally](/guides/offline)

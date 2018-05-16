@@ -19,6 +19,10 @@ C:\Users\USER_NAME\.aws\credentials
 If that file doesn't exist, create it, and add something like the following (assuming you have multiple AWS accounts):
 
 ```bash
+[default]
+aws_access_key_id=xxx
+aws_secret_access_key=xxx
+
 [work]
 aws_access_key_id=xxx
 aws_secret_access_key=xxx
@@ -28,12 +32,20 @@ aws_access_key_id=xxx
 aws_secret_access_key=xxx
 ```
 
-All arc npm run scripts require `AWS_PROFILE` and `AWS_REGION` environment variables set. Currently we reccomend putting them in your `npm run` scripts and *not* setting them globally on your system. This leaves room for the common scenario of people and/or organizations with multiple AWS accounts.
+You will also need to set a default profile and region with the environment variables 
 
-> Tip: Windows users will want to use [cross-env](https://www.npmjs.com/package/cross-env) for cross platform env vars.
+- `AWS_PROFILE`
+- `AWS_REGION`
 
-Having your personal AWS setup separated from the work one is just a suggestion! (You can call them anything.)
+To set these variables on Linux, macOS, or UNIX, use export in your `~/.bashrc` (or equiv):
 
-You can learn more about AWS creds from the source: [Amazon Configuration and Credential Files](http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html).
+```bash
+export AWS_PROFILE=work
+export AWS_REGION=us-west-1
+```
+
+To set these variables on Windows open: *Control Panel » System » Advanced » Environment Variables*.
+
+Learn more about [Amazon Configuration and Credential Files](http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html). Read more about [working with multiple AWS accounts](/guides/multiple-aws-accounts).
 
 ## Next: [Install architect](/quickstart/install)

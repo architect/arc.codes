@@ -7,9 +7,8 @@ Setting up DNS is a necessity if you intend to assign a domain name for your dep
 ## The Easy Way
 `arc` has built-in support for setting up DNS with AWS Route 53, and assigning a domain.
 
-1. Ensure your project `package.json` has `dns` entry under `scripts` per [workflows reference](/reference/npm-run-scripts)
-2. Add [`@domain`](/reference/domain) to your `.arc` file with a value of the domain name you wish to set up
-3. Invoke [`npm run dns`](/reference/arc-dns) and follow the instructions
+1. Add [`@domain`](/reference/domain) to your `.arc` file with a value of the domain name you wish to set up
+2. Invoke [`npx dns`](/reference/arc-dns) and follow the instructions
 
 > Note: Should you want to manually create or modify other DNS entries for your domain, you still retain the full flexibility and configurability of Route 53. `arc` is only concerned with provisioning the necessary records to make your application available under your domain.
 

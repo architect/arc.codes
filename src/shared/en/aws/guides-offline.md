@@ -11,7 +11,7 @@ Arc targets two use cases:
 1. **Previewing** - code runs locally and can be opened in a web browser
 2. **Testing** - code runs headlessly in a terminal
 
-Following the [quickstart](/quickstart) you should have everything wired up so `npm start` kicks up a local web server and creates tables and indexes defined in `.arc` for previewing work. 
+Following the [quickstart](/quickstart) you should have everything wired up so `npx sandbox` kicks up a local web server and creates tables and indexes defined in `.arc` for previewing work. 
 
 If you want to write tests (and we very much think you should!) against the infra without deployment you'll need to set up the sandbox as a module.
 

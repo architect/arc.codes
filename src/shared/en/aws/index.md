@@ -17,6 +17,13 @@ Orchestrate and leverage powerful Amazon Web Services cloud primitives without f
 - [Simple Notification Service](https://aws.amazon.com/sns/) for event pub/sub functions
 - [CloudWatch Events](https://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html) for scheduling functions
 - [DynamoDB](https://aws.amazon.com/dynamodb/) for data persistence, querying and trigger functions
+- [Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-paramstore.html) for environment variables
+
+## Install
+
+```bash
+npm i @architect/workflows
+```
 
 Everything starts with an `.arc` file:
 
@@ -31,7 +38,7 @@ get /hellos
 post /hello
 ```
 
-`npm run create` to locally generate Lambda function code:
+`npx create` generates Lambda function code and deploys it:
 
 ```bash
 /
@@ -44,7 +51,7 @@ post /hello
 └── package.json
 ```
 
-And `npm run deploy` ships your code to the cloud in seconds. <span class=cloud>&#x1f329;</span>
+And `npx deploy` ships iterations on your code to the cloud in seconds. <span class=cloud>&#x1f329;</span>
 
 ---
 

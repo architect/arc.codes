@@ -21,7 +21,8 @@ wut.click
 get /
 ```
 
-Running `npm run dns` will:
+Running `npx dns` will:
+
 - Setup certificates with AWS Certificate Manager
 - Create a DNS Recordset on Route 53
 - Setup `staging` and `production` Domains in API Gateway
