@@ -115,7 +115,7 @@ code.language-javascript {
 code {
   font-size: 1em;
   line-height: 1em;
-  background: rgba(255,255,255,0.5);
+  /*background: rgba(255,255,255,0.5);*/
   padding-top: 2px;
   padding-bottom: 2px;
   padding-left: 4px;
@@ -307,6 +307,27 @@ section>section h1 {
 
 a.github-corner:hover {
   color: #ffffff;
+}
+
+table {
+  font-size: 1rem;
+}
+
+td {
+  vertical-align: top;
+  padding-bottom: 1rem;
+}
+
+td:first-child {
+  padding-top: 4px;
+}
+
+th:last-child, td:last-child {
+  padding-left: 1rem;
+}
+
+th {
+  text-align: left;
 }
 
 @media (max-width: 600px) {

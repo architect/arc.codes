@@ -245,15 +245,15 @@ post /login
 
 ```bash
 /
-|- src
-|  |- html
-|  |  |- get-index/
-|  |  |- get-logout/
-|  |  |- get-protected/
-|  |  `- post-login/
-|  `- shared/
-|- .arc
-`- package.json
+├── src
+│   ├── html
+│   │   ├── get-index/
+│   │   ├── get-logout/
+│   │   ├── get-protected/
+│   │   └── post-login/
+│   └── shared/
+├── .arc
+└── package.json
 ```
 
 First we render a form for `/login` if `req.session.isLoggedIn` is `false`:

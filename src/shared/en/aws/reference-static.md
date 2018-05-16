@@ -1,6 +1,12 @@
 # `@static`
 
-## `@static` defines S3 buckets for static asset hosting
+## `@static` defines S3 buckets for hosting static assets
+
+### Syntax
+- Requires two arguments: `staging` and `production`
+  - Each should be followed by a valid [globally unique S3 bucket name](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html#bucketnamingrules)
+
+### Example
 
 This `.arc` file defines static buckets:
 
@@ -13,7 +19,7 @@ staging test-bukkit
 production main-bukkit
 ```
 
-> Note: S3 buckets are <b>global</b> to AWS so if you don't first succeed try picking another bucket name
+> Note: S3 buckets are <b>global</b> to AWS so if at first you don't succeed, try picking another bucket name
 
 Locally, if the hidden folder `/.static` exists, whenever you run `npm run deploy` the contents are synchronized to the `staging` bucket. If you set `ARC_DEPLOY=production` the contents of `/.static` are deployed to the production bucket. This allows the frontend dev to use whatever build tooling they like (ParcelJS, Webpack, Browserify, Babel, etc).
 

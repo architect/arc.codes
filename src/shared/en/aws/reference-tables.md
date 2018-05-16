@@ -1,19 +1,26 @@
 # `@tables`
 
-## `@tables` defines DynamoDB tables
+## `@tables` defines DynamoDB database tables and trigger functions for them
 
-`@tables` syntax:
+### Table name syntax
+- Lowercase alphanumeric string
+- Between 3 and 255 characters
+- Dashes allowed
+- Underscores not allowed
+- Must begin with a letter
 
-- Table names are just strings
+### Table structure syntax
 - Keys and Lambdas are defined by indenting two spaces
 - The required partition key is denoted by `*`
 - The optional sort key is denoted by `**`
 - Currently only `*String`, `**String`, `*Number` and `**Number` are supported
 - Lambdas can only be values of: `insert`, `update`, or `destroy`
 
-Also worth noting, `.arc` creates isolated tables for `staging` and `production`.
+> Note: `.arc` creates fully isolated tables for `staging` and `production`.
 
-This `.arc` file defines two `@tables`:
+### Example
+
+This `.arc` file defines two database tables:
 
 ```arc
 @app
@@ -42,12 +49,12 @@ Function code will also be generated for the defined `people` Lambda triggers:
 
 ```bash
 /
-|-- tables
-|   |-- people-insert/
-|   |-- people-update/
-|   `-- people-destroy/
-|-- .arc
-`-- package.json
+├── tables
+│   ├── people-insert/
+│   ├── people-update/
+│   └── people-destroy/
+├── .arc
+└── package.json
 ```
 
 ## Next: [Defining DynamoDB table indexes with `@indexes`](/reference/indexes)
