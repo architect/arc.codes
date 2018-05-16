@@ -4,11 +4,13 @@ This project is open source so you can help! Jump over to the [community page](/
 
 ## In progress
 
-- `arc-env` env variables and configuration management
-- `@ws` support for web sockets invoking Lambdas
+Join our [Slack](https://join.slack.com/t/architecture-as-text/shared_invite/MjE2MzU4Nzg0NTY1LTE1MDA2NzgyMzYtODE2NzRkOGRmYw) to talk about `.arc` work in progress and production. The [arc-repos/arc-workflows](https://github.com/arc-repos/arc-workflows/issues) issue tracker is a good place to find out whats currently going on too.
+
 
 ## Recently shipped
 
+- <strike>`arc-env` env variables</strike>
+- <strike>`arc-config` configuration management</strike>
 - <strike>`@static` support added to `.arc` for universal render support</strike>
   - Example project: [example repo here](https://github.com/brianleroux/arc-example-serverlessside-render-react)
 - <strike>`npm run dns` generates a `static.domainname.com` CNAME that points to an S3 CloudFront Distribution from `@domain` value </strike>

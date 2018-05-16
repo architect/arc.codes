@@ -22,6 +22,8 @@
   - [`npm start`](/reference/arc-sandbox)
   - [`npm run inventory`](/reference/arc-inventory)
   - [`npm run dns`](/reference/arc-dns)
+  - [`npm run config`](/reference/arc-config)
+  - [`npm run env`](/reference/arc-env)
 - `.arc` Reference
   - [`@app`](/reference/app)
   - [`@domain`](/reference/domain)
