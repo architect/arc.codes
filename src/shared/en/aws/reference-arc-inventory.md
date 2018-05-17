@@ -15,3 +15,5 @@ Running `npx inventory nuke` deletes all AWS resources for the current `.arc` fi
 ## Delete DynamoDB Tables
 
 Running `ARC_NUKE=tables npx inventory nuke` deletes all DynamoDB tables for the current `.arc` file.
+
+<script src="https://asciinema.org/a/181951.js" id="asciicast-181951" async data-autoplay="true" data-size="big"></script>

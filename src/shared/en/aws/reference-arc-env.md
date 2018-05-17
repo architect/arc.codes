@@ -35,3 +35,5 @@ GLOBAL asdfasdf
 @staging
 GLOBAL_KEY val
 ```
+
+<script src="https://asciinema.org/a/182104.js" id="asciicast-182104" async data-autoplay="true" data-size="big"></script>
