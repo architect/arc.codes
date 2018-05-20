@@ -27,7 +27,10 @@ exports.handler = arc.html.get(index)
 
 - `body` - any `application/x-www-form-urlencoded` form variables as a plain `Object`
 - `path` - absolute path of the request
-- `method` - either `GET` or `POST`
+- `method` depends on the type of function:
+  - `@html` supports either `GET` or `POST` functions
+  - `@json` and `@xml` support `GET`, `POST`, `PATCH`, `PUT` and `DELETE` functions
+  - `@text` `@js` and `@css` only support `GET` functions
 - `params` - any URL param defined
 - `query` - any query params defined
 - `headers` - a plain `Object` of request headers 
@@ -45,8 +48,16 @@ exports.handler = arc.html.get(index)
 
 - **Required**: One of `json` or `html` or `location` depending on the `Content-Type` of the Lambda hander you are implementing
 - Optionally: `session` to assign to the current session
-- Optionally: `status` of `403`, `404` or `500` (`200` is default and `302` happens when `location` is set)
+- Optionally: `status` of:
+  - `400` Bad Request
+  - `403` Forbidden
+  - `404` Not Found
+  - `406` Not Acceptable
+  - `409` Conflict
+  - `415` Unsupported Media Type
+  - `500` Internal Serverless Error
 
+The default HTTP status code is `200`; a `302` is sent automatically when redirecting `location`.
 
 ## Examples
 
