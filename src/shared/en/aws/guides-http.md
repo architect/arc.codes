@@ -2,10 +2,56 @@
 
 > `.arc` abstracts API Gateway configuration and provisioning, while `@architect/functions` adds a very light but powerful API shim to Lambda for working with HTTP
 
-An `architect` app has HTTP `GET` and `POST` Lambda function handlers for:
+`.arc` supports the following HTTP Content Types:
 
-- `Content-Type: text/html`
-- `Content-Type: application/json`
+|  &nbsp; | Content Type       | Verbs Supported
+| ------- | ------------------ | ----------------
+| `@html` | `text/html`        | `GET`, `POST`
+| `@json` | `application/json` | `GET`, `POST`, `PATCH`, `PUT`, `DELETE`
+| `@text` | `text/plain`       | `GET`
+| `@css`  | `text/css`         | `GET`
+| `@js`   | `text/javascript`  | `GET`
+| `@xml`  | `application/xml`  | `GET`, `POST`, `PATCH`, `PUT`, `DELETE`
+
+<style>
+tr {
+  background: none;
+}
+tr > td:first-child {
+  background: darkgreen;
+}
+td {
+  vertical-align: bottom;
+  padding:10px;
+  background: #eaeaea
+}
+</style>
+
+Example `.arc` file:
+
+```arc
+@app
+testapp
+
+@html
+get /
+
+@json
+get /api/likes
+post /api/likes
+patch /api/likes/:likeID
+delete /api/likes/:likeID
+
+@text
+/robots.txt
+/humans.txt
+
+@js
+/js/index.js
+
+@css
+/css/index.css
+```
 
 ## Request
 
@@ -27,10 +73,7 @@ exports.handler = arc.html.get(index)
 
 - `body` - any `application/x-www-form-urlencoded` form variables as a plain `Object`
 - `path` - absolute path of the request
-- `method` depends on the type of function:
-  - `@html` supports either `GET` or `POST` functions
-  - `@json` and `@xml` support `GET`, `POST`, `PATCH`, `PUT` and `DELETE` functions
-  - `@text` `@js` and `@css` only support `GET` functions
+- `method` dependsa on the type of function but one of `GET`, `POST`, `PATCH`, `PUT` and `DELETE`
 - `params` - any URL param defined
 - `query` - any query params defined
 - `headers` - a plain `Object` of request headers 
@@ -46,7 +89,14 @@ exports.handler = arc.html.get(index)
 
 `res` is a function that accepts named parameters:
 
-- **Required**: One of `json` or `html` or `location` depending on the `Content-Type` of the Lambda hander you are implementing
+- **Required**: One of 
+  - `json` 
+  - `html` 
+  - `text` 
+  - `css` 
+  - `js` 
+  - `xml` 
+  - `location`
 - Optionally: `session` to assign to the current session
 - Optionally: `status` of:
   - `400` Bad Request
@@ -57,7 +107,7 @@ exports.handler = arc.html.get(index)
   - `415` Unsupported Media Type
   - `500` Internal Serverless Error
 
-The default HTTP status code is `200`; a `302` is sent automatically when redirecting `location`.
+The default HTTP status code is `200`. A `302` is sent automatically when redirecting via `location`.
 
 ## Examples
 
