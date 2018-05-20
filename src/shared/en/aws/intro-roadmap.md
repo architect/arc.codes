@@ -9,6 +9,10 @@ Join our [Slack](https://join.slack.com/t/architecture-as-text/shared_invite/MjE
 
 ## Recently shipped
 
+- <strike>`@text` routes</strike>
+- <strike>`@css` routes</strike>
+- <strike>`@js` routes</strike>
+- <strike>`@xml` routes</strike>
 - <strike>`arc-env` env variables</strike>
 - <strike>`arc-config` configuration management</strike>
 - <strike>`@static` support added to `.arc` for universal render support</strike>

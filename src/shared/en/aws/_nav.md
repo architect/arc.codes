@@ -28,8 +28,12 @@
 - `.arc` Reference
   - [`@app`](/reference/app)
   - [`@domain`](/reference/domain)
+  - [`@text`](/reference/text)
   - [`@html`](/reference/html)
+  - [`@js`](/reference/js)
+  - [`@css`](/reference/css)
   - [`@json`](/reference/json)
+  - [`@xml`](/reference/xml)
   - [`@events`](/reference/events)
   - [`@scheduled`](/reference/scheduled)
   - [`@slack`](/reference/slack)

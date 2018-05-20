@@ -1,23 +1,23 @@
-# `@json`
+# `@xml`
 
-## `@json` section defines HTTP routes that return `application/json` content
+## `@xml` section defines HTTP routes that return `application/xml` content
 
 ### Syntax
 
 - Each route begins with `get`, `post`, `put`, `patch` or `delete` followed by the desired path
 - Dashes and underscores not allowed
-- Maximum length of 100 characters
+- Maximum of length of 100 characters
 - Optional Express-style URL parameters denoted with colons (`:`)
 
 ### Example
 
-This `.arc` file defines some typical JSON routes:
+This `.arc` file defines some typical XML routes:
 
 ```arc
 @app
 testapp
 
-@json
+@xml
 get /notes          
 get /notes/:noteID
 post /notes           # create a note
@@ -29,7 +29,7 @@ The `.arc` above generates the following REST functions:
 
 ```bash
 /
-├── json
+├── xml
 │   ├── get-notes/
 │   ├── get-notes-000noteID/
 │   ├── post-notes/
@@ -44,4 +44,4 @@ Note: The route `/notes/:noteID` corresponding handler deliberately looks a bit 
 - `testapp-staging-get-notes-000noteID`
 - `testapp-production-get-notes-000noteID`
 
-## Next: [Defining events with `@xml`](/reference/xml)
+## Next: [Defining events with `@events`](/reference/events)

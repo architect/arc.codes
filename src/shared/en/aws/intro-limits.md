@@ -13,11 +13,4 @@ We call this situation *immutable infrastructure* to feel better! &#128150;
 - Lambda functions cannot execute for longer than 5 minutes
 - Lambda functions require you to `npm install` to your project `node_modules` individually
 
-## `.arc` constraints
-
-Most of these constraints were borne out of necessity for speed; velocity aided by way of minimum essential capability. These items will be great topics of community discussion and future contribution, so file them as: _maybe someday_.
-
-- `PATCH`, `PUT`, `DELETE` are currently not supported (but 100% support everything browsers do: `GET` and `POST`)
-- Routes must be unique (i.e. no overloading `Content-Type`); it's certainly possible to get around, but you probably don't want to do that anyhow
-
 ## Next: [Check out the quickstart](/quickstart)
