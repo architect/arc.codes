@@ -25,7 +25,7 @@ You would have the following file system layout:
 │   │   ├── get-about/
 │   │   ├── get-contact/
 │   │   └── post-contact/
-│   └── hared/
+│   └── shared/
 ├── .arc
 └── package.json
 ```
