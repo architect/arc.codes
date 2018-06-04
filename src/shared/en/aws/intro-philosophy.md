@@ -41,16 +41,21 @@ The `.arc` format follows a few simple rules:
 
 `.arc` files are made up of the following sections:
 
-- [`@app`](/reference/app) defines your application namespace
+- [`@app`](/reference/app) [*required*] defines your application namespace
+- [`@aws`](/reference/aws) defines AWS variables
+- [`@css`](/reference/css) defines CSS (i.e. `text/css`) routes
 - [`@domain`](/reference/domain) defines DNS for a custom domain name
-- [`@html`](/reference/html) defines HTML routes 
-- [`@json`](/reference/json) defines JSON routes 
 - [`@events`](/reference/events) defines application events you can publish and subscribe to
+- [`@html`](/reference/html) defines HTML (i.e. `text/html`) routes 
+- [`@indexes`](/reference/indexes) defines table global secondary indexes 
+- [`@js`](/reference/js) defines JS (i.e. `text/javascript`) routes
+- [`@json`](/reference/json) defines JSON (i.e. `application/json`) routes 
 - [`@scheduled`](/reference/scheduled) defines functions that run on a schedule
 - [`@slack`](/reference/slack) defines HTTP handlers to build apps for the Slack API
 - [`@static`](/reference/static) defines S3 buckets for static assets
 - [`@tables`](/reference/tables) defines DynamoDB database tables and trigger functions for them 
-- [`@indexes`](/reference/indexes) defines table global secondary indexes 
+- [`@text`](/reference/text) defines text (i.e. `text/plain`) routes 
+- [`@xml`](/reference/xml) defines XML (i.e. `application/xml`) routes
 
 This is a complete `.arc` file example:
 

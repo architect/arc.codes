@@ -16,4 +16,4 @@ For example, to create the app "foobaz":
 foobaz
 ```
 
-## Next: [Setup custom domains with `@domain`](/reference/domain)
+## Next: [Setup AWS region & profile with `@aws`](/reference/domain)
