@@ -4,7 +4,8 @@ This project assumes you are running Node `8.10.x` and npm `6.0.x` locally. Plea
 
 ## AWS Setup
 
-You'll need an Amazon Web Services account and credentials set up your development machine. On \*nix systems AWS Credentials are listed in:
+You'll need an Amazon Web Services account and credentials set up your development machine. If you haven't done it before, here's a useful guide for [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
+On \*nix systems AWS Credentials are listed in:
 
 ```bash
 ~/.aws/credentials
@@ -46,6 +47,9 @@ export AWS_REGION=us-west-1
 
 To set these variables on Windows open: *Control Panel » System » Advanced » Environment Variables*.
 
-Learn more about [Amazon Configuration and Credential Files](http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html). Read more about [working with multiple AWS accounts](/guides/multiple-aws-accounts).
+### Useful links:
+* [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
+* [Amazon Configuration and Credential Files](http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html)
+* [working with multiple AWS accounts](/guides/multiple-aws-accounts).
 
 ## Next: [Install architect](/quickstart/install)
