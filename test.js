@@ -1,12 +1,13 @@
 var test = require('tape')
 var tiny = require('tiny-json-http')
-var http = require('@architect/workflows/src/sandbox/http')
-var server
+var http = require('@architect/workflows').sandbox.start
+var close 
 
 test('http.start', t=> {
   t.plan(2)
   t.ok(http, 'exists')
-  server = http.start(function() {
+  http(function(finna) {
+    close = finna
     t.ok(true, 'started')
   })
 })
@@ -14,7 +15,7 @@ test('http.start', t=> {
 test('/', t=> {
   t.plan(1)
   tiny.get({
-    url: 'http://localhost:3333/'
+    url: 'http://localhost:3333'
   },
   function _get(err, data) {
     if (err) {
@@ -29,6 +30,6 @@ test('/', t=> {
 
 test('http.close', t=> {
   t.plan(1)
-  server.close()
+  close()
   t.ok(true, 'closed')
 })
