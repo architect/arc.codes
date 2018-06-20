@@ -5,7 +5,7 @@
 ### Syntax
 
 - Each route begins with `get`, `post`, `put`, `patch` or `delete` followed by the desired path
-- Dashes and underscores not allowed
+- Dashes and underscores are not allowed
 - Maximum length of 100 characters
 - Optional Express-style URL parameters denoted with colons (`:`)
 

@@ -5,8 +5,8 @@
 ### Syntax
 - Each route begins with `get` or `post` followed by the desired path
 - Must have a `/` route defined
-- Additional routes must include leading slash
-- Dashes and underscores not allowed
+- Additional routes must include a leading slash
+- Dashes and underscores are not allowed
 - Must begin with a letter
 
 ### Additional bits
