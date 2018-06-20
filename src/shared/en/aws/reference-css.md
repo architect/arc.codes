@@ -4,14 +4,14 @@
 
 ### Syntax
 
-- Routes must start with leading slash
-- Dashes and underscores not allowed
+- Routes must start with a leading slash
+- Dashes and underscores are not allowed
 
 ### Additional bits
 
 - Advised maximum of 100 characters
 - Optional Express-style URL parameters denoted with colons (`:`)
-- Currently only `GET` supported, [read more here](/intro/limits)
+- Currently only `GET` is supported, [read more here](/intro/limits)
 
 ### Example
 

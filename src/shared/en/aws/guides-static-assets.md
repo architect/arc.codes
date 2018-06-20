@@ -2,7 +2,7 @@
 
 > S3 buckets for `staging` and `production`
 
-Static assets are crucial infrastructure for building ambitous web apps. While `.arc` does not have any opinion about how you should achieve that part, it can provision and automatically deploy to an S3 bucket for the app's `staging` and `production` environments.
+Static assets are crucial infrastructure for building ambitious web apps. While `.arc` does not have any opinion about how you should achieve that part, it can provision and automatically deploy to an S3 bucket for the app's `staging` and `production` environments.
 
 ## Provisioning
 

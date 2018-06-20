@@ -5,8 +5,8 @@
 ### Table name syntax
 - Lowercase alphanumeric string
 - Between 3 and 255 characters
-- Dashes allowed
-- Underscores not allowed
+- Dashes are allowed
+- Underscores are not allowed
 - Must begin with a letter
 
 ### Table structure syntax

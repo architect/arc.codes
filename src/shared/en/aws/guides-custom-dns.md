@@ -2,7 +2,7 @@
 
 > Assign a fully qualified domain name to your `arc` application
 
-Setting up DNS is a necessity if you intend to assign a domain name for your deployed application. This guide lists ways to set up custom DNS with several popular DNS providers and we are always happy to accept contributions for steps to use additional providers.
+Setting up DNS is a necessity if you intend to assign a domain name to your deployed application. This guide lists ways to set up custom DNS with several popular DNS providers and we are always happy to accept contributions for steps to use additional providers.
 
 ## The Easy Way
 `arc` has built-in support for setting up DNS with AWS Route 53, and assigning a domain.

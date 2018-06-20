@@ -4,8 +4,8 @@
 
 ### Syntax
 
-- Routes must start with leading slash
-- Dashes and underscores not allowed
+- Routes must start with a leading slash
+- Dashes and underscores are not allowed
 
 ### Additional bits
 
