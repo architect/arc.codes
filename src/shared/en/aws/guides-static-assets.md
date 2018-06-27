@@ -78,7 +78,7 @@ let arc = require('@architect/functions')
 function route(req, res) {
   let css = req._static('/main.css')
   let js = req._static('/main.js')
-  let html `
+  let html = `
   <!doctype html>
   <html>
   <head>
