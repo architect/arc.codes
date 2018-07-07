@@ -32,12 +32,12 @@ get /api
 
 1. Go to [API Gateway](https://console.aws.amazon.com/apigateway) in the AWS console
 2. Add CORS by: going to API Gateway &rarr; select `{your API name}-production` &rarr; open the **Actions** dropdown &rarr; Select **Enable CORS**
-  ![A screenshot showing where the Actions dropdown is in the API Gateway section of the AWS console](../../images/guide-cors-1.png)
+  ![A screenshot showing where the Actions dropdown is in the API Gateway section of the AWS console](http://s3-us-west-2.amazonaws.com/arc.codes/guide-cors-1.png)
 3. Choose **Deploy API**
-  ![A screenshot showing “Deploy API” in the dropdown](../../images/guide-cors-2.png)
+  ![A screenshot showing “Deploy API” in the dropdown](http://s3-us-west-2.amazonaws.com/arc.codes/guide-cors-2.png)
 4. Repeat the previous two steps for staging
 5. Create an API Key by: going to the **API Keys** view in the left nav &rarr; open the **Actions** dropdown &rarr; Select **Create API key**
-  ![A screenshot showing where to create an API Gateway API key](../../images/guide-cors-3.png)
+  ![A screenshot showing where to create an API Gateway API key](http://s3-us-west-2.amazonaws.com/arc.codes/guide-cors-3.png)
 
 If you ever need need to revoke access to one of the API keys you create, you can return to this section of the AWS console.
 
