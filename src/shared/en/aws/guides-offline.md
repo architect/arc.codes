@@ -98,6 +98,7 @@ In order to test HTTP routes we will need an HTTP client. Lets use [tiny-json-ht
 var test = require('tape')
 var tiny = require('tiny-json-http')
 var arc = require('@architect/workflows')
+var close
 
 test('env', t=> {
   t.plan(1)
@@ -108,9 +109,10 @@ test('env', t=> {
  * first we need to start the local http server
  */
 var server
-test('arc.sandbox.http.start', t=> {
+test('arc.sandbox.start', t=> {
   t.plan(1)
-  server = arc.sandbox.http.start(function _start() {
+  arc.sandbox.start(function _start(_close) {
+    close = _close
     t.ok(true, 'http server started on http://localhost:3333')
   })
 })
@@ -134,7 +136,7 @@ test('get /', t=> {
  */
 test('server.close', t=> {
   t.plan(1)
-  server.close()
+  close()
   t.ok(true, 'server closed')
 })
 ```

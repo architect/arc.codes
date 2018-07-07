@@ -14,7 +14,7 @@ And having lots of deps means having to manage lots of versions of packages:
 - `node_modules` in `.src` *not* defined by `.arc`
 - `node_modules` in the root for `./test` (the parent or the monorepo root or whatever)
 
-Two things can happen: you can synchronize them all or you can let the drift. Just writing that down seemed completely silly but we did try the former and suffice to say your initial gut reaction was correct: it was not awesome. Precisely the opposite. I get it, microservices can be independent and this type of project sure feels like it can get away with that. The functions are completely isolated when deployed. However an `.arc` file *always* defines an `@app` namespace that **within that** all of your dependencies should be synchronized or you will eventually run into hard to trace bugs due to inconsistencies.
+Two things can happen: you can synchronize them all or you can let them drift. Just writing that down seemed completely silly but we did try the former and suffice to say your initial gut reaction was correct: it was not awesome. Precisely the opposite. I get it, microservices can be independent and this type of project sure feels like it can get away with that. The functions are completely isolated when deployed. However an `.arc` file *always* defines an `@app` namespace that **within that** all of your dependencies should be synchronized or you will eventually run into hard to trace bugs due to inconsistencies.
 
 The great news is there is an easy solution. Keep your modules in sync and ensure they stay that way by writing a failing test if they are not at the most recent published version. You *could* version lock but then you're opening yourself up bugs due to staleness.
 

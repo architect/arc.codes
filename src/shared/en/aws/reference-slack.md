@@ -14,7 +14,7 @@ Read more about [creating Slack apps here](https://api.slack.com/slack-apps#crea
 ### Validation
 - Lowercase alphanumeric string
 - Maximum of 50 characters
-- Dashes allowed; underscores not allowed
+- Dashes are allowed; underscores are not allowed
 - Must begin with a letter
 
 ### Additional bits

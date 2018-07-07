@@ -2,7 +2,7 @@
 
 > S3 buckets for `staging` and `production`
 
-Static assets are crucial infrastructure for building ambitous web apps. While `.arc` does not have any opinion about how you should achieve that part, it can provision and automatically deploy to an S3 bucket for the app's `staging` and `production` environments.
+Static assets are crucial infrastructure for building ambitious web apps. While `.arc` does not have any opinion about how you should achieve that part, it can provision and automatically deploy to an S3 bucket for the app's `staging` and `production` environments.
 
 ## Provisioning
 
@@ -78,7 +78,7 @@ let arc = require('@architect/functions')
 function route(req, res) {
   let css = req._static('/main.css')
   let js = req._static('/main.js')
-  let html `
+  let html = `
   <!doctype html>
   <html>
   <head>
@@ -90,6 +90,37 @@ function route(req, res) {
   </html>
   `
   res({html})
+}
+
+exports.handler = arc.html.get(route)
+```
+
+## Get an HTML file stored in S3
+
+This example shows you how to return an HTML file stored in a S3 bucket. Buckets are defined in your `.arc` in the `@static` section. You can return HTML files that you deployed from `.static` or files uploaded by another method.
+
+```javascript
+let arc = require('@architect/functions')
+let aws = require('aws-sdk')
+
+function route(req, res) {
+  let s3 = new aws.S3()
+  var bucket
+  if (process.env.NODE_ENV === 'production') {
+    bucket = "PRODUCTION_BUCKET" //The name you used in .arc for @static production 
+  } else if (process.env.NODE_ENV === 'staging') {
+    bucket = "STAGING_BUCKET" //The name you used in .arc for @static staging 
+  }
+  var getParams = {
+    Bucket: bucket,
+    Key: 'index.html'
+  }
+
+  s3.getObject(getParams, function(err, data) {
+    if (err)
+      console.log(err)
+    res({html: data.Body.toString()})
+  });
 }
 
 exports.handler = arc.html.get(route)

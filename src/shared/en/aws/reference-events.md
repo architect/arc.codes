@@ -5,7 +5,7 @@
 ### Syntax
 - Lowercase alphanumeric string
 - Maximum of 50 characters
-- Dashes allowed; underscores not allowed
+- Dashes are allowed; underscores are not allowed
 - Must begin with a letter
 
 ### Example

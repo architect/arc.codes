@@ -5,7 +5,7 @@
 ### Syntax
 - Lowercase alphanumeric string
 - Maximum of 20 characters
-- Dashes allowed; underscores not allowed
+- Dashes are allowed; underscores are not allowed
 - Must begin with a letter
 - Followed by a valid `rate` or `cron` expression ([more info here](https://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html))
 

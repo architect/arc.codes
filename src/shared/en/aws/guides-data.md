@@ -144,7 +144,7 @@ exports.handler = arc.html.get(route)
 For now, let's just hardcode credentials:
 
 ```javascript
-// src/html/post-login.js
+// src/html/post-login/index.js
 let arc = require('@architect/functions')
 
 function route(req, res) {

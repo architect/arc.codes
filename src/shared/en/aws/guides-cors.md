@@ -2,7 +2,7 @@
 
 > CORS is required if your application reaches across domains to request resources
 
-What if you haven't your entire application using `arc`?
+What if you haven't implemented your entire application using `arc`?
 
 Perhaps your frontend is hosted somewhere else, or you're starting out with a single Lambda function within a larger system.
 
@@ -17,7 +17,7 @@ To set these headers, you’ll need to enable CORS within the AWS Console, and t
 
 ## Enabling CORS via the AWS Console
 
-Let's first create a `.arc` app with very simple JSON API endpoint:
+Let's first create a `.arc` app with a very simple JSON API endpoint:
 
 ```arc
 @app
@@ -39,7 +39,7 @@ get /api
 5. Create an API Key by: going to the **API Keys** view in the left nav &rarr; open the **Actions** dropdown &rarr; Select **Create API key**
   ![A screenshot showing where to create an API Gateway API key](http://s3-us-west-2.amazonaws.com/arc.codes/guide-cors-3.png)
 
-If you ever need need to revoke access to one of the API keys you create, you can return to this section of the AWS console.
+If you ever need to revoke access to one of the API keys you create, you can return to this section of the AWS console.
 
 Ok, so now that you have an API key, you can use it to make a test request from your terminal. For example:
 
