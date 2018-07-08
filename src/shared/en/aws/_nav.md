@@ -22,9 +22,10 @@
   - [`npx deploy`](/reference/arc-deploy)
   - [`npx sandbox`](/reference/arc-sandbox)
   - [`npx inventory`](/reference/arc-inventory)
+  - [`npx hydrate`](/reference/arc-hydrate)
   - [`npx dns`](/reference/arc-dns)
-  - [`npx config`](/reference/arc-config)
   - [`npx env`](/reference/arc-env)
+  - [`npx config`](/reference/arc-config)
 - `.arc` Reference
   - [`@app`](/reference/app)
   - [`@aws`](/reference/aws)
