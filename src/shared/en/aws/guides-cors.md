@@ -56,7 +56,7 @@ With the default `.arc` file, this should return:
 
 If you get the result you expect back, you're ready to use the API and API key within your existing site or client-side application.
 
-## Using Your API Across Fomains
+## Using Your API Across Domains
 
 Using `window.fetch`, this might look something like:
   
