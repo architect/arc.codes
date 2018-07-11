@@ -59,7 +59,10 @@ Add the following to `package.json`:
 }
 ```
 
-Note: you need to setup `AWS_PROFILE` and `AWS_REGION` per the [installation guide](/quickstart/install). 
+** 🖖 Important!**
+
+- Setup `AWS_PROFILE` and `AWS_REGION` per the [installation guide](/quickstart/install)
+- `NODE_ENV=testing` is VERY important to add to your `npm test` scripts regardless of the test framework you are using--- you MUST include it or you will have a bad time
 
 > ✨ Tip: while you can use any test runner and reporter combo you want, the TAP family is strongly recommended; test suites that require test runners to inject globals create difficult-to-debug situations
 
