@@ -34,6 +34,6 @@
 
 ## Also recommended
 
-- [AWS JavaScript SDK](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/top-level-namespace.html)
+- [AWS JavaScript SDK](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/top-level-namespace.html)
 - [AWS DynamoDB Docs](https://aws.amazon.com/documentation/dynamodb/)
 - [AWS Open Guides](https://github.com/open-guides/og-aws)

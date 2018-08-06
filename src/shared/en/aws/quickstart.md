@@ -49,7 +49,7 @@ To set these variables on Windows open: *Control Panel » System » Advanced » 
 
 ### Useful links:
 * [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
-* [Amazon Configuration and Credential Files](http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html)
+* [Amazon Configuration and Credential Files](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html)
 * [working with multiple AWS accounts](/guides/multiple-aws-accounts).
 
 ## Next: [Install architect](/quickstart/install)
