@@ -56,7 +56,7 @@ Follow these instructions to manually configure Route 53 to serve your applicati
 <a name="cloudflare"></a>
 ## Cloudflare
 
-These instructions are adapted from the tutorial at [LEANX](http://www.leanx.eu/tutorials/set-up-amazons-api-gateway-custom-domain-with-cloudflare) and updated to our most recent experience deploying this documentation site to AWS, using `arc` and custom DNS via Cloudflare. Your mileage may vary.
+These instructions are adapted from the tutorial at [LEANX](https://www.leanx.eu/tutorials/set-up-amazons-api-gateway-custom-domain-with-cloudflare) and updated to our most recent experience deploying this documentation site to AWS, using `arc` and custom DNS via Cloudflare. Your mileage may vary.
 
 1. Ensure that your domain is registered and is using the Cloudflare name servers and that your `arc`-generated application has been deployed to AWS
 2. In your AWS management console, go to the Certificate Management service, and ensure you are in the US East (N. Virginia) aka `us-east-1` region
