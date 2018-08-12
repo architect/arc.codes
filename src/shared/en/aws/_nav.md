@@ -17,6 +17,7 @@
   - [Assigning a Domain Name](/guides/custom-dns)
   - [Implement CORS](/guides/cors)
   - [Multiple AWS Accounts](/guides/multiple-aws-accounts)
+  - [Dependencies](/guides/deps)
 - `@architect/workflows`
   - [`npx create`](/reference/arc-create)
   - [`npx deploy`](/reference/arc-deploy)
