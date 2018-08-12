@@ -1,6 +1,6 @@
-# <a id=data.get href=#data.get>`data.tablename.get`</a>
+# <a id=data.scanhref=#data.scan>`data.tablename.scan`</a>
 
-## Get a row by key
+## Paginate through all rows in a table
 
 Example:
 
@@ -25,12 +25,13 @@ let arc = require('@architect/functions')
 let data = require('@architect/data')
 
 async function handler(req, res) {
-  let noteID = req.query.noteID
-  let note = await data.notes.get({noteID})
+  let notes = await data.notes.scan({})
   res({
-    html: note.body
+    html: `count: ${notes.Count}`
   })
 }
 
 exports.handler = arc.html.get(handler)
 ```
+
+## Next: [`put`](/reference/data-put)

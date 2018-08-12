@@ -53,3 +53,5 @@ exports.handler = arc.html.get(handler)
 ```
 
 The function defines `getID` helper. Internally the function uses a custom UNIX epoch by hardcoding an app specific start value. The value returned is a very short and unique key that is also url safe.
+
+## Next: [`update`](/reference/data-update)

@@ -34,3 +34,5 @@ async function handler(req, res) {
 
 exports.handler = arc.html.get(handler)
 ```
+
+## Next: [`query`](/reference/data-query)

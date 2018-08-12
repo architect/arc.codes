@@ -1,6 +1,6 @@
-# <a id=data.get href=#data.get>`data.tablename.get`</a>
+# <a id=data.get href=#data.get>`data.tablename.query`</a>
 
-## Get a row by key
+## Query a table for a collection of rows
 
 Example:
 
@@ -26,11 +26,18 @@ let data = require('@architect/data')
 
 async function handler(req, res) {
   let noteID = req.query.noteID
-  let note = await data.notes.get({noteID})
+  let result = await data.notes.query({
+    KeyCondtionExpression: 'noteID = :noteID',
+    ExpressionAttributeValues: {
+      ':noteID': noteID
+    }
+  })
   res({
-    html: note.body
+    html: result.Items.join('<hr>')
   })
 }
 
 exports.handler = arc.html.get(handler)
 ```
+
+## Next: [`scan`](/reference/data-scan)

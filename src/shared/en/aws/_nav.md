@@ -17,7 +17,7 @@
   - [Assigning a Domain Name](/guides/custom-dns)
   - [Implement CORS](/guides/cors)
   - [Multiple AWS Accounts](/guides/multiple-aws-accounts)
-- Workflows Reference
+- `@architect/workflows`
   - [`npx create`](/reference/arc-create)
   - [`npx deploy`](/reference/arc-deploy)
   - [`npx sandbox`](/reference/arc-sandbox)
@@ -42,8 +42,7 @@
   - [`@tables`](/reference/tables)
   - [`@text`](/reference/text)
   - [`@xml`](/reference/xml)
-  
-- Functions Reference
+- `@architect/functions` 
   - [`arc.html.get`](/reference/html-get)
   - [`arc.html.post`](/reference/html-post)
   - [`arc.css.get`](/reference/css-get)
@@ -64,9 +63,8 @@
   - [`arc.tables.insert`](/reference/tables-insert)
   - [`arc.tables.update`](/reference/tables-update)
   - [`arc.tables.destroy`](/reference/tables-destroy)
-
-<!--
-- Data Reference
+- `@architect/data` 
+  - [Introduction](/reference/data)
   - [`data._name`](/reference/data-name)
   - [`data._db`](/reference/data-db)
   - [`data._doc`](/reference/data-doc)
@@ -76,4 +74,3 @@
   - [`put`](/reference/data-put)
   - [`update`](/reference/data-update)
   - [`delete`](/reference/data-delete)
--->

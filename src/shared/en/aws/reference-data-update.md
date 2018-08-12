@@ -1,6 +1,6 @@
-# <a id=data.get href=#data.get>`data.tablename.get`</a>
+# <a id=data.update href=#data.update>`data.tablename.update`</a>
 
-## Get a row by key
+## Update one row in a table
 
 Example:
 
@@ -12,8 +12,8 @@ testapp
 get /
 
 @tables
-notes
-  noteID *String
+accounts
+  accountID *String
 
 ```
 
@@ -25,12 +25,18 @@ let arc = require('@architect/functions')
 let data = require('@architect/data')
 
 async function handler(req, res) {
-  let noteID = req.query.noteID
-  let note = await data.notes.get({noteID})
+  await data.accounts.update({
+    UpdateExpression: 'login = :login' ,
+    ExpressionAttributeValues: {
+      ':login': req.body.username = 'admin' && req.body.password === 'admin'
+    }
+  })
   res({
-    html: note.body
+    location: '/'
   })
 }
 
-exports.handler = arc.html.get(handler)
+exports.handler = arc.html.post(handler)
 ```
+
+## Next: [`delete`](/reference/data-delete)
