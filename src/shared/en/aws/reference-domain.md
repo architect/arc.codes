@@ -23,11 +23,15 @@ get /
 
 Running `npx dns` will:
 
-- Setup certificates with AWS Certificate Manager
-- Create a DNS Recordset on Route 53
+- Create a certificate request with AWS Certificate Manager
 - Setup `staging` and `production` Domains in API Gateway
+
+If you want to use Route53 nameservers running `npx dns route53` will:
+
+- Automatically setup a certificate on AWS Certificate Manager
+- Create a Hosted Zone on Route 53
 - Create corresponding Alias records in Route 53
 
-> Also see [workflows](/reference/arc-dns) for working with `@domain`
+> Also see [guide for custom dns](/guides/custom-dns) for working with `@domain`
 
 ## Next: [Defining routes with `@html`](/reference/html)

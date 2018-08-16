@@ -2,15 +2,61 @@
 
 > Assign a fully qualified domain name to your `arc` application
 
-Setting up DNS is a necessity if you intend to assign a domain name to your deployed application. This guide lists ways to set up custom DNS with several popular DNS providers and we are always happy to accept contributions for steps to use additional providers.
+DNS is how you assign a domain name to a deployed app. This guide lists ways to set up custom DNS with several popular DNS providers and we are always happy to accept contributions for steps to use additional providers.
 
-## The Easy Way
-`arc` has built-in support for setting up DNS with AWS Route 53, and assigning a domain.
+## Setting up `.arc` with a custom domain name
 
-1. Add [`@domain`](/reference/domain) to your `.arc` file with a value of the domain name you wish to set up
-2. Invoke [`npx dns`](/reference/arc-dns) and follow the instructions
+`arc` has built-in first-class support for setting up DNS and assigning a domain. First add [`@domain`](/reference/domain) to your `.arc` file with a value of the domain name you wish to set up. 
 
-> Note: Should you want to manually create or modify other DNS entries for your domain, you still retain the full flexibility and configurability of Route 53. `arc` is only concerned with provisioning the necessary records to make your application available under your domain.
+```
+@app
+testapp
+
+@domain
+doesbrianlerouxusepromisesyet.com
+
+@html
+get /
+```
+
+From here you have two paths to mapping the DNS records:
+
+0. DNS with a third party provider (often the domain registrar) using `npx dns`
+1. DNS with Route53 fully automated `npx dns route53`
+
+## 0. DNS with third party provider (default, but harder)
+
+When to do this: if you registered the domain with someone other than Amazon and do not want to move the nameservers.
+
+Run `npx dns` and follow the instructions. The process is:
+
+1. Initial run of `npx dns` will display (or create) a certificate request CNAME name/value pair
+2. Enter the new CNAME record into your DNS provider and wait for verification
+3. Re-run `npx dns` to generate CloudFront distributions
+4. Enter the generated Cloudfront distribution domains as either A or CNAME records with your DNS provider
+
+The certificate, Cloudfront distributions and DNS records in general can take time to propagate. Be zen! Running and re-running `npx dns` is safe.
+
+## 1. DNS with Route53 (opt-in, but reccomended!)
+
+When to do this: if you want to use Route53 to manage your DNS records.
+
+Run `npx dns route53` and follow the instructions. The process is:
+
+1. Read (or create) a Route53 Hosted Zone with the value of `@domain` from the `.arc` file and a certificate validation CNAME record
+  a. If you registered the domain with AWS the nameservers are mapped automatically
+  b. If you registered the domain elsewhere you need to ensure the nameservers are set with your domain registrar
+2. After a few minutes the certificate is automatically verified
+4. Re-run `npx dns` to generate CloudFront distributions and automatically map them with Alias records
+
+## Starting Over
+
+If something goes wrong you can destroy the generated resources and re-create.
+
+- `npx dns nuke` destroys the certificate and CloudFront domain distributions
+- `ARC_NUKE=route53 npx dns nuke` destroys the certficate, CloudFront domain distributions, the Hosted Zone, certificate validation CNAME and Alias records
+
+> 🤷🏽‍♀️ DNS propagation can take time: have patience!
 
 ## The Not-Hard-But-Not-Quite-As-Easy Way
 
