@@ -27,7 +27,7 @@ Which generates the corresponding code:
 
 ```bash
 /
-├── events
+├── queues
 │   ├── convert-image/
 │   └── publish-log/
 ├── .arc
