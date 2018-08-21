@@ -9,6 +9,7 @@ Join our [Slack](https://join.slack.com/t/architecture-as-text/shared_invite/MjE
 
 ## Recently shipped
 
+- <strike>`@queue` functions</strike>
 - <strike>`@text` routes</strike>
 - <strike>`@css` routes</strike>
 - <strike>`@js` routes</strike>

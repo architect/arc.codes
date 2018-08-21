@@ -15,6 +15,7 @@ Orchestrate and leverage powerful Amazon Web Services cloud primitives without f
 - [CloudFront](https://aws.amazon.com/cloudfront/) for CDN
 - [S3](https://aws.amazon.com/s3/) for static assets
 - [Simple Notification Service](https://aws.amazon.com/sns/) for event pub/sub functions
+- [Simple Queue Service](https://aws.amazon.com/sqs/) for queue functions
 - [CloudWatch Events](https://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html) for scheduling functions
 - [DynamoDB](https://aws.amazon.com/dynamodb/) for data persistence, querying and trigger functions
 - [Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-paramstore.html) for environment variables
