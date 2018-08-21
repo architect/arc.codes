@@ -23,4 +23,4 @@ region us-east-1
 profile work
 ```
 
-## Next: [Setup custom domains with `@domain`](/reference/domain)
+## Next: [Defining routes with `@css`](/reference/css)

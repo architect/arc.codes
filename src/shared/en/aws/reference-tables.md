@@ -57,4 +57,4 @@ Function code will also be generated for the defined `people` Lambda triggers:
 └── package.json
 ```
 
-## Next: [Defining DynamoDB table indexes with `@indexes`](/reference/indexes)
+## Next: [Defining routes with `@text`](/reference/text)

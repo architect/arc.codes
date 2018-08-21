@@ -34,4 +34,4 @@ If you want to use Route53 nameservers running `npx dns route53` will:
 
 > Also see [guide for custom dns](/guides/custom-dns) for working with `@domain`
 
-## Next: [Defining routes with `@html`](/reference/html)
+## Next: [Defining events with `@events`](/reference/events)

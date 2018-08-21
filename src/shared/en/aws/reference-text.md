@@ -37,4 +37,4 @@ The `.arc` above generates the following functions:
 └── package.json
 ```
 
-## Next: [Defining routes with `@html`](/reference/html)
+## Next: [Defining routes with `@xml`](/reference/xml)

@@ -37,5 +37,5 @@ The `.arc` above generates the following functions:
 └── package.json
 ```
 
-## Next: [Defining routes with `@css`](/reference/css)
+## Next: [Defining routes with `@json`](/reference/json)
 
