@@ -32,3 +32,5 @@ accounts
 ## Recommended 
 
 DynamoDB is a powerful database. There is a great deal more to learn to take full advantage of it. Dig into [Amazon's DynamoDB documentation](https://aws.amazon.com/documentation/dynamodb/) to build out your app's data layer.
+
+## Next: [Defining routes with `@js`](/reference/js)

@@ -43,5 +43,3 @@ Note: The route `/notes/:noteID` corresponding handler deliberately looks a bit 
 
 - `testapp-staging-get-notes-000noteID`
 - `testapp-production-get-notes-000noteID`
-
-## Next: [Defining events with `@events`](/reference/events)

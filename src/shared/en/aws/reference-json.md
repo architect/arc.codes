@@ -44,4 +44,4 @@ Note: The route `/notes/:noteID` corresponding handler deliberately looks a bit 
 - `testapp-staging-get-notes-000noteID`
 - `testapp-production-get-notes-000noteID`
 
-## Next: [Defining events with `@xml`](/reference/xml)
+## Next: [Creating queues with `@queues`](/reference/queues)

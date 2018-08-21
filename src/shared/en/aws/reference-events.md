@@ -39,4 +39,4 @@ And the following deployment Lambdas:
 - `testapp-staging-likes`
 - `testapp-production-likes`
 
-## Next: [Scheduling functions with `@scheduled`](/reference/scheduled)
+## Next: [Defining routes with `@html`](/reference/html)

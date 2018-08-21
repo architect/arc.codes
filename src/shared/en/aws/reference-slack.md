@@ -89,4 +89,4 @@ Results in the following code:
 └── package.json
 ```
 
-## Next: [Defining tables with `@tables`](/reference/tables)
+## Next: [Uploading static assets to S3 with `@static`](/reference/static)

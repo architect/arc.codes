@@ -49,4 +49,4 @@ Note: The route `/pages/:dateID` corresponding handler deliberately looks a bit 
 - `testapp-staging-get-pages-000dateID`
 - `testapp-production-get-pages-000dateID`
 
-## Next: [Defining routes with `@json`](/reference/json)
+## Next: [Creating db indexes with `@indexes`](/reference/indexes)
