@@ -8,6 +8,7 @@
   - [Installation](/quickstart/install)
   - [.arc Project Layout](/quickstart/arc-project-layout)
 - Guides
+  - [YAML/JSON Config](/guides/yaml-and-json)
   - [Working Locally](/guides/offline)
   - [Sharing Common Code](/guides/sharing-common-code)
   - [HTTP Functions](/guides/http)
