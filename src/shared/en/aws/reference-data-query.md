@@ -27,7 +27,7 @@ let data = require('@architect/data')
 async function handler(req, res) {
   let noteID = req.query.noteID
   let result = await data.notes.query({
-    KeyCondtionExpression: 'noteID = :noteID',
+    KeyConditionExpression: 'noteID = :noteID',
     ExpressionAttributeValues: {
       ':noteID': noteID
     }
