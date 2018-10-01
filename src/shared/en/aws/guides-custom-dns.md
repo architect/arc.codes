@@ -37,7 +37,7 @@ Run `npx dns` and follow the instructions. The process is:
 
 The certificate, Cloudfront distributions and DNS records in general can take time to propagate. Be zen! Running and re-running `npx dns` is safe.
 
-## 1. DNS with Route53 (opt-in, but reccomended!)
+## 1. DNS with Route53 (opt-in, but recommended!)
 
 When to do this: if you want to use Route53 to manage your DNS records.
 
