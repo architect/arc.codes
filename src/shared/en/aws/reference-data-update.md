@@ -27,7 +27,7 @@ let data = require('@architect/data')
 async function handler(req, res) {
   await data.accounts.update({
     Key: { accountID: req.body.accountID },
-    UpdateExpression: 'login = :login' ,
+    UpdateExpression: 'SET login = :login' ,
     ExpressionAttributeValues: {
       ':login': req.body.username = 'admin' && req.body.password === 'admin'
     }
