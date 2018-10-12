@@ -8,7 +8,6 @@
   - [Installation](/quickstart/install)
   - [.arc Project Layout](/quickstart/arc-project-layout)
 - Guides
-  - [YAML/JSON Config](/guides/yaml-and-json)
   - [Working Locally](/guides/offline)
   - [Sharing Common Code](/guides/sharing-common-code)
   - [HTTP Functions](/guides/http)
@@ -18,6 +17,8 @@
   - [Assigning a Domain Name](/guides/custom-dns)
   - [Implement CORS](/guides/cors)
   - [Multiple AWS Accounts](/guides/multiple-aws-accounts)
+  - [Custom IAM Roles](/guides/iam)
+  - [YAML/JSON Config](/guides/yaml-and-json)
   - [Dependencies](/guides/deps)
   - [Upgrade Guide](/guides/upgrade)
 - `@architect/workflows`
