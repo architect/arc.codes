@@ -6,6 +6,7 @@
 
 |  &nbsp; | Content Type       | Verbs Supported
 | ------- | ------------------ | ----------------
+| `@http` | _any_              | `GET`, `POST`, `PATCH`, `PUT`, `DELETE`
 | `@html` | `text/html`        | `GET`, `POST`
 | `@json` | `application/json` | `GET`, `POST`, `PATCH`, `PUT`, `DELETE`
 | `@text` | `text/plain`       | `GET`
@@ -27,6 +28,69 @@ td {
 }
 </style>
 
+## Low Level HTTP
+
+Given the following example `.arc` file:
+
+```arc
+@app
+testapp
+
+@http
+get /
+```
+
+The following generic HTTP handler demonstrates setting the HTTP status code, content type and body.
+
+```javascript
+exports.handler = async function http(request) {
+  return {
+    status: 201,
+    type: 'text/html; charset=utf8',
+    body: `
+    <!doctype html>
+    <html>
+      <body>hello world</body>
+    </html>
+   `
+  }
+}
+```
+
+Generic HTTP functions are dependency free! The following keys are supported:
+
+- `status` sets the HTTP status code
+- `type` set the `Content-Type` response header
+- `body` set the response body
+- `location` set the `Location` response header (combine w `status:302` to redirect)
+- `cookie` set the `Set-Cookie` response header
+- `cors: true|false` set CORS headers
+
+## Low Level Sessions
+
+Generic HTTP functions can opt into session support:
+
+```javascript
+let arc = require('@architect/functions')
+
+exports.handler = async function http(req) {
+  // reads the session from DynamoDB
+  let state = await arc.http.session.read(req) 
+  // modify the state
+  state.foo = 'bar'
+  // save the session state to DynamoDB
+  let cookie = await arc.http.session.write(state)
+  // respond (and update the session cookie)
+  return {
+    cookie,
+    status: 302,
+    location: '/',
+  }
+}
+```
+
+## High Level HTTP
+
 Example `.arc` file:
 
 ```arc
@@ -41,10 +105,6 @@ get /api/likes
 post /api/likes
 patch /api/likes/:likeID
 delete /api/likes/:likeID
-
-@text
-/robots.txt
-/humans.txt
 
 @js
 /js/index.js
