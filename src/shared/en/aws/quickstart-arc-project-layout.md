@@ -6,7 +6,7 @@ Here we'll dig a bit deeper into how a `arc` project is laid out and defined in 
 
 Section                               | Description
 ------------------------------------- | ------------------------------------------------------------------------------------
-[`@app`](/reference/app)              | **[Required]** Defines your application namespace<br />Syntax: Lowercase alphanumeric string; maximum of 20 characters; dashes allowed; underscores not allowed; must begin with a letter<br />Example: `hello-world-app`
+[`@app`](/reference/app)              | **[Required]** Defines your application namespace<br />Syntax: Lowercase alphanumeric string; maximum of 10 characters; dashes allowed; underscores not allowed; must begin with a letter<br />Example: `hello-world-app`
 [`@aws`](/reference/aws)              | Defines defines AWS variables<br />Syntax: Accepts either or both of two keys: `region` and `profile`<br />Example: `region us-east-1`
 [`@css`](/reference/css)              | Defines HTTP routes that return `text/css` content (API Gateway, Lambda)<br />Syntax: desired path; must include leading slash; dashes and underscores not allowed; must begin with a letter; parameters denoted with colons (`:`)<br />Example: `/path/to/your/new.css`
 [`@domain`](/reference/domain)        | Defines and assigns a domain name to your app (ACM, API Gateway, and Route 53)<br />Syntax: Standard domain characters and syntax; only use the FQDN, do not include protocol or path<br />Example: `arc.codes`

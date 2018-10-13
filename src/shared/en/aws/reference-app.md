@@ -4,7 +4,7 @@
 
 ### Syntax
 - Lowercase alphanumeric string
-- Maximum of 20 characters
+- Maximum of 10 characters
 - Dashes allowed; underscores not allowed
 - Must begin with a letter
 
