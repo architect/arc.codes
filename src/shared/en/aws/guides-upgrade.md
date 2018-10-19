@@ -2,6 +2,34 @@
 
 > Guides for upgrading to the latest version of `.arc`
 
+## 4.x
+
+Deprecated Docs
+  - [Roadmap](/intro/roadmap)
+
+  - [`@css`](/reference/css)
+  - [`@html`](/reference/html)
+  - [`@js`](/reference/js)
+  - [`@json`](/reference/json)
+  - [`@text`](/reference/text)
+  - [`@xml`](/reference/xml)
+
+  - [`arc.html.get`](/reference/html-get)
+  - [`arc.html.post`](/reference/html-post)
+  - [`arc.css.get`](/reference/css-get)
+  - [`arc.js.get`](/reference/js-get)
+  - [`arc.text.get`](/reference/text-get)
+  - [`arc.json.get`](/reference/json-get)
+  - [`arc.json.post`](/reference/json-post)
+  - [`arc.json.put`](/reference/json-put)
+  - [`arc.json.patch`](/reference/json-patch)
+  - [`arc.json.delete`](/reference/json-delete)
+  - [`arc.xml.get`](/reference/xml-get)
+  - [`arc.xml.post`](/reference/xml-post)
+  - [`arc.xml.put`](/reference/xml-put)
+  - [`arc.xml.patch`](/reference/xml-patch)
+  - [`arc.xml.delete`](/reference/xml-delete)
+
 ## 3.3.0
 
 `@architect/workflows` added SQS support in `3.3.0` and existing apps will need to add permissions to the default `arc-role` IAM Role used for Lambda execution if they want to add `@queues`.

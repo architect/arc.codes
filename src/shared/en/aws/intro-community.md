@@ -8,15 +8,14 @@
 
 ## Get the code
 
-Github repos and issue trackers can be found here:
+> <h2 style=display:inline>🌟 [`arc-repos/architect`](https://github.com/arc-repos/architect)</h2> [![Codeship Status for arc-repos/arc-workflows](https://app.codeship.com/projects/171c66d0-4fa3-0135-c228-1654ec891f79/status?branch=master)](https://app.codeship.com/projects/234104)
 
-|                                          |                                                                              |
-| -------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| [`arc-repos/arc-functions`](https://github.com/arc-repos/arc-functions)  | [ ![Codeship Status for arc-repos/arc-functions](https://app.codeship.com/projects/6f683560-4fab-0135-8928-02ec463c683c/status?branch=master)](https://app.codeship.com/projects/234122)    |
-| [`arc-repos/arc-workflows`](https://github.com/arc-repos/arc-workflows)  | [ ![Codeship Status for arc-repos/arc-workflows](https://app.codeship.com/projects/171c66d0-4fa3-0135-c228-1654ec891f79/status?branch=master)](https://app.codeship.com/projects/234104) |
-| [`arc-repos/arc-data`](https://github.com/arc-repos/arc-data)            | [ ![Codeship Status for arc-repos/arc-data](https://app.codeship.com/projects/eb209d00-7314-0135-d92e-02bd2b8bf89f/status?branch=master)](https://app.codeship.com/projects/243722) |
-| [`arc-repos/arc-parser`](https://github.com/arc-repos/arc-parser)        | [ ![Codeship Status for arc-repos/arc-parser](https://app.codeship.com/projects/8ac91c80-4f9d-0135-36b3-22bcd0c3040e/status?branch=master)](https://app.codeship.com/projects/234098) |
-| [`arc-repos/arc.codes`](https://github.com/arc-repos/arc.codes)          | [ ![Codeship Status for arc-repos/arc.codes](https://app.codeship.com/projects/69a79dc0-4fd3-0135-6f18-062897f7455f/status?branch=master)](https://app.codeship.com/projects/234163)     |
+### Companion Projects
+
+- [`arc-repos/arc-functions`](https://github.com/arc-repos/arc-functions) [ ![Codeship Status for arc-repos/arc-functions](https://app.codeship.com/projects/6f683560-4fab-0135-8928-02ec463c683c/status?branch=master)](https://app.codeship.com/projects/234122) 
+- [`arc-repos/arc-data`](https://github.com/arc-repos/arc-data) [ ![Codeship Status for arc-repos/arc-data](https://app.codeship.com/projects/eb209d00-7314-0135-d92e-02bd2b8bf89f/status?branch=master)](https://app.codeship.com/projects/243722) 
+- [`arc-repos/arc-parser`](https://github.com/arc-repos/arc-parser) [ ![Codeship Status for arc-repos/arc-parser](https://app.codeship.com/projects/8ac91c80-4f9d-0135-36b3-22bcd0c3040e/status?branch=master)](https://app.codeship.com/projects/234098)
+- [`arc-repos/arc.codes`](https://github.com/arc-repos/arc.codes) [ ![Codeship Status for arc-repos/arc.codes](https://app.codeship.com/projects/69a79dc0-4fd3-0135-6f18-062897f7455f/status?branch=master)](https://app.codeship.com/projects/234163) 
 
 ## Helping out
 

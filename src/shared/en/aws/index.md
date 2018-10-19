@@ -23,7 +23,7 @@ Orchestrate and leverage powerful Amazon Web Services cloud primitives without f
 ## Install
 
 ```bash
-npm i @architect/workflows
+npm i @architect/architect
 ```
 
 Everything starts with an `.arc` file:
@@ -33,7 +33,7 @@ Everything starts with an `.arc` file:
 @app
 testapp
 
-@html
+@http
 get /
 get /hellos
 post /hello
@@ -44,12 +44,23 @@ post /hello
 ```bash
 /
 ├── src
-│   └── html
+│   └── http
 │       ├── get-index/
 │       ├── get-hellos/
 │       └── post-hello/
 ├── .arc
 └── package.json
+```
+
+The generated function code in `/src/http/get-index/index.js` looks like this:
+
+```javascript
+exports.handler = async function http(request) {
+  return {
+    type: 'text/html',
+    body: '<h1>Hello world!</h1>'
+  }
+}
 ```
 
 And `npx deploy` ships iterations on your code to the cloud in seconds. <span class=cloud>&#x1f329;</span>

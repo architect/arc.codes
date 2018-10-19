@@ -16,7 +16,7 @@ And then paste the following contents into the `.arc` file:
 @app
 testapp
 
-@html
+@http
 get /
 ```
 
