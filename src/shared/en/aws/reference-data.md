@@ -8,7 +8,7 @@ Example, given the following `.arc` file:
 @app
 testapp
 
-@html
+@http
 get /
 
 @tables
@@ -47,7 +47,7 @@ async function route(req, res) {
   res({html})
 }
 
-exports.handler = arc.html.get(route)
+exports.handler = arc.http(route)
 ```
 
 `@architect/data` also allows direct access to DynamoDB through a few methods:

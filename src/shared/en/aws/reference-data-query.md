@@ -4,11 +4,11 @@
 
 Example:
 
-```.arc
+```arc
 @app
 testapp
 
-@html
+@http
 get /
 
 @tables
@@ -37,7 +37,7 @@ async function handler(req, res) {
   })
 }
 
-exports.handler = arc.html.get(handler)
+exports.handler = arc.http(handler)
 ```
 
 ## Next: [`scan`](/reference/data-scan)

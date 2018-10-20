@@ -4,11 +4,11 @@
 
 Example:
 
-```.arc
+```arc
 @app
 testapp
 
-@html
+@http
 get /
 
 @tables
@@ -49,7 +49,7 @@ async function handler(req, res) {
   })
 }
 
-exports.handler = arc.html.get(handler)
+exports.handler = arc.http(handler)
 ```
 
 The function defines `getID` helper. Internally the function uses a custom UNIX epoch by hardcoding an app specific start value. The value returned is a very short and unique key that is also url safe.

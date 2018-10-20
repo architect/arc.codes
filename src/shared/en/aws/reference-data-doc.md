@@ -4,11 +4,11 @@
 
 In this example we'll model a comic book store. Accounts are uniquely identified by email. One account has many purchases. Notice how the `.arc` comments annotates the extra fields on the purchases table definition (`#comicID` and `#price`). DynamoDB tables only define a schema for keys. All other attributes are optional. Likewise these comments are not significant but they will help your future colleagues understand the schema intent. 
 
-```.arc
+```arc
 @app
 testapp
 
-@html
+@http
 get /
 
 @tables

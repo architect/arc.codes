@@ -269,7 +269,6 @@ function index(req, res) {
 exports.handler = arc.http(log, ping, index)
 ```
 
-
 `req` has the following keys:
 
 - `body` any `application/x-www-form-urlencoded` form variables as a plain `Object`
