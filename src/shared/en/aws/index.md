@@ -60,8 +60,7 @@ exports.handler = async function http(request) {
     type: 'text/html',
     body: '<h1>Hello world!</h1>'
   }
-}
-```
+}```
 
 And `npx deploy` ships iterations on your code to the cloud in seconds. <span class=cloud>&#x1f329;</span>
 

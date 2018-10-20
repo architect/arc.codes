@@ -21,11 +21,12 @@ This guide will use the following example `.arc` file:
 @app
 testapp
 
-@html
-get /
-
-@json
-get /api
+@http
+get /api/cats
+get /api/cats/:catID
+post /api/cats
+put /api/cats/:catID
+delete /api/cats/:catID
 
 @tables
 cats
@@ -192,5 +193,6 @@ test('arc.sandbox.db.close', t=>{
   t.ok(true, 'closed')
 })
 ```
+> 🔭 Get the source for this example [arc-repos/arc-example-working-locally](https://github.com/arc-repos/arc-example-working-locally)
 <hr>
 ## Next: [Sharing Common Code Between Functions](/guides/sharing-common-code)

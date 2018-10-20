@@ -92,7 +92,7 @@ Running `npx create` in the same directory as the `.arc` file above generates th
 ```bash
 /
 ├── src
-│   ├── html
+│   ├── http
 │   │   ├── get-index/
 │   │   ├── get-likes/
 │   │   └── post-likes/

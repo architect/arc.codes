@@ -46,7 +46,7 @@ Running `npx create` creates the following code:
 ├── src
 │   ├── events
 │   │   └── hello/
-│   ├── html
+│   ├── http
 │   │   ├── get-index/
 │   │   └── get-posts/
 │   └── shared/

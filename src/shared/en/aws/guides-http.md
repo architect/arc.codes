@@ -2,34 +2,6 @@
 
 > `.arc` abstracts API Gateway configuration and provisioning, while `@architect/functions` adds a very light but powerful API shim to Lambda for working with HTTP
 
-`.arc` supports the following HTTP Content Types:
-
-|  &nbsp; | Content Type       | Verbs Supported
-| ------- | ------------------ | ----------------
-| `@http` | _any_              | `GET`, `POST`, `PATCH`, `PUT`, `DELETE`
-| `@html` | `text/html`        | `GET`, `POST`
-| `@json` | `application/json` | `GET`, `POST`, `PATCH`, `PUT`, `DELETE`
-| `@text` | `text/plain`       | `GET`
-| `@css`  | `text/css`         | `GET`
-| `@js`   | `text/javascript`  | `GET`
-| `@xml`  | `application/xml`  | `GET`, `POST`, `PATCH`, `PUT`, `DELETE`
-
-<style>
-tr {
-  background: none;
-}
-tr > td:first-child {
-  background: darkgreen;
-}
-td {
-  vertical-align: bottom;
-  padding:10px;
-  background: #eaeaea
-}
-</style>
-
-## Low Level HTTP
-
 Given the following example `.arc` file:
 
 ```arc
@@ -40,7 +12,7 @@ testapp
 get /
 ```
 
-The following generic HTTP handler demonstrates setting the HTTP status code, content type and body.
+By default, HTTP functions are dependency free with a minimal, but very powerful, low level API. 
 
 ```javascript
 exports.handler = async function http(request) {
@@ -57,29 +29,100 @@ exports.handler = async function http(request) {
 }
 ```
 
-Generic HTTP functions are dependency free! The following keys are supported:
+Every HTTP handler receives a plain JavaScript object `request` as a first parameter with the following keys:
 
-- `status` sets the HTTP status code
-- `type` set the `Content-Type` response header
-- `body` set the response body
-- `location` set the `Location` response header (combine w `status:302` to redirect)
-- `cookie` set the `Set-Cookie` response header
-- `cors: true|false` set CORS headers
+- <b>`body`</b> any `application/x-www-form-urlencoded` form variables as a plain `Object`
+- <b>`path`</b> absolute path of the request
+- <b>`method`</b> one of `GET`, `POST`, `PATCH`, `PUT` and `DELETE`
+- <b>`params`</b> any URL params defined
+- <b>`query`</b> any query params defined
+- <b>`headers`</b> a plain `Object` of request headers 
 
-## Low Level Sessions
+To send a response HTTP functions support the following params as a plain JavaScript object:
 
-Generic HTTP functions can opt into session support:
+- <b>`status`</b> or `code` sets the HTTP status code
+- <b>`type`</b> set the `Content-Type` response header
+- <b>`body`</b> set the response body
+- <b>`location`</b> set the `Location` response header (combine w `status:302` to redirect)
+- <b>`cookie`</b> set the `Set-Cookie` response header
+- <b>`cors: true|false`</b> set the various CORS headers
+
+## Layouts
+
+Shared layouts are implemented using `src/shared`. Create the following file:
+
+```javascript
+// src/shared/layout.js
+module.exports = function layout(html) {
+  return `
+    <!doctype html>
+    <html>
+    <body><h1>Layout!</h1>${html}</body>
+    </html>
+  `
+}
+```
+
+And now from any other function you can reference it:
+
+```javascript
+// src/http/get-index/index.js
+let layout = require('@architect/shared/layout')
+
+module.exports = async function http(req) {
+  let html = '<b>hello world!!</b>'
+  return {
+    type: 'text/html',
+    body: layout(html)
+  }
+}
+```
+
+> 🔬 Read more about [sharing code guide](https://arc.codes/guides/sharing-common-code)
+
+## Views
+
+COMING SOON!
+
+# Conveniences
+
+HTTP functions come with `@architect/functions` and `@architect/data` installed which have convienant helpers for working with the unique API Gateway and DynamoDB environment characteristics.
+
+```javascript
+// opt into arc and data conveniences
+let arc = require('@architect/functions')
+let data = require('@architect/data')
+```
+
+The following API is supported:
+ 
+- <b>`arc.http`</b> opt into an express-style middleware api
+- <b>`arc.http.session.read`</b> read the session using the request cookie
+- <b>`arc.http.session.write`</b> write the session returning a cookie string
+- <b>`arc.http.helpers.url`</b> transform `/` into the appropriate `/staging` or `/production` API Gateway path
+- <b>`arc.http.helpers.static`</b> accepts a path and returns path to `localhost:3333` or `staging` and `production` S3 buckets
+- <b>`arc.http.helpers.verify`</b> verify a `csrf` token
+
+> 📈 `@architect/functions` also has helpers for invoking SNS and SQS Lambda functions defined by `@events` and `@queues` respectively. You can read more about pub/sub patterns in the [background tasks guide](/guides/background-tasks).
+
+## Sessions
+
+HTTP functions can opt into session support:
 
 ```javascript
 let arc = require('@architect/functions')
 
 exports.handler = async function http(req) {
+
   // reads the session from DynamoDB
   let state = await arc.http.session.read(req) 
+
   // modify the state
   state.foo = 'bar'
+
   // save the session state to DynamoDB
   let cookie = await arc.http.session.write(state)
+
   // respond (and update the session cookie)
   return {
     cookie,
@@ -89,211 +132,123 @@ exports.handler = async function http(req) {
 }
 ```
 
-## High Level HTTP
+All HTTP endpoints are sessions-enabled by default. 
 
-Example `.arc` file:
+- Session tables are automatically generated by `npx create` with the name `${appname}-staging-sessions` and `${appname}-production-sessions`, respectively 
+- Requests are tagged to a session in DynamoDB via a signed cookie `_idx`
+- Session data expires after a week of inactivity
 
-```arc
-@app
-testapp
+## URLs
 
-@html
-get /
+API Gateway generates long URLs that are hard to read, and extends the URL base path with either `staging` or `production` &mdash; this means a link intended to point at `/` should actually point at `/staging` or `/production`. This pain point is eased if you set up a [custom domain name with DNS](/guides/custom-dns).
 
-@json
-get /api/likes
-post /api/likes
-patch /api/likes/:likeID
-delete /api/likes/:likeID
+`@architect/functions` also bundles a helper function `arc.http.helpers.url` for resolving URL paths that haven't yet been configured with DNS. This is helpful for early prototyping.
 
-@js
-/js/index.js
-
-@css
-/css/index.css
-```
-
-## Request
-
-Every HTTP handler receives a plain JavaScript object `req` as a first parameter:
+Here is an example index page that demonstrates `url` usage:
 
 ```javascript
-var arc = require('@architect/functions')
+let arc = require('@architect/functions')
+let url = arc.http.helpers.url
 
-function index(req, res) {
-  res({
-    html: `<b>hello world</b>` 
-  })
+exports.handler = async function http(req) {
+  if (req.session.isLoggedIn) {
+    return {
+      type: 'text/html',
+      body: `<a href=${url('/logout')}>logout</a>`
+    }
+  }
+  else {
+    return {
+      status: 302,
+      location: url('/login')
+    } 
+  }
 }
-
-exports.handler = arc.html.get(index)
 ```
 
-`req` has the following keys:
+> 👋 After DNS propagates you can remove calls to `arc.http.helpers.url` from your code. Learn how to [assign a domain name](/guides/custom-dns) by setting up DNS.
 
-- `body` - any `application/x-www-form-urlencoded` form variables as a plain `Object`
-- `path` - absolute path of the request
-- `method` dependsa on the type of function but one of `GET`, `POST`, `PATCH`, `PUT` and `DELETE`
-- `params` - any URL param defined
-- `query` - any query params defined
-- `headers` - a plain `Object` of request headers 
-- `session` - a plain `Object` representing the current session
+## Verify
+COMING SOON
 
-`req` also has the following hidden helper methods:
-
-- `req._url` - transforms `/` into the appropriate `/staging` or `/production` API Gateway paths
-- `req._verify` - verify a `csrf` token
-- `req._static` - resolves S3 bucket URLs; pass it a path and it returns the URL appropriate to `localhost:3333`, `staging` or `production`
-
-## Response
-
-`res` is a function that accepts named parameters:
-
-- **Required**: One of 
-  - `json` 
-  - `html` 
-  - `text` 
-  - `css` 
-  - `js` 
-  - `xml` 
-  - `location`
-- Optionally: `session` to assign to the current session
-- Optionally: `status` of:
-  - `400` Bad Request
-  - `403` Forbidden
-  - `404` Not Found
-  - `406` Not Acceptable
-  - `409` Conflict
-  - `415` Unsupported Media Type
-  - `500` Internal Serverless Error
-
-The default HTTP status code is `200`. A `302` is sent automatically when redirecting via `location`.
+## Static
+COMING SOON
 
 ## Examples
 
-Here we have an example handler `200` response of `Content-Type: text/html`:
-
 ```javascript
-var arc = require('@architect/functions')
-
-function index(req, res) {
-  res({
-    html: `<b>hello world</b>` 
-  })
+exports.handler = async function http(req) {
+  return {
+    type: 'text/html'
+    body: `<b>hello world</b>` 
+  }
 }
-
-exports.handler = arc.html.get(index)
 ```
 
-This shows a `302` from a `POST` writing to the `session`:
+This redirects writing to the `session`:
 
 ```javascript
-var arc = require('@architect/functions')
+// src/http/post-login/index.js
+let arc = require('@architect/functions')
 
-function login(req, res) {
-  var isLoggedIn = req.body.email === 'admin' && req.body.password === 'admin'
-  res({
-    session: {isLoggedIn},
-    location: req._url('/')
-  })
+exports.handler = async function http(req) {
+  let loggedIn = req.body.email === 'admin' && req.body.password === 'admin'
+  let cookie = await arc.http.session.write({loggedIn})
+  return {
+    cookie,
+    status: 302,
+    location: '/'
+  }
 }
-
-exports.handler = arc.html.post(login)
 ```
 
 This is a `302` response clearing the session data:
 
 ```javascript
-var arc = require('@architect/functions')
+let arc = require('@architect/functions')
 
-function logout(req, res) {
-  res({
-    session: {},
-    location: req._url('/')
-  })
+exports.handler = async function http(req) {
+  let cookie = await arc.http.session.write({})
+  return {
+    cookie,
+    status: 302,
+    location: '/'
+  }
 }
-
-exports.handler = arc.html.post(logout)
 ```
 
 This is an example `500` response:
 
 ```javascript
-var arc = require('@architect/functions')
-
-// something went wrong!
-function fail(req, res) {
-  res({
+exports.handler = async function http(req) {
+  return {
+    type: 'text/html',
     status: 500,
-    html: 'internal "server" error'
-  })
+    body: 'internal serverless error'
+  }
 }
-
-exports.handler = arc.html.get(fail)
 ```
 
-## Errors
-
-A `res` may also be invoked with an instance of `Error`.
+An example JSON API:
 
 ```javascript
-var arc = require('@architect/functions')
-
-// something went wrong!
-function fail(req, res) {
-  res(Error('internal "server" error'))
-}
-
-exports.handler = arc.html.get(fail)
-```
-
-By default an `Error` returns with an HTTP status code `500`. If the `Error` passed to `res` contains a property of `code`, `status` or `statusCode` with a value of `403`, `404` or `500` the status code response is updated accordingly.
-
-### Custom Error Pages
-
-The default error response template can be overridden by adding `error.js` to your function's root directory.
-
-`error.js` exports a single default function that accepts an `Error` and returns a non-empty `String`.
-
-```javascript
-// src/html/get-index/error.js
-module.exports = function error(err) {
-  return `
-  <!doctype html>
-  <html>
-    <body>
-      <h1>${err.message}</h1>
-      <pre>${err.stack}</pre>
-    </body>
-  </html>
-  `
+exports.handler = async function http(req) {
+  return {
+    type: 'application/json',
+    status: 201,
+    body: JSON.stringify({cats: ['sutr0']})
+  }
 }
 ```
-
-> Have a look at the [error examples repo](https://github.com/arc-repos/arc-example-errors) and demos at https://wut0.click
-
-## Sessions
-
-All HTTP endpoints are sessions-enabled by default. 
-
-- Session tables are automatically generated by `npx create` with the name `${appname}-staging-sessions` and `${appname}-production-sessions`, respectively 
-- Every request is tagged to a session in DynamoDB via a signed cookie `_idx`
-- Session data expires after a week of inactivity
-
-Note:
-
-- HTTP endpoints are slower with sessions enabled due to marshalling data to and from DynamoDB
-- To disable session support, remove the `SESSION_TABLE_NAME` environment variable from the Lambda configuration in the AWS Console (wherein session becomes a passthrough)
-- If disabled you can also delete any corresponding session tables from DynamoDB
 
 ## Middleware Pattern
 
-All `.arc` defined HTTP endpoints can register multiple Express-style middleware functions. 
+HTTP functions can also opt into Express-style middleware API. 
 
 In this example we register `log`, `ping` and `index` to run in series. Each function signals to continue to the next function in the series by calling `next()`. Execution is halted at any time in the chain by calling `res`.
 
 ```javascript
-var arc = require('@architect/functions')
+let arc = require('@architect/functions')
 
 function log(req, res, next) {
   console.log(JSON.stringify(req, null, 2))
@@ -311,39 +266,45 @@ function index(req, res) {
   })
 }
 
-exports.handler = arc.html.get(log, ping, index)
+exports.handler = arc.http(log, ping, index)
 ```
 
-## URLs
 
-API Gateway generates long URLs that are hard to read, and extends the URL base path with either `staging` or `production` &mdash; this means a link intended to point at `/` should actually point at `/staging` or `/production`. This pain point is eased if you set up a [custom domain name with DNS](/guides/custom-dns).
+`req` has the following keys:
 
-`architect` also bundles a hidden helper function `req._url` for resolving URL paths that haven't yet been configured with DNS. This is helpful for early prototyping.
+- `body` any `application/x-www-form-urlencoded` form variables as a plain `Object`
+- `path` absolute path of the request
+- `method` one of `GET`, `POST`, `PATCH`, `PUT` and `DELETE`
+- `params` any URL params defined
+- `query` any query params defined
+- `headers` a plain `Object` of request headers
+- `session` a plain `Object` representing the current session
 
-Here is an example index page, protected by authentication middleware, that demonstrates `req._url` usage:
+## Response
 
-```javascript
-var arc = require('@architect/functions')
+`res` is a function that accepts named parameters:
 
-function auth(req, res, next) {
-  if (req.session.isLoggedIn) {
-    next()
-  }
-  else {
-    res({
-      location: req._url('/login')
-    }) 
-  }
-}
+- **Required**: One of
+  - `json`
+  - `html`
+  - `text`
+  - `css`
+  - `js`
+  - `xml`
+  - `location`
+- Optionally: `session` to assign to the current session
+- Optionally: `status` of:
+  - `400` Bad Request
+  - `403` Forbidden
+  - `404` Not Found
+  - `406` Not Acceptable
+  - `409` Conflict
+  - `415` Unsupported Media Type
+  - `500` Internal Serverless Error
 
-function index(req, res) {
-  res({
-    html: `<a href=${req._url('/logout')}>logout</a>` 
-  })
-}
+The default HTTP status code is `200`. A `302` is sent automatically when redirecting via `location`.
 
-exports.handler = arc.html.get(auth, index)
-```
+---
 
 ## Example App
 
@@ -355,7 +316,7 @@ This example `.arc` brings together all the concepts for defining HTTP Lambdas:
 @app
 example-login-flow
 
-@html
+@http
 get /
 get /logout
 get /protected
@@ -367,7 +328,7 @@ post /login
 ```bash
 /
 ├── src
-│   ├── html
+│   ├── http
 │   │   ├── get-index/
 │   │   ├── get-logout/
 │   │   ├── get-protected/
@@ -380,16 +341,17 @@ post /login
 First we render a form for `/login` if `req.session.isLoggedIn` is `false`:
 
 ```javascript
-var arc = require('@architect/functions')
+let arc = require('@architect/functions')
+let url = arc.http.helpers.url
 
 function index(req, res) {
   var header = `<h1>Login Demo</h1>`
-  var protec = `<a href=${req._url('/protected')}>protected</a>`
-  var logout = `<a href=${req._url('/logout')}>logout</a>`
+  var protec = `<a href=${url('/protected')}>protected</a>`
+  var logout = `<a href=${url('/logout')}>logout</a>`
   var nav = `<p>${protec} | ${logout}</p>`
 
   var form = `
-  <form action=${req._url('/login')} method=post>
+  <form action=${url('/login')} method=post>
     <label for=email>Email</label>
     <input type=text name=email>
     <label for=password>Password</label>
@@ -403,29 +365,31 @@ function index(req, res) {
   })
 }
 
-exports.handler = arc.html.get(index)
+exports.handler = arc.http(index)
 ```
 
 That form performs an HTTP `POST` to `/login` where we look for mock values in `req.body.email` and `req.body.password`:
 
 ```javascript
-var arc = require('@architect/functions')
+let arc = require('@architect/functions')
+let url = arc.http.helpers.url
 
 function route(req, res) {
   var isLoggedIn = req.body.email === 'admin' && req.body.password === 'admin'
   res({
     session: {isLoggedIn},
-    location: req._url(`/`)
+    location: url(`/`)
   })
 }
 
-exports.handler = arc.html.post(route)
+exports.handler = arc.http(route)
 ```
 
 If successful `req.session.isLoggedIn` will be `true` and `nav` gets rendered. `/protected` utilizes middleware to ensure only logged in users can see it.
 
 ```javascript
-var arc = require('@architect/functions')
+let arc = require('@architect/functions')
+let url = arc.http.helpers.url
 
 function protect(req, res, next) {
   if (req.session.isLoggedIn) {
@@ -433,35 +397,36 @@ function protect(req, res, next) {
   }
   else {
     res({
-      location: req._url(`/`)
+      location: url(`/`)
     })
   }
 }
 
 function attack(req, res) {
   var msg = 'oh hai you must be logged in to see me!'
-  var logout = `<a href=${req._url('/logout')}>logout</a>`
+  var logout = `<a href=${url('/logout')}>logout</a>`
   res({
     html: `${msg} ${logout}`
   })
 }
 
-exports.handler = arc.html.get(protect, attack)
+exports.handler = arc.http(protect, attack)
 ```
 
 Logging out just resets the `session` and redirects back to `/`.
 
 ```javascript
-var arc = require('@architect/functions')
+let arc = require('@architect/functions')
+let url = arc.http.helpers.url
 
 function route(req, res) {
   res({
     session: {},
-    location: req._url(`/`)
+    location: url(`/`)
   })
 }
 
-exports.handler = arc.html.get(route)
+exports.handler = arc.http(route)
 ```
 
 And that's it! [Find the example repo here.](https://github.com/arc-repos/arc-example-login-flow)
