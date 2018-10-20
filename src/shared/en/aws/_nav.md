@@ -7,9 +7,9 @@
   - [Installation](/quickstart/install)
   - [.arc Project Layout](/quickstart/arc-project-layout)
 - Guides
+  - [HTTP Functions](/guides/http)
   - [Working Locally](/guides/offline)
   - [Sharing Common Code](/guides/sharing-common-code)
-  - [HTTP Functions](/guides/http)
   - [Static Assets](/guides/static-assets)
   - [Implement CORS](/guides/cors)
   - [Persist Data](/guides/data)
