@@ -8,16 +8,16 @@
 - Do not include protocol or path
 
 ### Example
-For example, to create the domain [wut.click](https://wut.click):
+For example, to create this domain:
 
 ```arc
 @app
-foobaz
+docs
 
 @domain
-wut.click
+arc.codes
 
-@html
+@http
 get /
 ```
 

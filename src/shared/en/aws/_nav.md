@@ -25,6 +25,7 @@
   - [`npx create`](/reference/arc-create)
   - [`npx deploy`](/reference/arc-deploy)
   - [`npx sandbox`](/reference/arc-sandbox)
+  - [`npx repl`](/reference/arc-repl)
   - [`npx inventory`](/reference/arc-inventory)
   - [`npx hydrate`](/reference/arc-hydrate)
   - [`npx dns`](/reference/arc-dns)

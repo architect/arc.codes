@@ -14,7 +14,7 @@ Given the following `.arc` file:
 @app
 testapp
 
-@html
+@http
 get /
 get /notes/:noteID
 
@@ -60,7 +60,7 @@ let auth = require('./_header')
 module.exports = function layout(params={}) {
   let body = params.body || 'hello world'
   let title = params.title || '@architect/data demo'
-  let url = params.url
+  let url = params.path
   return `
 <!doctype html>
 <html lang=en>
@@ -88,10 +88,10 @@ Implement the HTML partial `_header` control:
 
 ```javascript
 // src/shared/_header.js
-module.exports = function _header({url}) {
-  if (url.includes('logout')) {
+module.exports = function _header({path}) {
+  if (path.includes('logout')) {
     return `
-<form action=${url} method=post>
+<form action=${path} method=post>
   <button type=submit class="btn btn-primary float-right m-4">Logout</button>
 </form>`
   }
@@ -100,7 +100,7 @@ module.exports = function _header({url}) {
 <div class="card mt-5 mr-auto ml-auto mb-1 w-25">
   <div class=card-body>
 
-    <form action=${url} method=post>
+    <form action=${path} method=post>
       <div class=form-group>
         <label for=email>Email address</label>
         <input type=email class=form-control name=email placeholder="Enter email">
@@ -119,7 +119,7 @@ module.exports = function _header({url}) {
 }
 ```
 
-The `_header` module accepts a parameters object with the key `url`. If the URL includes the text "logout" it renders a logout button. Otherwise it renders a login form. Vanilla stuff.
+The `_header` module accepts a parameters object with the key `path`. If the path includes the text "logout" it renders a logout button. Otherwise it renders a login form. Vanilla stuff.
 
 Next, include the layout into your home route:
 
@@ -127,16 +127,17 @@ Next, include the layout into your home route:
 // src/html/get-index/index.js
 let arc = require('@architect/functions')
 let layout = require('@architect/shared/views/layout')
+let url = arc.http.helpers.url
 
 function route(req, res) {
   let body = '&nbsp;'
   let title = 'welcome home'
-  let url = req.session.account? req._url('/logout') : req._url('/login')
-  let html = layout({body, title, url})
+  let path = url(req.session.account ? '/logout' : '/login')
+  let html = layout({body, title, path})
   res({html})
 }
 
-exports.handler = arc.html.get(route)
+exports.handler = arc.http(route)
 ```
 
 ## Implementing Login
@@ -146,9 +147,10 @@ For now, let's just hardcode credentials:
 ```javascript
 // src/html/post-login/index.js
 let arc = require('@architect/functions')
+let url = arc.http.helpers.url
 
 function route(req, res) {
-  let location = req._url('/')
+  let location = url('/')
   let session = {}
   let authorized = req.body.email === 'b@brian.io' && req.body.password === 'lolwut'
   if (authorized) {
@@ -157,7 +159,7 @@ function route(req, res) {
   res({session, location})
 }
 
-exports.handler = arc.html.post(route)
+exports.handler = arc.http(route)
 ```
 
 ## Implementing Logout
@@ -165,17 +167,18 @@ exports.handler = arc.html.post(route)
 We'll implement the logout handler too:
 
 ```javascript
-// src/html/post-logout/index.js
-var arc = require('@architect/functions')
+// src/http/post-logout/index.js
+let arc = require('@architect/functions')
+let url = arc.http.helpers.url
 
 function route(req, res) {
   res({
     session: {},
-    location: req._url('/'),
+    location: url('/'),
   })
 }
 
-exports.handler = arc.html.post(route)
+exports.handler = arc.http(route)
 ```
 
 This wipes the current session and redirects back to `/`.
@@ -193,6 +196,9 @@ This auth middleware will check for `req.session.account`. If it exists, executi
 
 ```javascript
 // src/shared/middleware/auth.js
+let arc = require('@architect/functions')
+let url = arc.http.helpers.url
+
 module.exports = function auth(req, res, next) {
   // if the current session is logged in just continue to the next function
   if (req.session.account) {
@@ -201,7 +207,7 @@ module.exports = function auth(req, res, next) {
   else {
     // otherwise boot them back to the home page
     res({
-      location: req._url('/')
+      location: url('/')
     })
   }
 }
@@ -242,17 +248,18 @@ And add it to the index handler:
 // src/html/get-index/index.js
 let arc = require('@architect/functions')
 let layout = require('@architect/shared/views/layout')
+let url = arc.http.helpers.url
 let form = require('./_form')
 
 function route(req, res) {
   let title = 'welcome home'
-  let body = req.session.account? form({url:req._url('/notes')}) : '&nbsp;'
-  let url = req.session.account? req._url('/logout') : req._url('/login')
-  let html = layout({body, title, url})
+  let body = req.session.account? form({url:url('/notes')}) : '&nbsp;'
+  let path = req.session.account? url('/logout') : url('/login')
+  let html = layout({body, title, path})
   res({html})
 }
 
-exports.handler = arc.html.get(route)
+exports.handler = arc.http(route)
 ```
 
 Now implement the post handler. We'll use the `hashids` library to help create keys for our notes.
@@ -269,6 +276,7 @@ And then in the handler:
 let arc = require('@architect/functions')
 let data = require('@architect/data')
 let auth = require('@architect/shared/middleware/auth')
+let url = arc.http.helpers.url
 let Hashids = require('hashids')
 let hashids = new Hashids
 
@@ -288,11 +296,11 @@ async function route(req, res) {
     console.log(e)
   }
   res({
-    location: req._url('/')
+    location: url('/')
   })
 }
 
-exports.handler = arc.html.post(auth, route)
+exports.handler = arc.http(auth, route)
 ```
 
 Requiring `@architect/data` reads your app's `.arc` manifest and generates a data access client from it. Working with `.arc` this way means:
@@ -335,22 +343,23 @@ Extra credit:
 For now, lets just modify the home route to get all the notes and pass them into the `_form` HTML partial:
 
 ```javascript
-// src/html/get-index/index.js
+// src/http/get-index/index.js
 let arc = require('@architect/functions')
 let data = require('@architect/data')
 let layout = require('@architect/shared/views/layout')
+let url = arc.http.helpers.url
 let form = require('./_form')
 
 async function route(req, res) {
   let title = 'welcome home'
   let notes = await data.notes.scan({})
-  let body = req.session.account? form({url:req._url('/notes'), notes}) : '&nbsp;'
-  let url = req.session.account? req._url('/logout') : req._url('/login')
-  let html = layout({body, title, url})
+  let body = req.session.account? form({url:url('/notes'), notes}) : '&nbsp;'
+  let path = req.session.account? url('/logout') : url('/login')
+  let html = layout({body, title, path})
   res({html})
 }
 
-exports.handler = arc.html.get(route)
+exports.handler = arc.http(route)
 ```
 
 Inside the partial we can just dump the JSON for now:
@@ -430,6 +439,7 @@ We'll use this opportunity to tidy up the home page logic by breaking out the au
 let arc = require('@architect/functions')
 let data = require('@architect/data')
 let layout = require('@architect/shared/views/layout')
+let url = arc.http.helpers.url
 let form = require('./_form')
 
 // logic for authenticated visitors
@@ -444,17 +454,17 @@ async function authorized(req, res, next) {
 
     // add href to each note for the template link
     let notes = all.Items.map(function addHref(note) {
-      note.href = req._url(`/notes/${note.noteID}`)
+      note.href = url(`/notes/${note.noteID}`)
       return note
     })
   
     // disambiguate URLs for envs
-    let createUrl = req._url('/notes')
-    let logoutUrl = req._url('/logout')
+    let createUrl = url('/notes')
+    let logoutUrl = url('/logout')
   
     // interpolate the template data 
     let body = form({url: createUrl, notes})
-    let html = layout({body, title, url: logoutUrl})
+    let html = layout({body, title, path: logoutUrl})
 
     res({html})
   }
@@ -464,12 +474,12 @@ async function authorized(req, res, next) {
 function unauthorized(req, res) {
   let title = 'welcome home'
   let body = '&nbsp;'
-  let url = req._url('/login')
-  let html = layout({body, title, url})
+  let path = url('/login')
+  let html = layout({body, title, path})
   res({html})
 }
 
-exports.handler = arc.html.get(authorized, unauthorized)
+exports.handler = arc.http(authorized, unauthorized)
 ```
 
 🆒 Now let's implement `get /notes/:noteID`.
@@ -480,6 +490,7 @@ let arc = require('@architect/functions')
 let data = require('@architect/data')
 let layout = require('@architect/shared/views/layout')
 let auth = require('@architect/shared/middleware/auth')
+let url = arc.http.helpers.url
 
 async function route(req, res) {
   let title = 'welcome home'
@@ -487,12 +498,12 @@ async function route(req, res) {
   let accountID = req.session.account.accountID
   let note = await data.notes.get({noteID, accountID})
   let body = `<pre>${JSON.stringify(note, null, 2)}</pre>`
-  let url = req._url('/logout')
+  let path = url('/logout')
   let html = layout({body, title, url})
   res({html})
 }
 
-exports.handler = arc.html.get(auth, route)
+exports.handler = arc.http(auth, route)
 ```
 
 ## Edit a Note
@@ -500,11 +511,12 @@ exports.handler = arc.html.get(auth, route)
 Lets make the detail page show the current note in an edit form.
 
 ```javascript
-// src/html/get-notes-000noteID/index.js
+// src/http/get-notes-000noteID/index.js
 let arc = require('@architect/functions')
 let data = require('@architect/data')
 let layout = require('@architect/shared/views/layout')
 let auth = require('@architect/shared/middleware/auth')
+let url = arc.http.helpers.url
 let form = require('./_form')
 
 async function route(req, res) {
@@ -516,13 +528,13 @@ async function route(req, res) {
   note.href = req._url(`/notes/${noteID}`)
   // build out the templates
   let body = form(note)
-  let url = req._url('/logout')
-  let html = layout({body, title, url})
+  let path = url('/logout')
+  let html = layout({body, title, path})
   // send the response
   res({html})
 }
 
-exports.handler = arc.html.get(auth, route)
+exports.handler = arc.http(auth, route)
 
 ```
 
@@ -566,6 +578,7 @@ And lets implement the update action.
 let arc = require('@architect/functions')
 let data = require('@architect/data')
 let auth = require('@architect/shared/middleware/auth')
+let url = arc.http.helpers.url
 
 async function route(req, res) {
   try {
@@ -581,11 +594,11 @@ async function route(req, res) {
     console.log(e)
   }
   res({
-    location: req._url('/')
+    location: url('/')
   })
 }
 
-exports.handler = arc.html.post(auth, route)
+exports.handler = arc.http(auth, route)
 
 ```
 
@@ -594,7 +607,7 @@ This is cheating a little bit. We're directly overwriting the note record with `
 It can be helpful to inspect the data using the repl. To do that, first install `@architect/data` into the root of your project:
 
 ```bash
-npm i @architect/data --save
+npm i @architect/data
 ```
 
 And now `npx repl` opens a repl into your Dynamo schema running locally and in-memory. If you are running the app with `npx sandbox` in another tab, it connects to that database.
@@ -642,9 +655,10 @@ module.exports = function form({noteID, href, title, body}) {
 And implement a delete route:
 
 ```javascript
-// src/html/post-notes-000noteID-del/index.js
+// src/http/post-notes-000noteID-del/index.js
 let arc = require('@architect/functions')
 let data = require('@architect/data')
+let url = arc.http.helpers.url
 
 async function route(req, res) {
   let noteID = req.params.noteID
@@ -653,11 +667,11 @@ async function route(req, res) {
     noteID, accountID
   })
   res({
-    location: req._url('/')
+    location: url('/')
   })
 }
 
-exports.handler = arc.html.post(route)
+exports.handler = arc.http(route)
 
 ```
 

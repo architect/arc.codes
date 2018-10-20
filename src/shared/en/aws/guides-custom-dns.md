@@ -8,14 +8,14 @@ DNS is how you assign a domain name to a deployed app. This guide lists ways to 
 
 `arc` has built-in first-class support for setting up DNS and assigning a domain. First add [`@domain`](/reference/domain) to your `.arc` file with a value of the domain name you wish to set up. 
 
-```
+```arc
 @app
 testapp
 
 @domain
 doesbrianlerouxusepromisesyet.com
 
-@html
+@http
 get /
 ```
 
