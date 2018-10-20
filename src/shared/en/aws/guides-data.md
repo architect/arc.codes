@@ -683,7 +683,7 @@ exports.handler = arc.http(route)
 - [Official aws-sdk DynamoDB docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
 - [Official aws-sdk DynamoDB.DocumentClient docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
 - [DyammoDB best practices](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html)
-- Read the `@architect/data` reference (coming 🔜)
+- [Read the `@architect/data` reference](/reference/data)
 
 <hr>
 ## Next: [Logging and Monitoring](/guides/logging)

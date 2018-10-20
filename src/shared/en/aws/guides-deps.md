@@ -11,14 +11,14 @@ Every time you run `npx deploy` node modules are automatically installed into th
 
 ## Bootstrapping an `.arc` project
 
-Starting from a fresh checkout you won't have any dependencies installed. `npm i` will install root node modules. `npx hydrate` is an `@architect/workflows` command that runs `npm i` within all the lamda functions.
+Starting from a fresh checkout you won't have any dependencies installed. `npm i` will install root node modules. `npx hydrate` runs `npm i` within all the lamda functions.
 
 ```bash
 npm i 
 npx hydrate
 ```
 
-Now you can run the project locally with `npx sandbox`.
+Run the project locally with `npx sandbox`.
 
 ## Updating a `.arc` project
 

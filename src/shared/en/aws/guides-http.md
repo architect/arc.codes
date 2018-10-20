@@ -292,7 +292,10 @@ exports.handler = arc.http(log, ping, index)
   - `xml`
   - `location`
 - Optionally: `session` to assign to the current session
-- Optionally: `status` of:
+- Optionally: `status` or `code` of:
+  - `201` Created
+  - `202` Accepted
+  - `204` No Content
   - `400` Bad Request
   - `403` Forbidden
   - `404` Not Found

@@ -11,17 +11,18 @@
   - [Sharing Common Code](/guides/sharing-common-code)
   - [HTTP Functions](/guides/http)
   - [Static Assets](/guides/static-assets)
+  - [Implement CORS](/guides/cors)
   - [Persist Data](/guides/data)
   - [Background Tasks](/guides/background-tasks)
   - [Logging and Monitoring](/guides/logging)
   - [Assigning a Domain Name](/guides/custom-dns)
-  - [Implement CORS](/guides/cors)
+- NewOps
   - [Multiple AWS Accounts](/guides/multiple-aws-accounts)
   - [Custom IAM Roles](/guides/iam)
   - [YAML/JSON Config](/guides/yaml-and-json)
   - [Dependencies](/guides/deps)
   - [Upgrade Guide](/guides/upgrade)
-- `@architect/workflows`
+- Workflows
   - [`npx create`](/reference/arc-create)
   - [`npx deploy`](/reference/arc-deploy)
   - [`npx sandbox`](/reference/arc-sandbox)
