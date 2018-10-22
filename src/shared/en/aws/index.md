@@ -1,4 +1,4 @@
-# Zero-config serverless
+# The simplest, most powerful way to build serverless applications
 
 Declaratively define next generation cloud infra with plaintext.
 
