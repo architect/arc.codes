@@ -1,8 +1,10 @@
-# Static Assets 
+# Static Assets
 
 > S3 buckets for `staging` and `production`
 
 Static assets are crucial infrastructure for building ambitious web apps. While `.arc` does not have any opinion about how you should achieve that part, it can provision and automatically deploy to an S3 bucket for the app's `staging` and `production` environments.
+
+To support this, every `.arc` project is set up with a `public` directory in the root of your project. The purpose of this `public` directory is to add a seamless way to work with static assets such as images, styles, and scripts required in your front-end workflow.
 
 
 ## Provisioning
@@ -23,35 +25,33 @@ Running `npx create` will generate the two designated `staging` and `production`
 > ⚠️ Warning: S3 buckets are _globally_ unique to all of AWS so you may have to try a few names
 
 
-## Working Locally with `.static`
+## Working Locally with `public`
 
-Running `npx sandbox` kicks up a sandbox web server (more here about [working locally](/guides/offline)). If the folder `.static` exists in the root of your project will be mounted to serve static assets along with any routes defined in `@html` or `@json`.
+Running `npx sandbox` kicks up a sandbox web server (more here about [working locally](/guides/offline)). The folder `public` at the root of your project will be mounted locally when you run the web server with `npx sandbox`. Any file added to this `public` folder will be served along with any routes you have defined.
 
-Most frontend JavaScript workflows involve some sort of build step, so the `.static` folder is a staging area for those build artifacts (along with whatever else you'd like to use it for, of course).
+Most frontend JavaScript workflows involve some sort of build step, so the `public` folder is a staging area for those build artifacts (along with whatever else you'd like to use it for, of course).
 
 The simplest possible build script defined in `package.json`:
 
 ```json
 {
-  "build": "cp -r src/shared/client .static",
+  "build": "cp -r src/shared/client public",
   "start": "npm run build && AWS_PROFILE=personal AWS_REGION=us-west-1 NODE_ENV=testing arc-sandbox"
 }
 ```
 
-Running `npm run build` just blindly copies files from `src/shared/client` to `.static`. (This could definitely be enhanced by using a module bundler like [Browserify](http://browserify.org/), [Parcel](https://parceljs.org/) or [Webpack](https://webpack.js.org/) depending on your needs!)
+Running the script defined above with `npm run build` just blindly copies files from `src/shared/client` to `public`. (This could definitely be enhanced by using a module bundler like [Browserify](http://browserify.org/), [Parcel](https://parceljs.org/) or [Webpack](https://webpack.js.org/) depending on your needs!)
 
 Running `npm start` builds the JS and starts a local web server on `http://localhost:3333` for previewing.
 
-> ⛳️ Tip: add `.static` to your `.gitignore`
 
+## Deploying `public`
 
-## Deploying `.static`
-
-Running `npx deploy` copies `.static` to the staging bucket. (If you want to version these assets in S3, you can [enable that feature](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) in the AWS Console.)
+Running `npx deploy` copies `public` to the staging bucket. (If you want to version these assets in S3, you can [enable that feature](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) in the AWS Console.)
 
 Alternately you could consider these build artifacts (which they are) and treat your version control system as the place to manage versions (which it is). 😶
 
-Running `ARC_DEPLOY=production npx deploy` copies `.static` to the production bucket. 
+Running `ARC_DEPLOY=production npx deploy` copies `public` to the production bucket.
 
 > 🏌️‍♀️Protip: `npx deploy static` will deploy the static assets _only_
 
@@ -103,7 +103,7 @@ exports.handler = arc.html.get(route)
 
 ## Get an HTML file stored in S3
 
-This example shows you how to return an HTML file stored in a S3 bucket. Buckets are defined in your `.arc` in the `@static` section. You can return HTML files that you deployed from `.static` or files uploaded by another method.
+This example shows you how to return an HTML file stored in a S3 bucket. Buckets are defined in your `.arc` in the `@static` section. You can return HTML files that you deployed from `public` or files uploaded by another method.
 
 ```javascript
 let arc = require('@architect/functions')
@@ -113,9 +113,9 @@ function route(req, res) {
   let s3 = new aws.S3()
   var bucket
   if (process.env.NODE_ENV === 'production') {
-    bucket = "PRODUCTION_BUCKET" //The name you used in .arc for @static production 
+    bucket = "PRODUCTION_BUCKET" //The name you used in .arc for @static production
   } else if (process.env.NODE_ENV === 'staging') {
-    bucket = "STAGING_BUCKET" //The name you used in .arc for @static staging 
+    bucket = "STAGING_BUCKET" //The name you used in .arc for @static staging
   }
   var getParams = {
     Bucket: bucket,
