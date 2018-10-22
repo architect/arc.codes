@@ -4,7 +4,7 @@ Initialize the repos by running `npm i && npx hydrate`. Docs are in `/src/shared
 
 ## Preview
 
-Kick up a reloading dev server by running `npm start`
+Kick up a reloading dev server by running `npx sandbox`
 
 ## Test
 
