@@ -6,6 +6,7 @@ Durable persistence of structured data is the foundation of most applications. `
 
 In this guide you will build a simple note taking application with Dynamo and `.arc`.
 
+
 ## Generating the Data Layer
 
 Given the following `.arc` file:
@@ -140,6 +141,7 @@ function route(req, res) {
 exports.handler = arc.http(route)
 ```
 
+
 ## Implementing Login
 
 For now, let's just hardcode credentials:
@@ -162,6 +164,7 @@ function route(req, res) {
 exports.handler = arc.http(route)
 ```
 
+
 ## Implementing Logout
 
 We'll implement the logout handler too:
@@ -182,6 +185,7 @@ exports.handler = arc.http(route)
 ```
 
 This wipes the current session and redirects back to `/`.
+
 
 ## Protecting Routes
 
@@ -214,6 +218,7 @@ module.exports = function auth(req, res, next) {
 ```
 
 > 🏄‍♀️ Read more about middleware and sessions in the [HTTP Functions](/guides/http) guide
+
 
 ## Write a Note
 
@@ -338,6 +343,7 @@ Extra credit:
 - Sanitize inputs with XSS
 - Validate input; you probably can do without a library
 
+
 ## Show All Notes
 
 For now, lets just modify the home route to get all the notes and pass them into the `_form` HTML partial:
@@ -392,6 +398,7 @@ module.exports = function form({url, notes}) {
 ```
 
 Now as we add notes, we can see them populating the database.
+
 
 ## Show a Note 
 
@@ -506,6 +513,7 @@ async function route(req, res) {
 exports.handler = arc.http(auth, route)
 ```
 
+
 ## Edit a Note
 
 Lets make the detail page show the current note in an edit form.
@@ -614,6 +622,7 @@ And now `npx repl` opens a repl into your Dynamo schema running locally and in-m
 
 Try starting the repl and running: `data.notes.scan({}, console.log)` to see all the current notes. The repl can attach itself to the `staging` and `production` databases also by setting the appropriate `NODE_ENV` environment variable flag. 
 
+
 ## Delete a Note
 
 Finally, let's add a delete button to our edit form:
@@ -677,6 +686,7 @@ exports.handler = arc.http(route)
 
 > 🎩 Tip: `data._db` and `data._doc` return instances of DynamoDB and DynamoDB.DocumentCLient for directly accessing your data; use `data._name` to resolve the table names with the app name and environment prefix.
 
+
 ## Go farther:
 
 - [Example code repo](https://github.com/arc-repos/arc-example-persist-data)
@@ -686,4 +696,6 @@ exports.handler = arc.http(route)
 - [Read the `@architect/data` reference](/reference/data)
 
 <hr>
+
+
 ## Next: [Logging & Monitoring](/guides/logging)

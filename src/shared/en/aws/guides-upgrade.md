@@ -2,6 +2,7 @@
 
 > Guides for upgrading to the latest version of `.arc`
 
+
 ## 4.x
 
 Version `4.x` is here!
@@ -19,6 +20,7 @@ Things we removed
 
 - Staticly bound Content-Type routes: html, css, js, text
 - architect/functions interfaces: arc.css, arc.js, etc
+
 
 ### Upgrading to HTTP functions
 
@@ -119,6 +121,7 @@ Deprecated Docs
   - [`arc.xml.put`](/reference/xml-put)
   - [`arc.xml.patch`](/reference/xml-patch)
   - [`arc.xml.delete`](/reference/xml-delete)
+
 
 ## 3.3.0
 

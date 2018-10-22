@@ -4,6 +4,7 @@
 
 DNS is how you assign a domain name to a deployed app. This guide lists ways to set up custom DNS with several popular DNS providers and we are always happy to accept contributions for steps to use additional providers.
 
+
 ## Setting up `.arc` with a custom domain name
 
 `arc` has built-in first-class support for setting up DNS and assigning a domain. First add [`@domain`](/reference/domain) to your `.arc` file with a value of the domain name you wish to set up. 
@@ -24,6 +25,7 @@ From here you have two paths to mapping the DNS records:
 0. DNS with a third party provider (often the domain registrar) using `npx dns`
 1. DNS with Route53 fully automated `npx dns route53`
 
+
 ## 0. DNS with third party provider (default, but harder)
 
 When to do this: if you registered the domain with someone other than Amazon and do not want to move the nameservers.
@@ -37,6 +39,7 @@ Run `npx dns` and follow the instructions. The process is:
 
 The certificate, Cloudfront distributions and DNS records in general can take time to propagate. Be zen! Running and re-running `npx dns` is safe.
 
+
 ## 1. DNS with Route53 (opt-in, but recommended!)
 
 When to do this: if you want to use Route53 to manage your DNS records.
@@ -49,6 +52,7 @@ Run `npx dns route53` and follow the instructions. The process is:
 2. After a few minutes the certificate is automatically verified
 4. Re-run `npx dns` to generate CloudFront distributions and automatically map them with Alias records
 
+
 ## Starting Over
 
 If something goes wrong you can destroy the generated resources and re-create.
@@ -58,6 +62,7 @@ If something goes wrong you can destroy the generated resources and re-create.
 
 > 🤷🏽‍♀️ DNS propagation can take time: have patience!
 
+
 ## The Not-Hard-But-Not-Quite-As-Easy Way
 
 If you _really_ want to manually configure DNS you can follow these guides below:
@@ -66,6 +71,8 @@ If you _really_ want to manually configure DNS you can follow these guides below
 * [Cloudflare](#cloudflare) 
 
 <a name="route-53"></a>
+
+
 ## Route 53
 
 Follow these instructions to manually configure Route 53 to serve your application from your domain. As a friendly reminder: the `arc` happy path for using Route 53 remains the [`@domain`](/reference/domain) section (per the instructions above).
@@ -100,6 +107,8 @@ Follow these instructions to manually configure Route 53 to serve your applicati
 16. Perhaps grab a cup of coffee or tea ☕️ – it can take a few minutes while AWS wires everything up!
 
 <a name="cloudflare"></a>
+
+
 ## Cloudflare
 
 These instructions are adapted from the tutorial at [LEANX](https://www.leanx.eu/tutorials/set-up-amazons-api-gateway-custom-domain-with-cloudflare) and updated to our most recent experience deploying this documentation site to AWS, using `arc` and custom DNS via Cloudflare. Your mileage may vary.
@@ -124,4 +133,6 @@ These instructions are adapted from the tutorial at [LEANX](https://www.leanx.eu
 18. The final step is to create a new CNAME record in Cloudflare to link your custom domain to the CloudFront URL which you can copy from the Distribution Domain Name in the Custom Domain Names console. Ensure that the option 'DNS and HTTP proxy (CDN)' is selected for this CNAME after creation
 
 <hr>
+
+
 ## Next: [Implement CORS](/guides/cors)

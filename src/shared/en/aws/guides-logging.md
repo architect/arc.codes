@@ -8,4 +8,6 @@
 - There are many third party tools to further extend your app with structured logs
 
 <hr>
+
+
 ## Next: [Assigning a Custom Domain Name](/guides/custom-dns)

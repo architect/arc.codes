@@ -9,6 +9,7 @@ Module dependencies in an `.arc` project are defined in two places:
 
 Every time you run `npx deploy` node modules are automatically installed into the lambdas before deployment using the lambda `package.json`. If you wish to add more node modules you need to manually run `npm i modulename` **from within the lambda directory**.
 
+
 ## Bootstrapping an `.arc` project
 
 Starting from a fresh checkout you won't have any dependencies installed. `npm i` will install root node modules. `npx hydrate` runs `npm i` within all the lamda functions.
@@ -20,9 +21,11 @@ npx hydrate
 
 Run the project locally with `npx sandbox`.
 
+
 ## Updating a `.arc` project
 
 `npx hydrate update` will update node modules in the lambda functions. If you need to upgrade breaking changes you will need to manually `cd` into the lambda directory and run `npm rm modulename && npm i modulename` to get the latest version. 
+
 
 ## Best Practices
 
@@ -34,4 +37,6 @@ Run the project locally with `npx sandbox`.
 More complex projects will have unique build requirements which you can compose as you see fit. We recommend a `./scripts` folder for those particulars.
 
 <hr>
+
+
 ## Next: [Upgrade Guide](/guides/upgrade)

@@ -42,6 +42,7 @@ ppl
   email *String
 ```
 
+
 ## Setup
 
 Set up a test suite:
@@ -93,6 +94,7 @@ test('env', t=> {
 ```
 
 Check the tests by running `npm t`. (It's ok if things fail &mdash; that's exactly why we have tests!)
+
 
 ## HTTP Testing
 
@@ -148,6 +150,7 @@ test('server.close', t=> {
 
 As your app matures you will want to augment these tests with more elaborate response checks.
 
+
 ## DB Testing
 
 In an `.arc` defined project `NODE_ENV` is used for knowing where the code is running. This way apps with `NODE_ENV` set to `staging` or `production` will load the correct DynamoDB endpoints. Your test suite and any client wrappers you author should follow suit.
@@ -197,5 +200,6 @@ test('arc.sandbox.db.close', t=>{
 > 🔭 Get the source for this example [arc-repos/arc-example-working-locally](https://github.com/arc-repos/arc-example-working-locally)
 
 ---
+
 
 ## Next: [Sharing Common Code Between Functions](/guides/sharing-common-code)

@@ -83,6 +83,7 @@ module.exports = async function http(req) {
 
 ---
 
+
 # Helpers for your functions
 
 HTTP functions come with `@architect/functions` and `@architect/data` installed. These are have convienant helpers for working with the unique characteristics of API Gateway and DynamoDB, respectively.
@@ -335,6 +336,7 @@ exports.handler = async function http(req) {
 ```
 
 ---
+
 
 ## Example App
 

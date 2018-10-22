@@ -4,6 +4,7 @@
 
 Static assets are crucial infrastructure for building ambitious web apps. While `.arc` does not have any opinion about how you should achieve that part, it can provision and automatically deploy to an S3 bucket for the app's `staging` and `production` environments.
 
+
 ## Provisioning
 
 Given the following `.arc` file:
@@ -20,6 +21,7 @@ production my-unique-bucket
 Running `npx create` will generate the two designated `staging` and `production` S3 buckets.
 
 > ⚠️ Warning: S3 buckets are _globally_ unique to all of AWS so you may have to try a few names
+
 
 ## Working Locally with `.static`
 
@@ -42,6 +44,7 @@ Running `npm start` builds the JS and starts a local web server on `http://local
 
 > ⛳️ Tip: add `.static` to your `.gitignore`
 
+
 ## Deploying `.static`
 
 Running `npx deploy` copies `.static` to the staging bucket. (If you want to version these assets in S3, you can [enable that feature](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) in the AWS Console.)
@@ -51,6 +54,7 @@ Alternately you could consider these build artifacts (which they are) and treat 
 Running `ARC_DEPLOY=production npx deploy` copies `.static` to the production bucket. 
 
 > 🏌️‍♀️Protip: `npx deploy static` will deploy the static assets _only_
+
 
 ## Linking
 
@@ -67,6 +71,7 @@ As such, there are three environments you need to be concerned about for address
 
 This is an example production url from a testing app:
 > `https://s3-us-west-1.amazonaws.com/arc-testapp-production/babybeaver.jpg`
+
 
 ## Calling static URLs
 
@@ -94,6 +99,7 @@ function route(req, res) {
 
 exports.handler = arc.html.get(route)
 ```
+
 
 ## Get an HTML file stored in S3
 
@@ -126,6 +132,7 @@ function route(req, res) {
 exports.handler = arc.html.get(route)
 ```
 
+
 ## Go farther
 
 A few ideas going even further with static assets:
@@ -135,4 +142,6 @@ A few ideas going even further with static assets:
 - Write a helper to include scripts on only the pages that need them
 
 <hr>
+
+
 ## Next: [Implement CORS](/guides/cors)

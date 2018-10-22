@@ -106,6 +106,7 @@ exports.handler = async function http(req) {
 
 > 🌟 Source for this example at https://github.com/arc-repos/arc-example-cors
 
+
 ## Restricting Domains
 
 You can restrict domains within your Lambda function code. 
@@ -131,6 +132,7 @@ exports.handler = async function http(req) {
 }
 ```
 
+
 ## Conclusion
 
 With CORS implemented, you can now make full use of your `arc` application within your existing static sites or client-side applications.
@@ -138,5 +140,6 @@ With CORS implemented, you can now make full use of your `arc` application withi
 This is a great way to ease into using cloud functions, or adding backend functionality to an otherwise static site.
 
 ---
+
 
 ## Next: [Persist Data](/guides/data)
