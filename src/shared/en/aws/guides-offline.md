@@ -1,8 +1,9 @@
-# Working Locally
+# Working Locally & Offline
 
-> Work locally and completely offline to preview and test `.arc` defined code with `arc-sandbox`
+> Work locally and completely offline to preview and test `.arc` defined code with the `sandbox`
 
-The sandbox is also available as a module for writing tests.
+The `sandbox` is also available as a module for writing tests.
+
 
 ## Previewing vs Testing
 
@@ -21,11 +22,12 @@ This guide will use the following example `.arc` file:
 @app
 testapp
 
-@html
-get /
-
-@json
-get /api
+@http
+get /api/cats
+get /api/cats/:catID
+post /api/cats
+put /api/cats/:catID
+delete /api/cats/:catID
 
 @tables
 cats
@@ -39,6 +41,7 @@ ppl
 ppl
   email *String
 ```
+
 
 ## Setup
 
@@ -91,6 +94,7 @@ test('env', t=> {
 ```
 
 Check the tests by running `npm t`. (It's ok if things fail &mdash; that's exactly why we have tests!)
+
 
 ## HTTP Testing
 
@@ -146,6 +150,7 @@ test('server.close', t=> {
 
 As your app matures you will want to augment these tests with more elaborate response checks.
 
+
 ## DB Testing
 
 In an `.arc` defined project `NODE_ENV` is used for knowing where the code is running. This way apps with `NODE_ENV` set to `staging` or `production` will load the correct DynamoDB endpoints. Your test suite and any client wrappers you author should follow suit.
@@ -192,5 +197,9 @@ test('arc.sandbox.db.close', t=>{
   t.ok(true, 'closed')
 })
 ```
-<hr>
+> 🔭 Get the source for this example [arc-repos/arc-example-working-locally](https://github.com/arc-repos/arc-example-working-locally)
+
+---
+
+
 ## Next: [Sharing Common Code Between Functions](/guides/sharing-common-code)

@@ -18,25 +18,17 @@ aws:
 static:
   staging: testapp-bucket
   production: testapp-buckea-prod
-html:
+http:
 - get: "/"
 - post: "/login"
-css:
-- "/index.css"
-js:
-- "/js/index.js"
-- "/js/:mjs"
-text:
-- "/robots.txt"
-- "/humans.txt"
-json:
+- get: "/index.css"
+- get: "/js/index.js"
+- get: "/js/:mjs"
 - get: "/api/notes"
 - put: "/api/notes/:noteID"
 - post: "/api/notes"
 - delete: "/api/notes/:noteID"
 - patch: "/api/notes/:noteID"
-xml:
-- get: index.rss
 events:
 - send-welcome-sms
 tables:
@@ -75,20 +67,16 @@ slack:
     },
     {
       "post": "/login"
-    }
-  ],
-  "css": [
-    "/index.css"
-  ],
-  "js": [
-    "/js/index.js",
-    "/js/:mjs"
-  ],
-  "text": [
-    "/robots.txt",
-    "/humans.txt"
-  ],
-  "json": [
+    },
+    {
+      "get": "/index.css"
+    },
+    {
+      "get": "/js/index.js"
+    },
+    {
+      "get": "/js/:mjs"
+    },
     {
       "get": "/api/notes"
     },
@@ -103,11 +91,6 @@ slack:
     },
     {
       "patch": "/api/notes/:noteID"
-    }
-  ],
-  "xml": [
-    {
-      "get": "index.rss"
     }
   ],
   "events": [
@@ -143,4 +126,6 @@ slack:
 ```
 
 <hr>
+
+
 ## Next: [Work Locally](/guides/offline)

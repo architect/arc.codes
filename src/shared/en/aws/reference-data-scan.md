@@ -1,14 +1,14 @@
-# <a id=data.scanhref=#data.scan>`data.tablename.scan`</a>
+# <a id=data.scan href=#data.scan>`data.tablename.scan`</a>
 
 ## Paginate through all rows in a table
 
 Example:
 
-```.arc
+```arc
 @app
 testapp
 
-@html
+@http
 get /
 
 @tables
@@ -31,7 +31,7 @@ async function handler(req, res) {
   })
 }
 
-exports.handler = arc.html.get(handler)
+exports.handler = arc.http(handler)
 ```
 
 ## Next: [`put`](/reference/data-put)

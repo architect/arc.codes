@@ -30,7 +30,7 @@ This `.arc` file defines two Slack apps:
 @app
 testapp
 
-@html
+@http
 get /
 
 @slack
@@ -42,7 +42,7 @@ Given the `.arc` file above `npx create` generates the following functions:
 
 ```bash
 /
-├── html
+├── http
 │   └── get-index/
 ├── slack
 │   ├── hello-bot-actions/
@@ -66,7 +66,7 @@ testapp
 @slack
 bot
 
-@html
+@http
 get /
 get /sign-in-with-slack
 get /add-to-slack
@@ -76,7 +76,7 @@ Results in the following code:
 
 ```bash
 /
-├── html
+├── http
 │   ├── get-add-to-slack/
 │   ├── get-sign-in-with-slack/
 │   └── get-index/

@@ -8,7 +8,7 @@ Given the following `.arc` file:
 @app
 testapp
 
-@html
+@http
 get /
 get /about
 get /contact
@@ -20,7 +20,7 @@ You would have the following file system layout:
 ```bash
 /
 ├── src
-│   ├── html
+│   ├── http
 │   │   ├── get-index/
 │   │   ├── get-about/
 │   │   ├── get-contact/
@@ -31,6 +31,7 @@ You would have the following file system layout:
 ```
 
 Sweet! However, what if a number of endpoints need to share a layout?
+
 
 ## The magical `/src/shared` directory
 
@@ -58,16 +59,13 @@ module.exports = function layout(body) {
 And then in your Lambda handlers you can reference `@architect/shared/layout` like so:
 
 ```javascript
-let arc = require('@architect/functions')
 let layout = require('@architect/shared/layout')
 
-function index(req, res) {
-  res({
-    html: layout('hello world')
-  })
+exports.handler = async function http(req) {
+  return {
+    body: layout('hello world')
+  }
 }
-
-exports.handler = arc.html.get(index)
 ```
 
 Anytime you preview locally, run tests, or deploy the layout, your shared modules get updated. 
@@ -76,4 +74,5 @@ Anytime you preview locally, run tests, or deploy the layout, your shared module
 
 ---
 
-## Next: [HTTP Functions](/guides/http)
+
+## Next: [Static Assets](/guides/static-assets)

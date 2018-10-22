@@ -3,10 +3,10 @@
 Open up a terminal and create a project folder:
 
 ```bash
-mkdir mytestapp
-cd mytestapp
+mkdir testapp
+cd testapp
 npm init --yes
-npm install @architect/workflows
+npm install @architect/architect
 touch .arc
 ```
 
@@ -16,7 +16,7 @@ And then paste the following contents into the `.arc` file:
 @app
 testapp
 
-@html
+@http
 get /
 ```
 

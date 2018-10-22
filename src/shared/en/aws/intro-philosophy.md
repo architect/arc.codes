@@ -43,19 +43,14 @@ The `.arc` format follows a few simple rules:
 
 - [`@app`](/reference/app) [*required*] defines your application namespace
 - [`@aws`](/reference/aws) defines AWS variables
-- [`@css`](/reference/css) defines CSS (i.e. `text/css`) routes
 - [`@domain`](/reference/domain) defines DNS for a custom domain name
 - [`@events`](/reference/events) defines application events you can publish and subscribe to
-- [`@html`](/reference/html) defines HTML (i.e. `text/html`) routes 
+- [`@http`](/reference/http) defines HTTP (i.e. `text/html`) routes 
 - [`@indexes`](/reference/indexes) defines table global secondary indexes 
-- [`@js`](/reference/js) defines JS (i.e. `text/javascript`) routes
-- [`@json`](/reference/json) defines JSON (i.e. `application/json`) routes 
 - [`@scheduled`](/reference/scheduled) defines functions that run on a schedule
 - [`@slack`](/reference/slack) defines HTTP handlers to build apps for the Slack API
 - [`@static`](/reference/static) defines S3 buckets for static assets
 - [`@tables`](/reference/tables) defines DynamoDB database tables and trigger functions for them 
-- [`@text`](/reference/text) defines text (i.e. `text/plain`) routes 
-- [`@xml`](/reference/xml) defines XML (i.e. `application/xml`) routes
 
 This is a complete `.arc` file example:
 
@@ -67,11 +62,9 @@ hello
 @domain
 hello.com
 
-@html
+@http
 get /
 post /likes
-
-@json
 get /likes
 
 @events
@@ -99,11 +92,10 @@ Running `npx create` in the same directory as the `.arc` file above generates th
 ```bash
 /
 ├── src
-│   ├── html
+│   ├── http
 │   │   ├── get-index/
-│   │   └── get-likes/
-│   ├── json
-│   │   └── get-likes/
+│   │   ├── get-likes/
+│   │   └── post-likes/
 │   ├── events
 │   │   └── hit-counter/
 │   ├── scheduled
@@ -120,36 +112,5 @@ The code was also immediately deployed to the cloud in fully isolated `staging` 
 The `.arc` format is terse, easy to read, and quickly learnable to author. The expressions in a `.arc` file unlock the formerly complex tasks of cloud infrastructure provisioning, deployment, and orchestration.
 
 ---
-
-# Implementing principles and practices
-
-`architect` follows many of the principles pioneered by agile and championed by devops, namely:
-
-- Versioned infrastructure
-- Tight feedback loops for dev, while maintaining isolation between stages
-- Systems that are consistent, inspectable, transparent, and extensible
-
-### Architecture as text
-
-- `.arc` manifest file defines architecture elements as plainly as possible in text
-- Nesting and syntax is deliberately constrained
-- And you can add comments!
-
-### Repeatable and consistent builds
-
-- `arc-create` only creates, and never destroys; it skips what already exists
-- Per above, `arc-create` is intended to be run and re-run as your system changes and grows
-- Use the AWS Console to administer (i.e. remove infrastructure) or script destructive actions yourself; `architect` never destroys
-
-### Delivery is isolated from deployment
-
-- `arc-sandbox` allows you to work locally and offline from the cloud
-- `arc-deploy` treats `staging` and `production` as first class concepts
-- Deployment to `production` requires an extra manual step of setting `ARC_DEPLOY=production` env var
-
-### Extensible and flexible systems
-
-- `arc-parser` is open, and `architect` tooling ignores `@sections` it does not know
-- Extend `.arc` with your own `@sections` and workflows with `npx` scripts
 
 ## Next: [Check out the quickstart](/quickstart)

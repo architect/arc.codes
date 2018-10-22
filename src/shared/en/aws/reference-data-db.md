@@ -8,7 +8,7 @@ Example, given the following `.arc` file:
 @app
 testapp
 
-@html
+@http
 get /
 
 @tables
