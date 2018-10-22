@@ -1,4 +1,4 @@
-# Logging
+# Logging & Monitoring
 
 > Instant access to clean, readable logs is super important; `arc` relies primarily on AWS's standard means of logging: CloudWatch
 
@@ -8,4 +8,4 @@
 - There are many third party tools to further extend your app with structured logs
 
 <hr>
-## Next: [Setup Custom Domains](/guides/custom-dns)
+## Next: [Assigning a Custom Domain Name](/guides/custom-dns)

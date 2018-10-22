@@ -136,3 +136,7 @@ exports.handler = async function http(req) {
 With CORS implemented, you can now make full use of your `arc` application within your existing static sites or client-side applications.
 
 This is a great way to ease into using cloud functions, or adding backend functionality to an otherwise static site.
+
+---
+
+## Next: [Persist Data](/guides/data)

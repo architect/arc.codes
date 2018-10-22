@@ -1,4 +1,4 @@
-# Assigning a Domain Name
+# Assigning a Custom Domain Name
 
 > Assign a fully qualified domain name to your `arc` application
 

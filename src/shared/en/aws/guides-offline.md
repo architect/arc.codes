@@ -1,8 +1,9 @@
-# Working Locally
+# Working Locally & Offline
 
-> Work locally and completely offline to preview and test `.arc` defined code with `arc-sandbox`
+> Work locally and completely offline to preview and test `.arc` defined code with the `sandbox`
 
-The sandbox is also available as a module for writing tests.
+The `sandbox` is also available as a module for writing tests.
+
 
 ## Previewing vs Testing
 
@@ -194,5 +195,7 @@ test('arc.sandbox.db.close', t=>{
 })
 ```
 > 🔭 Get the source for this example [arc-repos/arc-example-working-locally](https://github.com/arc-repos/arc-example-working-locally)
-<hr>
+
+---
+
 ## Next: [Sharing Common Code Between Functions](/guides/sharing-common-code)

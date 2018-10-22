@@ -135,4 +135,4 @@ A few ideas going even further with static assets:
 - Write a helper to include scripts on only the pages that need them
 
 <hr>
-## Next: [Persist Data](/guides/data)
+## Next: [Implement CORS](/guides/cors)

@@ -686,4 +686,4 @@ exports.handler = arc.http(route)
 - [Read the `@architect/data` reference](/reference/data)
 
 <hr>
-## Next: [Logging and Monitoring](/guides/logging)
+## Next: [Logging & Monitoring](/guides/logging)

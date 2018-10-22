@@ -1,6 +1,6 @@
 # .arc Project Layout
 
-Here we'll dig a bit deeper into how a `arc` project is laid out and defined in the `.arc` manifest.
+Here we'll dig a bit deeper into how an Architect project is laid out and defined in the `.arc` manifest.
 
 ## Quick `.arc` cheatsheet
 
@@ -51,7 +51,8 @@ Running `npx create` creates the following code:
 │   │   └── get-posts/
 │   └── shared/
 ├── .arc
-└── package.json
+├── package.json
+└── public/
 ```
 
 The generated code was also immediately deployed to the built-in `staging` environment. Subsequent edits to the local code are deployed by running `npx deploy`.
@@ -60,4 +61,4 @@ Happy with staging? Ship a release to production by running `ARC_DEPLOY=producti
 
 Time to celebrate! ✨
 
-## Next: [Learn how to work locally](/guides/offline)
+## Next: [Learn how to work with HTTP functions](/guides/http)

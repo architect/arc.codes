@@ -13,8 +13,7 @@
   - [Static Assets](/guides/static-assets)
   - [Implement CORS](/guides/cors)
   - [Persist Data](/guides/data)
-  - [Background Tasks](/guides/background-tasks)
-  - [Logging and Monitoring](/guides/logging)
+  - [Logging & Monitoring](/guides/logging)
   - [Assigning a Domain Name](/guides/custom-dns)
 - NewOps
   - [Multiple AWS Accounts](/guides/multiple-aws-accounts)

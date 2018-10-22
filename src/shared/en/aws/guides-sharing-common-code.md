@@ -73,4 +73,4 @@ Anytime you preview locally, run tests, or deploy the layout, your shared module
 
 ---
 
-## Next: [HTTP Functions](/guides/http)
+## Next: [Static Assets](/guides/static-assets)
