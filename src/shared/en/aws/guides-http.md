@@ -1,5 +1,7 @@
 # HTTP Functions
 
+## Create full-featured web applications composed of fast, tiny HTTP functions
+
 > `.arc` abstracts API Gateway configuration and provisioning, while `@architect/functions` (optionally) adds a very light but powerful API shim to Lambda for working with HTTP
 
 Given the following example `.arc` file:

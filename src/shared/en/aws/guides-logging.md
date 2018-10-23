@@ -1,6 +1,9 @@
 # Logging & Monitoring
 
-> Instant access to clean, readable logs is super important; `arc` relies primarily on AWS's standard means of logging: CloudWatch
+## Get instant access to clean, readable logs, isolated by function
+
+
+Architect generally relies primarily on AWS's standard means of logging: CloudWatch. Here's how it works, and can be extended:
 
 - Good old fashioned `console.log` will show up in [CloudWatch](https://aws.amazon.com/cloudwatch/)
 - CloudWatch events offers a ton of metrics

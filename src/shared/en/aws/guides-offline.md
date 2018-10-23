@@ -1,11 +1,9 @@
 # Working Locally & Offline
 
-> Work locally and completely offline to preview and test `.arc` defined code with the `sandbox`
-
-The `sandbox` is also available as a module for writing tests.
+## Preview and test your functions and data with the `sandbox`
 
 
-## Previewing vs Testing
+### Previewing vs Testing
 
 Arc targets two use cases:
 
@@ -14,7 +12,7 @@ Arc targets two use cases:
 
 Following the [quickstart](/quickstart) you should have everything wired up so `npx sandbox` kicks up a local web server and creates tables and indexes defined in `.arc` for previewing work. 
 
-If you want to write tests (and we very much think you should!) against the infra without deployment you'll need to set up the sandbox as a module.
+If you want to write tests (and we very much think you should!) against the infra without deployment you'll need to set up the `sandbox` as a module.
 
 This guide will use the following example `.arc` file:
 

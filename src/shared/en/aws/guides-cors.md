@@ -1,6 +1,6 @@
 # Implement CORS
 
-> 🦅 CORS is required if your application reaches across domains to request resources
+## If your application reaches across domains to request resources, you'll need to use CORS
 
 Let's first create a `.arc` app with a very simple JSON API endpoint:
 

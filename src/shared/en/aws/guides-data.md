@@ -1,6 +1,6 @@
 # Persist Data
 
-> Data is the core to most apps; `.arc` bakes in first-class DynamoDB support for its speed, flexibility and ease of use
+## Architect bakes in easy to use, first-class DynamoDB support for its speed and flexibility
 
 Durable persistence of structured data is the foundation of most applications. `@architect/data` is a very thin wrapper for `DynamoDB` and `DynamoDB.DocumentClient` that reads a `.arc` file and returns a client for creating, modifying, deleting and querying data from DynamoDB (aka Dynamo).
 

@@ -2,10 +2,10 @@
 
 Declaratively define next generation cloud infra with plaintext.
 
-💾 **Version control your architecture** and provision cloud infra in minutes from an `.arc` manifest<br>
 ⏱  **Deploy in seconds** with first class support for `staging` and `production` envs<br>
 💻 **Work locally** while completely offline with a speedy in-memory database<br>
 💓 **Primitives, not frameworks**: define app architecture agnostic of vendor arcana<br>
+💾 **Version control your architecture** and provision cloud infra in minutes from an `.arc` manifest<br>
 
 Leverage powerful **Amazon Web Services** _serverless_ primitives without frustrating config: 
 

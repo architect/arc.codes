@@ -1,6 +1,6 @@
 # Assigning a Custom Domain Name
 
-> Assign a fully qualified domain name to your `arc` application
+## Give your Architect application a proper domain name
 
 DNS is how you assign a domain name to a deployed app. This guide lists ways to set up custom DNS with several popular DNS providers and we are always happy to accept contributions for steps to use additional providers.
 

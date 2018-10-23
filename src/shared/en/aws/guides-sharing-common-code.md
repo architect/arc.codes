@@ -1,6 +1,9 @@
 # Sharing Common Code
 
-> Applications tend to share logic across cloud functions. The best way to do this is by creating a module you can share between them. 
+## Share modules, templates, and other files across cloud functions
+
+
+Applications tend to share logic, templates, and other assets. Architect gives you a simple, seamless way to share things across your project's many functions.
 
 Given the following `.arc` file:
 
