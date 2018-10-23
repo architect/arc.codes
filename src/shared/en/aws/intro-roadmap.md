@@ -18,13 +18,13 @@ Join our [Slack](https://join.slack.com/t/architecture-as-text/shared_invite/MjE
 - <strike>`arc-config` configuration management</strike>
 - <strike>`@static` support added to `.arc` for universal render support</strike>
   - Example project: [example repo here](https://github.com/brianleroux/arc-example-serverlessside-render-react)
-- <strike>`npm run dns` generates a `static.domainname.com` CNAME that points to an S3 CloudFront Distribution from `@domain` value </strike>
+- \.\n<strike>`npm run dns` generates a `static.domainname.com` CNAME that points to an S3 CloudFront Distribution from `@domain` value </strike>
 - <strike>`arc-functions` first class `Error` support</strike>
 - <strike>`arc-functions` consolidate `req` / `res` implementation</strike>
 - <strike>`arc-docs` guides for HTTP, CSRF and `arc.http.helpers` helpers</strike>
   - Guide doc: [HTTP Functions](/guides/http)
 - <strike>`arc-dns` to paper over the API Gateway, AWS Certificate Manager, and Route53 setup</strike>
-  - Workflow reference doc: [npm run dns](/reference/arc-dns) 
+  - Workflow reference doc: [`npm run dns`](/reference/arc-dns) 
 - <strike>`@slack` section for generating Slack app endpoints with API Gateway and Lambda</strike> 
   - `.arc` Reference doc: [`@slack`](/reference/slack)
 

@@ -2,7 +2,7 @@
 
 The cloud has its limits. And `arc` itself is an abstraction with deliberate constraints. Whether we label them *constraints* or *limits*, they are **trade-offs** you need to be aware of when designing your software architecture for cloud functions.
 
-Sometimes things with the cloud just fail, and you might not get a useful error. This means: one _must_ consider retries &mdash; including manual retrys &mdash; where you create / destroy / recreate infra workflows (and, accordingly, `.arc` workflows are built to be run and re-run). 
+Sometimes things with the cloud just fail, and you might not get a useful error. This means: one _must_ consider retries &mdash; including manual retries &mdash; where you create / destroy / recreate infra workflows (and, accordingly, `.arc` workflows are built to be run and re-run). 
 
 We call this situation *immutable infrastructure* to feel better! &#128150;
 

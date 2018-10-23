@@ -58,7 +58,7 @@ Running `ARC_DEPLOY=production npx deploy` copies `public` to the production buc
 
 And, of course, it would be wise to use both of these S3 buckets as origins for your CDN (we're partial to AWS CloudFront).
 
-> 🏌️‍♀️Protip: `npx deploy static` will deploy the static assets _only_
+> 🏌️‍♀️ Protip: `npx deploy static` will deploy the static assets _only_
 
 
 ## Linking
@@ -74,7 +74,7 @@ As such, there are three environments you need to be concerned about for address
 - Production:
 > `https://s3-<aws region>.amazonaws.com/<production bucket>/<asset>`
 
-This is an example production url from a testing app:
+This is an example production URL from a testing app:
 > `https://s3-us-west-1.amazonaws.com/arc-testapp-production/babybeaver.jpg`
 
 

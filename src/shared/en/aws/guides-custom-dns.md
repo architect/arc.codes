@@ -47,8 +47,8 @@ When to do this: if you want to use Route53 to manage your DNS records.
 Run `npx dns route53` and follow the instructions. The process is:
 
 1. Read (or create) a Route53 Hosted Zone with the value of `@domain` from the `.arc` file and a certificate validation CNAME record
-  a. If you registered the domain with AWS the nameservers are mapped automatically
-  b. If you registered the domain elsewhere you need to ensure the nameservers are set with your domain registrar
+  a. If you registered the domain with AWS the name servers are mapped automatically
+  b. If you registered the domain elsewhere you need to ensure the name servers are set with your domain registrar
 2. After a few minutes the certificate is automatically verified
 4. Re-run `npx dns` to generate CloudFront distributions and automatically map them with Alias records
 

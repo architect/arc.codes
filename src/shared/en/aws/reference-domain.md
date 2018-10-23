@@ -32,6 +32,6 @@ If you want to use Route53 name servers running `npx dns route53` will:
 - Create a Hosted Zone on Route 53
 - Create corresponding Alias records in Route 53
 
-> Also see [guide for custom dns](/guides/custom-dns) for working with `@domain`
+> Also see [guide for custom DNS](/guides/custom-dns) for working with `@domain`
 
 ## Next: [Defining events with `@events`](/reference/events)

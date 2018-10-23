@@ -14,7 +14,7 @@ Things we added
 - [x] complete docs overhaul
 - [x] new simpler install package `npm i @architect/architect`
 - [x] one repo [arc-repos/architect](https://github.com/arc-repos/architect)
-- [x] `@architect/functions` new apis: `arc.http`, `arc.http.session` and `arc.http.helpers`
+- [x] `@architect/functions` new APIs: `arc.http`, `arc.http.session` and `arc.http.helpers`
 
 Things we removed
 
