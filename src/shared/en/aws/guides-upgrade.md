@@ -18,8 +18,8 @@ Things we added
 
 Things we removed
 
-- Staticly bound Content-Type routes: html, css, js, text
-- architect/functions interfaces: arc.css, arc.js, etc
+- Statically bound Content-Type routes: `@html`, `@css`, `@js`, `@json`, `@text`, `@xml`
+- `@architect/functions` interfaces: `arc.css`, `arc.js`, etc.
 
 
 ### Upgrading to HTTP functions

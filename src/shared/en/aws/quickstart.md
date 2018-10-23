@@ -1,6 +1,6 @@
 # Prerequisites
 
-This project assumes you are running Node `8.10.x` and npm `6.0.x` locally. Please keep in mind that AWS Lambda runs Node `8.10.x`.
+This project assumes you are running Node `8.10.x` and NPM `6.0.x` locally. Please keep in mind that AWS Lambda runs Node `8.10.x`.
 
 ## AWS Setup
 
@@ -38,7 +38,7 @@ You will also need to set a default profile and region with the environment vari
 - `AWS_PROFILE`
 - `AWS_REGION`
 
-To set these variables on Linux, macOS, or UNIX, use export in your `~/.bashrc` (or equiv):
+To set these variables on Linux, macOS, or UNIX, use export in your `~/.bashrc` (or equivalent shell configuration):
 
 ```bash
 export AWS_PROFILE=work

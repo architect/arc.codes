@@ -13,6 +13,6 @@ If the local `.arc` file has defined (and created) `@static` buckets, then the c
 - Populates each function with [`arc` shared code](/guides/sharing-common-code) via `/src/shared`
 - Compresses and uploads each function directory to its corresponding Lambda
 
-> Reminder: All `arc` npm run scripts require `AWS_PROFILE` and `AWS_REGION` environment variables set. Learn more in the [Prerequisites guide](/quickstart).
+> Reminder: All `arc` NPM scripts require `profile` and `region` variables set, either as  environment variables or in `@aws` within your `.arc` manifest. Learn more in the [Prerequisites guide](/quickstart).
 
 <script src="https://asciinema.org/a/181947.js" id="asciicast-181947" async data-autoplay="true" data-size="big"></script>

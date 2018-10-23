@@ -28,16 +28,16 @@ From here you have two paths to mapping the DNS records:
 
 ## 0. DNS with third party provider (default, but harder)
 
-When to do this: if you registered the domain with someone other than Amazon and do not want to move the nameservers.
+When to do this: if you registered the domain with someone other than Amazon and do not want to move the name servers.
 
 Run `npx dns` and follow the instructions. The process is:
 
 1. Initial run of `npx dns` will display (or create) a certificate request CNAME name/value pair
 2. Enter the new CNAME record into your DNS provider and wait for verification
 3. Re-run `npx dns` to generate CloudFront distributions
-4. Enter the generated Cloudfront distribution domains as either A or CNAME records with your DNS provider
+4. Enter the generated CloudFront distribution domains as either A or CNAME records with your DNS provider
 
-The certificate, Cloudfront distributions and DNS records in general can take time to propagate. Be zen! Running and re-running `npx dns` is safe.
+The certificate, CloudFront distributions and DNS records in general can take time to propagate. Be Zen! Running and re-running `npx dns` is safe.
 
 
 ## 1. DNS with Route53 (opt-in, but recommended!)
@@ -58,7 +58,7 @@ Run `npx dns route53` and follow the instructions. The process is:
 If something goes wrong you can destroy the generated resources and re-create.
 
 - `npx dns nuke` destroys the certificate and CloudFront domain distributions
-- `ARC_NUKE=route53 npx dns nuke` destroys the certficate, CloudFront domain distributions, the Hosted Zone, certificate validation CNAME and Alias records
+- `ARC_NUKE=route53 npx dns nuke` destroys the certificate, CloudFront domain distributions, the Hosted Zone, certificate validation CNAME and Alias records
 
 > 🤷🏽‍♀️ DNS propagation can take time: have patience!
 

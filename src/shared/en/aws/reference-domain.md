@@ -26,7 +26,7 @@ Running `npx dns` will:
 - Create a certificate request with AWS Certificate Manager
 - Setup `staging` and `production` Domains in API Gateway
 
-If you want to use Route53 nameservers running `npx dns route53` will:
+If you want to use Route53 name servers running `npx dns route53` will:
 
 - Automatically setup a certificate on AWS Certificate Manager
 - Create a Hosted Zone on Route 53

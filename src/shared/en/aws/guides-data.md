@@ -684,15 +684,15 @@ exports.handler = arc.http(route)
 
 ```
 
-> 🎩 Tip: `data._db` and `data._doc` return instances of DynamoDB and DynamoDB.DocumentCLient for directly accessing your data; use `data._name` to resolve the table names with the app name and environment prefix.
+> 🎩 Tip: `data._db` and `data._doc` return instances of `DynamoDB` and `DynamoDB.DocumentClient` for directly accessing your data; use `data._name` to resolve the table names with the app name and environment prefix.
 
 
 ## Go farther:
 
 - [Example code repo](https://github.com/arc-repos/arc-example-persist-data)
 - [Official aws-sdk DynamoDB docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
-- [Official aws-sdk DynamoDB.DocumentClient docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
-- [DyammoDB best practices](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html)
+- [Official aws-sdk `DynamoDB.DocumentClient` docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
+- [DynamoDB best practices](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html)
 - [Read the `@architect/data` reference](/reference/data)
 
 <hr>

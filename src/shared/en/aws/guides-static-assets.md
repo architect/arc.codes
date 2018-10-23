@@ -30,7 +30,7 @@ Running `npx create` will generate the two designated `staging` and `production`
 
 Running `npx sandbox` kicks up a sandbox web server (more here about [working locally](/guides/offline)). The folder `public` at the root of your project will be mounted locally when you run the web server with `npx sandbox`.
 
-Any file added to this `public` folder will be served (along with any HTTP funtions you've defined).
+Any file added to this `public` folder will be served (along with any HTTP functions you've defined).
 
 Most frontend JavaScript workflows involve some sort of build step, so the `public` folder is a staging area for those build artifacts (along with whatever else you'd like to use it for, of course).
 

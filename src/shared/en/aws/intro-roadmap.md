@@ -4,7 +4,7 @@ This project is open source so you can help! Jump over to the [community page](/
 
 ## In progress
 
-Join our [Slack](https://join.slack.com/t/architecture-as-text/shared_invite/MjE2MzU4Nzg0NTY1LTE1MDA2NzgyMzYtODE2NzRkOGRmYw) to talk about `.arc` work in progress and production. The [arc-repos/arc-workflows](https://github.com/arc-repos/arc-workflows/issues) issue tracker is a good place to find out whats currently going on too.
+Join our [Slack](https://join.slack.com/t/architecture-as-text/shared_invite/MjE2MzU4Nzg0NTY1LTE1MDA2NzgyMzYtODE2NzRkOGRmYw) to talk about `.arc` work in progress and production. The [arc-repos/arc-workflows](https://github.com/arc-repos/arc-workflows/issues) issue tracker is a good place to find out what's currently going on too.
 
 
 ## Recently shipped
@@ -20,8 +20,8 @@ Join our [Slack](https://join.slack.com/t/architecture-as-text/shared_invite/MjE
   - Example project: [example repo here](https://github.com/brianleroux/arc-example-serverlessside-render-react)
 - <strike>`npm run dns` generates a `static.domainname.com` CNAME that points to an S3 CloudFront Distribution from `@domain` value </strike>
 - <strike>`arc-functions` first class `Error` support</strike>
-- <strike>`arc-functions` consolidate req / res impl</strike>
-- <strike>`arc-docs` guides for http, csrf and `req._url` helpers</strike>
+- <strike>`arc-functions` consolidate `req` / `res` implementation</strike>
+- <strike>`arc-docs` guides for HTTP, CSRF and `arc.http.helpers` helpers</strike>
   - Guide doc: [HTTP Functions](/guides/http)
 - <strike>`arc-dns` to paper over the API Gateway, AWS Certificate Manager, and Route53 setup</strike>
   - Workflow reference doc: [npm run dns](/reference/arc-dns) 

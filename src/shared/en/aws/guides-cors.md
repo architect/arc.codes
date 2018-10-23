@@ -35,7 +35,7 @@ exports.handler = async function http(req) {
 }
 ```
 
-The js route returns a clientside esmodule:
+The JS route returns a client-side ES Module:
 
 ```javascript
 // src/http/get-index/index.js
@@ -75,7 +75,7 @@ exports.handler = async function http(req) {
 }
 ```
 
-It is possible to write a very elaborate `read` function. Give `sucrase` a try for transpiling jsx, tsx and flow. `Babel` and `Rollup` work within AWS Lambda too. These tools can run within acceptable time, and content can be cached between warm executions making a very fast dynamic asset build chain.
+It is possible to write a very elaborate `read` function. Give `sucrase` a try for transpiling jsx, tsx, and flow. `Babel` and `Rollup` work within AWS Lambda too. These tools can run within acceptable time, and content can be cached between warm executions making a very fast dynamic asset build chain.
 
 For this example, we'll start with the following clientside source:
 

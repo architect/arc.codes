@@ -1,6 +1,6 @@
 # <a id=arc.html.post href=#arc.html.post>`arc.html.post`</a>
 
-## HTTP `POST` handler aways responds with a redirect
+## HTTP `POST` handler always responds with a redirect
 
 - HTTP `POST` routes can **only** call `res` with `location` key and value of the path to redirect to.
 - `session` can also optionally be set

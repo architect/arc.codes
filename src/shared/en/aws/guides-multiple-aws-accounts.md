@@ -13,6 +13,6 @@ Current ways to set these variables:
 
 - You can set these variables in your `.bashrc` (or equivalent); [more from AWS on env vars here](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)
 - Use `npm run` scripts and hardcode the credentials into the project
-- Add them on the command line when running commands (Eg. `AWS_PROFILE=brian npx create`)
+- Add them on the command line when running commands (e.g. `AWS_PROFILE=brian npx create`)
 
 > 🔥 Tip: Windows users will want to use [cross-env](https://www.npmjs.com/package/cross-env) for cross platform env vars.

@@ -10,7 +10,7 @@ Running `npx inventory verify` verifies AWS resources for the current `.arc` fil
 
 ## Delete Everything Except DynamoDB Tables
 
-Running `npx inventory nuke` deletes all AWS resources for the current `.arc` file except for **DynamoDB tables**. DynamoDB tables can be deleted with an additional environment variable (explained below). This workflow makes it very fast to setup and teardown a single codebase across many infra deployments.
+Running `npx inventory nuke` deletes all AWS resources for the current `.arc` file except for **DynamoDB tables**. DynamoDB tables can be deleted with an additional environment variable (explained below). This workflow makes it very fast to setup and tear down a single codebase across many infra deployments.
 
 ## Delete DynamoDB Tables
 

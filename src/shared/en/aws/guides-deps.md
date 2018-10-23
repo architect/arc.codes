@@ -5,14 +5,14 @@
 Module dependencies in an `.arc` project are defined in two places:
 
 1. The root project `/package.json`
-2. The lambda function code in `/src/**/*/package.json`
+2. The Lambda function code in `/src/**/*/package.json`
 
-Every time you run `npx deploy` node modules are automatically installed into the lambdas before deployment using the lambda `package.json`. If you wish to add more node modules you need to manually run `npm i modulename` **from within the lambda directory**.
+Every time you run `npx deploy` node modules are automatically installed into the Lambdas before deployment using the Lambda `package.json`. If you wish to add more node modules you need to manually run `npm i modulename` **from within the Lambda directory**.
 
 
 ## Bootstrapping an `.arc` project
 
-Starting from a fresh checkout you won't have any dependencies installed. `npm i` will install root node modules. `npx hydrate` runs `npm i` within all the lamda functions.
+Starting from a fresh checkout you won't have any dependencies installed. `npm i` will install root node modules. `npx hydrate` runs `npm i` within all the Lambda functions.
 
 ```bash
 npm i 
@@ -24,13 +24,13 @@ Run the project locally with `npx sandbox`.
 
 ## Updating a `.arc` project
 
-`npx hydrate update` will update node modules in the lambda functions. If you need to upgrade breaking changes you will need to manually `cd` into the lambda directory and run `npm rm modulename && npm i modulename` to get the latest version. 
+`npx hydrate update` will update node modules in the Lambda functions. If you need to upgrade breaking changes you will need to manually `cd` into the Lambda directory and run `npm rm modulename && npm i modulename` to get the latest version. 
 
 
 ## Best Practices
 
 - Check in `package.json` and `package-lock.json`
-- Also make sure every lambda has a `package.json` and `package-lock.json` checked in
+- Also make sure every Lambda has a `package.json` and `package-lock.json` checked in
 - Add `node_modules` to your `.gitignore`
 - Ensure your deps are synchronized within an `@app` namespace
 

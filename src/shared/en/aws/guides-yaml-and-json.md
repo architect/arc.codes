@@ -1,6 +1,6 @@
 # `arc.yaml` and `arc.json`
 
-> Optin to `arc.yaml` or `arc.json` configuration
+## Opt into `arc.yaml` or `arc.json` configuration manifests
 
 Developers that prefer `yaml` or `json` syntax can opt into using YAML or JSON instead of `.arc` syntax.
 

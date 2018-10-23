@@ -1,6 +1,6 @@
 # `npx audit`
 
-Displays all Lambda defined by `.arc` and their corosponding IAM Role Arns.
+Displays all Lambda defined by `.arc` and their corresponding IAM Role ARNs.
 
 ## `npx audit apply`
 

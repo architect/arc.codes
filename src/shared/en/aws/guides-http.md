@@ -88,7 +88,7 @@ module.exports = async function http(req) {
 
 # Helpers for your functions
 
-HTTP functions come with `@architect/functions` and `@architect/data` installed. These are have convienant helpers for working with the unique characteristics of API Gateway and DynamoDB, respectively.
+HTTP functions come with `@architect/functions` and `@architect/data` installed. These are have convenient helpers for working with the unique characteristics of API Gateway and DynamoDB, respectively.
 
 ```javascript
 // opt into architect functions and data conveniences
