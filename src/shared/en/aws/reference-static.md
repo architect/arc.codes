@@ -20,6 +20,6 @@ production main-bukkit
 
 > Note: S3 buckets are <b>global</b> to AWS so if at first you don't succeed, try picking another bucket name
 
-Locally, if the hidden folder `/.static` exists, whenever you run `npx deploy` the contents are synchronized to the `staging` bucket. If you set `ARC_DEPLOY=production` the contents of `/.static` are deployed to the production bucket. This allows the frontend dev to use whatever build tooling they like (ParcelJS, Webpack, Browserify, Babel, etc).
+Locally, if the folder `/public` exists, whenever you run `npx deploy` the contents are synchronized to the `staging` bucket. If you set `ARC_DEPLOY=production` the contents of `/public` are deployed to the production bucket. 
 
 ## Next: [Create dynamo tables with `@tables`](/reference/tables)
