@@ -7,11 +7,11 @@ The `.arc-config` file is an individual configuration manifest file that lives i
 An example `.arc-config` file found at `src/json/get-api/.arc-config`:
 ```.arc
 @aws
-timeout 30000
+timeout 900
 memory 512
 ```
 
-- `timeout` is a number in seconds for the Lambda timeout
+- `timeout` is a number in seconds for the Lambda timeout; 900 seconds (15 minutes) is the current max
 - `memory` The amount of memory, in MB, your Lambda function is given; the value must be a multiple of 64 MB
 
 `npx config apply` applies `.arc-config` to the corresponding staging and production Lambdas.
