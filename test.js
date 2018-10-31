@@ -1,7 +1,7 @@
 var test = require('tape')
 var tiny = require('tiny-json-http')
 var http = require('@architect/workflows').sandbox.start
-var close 
+var close
 
 test('http.start', t=> {
   t.plan(2)
