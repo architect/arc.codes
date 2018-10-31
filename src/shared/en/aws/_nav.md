@@ -32,6 +32,7 @@
   - [`npx env`](/reference/arc-env)
   - [`npx config`](/reference/arc-config)
   - [`npx audit`](/reference/arc-audit)
+  - [`npx logs`](/reference/arc-logs)
 - `.arc` Reference
   - [`@app`](/reference/app)
   - [`@aws`](/reference/aws)
