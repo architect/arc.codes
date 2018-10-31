@@ -25,7 +25,7 @@ module.exports = function render (filename) {
 
       // Logos
       var github = read(join(__dirname, 'images/github.svg')).toString()
-      var pink = read(join(__dirname, 'images/logo-black.svg')).toString()
+      // var pink = read(join(__dirname, 'images/logo-black.svg')).toString()
       var green = read(join(__dirname, 'images/logo-white-green.svg')).toString()
       var logo = ''//(filename === 'index') ? `<h2 class=logo>${pink}</h2>` : ''
       var classes = (!logo) ? '' : 'home'

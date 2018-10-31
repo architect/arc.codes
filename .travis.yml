@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "8.10"
+before_install:
+  - npm i -g npm@latest
+install:
+  - npm i
+  - scripts/modules-init-travis.sh
+script:
+  - npm run lint
+  - npm run spellcheck
+  - npm run test
