@@ -19,8 +19,8 @@ For example, to deploy to the northern California AWS AZ with your AWS `work` pr
 
 ```arc
 @aws
-region us-east-1
+region us-west-1
 profile work
 ```
 
-## Next: [Defining routes with `@css`](/reference/css)
+## Next: [Setup DNS with `@domain`](/reference/domain)
