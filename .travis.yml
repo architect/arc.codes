@@ -2,6 +2,6 @@ language: node_js
 node_js:
   - "8.10"
 before_install:
-  - npm i -g npm@version-number
+  - npm i -g npm@latest
 before_script:
   - npx hydrate
