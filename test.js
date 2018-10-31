@@ -3,6 +3,8 @@ var tiny = require('tiny-json-http')
 var http = require('@architect/workflows').sandbox.start
 var close
 
+console.log('SUPERSECRET', process.env.SUPERSECRET)
+
 test('http.start', t=> {
   t.plan(2)
   t.ok(http, 'exists')
