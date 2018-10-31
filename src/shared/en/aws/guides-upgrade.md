@@ -1,22 +1,22 @@
 # Upgrade Guide
 
-> Guides for upgrading to the latest version of `.arc`
+> Guides for upgrading to the latest version of Architect
 
 
 ## 4.x
 
-Version `4.x` is here!
+Architect version 4 (Yeti) is here!
 
-Things we added
+Things we added:
 
-- [x] `/public` for static assets
-- [x] `@http` routes 
-- [x] complete docs overhaul
-- [x] new simpler install package `npm i @architect/architect`
-- [x] one repo [arc-repos/architect](https://github.com/arc-repos/architect)
-- [x] `@architect/functions` new APIs: `arc.http`, `arc.http.session` and `arc.http.helpers`
+- `/public` for static assets
+- `@http` routes 
+- complete docs overhaul
+- new simpler install package `npm i @architect/architect`
+- one repo [arc-repos/architect](https://github.com/arc-repos/architect)
+- `@architect/functions` new APIs: `arc.http`, `arc.http.session` and `arc.http.helpers`
 
-Things we removed
+Things we removed:
 
 - Statically bound Content-Type routes: `@html`, `@css`, `@js`, `@json`, `@text`, `@xml`
 - `@architect/functions` interfaces: `arc.css`, `arc.js`, etc.
@@ -26,7 +26,7 @@ Things we removed
 
 HTTP functions are now completely dynamic and allow for either async/await or Node style errback signatures with **zero deps**.
 
-Extremely new school style
+Extremely new school style:
 
 ```javascript
 exports.handler = async function http(request) {
@@ -38,7 +38,7 @@ exports.handler = async function http(request) {
 }
 ```
 
-Extremely old school style
+Extremely old school style:
 
 ```javascript
 exports.handler = function http(request, context, callback) {
@@ -50,7 +50,7 @@ exports.handler = function http(request, context, callback) {
 }
 ```
 
-Of course the aws-sdk, and architect/functions and architect/data are still available should you wish to opt into richer functionality. Session support is much more granular:
+Of course the `aws-sdk`, and `@architect/functions` and `@architect/data` are still available should you wish to opt into richer functionality. Session support is much more granular:
 
 ```javascript
 let arc = require('@architect/functions')
@@ -98,7 +98,7 @@ exports.handler = arc.http(log, route)
 ```
 
 
-Deprecated Docs
+### Deprecated Docs
   - [Roadmap](/intro/roadmap)
   - [`@css`](/reference/css)
   - [`@html`](/reference/html)
