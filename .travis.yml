@@ -13,9 +13,6 @@ script:
 deploy:
   provider: script
   skip_cleanup: true
-  script: mkdir .aws
-  script: printf "[jsf]\naws_access_key_id=${AWS_ACCESS_KEY_ID}\naws_secret_acce- ss_key=${AWS_SECRET_ACCESS_KEY}\nregion=us-west-2\n" > .aws/credentials && 
-  script: npx deploy
-  script: rm -rf .aws
+  script: scripts/deploy-travis.sh
   on:
     branch: travis
