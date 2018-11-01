@@ -3,12 +3,8 @@ node_js:
   - "8.10"
 before_install:
   - npm i -g npm@latest
+install:
+  - scripts/modules-init-travis.sh
 before_script:
-  - lambdas='ls src/html'
-  - for f in $lambdas
-  - do
-  - cd "src/html/$f"
-  - npm i marked --save --production
-  - cd ../../../
-  - done
   - npm run lint
+  - npm run spellcheck
