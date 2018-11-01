@@ -10,9 +10,3 @@ script:
   - npm run lint
   - npm run spellcheck
   - npm run test
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: scripts/deploy-travis.sh
-  on:
-    branch: travis
