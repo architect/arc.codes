@@ -1,8 +1,8 @@
 {
   "name": "arc-www-get-examples",
   "dependencies": {
-    "@architect/data": "^2.0.2",
-    "@architect/functions": "^1.8.0",
+    "@architect/data": "^2.0.8",
+    "@architect/functions": "^1.9.12",
     "marked": "^0.3.19"
   }
 }
