@@ -4,5 +4,11 @@ node_js:
 before_install:
   - npm i -g npm@latest
 before_script:
-  - npx hydrate
+  - lambdas='ls src/html'
+  - for f in $lambdas
+  - do
+  - cd "src/html/$f"
+  - npm i marked --save --production
+  - cd ../../../
+  - done
   - npm run lint
