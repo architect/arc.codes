@@ -6,18 +6,14 @@ before_install:
 install:
   - npm i
   - scripts/modules-init-travis.sh
-jobs:
-  include:
-    - stage: lint
-    - script: npm run lint
-    - stage: test
-    - script: npm run test
-    - stage: spellcheck
-    - script: npm run spellcheck
+script:
+  - npm run lint
+  - npm run spellcheck
+  - npm run test
 deploy:
   provider: script
   script: mkdir .aws
-  script: printf "[smallwins]\naws_access_key_id=${AWS_ACCESS_KEY_ID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY}\nregion=us-west-2\n" > .aws/credentials && 
+  script: printf "[jsf]\naws_access_key_id=${AWS_ACCESS_KEY_ID}\naws_secret_acce- ss_key=${AWS_SECRET_ACCESS_KEY}\nregion=us-west-2\n" > .aws/credentials && 
   script: npx deploy
   script: rm -rf .aws
   on:
