@@ -4,6 +4,7 @@ node_js:
 before_install:
   - npm i -g npm@latest
 install:
+  - npm i
   - scripts/modules-init-travis.sh
 before_script:
   - npm run lint
