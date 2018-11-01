@@ -9,3 +9,8 @@ install:
 before_script:
   - npm run lint
   - npm run spellcheck
+deploy:
+  provider: script
+  script: npx deploy
+  on:
+    branch: master
