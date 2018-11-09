@@ -28,7 +28,7 @@
     "@architect/functions": "^1.9.8",
     "eslint": "^5.8.0",
     "nodemon": "^1.18.4",
-    "spellchecker-cli": "^4.0.0",
+    "spellchecker-cli": "^4.0.1",
     "tap-spec": "^5.0.0",
     "tape": "^4.9.1",
     "tiny-json-http": "^7.0.0"

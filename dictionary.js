@@ -1,5 +1,4 @@
 module.exports = [
-  '️', // there's an invisible char in here that blows up the spellchecker idk
   '.vimrc',
   '1MB',
   '400KB',
