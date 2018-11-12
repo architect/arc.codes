@@ -1,10 +1,14 @@
 # Prerequisites
 
-This project assumes you are running Node `8.10.x` and NPM `6.0.x` locally. Please keep in mind that AWS Lambda runs Node `8.10.x`.
+This project assumes you are running Node `8.10.x` and NPM `6.0.x` locally.
+
+Please keep in mind that AWS Lambda runs Node `8.10.x`.
+
 
 ## AWS Setup
 
 You'll need an Amazon Web Services account and credentials set up on your development machine. If you haven't done it before, here's a useful guide for [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
+
 On \*nix systems AWS Credentials are listed in:
 
 ```bash

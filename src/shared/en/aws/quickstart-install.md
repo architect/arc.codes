@@ -20,6 +20,8 @@ testapp
 get /
 ```
 
-Run `npx create` and check out the freshly deployed app. Congrats, you've successfully setup and deployed a web app! Nice work. 💖
+Run `npx create` and check out the fresh new app.
+
+Congrats, you've successfully set up and deployed a serverless web app! Nice work. 💖
 
 ## Next: [.arc project layout](/quickstart/arc-project-layout)

@@ -1,8 +1,0 @@
-#!/bin/sh
-lambdas=`ls src/html`
-for f in $lambdas
-do
-  cd "src/html/$f"
-  npm i marked --save --production
-  cd ../../../
-done
