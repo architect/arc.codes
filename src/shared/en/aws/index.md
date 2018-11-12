@@ -1,6 +1,6 @@
 # The simplest, most powerful way to build serverless applications
 
-Declaratively define next generation cloud infra with plaintext.
+Declaratively define next generation cloud infra with plain text. Build database backed web apps rapidly. Execute long running background tasks (15min), queues, and scheduled jobs. All open source.
 
 ⏱  **Deploy in seconds** with first class support for `staging` and `production` envs<br>
 💻 **Work locally** while completely offline with a speedy in-memory database<br>
