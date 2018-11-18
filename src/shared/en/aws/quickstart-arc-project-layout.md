@@ -57,7 +57,7 @@ Running `npx create` creates the following code:
 
 The generated code was also immediately deployed to the built-in `staging` environment. Subsequent edits to the local code are deployed by running `npx deploy`.
 
-Happy with staging? Ship a release to production by running `ARC_DEPLOY=production npx deploy`. 
+Happy with staging? Ship a release to production by running `npx deploy production`. 
 
 Time to celebrate! ✨
 
