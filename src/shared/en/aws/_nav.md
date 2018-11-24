@@ -16,6 +16,7 @@
   - [Logging & Monitoring](/guides/logging)
   - [Assigning a Domain Name](/guides/custom-dns)
 - NewOps
+  - [Sessions](/guides/sessions)
   - [Multiple AWS Accounts](/guides/multiple-aws-accounts)
   - [Custom IAM Roles](/guides/iam)
   - [YAML/JSON Config](/guides/yaml-and-json)
