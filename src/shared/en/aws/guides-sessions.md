@@ -2,7 +2,7 @@
 
 > All `@http` defined routes are session capable via `@architect/functions`
 
-By default all routes in an Architect apps are enabled with a stateless, signed, encrypted, httpOnly cookie. This allows you to write fully stateful applications despite Lambda functions being comletely stateless. 
+By default all routes in an Architect apps are enabled with a stateless, signed, encrypted, httpOnly cookie. This allows you to write fully stateful applications despite Lambda functions being completely stateless. 
 
 Read the session:
 
