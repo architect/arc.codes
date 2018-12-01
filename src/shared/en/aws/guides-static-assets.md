@@ -60,6 +60,7 @@ And, of course, it would be wise to use both of these S3 buckets as origins for 
 
 > 🏌️‍♀️ Protip: `npx deploy static` will deploy the static assets _only_
 
+> ⛳️ Protip #2: `npx deploy [static] --delete` will remove files from the bucket that are no longer locally present
 
 ## Linking
 
