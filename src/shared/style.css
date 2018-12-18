@@ -56,11 +56,11 @@ a:hover {
 }
 
 h1#nav-logo-main {
-  margin: 20px auto 0px auto;
+  margin: 25px auto 0px auto;
 }
 
 .nav .logo {
-  height: 60px;
+  height: 45px;
   width: 80%;
   margin: 30px auto;
 }
@@ -348,10 +348,14 @@ th {
     padding-top: 10px !important;
   }
 
+  h1#nav-logo-main {
+    margin: 10px auto 0px 20px;
+  }
+
   .nav .logo {
     display: block !important;
-    padding-right: 60px;
-    height: 60px;
+    padding-right: 40px;
+    max-width: 250px;
   }
 
   .home .content .logo {

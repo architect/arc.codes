@@ -25,9 +25,7 @@ module.exports = function render (filename) {
 
       // Logos
       var github = read(join(__dirname, 'images/github.svg')).toString()
-      // var pink = read(join(__dirname, 'images/logo-black.svg')).toString()
-      var green = read(join(__dirname, 'images/logo-white-green.svg')).toString()
-      var logo = ''//(filename === 'index') ? `<h2 class=logo>${pink}</h2>` : ''
+      var logo = read(join(__dirname, 'images/architect-logo-white.svg')).toString()
       var classes = (!logo) ? '' : 'home'
       ledger[filename] = `
         <html>
@@ -44,11 +42,11 @@ module.exports = function render (filename) {
         <body class="${classes}">
         <section class=main>
         <section class="nav">
-          <h1 id=nav-logo-main class=logo><a href="/">${green}</a></h1>
+          <h1 id=nav-logo-main class=logo><a href="/">${logo}</a></h1>
           <button class=nav-toggle><span class="ir">Toggle Navigation</span></button>
           <nav>${md(nav)}</nav>
         </section>
-          <section class=content><div class=inner>${logo}${md(body)}</div></section>
+          <section class=content><div class=inner>${md(body)}</div></section>
           <footer class=footer></footer>
         </section>
         <script src=https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js></script>
