@@ -1,8 +1,7 @@
 {
   "name": "arc-www-get-examples-000exampleID",
   "dependencies": {
-    "@architect/data": "^2.0.2",
-    "@architect/functions": "^1.8.0",
+    "@architect/functions": "git+https://github.com/arc-repos/arc-functions.git",
     "marked": "^0.3.19"
   }
 }
