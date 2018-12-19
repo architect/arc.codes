@@ -10,7 +10,7 @@ We call this situation *immutable infrastructure* to feel better! &#128150;
 ## Cloud limits and gotchas
 
 - Lambda cold starts are vicious on large Lambdas; the best antidote is to author small as possible Lambda functions (rule of thumb: sub 5MB compressed, including modules, usually results in sub-second execution)
-- API Gateway: whereby 403 it probably meant 404 (missing a route usually returns a 403)
+- API Gateway: missing a route will return a 403, whereas it should properly return a 404
 - Lambda functions cannot execute for longer than 15 minutes
 - Lambda functions require you to `npm install` to your project `node_modules` individually
 
