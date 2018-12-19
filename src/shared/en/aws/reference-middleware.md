@@ -10,7 +10,7 @@ You can combine multiple operations in a single route using the middleware API. 
 Here's an example in which we'll register `addCountryCode`, `requireLogin`, and `showDashboard` to run in series. 
 
 - `addCountryCode` adds `countryCode` to our request
-- `requireLogin` will return a redirect response if we're not logged in (ending processing) or continue if we are logged in
+- `requireLogin` will return a redirect response if the user is not logged in (ending middleware processing) or return nothing if they user is logged in (continuing middleware processing).
 - `showDashboard` will show a dashboard for users, since we know they're logged in.
 
 ```javascript
