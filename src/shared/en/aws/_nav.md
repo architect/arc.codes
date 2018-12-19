@@ -47,6 +47,7 @@
   - [`@static`](/reference/static)
   - [`@tables`](/reference/tables)
 - `@architect/functions` 
+  - [`arc.middleware`](/reference/middleware)
   - [`arc.http`](/reference/http-functions)
   - [`arc.http.session`](/reference/http-session)
   - [`arc.http.helpers`](/reference/http-helpers)

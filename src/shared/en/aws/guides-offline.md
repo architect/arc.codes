@@ -72,7 +72,7 @@ Scaffold your two test files with an environment check; this a good practice to 
 ```javascript
 // tests/http-test.js
 var test = require('tape')
-var arc = require('@architect/workflows')
+var arc = require('@architect/architect')
 
 test('env', t=> {
   t.plan(1)
@@ -83,7 +83,7 @@ test('env', t=> {
 ```javascript
 // tests/db-test.js
 var test = require('tape')
-var arc = require('@architect/workflows')
+var arc = require('@architect/architect')
 
 test('env', t=> {
   t.plan(1)
@@ -102,7 +102,7 @@ In order to test HTTP routes we will need an HTTP client. Lets use [tiny-json-ht
 // tests/http-test.js
 var test = require('tape')
 var tiny = require('tiny-json-http')
-var arc = require('@architect/workflows')
+var arc = require('@architect/architect')
 
 test('env', t=> {
   t.plan(1)
@@ -153,7 +153,7 @@ var endpoint = new AWS.Endpoint('http://localhost:5000')
 var db = process.env.NODE_ENV === 'testing'? new AWS.DynamoDB({endpoint}) : new AWS.DynamoDB
 
 var test = require('tape')
-var arc = require('@architect/workflows')
+var arc = require('@architect/architect')
 
 /**
  * first we need to start the local db server and grab a reference to the client
