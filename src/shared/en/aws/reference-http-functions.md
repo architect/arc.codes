@@ -1,6 +1,8 @@
 # <a id=arc.http href=#arc.http>`arc.http`</a>
 
-Enable express-style middleware API for HTTP functions.
+**Note**: this is the previous middleware API supported by previous versions of Architect. The new API, which supports `async/await` and returning responses, rather than using callbacks and `next()` is **[`arc.middleware`](/reference/middleware)**.
+
+`arc.http` is an express-style middleware API for HTTP functions.
 
 ```javascript
 let arc = require('@architect/functions')

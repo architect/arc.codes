@@ -4,7 +4,7 @@ arc-www
 @domain
 arc.codes
 
-@html
+@http
 get /
 get /intro
 get /intro/:introID
