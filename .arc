@@ -1,10 +1,10 @@
 @app
-arc-www
+arc-codes
 
 @domain
 arc.codes
 
-@html
+@http
 get /
 get /intro
 get /intro/:introID
@@ -20,3 +20,7 @@ get /examples/:exampleID
 @static
 staging arc.codes-staging
 production arc.codes
+
+@aws
+region us-west-2
+profile jsf

@@ -100,7 +100,7 @@ Below we'll focus on `@architect/functions`; to learn more about the [`@architec
 
 The following API is supported in `@architect/functions`:
  
-- <b>[`arc.http`](#middleware-arc-http-)</b> - express-style middleware API
+- <b>[`arc.middleware`](#middleware-arc-middleware-)</b> - middleware API, allowing requests to be filtered through multiple steps before sending a response.
 - <b>[`arc.http.session.read`](#sessions-arc-http-session-)</b> - read the session using the request cookie
 - <b>[`arc.http.session.write`](#sessions-arc-http-session-)</b> - write the session returning a cookie string
 - <b>[`arc.http.helpers.url`](#urls-arc-http-helpers-url-)</b> - transform `/` into the appropriate `staging` and `production` API Gateway paths
@@ -109,69 +109,16 @@ The following API is supported in `@architect/functions`:
 
 > 📈 `@architect/functions` also has helpers for implementing pub/sub patterns by invoking SNS and SQS Lambda functions, defined by [`@events`](/reference/events) and [`@queues`](/reference/queues), respectively.
 
+## Middleware (`arc.middleware`)
 
-## Middleware (`arc.http`)
+You can combine multiple operations in a single route using the middleware API. This is similar to middleware processing in other node frameworks, but uses the same style as regular Arc routes. Just run `arc.middleware()` specifying each middleware item as arguments. Requests will be run through each middleware item in the order they're given to `arc.middleware()` with the following rules:
 
-HTTP functions can opt into an Express-style middleware API. 
+- A middleware item is a function that takes a [request](/guides/http)
+- If the middleware item doesn't return anything, the [request](/guides/http) will be passed to the next middleware item in the queue
+- If the middleware returns a modified [request](/guides/http), the modified request will be passed to the next middleware item
+- If the middleware item returns a [response](/guides/http), this will end processing and send the response back. 
 
-Here's an example in which we'll register `log`, `ping` and `index` to run in series. Each function continues to the next function in the series by calling `next()`. Execution is halted at any time in the chain by calling `res()`.
-
-```javascript
-let arc = require('@architect/functions')
-
-function log(req, res, next) {
-  console.log(JSON.stringify(req, null, 2))
-  next()
-}
-
-function ping(req, res, next) {
-  // does something with SNS here maybe
-  next()
-}
-
-function index(req, res) {
-  res({
-    html: 'rendered index'
-  })
-}
-
-exports.handler = arc.http(log, ping, index)
-```
-
-Middleware `req` has the following keys:
-
-- <b>`body`</b> - `Object`, request body, including an `Object` containing any `application/x-www-form-urlencoded` form variables
-- <b>`path`</b> - `string`, absolute path of the request
-- <b>`method`</b> - `string`, one of `GET`, `POST`, `PATCH`, `PUT` and `DELETE`
-- <b>`params`</b> - `Object`, any URL params, if defined in your function's path (i.e. `get /:foo/bar`)
-- <b>`query`</b> - `Object`, any query params, if present
-- <b>`headers`</b> - `Object`, contains all client request headers 
-
-Middleware `res` is a function that accepts named parameters:
-
-- **Required**: One of:
-  - `json`
-  - `html`
-  - `text`
-  - `css`
-  - `js`
-  - `xml`
-  - `location`
-- Optional: `session` - assign and overwrite the current session `Object`
-- Optional: `status` or `code` of:
-  - `201` Created
-  - `202` Accepted
-  - `204` No Content
-  - `400` Bad Request
-  - `403` Forbidden
-  - `404` Not Found
-  - `406` Not Acceptable
-  - `409` Conflict
-  - `415` Unsupported Media Type
-  - `500` Internal Serverless Error
-
-The default HTTP status code is `200`. A `302` is sent automatically when redirecting via `location`.
-
+See [the middleware reference](/reference/middleware) for more details and an example.
 
 ## Sessions (`arc.http.session`)
 
@@ -342,7 +289,7 @@ exports.handler = async function http(req) {
 
 ## Example App
 
-Let's implement a proof-of-concept login flow. [Example repo here.](https://github.com/arc-repos/arc-example-login-flow)
+Let's implement a proof-of-concept login flow. There's [a repo with the example below on GitHub](https://github.com/arc-repos/arc-example-login-flow).
 
 This example `.arc` project brings together all the concepts for defining HTTP Lambdas:
 
@@ -372,79 +319,101 @@ post /login
 └── package.json
 ```
 
-First we render a form for `/login` if `req.session.isLoggedIn` is `false`:
+First we make `GET` for `/` show a message for logged in users, or a login form for logged out users, depending on `state.isLoggedIn`:
 
 ```javascript
 let arc = require('@architect/functions')
 let url = arc.http.helpers.url
 
-function index(req, res) {
-  var header = `<h1>Login Demo</h1>`
-  var protec = `<a href=${url('/protected')}>protected</a>`
-  var logout = `<a href=${url('/logout')}>logout</a>`
-  var nav = `<p>${protec} | ${logout}</p>`
+exports.handler = async function http(req) {
+  let state = await arc.http.session.read(req)
+  let isLoggedIn = !!state.isLoggedIn
 
-  var form = `
-  <form action=${url('/login')} method=post>
-    <label for=email>Email</label>
-    <input type=text name=email>
-    <label for=password>Password</label>
-    <input type=password name=password>
-    <button>Login</button>
-  </form>
+  var loggedInPage = `
+	<h2>You're logged in</h2>
+  	<p>
+	  <a href=${url('/protected')}>protected</a>
+	  <a href=${url('/logout')}>logout</a>
+	</p>`
+
+  var notLoggedInPage = `
+  	<h2>Logged out</h2>	
+    <form action=${url('/login')} method=post>
+      <label for=email>Email</label>
+      <input type=text name=email>
+      <label for=password>Password</label>
+      <input type=password name=password>
+      <button>Login</button>
+    </form>
   `
 
-  res({
-    html: `${header} ${req.session.isLoggedIn? nav : form}`
-  })
+  return {
+    type: 'text/html',
+    body: `
+	<body>
+		<h1>Login Demo</h1>
+		${isLoggedIn ? loggedInPage : notLoggedInPage}
+	<body>`
+  }
 }
-
-exports.handler = arc.http(index)
 ```
 
 That form performs an HTTP `POST` to `/login` where we look for mock values in `req.body.email` and `req.body.password`:
 
 ```javascript
 let arc = require('@architect/functions')
-let url = arc.http.helpers.url
 
-function route(req, res) {
-  var isLoggedIn = req.body.email === 'admin' && req.body.password === 'admin'
-  res({
-    session: {isLoggedIn},
-    location: url(`/`)
-  })
+exports.handler = async function http(request) {
+  let session = await arc.http.session.read(request)
+  let isLoggedIn = request.body.email === 'admin@example.com' && request.body.password === 'admin'
+  session.isLoggedIn = isLoggedIn
+  const location = isLoggedIn ? '/' : '/login'
+  let cookie = await arc.http.session.write(session)
+  return {
+    cookie,
+    status: 302,
+    location
+  }
 }
-
-exports.handler = arc.http(route)
 ```
 
-If successful `req.session.isLoggedIn` will be `true` and `nav` gets rendered. `/protected` utilizes middleware to ensure only logged in users can see it.
+If successful `session.isLoggedIn` will be `true` and we'll redirect to `/`, which, since we're logged in now, will show different content. 
+
+`/protected` utilizes middleware to ensure only logged in users can see it.
 
 ```javascript
 let arc = require('@architect/functions')
 let url = arc.http.helpers.url
 
-function protect(req, res, next) {
-  if (req.session.isLoggedIn) {
-    next()
-  }
-  else {
-    res({
+async function requireLogin(request) {
+  let state = await arc.http.session.read(request)
+
+  if (!state.isLoggedIn) {
+    console.log(`Attempt to access protected page without logging in!`)
+    // Return a response, so middleware processing ends
+    return {
+      status: 302,
       location: url(`/`)
-    })
+    }
   }
+  console.log(`We're logged in`)
+  // return nothing, so middleware processing continues
 }
 
-function attack(req, res) {
-  var msg = 'oh hai you must be logged in to see me!'
-  var logout = `<a href=${url('/logout')}>logout</a>`
-  res({
-    html: `${msg} ${logout}`
-  })
+async function showProtectedPage(request) {
+  console.log(`Showing dashboard`)
+
+  let protectedPage = `
+	<body>
+		<h1>Dashboard</h1>
+		<p>Only logged in users can visit this page!</p>
+		<p><a href="${url('/logout')}">logout</a></p>
+	</body>`
+  return respond.makeResponse(protectedPage)
 }
 
-exports.handler = arc.http(protect, attack)
+exports.handler = arc.middleware(requireLogin, showProtectedPage)
+
 ```
 
 Logging out just resets the `session` and redirects back to `/`.
@@ -453,17 +422,20 @@ Logging out just resets the `session` and redirects back to `/`.
 let arc = require('@architect/functions')
 let url = arc.http.helpers.url
 
-function route(req, res) {
-  res({
-    session: {},
-    location: url(`/`)
-  })
+exports.handler = async function route(request) {
+  let session = await arc.http.session.read(request)
+  session.isLoggedIn = false
+  let cookie = await arc.http.session.write(session)
+  return {
+    cookie,
+    status: 302,
+    location: url('/')
+  }
 }
 
-exports.handler = arc.http(route)
 ```
 
-And that's it! [Find the example repo here.](https://github.com/arc-repos/arc-example-login-flow)
+And that's it! Remember you can find [the example repo on GitHub.](https://github.com/arc-repos/arc-example-login-flow)
 
 <hr>
 

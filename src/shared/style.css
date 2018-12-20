@@ -55,7 +55,7 @@ a:hover {
   max-width: 300px;
 }
 
-h1#nav-logo-main {
+#nav-logo-main {
   margin: 25px auto 0px auto;
 }
 
@@ -220,10 +220,10 @@ ul li {
 
 nav ul li code,
 nav ul li ul li a code {
-  background:none;
-  padding:none;
-  border:none;
-  color:white;
+  background: none;
+  padding: 0;
+  border: none;
+  color: white;
 }
 
 nav ul li code {
@@ -348,7 +348,7 @@ th {
     padding-top: 10px !important;
   }
 
-  h1#nav-logo-main {
+  #nav-logo-main {
     margin: 10px auto 0px 20px;
   }
 
