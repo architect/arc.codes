@@ -8,21 +8,11 @@ var cache = {}
 
 const HTML = `text/html; charset=UTF-8`
 
-/**
- * Paths with params look like:     /path/{param}
- * Paths without params look like:  /path/noparam
- * Normalize the two or we won't find our files
- */
 function pathToFileName(req) {
+  // Use interpolate to normalize API Gateway paths that include params
+  arc.http.helpers.interpolate(req)
   let path = req.path.split('/')
   path.shift()
-  path.map(p => {
-    if (p.startsWith('{')) {
-      // If a parameter is found, replace it with its value
-      let param = p.replace(/\{|\}/g,'')
-      path[path.indexOf(p)] = req.params[param]
-    }
-  })
   let filename = path.join('-')
   if (!filename) {
     filename = 'index'
