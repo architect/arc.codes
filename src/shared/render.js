@@ -49,21 +49,21 @@ function render(filename) {
     <link rel="icon" type="image/png" sizes="32x32" href="https://s3-us-west-2.amazonaws.com/arc.codes/architect-favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://s3-us-west-2.amazonaws.com/arc.codes/architect-favicon-16.png">
     <link rel="icon" type="image/png" sizes="64x64" href="https://s3-us-west-2.amazonaws.com/arc.codes/architect-favicon-64.png">
-    <style type=text/css>${style}</style>
+    <style>${style}</style>
   </head>
   <body class="${classes}">
     <section class=main>
-    <section class="nav">
-      <h1 id=nav-logo-main class=logo><a href="/">${logo}</a></h1>
-      <button class=nav-toggle><span class="ir">Toggle Navigation</span></button>
-      <nav>${md(nav)}</nav>
-    </section>
+      <section class="nav">
+        <span id=nav-logo-main class=logo><a href="/">${logo}</a></span>
+        <button class=nav-toggle><span class="ir">Toggle Navigation</span></button>
+        <nav>${md(nav)}</nav>
+      </section>
       <section class=content><div class=inner>${md(body)}</div></section>
       <footer class=footer></footer>
     </section>
     <script src=https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js></script>
     <a href="https://github.com/arc-repos/architect" class="github-corner" aria-label="View source on Github">${github}</a>
-    <style type="text/css">.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <script>
       (function() {
         var body = document.querySelector('body');

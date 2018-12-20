@@ -8,9 +8,9 @@
 
 ---
 
-Initialize the repo by running `npm i && npx hydrate`.
+Initialize the repo by running: `npm i && npx hydrate`
 
-Docs are in `src/shared/`.
+Docs are in: `src/shared/`
 
 PRs are most welcome!
 
