@@ -8,9 +8,22 @@ var cache = {}
 
 const HTML = `text/html; charset=UTF-8`
 
-function pathToFileName(path) {
-  var slashes = new RegExp(/\//g, 'g')
-  var filename = path.substring(1).replace(slashes, '-')
+/**
+ * Paths with params look like:     /path/{param}
+ * Paths without params look like:  /path/noparam
+ * Normalize the two or we won't find our files
+ */
+function pathToFileName(req) {
+  let path = req.path.split('/')
+  path.shift()
+  path.map(p => {
+    if (p.startsWith('{')) {
+      // If a parameter is found, replace it with its value
+      let param = p.replace(/\{|\}/g,'')
+      path[path.indexOf(p)] = req.params[param]
+    }
+  })
+  let filename = path.join('-')
   if (!filename) {
     filename = 'index'
   }
@@ -94,7 +107,7 @@ function render(filename) {
 }
 
 async function openMarkdown(req) {
-  var filename = pathToFileName(req.path)
+  var filename = pathToFileName(req)
   var fileContents = render(filename)
   if (fileContents) {
     return {
