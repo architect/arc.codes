@@ -1,6 +1,7 @@
 {
   "name": "arc-codes-get-index",
   "dependencies": {
+    "@architect/data": "^2.0.9",
     "@architect/functions": "^1.11.1",
     "marked": "^0.5.2"
   }
