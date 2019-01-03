@@ -6,7 +6,7 @@
 - Use the issue trackers below to file bugs, request features, or even just to ask a question
 - If you don't know where to file the issue just add it to [arc.codes](https://github.com/arc-repos/arc.codes/issues) tracker
 
-## 🌟 on Github <a href=https://github.com/arc-repos/architect><code>arc-repos/architect</code></a>
+## 🌟 on GitHub <a href=https://github.com/arc-repos/architect><code>arc-repos/architect</code></a>
 
 ### Companion Projects
 
