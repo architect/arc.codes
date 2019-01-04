@@ -49,7 +49,7 @@ export AWS_PROFILE=work
 export AWS_REGION=us-west-1
 ```
 
-Or for Windows, add this to your powershell $profile:
+Or for Windows, add this to your powershell `$profile`:
 
 ```powershell
 $env:AWS_PROFILE='work'
