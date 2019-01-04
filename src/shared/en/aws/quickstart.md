@@ -56,6 +56,8 @@ $env:AWS_PROFILE='work'
 $env:AWS_REGION='us-west-1'
 ```
 
+If you prefer, you can also use: *Control Panel » System » Advanced System Settings » Environment Variables*.
+
 ### Useful links:
 * [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
 * [Amazon Configuration and Credential Files](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html)
