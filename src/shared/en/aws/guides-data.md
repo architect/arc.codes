@@ -125,7 +125,7 @@ The `_header` module accepts a parameters object with the key `path`. If the pat
 Next, include the layout into your home route:
 
 ```javascript
-// src/html/get-index/index.js
+// src/http/get-index/index.js
 let arc = require('@architect/functions')
 let layout = require('@architect/shared/views/layout')
 let url = arc.http.helpers.url
@@ -147,7 +147,7 @@ exports.handler = arc.http(route)
 For now, let's just hardcode credentials:
 
 ```javascript
-// src/html/post-login/index.js
+// src/http/post-login/index.js
 let arc = require('@architect/functions')
 let url = arc.http.helpers.url
 
@@ -225,7 +225,7 @@ module.exports = function auth(req, res, next) {
 Ok, it's almost time to start creating some notes. First, let's modify the index route with its own HTML partial to render a form for creating notes when logged in:
 
 ```javascript
-// src/html/get-index/_form
+// src/http/get-index/_form
 module.exports = function form({url}) {
   return `
 <div class="card mt-5 mr-auto ml-auto mb-1 w-25">
@@ -250,7 +250,7 @@ module.exports = function form({url}) {
 And add it to the index handler:
 
 ```javascript
-// src/html/get-index/index.js
+// src/http/get-index/index.js
 let arc = require('@architect/functions')
 let layout = require('@architect/shared/views/layout')
 let url = arc.http.helpers.url
@@ -270,14 +270,14 @@ exports.handler = arc.http(route)
 Now implement the post handler. We'll use the `hashids` library to help create keys for our notes.
 
 ```bash
-cd src/html/post-notes
+cd src/http/post-notes
 npm i hashids
 ```
 
 And then in the handler:
 
 ```javascript
-// src/html/post-notes/index.js
+// src/http/post-notes/index.js
 let arc = require('@architect/functions')
 let data = require('@architect/data')
 let auth = require('@architect/shared/middleware/auth')
@@ -371,7 +371,7 @@ exports.handler = arc.http(route)
 Inside the partial we can just dump the JSON for now:
 
 ```javascript
-// src/html/get-index/_form
+// src/http/get-index/_form
 module.exports = function form({url, notes}) {
   return `
 <div class="card mt-5 mr-auto ml-auto mb-1 w-25">
@@ -405,7 +405,7 @@ Now as we add notes, we can see them populating the database.
 Let's clean up the debugging JSON with an HTML representation of the note data:
 
 ```javascript
-// src/html/get-index/_form
+// src/http/get-index/_form
 
 function note({title, body, href}) {
   return `
@@ -442,7 +442,7 @@ The form partial now maps over notes, applying an internal function `note` to ge
 We'll use this opportunity to tidy up the home page logic by breaking out the authenticated and unauthenticated responses into separate middleware:
 
 ```javascript
-// src/html/get-index/index.js
+// src/http/get-index/index.js
 let arc = require('@architect/functions')
 let data = require('@architect/data')
 let layout = require('@architect/shared/views/layout')
@@ -492,7 +492,7 @@ exports.handler = arc.http(authorized, unauthorized)
 🆒 Now let's implement `get /notes/:noteID`.
 
 ```javascript
-// src/html/get-notes-000noteID/index.js
+// src/http/get-notes-000noteID/index.js
 let arc = require('@architect/functions')
 let data = require('@architect/data')
 let layout = require('@architect/shared/views/layout')
@@ -549,7 +549,7 @@ exports.handler = arc.http(auth, route)
 And then the form partial itself:
 
 ```javascript
-// src/html/get-notes-000noteID/_form
+// src/http/get-notes-000noteID/_form
 module.exports = function form({noteID, href, title, body}) {
   return `
 <div class="card mt-5 mr-auto ml-auto mb-1 w-25">
@@ -582,7 +582,7 @@ module.exports = function form({noteID, href, title, body}) {
 And lets implement the update action.
 
 ```javascript
-// src/html/post-notes-000noteID/index.js
+// src/http/post-notes-000noteID/index.js
 let arc = require('@architect/functions')
 let data = require('@architect/data')
 let auth = require('@architect/shared/middleware/auth')
@@ -628,7 +628,7 @@ Try starting the repl and running: `data.notes.scan({}, console.log)` to see all
 Finally, let's add a delete button to our edit form:
 
 ```javascript
-// src/html/get-notes-000noteID/_form
+// src/http/get-notes-000noteID/_form
 module.exports = function form({noteID, href, title, body}) {
   return `
 <div class="card mt-5 mr-auto ml-auto mb-1 w-25">
