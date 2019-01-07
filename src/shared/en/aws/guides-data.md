@@ -89,10 +89,10 @@ Implement the HTML partial `_header` control:
 
 ```javascript
 // src/shared/_header.js
-module.exports = function _header({path}) {
-  if (path.includes('logout')) {
+module.exports = function _header({url}) {
+  if (url.includes('logout')) {
     return `
-<form action=${path} method=post>
+<form action=${url} method=post>
   <button type=submit class="btn btn-primary float-right m-4">Logout</button>
 </form>`
   }
@@ -101,7 +101,7 @@ module.exports = function _header({path}) {
 <div class="card mt-5 mr-auto ml-auto mb-1 w-25">
   <div class=card-body>
 
-    <form action=${path} method=post>
+    <form action=${url} method=post>
       <div class=form-group>
         <label for=email>Email address</label>
         <input type=email class=form-control name=email placeholder="Enter email">
@@ -120,7 +120,7 @@ module.exports = function _header({path}) {
 }
 ```
 
-The `_header` module accepts a parameters object with the key `path`. If the path includes the text "logout" it renders a logout button. Otherwise it renders a login form. Vanilla stuff.
+The `_header` module accepts a parameters object with the key `url`. If the URL includes the text "logout" it renders a logout button. Otherwise it renders a login form. Vanilla stuff.
 
 Next, include the layout into your home route:
 
