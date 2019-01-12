@@ -533,7 +533,7 @@ async function route(req, res) {
   let noteID = req.params.noteID
   let accountID = req.session.account.accountID
   let note = await data.notes.get({noteID, accountID})
-  note.href = req._url(`/notes/${noteID}`)
+  note.href = url(`/notes/${noteID}`)
   // build out the templates
   let body = form(note)
   let path = url('/logout')
