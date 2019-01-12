@@ -49,7 +49,14 @@ export AWS_PROFILE=work
 export AWS_REGION=us-west-1
 ```
 
-To set these variables on Windows open: *Control Panel » System » Advanced » Environment Variables*.
+Or for Windows, add this to your PowerShell `$profile`:
+
+```powershell
+$env:AWS_PROFILE='work'
+$env:AWS_REGION='us-west-1'
+```
+
+If you prefer, you can also use: *Control Panel » System » Advanced System Settings » Environment Variables*.
 
 ### Useful links:
 * [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)

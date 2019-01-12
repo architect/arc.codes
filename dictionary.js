@@ -126,6 +126,8 @@ module.exports = [
   'payloads',
   'PEM',
   'plaintext',
+  'PowerShell',
+  'powershell',
   'pre-compiled',
   'pre-provision',
   'pre-wired',
