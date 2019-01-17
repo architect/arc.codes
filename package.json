@@ -1,32 +1,28 @@
 {
   "name": "@architect/arc.codes",
   "version": "1.1.3",
-  "description": "https://arc.codes",
+  "description": "Architect docs: https://arc.codes - Create, deploy, and maintain next-generation AWS cloud function-based serverless infrastructure with full local, offline workflows, and more.",
   "scripts": {
-    "deploy": "AWS_REGION=us-west-2 AWS_PROFILE=jsf arc-deploy",
-    "create": "AWS_REGION=us-west-2 AWS_PROFILE=jsf arc-create",
     "lint": "eslint . --ignore-pattern node_modules --fix",
     "spellcheck": "npx spellchecker ./src/shared/**/*.md --no-suggestions -q -d ./dictionary.js --plugins spell indefinite-article repeated-words syntax-mentions syntax-urls",
-    "start": "npm run spellcheck && nodemon --watch src/shared/ -e md,css,js --exec NODE_ENV=testing arc-sandbox",
-    "test": "AWS_REGION=us-west-2 tape test.js | tap-spec"
+    "start": "npm run spellcheck && nodemon --watch src/shared/ -e md,css,js --exec NODE_ENV=testing npx sandbox",
+    "test": "AWS_REGION=us-west-2 tape test/test.js | tap-spec && npm run lint"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arc-repos/arc.codes.git"
   },
-  "keywords": [],
-  "author": "Brian LeRoux <b@brian.io>",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/arc-repos/arc.codes/issues"
   },
   "homepage": "https://github.com/arc-repos/arc.codes#readme",
   "dependencies": {
-    "@architect/architect": "^4.4.9"
+    "@architect/architect": "^4.4.11"
   },
   "devDependencies": {
-    "@architect/functions": "git+https://github.com/arc-repos/arc-functions.git",
-    "eslint": "^5.8.0",
+    "@architect/functions": "^1.11.1",
+    "eslint": "^5.10.0",
     "nodemon": "^1.18.9",
     "spellchecker-cli": "^4.0.1",
     "tap-spec": "^5.0.0",
@@ -42,5 +38,19 @@
     "bracketSpacing": false,
     "endOfLine": "lf",
     "printWidth": 1000
-  }
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "amazon",
+    "serverless",
+    "cloud",
+    "cloud functions",
+    "api gateway",
+    "dynamodb",
+    "s3",
+    "sns",
+    "api gateway",
+    "framework"
+  ]
 }

@@ -50,7 +50,11 @@ async function showDashboard(req) {
 		<h1>Dashboard</h1>
 		<p>You are logged in from ${req.countryCode}! <a href="/logout">logout</a><p>
 	</body>`;
-	return respond.makeResponse(dashboardPage);
+	return {	
+		status: 200,
+		type: 'text/html',
+		body: dashboardPage
+	};
 }
 
 exports.handler = arc.middleware(addCountryCode, requireLogin, showDashboard);

@@ -1,7 +1,8 @@
 {
-  "name": "arc-www-get-intro",
+  "name": "arc-codes-get-intro",
   "dependencies": {
-    "@architect/functions": "git+https://github.com/arc-repos/arc-functions.git",
-    "marked": "^0.3.19"
+    "@architect/data": "^2.0.9",
+    "@architect/functions": "^1.11.1",
+    "marked": "^0.5.2"
   }
 }
