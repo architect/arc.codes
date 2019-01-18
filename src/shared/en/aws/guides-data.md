@@ -739,9 +739,9 @@ It can be helpful to inspect the data using the REPL. To do that, first install 
 npm i @architect/data
 ```
 
-And now `npx repl` opens a repl into your Dynamo schema running locally and in-memory. If you are running the app with `npx sandbox` in another tab, it connects to that database.
+And now `npx repl` opens a REPL into your Dynamo schema running locally and in-memory. If you are running the app with `npx sandbox` in another tab, it connects to that database.
 
-Try starting the repl and running: `data.notes.scan({}, console.log)` to see all the current notes. The repl can attach itself to the `staging` and `production` databases also by setting the appropriate `NODE_ENV` environment variable flag. 
+Try starting the REPL and running: `data.notes.scan({}, console.log)` to see all the current notes. The REPL can attach itself to the `staging` and `production` databases also by setting the appropriate `NODE_ENV` environment variable flag. 
 
 
 ## Delete a Note
