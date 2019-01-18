@@ -4,8 +4,9 @@
 
 Durable persistence of structured data is the foundation of most applications. `@architect/data` is a very thin wrapper for `DynamoDB` and `DynamoDB.DocumentClient` that reads a `.arc` file and returns a client for creating, modifying, deleting and querying data from DynamoDB (aka Dynamo).
 
-In this guide you will build a simple note taking application with Dynamo and `.arc`.
+In this guide you will build a simple note taking application, with multiple users, authentication, and data storage with Dynamo and `.arc`.
 
+The example below is also [available on GitHub.](https://github.com/arc-repos/arc-example-notes)
 
 ## Generating the Data Layer
 
@@ -13,33 +14,38 @@ Given the following `.arc` file:
 
 ```arc
 @app
-testapp
+notes
 
 @http
 get /
-get /notes/:noteID
-
+get /login
+get /signup
+get /logout
+get /notes
 post /login
-post /logout
+post /signup
+
 post /notes
+get /notes/:noteID
 post /notes/:noteID
-post /notes/:noteID/del
+post /notes/:noteID/delete
 
 @tables
-accounts
-  accountID *String
+people
+  email *String
 
 notes
-  accountID *String
+  email *String
   noteID **String
+
 ```
 
-Running `npx create` will generate routes and tables to model our persistence needs. The `accounts` table defined above will have an `accountID` partition key, while the `notes` table will have an `accountID` partition key and a unique `noteID`. This is one way to model a "many-to-many" relationship in Dynamo. 
+Running `npx create` will generate routes and tables to model our persistence needs. The `people` table defined above will have an `email` [partition key](https://aws.amazon.com/blogs/database/choosing-the-right-dynamodb-partition-key/), while the `notes` table will have an `email` partition key and a unique `noteID`. This is one way to model a "many-to-many" relationship in Dynamo. 
 
 So, at this point, `npx create` will create the following Dynamo tables:
 
-- `testapp-staging-accounts`
-- `testapp-production-accounts`
+- `testapp-staging-people`
+- `testapp-production-people`
 - `testapp-staging-notes`
 - `testapp-production-notes`
 
@@ -51,262 +57,200 @@ Now let's create a basic interface for this notes app. First, let's create a bas
 ```bash
 mkdir src/shared/views
 touch src/shared/views/layout.js
-touch src/shared/views/_header.js
 ```
 
 ```javascript
-// src/shared/layout.js
-let auth = require('./_header')
+let arc = require('@architect/functions'),
+  stylesheet = arc.http.helpers.static('/css/style.css'),
+  url = arc.http.helpers.url,
+  static = arc.http.helpers.static
 
-module.exports = function layout(params={}) {
-  let body = params.body || 'hello world'
-  let title = params.title || '@architect/data demo'
-  let url = params.path
-  return `
-<!doctype html>
-<html lang=en>
-  <head>
-    <meta charset=utf-8>
-    <meta name=viewport content=width=device-width,initial-scale=1,shrink-to-fit=no>
-    <link rel=stylesheet 
-      href=https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css
-      integrity=sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4 
-      crossorigin=anonymous>
-    <title>${title}</title>
-  </head>
-  <body>
-    ${auth({url})}
-    ${body}
-  </body>
-</html>
-`
+module.exports = function layout(contents, showNav = true, isLoggedIn = true) {
+  var nav = ''
+
+  var loginLinks = `
+		<a class="button subtle" href="${url('/login')}">Log in</a>
+		<a class="button" href="${url('/signup')}">Sign up</a>
+	`
+  if (isLoggedIn) {
+    loginLinks = `
+			<a class="button subtle" href="${url('/logout')}">Log out</a>
+		`
+  }
+
+  if (showNav) {
+    nav = `
+			<nav>
+				<a href="/"><img class="logo" src="${static('/images/logo.svg')}"/></a>
+				<a href="https://arc.codes" target="_blank">Documentation</a>
+				${loginLinks}
+			</nav>`
+  }
+
+  return `<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Architect demo app</title>
+		<link rel=stylesheet href="${stylesheet}">
+	</head>
+	<body>	
+		${nav}
+		<body>
+			${contents}
+		</body>
+	</html>`
 }
+
 ```
 
-The layout module itself accepts an optional params object with `body`, `title` and `url` keys, and returns an HTML document as a string. Truly, string interpolation is the purest essence of web development. And thus for now we'll just use Bootstrap. 🤷🏽‍♀️
+The layout module itself a `contents`, plus two options: whether to show navigation, and whether we're logged in. It returns an HTML document as a string. Truly, string interpolation is the purest essence of web development. We add some basic CSS too. 🤷🏽‍♀️
 
-Implement the HTML partial `_header` control:
-
-```javascript
-// src/shared/_header.js
-module.exports = function _header({url}) {
-  if (url.includes('logout')) {
-    return `
-<form action=${url} method=post>
-  <button type=submit class="btn btn-primary float-right m-4">Logout</button>
-</form>`
-  }
-  else {
-    return `
-<div class="card mt-5 mr-auto ml-auto mb-1 w-25">
-  <div class=card-body>
-
-    <form action=${url} method=post>
-      <div class=form-group>
-        <label for=email>Email address</label>
-        <input type=email class=form-control name=email placeholder="Enter email">
-      </div>
-      <div class=form-group>
-        <label for=password>Password</label>
-        <input type=password class=form-control name=password placeholder="Password">
-      </div>
-      <button type=submit class="btn btn-primary float-right">Login</button>
-    </form>
-
-  </div>
-</div>
-`
-  }
-}
-```
-
-The `_header` module accepts a parameters object with the key `url`. If the URL includes the text "logout" it renders a logout button. Otherwise it renders a login form. Vanilla stuff.
-
-Next, include the layout into your home route:
+Next, use the layout into your home route. We'll show different contents if someone is logged in or not:
 
 ```javascript
 // src/http/get-index/index.js
-let arc = require('@architect/functions')
-let layout = require('@architect/shared/views/layout')
-let url = arc.http.helpers.url
+let arc = require('@architect/functions'),
+  layout = require('@architect/shared/layout'),
+  url = arc.http.helpers.url
 
-function route(req, res) {
-  let body = '&nbsp;'
-  let title = 'welcome home'
-  let path = url(req.session.account ? '/logout' : '/login')
-  let html = layout({body, title, path})
-  res({html})
-}
+exports.handler = async function http(request) {
+  let state = await arc.http.session.read(request)
+  let email = state.person && state.person.email
 
-exports.handler = arc.http(route)
-```
+  let isLoggedIn = !!state.person
 
+  var loggedInPage = `
+    <section class="hero">
+      <h1>Welcome back <strong>${email}</strong>!</h1>	
+      <h2>You've logged in. That's so cool.</p>
+      <p>Check your <a href=${url('/notes')}>notes</a> or <a href=${url('/logout')}>logout</a></p>   
+    </hero>
+  `
 
-## Implementing Login
+  var notLoggedInPage = `
+    <section class="hero">
+      <h1>Welcome to the Architect demo app!</h1>	
+      <h2>It looks like it's your first time here. You should <a href="${url('/signup')}">sign up</a> now!</p>
+      <p>You can also try and visit <a href=${url('/notes')}>Notes</a> or <a href="${url('/login')}">Log in</a> but you'll need to sign up first.</a></p>   
+    </hero>
+  `
+  let contents = isLoggedIn ? loggedInPage : notLoggedInPage
 
-For now, let's just hardcode credentials:
-
-```javascript
-// src/http/post-login/index.js
-let arc = require('@architect/functions')
-let url = arc.http.helpers.url
-
-function route(req, res) {
-  let location = url('/')
-  let session = {}
-  let authorized = req.body.email === 'b@brian.io' && req.body.password === 'lolwut'
-  if (authorized) {
-    session.account = {name: 'brianleroux', accountID: 'fake-account-id'}
-  }
-  res({session, location})
-}
-
-exports.handler = arc.http(route)
-```
-
-
-## Implementing Logout
-
-We'll implement the logout handler too:
-
-```javascript
-// src/http/post-logout/index.js
-let arc = require('@architect/functions')
-let url = arc.http.helpers.url
-
-function route(req, res) {
-  res({
-    session: {},
-    location: url('/'),
-  })
-}
-
-exports.handler = arc.http(route)
-```
-
-This wipes the current session and redirects back to `/`.
-
-
-## Protecting Routes
-
-To ensure no bad actors start posting notes, we can lock down the other routes with some basic middleware. 
-
-```bash
-mkdir src/shared/middleware
-touch src/shared/middleware/auth.js
-```
-
-This auth middleware will check for `req.session.account`. If it exists, execution is passed to the next function in the middleware chain. If it does not exist, the response is redirected `/`. (Later in the guide we'll incorporate this into routes we want to protect.)
-
-```javascript
-// src/shared/middleware/auth.js
-let arc = require('@architect/functions')
-let url = arc.http.helpers.url
-
-module.exports = function auth(req, res, next) {
-  // if the current session is logged in just continue to the next function
-  if (req.session.account) {
-    next()
-  }
-  else {
-    // otherwise boot them back to the home page
-    res({
-      location: url('/')
-    })
+  return {
+    type: 'text/html',
+    status: 200,
+    body: layout(contents, true, isLoggedIn)
   }
 }
+
 ```
+## Implementing Signup
 
-> 🏄‍♀️ Read more about middleware and sessions in the [HTTP Functions](/guides/http) guide
-
-
-## Write a Note
-
-Ok, it's almost time to start creating some notes. First, let's modify the index route with its own HTML partial to render a form for creating notes when logged in:
+Our signup page is a simple form:
 
 ```javascript
-// src/http/get-index/_form
-module.exports = function form({url}) {
-  return `
-<div class="card mt-5 mr-auto ml-auto mb-1 w-25">
-  <div class=card-body>
+// src/http/get-signup/index.js
+let arc = require('@architect/functions'),
+  layout = require('@architect/shared/layout'),
+  url = arc.http.helpers.url,
+  logo = arc.http.helpers.static('images/logo.svg')
 
-    <form action=${url} method=post>
-      <div class=form-group>
-        <input type=text class=form-control name=title placeholder="Enter title" required>
-      </div>
-      <div class=form-group>
-        <textarea class=form-control placeholder="Enter text"></textarea>
-      </div>
-      <button type=submit class="btn btn-primary float-right">Save</button>
-    </form>
+exports.handler = async function http(req) {
+  let state = await arc.http.session.read(req)
 
-  </div>
-</div>
-`
-}
-```
-
-And add it to the index handler:
-
-```javascript
-// src/http/get-index/index.js
-let arc = require('@architect/functions')
-let layout = require('@architect/shared/views/layout')
-let url = arc.http.helpers.url
-let form = require('./_form')
-
-function route(req, res) {
-  let title = 'welcome home'
-  let body = req.session.account? form({url:url('/notes')}) : '&nbsp;'
-  let path = req.session.account? url('/logout') : url('/login')
-  let html = layout({body, title, path})
-  res({html})
-}
-
-exports.handler = arc.http(route)
-```
-
-Now implement the post handler. We'll use the `hashids` library to help create keys for our notes.
-
-```bash
-cd src/http/post-notes
-npm i hashids
-```
-
-And then in the handler:
-
-```javascript
-// src/http/post-notes/index.js
-let arc = require('@architect/functions')
-let data = require('@architect/data')
-let auth = require('@architect/shared/middleware/auth')
-let url = arc.http.helpers.url
-let Hashids = require('hashids')
-let hashids = new Hashids
-
-async function route(req, res) {
-  try {
-    // get the note.title and note.body from the form post
-    let note = req.body
-    // create the partition and sort keys
-    note.accountID = req.session.account.accountID
-    note.noteID = hashids.encode(Date.now())
-    // save the note
-    let result = await data.notes.put(note)
-    // log it to stdout
-    console.log(result)
+  if (state.person) {
+    // You're already logged in
+    return {
+      status: MOVED_TEMPORARILY,
+      location: url('/notes')
+    }
   }
-  catch(e) {
-    console.log(e)
+
+  var signupPage = `
+    <body class="signup-page dark">
+      <form class="signup" method="post" action=${url('/signup')}>
+      
+        <a href="/"><img class="logo" src="${logo}"/></a>
+        <h2>Sign up</h2>
+        
+        <p>Enter an email and password to sign up</p>
+    
+        <div class="input-and-label">
+          <input name="email" required="required" type="email" autocomplete="off" value="" placeholder="Email address" autofocus/>
+          <label for="email">Email address</label>
+        </div>
+    
+        <div class="input-and-label">
+          <input name="password" required="required" type="password" autocomplete="off" placeholder="Password"/>
+          <label for="password">Password</label>
+        </div>
+
+        <div class="input-and-label checkbox">
+          <input type="checkbox" required checked>
+          <label for=tsandcs>Agree to the terms of conditions</label> 
+        </div>
+
+        <button type="submit">Sign up</button>
+    
+      </form>
+
+      <a href="${url('/login')}">Log in</a>
+    </body>
+  `
+
+  return {
+    type: 'text/html',
+    status: 200,
+    body: layout(signupPage, false)
   }
-  res({
-    location: url('/')
-  })
 }
 
-exports.handler = arc.http(auth, route)
 ```
+
+The signup will be processed by our `post-signup` lambda, which will make a person in DynamoDB:
+
+```javascript
+// src/http/post-signup/index.js
+let arc = require('@architect/functions'),
+  makePerson = require('./make-person.js'),
+  log = console.log.bind(console),
+  url = arc.http.helpers.url
+
+require('@architect/shared/globals')
+
+exports.handler = async function http(request) {
+  let session = await arc.http.session.read(request)
+  let person = await makePerson(request.body.email, request.body.password)
+  session.person = person
+  let cookie = await arc.http.session.write(session)
+  return {
+    cookie,
+    status: 302,
+    location: url('/notes')
+  }
+}
+```
+
+`make-person.js` just uses the popular `bcrypt` tool to store a hashed version of the password in DynamoDB
+
+```javascript
+// src/http/post-signup/make-person.js
+let data = require('@architect/data'),
+  bcrypt = require('bcrypt'),
+  log = console.log.bind(console)
+
+const SALT_ROUNDS = 12
+
+module.exports = async function makePerson(email, suppliedPassword) {
+  let hashedPassword = await bcrypt.hash(suppliedPassword, SALT_ROUNDS)
+  let person = {email, password: hashedPassword}
+  data.people.put(person)
+  log(`Created person ${email}`)
+  return person
+}
+
+```
+
 
 Requiring `@architect/data` reads your app's `.arc` manifest and generates a data access client from it. Working with `.arc` this way means:
 
@@ -319,12 +263,12 @@ The following API was generated from the `.arc` file above:
 - `data._db` - an instance of `DynamoDB` from the `aws-sdk`
 - `data._doc` - an instance of `DynamoDB.DocumentClient` from the `aws-sdk`
 - `data._name` - a helper for returning an environment appropriate table name
-- `data.accounts.get` - get an account row
-- `data.accounts.query` - query accounts
-- `data.accounts.scan` - return all accounts in pages of 1MB
-- `data.accounts.put` - write an account row
-- `data.accounts.update` - update an account row
-- `data.accounts.delete` - delete an account row
+- `data.people.get` - get a person
+- `data.people.query` - query people
+- `data.people.scan` - return all people in pages of 1MB
+- `data.people.put` - write a person
+- `data.people.update` - update a person
+- `data.people.delete` - delete a person
 - `data.notes.get` - get a note
 - `data.notes.query` - query notes
 - `data.notes.scan` - return all notes in pages in 1MB
@@ -334,285 +278,462 @@ The following API was generated from the `.arc` file above:
 
 In addition to providing some extra safety, the generated code also saves on boilerplate! 
 
-All generated methods accept a params object as a first parameter and an optional callback. If the callback is not supplied, a Promise is returned.
+All generated methods accept a params object as a first parameter, and will return a Promise. 
 
-It is important to note this is a powerful client that allows you to read and write data indiscriminately. Security and access control to your Dynamo tables is determined by your domain specific application business logic. (As such, notice the `shared/middleware/auth` handler has been added to protect the route.)
+It is important to note this is a powerful client that allows you to read and write data indiscriminately. Security and access control to your Dynamo tables is determined by your application's business logic. This is why the middleware is used to wrap the route with `shared/require-login` first, to protect the route.
 
 Extra credit:
 
 - Sanitize inputs with XSS
 - Validate input; you probably can do without a library
 
+## Implementing Login
 
-## Show All Notes
-
-For now, lets just modify the home route to get all the notes and pass them into the `_form` HTML partial:
+Let's make a login page. It's just a form:
 
 ```javascript
-// src/http/get-index/index.js
+// src/http/get-login/index.js
 let arc = require('@architect/functions')
-let data = require('@architect/data')
-let layout = require('@architect/shared/views/layout')
+let layout = require('@architect/shared/layout')
 let url = arc.http.helpers.url
-let form = require('./_form')
+let logo = arc.http.helpers.static('images/logo.svg')
 
-async function route(req, res) {
-  let title = 'welcome home'
-  let notes = await data.notes.scan({})
-  let body = req.session.account? form({url:url('/notes'), notes}) : '&nbsp;'
-  let path = req.session.account? url('/logout') : url('/login')
-  let html = layout({body, title, path})
-  res({html})
-}
+exports.handler = async function http(req) {
+  let state = await arc.http.session.read(req)
 
-exports.handler = arc.http(route)
-```
-
-Inside the partial we can just dump the JSON for now:
-
-```javascript
-// src/http/get-index/_form
-module.exports = function form({url, notes}) {
-  return `
-<div class="card mt-5 mr-auto ml-auto mb-1 w-25">
-  <div class=card-body>
-    <form action=${url} method=post>
-      <div class=form-group>
-        <input type=text class=form-control name=title placeholder="Enter title" required>
-      </div>
-      <div class=form-group>
-        <textarea class=form-control placeholder="Enter text"></textarea>
-      </div>
-      <button type=submit class="btn btn-primary float-right">Save</button>
-    </form>
-  </div>
-</div>
-
-<div class="card mt-4 mr-auto ml-auto mb-1 w-25">
-  <div class=card-body>
-    <pre>${JSON.stringify(notes, null, 2)}</pre>
-  </div>
-</div>
-`
-}
-```
-
-Now as we add notes, we can see them populating the database.
-
-
-## Show a Note 
-
-Let's clean up the debugging JSON with an HTML representation of the note data:
-
-```javascript
-// src/http/get-index/_form
-
-function note({title, body, href}) {
-  return `
-<div class="card mt-4 mr-auto ml-auto mb-1 w-25">
-  <div class=card-header><a href=${href}>${title}</a></div>
-  <div class=card-body>${body}</div>
-</div>
-`
-}
-
-module.exports = function form({url, notes}) {
-  return `
-<div class="card mt-5 mr-auto ml-auto mb-1 w-25">
-  <div class=card-body>
-    <form action=${url} method=post>
-      <div class=form-group>
-        <input type=text class=form-control name=title placeholder="Enter title" required>
-      </div>
-      <div class=form-group>
-        <textarea class=form-control name=body placeholder="Enter text"></textarea>
-      </div>
-      <button type=submit class="btn btn-primary float-right">Save</button>
-    </form>
-  </div>
-</div>
-
-${notes.map(note).join('\n')}
-`
-}
-```
-
-The form partial now maps over notes, applying an internal function `note` to generate HTML.
-
-We'll use this opportunity to tidy up the home page logic by breaking out the authenticated and unauthenticated responses into separate middleware:
-
-```javascript
-// src/http/get-index/index.js
-let arc = require('@architect/functions')
-let data = require('@architect/data')
-let layout = require('@architect/shared/views/layout')
-let url = arc.http.helpers.url
-let form = require('./_form')
-
-// logic for authenticated visitors
-async function authorized(req, res, next) {
-  if (!req.session.account) {
-    next()
+  var message = null
+  if (state.attemptedEmail) {
+    message = `Could not log in as ${state.attemptedEmail}`
   }
-  else {
-    // get all the notes
-    let title = 'welcome home'
-    let all = await data.notes.scan({})
 
-    // add href to each note for the template link
-    let notes = all.Items.map(function addHref(note) {
-      note.href = url(`/notes/${note.noteID}`)
-      return note
-    })
-  
-    // disambiguate URLs for envs
-    let createUrl = url('/notes')
-    let logoutUrl = url('/logout')
-  
-    // interpolate the template data 
-    let body = form({url: createUrl, notes})
-    let html = layout({body, title, path: logoutUrl})
+  var loggedInPage = `
+    <body>
+      <h2>You're already logged in!</h2>
+        <p>
+        <a href=${url('/notes')}>notes</a>
+        <a href=${url('/logout')}>logout</a>
+      </p>
+    </body>`
 
-    res({html})
+  var notLoggedInPage = `
+    <body class="signup-page dark">
+      <form class="login" method="post" action=${url('/login')} >
+      
+        <a href="/"><img class="logo" src="${logo}"/></a>
+
+        <h2>Please log in below!</h2>	
+
+        <div class="flash-message ${message ? '' : 'no-messages'}">${message || ''}</div>
+    
+        <div class="input-and-label">
+          <input name="email" required="required" type="email" autocomplete="off" value="${state.attemptedEmail}" placeholder="Email address" autofocus/>
+          <label for="email">Email address</label>
+        </div>
+    
+        <div class="input-and-label">
+          <input name="password" required="required" type="password" autocomplete="off" placeholder="Password"/>
+          <label for="password">Password</label>
+        </div>
+        
+        <button type="submit">Log In</button>
+    
+      </form>
+
+      <a href="${url('/signup')}">Sign up</a>
+
+    </body>
+  `
+  let content = state.person ? loggedInPage : notLoggedInPage
+
+  return {
+    type: 'text/html',
+    status: 200,
+    body: layout(content, false)
   }
 }
 
-// shown for unauthenticated visitors
-function unauthorized(req, res) {
-  let title = 'welcome home'
-  let body = '&nbsp;'
-  let path = url('/login')
-  let html = layout({body, title, path})
-  res({html})
-}
-
-exports.handler = arc.http(authorized, unauthorized)
 ```
 
-🆒 Now let's implement `get /notes/:noteID`.
+When people fill in the form, we'll process it, sending the request to `'./authenticate-person.js`:
+
+```javascript
+// src/http/post-login/index.js
+let arc = require('@architect/functions'),
+  authenticatePerson = require('./authenticate-person.js'),
+  url = arc.http.helpers.url
+
+exports.handler = async function http(request) {
+  let session = await arc.http.session.read(request)
+
+  let person = await authenticatePerson(request.body.email, request.body.password)
+
+  const location = person ? url('/notes') : url('/login')
+
+  session.attemptedEmail = person ? null : request.body.email
+
+  session.person = person
+
+  let cookie = await arc.http.session.write(session)
+  return {
+    cookie,
+    status: 302,
+    location
+  }
+}
+```
+
+The authentication queries DynamoDB to find a `person` with the email specified, and compares the `suppliedPassword` to the stored one:
+
+```javascript
+// src/http/post-login/authenticate-person.js
+let data = require('@architect/data'),
+  bcrypt = require('bcrypt'),
+  log = console.log.bind(console)
+
+module.exports = async function authenticatePerson(email, suppliedPassword) {
+  let result = await data.people.query({
+    KeyConditionExpression: 'email = :email',
+    ExpressionAttributeValues: {
+      ':email': email
+    }
+  })
+  log(`Searching for person "${email}" matching user-supplied password. Found ${result.Count} results`)
+  if (result.Items.length) {
+    let firstResult = result.Items[0]
+    let person = firstResult
+    let authorized = await bcrypt.compare(suppliedPassword, person.password)
+    if (authorized) {
+      // Remove the hashed password, as we don't want it in sessions (or anywhere else outside this module)
+      delete person.password
+      log(`Successful login as ${email}`)
+      return person
+    }
+  }
+  log(`Failed login attempt as ${email}`)
+  return null
+}
+
+```
+
+If `authenticatePerson` returns a user, `src/http/post-login/index.js` will redirect to `/notes`. Otherwise we'll send the user back to the login page - with `atttemptedUser` added to their session so we can tell the user they failed.
+
+
+## Implementing Logout
+
+We'll implement the logout handler too:
+
+```javascript
+// src/http/get-logout/index.js
+let arc = require('@architect/functions')
+let url = arc.http.helpers.url
+
+exports.handler = async function route(request) {
+  let session = await arc.http.session.read(request)
+  session.person = null
+  let cookie = await arc.http.session.write(session)
+  return {
+    cookie,
+    status: 302,
+    location: url('/')
+  }
+}
+```
+
+This wipes the current session and redirects back to `/`.
+
+
+## Protecting Routes
+
+To ensure no bad actors start posting notes, we can lock down the other routes using Arc's [middleware](https://arc.codes/reference/middleware). 
+
+```bash
+touch src/shared/require-login.js
+```
+
+The `require-login.js` function will can be combined with a route by `arc.middleware`. `require-login.js` will check for `req.session.person`.
+
+If `req.session.person` doesn't exist, `require-login.js` will return a response that ends the request. 
+
+If `req.session.person` exists, execution is passed to the next function in the middleware chain. 
+
+Later in the guide we'll incorporate this into routes we want to protect.
+
+```javascript
+// src/shared/require-login.js
+let arc = require('@architect/functions'),
+  log = console.log.bind(console),
+  url = arc.http.helpers.url
+
+require('@architect/shared/globals')
+
+module.exports = async function requireLogin(request) {
+  let state = await arc.http.session.read(request)
+
+  if (!state.person) {
+    console.log(`Attempt to access protected page without logging in!`)
+    // Return a response, so middleware processing ends
+    return {
+      status: MOVED_TEMPORARILY,
+      location: url(`/login`)
+    }
+  }
+  console.log(`We're logged in as ${state.person.email}`)
+  // return nothing, so middleware processing continues
+}
+
+```
+
+> 🏄‍♀️ Read more about [middleware](https://arc.codes/reference/middleware).
+
+
+## Showing and making notes 
+
+Let's make a page that shows existing notes, with a form to make new notes.
+
+All the bottom you'll notice we're using `arc.middleware` to combine this route with `require-login`, making this only available to logged in users:
+
+```javascript
+// src/http/get-notes/index.js
+let arc = require('@architect/functions'),
+  layout = require('@architect/shared/layout'),
+  requireLogin = require('@architect/shared/require-login'),
+  getNotes = require('./get-notes.js'),
+  log = console.log.bind(console),
+  url = arc.http.helpers.url
+
+async function showProtectedPage(request) {
+  log(`Showing notes`)
+  let state = await arc.http.session.read(request)
+
+  var notes = await getNotes(state.person.email)
+
+  var greeting = `You don't have any notes! Make some below`
+  if (notes.length) {
+    greeting = `You have <strong>${notes.length}</strong> notes.`
+  }
+
+  var existingNotes = ``
+  notes.forEach(function(note) {
+    var noteURL = url(`/notes/${note.noteID}`)
+    existingNotes += `
+      <section class="card">
+        <a href="${noteURL}">        
+          <heading>
+            ${note.title}
+          </heading>        
+          <p>${note.body}</p>
+        </a>
+      </section>`
+  })
+
+  var contents = `
+    <section>
+      <h2>Welcome to the Notes page <strong>${state.person.email}</strong>!</h2>
+      <p>${greeting}</p>
+
+      <section class="cards">
+
+        ${existingNotes}
+      </section>
+
+      
+      <form action=${url('/notes')} method=post>
+        <h2>Make a note</h2>
+        <div class="input-and-label">
+          <input name="title" required="required" type="text" autocomplete="off" value="" placeholder="Title" autofocus/>
+          <label for="email">Title</label>
+        </div>
+        <div class="input-and-label">
+          <textarea name="body" required="required" autocomplete="off" value="" placeholder="Body text"></textarea>
+          <label for="body">Body</label>
+        </div>
+        <button>Make a note</button>
+      </form>
+    </section>
+    
+  `
+
+  return {
+    status: 200,
+    body: layout(contents, true, true),
+    type: 'text/html'
+  }
+}
+
+exports.handler = arc.middleware(requireLogin, showProtectedPage)
+
+```
+
+The DynamoDB work is done by `get-notes.js` which is a simple query for all notes for that `email`:
+
+```javascript
+// src/http/get-notes/get-notes.js
+let data = require('@architect/data'),
+  log = console.log.bind(console)
+
+module.exports = async function getNotes(email) {
+  let result = await data.notes.query({
+    KeyConditionExpression: 'email = :email',
+    ExpressionAttributeValues: {
+      ':email': email
+    }
+  })
+
+  log(`Searching for notes for "${email}". Found ${result.Count} results`)
+
+  var notes = result.Items
+  return notes
+}
+
+```
+
+Now we've got the form, let's implement the POST handler. We'll use the `hashids` library to help create keys for our notes.
+
+```bash
+cd src/http/post-notes
+npm i hashids
+```
+
+And then in the handler:
+
+```javascript
+let arc = require('@architect/functions'),
+  makeNote = require('./make-note.js'),
+  requireLogin = require('@architect/shared/require-login'),
+  url = arc.http.helpers.url
+
+async function route(request) {
+  try {
+    let session = await arc.http.session.read(request)
+
+    // create the partition and sort keys
+    let email = session.person.email
+    // save the note
+    let result = await makeNote(email, request.body.title, request.body.body)
+    // log it to stdout
+    console.log(result)
+  } catch (error) {
+    console.log(error)
+  }
+  return {
+    status: 302
+    location: url('/notes')
+  }
+}
+
+exports.handler = arc.middleware(requireLogin, route)
+
+```
+
+Now as we add notes, we can see them in our UI!
+
+
+## Edit a specific note 
+
+Lets make a detail page to edit a specific note.
+
+While we're at it, let us delete the note too!
+
+This is just another lambda that returns two forms. Like always, we use middleware to wrap it with `requireLogin`
 
 ```javascript
 // src/http/get-notes-000noteID/index.js
-let arc = require('@architect/functions')
-let data = require('@architect/data')
-let layout = require('@architect/shared/views/layout')
-let auth = require('@architect/shared/middleware/auth')
-let url = arc.http.helpers.url
+let arc = require('@architect/functions'),
+  layout = require('@architect/shared/layout'),
+  requireLogin = require('@architect/shared/require-login'),
+  data = require('@architect/data'),
+  url = arc.http.helpers.url
 
-async function route(req, res) {
-  let title = 'welcome home'
-  let noteID = req.params.noteID
-  let accountID = req.session.account.accountID
-  let note = await data.notes.get({noteID, accountID})
-  let body = `<pre>${JSON.stringify(note, null, 2)}</pre>`
-  let path = url('/logout')
-  let html = layout({body, title, url})
-  res({html})
+async function showNote(request) {
+  let noteID = request.params.noteID
+
+  let session = await arc.http.session.read(request)
+
+  let email = session.person && session.person.email
+
+  let note = await data.notes.get({noteID, email})
+  note.noteURL = url(`/notes/${noteID}`)
+
+  let showNote = function(note) {
+    return `
+      <article>
+        <h2>Edit note</h2>
+        <form action=${note.noteURL} method=post>
+            <input type=hidden name=noteID value=${noteID}>
+          <div class="input-and-label">
+            <input 
+            type=text 
+            name=title 
+            placeholder="Enter title" 
+            value="${note.title}"
+            required>
+          </div>
+          <div class="input-and-label">
+            <textarea 
+            class=form-control 
+            name=body 
+            placeholder="Enter text">${note.body}
+            </textarea>
+          </div>
+          <button type=submit>Save changes</button>
+        </form>
+
+        <form action="${note.noteURL}/delete" method=post>
+          <button class="danger" type=submit>Delete</button>
+        </form>
+
+      </article>
+    `
+  }
+
+  return {
+    status: 200,
+    body: layout(showNote(note)),
+    type: 'text/html'
+  }
 }
 
-exports.handler = arc.http(auth, route)
-```
-
-
-## Edit a Note
-
-Lets make the detail page show the current note in an edit form.
-
-```javascript
-// src/http/get-notes-000noteID/index.js
-let arc = require('@architect/functions')
-let data = require('@architect/data')
-let layout = require('@architect/shared/views/layout')
-let auth = require('@architect/shared/middleware/auth')
-let url = arc.http.helpers.url
-let form = require('./_form')
-
-async function route(req, res) {
-  let title = 'welcome home'
-  // wrangle the data
-  let noteID = req.params.noteID
-  let accountID = req.session.account.accountID
-  let note = await data.notes.get({noteID, accountID})
-  note.href = url(`/notes/${noteID}`)
-  // build out the templates
-  let body = form(note)
-  let path = url('/logout')
-  let html = layout({body, title, path})
-  // send the response
-  res({html})
-}
-
-exports.handler = arc.http(auth, route)
+exports.handler = arc.middleware(requireLogin, showNote)
 
 ```
 
-And then the form partial itself:
-
-```javascript
-// src/http/get-notes-000noteID/_form
-module.exports = function form({noteID, href, title, body}) {
-  return `
-<div class="card mt-5 mr-auto ml-auto mb-1 w-25">
-  <div class=card-body>
-    <form action=${href} method=post>
-      <input type=hidden name=noteID value=${noteID}>
-      <div class=form-group>
-        <input
-          type=text
-          class=form-control
-          name=title
-          placeholder="Enter title"
-          value="${title}"
-          required>
-      </div>
-      <div class=form-group>
-        <textarea
-          class=form-control
-          name=body
-          placeholder="Enter text">${body}</textarea>
-      </div>
-      <button type=submit class="btn btn-primary float-right">Save</button>
-    </form>
-  </div>
-</div>
-`
-}
-```
 
 And lets implement the update action.
 
 ```javascript
 // src/http/post-notes-000noteID/index.js
-let arc = require('@architect/functions')
-let data = require('@architect/data')
-let auth = require('@architect/shared/middleware/auth')
-let url = arc.http.helpers.url
+let arc = require('@architect/functions'),
+  requireLogin = require('@architect/shared/require-login'),
+  url = arc.http.helpers.url,
+  data = require('@architect/data'),
+  log = console.log.bind(console)
 
-async function route(req, res) {
+let editNote = async function route(request) {
   try {
-    let note = req.body
-    note.accountID = req.session.account.accountID
-    note.updated = new Date(Date.now()).toISOString()
-    // save the note
+    let session = await arc.http.session.read(request)
+    // get the note (including title, body and noteID) from the form post
+    let note = request.body
+    // create the partition and sort keys
+    note.email = session.person && session.person.email
+    // save the updated note
+    log(`Saving ${JSON.stringify(note, null, 2)}`)
     let result = await data.notes.put(note)
-    // log it to stdout
-    console.log(result)
+    log(result)
+  } catch (error) {
+    log(error)
   }
-  catch(e) {
-    console.log(e)
+  return {
+    status: 302,
+    location: url('/notes')
   }
-  res({
-    location: url('/')
-  })
 }
 
-exports.handler = arc.http(auth, route)
-
+exports.handler = arc.middleware(requireLogin, editNote)
 ```
 
 This is cheating a little bit. We're directly overwriting the note record with `put`. A more complex example would probably use `update`. 
 
-It can be helpful to inspect the data using the repl. To do that, first install `@architect/data` into the root of your project:
+It can be helpful to inspect the data using the REPL. To do that, first install `@architect/data` into the root of your project:
 
 ```bash
 npm i @architect/data
@@ -625,63 +746,40 @@ Try starting the repl and running: `data.notes.scan({}, console.log)` to see all
 
 ## Delete a Note
 
-Finally, let's add a delete button to our edit form:
+Finally, let's implement a delete route:
 
 ```javascript
-// src/http/get-notes-000noteID/_form
-module.exports = function form({noteID, href, title, body}) {
-  return `
-<div class="card mt-5 mr-auto ml-auto mb-1 w-25">
-  <div class=card-body>
-    <form action=${href} method=post>
-      <input type=hidden name=noteID value=${noteID}>
-      <div class=form-group>
-        <input 
-          type=text 
-          class=form-control 
-          name=title 
-          placeholder="Enter title" 
-          value="${title}"
-          required>
-      </div>
-      <div class=form-group>
-        <textarea 
-          class=form-control 
-          name=body 
-          placeholder="Enter text">${body}</textarea>
-      </div>
-      <button type=submit class="btn btn-primary float-right">Save</button>
-    </form>
-    <form action=${href}/del method=post>
-      <button type=submit class="btn btn-danger float-right mr-2">Delete</button>
-    </form>
-  </div>
-</div>
-`
-}
-```
+// src/http/post-notes-000noteID-delete/index.js
+let arc = require('@architect/functions'),
+  data = require('@architect/data'),
+  url = arc.http.helpers.url,
+  requireLogin = require('@architect/shared/require-login'),
+  log = console.log.bind(console)
 
-And implement a delete route:
-
-```javascript
-// src/http/post-notes-000noteID-del/index.js
-let arc = require('@architect/functions')
-let data = require('@architect/data')
-let url = arc.http.helpers.url
-
-async function route(req, res) {
-  let noteID = req.params.noteID
-  let accountID = req.session.account.accountID
+let deleteNote = async function route(request) {
+  let noteID = request.params.noteID
+  let session = await arc.http.session.read(request)
+  let email = session.person && session.person.email
+  log(
+    `Deleting notes matching ${JSON.stringify(
+      {
+        noteID,
+        email
+      },
+      null,
+      2
+    )}`
+  )
   await data.notes.delete({
-    noteID, accountID
+    noteID,
+    email
   })
-  res({
-    location: url('/')
-  })
+  return {
+    status: 302,
+    location: url('/notes')
+  }
 }
-
-exports.handler = arc.http(route)
-
+exports.handler = arc.middleware(requireLogin, deleteNote)
 ```
 
 > 🎩 Tip: `data._db` and `data._doc` return instances of `DynamoDB` and `DynamoDB.DocumentClient` for directly accessing your data; use `data._name` to resolve the table names with the app name and environment prefix.
@@ -689,7 +787,7 @@ exports.handler = arc.http(route)
 
 ## Go farther:
 
-- [Example code repo](https://github.com/arc-repos/arc-example-persist-data)
+- [Architect Notes example app code repo](https://github.com/arc-repos/arc-example-notes)
 - [Official aws-sdk DynamoDB docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
 - [Official aws-sdk `DynamoDB.DocumentClient` docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
 - [DynamoDB best practices](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html)
