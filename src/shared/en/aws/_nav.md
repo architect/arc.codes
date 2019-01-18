@@ -12,6 +12,7 @@
   - [Sharing Common Code](/guides/sharing-common-code)
   - [Static Assets](/guides/static-assets)
   - [Sessions](/guides/sessions)
+  - [Middleware](/guides/middleware)
   - [Persist Data](/guides/data)
   - [Implement CORS](/guides/cors)
   - [Logging & Monitoring](/guides/logging)
