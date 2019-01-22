@@ -57,4 +57,4 @@ Function code will also be generated for the defined `people` Lambda triggers:
 └── package.json
 ```
 
-## Next: [Defining routes with `@text`](/reference/text)
+## Next: [Web Sockets with `@ws`](/reference/ws)
