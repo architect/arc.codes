@@ -15,6 +15,7 @@
   - [Persist Data](/guides/data)
   - [Logging & Monitoring](/guides/logging)
   - [Assigning a Domain Name](/guides/custom-dns)
+  - [Web Sockets](/guides/ws)
 - NewOps
   - [Sessions](/guides/sessions)
   - [Multiple AWS Accounts](/guides/multiple-aws-accounts)
