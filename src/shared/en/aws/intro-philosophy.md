@@ -92,20 +92,22 @@ Running `npx create` in the same directory as the `.arc` file above generates th
 
 ```bash
 /
-├── src
-│   ├── http
-│   │   ├── get-index/
-│   │   ├── get-likes/
-│   │   └── post-likes/
-│   ├── events
-│   │   └── hit-counter/
-│   ├── scheduled
-│   │   └── daily-affirmation/
-│   ├── tables
-│   │   └── likes-update/
-│   └── shared/
-├── .arc
-└── package.json
+|-src
+| |-http
+| | |-get-index/
+| | |-get-likes/
+| | '-post-likes/
+| |-events
+| | '-hit-counter/
+| |-scheduled
+| | '-daily-affirmation/
+| |-tables
+| | '-likes-update/
+| '-ws
+|   |-ws-connect/
+|   |-ws-default/
+|   '-ws-disconnect/
+'-.arc
 ```
 
 The code was also immediately deployed to the cloud in fully isolated `staging` and `production` environments.
