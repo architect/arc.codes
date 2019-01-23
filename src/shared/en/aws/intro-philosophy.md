@@ -45,12 +45,12 @@ The `.arc` format follows a few simple rules:
 - [`@aws`](/reference/aws) defines AWS variables
 - [`@domain`](/reference/domain) defines DNS for a custom domain name
 - [`@events`](/reference/events) defines application events you can publish and subscribe to
-- [`@http`](/reference/http) defines HTTP (i.e. `text/html`) routes 
+- [`@http`](/reference/http) defines HTTP (i.e. `text/html`) handlers
 - [`@indexes`](/reference/indexes) defines table global secondary indexes 
 - [`@scheduled`](/reference/scheduled) defines functions that run on a schedule
-- [`@slack`](/reference/slack) defines HTTP handlers to build apps for the Slack API
 - [`@static`](/reference/static) defines S3 buckets for static assets
 - [`@tables`](/reference/tables) defines DynamoDB database tables and trigger functions for them 
+- [`@ws`](/reference/ws) defines Web Socket handlers 
 
 This is a complete `.arc` file example:
 
@@ -62,6 +62,7 @@ hello
 @domain
 hello.com
 
+@ws
 @http
 get /
 post /likes
@@ -91,20 +92,22 @@ Running `npx create` in the same directory as the `.arc` file above generates th
 
 ```bash
 /
-├── src
-│   ├── http
-│   │   ├── get-index/
-│   │   ├── get-likes/
-│   │   └── post-likes/
-│   ├── events
-│   │   └── hit-counter/
-│   ├── scheduled
-│   │   └── daily-affirmation/
-│   ├── tables
-│   │   └── likes-update/
-│   └── shared/
-├── .arc
-└── package.json
+|-src
+| |-http
+| | |-get-index/
+| | |-get-likes/
+| | '-post-likes/
+| |-events
+| | '-hit-counter/
+| |-scheduled
+| | '-daily-affirmation/
+| |-tables
+| | '-likes-update/
+| '-ws
+|   |-ws-connect/
+|   |-ws-default/
+|   '-ws-disconnect/
+'-.arc
 ```
 
 The code was also immediately deployed to the cloud in fully isolated `staging` and `production` environments.

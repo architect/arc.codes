@@ -40,4 +40,4 @@ And the following deployment Lambdas:
 - `testapp-staging-friyay-only`
 - `testapp-production-friyay-only`
 
-## Next: [Creating `@slack` bots](/reference/slack)
+## Next: [Creating `@static` asset buckets](/reference/static)
