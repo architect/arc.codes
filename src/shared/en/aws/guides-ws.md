@@ -23,6 +23,7 @@ By default, Web Socket functions are dependency free with a minimal, but very po
 exports.handler = async function ws(event) {
   // event.requestContext.connectionId
   // event.requestContext.apiId
+  // event.body
   return {statusCode: 200}
 }
 ```
@@ -33,14 +34,15 @@ Architect generates the following functions:
 - `src/ws/ws-default` invoked whenever a message is sent
 - `src/ws/ws-disconnect` invoked when disconnected
 
-Web socket functions are always invoked with an event payload that contains two useful peices of information:
+Web socket functions are always invoked with an event payload that contains useful information:
 
-- `event.requestContext.connectionId` which represents a single web socket connection
-- `event.requestContext.apiId` the currently executing web socket apiId
+- `event.requestContext.connectionId` the currently executing web socket connection
+- `event.requestContext.apiId` the currently executing web socket `apiId`
+- `event.body` the message payload
 
-## Browser Impl
+## Browser Implementation
 
-Render the app HTML shell and embed the current web socket url in a global `WS_URL`.
+Render the app HTML shell and embed the current web socket URL in a global `WS_URL`.
 
 ```javascript
 // src/http/get-index
@@ -87,7 +89,7 @@ module.exports = function getWS() {
 }
 ```
 
-We'll put the clientside JavaScript in `/public/index.mjs`.
+We'll put the browser JavaScript in `/public/index.mjs`.
 
 ```javascript
 // get the web socket url from the backend
@@ -131,9 +133,11 @@ msg.addEventListener('keyup', function(e) {
 })
 ```
 
+> The `/public/index.mjs` path assumes `@static` setup S3 buckets to serve browser code; you can also setup an `@http` function to serve `text/javascript` code 
+
 ## `ws-connect`
 
-The `ws-connect` Lambda is only used for verifying `event.header.Origin`. 
+The `ws-connect` Lambda is primarily intended to verify `event.header.Origin`. 
 
 ## `ws-default`
 
