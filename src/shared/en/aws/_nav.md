@@ -17,6 +17,7 @@
   - [Implement CORS](/guides/cors)
   - [Logging & Monitoring](/guides/logging)
   - [Assigning a Domain Name](/guides/custom-dns)
+  - [Web Sockets](/guides/ws)
 - NewOps
   - [Multiple AWS Accounts](/guides/multiple-aws-accounts)
   - [Custom IAM Roles](/guides/iam)
@@ -44,9 +45,9 @@
   - [`@indexes`](/reference/indexes)
   - [`@queues`](/reference/queues)
   - [`@scheduled`](/reference/scheduled)
-  - [`@slack`](/reference/slack)
   - [`@static`](/reference/static)
   - [`@tables`](/reference/tables)
+  - [`@ws`](/reference/ws)
 - `@architect/functions` 
   - [`arc.events.publish`](/reference/events-publish)
   - [`arc.events.subscribe`](/reference/events-subscribe)
@@ -59,6 +60,7 @@
   - [`arc.tables.destroy`](/reference/tables-destroy)
   - [`arc.tables.insert`](/reference/tables-insert)
   - [`arc.tables.update`](/reference/tables-update)
+  - [`arc.ws`](/reference/ws-functions)
 - `@architect/data` 
   - [Introduction](/reference/data)
   - [`data._name`](/reference/data-name)

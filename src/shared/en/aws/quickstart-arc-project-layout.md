@@ -2,7 +2,7 @@
 
 Architect projects have a `.arc`, `arc.yaml` or `arc.json` manifest file in the root. This captures the infrastructure requirements beside the code it will run in your revision control. Architect favors <em>convention over configuration</em> and projects have the following significant folder structure:
 
-```
+```bash
 /
 |- public ......... static assets (js, css, svg, images, etc)
 |- src 
@@ -12,7 +12,8 @@ Architect projects have a `.arc`, `arc.yaml` or `arc.json` manifest file in the 
 |  |- events ...... Event Lambda functions
 |  |- queues ...... Queue Lambda functions
 |  |- scheduled ... Scheduled Lambda functions
-|  '- tables ...... Table Trigger Lambda functions
+|  |- tables ...... Table Trigger Lambda functions
+|  '- ws .......... Web Socket Lambda functions
 '- .arc 
 ```
 
@@ -26,22 +27,31 @@ The `.arc` manifest can be broadly split into three sections:
 
 ### System config
 
+These sections are for global system level env configuration. The most important being the `@app` namespace which is used to prefix all generated resources.
+
 - [`@app`](/reference/app) **[Required]** The application namespace
 - [`@domain`](/reference/domain) Assign a domain name to your app (ACM, API Gateway, and Route 53)
 - [`@aws`](/reference/aws) AWS config
 
 ### Lambda Function config
-- [`@http`](/reference/http) HTTP routes (API Gateway, Lambda)
-- [`@events`](/reference/events) Event pub/sub (SNS, Lambda)
-- [`@queues`](/reference/queues)  queues and handlers for them (SQS, Lambda)
+
+These sections deal with Lambda functions and their event sources. By convention Architect promotes one event source per function. 
+
+- [`@http`](/reference/http) HTTP routes (API Gateway)
+- [`@events`](/reference/events) Event pub/sub (SNS)
+- [`@queues`](/reference/queues)  queues and handlers for them (SQS)
 - [`@scheduled`](/reference/scheduled) Invoke functions specified times (CloudWatch Events)
+- [`@ws`](/reference/ws) Web Socket functions (API Gateway)
 
 ### Persistence config
+
+These sections deal with config of various persistence resources.
+
 - [`@static`](/reference/static) Buckets for hosting static assets (S3)
 - [`@tables`](/reference/tables) Database tables and trigger functions (DynamoDB)
 - [`@indexes`](/reference/indexes) Table global secondary indexes (DynamoDB)
 
-`.arc` comments out anything after hash symbol `#`. 
+> 👉🏽 `.arc` comments out anything after hash symbol `#`. 
 
 ## Example
 
@@ -64,16 +74,13 @@ Running `npx create` creates the following code:
 
 ```bash
 /
-├── src
-│   ├── events
-│   │   └── hello/
-│   ├── http
-│   │   ├── get-index/
-│   │   └── get-posts/
-│   └── shared/
-├── .arc
-├── package.json
-└── public/
+|-src
+| |-events
+| | '-hello/
+| '-http
+|   |-get-index/
+|   '-get-posts/
+'-.arc
 ```
 
 The generated code was also immediately deployed to the built-in `staging` environment. Subsequent edits to the local code are deployed by running `npx deploy`.

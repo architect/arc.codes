@@ -42,8 +42,6 @@ indexes:
     phone: "*String"
 scheduled:
   daily-report: rate(1 day)
-slack:
-- statsbot
 ```
 
 **JSON Example**
@@ -118,10 +116,7 @@ slack:
   ],
   "scheduled": {
     "daily-report": "rate(1 day)"
-  },
-  "slack": [
-    "statsbot"
-  ]
+  }
 }
 ```
 
