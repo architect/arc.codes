@@ -18,10 +18,10 @@
   },
   "homepage": "https://github.com/arc-repos/arc.codes#readme",
   "dependencies": {
-    "@architect/architect": "^4.4.11"
+    "@architect/architect": "^5.0.6"
   },
   "devDependencies": {
-    "@architect/functions": "^1.11.1",
+    "@architect/functions": "^1.12.1",
     "eslint": "^5.10.0",
     "nodemon": "^1.18.9",
     "spellchecker-cli": "^4.0.1",

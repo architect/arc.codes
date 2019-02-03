@@ -19,7 +19,7 @@ module.exports = [
   'automagical',
   'AWS',
   'aws-sdk',
-  'AWS\'s',
+  "AWS's",
   'AWSLambdaSQSQueueExecutionRole',
   'AZ',
   'backend',
@@ -140,7 +140,7 @@ module.exports = [
   'Reference',
   'renderer',
   'repeatable',
-  'repl',
+  'REPL',
   'repo',
   'repos',
   'resiliance',
@@ -160,6 +160,8 @@ module.exports = [
   'serverless',
   'serverlessly',
   'SHA',
+  'Signup',
+  'signup',
   'SNS',
   'SQS',
   'SSL',
@@ -186,5 +188,5 @@ module.exports = [
   'ZoneEdit',
   /\.\n/g,
   /`?`[a-z]*[\s\S]*?`/g,
-  /```[a-z]*\n[\s\S]*?\n```/g,
+  /```[a-z]*\n[\s\S]*?\n```/g
 ]
