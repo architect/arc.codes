@@ -5,8 +5,7 @@
 
 Static assets are crucial infrastructure for building ambitious web apps. While `.arc` does not have any opinion about how you should achieve that part, it can provision and automatically deploy to isolated S3 buckets for your app's `staging` and `production` environments.
 
-To support this, every `.arc` project is set up with a `public` directory in the root of your project. The `public` directory provides a seamless way to work with static assets such as images, styles, and scripts required in your front-end workflows.
-
+Every `.arc` project is supports `./public` directory in the root of your project. The `public` directory provides a seamless way to work with static assets such as images, styles, and scripts required in your front-end workflows. Anything in that directory is available at `http://localhost:3333/_static/` when running in the sandbox and at `https://yourapi.com/_static` once deployed to API Gateway.
 
 ## Provisioning
 
@@ -21,14 +20,14 @@ staging my-unique-bucket-staging
 production my-unique-bucket
 ```
 
-Running `npx create` will generate the two designated `staging` and `production` S3 buckets.
+Running `npx create` will generate `staging` and `production` S3 buckets.
 
 > ⚠️ Warning: S3 buckets are _globally_ unique to all of AWS so you may have to try a few names
 
 
 ## Working Locally with `public`
 
-Running `npx sandbox` kicks up a sandbox web server (more here about [working locally](/guides/offline)). The folder `public` at the root of your project will be mounted locally when you run the web server with `npx sandbox`.
+Running `npx sandbox` kicks up a sandbox web server (more here about [working locally](/guides/offline)). The folder `public` at the root of your project will be mounted at `/_static` when you run the web server with `npx sandbox`.
 
 Any file added to this `public` folder will be served (along with any HTTP functions you've defined).
 
@@ -69,7 +68,7 @@ Isolation is key to creating a continuous delivery pipeline. It's good to work o
 As such, there are three environments you need to be concerned about for addressing your static assets:
 
 - Local:
-> `http://localhost:3333/<asset>`
+> `http://localhost:3333/_static/<asset>`
 - Staging:
 > `https://s3-<aws region>.amazonaws.com/<staging bucket>/<asset>`
 - Production:
@@ -109,49 +108,6 @@ exports.handler = async function http(req) {
 }
 ```
 
-
-## Get an HTML file stored in S3
-
-This example shows you how to return an HTML file stored in a S3 bucket. Buckets are defined in your `.arc` in the `@static` section. You can return HTML files that you deployed from `public` or files uploaded by another method.
-
-```javascript
-// src/html/get-index/index.js
-let arc = require('@architect/functions')
-let aws = require('aws-sdk')
-
-function route(req, res) {
-  let s3 = new aws.S3()
-  var bucket
-  if (process.env.NODE_ENV === 'production') {
-    bucket = "PRODUCTION_BUCKET" // The name you used in .arc for @static production
-  } else if (process.env.NODE_ENV === 'staging') {
-    bucket = "STAGING_BUCKET" // The name you used in .arc for @static staging
-  }
-  var getParams = {
-    Bucket: bucket,
-    Key: 'index.html'
-  }
-
-  s3.getObject(getParams, function(err, data) {
-    if (err)
-      console.log(err)
-    res({html: data.Body.toString()})
-  });
-}
-
-exports.handler = arc.html.get(route)
-```
-
-
-## Go farther
-
-A few ideas going even further with static assets:
-- Enhance the build pipeline with a JS bundler
-- Build files with unique identifiers to bust caches
-- Set up a CloudFront (the AWS CDN) distribution for the `production` bucket
-- Write a helper to include scripts on only the pages that need them
-
 <hr>
 
-
-## Next: [Implement CORS](/guides/cors)
+## Next: [Single Page Apps](/guides/spa)
