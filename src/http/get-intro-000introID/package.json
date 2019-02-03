@@ -1,8 +1,8 @@
 {
   "name": "arc-codes-get-intro-000introID",
   "dependencies": {
-    "@architect/data": "^2.0.9",
-    "@architect/functions": "^1.11.1",
+    "@architect/data": "^2.0.13",
+    "@architect/functions": "^1.13.7",
     "marked": "^0.5.2"
   }
 }
