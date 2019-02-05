@@ -2,6 +2,14 @@
 
 > Guides for upgrading to the latest version of Architect
 
+## 5.x 
+
+Architect version 5 is here!
+
+Things we added:
+
+- [Websocket support](/guides/ws)
+- [New middleware](/guides/middleware) - added later in arc 4, and out of the box in Arc 5
 
 ## 4.x
 
