@@ -109,16 +109,7 @@ The following API is supported in `@architect/functions`:
 
 > 📈 `@architect/functions` also has helpers for implementing pub/sub patterns by invoking SNS and SQS Lambda functions, defined by [`@events`](/reference/events) and [`@queues`](/reference/queues), respectively.
 
-## Middleware (`arc.middleware`)
 
-You can combine multiple operations in a single route using the middleware API. This is similar to middleware processing in other node frameworks, but uses the same style as regular Arc routes. Just run `arc.middleware()` specifying each middleware item as arguments. Requests will be run through each middleware item in the order they're given to `arc.middleware()` with the following rules:
-
-- A middleware item is a function that takes a [request](/guides/http)
-- If the middleware item doesn't return anything, the [request](/guides/http) will be passed to the next middleware item in the queue
-- If the middleware returns a modified [request](/guides/http), the modified request will be passed to the next middleware item
-- If the middleware item returns a [response](/guides/http), this will end processing and send the response back. 
-
-See [the middleware reference](/reference/middleware) for more details and an example.
 
 ## URLs (`arc.http.helpers.url`)
 
