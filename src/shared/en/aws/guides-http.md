@@ -2,9 +2,11 @@
 
 ## Create full-featured web applications composed of fast, tiny HTTP functions
 
-Here's well go from a basic 'hello world' app to a bigger app with signups and logins. 
+Here we'll start from a basic 'hello world' app and then build a bigger app with signups and logins. 
 
-> `.arc` abstracts API Gateway configuration and provisioning, while `@architect/functions` (optionally) adds a very light but powerful API shim to Lambda for working with HTTP
+We'll do this with AWS Lambdas - small functions that trigger when their URL is hit. You can think of lambdas as the equivaleny of 'routes' in traditional web apps. 
+
+AWS Lambdas are accessed via API Gateway, but `.arc` abstracts API Gateway and Lambda configuration and provisioning. Additionally, `@architect/functions` (optionally) adds useful tools for working with HTTP.
 
 Given the following example `.arc` file:
 
@@ -42,7 +44,7 @@ Every HTTP handler receives a plain JavaScript object `request` as a first param
 - <b>`query`</b> - `Object`, any query params, if present
 - <b>`headers`</b> - `Object`, contains all client request headers 
 
-To send a response, HTTP functions support the following params as a plain JavaScript `Object`:
+To send a response, HTTP functions return a plain JavaScript `Object` with the following params:
 
 - <b>`status`</b> (or <b>`code`</b>) - `number`, sets the HTTP status code
 - <b>`type`</b> - `string`, sets the `Content-Type` response header
