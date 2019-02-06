@@ -88,7 +88,7 @@ module.exports = async function http(req) {
 
 # Helpers for your functions
 
-HTTP functions come with `@architect/functions` and `@architect/data` installed. These have convenient helpers for working with the unique characteristics of API Gateway and DynamoDB, respectively.
+HTTP functions come with `@architect/functions` and `@architect/data` installed. These have convenient helpers for working with API Gateway and DynamoDB, respectively.
 
 ```javascript
 // opt into architect functions and data conveniences
@@ -96,21 +96,13 @@ let arc = require('@architect/functions')
 let data = require('@architect/data')
 ```
 
-Below we'll focus on `@architect/functions`; to learn more about the [`@architect/data` API, head here](/reference/data).
-
-The following API is supported in `@architect/functions`:
+In the example below we'll use some of the helpers from  `@architect/functions`:
  
-- <b>[`arc.middleware`](#middleware-arc-middleware-)</b> - middleware API, allowing requests to be filtered through multiple steps before sending a response.
-- <b>[`arc.http.session.read`](#sessions-arc-http-session-)</b> - read the session using the request cookie
-- <b>[`arc.http.session.write`](#sessions-arc-http-session-)</b> - write the session returning a cookie string
-- <b>[`arc.http.helpers.url`](#urls-arc-http-helpers-url-)</b> - transform `/` into the appropriate `staging` and `production` API Gateway paths
-- <b>[`arc.http.helpers.static`](#static-arc-http-helpers-static-)</b> - accepts a path part and returns path to `localhost:3333` or `staging` and `production` S3 buckets
+- <b>[`arc.middleware`](/guides/middleware)</b> - middleware API, allowing requests to be filtered through multiple steps before sending a response.
+- <b>[`arc.http.session`](/guides/sessions)</b> - read the session using the request cookie, write the session returning a cookie string
+- <b>[`arc.http.helpers.url`](/guides/urls)</b> - transform `/` into the appropriate `staging` and `production` API Gateway paths
+- <b>[`arc.http.helpers.static`](/guides/static)</b> - accepts a path part and returns path to `localhost:3333` or `staging` and `production` S3 buckets
 - <b>`arc.http.helpers.verify`</b> - verify a `csrf` token
-
-> 📈 `@architect/functions` also has helpers for implementing pub/sub patterns by invoking SNS and SQS Lambda functions, defined by [`@events`](/reference/events) and [`@queues`](/reference/queues), respectively.
-
-
-
 
 ---
 

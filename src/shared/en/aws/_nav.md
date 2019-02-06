@@ -6,6 +6,7 @@
   - [Prerequisites](/quickstart)
   - [Installation](/quickstart/install)
   - [Project Layout](/quickstart/arc-project-layout)
+  - [What next?](/quickstart/what-next)
 - Guides
   - [HTTP Functions](/guides/http)
   - [Working Locally](/guides/offline)
