@@ -1,8 +1,11 @@
-# Sessions
+# Sessions (`arc.http.session`)
 
-> All `@http` defined routes are session capable via `@architect/functions`
+All `@http` defined routes are session capable via `@architect/functions`
 
-By default all routes in an Architect apps are enabled with a stateless, signed, encrypted, httpOnly cookie. This allows you to write fully stateful applications despite Lambda functions being completely stateless. 
+- Requests are tagged to a session via a stateless, signed, encrypted, httpOnly cookie `_idx`
+- Session data expires after a week of inactivity
+
+This allows you to write fully stateful applications despite Lambda functions being completely stateless. 
 
 Read the session:
 
@@ -10,6 +13,7 @@ Read the session:
 let arc = require('@architect/functions')
 
 exports.handler = async function http(req) {
+  // reads the session from DynamoDB
   let session = await arc.http.session.read(req)
   return {
     type: 'text/html; charset=utf8',
@@ -24,11 +28,16 @@ Write the session:
 let arc = require('@architect/functions')
 
 exports.handler = async function http(req) {
+  // reads the session from DynamoDB
   let session = await arc.http.session.read(req)
+
+  // modify the state
   session.count = (session.count || 0) + 1
+  // save the session state to DynamoDB
   let cookie = await arc.http.session.write(session)
   let status = 302
   let location = '/'
+  // respond (and update the session cookie)
   return {cookie, status, location}
 }
 ```
@@ -76,6 +85,8 @@ This will sync all production lambdas to use the DynamoDB table while testing an
 - Authentication
 - Error messages
 - Shopping carts
+
+See [the sessions reference](/reference/sessions) for more details.
 
 <hr>
 

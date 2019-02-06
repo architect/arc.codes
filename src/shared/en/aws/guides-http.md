@@ -120,40 +120,6 @@ You can combine multiple operations in a single route using the middleware API. 
 
 See [the middleware reference](/reference/middleware) for more details and an example.
 
-## Sessions (`arc.http.session`)
-
-HTTP functions can opt into session support using Architect's anonymous, signed, secure sessions:
-
-```javascript
-let arc = require('@architect/functions')
-
-exports.handler = async function http(req) {
-
-  // reads the session from DynamoDB
-  let state = await arc.http.session.read(req) 
-
-  // modify the state
-  state.foo = 'bar'
-
-  // save the session state to DynamoDB
-  let cookie = await arc.http.session.write(state)
-
-  // respond (and update the session cookie)
-  return {
-    cookie,
-    status: 302,
-    location: '/',
-  }
-}
-```
-
-All HTTP endpoints are sessions-enabled by default. 
-
-- Requests are tagged to a session via a signed cookie `_idx`
-- Session data expires after a week of inactivity
-
-> Sessions are stateless by default; learn how to [opt into database backed sessions with DynamoDB](/guides/sessions)
-
 ## URLs (`arc.http.helpers.url`)
 
 API Gateway generates long URLs that are hard to read, and extends the URL base path with either `staging` or `production` &mdash; this means a link intended to point at `/` should actually point at `/staging` or `/production`. (This pain point is eased if you set up a [custom domain name with DNS](/guides/custom-dns).)
