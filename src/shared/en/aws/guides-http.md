@@ -142,27 +142,6 @@ exports.handler = async function http(req) {
 > 👋 After DNS propagates you can remove calls to `arc.http.helpers.url` from your code. Learn how to [assign a domain name](/guides/custom-dns) by setting up DNS.
 
 
-## Static (`arc.http.helpers.static`)
-
-Architect projects can be set up with `staging` and `production` S3 buckets for file syncing from the [`public` folder](/guides/static-assets).
-
-Each of these has its own URL – not to mention the local path in `sandbox`, which can mean trouble when trying to load the right version of a static asset.
-
-The `arc.http.helpers.static` helper resolves URL paths for your static assets, so you're requesting the right file from every environment.
-
-Here's an example of `static` usage:
-
-```javascript
-let arc = require('@architect/functions')
-let static = arc.http.helpers.static
-
-exports.handler = async function http(req) {
-  return {
-    type: 'text/html',
-    body: `Hey, it's an image! <img src="${static('/img/rainbows.gif')}">`
-  }
-}
-```
 
 
 ---
