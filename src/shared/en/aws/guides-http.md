@@ -6,7 +6,7 @@ Here we'll start from a basic 'hello world' app and then build a bigger app with
 
 We'll do this with AWS Lambdas - small functions that trigger when their URL is hit. You can think of lambdas as the equivaleny of 'routes' in traditional web apps. 
 
-AWS Lambdas are accessed via API Gateway, but `.arc` abstracts API Gateway and Lambda configuration and provisioning. Additionally, `@architect/functions` (optionally) adds useful tools for working with HTTP.
+AWS Lambdas are accessed via API Gateway, but `.arc` abstracts API Gateway and Lambda configuration and provisioning. 
 
 Given the following example `.arc` file:
 
@@ -18,7 +18,7 @@ testapp
 get /
 ```
 
-By default, HTTP functions are dependency free with a minimal, but very powerful, low level API. 
+When a user visits `/`, the following HTTP function in `src/http/get-index/index.js` will run: 
 
 ```javascript
 exports.handler = async function http(request) {
@@ -26,16 +26,16 @@ exports.handler = async function http(request) {
     status: 201,
     type: 'text/html; charset=utf8',
     body: `
-    <!doctype html>
-    <html>
-      <body>hello world</body>
-    </html>
+      <!doctype html>
+      <html>
+        <body>hello world</body>
+      </html>
    `
   }
 }
 ```
 
-Every HTTP handler receives a plain JavaScript object `request` as a first parameter with the following keys:
+By default, HTTP functions are dependency free with a minimal, but very powerful, low level API: every HTTP function receives a plain JavaScript `Object` called `request` as a first parameter. `request` has the following keys:
 
 - <b>`body`</b> - `Object`, request body, including an `Object` containing any `application/x-www-form-urlencoded` form variables
 - <b>`path`</b> - `string`, absolute path of the request
@@ -44,7 +44,7 @@ Every HTTP handler receives a plain JavaScript object `request` as a first param
 - <b>`query`</b> - `Object`, any query params, if present
 - <b>`headers`</b> - `Object`, contains all client request headers 
 
-To send a response, HTTP functions return a plain JavaScript `Object` with the following params:
+To send a response, HTTP functions return a plain JavaScript  with the following params:
 
 - <b>`status`</b> (or <b>`code`</b>) - `number`, sets the HTTP status code
 - <b>`type`</b> - `string`, sets the `Content-Type` response header
@@ -53,6 +53,7 @@ To send a response, HTTP functions return a plain JavaScript `Object` with the f
 - <b>`cookie`</b> - `string`, sets the `Set-Cookie` response header
 - <b>`cors`</b> - `boolean`, sets the various CORS headers
 
+`@architect/functions` (optionally) adds additional useful tools for working with HTTP, including middlewere, sessions, and more.
 
 ## Code sharing
 
@@ -64,7 +65,7 @@ module.exports = function layout(html) {
   return `
     <!doctype html>
     <html>
-    <body><h1>Layout!</h1>${html}</body>
+      <body><h1>Layout!</h1>${html}</body>
     </html>
   `
 }
