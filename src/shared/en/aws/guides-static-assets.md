@@ -1,11 +1,14 @@
-# Static Assets
+# Static (`arc.http.helpers.static`)
 
 ## Automatically build and deploy your static assets
 
+Architect projects support a `public` directory in the root of your project for static assets. The `public` directory typically includes static assets such as images, styles, and scripts required in your front-end workflows. 
 
-Static assets are crucial infrastructure for building ambitious web apps. While `.arc` does not have any opinion about how you should achieve that part, it can provision and automatically deploy to isolated S3 buckets for your app's `staging` and `production` environments.
+Anything in  `public` directory is available at `http://localhost:3333/_static/` when running in the sandbox. 
 
-Every `.arc` project is supports `./public` directory in the root of your project. The `public` directory provides a seamless way to work with static assets such as images, styles, and scripts required in your front-end workflows. Anything in that directory is available at `http://localhost:3333/_static/` when running in the sandbox and at `https://yourapi.com/_static` once deployed to API Gateway.
+For `production` and `staging` environments, Architect can have `staging` and `production` S3 buckets for file syncing from the `public` folder - they'll be avaiable at at `https://yourapi.com/_static` once deployed.
+
+The `arc.http.helpers.static` helper resolves URL paths for your static assets, so you're requesting the right file from every environment.
 
 ## Provisioning
 
@@ -22,7 +25,7 @@ production my-unique-bucket
 
 Running `npx create` will generate `staging` and `production` S3 buckets.
 
-> ⚠️ Warning: S3 buckets are _globally_ unique to all of AWS so you may have to try a few names
+> ⚠️ Warning: S3 buckets are _globally_ unique to all of AWS so you may have to try a few names.
 
 
 ## Working Locally with `public`
@@ -88,25 +91,27 @@ let arc = require('@architect/functions')
 let static = arc.http.helpers.static
 
 exports.handler = async function http(req) {
-  let css = static('/main.css')
-  let js = static('/main.js')
   let body = `
-  <!doctype html>
-  <html>
-    <head>
-      <title>This is fun!</title>
-      <link rel=stylesheet type=text/css href=${css}>
-    </head>
-    <body>Hello ƛ</body>
-    <script src=${js}></script>
-  </html>
+    <!doctype html>
+    <html>
+      <head>
+        <title>This is fun!</title>
+        <link rel=stylesheet type=text/css href=${static('/main.css')}>
+      </head>
+      <body>Hello ƛ</body>
+      <script src=${static('/main.js')}></script>
+    </html>
   `
   return {
     type: 'text/html',
     body
   }
 }
+
+
 ```
+
+See [the static reference](/reference/static) for more details.
 
 <hr>
 

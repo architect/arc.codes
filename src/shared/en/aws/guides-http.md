@@ -2,7 +2,11 @@
 
 ## Create full-featured web applications composed of fast, tiny HTTP functions
 
-> `.arc` abstracts API Gateway configuration and provisioning, while `@architect/functions` (optionally) adds a very light but powerful API shim to Lambda for working with HTTP
+Here we'll start from a basic 'hello world' app and then build a bigger app with signups and logins. 
+
+We'll do this with AWS Lambdas - small functions that trigger when their URL is hit. You can think of lambdas as the equivaleny of 'routes' in traditional web apps. 
+
+AWS Lambdas are accessed via API Gateway, but `.arc` abstracts API Gateway and Lambda configuration and provisioning. 
 
 Given the following example `.arc` file:
 
@@ -14,7 +18,7 @@ testapp
 get /
 ```
 
-By default, HTTP functions are dependency free with a minimal, but very powerful, low level API. 
+When a user visits `/`, the following HTTP function in `src/http/get-index/index.js` will run: 
 
 ```javascript
 exports.handler = async function http(request) {
@@ -22,16 +26,16 @@ exports.handler = async function http(request) {
     status: 201,
     type: 'text/html; charset=utf8',
     body: `
-    <!doctype html>
-    <html>
-      <body>hello world</body>
-    </html>
+      <!doctype html>
+      <html>
+        <body>hello world</body>
+      </html>
    `
   }
 }
 ```
 
-Every HTTP handler receives a plain JavaScript object `request` as a first parameter with the following keys:
+By default, HTTP functions are dependency free with a minimal, but very powerful, low level API: every HTTP function receives a plain JavaScript `Object` called `request` as a first parameter. `request` has the following keys:
 
 - <b>`body`</b> - `Object`, request body, including an `Object` containing any `application/x-www-form-urlencoded` form variables
 - <b>`path`</b> - `string`, absolute path of the request
@@ -40,7 +44,7 @@ Every HTTP handler receives a plain JavaScript object `request` as a first param
 - <b>`query`</b> - `Object`, any query params, if present
 - <b>`headers`</b> - `Object`, contains all client request headers 
 
-To send a response, HTTP functions support the following params as a plain JavaScript `Object`:
+To send a response, HTTP functions return a plain JavaScript  with the following params:
 
 - <b>`status`</b> (or <b>`code`</b>) - `number`, sets the HTTP status code
 - <b>`type`</b> - `string`, sets the `Content-Type` response header
@@ -49,6 +53,7 @@ To send a response, HTTP functions support the following params as a plain JavaS
 - <b>`cookie`</b> - `string`, sets the `Set-Cookie` response header
 - <b>`cors`</b> - `boolean`, sets the various CORS headers
 
+`@architect/functions` (optionally) adds additional useful tools for working with HTTP, including middlewere, sessions, and more.
 
 ## Code sharing
 
@@ -60,7 +65,7 @@ module.exports = function layout(html) {
   return `
     <!doctype html>
     <html>
-    <body><h1>Layout!</h1>${html}</body>
+      <body><h1>Layout!</h1>${html}</body>
     </html>
   `
 }
@@ -86,9 +91,9 @@ module.exports = async function http(req) {
 ---
 
 
-# Helpers for your functions
+## Helpers for your functions
 
-HTTP functions come with `@architect/functions` and `@architect/data` installed. These have convenient helpers for working with the unique characteristics of API Gateway and DynamoDB, respectively.
+HTTP functions come with `@architect/functions` and `@architect/data` installed. These have convenient helpers for working with API Gateway and DynamoDB, respectively.
 
 ```javascript
 // opt into architect functions and data conveniences
@@ -96,117 +101,13 @@ let arc = require('@architect/functions')
 let data = require('@architect/data')
 ```
 
-Below we'll focus on `@architect/functions`; to learn more about the [`@architect/data` API, head here](/reference/data).
-
-The following API is supported in `@architect/functions`:
+In the example below we'll use some of the helpers from  `@architect/functions`:
  
-- <b>[`arc.middleware`](#middleware-arc-middleware-)</b> - middleware API, allowing requests to be filtered through multiple steps before sending a response.
-- <b>[`arc.http.session.read`](#sessions-arc-http-session-)</b> - read the session using the request cookie
-- <b>[`arc.http.session.write`](#sessions-arc-http-session-)</b> - write the session returning a cookie string
-- <b>[`arc.http.helpers.url`](#urls-arc-http-helpers-url-)</b> - transform `/` into the appropriate `staging` and `production` API Gateway paths
-- <b>[`arc.http.helpers.static`](#static-arc-http-helpers-static-)</b> - accepts a path part and returns path to `localhost:3333` or `staging` and `production` S3 buckets
+- <b>[`arc.middleware`](/guides/middleware)</b> - middleware API, allowing requests to be filtered through multiple steps before sending a response.
+- <b>[`arc.http.session`](/guides/sessions)</b> - read the session using the request cookie, write the session returning a cookie string
+- <b>[`arc.http.helpers.url`](/guides/urls)</b> - transform `/` into the appropriate `staging` and `production` API Gateway paths
+- <b>[`arc.http.helpers.static`](/guides/static)</b> - accepts a path part and returns path to `localhost:3333` or `staging` and `production` S3 buckets
 - <b>`arc.http.helpers.verify`</b> - verify a `csrf` token
-
-> 📈 `@architect/functions` also has helpers for implementing pub/sub patterns by invoking SNS and SQS Lambda functions, defined by [`@events`](/reference/events) and [`@queues`](/reference/queues), respectively.
-
-## Middleware (`arc.middleware`)
-
-You can combine multiple operations in a single route using the middleware API. This is similar to middleware processing in other node frameworks, but uses the same style as regular Arc routes. Just run `arc.middleware()` specifying each middleware item as arguments. Requests will be run through each middleware item in the order they're given to `arc.middleware()` with the following rules:
-
-- A middleware item is a function that takes a [request](/guides/http)
-- If the middleware item doesn't return anything, the [request](/guides/http) will be passed to the next middleware item in the queue
-- If the middleware returns a modified [request](/guides/http), the modified request will be passed to the next middleware item
-- If the middleware item returns a [response](/guides/http), this will end processing and send the response back. 
-
-See [the middleware reference](/reference/middleware) for more details and an example.
-
-## Sessions (`arc.http.session`)
-
-HTTP functions can opt into session support using Architect's anonymous, signed, secure sessions:
-
-```javascript
-let arc = require('@architect/functions')
-
-exports.handler = async function http(req) {
-
-  // reads the session from DynamoDB
-  let state = await arc.http.session.read(req) 
-
-  // modify the state
-  state.foo = 'bar'
-
-  // save the session state to DynamoDB
-  let cookie = await arc.http.session.write(state)
-
-  // respond (and update the session cookie)
-  return {
-    cookie,
-    status: 302,
-    location: '/',
-  }
-}
-```
-
-All HTTP endpoints are sessions-enabled by default. 
-
-- Requests are tagged to a session via a signed cookie `_idx`
-- Session data expires after a week of inactivity
-
-> Sessions are stateless by default; learn how to [opt into database backed sessions with DynamoDB](/guides/sessions)
-
-## URLs (`arc.http.helpers.url`)
-
-API Gateway generates long URLs that are hard to read, and extends the URL base path with either `staging` or `production` &mdash; this means a link intended to point at `/` should actually point at `/staging` or `/production`. (This pain point is eased if you set up a [custom domain name with DNS](/guides/custom-dns).)
-
-`@architect/functions` also bundles a helper function `arc.http.helpers.url` for resolving URL paths that haven't yet been configured with DNS. This is helpful for early prototyping.
-
-Here's an example index page that demonstrates `url` usage:
-
-```javascript
-let arc = require('@architect/functions')
-let url = arc.http.helpers.url
-
-exports.handler = async function http(req) {
-  if (req.session.isLoggedIn) {
-    return {
-      type: 'text/html',
-      body: `<a href=${url('/logout')}>logout</a>`
-    }
-  }
-  else {
-    return {
-      status: 302,
-      location: url('/login')
-    } 
-  }
-}
-```
-
-> 👋 After DNS propagates you can remove calls to `arc.http.helpers.url` from your code. Learn how to [assign a domain name](/guides/custom-dns) by setting up DNS.
-
-
-## Static (`arc.http.helpers.static`)
-
-Architect projects can be set up with `staging` and `production` S3 buckets for file syncing from the [`public` folder](/guides/static-assets).
-
-Each of these has its own URL – not to mention the local path in `sandbox`, which can mean trouble when trying to load the right version of a static asset.
-
-The `arc.http.helpers.static` helper resolves URL paths for your static assets, so you're requesting the right file from every environment.
-
-Here's an example of `static` usage:
-
-```javascript
-let arc = require('@architect/functions')
-let static = arc.http.helpers.static
-
-exports.handler = async function http(req) {
-  return {
-    type: 'text/html',
-    body: `Hey, it's an image! <img src="${static('/img/rainbows.gif')}">`
-  }
-}
-```
-
 
 ---
 

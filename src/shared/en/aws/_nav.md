@@ -6,6 +6,7 @@
   - [Prerequisites](/quickstart)
   - [Installation](/quickstart/install)
   - [Project Layout](/quickstart/arc-project-layout)
+  - [What next?](/quickstart/what-next)
 - Guides
   - [HTTP Functions](/guides/http)
   - [Working Locally](/guides/offline)
@@ -15,6 +16,7 @@
   - [Sessions](/guides/sessions)
   - [Middleware](/guides/middleware)
   - [Persist Data](/guides/data)
+  - [Background Tasks](/guides/background-tasks)
   - [Implement CORS](/guides/cors)
   - [Logging & Monitoring](/guides/logging)
   - [Assigning a Domain Name](/guides/custom-dns)
