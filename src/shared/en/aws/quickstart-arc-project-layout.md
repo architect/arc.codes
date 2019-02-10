@@ -89,4 +89,4 @@ Happy with staging? Ship a release to production by running `npx deploy producti
 
 Time to celebrate! ✨
 
-## Next: [Learn how to work with HTTP functions](/guides/http)
+## Next: [What next?](/quickstart/what-next)

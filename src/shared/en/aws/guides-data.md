@@ -795,5 +795,4 @@ exports.handler = arc.middleware(requireLogin, deleteNote)
 
 <hr>
 
-
-## Next: [Logging & Monitoring](/guides/logging)
+## Next: [Background Tasks](/guides/background-tasks)
