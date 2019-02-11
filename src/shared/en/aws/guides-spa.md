@@ -70,7 +70,7 @@ exports.handler = arc.proxy.public({
 
 The `arc.proxy.public` can be further augmented with per filetype transform plugins. Each key in `plugins` is a file extension for processing with an array of transform plugins to run anytime that filetype is matched.
 
-The first use case for this feature is to fix URLs. API Gateway creates ugly URLs by default appending `/staging` and `/production` to the application root. This pain goes away once you setup DNS but setting up static sites more is much more complicated because most tools do not expect these paths. 
+The first use case for this feature is to fix URLs. API Gateway creates ugly URLs by default appending `/staging` and `/production` to the application root. This pain goes away once you setup DNS but setting up static sites is much more complicated because most tools do not expect these paths. 
 
 This demonstrates using proxy plugins to transform all links so they are prefixed with the correct URL. 
 
@@ -95,7 +95,7 @@ exports.handler = arc.proxy.public({
   }
 })
 ```
-While not neccessary until DNS is setup its super helpful. Transform plugins open the door to other useful capabilties for authoring dynamic single page apps. 
+While not neccessary until DNS is set up it's super helpful. Transform plugins open the door to other useful capabilties for authoring dynamic single page apps. 
 
 Architect supports the following transform plugins:
 
@@ -124,7 +124,7 @@ Architect supports the following transform plugins:
 - `@architect/proxy-plugin-css-min` minify CSS 
 - `@architect/proxy-plugin-mjs-min` minify JS
 
-## Serverless Side Rendering
+## Serverless Site Rendering
 
 Prerendering content is great for performance but sometimes you need complete control of the intial HTML payload. In these cases you can enable `ssr` by giving it a module or function to run whenever `index.html` is requested.  
 
