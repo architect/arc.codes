@@ -34,7 +34,7 @@ Architect generates the following functions:
 - `src/ws/ws-default` invoked whenever a message is sent
 - `src/ws/ws-disconnect` invoked when disconnected
 
-Web socket functions are always invoked with an event payload that contains useful information:
+Web socket functions are always invoked with an `event` payload that contains useful information:
 
 - `event.requestContext.connectionId` the currently executing web socket connection
 - `event.requestContext.apiId` the currently executing web socket `apiId`
