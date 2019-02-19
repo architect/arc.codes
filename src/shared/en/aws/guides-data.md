@@ -1,6 +1,6 @@
 # Persist Data
 
-## Architect bakes in easy to use, first-class DynamoDB support for its speed and flexibility
+## Architect bakes in easy to use, first-class DynamoDB support for its speed and flexibilityf
 
 Durable persistence of structured data is the foundation of most applications. `@architect/data` is a very thin wrapper for `DynamoDB` and `DynamoDB.DocumentClient` that reads a `.arc` file and returns a client for creating, modifying, deleting and querying data from DynamoDB (aka Dynamo).
 
@@ -52,7 +52,7 @@ So, at this point, `npx create` will create the following Dynamo tables:
 
 ## Implementing an Admin Interface
 
-Now let's create a basic interface for this notes app. First, let's create a basic shared layout in `src/shared`, which will make it available to all functions (more on [sharing code across functions here](/guides/sharing-common-code)):
+Now let's create a basic interface for this notes app. First, let's create a basic shared layout in `src/views`, which will make it available to all functions (more on [sharing code across functions here](/guides/sharing-common-code)):
 
 ```bash
 mkdir src/shared/views
@@ -110,7 +110,7 @@ Next, use the layout into your home route. We'll show different contents if some
 ```javascript
 // src/http/get-index/index.js
 let arc = require('@architect/functions'),
-  layout = require('@architect/shared/layout'),
+  layout = require('@architect/views/layout'),
   url = arc.http.helpers.url
 
 exports.handler = async function http(request) {
@@ -151,7 +151,7 @@ Our signup page is a simple form:
 ```javascript
 // src/http/get-signup/index.js
 let arc = require('@architect/functions'),
-  layout = require('@architect/shared/layout'),
+  layout = require('@architect/views/layout'),
   url = arc.http.helpers.url,
   logo = arc.http.helpers.static('images/logo.svg')
 
@@ -294,7 +294,7 @@ Let's make a login page. It's just a form:
 ```javascript
 // src/http/get-login/index.js
 let arc = require('@architect/functions')
-let layout = require('@architect/shared/layout')
+let layout = require('@architect/views/layout')
 let url = arc.http.helpers.url
 let logo = arc.http.helpers.static('images/logo.svg')
 
@@ -495,7 +495,7 @@ All the bottom you'll notice we're using `arc.middleware` to combine this route 
 ```javascript
 // src/http/get-notes/index.js
 let arc = require('@architect/functions'),
-  layout = require('@architect/shared/layout'),
+  layout = require('@architect/views/layout'),
   requireLogin = require('@architect/shared/require-login'),
   getNotes = require('./get-notes.js'),
   log = console.log.bind(console),
@@ -639,7 +639,7 @@ This is just another lambda that returns two forms. Like always, we use middlewa
 ```javascript
 // src/http/get-notes-000noteID/index.js
 let arc = require('@architect/functions'),
-  layout = require('@architect/shared/layout'),
+  layout = require('@architect/views/layout'),
   requireLogin = require('@architect/shared/require-login'),
   data = require('@architect/data'),
   url = arc.http.helpers.url
