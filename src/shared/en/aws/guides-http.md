@@ -44,7 +44,7 @@ By default, HTTP functions are dependency free with a minimal, but very powerful
 - <b>`query`</b> - `Object`, any query params, if present
 - <b>`headers`</b> - `Object`, contains all client request headers 
 
-To send a response, HTTP functions return a plain JavaScript  with the following params:
+To send a response, HTTP functions return a plain JavaScript `Object` with the following params:
 
 - <b>`status`</b> (or <b>`code`</b>) - `number`, sets the HTTP status code
 - <b>`type`</b> - `string`, sets the `Content-Type` response header
