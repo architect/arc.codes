@@ -39,7 +39,7 @@ function random(min, max) {
 
 function handler(record, callback) {
   record.taskID = new Date(Date.now()).toISOString()
-  record.status = 'recieved'
+  record.status = 'received'
   // got a task!
   series([
     function save(callback) {
@@ -70,7 +70,7 @@ exports.handler = arc.events.subscribe(handler)
 
 ## Sending messages to the queue
 
-When we recieve a POST message from the client (in `/src/http/post-background`), we'll send it to the queue:
+When we receive a POST message from the client (in `/src/http/post-background`), we'll send it to the queue:
 
 ```javascript
 let arc = require('@architect/functions')
