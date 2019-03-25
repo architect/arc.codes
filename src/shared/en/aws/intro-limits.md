@@ -10,7 +10,7 @@ We call this situation *immutable infrastructure* to feel better! &#128150;
 ## Cloud limits and gotchas
 
 - Lambda cold starts are vicious on large Lambdas; the best antidote is to author small as possible Lambda functions (rule of thumb: sub 5MB compressed, including modules, usually results in sub-second execution)
-- Lambda functions cannot execute for longer than 15 minutes
+- Lambda functions are time-limited to 5 seconds by default. This can be adjusted [by default](/reference/arc-config), however they cannot execute for longer than 15 minutes maximum. You can also use [background tasks](/guides/background-tasks) to break work down into smaller chunks. 
 - Lambda functions require you to `npm install` to your project `node_modules` individually
 
 
