@@ -4,7 +4,7 @@ Scans local code for each function's individual `.arc-config` files and verifies
 
 The `.arc-config` file is an individual configuration manifest file that lives in the same folder as each Lambda it configures. This file is intended to be committed into your project git repository.
 
-An example `.arc-config` file found at `src/json/get-api/.arc-config`:
+An example `.arc-config` file found at `src/http/get-api/.arc-config`:
 
 ```.arc
 @aws
