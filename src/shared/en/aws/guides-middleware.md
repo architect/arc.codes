@@ -65,7 +65,7 @@ The middleware API works well with [the `shared` folder](/guides/sharing-common-
 ## Common Session Use Cases
 
 - Authentication
-- Adding context to requests
+- Adding additional info to requests
 
 See [the middleware reference](/reference/middleware) for more details.
 
