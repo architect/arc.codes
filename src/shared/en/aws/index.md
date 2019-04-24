@@ -69,5 +69,4 @@ And `npx deploy` ships iterations on your code to the cloud in seconds.
 ## Next steps
 
 - [Follow the quickstart](/quickstart)
-- [Check out the guides](/guides/offline)
-- [Read the reference](/reference)
+- [Check out the guides](/guides/http)
