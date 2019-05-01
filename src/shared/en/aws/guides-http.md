@@ -4,7 +4,7 @@
 
 Here we'll start from a basic 'hello world' app and then build a bigger app with signups and logins. 
 
-We'll do this with AWS Lambdas - small functions that trigger when their URL is hit. You can think of lambdas as the equivaleny of 'routes' in traditional web apps. 
+We'll do this with AWS Lambdas - small functions that trigger when their URL is hit. You can think of lambdas as the equivalent of 'routes' in traditional web apps. 
 
 AWS Lambdas are accessed via API Gateway, but `.arc` abstracts API Gateway and Lambda configuration and provisioning. 
 
@@ -53,7 +53,7 @@ To send a response, HTTP functions return a plain JavaScript `Object` with the f
 - <b>`cookie`</b> - `string`, sets the `Set-Cookie` response header
 - <b>`cors`</b> - `boolean`, sets the various CORS headers
 
-`@architect/functions` (optionally) adds additional useful tools for working with HTTP, including middlewere, sessions, and more.
+`@architect/functions` (optionally) adds additional useful tools for working with HTTP, including middleware, sessions, and more.
 
 ## Code sharing
 

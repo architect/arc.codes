@@ -2,7 +2,7 @@
 
 ## Offloading items into smaller tasks for offline completion
 
-To ensure your user-facing lambas complete within limits, you can offload background tasks to other lambdas. `.arc` supports both `@events` and `@queues`
+To ensure your user-facing lambdas complete within limits, you can offload background tasks to other lambdas. `.arc` supports both `@events` and `@queues`
 
 SNS [`@events`](/reference/events) is a distributed publish-subscribe (pub/sub) system. Messages are immediately pushed to subscribers when they are sent by publishers. This is typically called a 'message bus'.
 

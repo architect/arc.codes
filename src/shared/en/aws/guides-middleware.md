@@ -1,6 +1,6 @@
 # Middleware (`arc.middleware`)
 
-You can combine multiple operations in a single route using the middleware API. This is similar to middleware processing in other node frameworks, but uses [the same style as regular Arc routes](/guides/http). Just run `arc.middleware()` specifying each middleware item as arguments. `arc.middleware()` outputs a lambda, combining the middlewares given as arguments. Requests will be run through each middleware item in the order they're given to `arc.middleware()` with the following rules:
+You can combine multiple operations in a single route using the middleware API. This is similar to middleware processing in other node frameworks, but uses [the same style as regular Arc routes](/guides/http). Just run `arc.middleware()` specifying each middleware item as arguments. `arc.middleware()` outputs a lambda, combining the each middleware function given as arguments. Requests will be run through each middleware item in the order they're given to `arc.middleware()` with the following rules:
 
 - A middleware item is a function that takes a [request](/guides/http)
 - If the middleware item doesn't return anything, the request will be passed to the next middleware item in the queue
