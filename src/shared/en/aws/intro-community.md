@@ -4,16 +4,16 @@
 
 - Come chat with us in [Slack](https://join.slack.com/t/architecture-as-text/shared_invite/MjE2MzU4Nzg0NTY1LTE1MDA2NzgyMzYtODE2NzRkOGRmYw)!
 - Use the issue trackers below to file bugs, request features, or even just to ask a question
-- If you don't know where to file the issue just add it to [arc.codes](https://github.com/arc-repos/arc.codes/issues) tracker
+- If you don't know where to file the issue just add it to [arc.codes](https://github.com/architect/arc.codes/issues) tracker
 
-## 🌟 on GitHub <a href=https://github.com/arc-repos/architect><code>arc-repos/architect</code></a>
+## 🌟 on GitHub <a href=https://github.com/architect/architect><code>architect/architect</code></a>
 
 ### Companion Projects
 
-- [`arc-repos/arc-functions`](https://github.com/arc-repos/arc-functions) 
-- [`arc-repos/arc-data`](https://github.com/arc-repos/arc-data)  
-- [`arc-repos/arc-parser`](https://github.com/arc-repos/arc-parser) 
-- [`arc-repos/arc.codes`](https://github.com/arc-repos/arc.codes)
+- [`architect/arc-functions`](https://github.com/architect/arc-functions) 
+- [`architect/arc-data`](https://github.com/architect/arc-data)  
+- [`architect/arc-parser`](https://github.com/architect/arc-parser) 
+- [`architect/arc.codes`](https://github.com/architect/arc.codes)
 ## Helping out
 
 This project is open source and we welcome your help making it better. Introduce yourself in the issue trackers or chat! &#x1f49e; 

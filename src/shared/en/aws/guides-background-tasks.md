@@ -10,7 +10,7 @@ SQS [`@queues`](/reference/queues) is distributed queuing system. Messages are N
 
 In the example below, we'll make a pub/sub system using `@events` and `arc.events.publish`.
 
-Check the [example on GitHub](https://github.com/arc-repos/arc-example-events-pubsub) for a full version of the code described below.
+Check the [example on GitHub](https://github.com/architect/arc-example-events-pubsub) for a full version of the code described below.
 
 ## Creating an SNS message bus
 

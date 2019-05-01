@@ -188,7 +188,7 @@ test('arc.sandbox.db.close', t=>{
   t.ok(true, 'closed')
 })
 ```
-> 🔭 Get the source for this example [arc-repos/arc-example-working-locally](https://github.com/arc-repos/arc-example-working-locally)
+> 🔭 Get the source for this example [architect/arc-example-working-locally](https://github.com/architect/arc-example-working-locally)
 
 ---
 

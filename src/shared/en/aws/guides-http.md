@@ -190,7 +190,7 @@ exports.handler = async function http(req) {
 
 ## Example App
 
-Let's implement a proof-of-concept login flow. There's [a repo with the example below on GitHub](https://github.com/arc-repos/arc-example-login-flow).
+Let's implement a proof-of-concept login flow. There's [a repo with the example below on GitHub](https://github.com/architect/arc-example-login-flow).
 
 This example `.arc` project brings together all the concepts for defining HTTP Lambdas:
 
@@ -336,7 +336,7 @@ exports.handler = async function route(request) {
 
 ```
 
-And that's it! Remember you can find [the example repo on GitHub.](https://github.com/arc-repos/arc-example-login-flow)
+And that's it! Remember you can find [the example repo on GitHub.](https://github.com/architect/arc-example-login-flow)
 
 <hr>
 

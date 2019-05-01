@@ -104,7 +104,7 @@ exports.handler = async function http(req) {
 }
 ```
 
-> 🌟 Source for this example at https://github.com/arc-repos/arc-example-cors
+> 🌟 Source for this example at https://github.com/architect/arc-example-cors
 
 
 ## Restricting Domains

@@ -149,7 +149,7 @@ The `ws-disconnect` Lambda is used to cleanup any records of `event.requestConte
 
 ---
 
-Find [the example repo on GitHub.](https://github.com/arc-repos/arc-example-ws)
+Find [the example repo on GitHub.](https://github.com/architect/arc-example-ws)
 
 <hr>
 

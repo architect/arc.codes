@@ -6,7 +6,7 @@ Durable persistence of structured data is the foundation of most applications. `
 
 In this guide you will build a simple note taking application, with multiple users, authentication, and data storage with Dynamo and `.arc`.
 
-The example below is also [available on GitHub.](https://github.com/arc-repos/arc-example-notes)
+The example below is also [available on GitHub.](https://github.com/architect/arc-example-notes)
 
 ## Generating the Data Layer
 
@@ -787,7 +787,7 @@ exports.handler = arc.middleware(requireLogin, deleteNote)
 
 ## Go farther:
 
-- [Architect Notes example app code repo](https://github.com/arc-repos/arc-example-notes)
+- [Architect Notes example app code repo](https://github.com/architect/arc-example-notes)
 - [Official aws-sdk DynamoDB docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
 - [Official aws-sdk `DynamoDB.DocumentClient` docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
 - [DynamoDB best practices](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html)
