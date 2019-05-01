@@ -165,3 +165,7 @@ exports.handler = arc.proxy.public({
   ssr: '@architect/views/render'
 })
 ```
+
+<hr>
+
+## Next: [Sessions](/guides/sessions)

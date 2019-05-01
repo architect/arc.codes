@@ -67,6 +67,6 @@ The middleware API works well with [the `shared` folder](/guides/sharing-common-
 - Authentication
 - Adding additional info to requests
 
-See [the middleware reference](/reference/middleware) for more details.
+<hr>
 
-## Next: [Work Locally](/guides/offline)
+## Next: [Persist Data](/guides/data)

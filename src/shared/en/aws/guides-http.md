@@ -106,7 +106,7 @@ In the example below we'll use some of the helpers from  `@architect/functions`:
 - <b>[`arc.middleware`](/guides/middleware)</b> - middleware API, allowing requests to be filtered through multiple steps before sending a response.
 - <b>[`arc.http.session`](/guides/sessions)</b> - read the session using the request cookie, write the session returning a cookie string
 - <b>[`arc.http.helpers.url`](/guides/urls)</b> - transform `/` into the appropriate `staging` and `production` API Gateway paths
-- <b>[`arc.http.helpers.static`](/guides/static)</b> - accepts a path part and returns path to `localhost:3333` or `staging` and `production` S3 buckets
+- <b>[`arc.http.helpers.static`](/guides/static-assets)</b> - accepts a path part and returns path to `localhost:3333` or `staging` and `production` S3 buckets
 - <b>`arc.http.helpers.verify`</b> - verify a `csrf` token
 
 ---

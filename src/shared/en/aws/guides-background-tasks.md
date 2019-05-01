@@ -26,6 +26,7 @@ In your `.arc` file, we're going to create a SNS message bus called `background-
 In `src/events/background-task/index.js` we'll subscribe to the queue:
 
 ```javascript
+// src/events/background-task/index.js
 let arc = require('@architect/functions')
 let data = require('@architect/data')
 let series = require('run-series')
@@ -70,9 +71,10 @@ exports.handler = arc.events.subscribe(handler)
 
 ## Sending messages to the queue
 
-When we receive a POST message from the client (in `/src/http/post-background`), we'll send it to the queue:
+When we receive a POST message from the client we'll send it to the queue:
 
 ```javascript
+// src/http/post-background/index.js
 let arc = require('@architect/functions')
 let url = arc.http.helpers.url
 
@@ -93,8 +95,9 @@ exports.handler = async function http(req) {
 
 When a user POSTs to `/background` we'll respond immediately, but we'll also publish the payload into the `background-task` message bus, for processing by the subscriber in  `src/events/background-task`.
 
----
-
 See [the events reference](/reference/events) for more details.
 
-## Next: [Logging & Monitoring](/guides/logging)
+---
+
+
+## Next: [Implement CORS](/guides/cors)

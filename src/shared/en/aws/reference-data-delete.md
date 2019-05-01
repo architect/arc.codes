@@ -55,7 +55,7 @@ async function handler(req, res) {
 exports.handler = arc.http(handler)
 ```
 
-The POST creates a row redirects home.
+The POST to `/notes` creates a row and redirects home:
 
 ```javascript
 // src/http/post-notes/index.js
@@ -74,7 +74,7 @@ exports.handler = async function http(req) {
 }
 ```
 
-The POST deletes the row and redirects home.
+The POST to `/notes/:noteID/del` deletes the row and redirects home:
 
 ```javascript
 // src/http/post-notes-000noteID-del/index.js

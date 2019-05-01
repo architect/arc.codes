@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint . --ignore-pattern node_modules --fix",
     "spellcheck": "npx spellchecker ./src/shared/**/*.md --no-suggestions -q -d ./dictionary.js --plugins spell indefinite-article repeated-words syntax-mentions syntax-urls",
-    "start": "npm run spellcheck && nodemon --watch src/shared/ -e md,css,js --exec NODE_ENV=testing npx sandbox",
+    "start": "nodemon --watch src/shared/ -e md,css,js --exec NODE_ENV=testing npx sandbox",
     "test": "AWS_REGION=us-west-2 tape test/test.js | tap-spec && npm run lint"
   },
   "repository": {

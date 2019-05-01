@@ -49,4 +49,6 @@ Note: The route `/pages/:dateID` corresponding handler deliberately looks a bit 
 - `testapp-staging-get-pages-000dateID`
 - `testapp-production-get-pages-000dateID`
 
-## Next: [`@html`](/reference/html)
+---
+
+## Next: [`Creating table indexes with @indexes`](/reference/indexes)

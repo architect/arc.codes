@@ -8,7 +8,7 @@ Developers that prefer `yaml` or `json` syntax can opt into using YAML or JSON i
 
 ```yaml
 ---
-# commenst oo ehh
+# comments oo ehh
 app: testapp
 description: Example arc-to-json
 domain: testapp.com
@@ -17,7 +17,7 @@ aws:
   profile: personal
 static:
   staging: testapp-bucket
-  production: testapp-buckea-prod
+  production: testapp-bucket-prod
 http:
 - get: "/"
 - post: "/login"
@@ -57,7 +57,7 @@ scheduled:
   },
   "static": {
     "staging": "testapp-bucket",
-    "production": "testapp-buckea-prod"
+    "production": "testapp-bucket-prod"
   },
   "html": [
     {
@@ -120,7 +120,6 @@ scheduled:
 }
 ```
 
-<hr>
+---
 
-
-## Next: [Work Locally](/guides/offline)
+## Next: [Dependencies](/guides/deps)

@@ -1,6 +1,6 @@
 # Dependencies
 
-> Shared deps are necessary and having them go out of sync is an error prone condition. Recommendation: out-of-date dependencies is a failing test!
+> Shared dependencies are necessary and having them go out of sync is an error-prone condition. Recommendation: make out-of-date dependencies a failing test!
 
 Module dependencies in an `.arc` project are defined in two places:
 
@@ -32,11 +32,10 @@ Run the project locally with `npx sandbox`.
 - Check in `package.json` and `package-lock.json`
 - Also make sure every Lambda has a `package.json` and `package-lock.json` checked in
 - Add `node_modules` to your `.gitignore`
-- Ensure your deps are synchronized within an `@app` namespace
+- Ensure your dependencies are synchronized within an `@app` namespace
 
 More complex projects will have unique build requirements which you can compose as you see fit. We recommend a `./scripts` folder for those particulars.
 
-<hr>
-
+---
 
 ## Next: [Upgrade Guide](/guides/upgrade)

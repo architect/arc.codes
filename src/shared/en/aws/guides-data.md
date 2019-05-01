@@ -231,7 +231,7 @@ exports.handler = async function http(request) {
 }
 ```
 
-`make-person.js` just uses the popular `bcrypt` tool to store a hashed version of the password in DynamoDB
+`make-person.js` uses the popular `bcrypt` tool to store a hashed version of the password in DynamoDB:
 
 ```javascript
 // src/http/post-signup/make-person.js
@@ -444,7 +444,7 @@ This wipes the current session and redirects back to `/`.
 
 ## Protecting Routes
 
-To ensure no bad actors start posting notes, we can lock down the other routes using Arc's [middleware](https://arc.codes/reference/middleware). 
+To ensure no bad actors start posting notes, we can lock down the other routes using Arc's [middleware](https://arc.codes/guides/middleware). 
 
 ```bash
 touch src/shared/require-login.js
@@ -483,7 +483,7 @@ module.exports = async function requireLogin(request) {
 
 ```
 
-> 🏄‍♀️ Read more about [middleware](https://arc.codes/reference/middleware).
+> 🏄‍♀️ Read more about [middleware](https://arc.codes/guides/middleware).
 
 
 ## Showing and making notes 
@@ -587,16 +587,41 @@ module.exports = async function getNotes(email) {
 
 ```
 
-Now we've got the form, let's implement the POST handler. We'll use the `hashids` library to help create keys for our notes.
+Now that we've got the form, let's implement the POST handler. We'll use the `hashids` library to help create keys for our notes.
 
 ```bash
 cd src/http/post-notes
 npm i hashids
 ```
 
+```javascript
+// src/http/post-notes/make-note.js
+let Hashids = require('hashids'),
+  data = require('@architect/data'),
+  log = console.log.bind(console),
+  hashids = new Hashids()
+
+async function makeNote(email, title, body) {
+  // create the partition and sort keys
+  let note = {
+    email,
+    title,
+    body,
+    noteID: hashids.encode(Date.now())
+  }
+  log(`Making a note with ${JSON.stringify(note, null, 2)}`)
+  // save the note
+  let result = await data.notes.put(note)
+  return result
+}
+
+module.exports = makeNote
+```
+
 And then in the handler:
 
 ```javascript
+// src/http/post-notes/index.js
 let arc = require('@architect/functions'),
   makeNote = require('./make-note.js'),
   requireLogin = require('@architect/shared/require-login'),
@@ -632,9 +657,9 @@ Now as we add notes, we can see them in our UI!
 
 Lets make a detail page to edit a specific note.
 
-While we're at it, let us delete the note too!
+While we're at it, let's delete the note too!
 
-This is just another lambda that returns two forms. Like always, we use middleware to wrap it with `requireLogin`
+This is just another lambda that returns two forms. Like always, we use middleware to wrap it with `requireLogin`:
 
 ```javascript
 // src/http/get-notes-000noteID/index.js
@@ -698,7 +723,7 @@ exports.handler = arc.middleware(requireLogin, showNote)
 ```
 
 
-And lets implement the update action.
+Next let's implement the update action:
 
 ```javascript
 // src/http/post-notes-000noteID/index.js
@@ -739,7 +764,7 @@ It can be helpful to inspect the data using the REPL. To do that, first install 
 npm i @architect/data
 ```
 
-And now `npx repl` opens a REPL into your Dynamo schema running locally and in-memory. If you are running the app with `npx sandbox` in another tab, it connects to that database.
+Now running `npx repl` opens a REPL into your Dynamo schema running locally and in-memory. If you are running the app with `npx sandbox` in another tab, it connects to that database.
 
 Try starting the REPL and running: `data.notes.scan({}, console.log)` to see all the current notes. The REPL can attach itself to the `staging` and `production` databases also by setting the appropriate `NODE_ENV` environment variable flag. 
 
@@ -793,6 +818,7 @@ exports.handler = arc.middleware(requireLogin, deleteNote)
 - [DynamoDB best practices](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html)
 - [Read the `@architect/data` reference](/reference/data)
 
-<hr>
+---
+
 
 ## Next: [Background Tasks](/guides/background-tasks)
