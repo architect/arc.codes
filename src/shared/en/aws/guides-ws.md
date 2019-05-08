@@ -1,8 +1,8 @@
-# Web Socket Functions
+# WebSocket Functions
 
 ## Real time apps composed of fast, tiny functions
 
-> `.arc` abstracts API Gateway configuration and provisioning, while `@architect/functions` (optionally) adds a very light but powerful API shim to Lambda for working with Web Sockets
+> `.arc` abstracts API Gateway configuration and provisioning, while `@architect/functions` (optionally) adds a very light but powerful API shim to Lambda for working with WebSockets
 
 Given the following example `.arc` file:
 
@@ -17,17 +17,6 @@ testapp
 get /
 ```
 
-By default, Web Socket functions are dependency free with a minimal, but very powerful, low level API. 
-
-```javascript
-exports.handler = async function ws(event) {
-  // event.requestContext.connectionId
-  // event.requestContext.apiId
-  // event.body
-  return {statusCode: 200}
-}
-```
-
 Architect generates the following functions:
 
 - `src/ws/ws-connect` invoked when the web socket is connected
@@ -40,12 +29,23 @@ Web socket functions are always invoked with an `event` payload that contains us
 - `event.requestContext.apiId` the currently executing web socket `apiId`
 - `event.body` the message payload
 
+```javascript
+exports.handler = async function ws(event) {
+  // event.requestContext.connectionId
+  // event.requestContext.apiId
+  // event.body
+  return {statusCode: 200}
+}
+```
+
+By default, WebSocket functions are dependency free with a minimal, but very powerful, low level API. 
+
 ## Browser Implementation
 
 Render the app HTML shell and embed the current web socket URL in a global `WS_URL`.
 
 ```javascript
-// src/http/get-index
+// src/http/get-index/index.js
 let getURL = require('./get-web-socket-url')
 
 /**
@@ -89,9 +89,11 @@ module.exports = function getWS() {
 }
 ```
 
-We'll put the browser JavaScript in `/public/index.mjs`.
+We'll put the browser JavaScript in `public/index.mjs`:
 
 ```javascript
+// public/index.mjs
+
 // get the web socket url from the backend
 let url = window.WS_URL
 
@@ -147,10 +149,8 @@ The `ws-default` Lambda will be the main event bus for web socket events. The `e
 
 The `ws-disconnect` Lambda is used to cleanup any records of `event.requestContext.connectionId`.
 
+> 🔭 Find [the example repo on GitHub](https://github.com/architect/arc-example-ws).
+
 ---
 
-Find [the example repo on GitHub.](https://github.com/arc-repos/arc-example-ws)
-
-<hr>
-
-## Next: [Working locally & offline](/guides/offline)
+## Next: [Multiple AWS Accounts](/guides/multiple-aws-accounts)

@@ -6,7 +6,7 @@ Architect projects support a `public` directory in the root of your project for 
 
 Anything in  `public` directory is available at `http://localhost:3333/_static/` when running in the sandbox. 
 
-For `production` and `staging` environments, Architect can have `staging` and `production` S3 buckets for file syncing from the `public` folder - they'll be avaiable at at `https://yourapi.com/_static` once deployed.
+For `production` and `staging` environments, Architect can have `staging` and `production` S3 buckets for file syncing from the `public` folder - they'll be available at `https://yourapi.com/_static` once deployed.
 
 The `arc.http.helpers.static` helper resolves URL paths for your static assets, so you're requesting the right file from every environment.
 

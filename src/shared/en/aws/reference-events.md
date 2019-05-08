@@ -39,4 +39,6 @@ And the following deployment Lambdas:
 - `testapp-staging-likes`
 - `testapp-production-likes`
 
-## Next: [Defining routes with `@html`](/reference/html)
+---
+
+## Next: [Defining routes with `@http`](/reference/http)

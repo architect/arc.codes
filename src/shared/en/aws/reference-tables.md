@@ -57,4 +57,4 @@ Function code will also be generated for the defined `people` Lambda triggers:
 └── package.json
 ```
 
-## Next: [Web Sockets with `@ws`](/reference/ws)
+## Next: [WebSockets with `@ws`](/reference/ws)

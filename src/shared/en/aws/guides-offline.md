@@ -60,7 +60,7 @@ Add the following to `package.json`:
 }
 ```
 
-** 🖖 Important!**
+**🖖 Important!**
 
 - Setup `AWS_PROFILE` and `AWS_REGION` per the [installation guide](/quickstart/install)
 - `NODE_ENV=testing` is VERY important to add to your `npm test` scripts regardless of the test framework you are using--- you MUST include it or you will have a bad time
@@ -188,7 +188,7 @@ test('arc.sandbox.db.close', t=>{
   t.ok(true, 'closed')
 })
 ```
-> 🔭 Get the source for this example [arc-repos/arc-example-working-locally](https://github.com/arc-repos/arc-example-working-locally)
+> 🔭 Get the source for this example [architect/arc-example-working-locally](https://github.com/architect/arc-example-working-locally)
 
 ---
 

@@ -95,6 +95,7 @@ main()
 The API route `src/http/get-api` is CORS enabled with one flag:
 
 ```javascript
+// src/http/get-api/index.js
 exports.handler = async function http(req) {
   return {
     cors: true,
@@ -104,7 +105,7 @@ exports.handler = async function http(req) {
 }
 ```
 
-> 🌟 Source for this example at https://github.com/arc-repos/arc-example-cors
+> 🌟 Source for this example at [architect/arc-example-cors](https://github.com/architect/arc-example-cors)
 
 
 ## Restricting Domains
@@ -142,4 +143,4 @@ This is a great way to ease into using cloud functions, or adding backend functi
 ---
 
 
-## Next: [Persist Data](/guides/data)
+## Next: [Logging and Monitoring](/guides/logging)

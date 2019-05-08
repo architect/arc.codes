@@ -4,7 +4,7 @@
 
 Here we'll start from a basic 'hello world' app and then build a bigger app with signups and logins. 
 
-We'll do this with AWS Lambdas - small functions that trigger when their URL is hit. You can think of lambdas as the equivaleny of 'routes' in traditional web apps. 
+We'll do this with AWS Lambdas - small functions that trigger when their URL is hit. You can think of lambdas as the equivalent of 'routes' in traditional web apps. 
 
 AWS Lambdas are accessed via API Gateway, but `.arc` abstracts API Gateway and Lambda configuration and provisioning. 
 
@@ -53,7 +53,7 @@ To send a response, HTTP functions return a plain JavaScript `Object` with the f
 - <b>`cookie`</b> - `string`, sets the `Set-Cookie` response header
 - <b>`cors`</b> - `boolean`, sets the various CORS headers
 
-`@architect/functions` (optionally) adds additional useful tools for working with HTTP, including middlewere, sessions, and more.
+`@architect/functions` (optionally) adds additional useful tools for working with HTTP, including middleware, sessions, and more.
 
 ## Code sharing
 
@@ -106,7 +106,7 @@ In the example below we'll use some of the helpers from  `@architect/functions`:
 - <b>[`arc.middleware`](/guides/middleware)</b> - middleware API, allowing requests to be filtered through multiple steps before sending a response.
 - <b>[`arc.http.session`](/guides/sessions)</b> - read the session using the request cookie, write the session returning a cookie string
 - <b>[`arc.http.helpers.url`](/guides/urls)</b> - transform `/` into the appropriate `staging` and `production` API Gateway paths
-- <b>[`arc.http.helpers.static`](/guides/static)</b> - accepts a path part and returns path to `localhost:3333` or `staging` and `production` S3 buckets
+- <b>[`arc.http.helpers.static`](/guides/static-assets)</b> - accepts a path part and returns path to `localhost:3333` or `staging` and `production` S3 buckets
 - <b>`arc.http.helpers.verify`</b> - verify a `csrf` token
 
 ---
@@ -190,7 +190,7 @@ exports.handler = async function http(req) {
 
 ## Example App
 
-Let's implement a proof-of-concept login flow. There's [a repo with the example below on GitHub](https://github.com/arc-repos/arc-example-login-flow).
+Let's implement a proof-of-concept login flow. There's [a repo with the example below on GitHub](https://github.com/architect/arc-example-login-flow).
 
 This example `.arc` project brings together all the concepts for defining HTTP Lambdas:
 
@@ -336,7 +336,7 @@ exports.handler = async function route(request) {
 
 ```
 
-And that's it! Remember you can find [the example repo on GitHub.](https://github.com/arc-repos/arc-example-login-flow)
+And that's it! Remember you can find [the example repo on GitHub.](https://github.com/architect/arc-example-login-flow)
 
 <hr>
 

@@ -27,3 +27,7 @@ Create a custom IAM Role by adding `role.json` to your Lambda function source co
 ```
 
 Running `npx audit apply` will create a new role named "testapp-get-index" with the managed policies listed in the `role.json` file and apply to both the `staging` and `production` lambda functions.
+
+---
+
+## Next: [YAML/JSON Config](/guides/yaml-and-json)

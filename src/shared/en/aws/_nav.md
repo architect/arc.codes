@@ -20,7 +20,7 @@
   - [Implement CORS](/guides/cors)
   - [Logging & Monitoring](/guides/logging)
   - [Assigning a Domain Name](/guides/custom-dns)
-  - [Web Sockets](/guides/ws)
+  - [WebSockets](/guides/ws)
 - NewOps
   - [Multiple AWS Accounts](/guides/multiple-aws-accounts)
   - [Custom IAM Roles](/guides/iam)

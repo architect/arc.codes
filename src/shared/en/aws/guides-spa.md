@@ -95,7 +95,7 @@ exports.handler = arc.proxy.public({
   }
 })
 ```
-While not neccessary until DNS is set up it's super helpful. Transform plugins open the door to other useful capabilties for authoring dynamic single page apps. 
+While not necessary until DNS is set up it's super helpful. Transform plugins open the door to other useful capabilities for authoring dynamic single page apps. 
 
 Architect supports the following transform plugins:
 
@@ -126,7 +126,7 @@ Architect supports the following transform plugins:
 
 ## Serverless Site Rendering
 
-Prerendering content is great for performance but sometimes you need complete control of the intial HTML payload. In these cases you can enable `ssr` by giving it a module or function to run whenever `index.html` is requested.  
+Prerendering content is great for performance but sometimes you need complete control of the initial HTML payload. In these cases you can enable `ssr` by giving it a module or function to run whenever `index.html` is requested.  
 
 ```javascript
 // src/http/get-index/index.js
@@ -165,3 +165,7 @@ exports.handler = arc.proxy.public({
   ssr: '@architect/views/render'
 })
 ```
+
+<hr>
+
+## Next: [Sessions](/guides/sessions)

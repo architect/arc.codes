@@ -41,4 +41,6 @@ And the following deployment Lambdas:
 - `testapp-staging-publish-log`
 - `testapp-production-publish-log`
 
+---
+
 ## Next: [Scheduling functions with `@scheduled`](/reference/scheduled)
