@@ -86,6 +86,8 @@ This will sync all production lambdas to use the DynamoDB table while testing an
 - Error messages
 - Shopping carts
 
+See [the sessions reference](/reference/http-session) for more details.
+
 <hr>
 
 ## Next: [Middleware](/guides/middleware)
