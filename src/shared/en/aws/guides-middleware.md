@@ -33,7 +33,7 @@ async function requireLogin(request) {
 	if (!state.isLoggedIn) {
 		console.log(`Attempt to access dashboard without logging in!`);
     return {
-      status: 301,
+      status: 302,
       location: `/login`
     };
 	}
