@@ -13,6 +13,7 @@ Leverage powerful **Amazon Web Services** _serverless_ primitives without frustr
 - [API Gateway](https://aws.amazon.com/api-gateway/) for HTTP
 - [Route53](https://aws.amazon.com/route53) for DNS
 - [CloudFront](https://aws.amazon.com/cloudfront/) for CDN
+- [CloudFormation](https://aws.amazon.com/cloudformation/) for packaging deployments
 - [S3](https://aws.amazon.com/s3/) for static assets
 - [Simple Notification Service](https://aws.amazon.com/sns/) for event pub/sub functions
 - [Simple Queue Service](https://aws.amazon.com/sqs/) for queue functions
