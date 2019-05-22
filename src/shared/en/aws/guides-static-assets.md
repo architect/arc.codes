@@ -2,13 +2,14 @@
 
 ## Automatically build and deploy your static assets
 
-Architect projects support a `public` directory in the root of your project for static assets. The `public` directory typically includes static assets such as images, styles, and scripts required in your front-end workflows. 
+Architect projects support a `public` directory in the root of your project for static assets. The `public` directory typically includes static assets such as images, styles, and scripts required in your front-end workflows.
 
-Anything in  `public` directory is available at `http://localhost:3333/_static/` when running in the sandbox. 
+Anything in  `public` directory is available at `http://localhost:3333/_static/` when running in the sandbox.
 
 For `production` and `staging` environments, Architect can have `staging` and `production` S3 buckets for file syncing from the `public` folder - they'll be available at `https://yourapi.com/_static` once deployed.
 
 The `arc.http.helpers.static` helper resolves URL paths for your static assets, so you're requesting the right file from every environment.
+
 
 ## Provisioning
 
@@ -64,6 +65,7 @@ And, of course, it would be wise to use both of these S3 buckets as origins for 
 
 > ⛳️ Protip #2: `npx deploy [static] --delete` will remove files from the bucket that are no longer locally present
 
+
 ## Linking
 
 Isolation is key to creating a continuous delivery pipeline. It's good to work on our local machines, deploy to a staging environment, and promote to production with total confidence that the system is only improving. Static assets are no different!
@@ -73,12 +75,12 @@ As such, there are three environments you need to be concerned about for address
 - Local:
 > `http://localhost:3333/_static/<asset>`
 - Staging:
-> `https://s3-<aws region>.amazonaws.com/<staging bucket>/<asset>`
+> `https://<staging bucket>.s3.<aws region>.amazonaws.com/<asset>`
 - Production:
-> `https://s3-<aws region>.amazonaws.com/<production bucket>/<asset>`
+> `https://<production bucket>.s3.<aws region>.amazonaws.com/<asset>`
 
 This is an example production URL from a testing app:
-> `https://s3-us-west-1.amazonaws.com/arc-testapp-production/babybeaver.jpg`
+> `https://arc-testapp-production.us-west-1.s3.amazonaws.com/babybeaver.jpg`
 
 
 ## Calling static URLs
@@ -107,8 +109,6 @@ exports.handler = async function http(req) {
     body
   }
 }
-
-
 ```
 
 See [the static reference](/reference/static) for more details.
