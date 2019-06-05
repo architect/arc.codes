@@ -134,6 +134,7 @@ module.exports = [
   'plaintext',
   'PowerShell',
   'powershell',
+  'pragma',
   'pre-compiled',
   'pre-provision',
   'pre-wired',
