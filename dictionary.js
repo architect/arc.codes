@@ -40,6 +40,7 @@ module.exports = [
   'CLA',
   'CLI',
   'Cloudflare',
+  'CloudFormation',
   'CloudFront',
   'ClouDNS',
   'CloudWatch',
