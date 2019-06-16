@@ -490,7 +490,7 @@ module.exports = async function requireLogin(request) {
 
 Let's make a page that shows existing notes, with a form to make new notes.
 
-All the bottom you'll notice we're using `arc.middleware` to combine this route with `require-login`, making this only available to logged in users:
+At the bottom you'll notice we're using `arc.middleware` to combine this route with `require-login`, making this only available to logged in users:
 
 ```javascript
 // src/http/get-notes/index.js
