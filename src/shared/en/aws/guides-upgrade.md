@@ -71,7 +71,7 @@ exports.handler = async function http(request) {
   // mutate the session state
   session.like = (session.like || 0) + 1
 
-  // write the session to DynamoDB and get a Set-Cooke string
+  // write the session to DynamoDB and get a Set-Cookie string
   let cookie = await arc.http.session.write(session)
 
   // ensure the cookie gets updated on the client
