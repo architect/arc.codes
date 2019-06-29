@@ -14,7 +14,7 @@ cd testapp
 arc init
 ```
 
-Run `arc sandbox` and check out the fresh new app. (Run <code>ctrl+C</code> to exit the sandbox.)
+Run `arc sandbox` and check out the fresh new app. (Run <code>Ctrl + c</code> to exit the sandbox.)
 
 Deploy the code:
 
