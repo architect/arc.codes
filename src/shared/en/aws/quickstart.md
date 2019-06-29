@@ -1,9 +1,12 @@
 # Prerequisites
 
-This project assumes you are running Node `8.10.x` and NPM `6.0.x` locally.
+Architect supports the following local runtimes (to mirror AWS Lambda runtimes): 
 
-Please keep in mind that AWS Lambda runs Node `8.10.x`.
+- Node `10.x`
+- Ruby `2.5`
+- Python `3.7`
 
+If you want to use `arc sandbox` or `arc hydrate` you will need these installed on your machine.
 
 ## AWS Setup
 

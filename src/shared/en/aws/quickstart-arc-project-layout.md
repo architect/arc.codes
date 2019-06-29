@@ -12,7 +12,7 @@ Architect projects have a `.arc`, `arc.yaml` or `arc.json` manifest file in the 
 |  |- events ...... Event Lambda functions
 |  |- queues ...... Queue Lambda functions
 |  |- scheduled ... Scheduled Lambda functions
-|  |- tables ...... Table Trigger Lambda functions
+|  |- tables ...... DynamoDB Table Stream Lambda functions
 |  '- ws .......... Web Socket Lambda functions
 '- .arc 
 ```
@@ -21,17 +21,16 @@ All folders are <b>OPTIONAL</b>. Architect ignores any other folders.
 
 <hr>
 
-# Configuration Reference
+# Configuration Overview
 
-The `.arc` manifest can be broadly split into three sections:
+The `.arc` manifest can be broadly split into three groups of configuration:
 
-### System config
+### System configuration
 
 These sections are for global system level env configuration. The most important being the `@app` namespace which is used to prefix all generated resources.
 
 - [`@app`](/reference/app) **[Required]** The application namespace
-- [`@domain`](/reference/domain) Assign a domain name to your app (ACM, API Gateway, and Route 53)
-- [`@aws`](/reference/aws) AWS config
+- [`@aws`](/reference/aws) AWS specific config
 
 ### Lambda Function config
 
@@ -70,7 +69,7 @@ get /
 get /posts # the posts go here
 ```
 
-Running `npx create` creates the following code:
+Running `arc init` creates the following code:
 
 ```bash
 /
@@ -83,9 +82,9 @@ Running `npx create` creates the following code:
 '-.arc
 ```
 
-The generated code was also immediately deployed to the built-in `staging` environment. Subsequent edits to the local code are deployed by running `npx deploy`.
+If you add further sections it is safe to run and re-run `arc init` to generate further code. Local code is deployed to a staging environment by running `arc deploy`.
 
-Happy with staging? Ship a release to production by running `npx deploy production`. 
+Happy with staging? Ship a release to production by running `arc deploy production`. 
 
 Time to celebrate! ✨
 

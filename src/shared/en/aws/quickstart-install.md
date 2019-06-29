@@ -1,27 +1,27 @@
 # Installation
 
-Open up a terminal and create a project folder:
+Open up a terminal:
+
+```bash
+npm install -g @architect/cli
+```
+
+Create a project folder:
 
 ```bash
 mkdir testapp
 cd testapp
-npm init --yes
-npm install @architect/architect
-touch .arc
+arc init
 ```
 
-And then paste the following contents into the `.arc` file:
+Run `arc sandbox` and check out the fresh new app. (Run <code>ctrl+C</code> to exit the sandbox.)
 
-```arc
-@app
-testapp
+Deploy the code:
 
-@http
-get /
+```bash
+arc deploy
 ```
 
-Run `npx create` and check out the fresh new app.
-
-Congrats, you've successfully set up and deployed a serverless web app! Nice work. 💖
+Congrats, you've successfully set up a serverless web app! Nice work. 💖
 
 ## Next: [.arc project layout](/quickstart/arc-project-layout)

@@ -511,3 +511,11 @@ pre[class*="language-"] {
 .token.entity {
   cursor: help;
 }
+
+pre.language-arc code.language-arc,
+pre.language-bash code.language-bash {
+  background:black;
+  color:cyan;
+  font-size: 1.3em;
+  text-shadow:none;
+}
