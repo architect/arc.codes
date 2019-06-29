@@ -7,11 +7,11 @@
 💓 **Primitives, not frameworks**: define app architecture agnostic of vendor arcana<br>
 💾 **Version control your architecture** and provision cloud infra in minutes from an `.arc` manifest <br>
 
-Leverage powerful **Amazon Web Services** _serverless_ primitives without frustrating config: 
+Deploy powerful **Amazon Web Services** _serverless_ primitives with clear and readable config: 
 
 - [CloudFormation](https://aws.amazon.com/cloudformation/) and [SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-reference.html#serverless-sam-cli) for AWS standard deployments
 - [Lambda](https://aws.amazon.com/lambda/) *cloud native* functions for compute 
-- [API Gateway](https://aws.amazon.com/api-gateway/) for HTTP functions
+- [API Gateway](https://aws.amazon.com/api-gateway/) for HTTP and Websocket functions
 - [Route53](https://aws.amazon.com/route53) for DNS and [CloudFront](https://aws.amazon.com/cloudfront/) for CDN
 - [S3](https://aws.amazon.com/s3/) for static assets
 - [Simple Notification Service](https://aws.amazon.com/sns/) for event pub/sub functions

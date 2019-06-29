@@ -1,7 +1,7 @@
 - Introduction
   - [Project Philosophy](/intro/philosophy)
   - [Open Community](/intro/community)
-  - [Limits](/intro/limits)
+  - [Limits and Superpowers](/intro/limits)
 - Quickstart
   - [Prerequisites](/quickstart)
   - [Installation](/quickstart/install)
