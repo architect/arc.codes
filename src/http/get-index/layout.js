@@ -1,3 +1,4 @@
+let path = require('path')
 let md = require('marked')
 let fs = require('fs')
 
@@ -7,7 +8,7 @@ let github = fs.readFileSync(path.join(__dirname, 'github.svg')).toString()
 let logo = fs.readFileSync(path.join(__dirname, 'architect-logo-white.svg')).toString()
 let style = fs.readFileSync(path.join(__dirname, 'index.css')).toString()
 
-module.exports = function layout(filename, {headers, body}, config) {
+module.exports = function layout(filename, {headers, body}) {
   if (!cache[filename]) {
     let title = 'Architect serverless framework'
     let classes = !logo ? '' : 'home'

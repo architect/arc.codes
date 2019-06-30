@@ -5,8 +5,7 @@
   "scripts": {
     "lint": "eslint . --ignore-pattern node_modules --fix",
     "spellcheck": "npx spellchecker ./public/**/*.md --no-suggestions -q -d ./scripts/dictionary.js --plugins spell indefinite-article repeated-words syntax-mentions syntax-urls",
-    "start": "npx sandbox",
-    "test": "AWS_REGION=us-west-2 tape test/test.js | tap-spec && npm run lint"
+    "start": "npx sandbox"
   },
   "repository": {
     "type": "git",

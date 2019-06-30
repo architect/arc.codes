@@ -41,7 +41,7 @@ let alias = {
   '/reference/functions/events':       '/reference/functions/events.md',
   '/reference/functions/http':         '/reference/functions/http.md',
   '/reference/functions/queues':       '/reference/functions/queues.md',
-  '/reference/functions/static':       '/reference/functions/static.md',  
+  '/reference/functions/static':       '/reference/functions/static.md',
   '/reference/functions/tables':       '/reference/functions/tables.md',
   '/reference/functions/ws':           '/reference/functions/ws.md',
   '/reference/arc/app':                '/reference/arc/app.md',
