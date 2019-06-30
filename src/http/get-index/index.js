@@ -63,7 +63,11 @@ let alias = {
 }
 
 let plugins = {
-  md: ['@architect/proxy-plugin-md', layout]
+  md: [
+    '@architect/proxy-plugin-md',
+    layout,
+    '@architect/proxy-plugin-html-urls',
+  ]
 }
 
 exports.handler = arc.http.proxy.public({alias, plugins})

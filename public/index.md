@@ -60,7 +60,7 @@ exports.handler = async function http(request) {
     type: 'text/html',
     body: '<h1>Hello World! 🎉</h1>'
   }
-}
+} 
 ```
 
 And `arc deploy` ships iterations on your code to the cloud. 

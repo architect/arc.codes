@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@architect/parser": "^1.1.7",
+    "@architect/proxy-plugin-html-urls": "^1.0.3",
     "@architect/proxy-plugin-md": "^1.0.0",
     "cookie": "^0.3.1",
     "cookie-signature": "^1.1.0",
