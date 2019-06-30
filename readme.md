@@ -5,23 +5,3 @@
 > [Docs site for the Architect serverless framework](https://arc.codes)! Create, deploy, and maintain next-generation AWS cloud function-based serverless infrastructure with full local, offline workflows, and more.
 
 [![Build Status](https://travis-ci.com/arc-repos/arc.codes.svg?branch=master)](https://travis-ci.com/arc-repos/arc.codes)
-
----
-
-Initialize the repo by running: `npm i && npx hydrate`
-
-Docs are in: `src/shared/`
-
-PRs are most welcome!
-
-
-## Preview
-
-Kick up a local dev server by running `npm start`
-
-
-## Test
-
-```
-npm it
-```

@@ -1,26 +1,13 @@
 @app
 arc-codes
 
-@domain
-arc.codes
-
-@http
-get /
-get /intro
-get /intro/:introID
-get /quickstart
-get /quickstart/:quickstartID
-get /reference
-get /reference/:refID
-get /guides
-get /guides/:guideID
-get /examples
-get /examples/:exampleID
+@aws
+region us-east-1
+profile smallwins
+bucket cf-sam-deployments-east
 
 @static
-staging arc.codes-staging
-production arc.codes
-
-@aws
-region us-west-2
-profile jsf
+@http
+get /
+get /api/:version/package
+get /api/:version/init
