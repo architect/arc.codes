@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Exported by architect/package@1.0.28 on 2019-06-30T19:16:27.883Z
+Description: Exported by architect/package@1.0.28 on 2019-07-01T19:29:42.959Z
 Resources:
   ArcCodes:
     Type: AWS::Serverless::Api
@@ -280,7 +280,18 @@ Resources:
                       method.response.header.Content-Type: '''application/javascript;
                         charset=utf8'''
                     responseTemplates:
-                      text/html: ''
+                      text/html: "async function render() {\n  let arc = document.querySelector('form\
+                        \ textarea').value\n  let base = window.location.pathname.startsWith('/production')?\
+                        \ '/production' : '' \n  let url = base + '/api/1/package?arc='\
+                        \ + encodeURIComponent(arc)\n  let result = await fetch(url)\n\
+                        \  let json = await result.json()\n  let preview = document.querySelector('div#preview')\n\
+                        \  preview.innerHTML = '<pre>' + JSON.stringify(json, null,\
+                        \ 2) + '</pre>'\n}\n\nfunction main() {\n  let form = document.querySelector('form')\n\
+                        \  let button = document.querySelector('form button')\n  let\
+                        \ textarea = document.querySelector('form textarea')\n\n \
+                        \ button.remove()\n  textarea.addEventListener('input', render)\n\
+                        \  render()\n}\n\ndocument.addEventListener('DOMContentLoaded',\
+                        \ main)\n"
                     contentHandling: CONVERT_TO_TEXT
                 requestTemplates:
                   application/json: '{"statusCode": 200}'
@@ -295,7 +306,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler
-      CodeUri: s3://cf-sam-deployments-east/8eff915521a7c2336c7bd2289650ebe7
+      CodeUri: s3://cf-sam-deployments-east/eb1afdcb03949fc819106041a4d230cc
       Runtime: nodejs10.x
       MemorySize: 1152
       Timeout: 5
@@ -328,7 +339,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler
-      CodeUri: s3://cf-sam-deployments-east/f59719b41b634f88e794956caafe4b37
+      CodeUri: s3://cf-sam-deployments-east/ee0bba37968f70845980cea96fbe6d49
       Runtime: nodejs10.x
       MemorySize: 1152
       Timeout: 5
@@ -361,7 +372,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler
-      CodeUri: s3://cf-sam-deployments-east/16765bf9118d5a3c274eb6105a0f7491
+      CodeUri: s3://cf-sam-deployments-east/c0e5cc89336a6d550ffbbde1b47bb823
       Runtime: nodejs10.x
       MemorySize: 1152
       Timeout: 5

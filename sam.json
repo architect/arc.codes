@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Transform": "AWS::Serverless-2016-10-31",
-  "Description": "Exported by architect/package@1.0.28 on 2019-06-30T19:16:27.883Z",
+  "Description": "Exported by architect/package@1.0.28 on 2019-07-01T19:29:42.959Z",
   "Resources": {
     "ArcCodes": {
       "Type": "AWS::Serverless::Api",
@@ -230,7 +230,7 @@
                         "method.response.header.Content-Type": "'application/javascript; charset=utf8'"
                       },
                       "responseTemplates": {
-                        "text/html": ""
+                        "text/html": "async function render() {\n  let arc = document.querySelector('form textarea').value\n  let base = window.location.pathname.startsWith('/production')? '/production' : '' \n  let url = base + '/api/1/package?arc=' + encodeURIComponent(arc)\n  let result = await fetch(url)\n  let json = await result.json()\n  let preview = document.querySelector('div#preview')\n  preview.innerHTML = '<pre>' + JSON.stringify(json, null, 2) + '</pre>'\n}\n\nfunction main() {\n  let form = document.querySelector('form')\n  let button = document.querySelector('form button')\n  let textarea = document.querySelector('form textarea')\n\n  button.remove()\n  textarea.addEventListener('input', render)\n  render()\n}\n\ndocument.addEventListener('DOMContentLoaded', main)\n"
                       },
                       "contentHandling": "CONVERT_TO_TEXT"
                     }

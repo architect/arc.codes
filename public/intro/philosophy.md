@@ -1,4 +1,4 @@
-# Project Philosophy
+# Project Philosophy 
 
 > `.arc` frees your architecture from infra and vendor cruft so you can focus on the real business logic of your app. Ship only the code that matters, iterate faster and enjoy unprecedented availability guarantees.
 

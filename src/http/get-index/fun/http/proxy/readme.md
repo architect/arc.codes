@@ -1,4 +1,4 @@
-example usage
+Example usage
 
 ```javascript
 let arc = require('@architect/functions')

@@ -2,6 +2,7 @@ let mime = require('mime-types')
 let path = require('path')
 let aws = require('aws-sdk')
 let transform = require('./transform')
+let sandbox = require('./sandbox')
 
 let noCache = [
   'text/html',
@@ -22,6 +23,10 @@ let noCache = [
  */
 module.exports = async function read({Bucket, Key, IfNoneMatch, config}) {
 
+  // early exit if we're running in the sandbox
+  if (process.env.NODE_ENV === 'testing')
+    return await sandbox({Key, config})
+
   let headers = {}
   let response = {}
 
@@ -31,7 +36,7 @@ module.exports = async function read({Bucket, Key, IfNoneMatch, config}) {
     let s3 = new aws.S3
 
     let options = {Bucket, Key}
-    if (IfNoneMatch) 
+    if (IfNoneMatch)
       options.IfNoneMatch = IfNoneMatch
 
     let result = await s3.getObject(options).promise().catch(e => {
