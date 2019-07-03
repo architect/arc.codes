@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Exported by architect/package@1.0.28 on 2019-07-01T19:29:42.959Z
+Description: Exported by architect/package@1.0.28 on 2019-07-03T00:08:00.574Z
 Resources:
   ArcCodes:
     Type: AWS::Serverless::Api
@@ -284,14 +284,18 @@ Resources:
                         \ textarea').value\n  let base = window.location.pathname.startsWith('/production')?\
                         \ '/production' : '' \n  let url = base + '/api/1/package?arc='\
                         \ + encodeURIComponent(arc)\n  let result = await fetch(url)\n\
-                        \  let json = await result.json()\n  let preview = document.querySelector('div#preview')\n\
-                        \  preview.innerHTML = '<pre>' + JSON.stringify(json, null,\
-                        \ 2) + '</pre>'\n}\n\nfunction main() {\n  let form = document.querySelector('form')\n\
-                        \  let button = document.querySelector('form button')\n  let\
-                        \ textarea = document.querySelector('form textarea')\n\n \
-                        \ button.remove()\n  textarea.addEventListener('input', render)\n\
-                        \  render()\n}\n\ndocument.addEventListener('DOMContentLoaded',\
-                        \ main)\n"
+                        \  let json = await result.json()\n  let fun = r=> json.Resources[r].Type\
+                        \ === 'AWS::Serverless::Function'\n  let code = r=> json.Resources[r].Properties.CodeUri\n\
+                        \  let sources = Object.keys(json.Resources).filter(fun).map(code)\n\
+                        \  let preview = document.querySelector('div#preview')\n \
+                        \ preview.innerHTML = '<pre>' + JSON.stringify(json, null,\
+                        \ 2) + '</pre>'\n  let tree = document.querySelector('div#tree')\n\
+                        \  tree.innerHTML = sources.join('<br>')\n}\n\nfunction main()\
+                        \ {\n  let form = document.querySelector('form')\n  let button\
+                        \ = document.querySelector('form button')\n  let textarea\
+                        \ = document.querySelector('form textarea')\n\n  button.remove()\n\
+                        \  textarea.addEventListener('input', render)\n  render()\n\
+                        }\n\ndocument.addEventListener('DOMContentLoaded', main)\n"
                     contentHandling: CONVERT_TO_TEXT
                 requestTemplates:
                   application/json: '{"statusCode": 200}'
@@ -306,7 +310,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler
-      CodeUri: s3://cf-sam-deployments-east/eb1afdcb03949fc819106041a4d230cc
+      CodeUri: s3://cf-sam-deployments-east/6465bd993879dfd0df9f595d4fc6fa5b
       Runtime: nodejs10.x
       MemorySize: 1152
       Timeout: 5
@@ -339,7 +343,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler
-      CodeUri: s3://cf-sam-deployments-east/ee0bba37968f70845980cea96fbe6d49
+      CodeUri: s3://cf-sam-deployments-east/df32650f90243a38dcb67976a296a577
       Runtime: nodejs10.x
       MemorySize: 1152
       Timeout: 5
@@ -372,7 +376,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler
-      CodeUri: s3://cf-sam-deployments-east/c0e5cc89336a6d550ffbbde1b47bb823
+      CodeUri: s3://cf-sam-deployments-east/f3a1801586c45c653e6351712fdacbac
       Runtime: nodejs10.x
       MemorySize: 1152
       Timeout: 5

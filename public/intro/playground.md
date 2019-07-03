@@ -24,6 +24,7 @@ form {
 textarea {
   flex:0;
   padding: 20px;
+  min-height:200px;
   margin:0;
   background: black;
   color: cyan;
@@ -31,19 +32,22 @@ textarea {
   font-size: 1.3em;
 }
 
-#status,
 button {
   flex: 1 100%;
 }
+
 </style>
 
 <form action=/api/1/package>
+  <div>
 <textarea name=arc>
 @app
 testapp
 @http
 get /
 </textarea>
+    <div id=tree>loading src...</div>
+  </div>
   <div id=preview></div>
   <button type=submit>arc package</button>
 </form>

@@ -24,5 +24,5 @@ arc deploy
 
 Congrats, you've successfully set up a serverless web app! Nice work. 💖
 
-## Next: [.arc project layout](/quickstart/arc-project-layout)
+## Next: [.arc project layout](/quickstart/layout)
 

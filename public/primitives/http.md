@@ -1,14 +1,14 @@
 # HTTP Functions
 
-## Create full-featured web applications composed of fast, tiny HTTP functions
+## Create powerful web apps composed of fast HTTP functions
 
-Here we'll start from a basic 'hello world' app and then build a bigger app with signups and logins. 
+Architect apps are composed of high level primitives. For each `@http` defined route Architect will create one HTTP function. HTTP functions are deployed as AWS Lambda functions wired with API Gateway to recieve and respond to regular http (and https) requests. 
 
-We'll do this with AWS Lambdas - small functions that trigger when their URL is hit. You can think of lambdas as the equivalent of 'routes' in traditional web apps. 
+## Local Code
 
-AWS Lambdas are accessed via API Gateway, but `.arc` abstracts API Gateway and Lambda configuration and provisioning. 
+HTTP functions are defined under `@http` very plainly as an http verb and path seperated by a space.
 
-Given the following example `.arc` file:
+An example blogging app `.arc` file:
 
 ```arc
 @app
@@ -16,46 +16,95 @@ testapp
 
 @http
 get /
+get /about
+get /posts/:postID
+post /login
+post /logout
+post /posts
+patch /posts/:postID
+delete /posts/:postID
 ```
 
-When a user visits `/`, the following HTTP function in `src/http/get-index/index.js` will run: 
+> It is very clear what this app can do just by reading the `.arc` file
 
+By default, HTTP functions are dependency-free:
+
+Node
 ```javascript
-exports.handler = async function http(request) {
-  return {
-    status: 201,
-    type: 'text/html; charset=utf8',
-    body: `
-      <!doctype html>
-      <html>
-        <body>hello world</body>
-      </html>
-   `
-  }
+export.handler = async function http(request) {
+  return {statusCode: 200}
 }
 ```
 
-By default, HTTP functions are dependency free with a minimal, but very powerful, low level API: every HTTP function receives a plain JavaScript `Object` called `request` as a first parameter. `request` has the following keys:
+Ruby
+```ruby
+def handler(request)
+  {statusCode: 200}
+end
+``` 
 
-- <b>`body`</b> - `Object`, request body, including an `Object` containing any `application/x-www-form-urlencoded` form variables
-- <b>`path`</b> - `string`, absolute path of the request
-- <b>`method`</b> - `string`, one of `GET`, `POST`, `PATCH`, `PUT` and `DELETE`
-- <b>`params`</b> - `Object`, any URL params, if defined in your function's path (i.e. `get /:foo/bar`)
-- <b>`query`</b> - `Object`, any query params, if present
-- <b>`headers`</b> - `Object`, contains all client request headers 
+Python
+```python
+def handler(request):
+  return {'statusCode': 200}
+```
 
-To send a response, HTTP functions return a plain JavaScript `Object` with the following params:
+Running `arc init` with the arcfile above will generate the following local source code:
 
-- <b>`status`</b> (or <b>`code`</b>) - `number`, sets the HTTP status code
-- <b>`type`</b> - `string`, sets the `Content-Type` response header
-- <b>`body`</b> - `string`, sets the response body
-- <b>`location`</b> - `string`, sets the `Location` response header (combine with `status: 302` to redirect)
-- <b>`cookie`</b> - `string`, sets the `Set-Cookie` response header
-- <b>`cors`</b> - `boolean`, sets the various CORS headers
+- `/src/http/get-index`
+- `/src/http/get-about`
+- `/src/http/get-posts-000postID`
+- `/src/http/post-login`
+- `/src/http/post-logout`
+- `/src/http/post-posts`
+- `/src/http/patch-posts-000postID`
+- `/src/http/delete-posts-000postID`
 
-`@architect/functions` (optionally) adds additional useful tools for working with HTTP, including middleware, sessions, and more.
+> ⛱  HTTP functions are supported locally with `arc sandbox`
 
-## Code sharing
+---
+
+### Generated AWS Infra
+
+Running `arc deploy` will setup the following AWS resource types:
+
+- `AWS::Lambda::Function`
+- `AWS::Serverless::Api`
+
+---
+
+## Request
+
+The request payload has the following keys:
+
+- `resource` Resource path
+- `path` Path parameter
+- `httpMethod` Incoming request HTTP method name
+- `headers` String containing incoming request headers
+- `multiValueHeaders` List of strings containing incoming request headers
+- `queryStringParameters` query string parameters 
+- `multiValueQueryStringParameters` List of query string parameters
+- `pathParameters`  path parameters
+- `stageVariables` Applicable stage variables
+- `requestContext` Request context, including authorizer-returned key-value pairs
+- `body` A JSON string of the request payload
+- `isBase64Encoded` A boolean flag to indicate if the applicable request payload is Base64-encode
+
+## Response
+
+Responses can have the following keys:
+
+- `isBase64Encoded` only required if `true` (combined with base64 encoded `body`)
+- `statusCode` any http status code (for reference: https://http.cat)
+- `headers` key/value map of response headers
+- `multiValueHeaders` response of multivalue headers `{header:[]}`
+- `body` response body string
+
+Read more about the default [response](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format)
+
+---
+
+## Code Sharing
 
 Code sharing across your project's functions is implemented using `src/shared`. For example, this can be useful for shared layouts. Create the following file:
 
@@ -90,29 +139,21 @@ module.exports = async function http(req) {
 
 ---
 
+## Runtime Helpers
 
-## Helpers for your functions
-
-HTTP functions come with `@architect/functions` and `@architect/data` installed. These have convenient helpers for working with API Gateway and DynamoDB, respectively.
-
-```javascript
-// opt into architect functions and data conveniences
-let arc = require('@architect/functions')
-let data = require('@architect/data')
-```
-
-In the example below we'll use some of the helpers from  `@architect/functions`:
+For additional superpowers Architect ships `@architect/functions`:
  
-- <b>[`arc.middleware`](/guides/middleware)</b> - middleware API, allowing requests to be filtered through multiple steps before sending a response.
+- <b>[`arc.http`](/guides/http)</b> - a higher level, Express-like middleware API, allowing requests to be filtered through multiple steps before sending a response.
+- <b>[`arc.http.proxy`](/guides/static-assets)</b> - accepts a path part and returns path to `localhost:3333` or `staging` and `production` S3 buckets
+- <b>[`arc.http.middleware`](/guides/middleware)</b> - An async/await style middleware API, allowing requests to be filtered through multiple steps before sending a response.
 - <b>[`arc.http.session`](/guides/sessions)</b> - read the session using the request cookie, write the session returning a cookie string
 - <b>[`arc.http.helpers.url`](/guides/urls)</b> - transform `/` into the appropriate `staging` and `production` API Gateway paths
-- <b>[`arc.http.helpers.static`](/guides/static-assets)</b> - accepts a path part and returns path to `localhost:3333` or `staging` and `production` S3 buckets
-- <b>`arc.http.helpers.verify`</b> - verify a `csrf` token
+- <b>[`arc.static`](/guides/static-assets)</b> - accepts a path part and returns path to `localhost:3333` or `staging` and `production` S3 buckets
 
 ---
 
 
-## Examples
+### Examples
 
 A simple hello world HTML response:
 
@@ -120,7 +161,7 @@ A simple hello world HTML response:
 // src/http/get-index/index.js
 exports.handler = async function http(req) {
   return {
-    type: 'text/html'
+    headers: {'content-type': 'text/html'},
     body: `<b>hello world</b>` 
   }
 }
@@ -136,25 +177,11 @@ exports.handler = async function http(req) {
   let loggedIn = req.body.email === 'admin' && req.body.password === 'admin'
   let cookie = await arc.http.session.write({loggedIn})
   return {
-    cookie,
-    status: 302,
-    location: '/'
-  }
-}
-```
-
-A `302` response clearing the requester's session data:
-
-```javascript
-// src/http/get-logout/index.js
-let arc = require('@architect/functions')
-
-exports.handler = async function http(req) {
-  let cookie = await arc.http.session.write({})
-  return {
-    cookie,
-    status: 302,
-    location: '/'
+    headers: {
+     'set-cookie': cookie
+     'location: '/'
+    },
+    statusCode: 302,
   }
 }
 ```
@@ -165,8 +192,8 @@ An example `500` response:
 // src/http/get-some-broken-page/index.js
 exports.handler = async function http(req) {
   return {
-    type: 'text/html',
-    status: 500,
+    headers: {'content-type': 'text/html'},
+    statusCode: 500,
     body: 'internal serverless error'
   }
 }
@@ -178,167 +205,8 @@ An example JSON API endpoint:
 // src/http/get-cats/index.js
 exports.handler = async function http(req) {
   return {
-    type: 'application/json',
-    status: 201,
+    statusCode: 201,
     body: JSON.stringify({cats: ['sutr0']})
   }
 }
 ```
-
----
-
-
-## Example App
-
-Let's implement a proof-of-concept login flow. There's [a repo with the example below on GitHub](https://github.com/architect/arc-example-login-flow).
-
-This example `.arc` project brings together all the concepts for defining HTTP Lambdas:
-
-```arc
-@app
-loginflow
-
-@http
-get /
-get /logout
-get /protected
-post /login
-```
-
-`npx create` generates the following directory structure:
-
-```bash
-/
-├── src
-│   ├── http
-│   │   ├── get-index/
-│   │   ├── get-logout/
-│   │   ├── get-protected/
-│   │   └── post-login/
-│   └── shared/
-├── .arc
-└── package.json
-```
-
-First we make `GET` for `/` show a message for logged in users, or a login form for logged out users, depending on `state.isLoggedIn`:
-
-```javascript
-let arc = require('@architect/functions')
-let url = arc.http.helpers.url
-
-exports.handler = async function http(req) {
-  let state = await arc.http.session.read(req)
-  let isLoggedIn = !!state.isLoggedIn
-
-  var loggedInPage = `
-	<h2>You're logged in</h2>
-  	<p>
-	  <a href=${url('/protected')}>protected</a>
-	  <a href=${url('/logout')}>logout</a>
-	</p>`
-
-  var notLoggedInPage = `
-  	<h2>Logged out</h2>	
-    <form action=${url('/login')} method=post>
-      <label for=email>Email</label>
-      <input type=text name=email>
-      <label for=password>Password</label>
-      <input type=password name=password>
-      <button>Login</button>
-    </form>
-  `
-
-  return {
-    type: 'text/html',
-    body: `
-	<body>
-		<h1>Login Demo</h1>
-		${isLoggedIn ? loggedInPage : notLoggedInPage}
-	<body>`
-  }
-}
-```
-
-That form performs an HTTP `POST` to `/login` where we look for mock values in `req.body.email` and `req.body.password`:
-
-```javascript
-let arc = require('@architect/functions')
-
-exports.handler = async function http(request) {
-  let session = await arc.http.session.read(request)
-  let isLoggedIn = request.body.email === 'admin@example.com' && request.body.password === 'admin'
-  session.isLoggedIn = isLoggedIn
-  const location = isLoggedIn ? '/' : '/login'
-  let cookie = await arc.http.session.write(session)
-  return {
-    cookie,
-    status: 302,
-    location
-  }
-}
-```
-
-If successful `session.isLoggedIn` will be `true` and we'll redirect to `/`, which, since we're logged in now, will show different content. 
-
-`/protected` utilizes middleware to ensure only logged in users can see it.
-
-```javascript
-let arc = require('@architect/functions')
-let url = arc.http.helpers.url
-
-async function requireLogin(request) {
-  let state = await arc.http.session.read(request)
-
-  if (!state.isLoggedIn) {
-    console.log(`Attempt to access protected page without logging in!`)
-    // Return a response, so middleware processing ends
-    return {
-      status: 302,
-      location: url(`/`)
-    }
-  }
-  console.log(`We're logged in`)
-  // return nothing, so middleware processing continues
-}
-
-async function showProtectedPage(request) {
-  console.log(`Showing dashboard`)
-
-  let protectedPage = `
-	<body>
-		<h1>Dashboard</h1>
-		<p>Only logged in users can visit this page!</p>
-		<p><a href="${url('/logout')}">logout</a></p>
-	</body>`
-  return respond.makeResponse(protectedPage)
-}
-
-exports.handler = arc.middleware(requireLogin, showProtectedPage)
-
-```
-
-Logging out just resets the `session` and redirects back to `/`.
-
-```javascript
-let arc = require('@architect/functions')
-let url = arc.http.helpers.url
-
-exports.handler = async function route(request) {
-  let session = await arc.http.session.read(request)
-  session.isLoggedIn = false
-  let cookie = await arc.http.session.write(session)
-  return {
-    cookie,
-    status: 302,
-    location: url('/')
-  }
-}
-
-```
-
-And that's it! Remember you can find [the example repo on GitHub.](https://github.com/architect/arc-example-login-flow)
-
-<hr>
-
-## Next: [Working locally & offline](/guides/offline)
-

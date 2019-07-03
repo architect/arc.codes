@@ -88,5 +88,4 @@ Happy with staging? Ship a release to production by running `arc deploy producti
 
 Time to celebrate! ✨
 
-## Next: [What next?](/quickstart/what-next)
 

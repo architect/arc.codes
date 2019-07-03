@@ -69,5 +69,6 @@ And `arc deploy` ships iterations on your code to the cloud.
 
 ## Next steps
 
+- [Tinker in the playground](/intro/playground)
 - [Follow the quickstart](/quickstart)
-- [Check out the guides](/guides/http)
+- [Learn about HTTP Functions](/primitives/http)
