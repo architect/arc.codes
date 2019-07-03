@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Exported by architect/package@1.0.28 on 2019-07-03T00:08:00.574Z
+Description: Exported by architect/package@1.0.28 on 2019-07-03T06:51:48.037Z
 Resources:
   ArcCodes:
     Type: AWS::Serverless::Api
@@ -157,21 +157,21 @@ Resources:
                         \  opacity: 1;\n  overflow: auto;\n}\n\n.cloud {\n  font-size:\
                         \ 2.4em;\n}\n\nblockquote {\n  padding: 0 1em;\n  color: #6a737d;\n\
                         \  border-left: 0.25em solid #ccc;\n  margin: 0;\n}\n\nhr\
-                        \ {\n  border: 0;\n  background-color: #666;\n  height: 1px;\n\
-                        \  margin-top: 30px;\n  margin-bottom: 30px;\n}\n\n.nav {\n\
-                        \  width: 270px;\n  background: black;\n  color:white;\n \
-                        \ position: fixed;\n  overflow: auto;\n  height: 100%;\n}\n\
-                        \nh1, h2, h3 {\n  font-weight: 300;\n  line-height: 1em;\n\
-                        }\n\nh2 {\n  margin-top: 30px;\n  line-height: 1.5em;\n}\n\
-                        \nul li {\n  line-height: 1.5em;\n}\n\n.nav ul {\n  margin-top:\
-                        \ 10px;\n  margin-right: 10px;\n  margin-bottom: 0;\n  margin-left:\
-                        \ 10px;\n  padding-top: 10px;\n  padding-right: 0;\n  padding-bottom:\
-                        \ 0;\n  padding-left: 0;\n}\n\n.nav ul ul {\n  margin:0px;\n\
-                        }\n\n.nav ul li {\n  color: rgba(255,255,255,0.5);\n  list-style:\
-                        \ none;\n  margin-left: 15px;\n  padding-bottom: 5px;\n  line-height:\
-                        \ 1.5em;\n}\n\n.nav ul ul li {\n  list-style: none;\n  margin-left:\
-                        \ 20px;\n}\n\n.nav ul ul li:last-child {\n  margin-bottom:\
-                        \ 10px;\n}\n\n.nav ul a {\n  font-weight: bold;\n  text-decoration:\
+                        \ {\n  border: 1px dotted #eaeaea;\n  width: 80%;\n  margin-top:\
+                        \ 30px;\n  margin-bottom: 30px;\n}\n\n.nav {\n  width: 270px;\n\
+                        \  background: black;\n  color:white;\n  position: fixed;\n\
+                        \  overflow: auto;\n  height: 100%;\n}\n\nh1, h2, h3 {\n \
+                        \ font-weight: 300;\n  line-height: 1em;\n}\n\nh2 {\n  margin-top:\
+                        \ 30px;\n  line-height: 1.5em;\n}\n\nul li {\n  line-height:\
+                        \ 1.5em;\n}\n\n.nav ul {\n  margin-top: 10px;\n  margin-right:\
+                        \ 10px;\n  margin-bottom: 0;\n  margin-left: 10px;\n  padding-top:\
+                        \ 10px;\n  padding-right: 0;\n  padding-bottom: 0;\n  padding-left:\
+                        \ 0;\n}\n\n.nav ul ul {\n  margin:0px;\n}\n\n.nav ul li {\n\
+                        \  color: rgba(255,255,255,0.5);\n  list-style: none;\n  margin-left:\
+                        \ 15px;\n  padding-bottom: 5px;\n  line-height: 1.5em;\n}\n\
+                        \n.nav ul ul li {\n  list-style: none;\n  margin-left: 20px;\n\
+                        }\n\n.nav ul ul li:last-child {\n  margin-bottom: 10px;\n\
+                        }\n\n.nav ul a {\n  font-weight: bold;\n  text-decoration:\
                         \ none;\n  width: 100%;\n  display: block;\n  color: white;\n\
                         \  padding-bottom: 5px;\n}\n\n.nav ul ul a {\n  font-weight:\
                         \ normal;\n}\n\nnav ul li code,\nnav ul li ul li a code {\n\
@@ -282,7 +282,7 @@ Resources:
                     responseTemplates:
                       text/html: "async function render() {\n  let arc = document.querySelector('form\
                         \ textarea').value\n  let base = window.location.pathname.startsWith('/production')?\
-                        \ '/production' : '' \n  let url = base + '/api/1/package?arc='\
+                        \ '/production' : ''\n  let url = base + '/api/1/package?arc='\
                         \ + encodeURIComponent(arc)\n  let result = await fetch(url)\n\
                         \  let json = await result.json()\n  let fun = r=> json.Resources[r].Type\
                         \ === 'AWS::Serverless::Function'\n  let code = r=> json.Resources[r].Properties.CodeUri\n\
@@ -310,7 +310,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler
-      CodeUri: s3://cf-sam-deployments-east/6465bd993879dfd0df9f595d4fc6fa5b
+      CodeUri: s3://cf-sam-deployments-east/0d5dadd13ab62f826cf4a15d54af35f4
       Runtime: nodejs10.x
       MemorySize: 1152
       Timeout: 5
@@ -343,7 +343,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler
-      CodeUri: s3://cf-sam-deployments-east/df32650f90243a38dcb67976a296a577
+      CodeUri: s3://cf-sam-deployments-east/5b658ab6f1bb81e9746d1cad00b71dab
       Runtime: nodejs10.x
       MemorySize: 1152
       Timeout: 5
@@ -376,7 +376,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler
-      CodeUri: s3://cf-sam-deployments-east/f3a1801586c45c653e6351712fdacbac
+      CodeUri: s3://cf-sam-deployments-east/2ede31c6bb02c94df11bd597f10cd804
       Runtime: nodejs10.x
       MemorySize: 1152
       Timeout: 5

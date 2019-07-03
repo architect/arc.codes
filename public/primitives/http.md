@@ -6,16 +6,16 @@ Architect apps are composed of high level primitives. For each `@http` defined r
 
 ---
 
-- <a href=#local><b>🚜 Work locally</b></a> 
-- <a href=#provision><b>🌾 Provision AWS Resources</b></a> 
-- <a href=#req><b>🛫 Request</b></a>
-- <a href=#res><b>🛬 Response</b></a>
+- <a href=#local><b>🚜 Work Locally</b></a> 
+- <a href=#deploy><b>⛵️ Deploy</b></a>
+- <a href=#sec><b>💰 Security</b></a>
+- <a href=#req><b>🛫 Request Payload</b></a>
+- <a href=#res><b>🛬 Response Payload</b></a>
 - <a href=#examples><b>🎁 Examples</b></a>
 
 ---
 
-
-<h2 id=local>🚜 Work locally</h2>
+<h2 id=local>🚜 Work Locally</h2>
 
 HTTP functions are defined under `@http` very plainly with one route per line, where a route is defined as an http verb and a path seperated by a space.
 
@@ -75,16 +75,28 @@ Running `arc init` with the arcfile above will generate the following local sour
 
 ---
 
-### Generated AWS Infra
+<h2 id=deploy>⛵️ Deploy</h2>
 
 Running `arc deploy` will setup the following AWS resource types:
 
 - `AWS::Lambda::Function`
 - `AWS::Serverless::Api`
 
+Once the app has been deployed once with Cloudformation you can overwrite _just_ the Lambda code anytime by running `arc deploy dirty`. This is faster than waiting for a full stack update. 
+
+> Note: `arc deploy dirty` will only update a staging stack (production must be updated via Cloudformation)
+
 ---
 
-## Request
+<h2 id=sec>💰 Security</h2>
+
+By default all runtime functions generated with Architect have one generated <a href=https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege target=blank>IAM role</a> with the least privilege possible. This means Lambda functions can only access other resources defined in the same `.arc` file. 
+
+Wider account access can be explicitly granted with custom resource policies.
+
+---
+
+<h2 id=req>🛫 Request</h2>
 
 The request payload has the following keys:
 
@@ -99,9 +111,15 @@ The request payload has the following keys:
 - `stageVariables` Applicable stage variables
 - `requestContext` Request context, including authorizer-returned key-value pairs
 - `body` A JSON string of the request payload
-- `isBase64Encoded` A boolean flag to indicate if the applicable request payload is Base64-encode
+- `isBase64Encoded` A boolean flag to indicate if the request payload is base64-encoded
 
-## Response
+<blockquote>
+Read more about the <a target=blank href=https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format>request payload on the AWS docs</a>
+</blockquote>
+
+---
+
+<h2 id=res>🛬 Response</h2>
 
 Responses can have the following keys:
 
@@ -111,13 +129,17 @@ Responses can have the following keys:
 - `multiValueHeaders` response of multivalue headers `{header:[]}`
 - `body` response body string
 
-Read more about the default [response](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format)
+<blockquote>
+Read more about the <a target=blank href=https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format>response payload on the AWS docs</a>
+</blockquote>
+
+
 
 ---
 
-### Examples
+<h2 id=examples>🎁 Examples</h2>
 
-A simple hello world HTML response:
+The requisite hello world:
 
 ```javascript
 // src/http/get-index/index.js
@@ -129,7 +151,7 @@ exports.handler = async function http(req) {
 }
 ```
 
-A redirect writing to the `session`:
+A redirect writing a session cookie:
 
 ```javascript
 // src/http/post-login/index.js
@@ -148,7 +170,7 @@ exports.handler = async function http(req) {
 }
 ```
 
-An example `500` response:
+An error response:
 
 ```javascript
 // src/http/get-some-broken-page/index.js
@@ -161,7 +183,7 @@ exports.handler = async function http(req) {
 }
 ```
 
-An example JSON API endpoint:
+JSON API endpoint:
 
 ```javascript
 // src/http/get-cats/index.js

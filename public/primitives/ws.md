@@ -2,9 +2,19 @@
 
 ## Real time web apps composed of tiny functions
 
-> `.arc` abstracts API Gateway configuration and provisioning, while `@architect/functions` (optionally) adds a very light but powerful API shim to Lambda for working with WebSockets
+The `@ws` primitive creates a web socket endpoint and handler functions. Web socket functions are deployed as AWS Lambda functions wired with API Gateway to send and receive web socket events: `connect`, `disconnect` and `default`. 
 
-Given the following example `.arc` file:
+---
+
+- <a href=#local><b>🚜 Work Locally</b></a> 
+- <a href=#req><b>🛫 Event Payload</b></a>
+- <a href=#res><b>🛬 Browser Implementation</b></a>
+
+---
+
+<h2 id=local>🚜 Work Locally</h2>
+
+An example `.arc` file:
 
 ```arc
 @app
@@ -19,9 +29,9 @@ get /
 
 Architect generates the following functions:
 
-- `src/ws/ws-connect` invoked when the web socket is connected
-- `src/ws/ws-default` invoked whenever a message is sent
-- `src/ws/ws-disconnect` invoked when disconnected
+- `src/ws/connect` invoked when the web socket is connected
+- `src/ws/default` invoked whenever a message is sent
+- `src/ws/disconnect` invoked when disconnected
 
 Web socket functions are always invoked with an `event` payload that contains useful information:
 
@@ -38,7 +48,7 @@ exports.handler = async function ws(event) {
 }
 ```
 
-By default, WebSocket functions are dependency free with a minimal, but very powerful, low level API. 
+---
 
 ## Browser Implementation
 
@@ -67,25 +77,6 @@ window.WS_URL = '${getURL()}'
 </body>
 </html>`
   }
-}
-```
-
-The URL lookup code could use environment variables if hardcoding seems rash.
-
-```javascript
-// src/http/get-index/get-web-socket-url.js
-module.exports = function getWS() {
-  let env = process.env.NODE_ENV
-  let testing = 'ws://localhost:3333'
-  let staging = 'wss:// fixme: these urls are printed after create'
-  let production = 'wss:// fixme: these urls are printed after create'
-  if (env === 'testing')
-    return testing
-  if (env === 'staging')
-    return staging
-  if (env === 'production')
-    return production
-  return testing
 }
 ```
 
@@ -135,7 +126,9 @@ msg.addEventListener('keyup', function(e) {
 })
 ```
 
-> The `/public/index.mjs` path assumes `@static` setup S3 buckets to serve browser code; you can also setup an `@http` function to serve `text/javascript` code 
+---
+
+# Summary 
 
 ## `ws-connect`
 
@@ -150,8 +143,4 @@ The `ws-default` Lambda will be the main event bus for web socket events. The `e
 The `ws-disconnect` Lambda is used to cleanup any records of `event.requestContext.connectionId`.
 
 > 🔭 Find [the example repo on GitHub](https://github.com/architect/arc-example-ws).
-
----
-
-## Next: [Multiple AWS Accounts](/guides/multiple-aws-accounts)
 

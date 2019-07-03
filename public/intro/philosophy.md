@@ -3,6 +3,8 @@
 
 Focus on the core business logic required to create value, ship only the code that matters, iterate faster and still enjoy unprecedented availability guarantees.
 
+---
+
 Architect defines a high level vendor agnostic plaintext format, `.arc`, as a manifest file and otherwise views cloud infra and configurations as build artifact.
 
 - Focus on defining app architecture with simple, plain and clear language
@@ -11,6 +13,8 @@ Architect defines a high level vendor agnostic plaintext format, `.arc`, as a ma
 - The format, parser, and tooling are also all completely open to extension
 
 > In theory, the `.arc` format is entirely portable between cloud vendors. However no ports to clouds other than AWS have been made as of today.
+
+---
 
 ## The .arc format
 

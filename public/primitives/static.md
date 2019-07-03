@@ -5,13 +5,11 @@ Architect projects support text and binary assets such as images, styles, and sc
 
 ---
 
-### Superpowers
-
 - <a href=#local><b>🚜 Work locally</b></a> without reloading
 - <a href=#provision><b>🌾 Provision</b></a> a bucket on S3 with all the right permissions to proxy 
 - <a href=#deploy><b>🛳 Deploy</b></a> anytime with (and without) Cloudformation
 - <a href=#serialize><b>🥣 Serialize</b></a> to avoid unneccesary Lambda invocations serving them via API Gateway mocks
-- <a href=#proxy><b>✨ Proxy</b></a> assets through API Gateway directly or via Lambda
+- <a href=#proxying><b>✨ Proxying</b></a> assets through API Gateway directly or via Lambda
 - <a href=#fingerprint><b>🔎 Fingerprint</b></a> files and cache them forever while still maintaining instant deployment
 - <a href=#ignore><b>🙈 Ignore</b></a> files in public
 * <a href=#link><b>🕸 Link</b></a> to the right file at runtime
@@ -100,9 +98,11 @@ Running `arc deploy` will serialize `public/` into `sam.json`.
 
 ---
 
+<h2 id=proxy>✨ API Gateway Proxy</h2>
 
-<h2 id=proxy>✨ Proxy</h2>
+To workaround CORS you can proxy S3 directly through API Gatway at `/_static`.
 
+<h2>⚡️ Lambda Proxy</h2>
 
 Lambda is _very good_ at reading and processing text from S3. To enable the proxy at the root add the following to the `get-index` HTTP function:
 
@@ -113,7 +113,7 @@ let arc = require('@architect/functions')
 exports.handler = arc.http.proxy()
 ```
 
-Now all static assets in `./public` will be served from the root of your application.
+Now all static assets in `./public` will be served from the root of the application.
 
 The `arc.http.proxy` function accepts an optional configuration param `spa` which will force loading `index.html` no matter what route is invoked (note however that routes defined in `.arc` will take precedence). 
 
@@ -232,7 +232,7 @@ This works with a simple string search, so if you ignore `foo`, all filenames co
 
 <h2 id=link>🕸 Link</h2>
 
-`@architect/functions` bundles a helper function for HTTP route handlers that disambiguates URLs called `arc.static`. It accepts a root relative path and returns the URL appropriate for the environment it's being invoked in.
+If you need to link to S3 resources directly `arc.static` accepts a root relative path and returns the URL appropriate for the environment it is being invoked in. 
 
 ```javascript
 // src/http/get-index/index.js
@@ -257,3 +257,5 @@ exports.handler = async function http(req) {
   }
 }
 ```
+
+> Note: To avoid CORS errors use the API Gateway `/_static` proxy to S3
