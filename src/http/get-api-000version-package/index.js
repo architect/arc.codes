@@ -17,8 +17,8 @@ exports.handler = async function http(req) {
   catch(e) {
     statusCode = 500
     body = JSON.stringify({
-      name: e.name, 
-      stack: e.stack, 
+      name: e.name,
+      stack: e.stack,
       message: e.message
     })
   }

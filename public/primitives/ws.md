@@ -1,6 +1,6 @@
-# WebSocket Functions
+# Web Sockets
 
-## Real time apps composed of fast, tiny functions
+## Real time web apps composed of tiny functions
 
 > `.arc` abstracts API Gateway configuration and provisioning, while `@architect/functions` (optionally) adds a very light but powerful API shim to Lambda for working with WebSockets
 

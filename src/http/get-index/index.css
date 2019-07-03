@@ -143,9 +143,8 @@ blockquote {
 }
 
 hr {
-  border: 0;
-  background-color: #666;
-  height: 1px;
+  border: 1px dotted #eaeaea;
+  width: 75%;
   margin-top: 30px;
   margin-bottom: 30px;
 }

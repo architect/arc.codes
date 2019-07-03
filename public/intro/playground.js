@@ -1,6 +1,6 @@
 async function render() {
   let arc = document.querySelector('form textarea').value
-  let base = window.location.pathname.startsWith('/production')? '/production' : '' 
+  let base = window.location.pathname.startsWith('/production')? '/production' : ''
   let url = base + '/api/1/package?arc=' + encodeURIComponent(arc)
   let result = await fetch(url)
   let json = await result.json()

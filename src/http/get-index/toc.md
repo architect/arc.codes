@@ -5,7 +5,7 @@
   - [Community Links](/intro/community)
 - Quickstart
   - [Prerequisites](/quickstart)
-  - [Installation](/quickstart/install)
+  - [Install](/quickstart/install)
   - [Project Layout](/quickstart/layout)
 - Primitives
   - [HTTP Functions](/primitives/http)
