@@ -1,7 +1,7 @@
 # Project Philosophy 
-## Frees your architecture from infra and vendor cruft 
+## Build apps free from infra and vendor cruft 
 
-Focus on the real business logic of your app, ship only the code that matters, iterate faster and still enjoy unprecedented availability guarantees.
+Focus on the core business logic required to create value, ship only the code that matters, iterate faster and still enjoy unprecedented availability guarantees.
 
 Architect defines a high level vendor agnostic plaintext format, `.arc`, as a manifest file and otherwise views cloud infra and configurations as build artifact.
 
