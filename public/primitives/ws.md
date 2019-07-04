@@ -12,6 +12,7 @@ The `@ws` primitive creates a web socket endpoint and stateless handler function
 - <a href=#event><b>🎉 Event Payload</b></a>
 - <a href=#browser><b>🧭 Browser Implementation</b></a>
 - <a href=#send><b>🧁 Send Events from Lambda</b></a>
+- <a href=#custom><b>🚙 Custom Routes</b></a>
 
 ---
 
@@ -121,7 +122,7 @@ exports.handler = async function http(req) {
 <script>
 window.WS_URL = '${getURL()}'
 </script>
-<script type=module src=/index.mjs></script>
+<script type=module src=/_static/index.mjs></script>
 </body>
 </html>`
   }
@@ -179,3 +180,35 @@ msg.addEventListener('keyup', function(e) {
 <h2 id=send>🧁 Send Events from Lambda</h2>
 
 Send a JSON payload to any `connectionId` from runtime function code.
+
+```javascript
+// src/ws/connected
+let arc = require('@architect/functions')
+
+exports.handler = async function connected(event) {
+  let id = event.requestContext.connectionId
+  let payload = {ok: true, ts: Date.now()}
+  await arc.ws.send({id, payload})
+  return {statusCode: 200}
+}
+```
+
+---
+
+<h2 id=custom>🚙 Custom Routes</h2>
+
+Specify custom web socket route keys:
+
+```arc
+@app
+testapp
+
+@ws
+action
+status
+join
+default
+connected
+disconnected
+```
+
