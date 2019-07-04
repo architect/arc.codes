@@ -1,8 +1,20 @@
 # Events
 
-Architect can publish JSON payloads to an SNS Topic and subscribe a Lambda an SNS Topic 
+## Run cloud functions in the background
 
-### Provision
+Subscribe a Lambda function to an SNS Topic and then asynchronously publish JSON payloads to it.
+
+---
+
+- <a href=#local><b>🚜 Work Locally</b></a> 
+- <a href=#provision><b>🌾 Provision</b></a> 
+- <a href=#deploy><b>⛵️ Deploy</b></a>
+- <a href=#subscribe><b>🎉 Subscribe</b></a>
+- <a href=#publish><b>Publish</b></a>
+
+---
+
+<h2 id=local>🚜 Work Locally</h2>
 
 Events are defined in `.arc` under `@events`:
 

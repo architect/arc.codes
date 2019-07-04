@@ -50,6 +50,8 @@ bucket cloudformation-bucket
 fingerprint true
 
 @ws
+action
+
 @http
 get /
 post /likes
@@ -87,9 +89,10 @@ Running `arc init` in the same directory as the `.arc` file above generates the 
 | |-tables
 | | '-likes/
 | '-ws
-|   |-ws-connect/
-|   |-ws-default/
-|   '-ws-disconnect/
+|   |-action/
+|   |-connect/
+|   |-default/
+|   '-disconnect/
 '-.arc
 ```
 
