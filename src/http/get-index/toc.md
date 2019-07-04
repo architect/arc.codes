@@ -16,17 +16,8 @@
   - [Queues](/primitives/queues)
   - [Tables](/primitives/tables)
 - Guides
-  - [Work Locally](/guides/local-dev)
-  - [Share Common Code](/guides/share-code)
-  - [Sessions](/guides/sessions)
-  - [Middleware](/guides/middleware)
-  - [Dependencies](/guides/deps)
-  - [Logging & Monitoring](/guides/logs)
-  - [Assigning a Domain Name](/guides/dns)
-  - [Custom IAM Roles](/guides/iam)
-  - [Multiple AWS Accounts](/guides/multiple-aws-accounts)
-  - [YAML/JSON Config](/guides/yaml-and-json)
-  - [Upgrade Guide](/guides/upgrade)
+  - [Testing](/guides/testing)
+  - [Upgrading from `5.x`](/guides/upgrade)
 - Reference
   - CLI
     - [`arc deploy`](/reference/cli/deploy)

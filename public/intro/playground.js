@@ -1,3 +1,4 @@
+/* eslint-env browser */
 async function render() {
   let arc = document.querySelector('form textarea').value
   let base = window.location.pathname.startsWith('/production')? '/production' : ''
@@ -14,7 +15,7 @@ async function render() {
 }
 
 function main() {
-  let form = document.querySelector('form')
+  //let form = document.querySelector('form')
   let button = document.querySelector('form button')
   let textarea = document.querySelector('form textarea')
 

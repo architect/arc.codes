@@ -1,14 +1,17 @@
 # Web Sockets
 
-## Real time web apps composed of tiny functions
+## Real time web apps with stateless cloud functions
 
-The `@ws` primitive creates a web socket endpoint and handler functions. Web socket functions are deployed as AWS Lambda functions wired with API Gateway to send and receive web socket events: `connect`, `disconnect` and `default`. 
+The `@ws` primitive creates a web socket endpoint and stateless handler functions: `connect`, `disconnect` and `default`. 
 
 ---
 
 - <a href=#local><b>🚜 Work Locally</b></a> 
-- <a href=#req><b>🛫 Event Payload</b></a>
-- <a href=#res><b>🛬 Browser Implementation</b></a>
+- <a href=#provision><b>🌾 Provision</b></a> 
+- <a href=#deploy><b>⛵️ Deploy</b></a>
+- <a href=#event><b>🎉 Event Payload</b></a>
+- <a href=#browser><b>🧭 Browser Implementation</b></a>
+- <a href=#send><b>🧁 Send Events from Lambda</b></a>
 
 ---
 
@@ -33,6 +36,51 @@ Architect generates the following functions:
 - `src/ws/default` invoked whenever a message is sent
 - `src/ws/disconnect` invoked when disconnected
 
+## `connect`
+
+The `connect` Lambda is primarily intended to verify `event.header.Origin`. 
+
+## `default`
+
+The `default` Lambda will be the main event bus for web socket events. The `event.requestContext.connectionId` variable is used for determining the current web socket.
+
+## `disconnect`
+
+The `disconnect` Lambda is used to cleanup any records of `event.requestContext.connectionId`.
+
+---
+
+<h2 id=provision>🌾 Provision</h2>
+
+Web socket functions generate many supporting AWS resources. Some highlights:
+
+- `AWS::ApiGatewayV2::Route`
+- `AWS::ApiGatewayV2::Integration`
+- `AWS::ApiGatewayV2::Api`
+- `AWS::ApiGatewayV2::Deployment`
+- `AWS::ApiGatewayV2::Stage`
+
+Additionally these `AWS::SSM::Parameter` resources are created which can be inspected at runtime:
+
+- **`/[StackName]/ws/https`** with a value like `https://xxx.execute-api.us-west-1.amazonaws.com/production/@connections`
+- **`/[StackName]/ws/wss`** with a value like `wss://xxx.execute-api.us-west-1.amazonaws.com/production`
+
+> All runtime functions have the environment variable `AWS_CLOUDFORMATION` which is the currently deployed CloudFormation stack name; this combined w the runtime `aws-sdk` or `@architect/functions` can be used to lookup these values in SSM
+
+---
+
+<h2 id=deploy>⛵️ Deploy</h2>
+
+- `arc deploy` to deploy with CloudFormation to staging
+- `arc deploy dirty` to overwrite deployed staging lambda functions 
+- `arc deploy production` to run a full CloudFormation production deployment
+
+> 🔭 Find [the example repo on GitHub](https://github.com/architect/arc-example-ws).
+
+---
+
+<h2 id=event>🎉 Event Payload</h2>
+
 Web socket functions are always invoked with an `event` payload that contains useful information:
 
 - `event.requestContext.connectionId` the currently executing web socket connection
@@ -50,7 +98,7 @@ exports.handler = async function ws(event) {
 
 ---
 
-## Browser Implementation
+<h2 id=browser>🧭 Browser Implementation</h2>
 
 Render the app HTML shell and embed the current web socket URL in a global `WS_URL`.
 
@@ -128,19 +176,6 @@ msg.addEventListener('keyup', function(e) {
 
 ---
 
-# Summary 
+<h2 id=send>🧁 Send Events from Lambda</h2>
 
-## `ws-connect`
-
-The `ws-connect` Lambda is primarily intended to verify `event.header.Origin`. 
-
-## `ws-default`
-
-The `ws-default` Lambda will be the main event bus for web socket events. The `event.requestContext.connectionId` variable is used for determining the current web socket.
-
-## `ws-disconnect`
-
-The `ws-disconnect` Lambda is used to cleanup any records of `event.requestContext.connectionId`.
-
-> 🔭 Find [the example repo on GitHub](https://github.com/architect/arc-example-ws).
-
+Send a JSON payload to any `connectionId` from runtime function code.

@@ -9,7 +9,7 @@ Architect defines a high level vendor agnostic plaintext format, `.arc`, as a ma
 
 - Focus on defining app architecture with simple, plain and clear language
 - Generate code and work locally and totally offline
-- Deploy and extend with standard Cloudformation templates
+- Deploy and extend with standard CloudFormation templates
 - The format, parser, and tooling are also all completely open to extension
 
 > In theory, the `.arc` format is entirely portable between cloud vendors. However no ports to clouds other than AWS have been made as of today.

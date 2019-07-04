@@ -7,8 +7,8 @@ Architect projects support text and binary assets such as images, styles, and sc
 
 - <a href=#local><b>🚜 Work locally</b></a> without reloading
 - <a href=#provision><b>🌾 Provision</b></a> a bucket on S3 with all the right permissions to proxy 
-- <a href=#deploy><b>🛳 Deploy</b></a> anytime with (and without) Cloudformation
-- <a href=#serialize><b>🥣 Serialize</b></a> to avoid unneccesary Lambda invocations serving them via API Gateway mocks
+- <a href=#deploy><b>🛳 Deploy</b></a> anytime with (and without) CloudFormation
+- <a href=#serialize><b>🥣 Serialize</b></a> to avoid unnecessary Lambda invocations serving them via API Gateway mocks
 - <a href=#proxying><b>✨ Proxying</b></a> assets through API Gateway directly or via Lambda
 - <a href=#fingerprint><b>🔎 Fingerprint</b></a> files and cache them forever while still maintaining instant deployment
 - <a href=#ignore><b>🙈 Ignore</b></a> files in public
@@ -54,8 +54,8 @@ All Lambdas will have `process.env.ARC_STATIC_BUCKET` environment variable with 
 
 <h2 id=deploy>🛳 Deploy</h2>
 
-- `arc deploy` copies `public/` to staging S3 bucket after running a full cloudformation stack update
-- `arc deploy production` copies `public/` to a production S3 bucket after running a full cloudformation stack update
+- `arc deploy` copies `public/` to staging S3 bucket after running a full CloudFormation stack update
+- `arc deploy production` copies `public/` to a production S3 bucket after running a full CloudFormation stack update
 - `arc deploy static` immediately copies `public/` directly to S3
 - `arc deploy static production` immediately copies `public/` directly to S3
 
@@ -72,8 +72,8 @@ Benefits
 - Save on Lambda invocations
 
 Downsides
-- Requires a Cloudformation stack update to deploy which is slower than syncing a file to S3
-- Can quickly bloat the generated Cloudformation template to max
+- Requires a CloudFormation stack update to deploy which is slower than syncing a file to S3
+- Can quickly bloat the generated CloudFormation template to max
 
 Currently supported file types
 - html
@@ -100,7 +100,7 @@ Running `arc deploy` will serialize `public/` into `sam.json`.
 
 <h2 id=proxy>✨ API Gateway Proxy</h2>
 
-To workaround CORS you can proxy S3 directly through API Gatway at `/_static`.
+To workaround CORS you can proxy S3 directly through API Gateway at `/_static`.
 
 <h2>⚡️ Lambda Proxy</h2>
 
@@ -200,6 +200,12 @@ Architect supports the following transform plugins:
 - `@architect/proxy-plugin-html-min` minify HTML
 - `@architect/proxy-plugin-css-min` minify CSS 
 - `@architect/proxy-plugin-mjs-min` minify JS
+
+---
+
+### 🐢 Example Code
+
+The website you are currently reading! https://github.com/architect/arc.codes
 
 ---
 

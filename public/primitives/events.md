@@ -15,11 +15,11 @@ account-signup
 account-check-email
 ```
 
-*Event names are _lowercase alphanumeric_ and can contain _dashes_.* It is reccomended to create a naming convention to group similar events and (ideally) keep them single purpose.
+*Event names are _lowercase alphanumeric_ and can contain _dashes_.* It is recommended to create a naming convention to group similar events and (ideally) keep them single purpose.
 
 ## Event Subscribers
 
-Running `arc init` with the arcfile above will generate the following local source code:
+Running `arc init` with the `.arc` file above will generate the following local source code:
 
 - `/src/events/account-signup`
 - `/src/events/account-check-email`
@@ -37,7 +37,7 @@ Running `arc deploy` will setup the following AWS resources:
 
 ## Publishing Events
 
-All runtime Lambda functions share an IAM Role that allows them to publish events to any SNS Topic in the currently deployed Cloudformation stack. 
+All runtime Lambda functions share an IAM Role that allows them to publish events to any SNS Topic in the currently deployed CloudFormation stack. 
 
 ### Publish an event payload to an SNS Topic
 
