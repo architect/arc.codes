@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Transform": "AWS::Serverless-2016-10-31",
-  "Description": "Exported by architect/package@1.0.30 on 2019-07-05T19:31:07.724Z",
+  "Description": "Exported by architect/package@1.0.30 on 2019-07-05T23:12:38.712Z",
   "Resources": {
     "ArcCodes": {
       "Type": "AWS::Serverless::Api",
@@ -207,6 +207,49 @@
                       },
                       "responseTemplates": {
                         "text/html": "/* eslint-env browser */\nasync function render() {\n  let arc = document.querySelector('form textarea').value\n  let base = window.location.pathname.startsWith('/production')? '/production' : ''\n  let url = base + '/api/1/package?arc=' + encodeURIComponent(arc)\n  let result = await fetch(url)\n  let json = await result.json()\n  let fun = r=> json.Resources[r].Type === 'AWS::Serverless::Function'\n  let code = r=> json.Resources[r].Properties.CodeUri\n  let sources = Object.keys(json.Resources).filter(fun).map(code)\n  let preview = document.querySelector('div#preview')\n  preview.innerHTML = '<pre>' + JSON.stringify(json, null, 2) + '</pre>'\n  let tree = document.querySelector('div#tree')\n  tree.innerHTML = sources.join('<br>')\n}\n\nfunction main() {\n  //let form = document.querySelector('form')\n  let button = document.querySelector('form button')\n  let textarea = document.querySelector('form textarea')\n\n  button.remove()\n  textarea.addEventListener('input', render)\n  render()\n}\n\ndocument.addEventListener('DOMContentLoaded', main)\n"
+                      },
+                      "contentHandling": "CONVERT_TO_TEXT"
+                    }
+                  },
+                  "requestTemplates": {
+                    "application/json": "{\"statusCode\": 200}"
+                  },
+                  "contentHandling": "CONVERT_TO_TEXT",
+                  "passthroughBehavior": "when_no_match",
+                  "type": "mock"
+                }
+              }
+            },
+            "/nav.js": {
+              "get": {
+                "responses": {
+                  "200": {
+                    "description": "200 response",
+                    "headers": {
+                      "Content-Type": {
+                        "schema": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "x-amazon-apigateway-integration": {
+                  "responses": {
+                    "default": {
+                      "statusCode": "200",
+                      "responseParameters": {
+                        "method.response.header.Content-Type": "'application/javascript; charset=utf8'"
+                      },
+                      "responseTemplates": {
+                        "text/html": "/* eslint-env browser */\nfor (let item of document.querySelectorAll('.nav > nav ul li b')) {\n  item.addEventListener('click', function click(e) {\n    e.target.nextSibling.classList.toggle('hide')\n  })\n}\n\nlet defaults = [\n  '/intro',\n  '/quickstart',\n  '/primitives',\n]\n\nlet current = window.location.pathname.replace('/production', '')\nlet isDefault = defaults.some(i=> current.startsWith(i))\n\nif (isDefault || current === '/') {\n  document.getElementById('guides').nextSibling.classList.toggle('hide')\n  document.getElementById('ref').nextSibling.classList.toggle('hide')\n}\nelse {\n  document.getElementById('intro').nextSibling.classList.toggle('hide')\n  document.getElementById('quickstart').nextSibling.classList.toggle('hide')\n  document.getElementById('primitives').nextSibling.classList.toggle('hide')\n}\n"
                       },
                       "contentHandling": "CONVERT_TO_TEXT"
                     }

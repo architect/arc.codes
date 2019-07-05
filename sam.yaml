@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Exported by architect/package@1.0.30 on 2019-07-05T19:31:07.724Z
+Description: Exported by architect/package@1.0.30 on 2019-07-05T23:12:38.712Z
 Resources:
   ArcCodes:
     Type: AWS::Serverless::Api
@@ -287,6 +287,45 @@ Resources:
                 contentHandling: CONVERT_TO_TEXT
                 passthroughBehavior: when_no_match
                 type: mock
+          /nav.js:
+            get:
+              responses:
+                '200':
+                  description: 200 response
+                  headers:
+                    Content-Type:
+                      schema:
+                        type: string
+                  content:
+                    application/json:
+                      schema:
+                        type: string
+              x-amazon-apigateway-integration:
+                responses:
+                  default:
+                    statusCode: '200'
+                    responseParameters:
+                      method.response.header.Content-Type: '''application/javascript;
+                        charset=utf8'''
+                    responseTemplates:
+                      text/html: "/* eslint-env browser */\nfor (let item of document.querySelectorAll('.nav\
+                        \ > nav ul li b')) {\n  item.addEventListener('click', function\
+                        \ click(e) {\n    e.target.nextSibling.classList.toggle('hide')\n\
+                        \  })\n}\n\nlet defaults = [\n  '/intro',\n  '/quickstart',\n\
+                        \  '/primitives',\n]\n\nlet current = window.location.pathname.replace('/production',\
+                        \ '')\nlet isDefault = defaults.some(i=> current.startsWith(i))\n\
+                        \nif (isDefault || current === '/') {\n  document.getElementById('guides').nextSibling.classList.toggle('hide')\n\
+                        \  document.getElementById('ref').nextSibling.classList.toggle('hide')\n\
+                        }\nelse {\n  document.getElementById('intro').nextSibling.classList.toggle('hide')\n\
+                        \  document.getElementById('quickstart').nextSibling.classList.toggle('hide')\n\
+                        \  document.getElementById('primitives').nextSibling.classList.toggle('hide')\n\
+                        }\n"
+                    contentHandling: CONVERT_TO_TEXT
+                requestTemplates:
+                  application/json: '{"statusCode": 200}'
+                contentHandling: CONVERT_TO_TEXT
+                passthroughBehavior: when_no_match
+                type: mock
       EndpointConfiguration: REGIONAL
       BinaryMediaTypes:
       - '*~1*'
@@ -295,7 +334,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler
-      CodeUri: s3://cf-sam-deployments-east/6ff1be30bfcc3df8c774062045c97f51
+      CodeUri: s3://cf-sam-deployments-east/a547a68b7570e8d62e751ad071bb0bc6
       Runtime: nodejs10.x
       MemorySize: 1152
       Timeout: 5
