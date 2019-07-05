@@ -520,6 +520,13 @@ pre[class*="language-"] {
 .nav nav ul li b {
   display:block;
   cursor: pointer;
+  /*content: '▲: &#9650; and ▼: &#9660;'*/
+}
+.nav nav ul li b:after {
+  content: '▼';
+  color:#333;
+  position: absolute;
+  right: 30px;
 }
 
 .hide {

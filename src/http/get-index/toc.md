@@ -1,13 +1,13 @@
-- <b>Introduction</b>
+- <b id=intro>Introduction</b>
   - [Project Philosophy](/intro/philosophy)
   - [Limits &amp; Superpowers](/intro/limits)
   - [Playground](/intro/playground)
   - [Community Links](/intro/community)
-- <b>Quickstart</b>
+- <b id=quickstart>Quickstart</b>
   - [Prerequisites](/quickstart)
   - [Install](/quickstart/install)
   - [Project Layout](/quickstart/layout)
-- <b>Primitives</b>
+- <b id=primitives>Primitives</b>
   - [HTTP Functions](/primitives/http)
   - [Static Assets](/primitives/static)
   - [Web Sockets](/primitives/ws)
@@ -15,10 +15,10 @@
   - [Events](/primitives/events)
   - [Queues](/primitives/queues)
   - [Tables](/primitives/tables)
-- <b>Guides</b>
+- <b id=guides>Guides</b>
   - [Testing](/guides/testing)
   - [Upgrading from `5.x`](/guides/upgrade)
-- <b>Reference</b>
+- <b id=ref>Reference</b>
   - CLI
     - [arc deploy](/reference/cli/deploy)
     - [arc env](/reference/cli/env)
