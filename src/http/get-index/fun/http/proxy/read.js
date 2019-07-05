@@ -99,11 +99,10 @@ module.exports = async function read({Bucket, Key, IfNoneMatch, config}) {
     }*/
     // final err fallback
     return {
-      statusCode: 500,
+      statusCode: e.name === 'NoSuchKey'? 404 : 500,
       headers: {'content-type': 'text/html; charset=utf8;'},
       body: `
-        <h1>${e.name}</h1>
-        <pre>${e.code}</pre>
+        <h1>${e.name === 'NoSuchKey'? 'Not Found' : e.name}</h1>
         <p>${e.message}</p>
         <pre>${e.stack}</pre>
       `

@@ -1,97 +1,103 @@
-# Background Tasks
+# Queues
+## Run cloud functions in the background
 
-## Offloading items into smaller tasks for offline completion
+Subscribe a Lambda function to an SQS Queue and then asynchronously publish JSON payloads to it. SQS automatically polls to receive messages. The programming model is identical to SNS but offers different service guarentees and configuration options. In particular, SNS will retry failed invocations twice whereas SQS will retry for 4 days (by default).
 
-To ensure your user-facing lambdas complete within limits, you can offload background tasks to other lambdas. `.arc` supports both `@events` and `@queues`
+> Read the official [AWS docs on Lambda retry behavior](https://docs.aws.amazon.com/lambda/latest/dg/retries-on-errors.html)
 
-SNS [`@events`](/reference/events) is a distributed publish-subscribe (pub/sub) system. Messages are immediately pushed to subscribers when they are sent by publishers. This is typically called a 'message bus'.
+---
 
-SQS [`@queues`](/reference/queues) is distributed queuing system. Messages are NOT pushed to receivers. Receivers have to poll SQS to receive messages.
+- <a href=#local><b>🚜 Work Locally</b></a> 
+- <a href=#provision><b>🌾 Provision</b></a> 
+- <a href=#deploy><b>⛵️ Deploy</b></a>
+- <a href=#publish><b>💌 Publish</b></a>
 
-In the example below, we'll make a pub/sub system using `@events` and `arc.events.publish`.
+---
 
-Check the [example on GitHub](https://github.com/architect/arc-example-events-pubsub) for a full version of the code described below.
+<h2 id=local>🚜 Work Locally</h2>
 
-## Creating an SNS message bus
+Events are defined in `.arc` under `@queues`:
 
-In your `.arc` file, we're going to create a SNS message bus called `background-task`:
+```arc
+@app
+testapp
 
+@queues
+system-backup
+repo-close-stale-issues
 ```
-@events
-    background-task 
-```
 
-## Subscribing to the queue
+*Event names are _lowercase alphanumeric_ and can contain _dashes_.* It is recommended to create a naming convention to group similar events and (ideally) keep them single purpose.
 
-In `src/events/background-task/index.js` we'll subscribe to the queue:
+### Queue Subscribers
 
+Running `arc init` with the `.arc` file above will generate the following local source code:
+
+- `/src/queues/system-backup`
+- `/src/queues/repo-close-stale-issues`
+
+These are queue handlers subscribed to the queue name defined in `.arc`.
+
+> Queues are supported by `arc sandbox`
+
+---
+
+<h2 id=provision>🌾 Provision</h2>
+
+Running `arc deploy` will setup the following AWS resources:
+
+- `AWS::Lambda::Function`
+- `AWS::SQS::Queue`
+- `AWS::Lambda::EventSourceMapping`
+
+Additionally `AWS::SSM::Parameter` resources are created for every SQS Queue which can be inspected at runtime:
+
+- **`/[StackName]/events/[QueueName]`** with a value of the generated SQS Queue URL
+
+> All runtime functions have the environment variable `AWS_CLOUDFORMATION` which is the currently deployed CloudFormation stack name; this combined w the runtime `aws-sdk` or `@architect/functions` can be used to lookup these values in SSM
+
+--- 
+
+<h2 id=deploy>⛵️ Deploy</h2>
+
+- `arc deploy` to deploy with CloudFormation to staging
+- `arc deploy dirty` to overwrite deployed staging lambda functions 
+- `arc deploy production` to run a full CloudFormation production deployment
+
+---
+
+## Publishing Events
+
+All runtime Lambda functions share an IAM Role that allows them to publish events to any SQS Queu in the currently deployed CloudFormation stack. 
+
+### Publish an event payload to an SQS Queue URL
+
+Node:
 ```javascript
-// src/events/background-task/index.js
 let arc = require('@architect/functions')
-let data = require('@architect/data')
-let series = require('run-series')
-
-// I copy paste this from MDN about once a week
-function random(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
-function handler(record, callback) {
-  record.taskID = new Date(Date.now()).toISOString()
-  record.status = 'received'
-  // got a task!
-  series([
-    function save(callback) {
-      // save the record to the db
-      data.tasks.put(record, callback) 
-    },
-    function progress(callback) {
-      // after update the status to 'almost done' after 3-10 seconds
-      let timeout = random(3*1000, 10*1000)
-      setTimeout(function _delay() {
-        record.status = 'processing'
-        data.tasks.put(record, callback) 
-      }, timeout) 
-    },
-    function done(callback) {
-      // update the status to 'done' after an additional 10-20 seconds
-      let timeout = random(10*1000, 20*1000)
-      setTimeout(function _delay() {
-        record.status = 'complete'
-        data.tasks.put(record, callback) 
-      }, timeout) 
-    }
-  ], callback)
-}
-exports.handler = arc.events.subscribe(handler)
-
-```
-
-## Sending messages to the queue
-
-When we receive a POST message from the client we'll send it to the queue:
-
-```javascript
-// src/http/post-background/index.js
-let arc = require('@architect/functions')
-let url = arc.http.helpers.url
 
 exports.handler = async function http(req) {
-    await arc.events.publish({
-        name: 'background-task',
-        payload: {
-            background: req.body.background
-        }
-    })
-    return {
-        status: 302,
-        location: url('/')
-    }
+  let name = 'account-signup'
+  let payload = {body: req.body}
+  await arc.events.publish({name, payload})
+  return {statusCode: 201}
 }
-
 ```
 
-When a user POSTs to `/background` we'll respond immediately, but we'll also publish the payload into the `background-task` message bus, for processing by the subscriber in  `src/events/background-task`.
+Ruby:
+```ruby
+require 'architect-functions'
 
+def handler(req) 
+#name = 'account-signup'
+#  payload = {body: req.body}
+#  arc.events.publish({name, payload})
+  {statusCode: 201}
+end
+```
+
+Python:
+```python
+```
+
+---

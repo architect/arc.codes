@@ -265,3 +265,5 @@ exports.handler = async function http(req) {
 ```
 
 > Note: To avoid CORS errors use the API Gateway `/_static` proxy to S3
+
+---
