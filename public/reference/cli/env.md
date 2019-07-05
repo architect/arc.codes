@@ -1,6 +1,6 @@
-# `npx env`
+# `arc env`
 
-Read and write environment variables that are made immediately available to all deployed Lambda functions. Sensitive configuration data, such as API keys, needs to happen _outside_ of the codebase in revision control and you can use this tool to ensure an entire team and the deployment targets are in sync. 
+Read and write environment variables. Sensitive configuration data, such as API keys, needs to happen _outside_ of the codebase in revision control and you can use this tool to ensure an entire team and the deployment targets are in sync. 
 
 ## Example Usage
 
@@ -11,9 +11,7 @@ Read and write environment variables that are made immediately available to all 
 
 Things to note
 
-- Adding and removing variables automatically syncs all lambdas and the current working directory `.arc-env`
 - `NODE_ENV`, `ARC_APP_NAME` and `SESSION_TABLE_NAME` are reserved
-- There is no performance impact to your app; these variables are synchronized every write and immediately available to all Lambdas defined by the current `.arc` file
 
 > Currently `.arc` uses AWS Systems Manager Parameter Store as a centralized backing storage mechanism for app environment variables. [Read more about AWS Systems Manager Parameter Store.](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-paramstore.html)
 
@@ -35,6 +33,4 @@ GLOBAL asdfasdf
 @staging
 GLOBAL_KEY val
 ```
-
-<script src="https://asciinema.org/a/182104.js" id="asciicast-182104" async data-autoplay="true" data-size="big"></script>
-
+---

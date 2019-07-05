@@ -8,7 +8,7 @@ Architect is an open source project hosted by the [OpenJS Foundation](https://op
 
 ## Helping out
 
-Architect welcomes everyone to help make it better. &#x1f49e; Please familiarize yourself with the [JS Foundation Code of Conduct](https://js.foundation/community/code-of-conduct) and the [Begin Community Code of Conduct](https://github.com/smallwins/policy/blob/master/begin-community-code-of-conduct.md). Introduce yourself in the issue trackers or chat! 
+Architect welcomes everyone to help make it better. &#x1f49e; Please familiarize yourself with the [Begin Community Code of Conduct](https://github.com/smallwins/policy/blob/master/begin-community-code-of-conduct.md). Introduce yourself in the issue trackers or chat! 
 
 We ask that you do your part in helping us ensure a safe, positive, inclusive, constructive, and welcoming environment for all.
 

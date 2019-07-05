@@ -1,4 +1,4 @@
-# `npx repl`
+# `arc repl`
 
 > Read/evaluate/print/loop with DynamoDB using `.arc` defined `@tables` and `@indexes`
 
@@ -11,6 +11,4 @@ Helpful terminal access to your data.
 - `NODE_ENV=production npx repl` connects to production tables and indexes
 
 After the REPL starts type: `data` to see the generated data layer.
-
-> ⚠ NOTE: you have to have `@architect/data` installed in the root to use `npx repl`
-
+---

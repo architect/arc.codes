@@ -511,17 +511,17 @@ pre[class*="language-"] {
   cursor: help;
 }
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+/** new nav! **/
+.nav > nav > ul > li > ul > li > ul > li > a {
+  font-family: monospace;
+  font-size: 16px;
+}
+
+.nav nav ul li b {
+  display:block;
+  cursor: pointer;
+}
+
+.hide {
+  display:none;
+}

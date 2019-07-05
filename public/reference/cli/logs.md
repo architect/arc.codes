@@ -1,4 +1,4 @@
-# `npx logs`
+# `arc logs`
 
 Display or clear logs for a given function.
 
@@ -7,3 +7,4 @@ Display or clear logs for a given function.
 * To clear `staging` logs run `npx logs nuke src/http/get-index`
 * To clear `production` logs run `npx logs nuke production src/http/get-index`
 
+---

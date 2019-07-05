@@ -1,5 +1,4 @@
 # Web Sockets
-
 ## Real time web apps with stateless cloud functions
 
 The `@ws` primitive creates a web socket endpoint and stateless handler functions: `connect`, `disconnect` and `default`. 

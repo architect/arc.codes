@@ -65,7 +65,7 @@ Additionally `AWS::SSM::Parameter` resources are created for every SNS Topic whi
 
 ---
 
-## Publishing Events
+<h2 id=publish>💌 Publish</h2>
 
 All runtime Lambda functions share an IAM Role that allows them to publish events to any SNS Topic in the currently deployed CloudFormation stack. 
 
