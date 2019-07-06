@@ -533,6 +533,7 @@ pre[class*="language-"] {
   display: none;
 }
 
+pre.arcfile,
 pre.language-bash,
 pre.language-arc {
   margin:0;
@@ -540,6 +541,7 @@ pre.language-arc {
   border-radius: 10px;
   background: #333;
 }
+
 pre.language-bash code {
   background: black;
   color: lightgreen;
@@ -553,3 +555,4 @@ pre.language-arc code {
   text-shadow: none;
   background:black;
 }
+
