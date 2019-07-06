@@ -10,7 +10,6 @@ let style = fs.readFileSync(path.join(__dirname, 'index.css')).toString()
 
 module.exports = function layout(filename, {headers, body}) {
   if (!cache[filename]) {
-    let base = process.env.ARC_CLOUDFORMATION? '/production': ''
     let title = 'Architect serverless framework'
     let classes = !logo ? '' : 'home'
     cache[filename] = `<!doctype html>
@@ -55,7 +54,7 @@ module.exports = function layout(filename, {headers, body}) {
   document.querySelector(\`a[href="\${location.pathname}"]\`).style.color = '#00ff63'
 })();
 </script>
-<script type=module src=${base}/_static/nav.js
+<script type=module src=/_static/nav.js
 <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-74655805-3', 'auto');ga('send', 'pageview');
 </script>

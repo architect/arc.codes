@@ -1,20 +1,19 @@
 # Less But Better
-
 ## Deploy powerful **AWS** primitives with clear and readable config 
-
-Build modern apps with next generation cloud infra defined plain language with plaintext. 
 
 - 🔥 **Database backed web apps** that scale to zero
 - 💖 **Static single page apps** seamlessly integrated with cloud functions
 - ⏳ **Long running background tasks** (15min) and scheduled jobs 
 
-Modern apps require modern workflows. 
+Modern apps deserve modern workflows: 
 
-- ⏱  **Deploy in seconds** with first class support for `staging` and `production` envs
+- 💓 **Primitives, not frameworks**: define architecture agnostic of vendor arcana
 - 💻 **Work locally** while completely offline with a speedy in-memory database
-- 💓 **Primitives, not frameworks**: define app architecture agnostic of vendor arcana
+- ⏱  **Deploy in seconds** with first class support for `staging` and `production` envs
 
-**Version control your architecture** and provision cloud infra rapidly from an `.arc` manifest. _Everything you need to build a modern cloud app with low code, terse config and zero ceremony._
+_Everything you need to build a modern cloud app with low code, terse config and zero ceremony._
+
+---
 
 ## Install
 
