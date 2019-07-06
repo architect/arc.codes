@@ -7,8 +7,6 @@ profile smallwins
 bucket cf-sam-deployments-east
 
 @static
-serialize false
-
 @http
 get /
 get /api/:version/package

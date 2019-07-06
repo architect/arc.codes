@@ -1,14 +1,14 @@
 # Project Philosophy 
-## Build apps free from infra and vendor cruft 
+## Build apps free from infra complexity and cruft 
 
 Focus on the core business logic required to create value, ship only the code that matters, iterate faster and still enjoy unprecedented availability guarantees.
 
 ---
 
-Architect defines a high level vendor agnostic plaintext format, `.arc`, as a manifest file and otherwise views cloud infra and configurations as build artifact.
+Architect defines a high level plaintext format, `.arc`, as a manifest file and otherwise views cloud infrastructure and configuration as a build artifact.
 
 - Focus on defining app architecture with simple, plain and clear language
-- Generate code and work locally and totally offline
+- Generate code to work locally and totally offline
 - Deploy and extend with standard CloudFormation templates
 - The format, parser, and tooling are also all completely open to extension
 
@@ -22,7 +22,7 @@ The `.arc` format follows a few simple rules:
 
 - Comments start with `#`
 - Sections start with `@`
-- **Everything between sections becomes instructions for generating AWS infrastructure**
+- **Everything between sections becomes instructions for generating AWS resources**
 
 `.arc` files are made up of the following sections:
 
