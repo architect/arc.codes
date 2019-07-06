@@ -35,7 +35,6 @@ textarea {
 button {
   flex: 1 100%;
 }
-
 </style>
 
 <form action=/api/1/package>

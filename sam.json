@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Transform": "AWS::Serverless-2016-10-31",
-  "Description": "Exported by architect/package@1.0.30 on 2019-07-06T02:37:03.231Z",
+  "Description": "Exported by architect/package@1.0.30 on 2019-07-06T04:50:53.187Z",
   "Resources": {
     "ArcCodes": {
       "Type": "AWS::Serverless::Api",
@@ -131,6 +131,49 @@
                     "method.request.path.proxy"
                   ],
                   "type": "http_proxy"
+                }
+              }
+            },
+            "/arcfile.js": {
+              "get": {
+                "responses": {
+                  "200": {
+                    "description": "200 response",
+                    "headers": {
+                      "Content-Type": {
+                        "schema": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "x-amazon-apigateway-integration": {
+                  "responses": {
+                    "default": {
+                      "statusCode": "200",
+                      "responseParameters": {
+                        "method.response.header.Content-Type": "'application/javascript; charset=utf8'"
+                      },
+                      "responseTemplates": {
+                        "text/html": "/* eslint-env browser */\nlet els = document.querySelectorAll('code.language-arc')\nfor (let item of els) {\n  let arc = item.innerText.split('\\n')\n  let parent = item.parentNode\n  parent.classList.add('arcfile')\n  item.remove()\n  let styles = 'line-height:1em;font-size:1.2em;border:none;margin:0;border-radius:0;padding:0 0 10px 20px;margin:0;background:black;'\n  let index = 0\n  let html = ``\n  arc.forEach(line=> {\n    if (index === 0) {\n      styles = styles + 'padding-top:20px;'\n    }\n    else {\n      styles = styles.replace('padding-top:20px;', '')\n    }\n    if (line.startsWith('#')) {\n      html += `<code style=\"${styles}color:grey;\">${line}\\n</code>`\n    }\n    else if (line.startsWith('@')) {\n      html += `<code style=\"${styles}color:cyan;font-weight:bolder;\">${line}\\n</code>`\n    }\n    else {\n      let bits = line.split(' ')\n      let verbs = 'get post put delete patch'.split(' ')\n      if (verbs.includes(bits[0])) {\n        let first = bits.shift()\n        html += `<code style=\"${styles}\"><span style=\"color:lightseagreen;font-weight:bolder;\">${first}</span> <span style=\"color:lightseagreen;\">${bits.join(' ')}</span></code>`\n      }\n      else {\n        html += `<code style=\"${styles}color:lightseagreen;\">${line}\\n</code>`\n      }\n    }\n    index += 1\n  })\n  parent.innerHTML = html //`<code class=language-arc style=background:pink>${arc}</code>`\n}\n\n"
+                      },
+                      "contentHandling": "CONVERT_TO_TEXT"
+                    }
+                  },
+                  "requestTemplates": {
+                    "application/json": "{\"statusCode\": 200}"
+                  },
+                  "contentHandling": "CONVERT_TO_TEXT",
+                  "passthroughBehavior": "when_no_match",
+                  "type": "mock"
                 }
               }
             },

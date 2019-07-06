@@ -9,12 +9,14 @@ for (let item of els) {
   let index = 0
   let html = ``
   arc.forEach(line=> {
+
     if (index === 0) {
       styles = styles + 'padding-top:20px;'
     }
     else {
       styles = styles.replace('padding-top:20px;', '')
     }
+
     if (line.startsWith('#')) {
       html += `<code style="${styles}color:grey;">${line}\n</code>`
     }
@@ -34,6 +36,6 @@ for (let item of els) {
     }
     index += 1
   })
-  parent.innerHTML = html //`<code class=language-arc style=background:pink>${arc}</code>`
+  parent.innerHTML = html
 }
 

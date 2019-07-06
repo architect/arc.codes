@@ -14,15 +14,22 @@ cd testapp
 arc init
 ```
 
-Run `arc sandbox` and check out the fresh new app. (Run <code>Ctrl + c</code> to exit the sandbox.)
+Preview locally:
 
-Deploy the code:
+```bash
+arc sandbox
+```
+> <code>Ctrl + c</code> exits the sandbox
+
+Deploy your code:
 
 ```bash
 arc deploy
 ```
 
 Congrats, you've successfully set up a serverless web app! Nice work. 💖
+
+---
 
 ## Next: [.arc project layout](/quickstart/layout)
 

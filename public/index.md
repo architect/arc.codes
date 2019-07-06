@@ -4,16 +4,11 @@
 - 🔥 **Database backed web apps** that scale to zero
 - 💖 **Static single page apps** seamlessly integrated with cloud functions
 - ⏳ **Long running background tasks** (15min) and scheduled jobs 
-
-Modern apps deserve modern workflows: 
-
 - 💓 **Primitives, not frameworks**: define architecture agnostic of vendor arcana
 - 💻 **Work locally** while completely offline with a speedy in-memory database
 - ⏱  **Deploy in seconds** with first class support for `staging` and `production` envs
 
 _Everything to build a modern cloud app with low code, terse config and zero ceremony._
-
----
 
 ## Install
 
