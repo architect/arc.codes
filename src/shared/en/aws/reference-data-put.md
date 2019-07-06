@@ -45,7 +45,7 @@ async function handler(req, res) {
   let ts = new Date(Date.now()).toISOString()
   let note = await data.notes.put({noteID, body, title, ts})
   res({
-    location
+    location: '/'
   })
 }
 
