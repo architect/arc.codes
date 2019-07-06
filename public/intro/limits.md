@@ -42,6 +42,8 @@ Focus on unique business value, only maintain differentiated code and iterate fa
 
 ---
 
-## Next: [Check out the quickstart](/quickstart)
-
+> Next steps
+> - [Play in the playground](/intro/playground)
+> - [Follow the quickstart](/quickstart)
+> - [HTTP Functions](/primitives/http)
 ---

@@ -1,7 +1,7 @@
 # Queues
 ## Run cloud functions in the background
 
-Subscribe a Lambda function to an SQS Queue and then asynchronously publish JSON payloads to it. SQS automatically polls to receive messages. The programming model is identical to SNS but offers different service guarentees and configuration options. In particular, SNS will retry failed invocations twice whereas SQS will retry for 4 days (by default). 
+Subscribe a Lambda function to an SQS Queue and then asynchronously publish JSON payloads to it. SQS automatically polls to receive messages. The programming model is identical to SNS but offers different service guarantees and configuration options. In particular, SNS will retry failed invocations twice whereas SQS will retry for 4 days (by default). 
 
 > Read the official [AWS docs on Lambda retry behavior](https://docs.aws.amazon.com/lambda/latest/dg/retries-on-errors.html)
 
@@ -68,7 +68,7 @@ Additionally `AWS::SSM::Parameter` resources are created for every SQS Queue whi
 
 <h2 id=publish>💌 Publish</h2>
 
-All runtime Lambda functions share an IAM Role that allows them to publish events to any SQS Queu in the currently deployed CloudFormation stack. 
+All runtime Lambda functions share an IAM Role that allows them to publish events to any SQS Queue in the currently deployed CloudFormation stack. 
 
 ### Publish an event payload to an SQS Queue URL
 

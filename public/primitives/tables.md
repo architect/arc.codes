@@ -3,7 +3,7 @@
 
 Durable persistence of structured data is the foundation for all powerful web apps. Data needs to be instantaneous, consistent, secure, and transparently scale to meet demand.
 
-Architect `@tables` defines DynamoDB tables and `@indexes` define global secondary indexes to facilitate more advanced acccess patterns. 
+Architect `@tables` defines DynamoDB tables and `@indexes` define global secondary indexes to facilitate more advanced access patterns. 
 
 > Read the official [AWS docs on DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
 
@@ -103,13 +103,11 @@ For `@tables` only the following IAM actions are allowed at runtime:
 
 <h2 id=write>🔏 Write Data</h2>
 
-TODO
 
 ---
 
 <h2 id=read>📖 Read Data</h2>
 
-TODO
 
 ---
 

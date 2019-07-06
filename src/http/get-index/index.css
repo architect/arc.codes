@@ -530,5 +530,26 @@ pre[class*="language-"] {
 }
 
 .hide {
-  display:none;
+  display: none;
+}
+
+pre.language-bash,
+pre.language-arc {
+  margin:0;
+  padding: 5px;
+  border-radius: 10px;
+  background: #333;
+}
+pre.language-bash code {
+  background: black;
+  color: lightgreen;
+  text-shadow: none;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+pre.language-arc code {
+  color: cyan;
+  text-shadow: none;
+  background:black;
 }

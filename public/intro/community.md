@@ -6,11 +6,15 @@ Architect is an open source project hosted by the [OpenJS Foundation](https://op
 <li>🌟 Star the project on Github <a href=https://github.com/architect/architect><code>architect/architect</code></a></li>
 </ul>
 
+---
+
 ## Helping out
 
-Architect welcomes everyone to help make it better. &#x1f49e; Please familiarize yourself with the [Begin Community Code of Conduct](https://github.com/smallwins/policy/blob/master/begin-community-code-of-conduct.md). Introduce yourself in the issue trackers or chat! 
+Architect welcomes everyone to help make it better. &#x1f49e; Please familiarize yourself with the [Begin Community Code of Conduct](https://github.com/smallwins/policy/blob/master/begin-community-code-of-conduct.md) and introduce yourself in the issue trackers or chat! 
 
 We ask that you do your part in helping us ensure a safe, positive, inclusive, constructive, and welcoming environment for all.
+
+---
 
 ## A very brief history
 
@@ -18,5 +22,8 @@ The `.arc` manifest takes inspiration from UNIX 'run command' files (like `.vimr
 
 The code was developed building [Begin](https://begin.com) and granted to [JS Foundation](https://js.foundation/) in July of 2017 under the `Apache-2.0` license.
 
-## Next: [Check out the quickstart](/quickstart)
+---
 
+> [Check out the quickstart next](/quickstart)
+
+---

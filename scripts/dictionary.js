@@ -58,6 +58,7 @@ module.exports = [
   'cross-env',
   'cruft',
   'cryptographically',
+  'cron',
   'CSR',
   'CSRF',
   'CSS',

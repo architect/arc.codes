@@ -11,7 +11,7 @@ Modern apps deserve modern workflows:
 - 💻 **Work locally** while completely offline with a speedy in-memory database
 - ⏱  **Deploy in seconds** with first class support for `staging` and `production` envs
 
-_Everything you need to build a modern cloud app with low code, terse config and zero ceremony._
+_Everything to build a modern cloud app with low code, terse config and zero ceremony._
 
 ---
 
@@ -66,3 +66,5 @@ And `arc deploy` ships iterations on your code to the cloud.
 - [Tinker in the playground](/intro/playground)
 - [Follow the quickstart](/quickstart)
 - [Learn about HTTP Functions](/primitives/http)
+
+---
