@@ -34,6 +34,7 @@ exports.handler = async function http(request) {
   }
 }
 ```
+## Requests as Input
 
 By default, HTTP functions are dependency free with a minimal, but very powerful, low level API: every HTTP function receives a plain JavaScript `Object` called `request` as a first parameter. `request` has the following keys:
 
@@ -43,6 +44,10 @@ By default, HTTP functions are dependency free with a minimal, but very powerful
 - <b>`params`</b> - `Object`, any URL params, if defined in your function's path (i.e. `get /:foo/bar`)
 - <b>`query`</b> - `Object`, any query params, if present
 - <b>`headers`</b> - `Object`, contains all client request headers 
+
+Routes also get the AWS [`context`](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html) `Object` as a second argument, which can be used for performance optimisation and other tricksm but most routes don't use it. 
+
+## Return a response
 
 To send a response, HTTP functions return a plain JavaScript `Object` with the following params:
 
