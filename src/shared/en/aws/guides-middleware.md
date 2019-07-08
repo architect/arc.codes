@@ -67,7 +67,7 @@ Like normal [Arc routes](/guides/http), middleware routes also support the AWS [
 ## Common Session Use Cases
 
 - Authentication 
-- Tracking user interactions (kick off a `@event` to save something to the database without blocking the reequest!) 
+- Tracking user interactions (kick off a `@event` to save something to the database without blocking the request!) 
 - Adding additional info to requests
 
 <hr>
