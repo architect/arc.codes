@@ -5,9 +5,9 @@ Combine multiple operations in a single HTTP function handler. `arc.middleware()
 - A middleware function receives a `request` as the first argument
 - If the middleware function doesn't return anything, the request will be passed to the next middleware function
 - If the middleware returns a modified `request`, the modified `request` will be passed to the next middleware function
-- If the middleware function returns a [response](/guides/http), this will end processing and send the `response` back 
+- If the middleware function returns a [response](/guides/http), this will end processing and send the `response` back
 
-Here's an example in which we'll register `addCountryCode`, `requireLogin`, and `showDashboard` to run in series. 
+Here's an example in which we'll register `addCountryCode`, `requireLogin`, and `showDashboard` to run in series.
 
 - `addCountryCode` adds `countryCode` to our request
 - `requireLogin` will return a redirect response if the user is not logged in (ending middleware processing) or return nothing if they user is logged in (continuing middleware processing).
@@ -16,10 +16,10 @@ Here's an example in which we'll register `addCountryCode`, `requireLogin`, and 
 ```javascript
 let arc = require('@architect/functions')
 
-// Add a 'countryCode' attribute to the request 
+// Add a 'countryCode' attribute to the request
 async function addCountryCode(request) {
   // AWS already does this with req.headers['CloudFront-Viewer-Country']
-  // but for other cloud providers you can use your preferred geoip 
+  // but for other cloud providers you can use your preferred geoip
   // module, or pretend everyone is in New Zealand like below!
   request.countryCode = 'NZ'
   // The modified request will be used in subsequent middleware steps
@@ -41,7 +41,7 @@ async function requireLogin(request) {
 	// return nothing, so middleware continues
 }
 
-// Show a HTML page. If we've reached this step we know the user is logged in, and we know their country code! 
+// Show a HTML page. If we've reached this step we know the user is logged in, and we know their country code!
 async function showDashboard(request) {
 	console.log(`Showing dashboard`)
 
@@ -50,7 +50,7 @@ async function showDashboard(request) {
 		<h1>Dashboard</h1>
 		<p>You are logged in from ${request.countryCode}! <a href="/logout">logout</a><p>
 	</body>`
-	return {	
+	return {
 		status: 200,
 		type: 'text/html',
 		body: dashboardPage
@@ -62,16 +62,16 @@ exports.handler = arc.middleware(addCountryCode, requireLogin, showDashboard)
 
 Super clean!
 
-The middleware API works well with [the `shared` folder](/guides/sharing-common-code) to do things like re-use `requireLogin` to protect multiple HTTP functions. 
+The middleware API works well with [the `shared` folder](/guides/sharing-common-code) to do things like re-use `requireLogin` to protect multiple HTTP functions.
 
-> **Protip**: the AWS [`context`](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html) object is passed as the second argument to each route 
+> **Protip**: the AWS [`context`](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html) object is passed as the second argument to each route
 
-Like normal [Arc routes](/guides/http), middleware routes also support the AWS [`context`](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html) object. `context` will be passed on as a second option to each route. 
+Like normal [Arc routes](/guides/http), middleware routes also support the AWS [`context`](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html) object. `context` will be passed on as a second option to each route.
 
 ## Common Session Use Cases
 
-- Authentication 
-- Tracking user interactions (kick off a `@event` to save something to the database without blocking the request!) 
+- Authentication
+- Tracking user interactions (kick off a `@event` to save something to the database without blocking the request!)
 - Adding additional info to requests
 
 <hr>
