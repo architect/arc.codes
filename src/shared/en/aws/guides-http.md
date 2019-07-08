@@ -45,7 +45,7 @@ By default, HTTP functions are dependency free with a minimal, but very powerful
 - <b>`query`</b> - `Object`, any query params, if present
 - <b>`headers`</b> - `Object`, contains all client request headers 
 
-Routes also get the AWS [`context`](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html) `Object` as a second argument, which can be used for performance optimisation and other tricks, but most routes don't use it. 
+Routes also get the AWS [`context`](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html) `Object` as a second argument, which can be used for performance optimization and other tricks, but most routes don't use it. 
 
 ## Return a response
 
