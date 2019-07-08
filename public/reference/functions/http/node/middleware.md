@@ -66,6 +66,8 @@ The middleware API works well with [the `shared` folder](/guides/sharing-common-
 
 > **Protip**: the AWS [`context`](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html) object is passed as the second argument to each route 
 
+Like normal [Arc routes](/guides/http), middleware routes also support the AWS [`context`](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html) object. `context` will be passed on as a second option to each route. 
+
 ## Common Session Use Cases
 
 - Authentication 
