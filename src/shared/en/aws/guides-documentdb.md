@@ -10,7 +10,7 @@ AWS has more recently included [DocumentDB](https://aws.amazon.com/documentdb/),
 
 ### MongoDB Atlas in AWS
 
-MongoDB inc also provide [MongoDB Atlas](), which has a [free tier](https://docs.mongodb.com/manual/tutorial/atlas-free-tier-setup/). Note the free tier (M0) is only available in certain AWS regions - at the time of writing `us-east-1` and `eu-central-1`. MongoDB Atlas also has [lower pricing](https://www.mongodb.com/cloud/atlas/pricing) than DocumentDB.
+MongoDB inc also provide [MongoDB Atlas](https://www.mongodb.com/cloud/atlas), which has a [free tier](https://docs.mongodb.com/manual/tutorial/atlas-free-tier-setup/). Note the free tier (M0) is only available in certain AWS regions - at the time of writing `us-east-1` and `eu-central-1`. MongoDB Atlas also has [lower pricing](https://www.mongodb.com/cloud/atlas/pricing) than DocumentDB.
 
 ### MongoDB Server in the Arc Sandbox 
 
@@ -20,7 +20,7 @@ You can install MongoDB server and use it from the Arc sandbox.
 
 ## DocumentDB/Mongo in AWS
 
-In your lambdas (and, as of Architect Functions v4, your middleware), use:
+In your lambdas (and, as of Architect Functions version 4, your middleware), use:
 
 ```javascript
 context.callbackWaitsForEmptyEventLoop = false
