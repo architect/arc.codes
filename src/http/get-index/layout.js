@@ -34,7 +34,6 @@ module.exports = function layout(filename, {headers, body}) {
       <section class=content><div class=inner>${body}</div></section>
       <footer class=footer></footer>
     </section>
-    <script src=https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js></script>
     <a href="https://github.com/arc-repos/arc.codes" class="github-corner" aria-label="View source on Github">${github}</a>
 <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 <script>
@@ -54,6 +53,15 @@ module.exports = function layout(filename, {headers, body}) {
   document.querySelector(\`a[href="\${location.pathname}"]\`).style.color = '#00ff63'
 })();
 </script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script>
+  Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/'
+
+</script>
+
 <script type=module src=/_static/nav.js></script>
 <script type=module src=/_static/arcfile.js></script>
 <script>

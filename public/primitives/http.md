@@ -147,16 +147,35 @@ Read more about the <a target=blank href=https://docs.aws.amazon.com/apigateway/
 
 <h2 id=examples>🎁 Examples</h2>
 
-The requisite hello world:
+The requisite Node hello world:
 
 ```javascript
 // src/http/get-index/index.js
 exports.handler = async function http(req) {
   return {
     headers: {'content-type': 'text/html'},
-    body: `<b>hello world</b>` 
+    body: `<blink>Hello world from Node</blink>` 
   }
 }
+```
+
+Ruby:
+
+```ruby
+# src/http/get-index/index.rb
+def handler
+  html = `<b>Hello world from Ruby!</b>`
+  {headers: {'content-type': 'text/html'}, body: html}
+end
+```
+
+Python:
+
+```python
+# src/http/get-index/index.py
+def handler(req): 
+  body = 'hello world python edition'
+  return {headers: {'content-type': 'text/html'}, 'body': body}
 ```
 
 A redirect writing a session cookie:

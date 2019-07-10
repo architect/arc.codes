@@ -41,18 +41,40 @@ post /hello
 └── .arc
 ```
 
-The generated code in `/src/http/get-index/index.js` looks like this:
+Node
 
 ```javascript
+// src/http/get-index/index.js
 exports.handler = async function http(request) {
   return {
-    type: 'text/html',
+    headers: {'content-type': 'text/html'},
     body: '<h1>Hello World! 🎉</h1>'
   }
 } 
 ```
 
-And `arc deploy` ships iterations on your code to the cloud. 
+Ruby
+
+```ruby
+# src/http/get-index/index.rb
+def handler
+  {
+    headers: {'content-type': 'text/html'},
+    body: '<h1>Hello World! 🎉</h1>'
+  }
+end
+```
+
+Python
+
+```python
+# src/http/get-index/index.py
+def handler(request, context):
+    headers = {'content-type': 'text/html'}
+    return {'headers': headers, 'body': '<h1>Hello World! 🎉</h1>'}
+```
+
+> ✨ `arc deploy` ships local code to the cloud with AWS SAM and CloudFormation
 
 ---
 
