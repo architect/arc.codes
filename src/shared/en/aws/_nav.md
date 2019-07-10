@@ -22,6 +22,7 @@
   - [Assigning a Domain Name](/guides/custom-dns)
   - [WebSockets](/guides/ws)
 - NewOps
+  - [DocumentDB](/guides/documentdb)
   - [Multiple AWS Accounts](/guides/multiple-aws-accounts)
   - [Custom IAM Roles](/guides/iam)
   - [YAML/JSON Config](/guides/yaml-and-json)
