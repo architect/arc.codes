@@ -72,32 +72,38 @@ All runtime Lambda functions share an IAM Role that allows them to publish event
 
 ### Publish an event payload to an SQS Queue URL
 
-Node:
+Node
+
 ```javascript
 let arc = require('@architect/functions')
 
 exports.handler = async function http(req) {
   let name = 'account-signup'
   let payload = {body: req.body}
-  await arc.events.publish({name, payload})
+  await arc.queues.publish({name, payload})
   return {statusCode: 201}
 }
 ```
 
-Ruby:
+Ruby
+
 ```ruby
 require 'architect-functions'
 
-def handler(req) 
-#name = 'account-signup'
-#  payload = {body: req.body}
-#  arc.events.publish({name, payload})
+def handler
+  Arc::Queues.publish name: 'account-signup', payload: {ok:true}
   {statusCode: 201}
 end
 ```
 
-Python:
+Python
+
 ```python
+import arc.queues
+
+def handler(request, context):
+  arc.queues.publish(name='account-signup', payload={'ok':True})
+  return {'statusCode': 201}
 ```
 
 ---

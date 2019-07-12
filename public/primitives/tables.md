@@ -57,7 +57,7 @@ Running `arc deploy` will setup the following AWS resources:
 
 Additionally `AWS::SSM::Parameter` resources are created for every table which can be inspected at runtime:
 
-- **`/[StackName]/events/[TableName]`** with a value of the generated DynamoDB Table
+- **`/[StackName]/tables/[TableName]`** with a value of the generated DynamoDB Table
 
 > All runtime functions have the environment variable `AWS_CLOUDFORMATION` which is the currently deployed CloudFormation stack name; this combined w the runtime `aws-sdk` or `@architect/functions` can be used to lookup these values in SSM
 
@@ -103,15 +103,114 @@ For `@tables` only the following IAM actions are allowed at runtime:
 
 <h2 id=write>🔏 Write Data</h2>
 
+`put` with Node
+
+```javascript
+let arc = require('@architect/functions')
+
+let data = await arc.tables()
+await data.cats.put({fluffID: 2, name: 'sutr0'})
+```
+
+`update` with Ruby
+
+```ruby
+require 'architect/functions'
+
+cats = Arc::Tables.table tablename: 'cats'
+
+cats.update({
+  key: {
+    fluffID: 2
+  },
+  update_expression: 'set colour = :colour',
+  expression_attribute_values: {
+    ':colour' => 'grey'
+  }
+})
+```
+ 
+And `delete` with Python
+
+```python
+import arc.tables
+
+cats = arc.tables.table(tablename='cats')
+cats.delete_item(Key=1)
+```
 
 ---
 
 <h2 id=read>📖 Read Data</h2>
 
+`scan` with Node
+
+```javascript
+let arc = require('@architect/functions')
+
+let data = await arc.tables()
+let cats = await data.cats.scan({})
+```
+
+`query` with Ruby
+
+```ruby
+require 'architect/functions'
+
+cats = Arc::Tables.table tablename: 'cats'
+result = cats.query {key_condition_expression: 'fluffID = 1'}
+```
+
+`get` with Python
+
+```python
+import arc.tables
+
+cats = arc.tables.table(tablename='cats')
+cat = cats.get_item(Key=1)
+```
 
 ---
 
 <h2 id=stream>📚 Stream Data</h2>
+
+Stream changes on a DynamoDB table to a Lambda function.
+
+```arc
+@app
+testapp
+
+@tables
+cats
+  catID *String
+  stream true
+```
+
+> `arc init` creates `src/tables/cats` local code and 
+> `arc deploy` to publishes to Lambda
+
+Node
+```javascript
+exports.handler = async function stream(event) {
+  console.log(event)
+  return true
+}
+```
+
+Ruby
+```ruby
+def handler(event)
+  puts event
+  true
+end
+```
+
+Python
+```python
+def handler(event, context):
+    print(event)
+    return True
+```
 
 ---
 

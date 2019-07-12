@@ -71,7 +71,8 @@ All runtime Lambda functions share an IAM Role that allows them to publish event
 
 ### Publish an event payload to an SNS Topic
 
-Node:
+Node
+
 ```javascript
 let arc = require('@architect/functions')
 
@@ -83,20 +84,25 @@ exports.handler = async function http(req) {
 }
 ```
 
-Ruby:
+Ruby
+
 ```ruby
 require 'architect-functions'
 
-def handler(req) 
-#name = 'account-signup'
-#  payload = {body: req.body}
-#  arc.events.publish({name, payload})
+def handler
+  Arc::Events.publish name: 'account-signup', payload: {ok:true}
   {statusCode: 201}
 end
 ```
 
-Python:
+Python
+
 ```python
+import arc.events
+
+def handler(request, context):
+  arc.events.publish(name='account-signup', payload={'ok':True})
+  return {'statusCode': 201}
 ```
 
 ---

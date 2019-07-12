@@ -164,7 +164,7 @@ Ruby:
 ```ruby
 # src/http/get-index/index.rb
 def handler
-  html = `<b>Hello world from Ruby!</b>`
+  html = '<b>Hello world from Ruby!</b>'
   {headers: {'content-type': 'text/html'}, body: html}
 end
 ```
