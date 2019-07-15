@@ -6,9 +6,9 @@ Helpful terminal access to your data.
 
 ## Example Usage
 
-- `npx repl` connects to a local in memory representation of `.arc`
-- `NODE_ENV=staging npx repl` connects to staging tables and indexes
-- `NODE_ENV=production npx repl` connects to production tables and indexes
+- `arc repl` connects to a local in memory representation of `.arc`
+- `arc repl staging` connects to staging tables and indexes
+- `arc repl production` connects to production tables and indexes
 
 After the REPL starts type: `data` to see the generated data layer.
 ---

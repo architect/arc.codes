@@ -1,260 +1,112 @@
-# <a id=arc.http href=#arc.http>`arc.http`</a>
+# HTTP
 
-**Note**: this is the previous middleware API supported by previous versions of Architect. The new API, which supports `async/await` and returning responses, rather than using callbacks and `next()` is **[`arc.middleware`](/reference/middleware)**.
-
-`arc.http` is an express-style middleware API for HTTP functions.
-
-```javascript
-let arc = require('@architect/functions')
-
-function route(req, res) {
-  let html = '<h1>hello world</h1>'
-  res({html})
-}
-
-exports.handler = arc.http(route)
-```
-
-`arc.http` registers one, or more, functions with the signature `(req, res, next)=>`.
-
-`req` has the following keys:
-
-- `body` any `application/x-www-form-urlencoded` form variables as a plain `Object`
-- `path` absolute path of the request
-- `method` one of `GET`, `POST`, `PATCH`, `PUT` and `DELETE`
-- `params` any URL params defined
-- `query` any query params defined
-- `headers` a plain `Object` of request headers
-- `session` a plain `Object` representing the current session
-
-`res` is a function that accepts named parameters:
-
-- **Required**: One of
-  - `json`
-  - `html`
-  - `text`
-  - `css`
-  - `js`
-  - `xml`
-  - `location`
-- Optionally: `session` to assign to the current session
-- Optionally: `status` or `code` of:
-  - `201` Created
-  - `202` Accepted
-  - `204` No Content
-  - `400` Bad Request
-  - `403` Forbidden
-  - `404` Not Found
-  - `406` Not Acceptable
-  - `409` Conflict
-  - `415` Unsupported Media Type
-  - `500` Internal Serverless Error
-
-The default HTTP status code is `200`. A `302` is sent automatically when redirecting via `location`.
+Helper functions for working with HTTP
 
 ---
 
-- HTTP `POST` routes can **only** call `res` with `location` key and value of the path to redirect to.
-- `session` can also optionally be set
+## Node
 
-In the following example we define `validate` middleware:
+- `http.session` - read and write a session (usage example below)
 
-```javascript
-var arc = require('@architect/functions')
-var sendEmail = require('./_send-email')
+Runtime helpers `@architect/functions` for Node also have the following expanded functionality and guides:
 
-function validate(req, res, next) {
-  var isValid = typeof req.body.email != 'undefined'
-  if (isValid) {
-    next()
-  }
-  else {
-    res({
-      session: {
-        errors: ['email missing']
-      },
-      location: '/contact'
-    })
-  }
-}
+- [`http`](/reference/functions/http/node-classic) - classic continuation passing style middleware
+- [`http.middleware`](/reference/functions/http/node-middleware) - async function middleware
+- [`http.proxy`](/reference/functions/http/node-proxy) - proxy the public folder at the root
+- [`http.helpers`](/reference/functions/http/node-helpers) - additional webby helpers
 
-function handler(req, res) {
-  sendEmail({
-    email: req.body.email
-  }, 
-  function _email(err) {
-    res({
-      location: `/contact?success=${err? 'yep' : 'ruhroh'}`
-    })
-  })
-}
+## Ruby
 
-exports.handler = arc.http(validate, handler)
+- `Arc::HTTP::Session.read`
+- `Arc::HTTP::Session.write`
+
+## Python
+
+- `arc.http.session_read`
+- `arc.http.session_write`
+
+---
+
+Install runtime helpers for Node
+
+```bash
+cd path/to/lambda
+npm init -f
+npm install @architect/functions
 ```
 
-Things to understand:
+Install runtime helpers for Ruby
 
-- `arc.http` accepts one or more functions that follow Express-style middleware signature: `(req, res, next)=>`
-- `req` is a plain JavaScript `Object` with `path`, `method`, `query`, `params`, `body` keys
-- `res` is a function that must be invoked with named params: 
-  - `location` with a URL value (a string starting w `/`)
-  - `session` (optional) a plain `Object`
-- `res` can also be invoked with an `Error`
-  - optionally the `Error` instance property of `code`, `status` or `statusCode` can be one of `403`, `404` or `500` to change the HTTP status code
-- `next` (optional) is a function to continue middleware execution 
-
-Here's an example using `session` and `location`. First we render a form:
-
-```javascript
-// src/html/get-index
-var arc = require('@architect/functions')
-
-var form = `
-<form action=/count method=post>
-  <button>1up</button>
-</form>
-`
-
-function handler(req, res) {
-  var count = req.session.count || 0
-  res({
-    html: `<h1>${count}</h1><section>${form}</section>`
-  })
-}
-
-exports.handler = arc.http(handler)
-
+```bash
+cd path/to/lambda
+bundle init
+bundle install --path vendor/bundle
+bundle add architect-functions
 ```
 
-The form handler increments `req.session.count` and redirects back home.
+Install runtime helpers for Python
 
-```javascript
-// src/html/post-count
-var arc = require('@architect/functions')
-
-function handler(req, res) {
-  var count = (req.session.count || 0) + 1
-  res({
-    session: {count},
-    location: '/'
-  })
-}
-
-exports.handler = arc.http(handler)
-
+```bash
+cd path/to/lambda
+pip install --target ./vendor architect-functions
 ```
-# URLs (`arc.http.helpers.url`)
 
-## Get the correct URLs across sandbox, staging and production
+---
 
-API Gateway generates long URLs that are hard to read, and extends the URL base path with either `staging` or `production` &mdash; this means a link intended to point at `/` should actually point at `/staging` or `/production`. 
-
-> 👉🏽 Note: you don't need to worry about URL differences if you set up a [custom domain name with DNS](/guides/custom-dns)
-
-If you haven't set up DNS yet, `@architect/functions` bundles a helper function `arc.http.helpers.url` for resolving URL paths. This is helpful for early prototyping.
-
-Here's an example index page that demonstrates `url` usage:
+Node
 
 ```javascript
 let arc = require('@architect/functions')
-let url = arc.http.helpers.url
 
 exports.handler = async function http(req) {
-  if (req.session.isLoggedIn) {
-    return {
-      type: 'text/html',
-      body: `<a href=${url('/logout')}>logout</a>`
+  let session await arc.http.session.read(req)
+  session.count = (session.count || 0) + 1
+  let cookie = await arc.http.session.write(session)
+  return {
+    statusCode: 302, 
+    headers: {
+      'set-cookie': cookie,
+      'location': '/'
     }
   }
-  else {
-    return {
-      status: 302,
-      location: url('/login')
-    } 
-  }
 }
 ```
 
-> 👋 After DNS propagates you can remove calls to `arc.http.helpers.url` from your code. Learn how to [assign a domain name](/guides/custom-dns) by setting up DNS.
+Ruby
 
+```ruby
+require 'architect/functions'
 
-# <a id=arc.http.session href=#arc.http.session>`arc.http.session`</a>
+def handler(req)
+  session = Arc::HTTP::Session.read(req)
+  session = (session.count || 0) + 1
+  cookie = Arc::HTTP::Session.write(session)
+  {
+    statusCode: 302, 
+    headers: {
+      'location': '/', 
+      'set-cookie': cookie
+    }
+  }   
+end
+```
 
-Read and write to DynamoDB session tables.
+Python
 
-> 🦉 `arc.http.session.read` reads session state for a request.
+```python
+import arc.http.session
 
-`read(request, [callback]) => Promise` 
-- accepts a request object and an optional Node style errback
-- if no callback is supplied returns a Promise that resolves session state
-
-```javascript
-let arc = require('@architect/functions')
-
-exports.handler = async function http(req) {
-  // read the session
-  let session = await arc.http.session.read(req)
-  let html = `<h1>hello ${session.name || 'unknown'}</h1>`
+def handler(req):
+  session = arc.http.session.read(req)
+  session = (session.count || 0) + 1
+  cookie = arc.http.session.write(session)
   return {
-    type: 'text/html',
-    body: html
+    'statusCode': 302, 
+    'headers': {
+      'location': '/', 
+      'set-cookie': cookie
+    }
   }
-}
 ```
 
-> 💾 `arc.http.session.write` writes session into DynamoDB.
-
-`write(state, [callback]) => Promise`
-- accepts session state as a plain JavaScript object and an optional Node style errback
-- if no callback is supplied returns a Promise that resolves a Set-Cookie string
-
-```javascript
-let arc = require('@architect/functions')
-
-exports.handler = async function http(req) {
-
-  // read the session
-  let session = await arc.http.session.read(req)
-
-  // write the session
-  session.name = req.body.name
-
-  // save the session state 
-  let cookie = await arc.http.session.write(session)
-
-  // update the session cookie and redirect
-  return {
-    cookie,
-    status: 302,
-    location: '/'
-  }
-}
-```
-
-
-# <a id=proxy.public href=#proxy.public>`proxy.public`</a>
-
-## Proxy S3 through API Gateway
-
-Given the following `.arc` file:
-
-```arc
-@app
-spa
-
-@static
-@http
-get /
-
-```
-
-And to proxy all requests to S3:
-
-```javascript
-// add this to `src/http/get-index/index.js
-let arc = require('@architect/functions')
-
-exports.handler = arc.proxy.public({spa:true})
-```
-
-Setting `{spa:false}` will fall back to normal 404 behavior. If `/public/404.html` is defined that file will be used.
+---

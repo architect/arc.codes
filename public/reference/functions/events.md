@@ -1,45 +1,62 @@
-# <a id=arc.events.publish href=#arc.events.publish>`arc.events.publish`</a>
+# Events
 
-## Publish events from any other function
+Invoke `@event` handlers from any other function defined under the same `@app` namespace.
 
-Once deployed you can invoke `@event` handlers from any other function defined under the same `@app` namespace:
+---
+
+Install runtime helpers for Node
+
+```bash
+cd path/to/lambda
+npm init -f
+npm install @architect/functions
+```
+
+Install runtime helpers for Ruby
+
+```bash
+cd path/to/lambda
+bundle init
+bundle install --path vendor/bundle
+bundle add architect-functions
+```
+
+Install runtime helpers for Python
+
+```bash
+cd path/to/lambda
+pip install --target ./vendor architect-functions
+```
+
+---
+
+## Publish JSON payload to an SNS Topic
+
+Node
 
 ```javascript
-var arc = require('@achitect/functions')
+let arc = require('@achitect/functions')
 
-arc.events.publish({
+await arc.events.publish({
   name: 'hit-counter',
   payload: {hits: 1},
-}, console.log)
+})
 ```
 
-You can also invoke Lambdas across `@app` namespaces:
+Ruby
 
-```javascript
-var arc = require('@achitect/functions')
+```ruby
+require 'architect/functions'
 
-arc.events.publish({
-  app: 'some-other-app',
-  name: 'hit-counter',
-  payload: {hits: 2},
-}, console.log)
+Arc::Events.publish name: 'hit-counter', payload: {hits: 1}
 ```
 
-# <a id=arc.events.subscribe href=#arc.events.subscribe>`arc.events.subscribe`</a>
+Python
 
-## Subscribe functions to events
+```python
+import arc.events
 
-An example of a `hit-counter` event handler:
-
-```javascript
-var arc = require('@architect/functions')
-
-function count(payload, callback) {
-  console.log(JSON.stringify(payload, null, 2))
-  // maybe save count to the db here
-  callback()
-}
-
-exports.handler = arc.events.subscribe(count)
+arc.events.publish(name='hit-counter', payload={'hits': 1})
 ```
 
+---

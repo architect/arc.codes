@@ -50,7 +50,7 @@
     - [@testing](/reference/arc-env)
     - [@staging](/reference/arc-env)
     - [@production](/reference/arc-env)
-  - `@architect/functions`
+  - Runtime
     - [arc.events](/reference/functions/events)
     - [arc.http](/reference/functions/http)
     - [arc.queues](/reference/functions/queues)

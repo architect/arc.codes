@@ -3,10 +3,10 @@
 
 Deploys code in `src` with CloudFormation and `public` by directly uploading files to S3.
 
-- `arc deploy`
-- `arc deploy dirty`
-- `arc deploy production`
-- `arc deploy static`
+- `arc deploy` deploys to a staging stack
+- `arc deploy dirty` overwrites static lambda with local source (fast!)
+- `arc deploy production` deploys to a production stack
+- `arc deploy static` deploys static assets only
 
 Additional considerations:
 
