@@ -45,12 +45,15 @@ let alias = {
   '/reference/arc/static':             '/reference/arc/static.md',
   '/reference/arc/tables':             '/reference/arc/tables.md',
   '/reference/arc/ws':                 '/reference/arc/ws.md',
-  '/reference/arc-config/aws':         '/reference/arc-config/aws.md',
-  '/reference/arc-config/timeout':     '/reference/arc-config/timeout.md',
-  '/reference/arc-config/memory':      '/reference/arc-config/memory.md',
-  '/reference/arc-config/concurrency': '/reference/arc-config/concurrency.md',
-  '/reference/arc-config/policies':    '/reference/arc-config/policies.md',
-  '/reference/arc-config/layers':      '/reference/arc-config/layers.md',
+  '/reference/arc-config/aws':         '/reference/arc-config/index.md',
+  '/reference/arc-config/timeout':     '/reference/arc-config/index.md',
+  '/reference/arc-config/memory':      '/reference/arc-config/index.md',
+  '/reference/arc-config/concurrency': '/reference/arc-config/index.md',
+  '/reference/arc-config/policies':    '/reference/arc-config/index.md',
+  '/reference/arc-config/layers':      '/reference/arc-config/index.md',
+  '/reference/arc-env/testing':        '/reference/arc-env/index.md',
+  '/reference/arc-env/staging':        '/reference/arc-env/index.md',
+  '/reference/arc-env/production':     '/reference/arc-env/index.md',
 }
 
 let plugins = {

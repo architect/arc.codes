@@ -47,9 +47,9 @@
     - [policies](/reference/arc-config/policies)
     - [layers](/reference/arc-config/layers)
   - `.arc-env`
-    - [@testing](/reference/arc-env)
-    - [@staging](/reference/arc-env)
-    - [@production](/reference/arc-env)
+    - [@testing](/reference/arc-env/testing)
+    - [@staging](/reference/arc-env/staging)
+    - [@production](/reference/arc-env/production)
   - Runtime
     - [arc.events](/reference/functions/events)
     - [arc.http](/reference/functions/http)
