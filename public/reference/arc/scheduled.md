@@ -32,13 +32,5 @@ Which generates the following code:
 ├── .arc
 └── package.json
 ```
-
-And the following deployment Lambdas:
-
-- `testapp-staging-daily-update-buddy`
-- `testapp-production-daily-update-buddy`
-- `testapp-staging-friyay-only`
-- `testapp-production-friyay-only`
-
+---
 ## Next: [Creating `@static` asset buckets](/reference/static)
-

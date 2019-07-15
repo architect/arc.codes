@@ -18,7 +18,7 @@ testapp
 get /
 ```
 
-Running `npx create` generates the following functions:
+Running `arc create` generates the following functions:
 
 ```bash
 /
@@ -26,12 +26,10 @@ Running `npx create` generates the following functions:
 | |-http
 | | '-get-index/
 | '-ws
-|   |-ws-connect/
-|   |-ws-default/
-|   '-ws-disconnect/
+|   |-connect/
+|   |-default/
+|   '-disconnect/
 '-.arc
 ```
 
-
-## Next: [`arc.events.publish`](/reference/events-publish)
-
+---

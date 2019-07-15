@@ -32,13 +32,6 @@ Which generates the corresponding code:
 └── package.json
 ```
 
-And the following deployment Lambdas:
-
-- `testapp-staging-hit-counter`
-- `testapp-production-hit-counter`
-- `testapp-staging-likes`
-- `testapp-production-likes`
-
 ---
 
 ## Next: [Defining routes with `@http`](/reference/http)

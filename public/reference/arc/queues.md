@@ -34,13 +34,6 @@ Which generates the corresponding code:
 └── package.json
 ```
 
-And the following deployment Lambdas:
-
-- `testapp-staging-convert-image`
-- `testapp-production-convert-image`
-- `testapp-staging-publish-log`
-- `testapp-production-publish-log`
-
 ---
 
 ## Next: [Scheduling functions with `@scheduled`](/reference/scheduled)

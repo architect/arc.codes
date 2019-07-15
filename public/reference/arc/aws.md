@@ -7,6 +7,7 @@
   - `region`: [AWS region ID](https://docs.aws.amazon.com/general/latest/gr/rande.html) of the region you'll deploy this project to
   - `profile`: name of the profile you prefer to use with this project, as defined in your local [AWS profile](/quickstart)
   - `runtime`: lambda runtime, it can be either `nodejs8.10` or `provided` if you want to use a Custom Runtime with [AWS Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) ( _check note below_ )
+  - `bucket`: bucket (in same region) for Cloudformation deployment artifacts
 
 For more on working with AWS, please see: [Multiple AWS Accounts](/guides/multiple-aws-accounts).
 

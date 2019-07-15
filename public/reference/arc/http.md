@@ -44,10 +44,8 @@ The `.arc` above generates the following functions:
 └── package.json
 ```
 
-Note: The route `/pages/:dateID` corresponding handler deliberately looks a bit weird with the triple `000`. This is so you can quickly differentiate URL params from URL parts. The Lambda deploy targets follow suit:
+Note: The route `/pages/:dateID` corresponding handler deliberately looks a bit weird with the triple `000`. This is so you can quickly differentiate URL params from URL parts. 
 
-- `testapp-staging-get-pages-000dateID`
-- `testapp-production-get-pages-000dateID`
 
 ---
 

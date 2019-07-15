@@ -38,24 +38,6 @@ cats
   catID **String
 ```
 
-The example `.arc` above would generate:
-
-- `people-staging`
-- `people-production`
-- `cats-staging`
-- `cats-production`
-
-Function code will also be generated for the defined `people` Lambda triggers:
-
-```bash
-/
-├── tables
-│   ├── people-insert/
-│   ├── people-update/
-│   └── people-destroy/
-├── .arc
-└── package.json
-```
 
 ## Next: [WebSockets with `@ws`](/reference/ws)
 
