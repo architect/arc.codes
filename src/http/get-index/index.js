@@ -67,8 +67,7 @@ let alias = {
 let plugins = {
   md: [
     '@architect/proxy-plugin-md',
-    layout,
-    '@architect/proxy-plugin-html-urls',
+    layout
   ]
 }
 
