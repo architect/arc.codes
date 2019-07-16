@@ -31,6 +31,14 @@ let alias = {
   '/reference/cli/version':            '/reference/cli/version.md',
   '/reference/functions/events':       '/reference/functions/events.md',
   '/reference/functions/http':         '/reference/functions/http.md',
+
+  '/reference/functions/http/node/classic':    '/reference/functions/http/node/classic.md',
+  '/reference/functions/http/node/middleware': '/reference/functions/http/node/middleware.md',
+  '/reference/functions/http/node/proxy':      '/reference/functions/http/node/proxy.md',
+  '/reference/functions/http/node/session':    '/reference/functions/http/node/session.md',
+  '/reference/functions/http/ruby/session':    '/reference/functions/http/ruby/session.md',
+  '/reference/functions/http/python/session':  '/reference/functions/http/python/session.md',
+
   '/reference/functions/queues':       '/reference/functions/queues.md',
   '/reference/functions/static':       '/reference/functions/static.md',
   '/reference/functions/tables':       '/reference/functions/tables.md',
