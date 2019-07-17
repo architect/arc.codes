@@ -2,6 +2,31 @@
 
 > Guides for upgrading to the latest version of Architect
 
+## 6.x
+
+New:
+- This version of Architect is CloudFormation based!
+- Global CLI tool (or just install and `npx` as usual)
+- Ruby and Python fully supported (including local `sandbox`)
+- Workflows start local (`arc init && arc sandbox`) and `arc deploy` is opt in
+- Runtime helpers:
+  - `@architect/functions` for Node refactored and tightened up
+  - `architect-functions` for Ruby
+  - `architect-functions` for Python
+
+Removed:
+- Runtime deps are now completely removed by default and are now opt in
+- `npx create` removed (all you have to do now is `deploy`!)
+- `npx audit` removed (the IAM role is dynamically generated scoped to the app)
+- `npx config` removed (`.arc-config` settings are now serialized every deploy)
+- `npx inventory` removed (just use CloudFormation console)
+- `npx dns` removed (but we plan to revisit)
+
+Breaking:
+- DynamoDB triggers are now defined with `stream true`
+- `arc.proxy` and `arc.middleware` are now `arc.http.proxy` and `arc.http.middleware`
+- `architect/data` is now deprecated in favor of `@architect/functions` (using `arc.tables`)
+
 ## 5.x 
 
 Architect version 5 is here!

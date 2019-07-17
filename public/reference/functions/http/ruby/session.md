@@ -1,5 +1,13 @@
 # `Arc::HTTP::Session`
 
+Ensure your app has a strong secret key:
+
+```bash
+arc env production ARC_APP_SECRET something-much-better-than-this
+```
+
+---
+
 ```ruby
 require 'architect/functions'
 

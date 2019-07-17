@@ -17,6 +17,13 @@ test('start', async t=> {
   t.ok(true, 'started sandbox')
 })
 
+test('your test here', t=> {
+  t.plan(1)
+  // test can talk to http://localhost:3333
+  // or even the local DynamoDB http://localhost:5000
+  t.ok(true, 'your test here')
+})
+
 test('end', async t=> {
   t.plan(1)
   end()
@@ -27,6 +34,7 @@ test('end', async t=> {
 ---
 
 ## Ruby
+
 
 ---
 ## Python

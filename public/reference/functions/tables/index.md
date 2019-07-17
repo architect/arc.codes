@@ -1,10 +1,25 @@
-# <a id=data href=#data>`@architect/data`</a>
+# `arc.tables`
+## Work with tables defined in `.arc`
 
-## Interact with DynamoDB tables defined in `.arc`
+Node
+
+- `arc.tables`
+
+Ruby
+
+- `Arc::Tables.table`
+- `Arc::Tables.name`
+
+Python
+
+- `arc.tables.table`
+- `arc.tables.name`
+
+---
 
 Example, given the following `.arc` file:
 
-```.arc
+```arc
 @app
 testapp
 
