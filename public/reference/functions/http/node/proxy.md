@@ -2,20 +2,40 @@
 
 ## Static and dynamic API endpoints coexisting at the same origin
 
-Architect provides two methods to proxy static assets through API Gateway.
  This means your single page application and API can share the same domain name, session support and database access *without CORS* and *without 3rd party proxies*. 
 
-For this guide we'll use the following `.arc` file:
+Override the root with a `get /` HTTP function in the `.arc` file:
 
 ```arc
 @app
 spa
 
+@static
 @http
 get /
 
-@static
 ```
+
+---
+
+
+<h1>Proxy</h1>
+
+Architect provides two methods to proxy static assets through API Gateway.
+
+<h2 id=proxy>✨ API Gateway Proxy</h2>
+
+To workaround CORS you can proxy S3 directly through API Gateway at `/_static`.
+
+<h2>⚡️ Lambda Proxy</h2>
+
+- `AWS::Serverless::Api`
+- `AWS::Lambda::Function` *
+
+All Lambdas will have `process.env.ARC_STATIC_BUCKET` environment variable with the generated S3 bucket name. The generated API can proxy to the S3 bucket at the root with the help of Lambda and by-passes Lambda altogether with a direct proxy at `/_static`.
+
+<a href="/api/1/package?arc=%40app%0Atestapp%0A%40static%0A%40http%0Aget%20%2F%0A" 
+  target="blank"><b>* Note:</b> Architect creates a many supporting resources!</a>
 ## Proxy Public
 
 Lambda is _very good_ at reading and processing text from S3. To enable the default proxy add the following to the root Lambda:

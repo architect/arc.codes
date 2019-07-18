@@ -8,8 +8,8 @@
   - [Install](/quickstart/install)
   - [Project Layout](/quickstart/layout)
 - <b id=primitives>Primitives</b>
-  - [HTTP Functions](/primitives/http)
   - [Static Assets](/primitives/static)
+  - [HTTP Functions](/primitives/http)
   - [Web Sockets](/primitives/ws)
   - [Scheduled](/primitives/scheduled)
   - [Events](/primitives/events)
