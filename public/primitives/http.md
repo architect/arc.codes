@@ -2,12 +2,12 @@
 
 ## Create powerful web apps composed of fast HTTP functions
 
-Architect apps are composed of high level primitives. For each `@http` defined route Architect will create one HTTP function. HTTP functions are deployed as AWS Lambda functions wired with API Gateway to receive and respond to regular HTTP (and HTTPS) requests. 
+Architect apps are composed of high level primitives. For each `@http` defined route Architect will create one HTTP function. HTTP functions are deployed as AWS Lambda functions wired with API Gateway to receive and respond to regular HTTP (and HTTPS) requests.
 
 ---
 
-- <a href=#local><b>🚜 Work Locally</b></a> 
-- <a href=#provision><b>🌾 Provision</b></a> 
+- <a href=#local><b>🚜 Work Locally</b></a>
+- <a href=#provision><b>🌾 Provision</b></a>
 - <a href=#deploy><b>⛵️ Deploy</b></a>
 - <a href=#sec><b>💰 Security</b></a>
 - <a href=#req><b>🛫 Request Payload</b></a>
@@ -64,7 +64,7 @@ Ruby
 def handler(request)
   {statusCode: 200}
 end
-``` 
+```
 
 Python
 ```python
@@ -83,14 +83,14 @@ Running `arc deploy` will setup the following AWS resource types:
 - `AWS::Lambda::Function`
 - `AWS::Serverless::Api` *
 
-<a href="/api/1/package?arc=%40app%0Atestapp%0A%40static%0A%40http%0Aget%20%2F%0A" 
+<a href="/api/1/package?arc=%40app%0Atestapp%0A%40static%0A%40http%0Aget%20%2F%0A"
   target="blank"><b>* Note:</b> Architect creates a many supporting resources!</a>
 
 ---
 
 <h2 id=deploy>⛵️ Deploy</h2>
 
-Once the app has been deployed once with CloudFormation you can overwrite _just_ the Lambda code anytime by running `arc deploy dirty`. This is faster than waiting for a full stack update. 
+Once the app has been deployed once with CloudFormation you can overwrite _just_ the Lambda code anytime by running `arc deploy dirty`. This is faster than waiting for a full stack update.
 
 > Note: `arc deploy dirty` will only update a staging stack (production must be updated via CloudFormation)
 
@@ -98,7 +98,7 @@ Once the app has been deployed once with CloudFormation you can overwrite _just_
 
 <h2 id=sec>💰 Security</h2>
 
-By default all runtime functions generated with Architect have one generated <a href=https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege target=blank>IAM role</a> with the least privilege possible. This means Lambda functions can only access other resources defined in the same `.arc` file. 
+By default all runtime functions generated with Architect have one generated <a href=https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege target=blank>IAM role</a> with the least privilege possible. This means Lambda functions can only access other resources defined in the same `.arc` file.
 
 Wider account access can be explicitly granted with custom resource policies.
 
@@ -113,7 +113,7 @@ The request payload has the following keys:
 - `httpMethod` Incoming request HTTP method name
 - `headers` String containing incoming request headers
 - `multiValueHeaders` List of strings containing incoming request headers
-- `queryStringParameters` query string parameters 
+- `queryStringParameters` query string parameters
 - `multiValueQueryStringParameters` List of query string parameters
 - `pathParameters`  path parameters
 - `stageVariables` Applicable stage variables
@@ -153,8 +153,8 @@ The requisite Node hello world:
 // src/http/get-index/index.js
 exports.handler = async function http(req) {
   return {
-    headers: {'content-type': 'text/html'},
-    body: `<blink>Hello world from Node</blink>` 
+    headers: {'content-type': 'text/html; charset=utf-8;'},
+    body: `<blink>Hello world from Node</blink>`
   }
 }
 ```
@@ -163,9 +163,9 @@ Ruby:
 
 ```ruby
 # src/http/get-index/index.rb
-def handler
+def handler(request, context)
   html = '<b>Hello world from Ruby!</b>'
-  {headers: {'content-type': 'text/html'}, body: html}
+  {headers: {'content-type': 'text/html; charset=utf-8;'}, body: html}
 end
 ```
 
@@ -173,9 +173,9 @@ Python:
 
 ```python
 # src/http/get-index/index.py
-def handler(req): 
+def handler(req):
   body = 'hello world python edition'
-  return {headers: {'content-type': 'text/html'}, 'body': body}
+  return {headers: {'content-type': 'text/html; charset=utf-8;'}, 'body': body}
 ```
 
 A redirect writing a session cookie:
@@ -203,7 +203,7 @@ An error response:
 // src/http/get-some-broken-page/index.js
 exports.handler = async function http(req) {
   return {
-    headers: {'content-type': 'text/html'},
+    headers: {'content-type': 'text/html; charset=utf-8;'},
     statusCode: 500,
     body: 'internal serverless error'
   }
