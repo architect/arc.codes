@@ -40,6 +40,7 @@ function render(filename) {
       // Logos
       var github = read(join(__dirname, 'images/github.svg')).toString()
       var logo = read(join(__dirname, 'images/architect-logo-white.svg')).toString()
+      var openJSFLogo = read(join(__dirname, 'images/openjsf.svg')).toString()
       var classes = !logo ? '' : 'home'
       cache[filename] = `
 <!DOCTYPE html>
@@ -61,8 +62,10 @@ function render(filename) {
         <button class=nav-toggle><span class="ir">Toggle Navigation</span></button>
         <nav>${md(nav)}</nav>
       </section>
-      <section class=content><div class=inner>${md(body)}</div></section>
-      <footer class=footer></footer>
+      <section class=content>
+        <div class=inner>${md(body)}</div>
+      </section>
+      <footer class=footer><span>A project of the </span><a href="https://openjsf.org" class="openJSFLogo">${openJSFLogo}</a></footer>
     </section>
     <script src=https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js></script>
     <a href="https://github.com/arc-repos/arc.codes" class="github-corner" aria-label="View source on Github">${github}</a>
