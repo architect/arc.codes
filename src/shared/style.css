@@ -330,6 +330,20 @@ th {
   text-align: left;
 }
 
+.footer {
+  font-size: 24px;
+  margin-bottom: 10px;
+  margin-left: 300px;
+}
+
+.footer span, .footer a {
+  vertical-align: top;
+}
+
+.footer svg {
+  height: 30px;
+}
+
 @media (max-width: 600px) {
   
   .github-corner {
@@ -368,6 +382,10 @@ th {
 
   .nav-open .nav {
     height: auto;
+  }
+
+  .footer {
+    margin-left: 20px;
   }
 
 }
