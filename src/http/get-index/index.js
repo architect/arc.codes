@@ -16,8 +16,9 @@ let alias = {
   '/quickstart/layout':  '/quickstart/layout.md',
 
   // Primitives
-  '/primitives/http':      '/primitives/http.md',
   '/primitives/static':    '/primitives/static.md',
+  '/primitives/cdn':       '/primitives/cdn.md',
+  '/primitives/http':      '/primitives/http.md',
   '/primitives/ws':        '/primitives/ws.md',
   '/primitives/scheduled': '/primitives/scheduled.md',
   '/primitives/events':    '/primitives/events.md',
@@ -58,7 +59,7 @@ let alias = {
   '/reference/functions/tables/python':        '/reference/functions/tables/python.md',
   '/reference/functions/ws':                   '/reference/functions/ws.md',
 
-  // .arc 
+  // .arc
   '/reference/arc/app':       '/reference/arc/app.md',
   '/reference/arc/aws':       '/reference/arc/aws.md',
   '/reference/arc/events':    '/reference/arc/events.md',

@@ -9,6 +9,7 @@
   - [Project Layout](/quickstart/layout)
 - <b id=primitives>Primitives</b>
   - [Static Assets](/primitives/static)
+  - [CDN](/primitives/cdn)
   - [HTTP Functions](/primitives/http)
   - [Web Sockets](/primitives/ws)
   - [Scheduled](/primitives/scheduled)

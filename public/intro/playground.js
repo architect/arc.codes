@@ -27,7 +27,7 @@ function main() {
   let textarea = document.querySelector('form textarea')
   let query = new URLSearchParams(window.location.search)
   let arc = query.get('arc')
-  if (!arc) 
+  if (!arc)
     arc = `@app\ntestapp\n\n@http\nget /`
 
   button.remove()
