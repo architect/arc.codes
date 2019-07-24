@@ -126,7 +126,7 @@ A simple hello world HTML response:
 // src/http/get-index/index.js
 exports.handler = async function http(req) {
   return {
-    type: 'text/html'
+    type: 'text/html; charset=utf8'
     body: `<b>hello world</b>` 
   }
 }
@@ -142,7 +142,7 @@ const notFound = async function http(request) {
   if (request.path !== "/") {
     return {
       status: 404,
-      type: HTML,
+      type: 'text/html; charset=utf8',
       body: `<b>${request.path} not found</b>` 
     }
   }
@@ -155,7 +155,7 @@ Then fall back to the regular home page:
 // Regular route for GET /
 const showHomepage = async function http(request) {
   return {
-    type: 'text/html'
+    type: 'text/html; charset=utf8'
     body: `<b>hello world</b>` 
   }
 })
