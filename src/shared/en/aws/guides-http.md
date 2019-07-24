@@ -137,16 +137,6 @@ exports.handler = async function http(req) {
 404s are handled by `/src/http/get-index`. You can intercept the requests and show an error page:
 
 ```javascript
-// Regular route for GET /
-const showHomepage = async function http(request) {
-  return {
-    type: 'text/html'
-    body: `<b>hello world</b>` 
-  }
-})
-```
-
-```javascript
 // Route handles 404s
 const notFound = async function http(request) {
   if (request.path !== "/") {
@@ -157,7 +147,21 @@ const notFound = async function http(request) {
     }
   }
 }
+```
+
+Then fall back to the regular home page:
+
 ```javascript
+// Regular route for GET /
+const showHomepage = async function http(request) {
+  return {
+    type: 'text/html'
+    body: `<b>hello world</b>` 
+  }
+})
+```
+
+Use middleware to combine the lambdas:
 
 ```javascript
 // Combine the handlers together using Arc middleware
