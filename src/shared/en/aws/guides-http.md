@@ -119,6 +119,7 @@ In the example below we'll use some of the helpers from  `@architect/functions`:
 
 ## Examples
 
+### Hello world
 A simple hello world HTML response:
 
 ```javascript
@@ -130,6 +131,40 @@ exports.handler = async function http(req) {
   }
 }
 ```
+
+### 404 handling
+
+404s are handled by `/src/http/get-index`. You can intercept the requests and show an error page:
+
+```javascript
+// Regular route for GET /
+const showHomepage = async function http(request) {
+  return {
+    type: 'text/html'
+    body: `<b>hello world</b>` 
+  }
+})
+```
+
+```javascript
+// Route handles 404s
+const notFound = async function http(request) {
+  if (request.path !== "/") {
+    return {
+      status: 404,
+      type: HTML,
+      body: `<b>${request.path} not found</b>` 
+    }
+  }
+}
+```javascript
+
+```javascript
+// Combine the handlers together using Arc middleware
+exports.handler = arc.http.middleware(notFound, showHomepage)
+```
+
+### Redirect
 
 A redirect writing to the `session`:
 
@@ -148,6 +183,8 @@ exports.handler = async function http(req) {
 }
 ```
 
+### Clearing sessions
+
 A `302` response clearing the requester's session data:
 
 ```javascript
@@ -164,7 +201,7 @@ exports.handler = async function http(req) {
 }
 ```
 
-An example `500` response:
+### A `500` response:
 
 ```javascript
 // src/http/get-some-broken-page/index.js
@@ -177,7 +214,7 @@ exports.handler = async function http(req) {
 }
 ```
 
-An example JSON API endpoint:
+### JSON API endpoint
 
 ```javascript
 // src/http/get-cats/index.js
@@ -191,7 +228,6 @@ exports.handler = async function http(req) {
 ```
 
 ---
-
 
 ## Example App
 
