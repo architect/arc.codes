@@ -2,6 +2,7 @@ module.exports = [
   '.vimrc',
   '1MB',
   '400KB',
+  '404s',
   '5MB',
   '`build`ing',
   'ACM',
