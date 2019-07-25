@@ -26,9 +26,10 @@ Which generates the following code:
 
 ```bash
 /
-├── scheduled
-│   ├── daily-update-buddy/
-│   └── friyay-only/
+├── src/
+│   └── scheduled/
+│       ├── daily-update-buddy/
+│       └── friyay-only/
 ├── .arc
 └── package.json
 ```
