@@ -16,6 +16,7 @@
   - [Events](/primitives/events)
   - [Queues](/primitives/queues)
   - [Tables](/primitives/tables)
+  - [Macros](/primitives/macros)
 - <b id=guides>Guides</b>
   - [Testing](/guides/testing)
   - [Upgrading from `5.x`](/guides/upgrade)

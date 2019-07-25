@@ -24,6 +24,7 @@ let alias = {
   '/primitives/events':    '/primitives/events.md',
   '/primitives/queues':    '/primitives/queues.md',
   '/primitives/tables':    '/primitives/tables.md',
+  '/primitives/macros':    '/primitives/macros.md',
 
   // Guides
   '/guides/testing': '/guides/testing.md',

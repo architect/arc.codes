@@ -1,7 +1,7 @@
 # CDN
 ## Add a content delivery network with AWS CloudFront
 
-The most mature and powerful content delivery network is AWS CloudFront. [Read more on the official AWS docs.](https://aws.amazon.com/cloudfront/features/?nc=sn&loc=2)
+One of the most mature and powerful content delivery networks is AWS CloudFront. [Read more on the official AWS docs.](https://aws.amazon.com/cloudfront/features/?nc=sn&loc=2)
 
 ---
 

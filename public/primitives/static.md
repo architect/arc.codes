@@ -47,16 +47,24 @@ Running `arc deploy` will setup create the following resources:
 - `arc deploy static` immediately copies `public/` directly to S3
 - `arc deploy static production` immediately copies `public/` directly to S3
 
+You can change the static deployment folder in `.arc`:
+
+```arc
+@static
+folder dist
+```
+
 > ⛳️ Protip: `arc deploy static --delete` will remove files from the bucket that are no longer locally present
 
 ---
 
 <h2 id=fingerprint>🔎 Fingerprint</h2>
 
-To enable file fingerprinting add `fingerprint true` to the `@static` pragma:
+If you are behind `@cdn` you will want to enable file fingerprinting to ensure content is both cached and updates are immediately available:
 
-```
+```arc
 @static
+folder dist
 fingerprint true
 ```
 
@@ -65,8 +73,10 @@ fingerprint true
 <h2 id=ignore>🙈 Ignore</h2>
 
 You can instruct Architect to ignore files from your `public/` directory with the `ignore` directive, like so:
-```
+```arc
 @static
+folder dist
+fingerprint true
 ignore
   zip
   tar
