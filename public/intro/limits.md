@@ -18,6 +18,8 @@ The cloud has its limits. And `arc` itself is an abstraction with deliberate con
 - [Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-paramstore.html) for service discovery and environment variables
 - [IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) automatically generated least privilege role
 
+> **Note:** with [Architect Macros](/primitives/macros) all AWS services supported by CloudFormation can be utilized
+
 ---
 
 ## Cloud limits and gotchas
