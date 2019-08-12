@@ -59,7 +59,7 @@ scheduled:
     "staging": "testapp-bucket",
     "production": "testapp-bucket-prod"
   },
-  "html": [
+  "http": [
     {
       "get": "/"
     },
@@ -123,4 +123,3 @@ scheduled:
 ---
 
 ## Next: [Dependencies](/guides/deps)
-
