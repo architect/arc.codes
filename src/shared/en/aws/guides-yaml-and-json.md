@@ -59,7 +59,7 @@ scheduled:
     "staging": "testapp-bucket",
     "production": "testapp-bucket-prod"
   },
-  "html": [
+  "http": [
     {
       "get": "/"
     },
