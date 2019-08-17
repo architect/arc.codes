@@ -612,7 +612,8 @@ pre[class*="language-"] {
 }
 
 .code-examples .example {
-  display: none;
+  display: none; /* Hide by default, enable if .selected is also used */
+  overflow-x: scroll
 }
 
 .code-examples .example code {
