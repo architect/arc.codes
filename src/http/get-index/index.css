@@ -578,3 +578,47 @@ pre[class*="language-"] {
 	cursor: help;
 }
 
+.code-examples {
+  display: grid;
+  grid-template-rows: 48px auto;
+  background-color: #333;
+}
+
+.code-examples header {
+  display: grid;
+  padding: 12px;
+  grid-template-columns: 100px auto;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.code-examples header h4 {
+  color: white;
+  letter-spacing: 1px;
+  font-weight: 300;
+  background-color: transparent;
+  text-transform: uppercase;
+  font-size: 10pt;
+}
+
+.code-examples header h4, .code-examples header select  {
+  margin: 0;
+}
+
+.code-examples header select {
+  padding: 3px;
+  border-radius: 3px;
+
+}
+
+.code-examples .example {
+  display: none;
+}
+
+.code-examples .example code {
+  padding: 12px;
+}
+
+.code-examples .example.selected {
+  display: grid;
+}
