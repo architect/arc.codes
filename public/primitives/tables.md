@@ -189,6 +189,8 @@ cats
 > `arc init` creates `src/tables/cats` local code and 
 > `arc deploy` to publishes to Lambda
 
+<section class="code-examples">
+
 Node
 ```javascript
 exports.handler = async function stream(event) {
@@ -211,6 +213,8 @@ def handler(event, context):
     print(event)
     return True
 ```
+
+</section>
 
 ---
 

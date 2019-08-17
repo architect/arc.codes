@@ -72,6 +72,8 @@ All runtime Lambda functions share an IAM Role that allows them to publish event
 
 ### Publish an event payload to an SQS Queue URL
 
+<section class="code-examples">
+
 Node
 
 ```javascript
@@ -105,5 +107,7 @@ def handler(request, context):
   arc.queues.publish(name='account-signup', payload={'ok':True})
   return {'statusCode': 201}
 ```
+
+</section>
 
 ---

@@ -52,6 +52,8 @@ Running `arc init` with the `.arc` file above will generate the following local 
 
 By default, HTTP functions are dependency-free:
 
+<section class="code-examples">
+
 Node
 ```javascript
 export.handler = async function http(request) {
@@ -71,6 +73,8 @@ Python
 def handler(request):
   return {'statusCode': 200}
 ```
+
+</section>
 
 > ⛱  HTTP functions are supported locally with `arc sandbox`
 
@@ -147,7 +151,11 @@ Read more about the <a target=blank href=https://docs.aws.amazon.com/apigateway/
 
 <h2 id=examples>🎁 Examples</h2>
 
-The requisite Node hello world:
+The requisite hello world:
+
+<section class="code-examples">
+
+Node
 
 ```javascript
 // src/http/get-index/index.js
@@ -178,7 +186,11 @@ def handler(req):
   return {headers: {'content-type': 'text/html; charset=utf-8;'}, 'body': body}
 ```
 
+</section>
+
 A redirect writing a session cookie:
+
+Node
 
 ```javascript
 // src/http/post-login/index.js

@@ -71,6 +71,8 @@ All runtime Lambda functions share an IAM Role that allows them to publish event
 
 ### Publish an event payload to an SNS Topic
 
+<section class="code-examples">
+
 Node
 
 ```javascript
@@ -104,5 +106,7 @@ def handler(request, context):
   arc.events.publish(name='account-signup', payload={'ok':True})
   return {'statusCode': 201}
 ```
+
+</section>
 
 ---
