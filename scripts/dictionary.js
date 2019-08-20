@@ -22,6 +22,7 @@ let dictionary = [
   'backend',
   'Backends',
   'Base64',
+  'base64-encoded',
   'bashrc',
   'birb',
   'blockchain',

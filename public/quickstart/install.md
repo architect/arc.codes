@@ -23,7 +23,7 @@ arc init
 ```bash
 arc sandbox
 ```
-> <code>Ctrl + c</code> exits the sandbox
+> `Cmd / Ctrl + c` exits the sandbox
 
 
 ### Deploy your app
