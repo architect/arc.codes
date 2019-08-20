@@ -1,63 +1,84 @@
-# Project Layout
+# Architect Project Layout
 
-Architect projects have a `.arc`, `arc.yaml` or `arc.json` manifest file in the root. This captures the infrastructure requirements beside the code it will run in your revision control. Architect favors <em>convention over configuration</em> and projects have the following significant folder structure:
+Architect favors <em>convention over configuration</em>. Projects have a lightweight `.arc` (or `app.arc`, `arc.yaml`, or `arc.json`) manifest file in the root.
+
+This project manifest defines the application primitives used to generate your infrastructure.
+
+Architect projects have the following significant folder structure:
 
 ```bash
 /
-|- public ......... static assets (js, css, svg, images, etc)
-|- src 
-|  |- shared ...... code shared by ALL Lambda functions
-|  |- views ....... code shared by HTTP GET Lambda functions
-|  |- http ........ HTTP Lambda functions
-|  |- events ...... Event Lambda functions
-|  |- queues ...... Queue Lambda functions
-|  |- scheduled ... Scheduled Lambda functions
-|  |- tables ...... DynamoDB Table Stream Lambda functions
-|  '- ws .......... Web Socket Lambda functions
-'- .arc 
+├── public .......... Static assets (js, css, svg, images, etc.)
+├── src
+│   ├── http ........ HTTP functions
+│   ├── events ...... Event functions
+│   ├── queues ...... Queue functions
+│   ├── scheduled ... Scheduled functions
+│   ├── tables ...... DynamoDB Table Stream functions
+│   ├── ws .......... WebSocket functions
+│   ├── shared ...... Code shared by ALL functions
+│   └── views ....... Code shared by HTTP GET functions
+└── .arc
 ```
 
-All folders are <b>OPTIONAL</b>. Architect ignores any other folders.
+### **All folders are optional.**
+Architect ignores any other files and folders.
 
-<hr>
+---
 
-# Configuration Overview
+## Manifest format overview
 
-The `.arc` manifest can be broadly split into three groups of configuration:
+The `.arc` manifest format is intentionally simple to author and straighforward to read.
 
-### System configuration
+Resources are defined within pragmas, pragmas can be ordered arbitrarily, and comments are preceded by a `#`:
 
-These sections are for global system level env configuration. The most important being the `@app` namespace which is used to prefix all generated resources.
+```arc
+# This is going to be great!
+@app
+testapp
 
-- [`@app`](/reference/app) **[Required]** The application namespace
-- [`@aws`](/reference/aws) AWS specific config
+@http
+get /api
+post /api
+```
 
-### Lambda Function config
+The `.arc` manifest can be broadly split into three conceptual classifications of configuration:
 
-These sections deal with Lambda functions and their event sources. By convention Architect promotes one event source per function. 
 
-- [`@http`](/reference/http) HTTP routes (API Gateway)
-- [`@events`](/reference/events) Event pub/sub (SNS)
-- [`@queues`](/reference/queues)  queues and handlers for them (SQS)
-- [`@scheduled`](/reference/scheduled) Invoke functions specified times (CloudWatch Events)
-- [`@ws`](/reference/ws) Web Socket functions (API Gateway)
+### 1. Global / system
 
-### Persistence config
+These pragmas are for global and cloud-vendor configuration, the most important of which being the `@app` namespace (which is used to prefix and identify all generated resources).
 
-These sections deal with config of various persistence resources.
+- [`@app`](/reference/app) - **[Required]** The application namespace
+- [`@aws`](/reference/aws) - AWS-specific config
 
-- [`@static`](/reference/static) Buckets for hosting static assets (S3)
-- [`@tables`](/reference/tables) Database tables and trigger functions (DynamoDB)
-- [`@indexes`](/reference/indexes) Table global secondary indexes (DynamoDB)
 
-> 👉🏽 `.arc` comments out anything after hash symbol `#`. 
+### 2. Functions
+
+These pragmas deal with cloud functions (i.e. Lambdas); function pragmas are always reflective of a single event source (i.e. `@http` functions are invoked by HTTP events; `@events` functions are invoked by events to the event bus).
+
+- [`@http`](/reference/http) - HTTP routes (API Gateway)
+- [`@events`](/reference/events) - Event pub/sub (SNS)
+- [`@queues`](/reference/queues) - Queues & queue handlers (SQS)
+- [`@scheduled`](/reference/scheduled) - Invoke functions on specified schedules (CloudWatch Events)
+- [`@ws`](/reference/ws) - WebSocket functions (API Gateway)
+
+
+### 3. Persistence
+
+These pragmas specify various persistence resources.
+
+- [`@static`](/reference/static) - Buckets for hosting static assets (S3)
+- [`@tables`](/reference/tables) - Database tables & trigger functions (DynamoDB)
+- [`@indexes`](/reference/indexes) - Table global secondary indexes (DynamoDB)
+
 
 ## Example
 
 Provision a project with the following `.arc` file:
 
 ```arc
-# this is going to be great!
+# This is going to be great!
 @app
 testapp
 
@@ -66,26 +87,29 @@ hello
 
 @http
 get /
-get /posts # the posts go here
+get /things # the things go here
 ```
 
 Running `arc init` creates the following code:
 
 ```bash
 /
-|-src
-| |-events
-| | '-hello/
-| '-http
-|   |-get-index/
-|   '-get-posts/
-'-.arc
+├── src
+│   ├── events
+│   │   └── hello/
+│   └── http
+│       ├── get-index/
+│       └── get-things/
+└── .arc
 ```
 
-If you add further sections it is safe to run and re-run `arc init` to generate further code. Local code is deployed to a staging environment by running `arc deploy`.
+If you add further pragmas, it is safe to run (and re-run) `arc init` to generate further code. Local code is deployed to a dedicated, isolated `staging` environment by running `arc deploy`.
 
-Happy with staging? Ship a release to production by running `arc deploy production`. 
+Happy with # API calls go here? Ship a release to production by running `arc deploy --production`.
 
 Time to celebrate! ✨
 
+---
+
+## Next: [HTTP functions](/primitives/http)
 

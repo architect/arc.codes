@@ -1,50 +1,47 @@
-# Less But Better
-## Deploy powerful **AWS** primitives with clear and readable config
+# The simplest, most powerful way to build modern applications
+## Instantly create powerful serverless JS, Python, and Ruby cloud apps
 
-- 🔥 **Database backed web apps** that scale to zero
-- 💖 **Static single page apps** seamlessly integrated with cloud functions
-- ⏳ **Long running background tasks** (15min) and scheduled jobs
-- 💓 **Primitives, not frameworks**: define architecture agnostic of vendor arcana
-- 💻 **Work locally** while completely offline with a speedy in-memory database
-- ⏱  **Deploy in seconds** with first class support for `staging` and `production` envs
+Architect provides everything you need to build **fast, modern, massively scalable cloud apps** with **low code, clear and terse config, and zero ceremony**.
 
-_Everything to build a modern cloud app with low code, terse config and zero ceremony._
+### Try it in 30 seconds:
 
-## Install
+## 1. Install Architect
 
 ```bash
-npm install -g @architect/cli
+npm install -g @architect/architect
 ```
 
-Everything starts with an `.arc` file:
 
-```arc
-# this is an .arc file
-@app
-testapp
-
-@http
-get /
-get /hellos
-post /hello
-```
-
-`arc init` generates local function code:
+## 2. Run `arc init` to generate a basic project:
 
 ```bash
 /
 ├── src
 │   └── http
-│       ├── get-index/
-│       ├── get-hellos/
-│       └── post-hello/
+│       └── get-index/
 └── .arc
 ```
+
+## 3. Check out your first `.arc` file & HTTP function!
+
+```arc
+# /project/path/.arc
+@app
+your-app-name
+
+@aws
+bucket your-private-deploy-bucket
+
+@http
+get /
+```
+
+<section class="code-examples">
 
 Node
 
 ```javascript
-// src/http/get-index/index.js
+// /project/path/src/http/get-index/index.js
 exports.handler = async function http(request) {
   return {
     headers: {'content-type': 'text/html; charset=utf-8;'},
@@ -56,7 +53,7 @@ exports.handler = async function http(request) {
 Ruby
 
 ```ruby
-# src/http/get-index/index.rb
+# /project/path/src/http/get-index/index.rb
 def handler(request, context)
   {
     headers: {'content-type': 'text/html; charset=utf-8;'},
@@ -68,20 +65,26 @@ end
 Python
 
 ```python
-# src/http/get-index/index.py
+# /project/path/src/http/get-index/index.py
 def handler(request, context):
     headers = {'content-type': 'text/html; charset=utf-8;'}
     return {'headers': headers, 'body': '<h1>Hello World! 🎉</h1>'}
 ```
 
-> ✨ `arc deploy` ships local code to the cloud with AWS SAM and CloudFormation
+</section>
+
+## That's it! Ready to ship?
+
+Ensure you've [met the system prerequisites](/quickstart) and run: `arc deploy`.
+
+Your new app will be online within seconds.
 
 ---
+## Next: [Follow the quickstart](/quickstart)
+---
 
-## Next steps
-
+### Useful links
 - [Tinker in the playground](/intro/playground)
-- [Follow the quickstart](/quickstart)
 - [Learn about HTTP Functions](/primitives/http)
-
 ---
+

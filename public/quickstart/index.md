@@ -1,34 +1,53 @@
-# Prerequisites
+# Architect prerequisites
 
-Architect supports the following local runtimes (to mirror AWS Lambda runtimes): 
+## tl;dr
 
-- Node `10.x`
-- Ruby `2.5`
-- Python `3.7`
+**To work locally**, all you need is:
+- A supported [runtime](#runtimes)
 
-> Working locally with `arc sandbox` requires target runtimes to be available locally; if you are only targeting Node then only Node needs to be installed (likewise for Ruby and Python) 
+**To deploy your project to AWS**, you'll need:
+- A supported [runtime](#runtimes)
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
+  - (Which requires [Python](https://www.python.org/downloads/))
+- AWS account with admin privs
+- Your [credentials file](#local-credentials-file) set up at:
+  - \*nix: `~/.aws/credentials`
+  - Windows: `C:\Users\USER_NAME\.aws\credentials`
+
+
+## Runtimes
+
+Architect supports the following runtime versions when working locally:
+
+**Recommended**
+- Node: `10.x` & `8.10` using `npm`
+- Ruby: `2.5` using `bundle`
+- Python: `3.7` & `3.6` using `pip3`
+
+> Working locally with the Architect `sandbox` dev server requires target runtimes to be installed and available in $PATH. For example, if you are only targeting Node, then only Node needs to be installed locally. (Likewise for Ruby and Python.)
+
+Architect also supports the following runtimes in live infra, but not while working locally (at present):
+- Go: `1.x`,
+- .NET: `2.1`
+- Java: `8`
+
 
 ## AWS Setup
 
-To `arc deploy` you will need an Amazon Web Services account and credentials set up on your development machine. Architect uses AWS CLI to deploy with CloudFormation. 
+Architect deploys and manages your infra using CloudFormation under the hood. To `arc deploy` from your dev machine (or CI system) you'll need:
+- AWS CLI
+  - Here's a [handy guide for configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
+  - [Python](https://www.python.org/downloads/)
+- An AWS account with admin privs
+  - (Used to least-privilege roles for application infra)
+- [A credentials file](#local-credentials-file) set up on your development machine
 
-> If you haven't done it before, here's a useful guide for [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
 
----
+### Local credentials file
 
-## AWS Reference
-
-On \*nix systems AWS Credentials are listed in:
-
-```bash
-~/.aws/credentials
-```
-
-Or on Windows systems:
-
-```bash
-C:\Users\USER_NAME\.aws\credentials
-```
+Depending on your OS, your AWS credentials file will be in one of two places:
+- On \*nix systems: `~/.aws/credentials`
+- On Windows systems: `C:\Users\USER_NAME\.aws\credentials`
 
 If that file doesn't exist, create it, and add something like the following (assuming you have multiple AWS accounts):
 
@@ -42,38 +61,16 @@ aws_access_key_id=xxx
 aws_secret_access_key=xxx
 
 [personal]
-aws_access_key_id=xxx
-aws_secret_access_key=xxx
+aws_access_key_id=yyy
+aws_secret_access_key=yyy
 ```
-
-You will also need to set a default profile and region with the environment variables 
-
-- `AWS_PROFILE`
-- `AWS_REGION`
-
-To set these variables on Linux, macOS, or UNIX, use export in your `~/.bashrc` (or equivalent shell configuration):
-
-```bash
-export AWS_PROFILE=work
-export AWS_REGION=us-west-1
-```
-
-Or for Windows, add this to your PowerShell `$profile`:
-
-```powershell
-$env:AWS_PROFILE='work'
-$env:AWS_REGION='us-west-1'
-```
-
-If you prefer, you can also use: *Control Panel » System » Advanced System Settings » Environment Variables*.
-
----
-
-## Useful Links
-* [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
-* [Amazon Configuration and Credential Files](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html)
-* [Working with multiple AWS accounts](/guides/multiple-aws-accounts)
 
 ---
 ## Next: [Install Architect](/quickstart/install)
 ---
+
+### Useful Links
+* [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
+* [Amazon Configuration and Credential Files](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html)
+* [Working with multiple AWS accounts](/guides/multiple-aws-accounts)
+
