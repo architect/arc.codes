@@ -152,7 +152,7 @@ hr {
 
 .nav {
   width: 270px;
-  background: black;
+  background: #333;
   color:white;
   position: fixed;
   overflow: auto;

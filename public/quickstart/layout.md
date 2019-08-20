@@ -1,4 +1,4 @@
-# Architect Project Layout
+# Architect project layout
 
 Architect favors <em>convention over configuration</em>. Projects have a lightweight `.arc` (or `app.arc`, `arc.yaml`, or `arc.json`) manifest file in the root.
 

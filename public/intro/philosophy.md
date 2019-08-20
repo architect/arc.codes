@@ -1,4 +1,5 @@
-# Project Philosophy
+# Project philosophy
+
 ## Build apps free from infra complexity and cruft
 
 Focus on the core business logic required to create value, ship only the code that matters, iterate faster and still enjoy unprecedented availability guarantees.
@@ -16,7 +17,7 @@ Architect defines a high level plaintext format, `.arc`, as a manifest file and 
 
 ---
 
-## The .arc format
+## The Architect format
 
 The `.arc` format follows a few simple rules:
 

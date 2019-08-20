@@ -39,12 +39,13 @@ button {
 
 <form action=/api/1/package>
   <div>
-<textarea name=arc>
+    <textarea name=arc>
 @app
 testapp
+
 @http
 get /
-</textarea>
+    </textarea>
     <div id=tree>loading src...</div>
   </div>
   <div id=preview></div>

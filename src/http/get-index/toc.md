@@ -1,27 +1,27 @@
-- <b id=intro>Introduction</b>
-  - [Project Philosophy](/intro/philosophy)
-  - [Limits &amp; Superpowers](/intro/limits)
-  - [Playground](/intro/playground)
-  - [Community Links](/intro/community)
+- <b id=intro>Intro & background</b>
+  - [Project philosophy](/intro/philosophy)
+  - [Limits &amp; superpowers](/intro/limits)
+  <!-- - [Playground](/intro/playground) -->
+  - [Community links](/intro/community)
 - <b id=quickstart>Quickstart</b>
   - [Prerequisites](/quickstart)
-  - [Install](/quickstart/install)
-  - [Project Layout](/quickstart/layout)
-- <b id=primitives>Primitives</b>
+  - [Install Architect](/quickstart/install)
+  - [Project layout](/quickstart/layout)
+- <b id=primitives>App primitives</b>
+  - [HTTP functions](/primitives/http)
+  - [WebSocket functions](/primitives/ws)
   - [Static Assets](/primitives/static)
-  - [CDN](/primitives/cdn)
-  - [HTTP Functions](/primitives/http)
-  - [Web Sockets](/primitives/ws)
-  - [Scheduled](/primitives/scheduled)
-  - [Events](/primitives/events)
-  - [Queues](/primitives/queues)
+  - [CDNs](/primitives/cdn)
+  - [Scheduled functions](/primitives/scheduled)
+  - [Event functions](/primitives/events)
+  - [Queue functions](/primitives/queues)
   - [Tables](/primitives/tables)
   - [Macros](/primitives/macros)
 - <b id=guides>Guides</b>
-  - [Testing](/guides/testing)
-  - [Upgrading from `5.x`](/guides/upgrade)
+  - [App testing](/guides/testing)
+  - [Upgrade guide](/guides/upgrade)
 - <b id=ref>Reference</b>
-  - CLI
+  - CLI commands
     - [arc deploy](/reference/cli/deploy)
     - [arc env](/reference/cli/env)
     - [arc hydrate](/reference/cli/hydrate)
@@ -30,7 +30,7 @@
     - [arc package](/reference/cli/package)
     - [arc sandbox](/reference/cli/sandbox)
     - [arc repl](/reference/cli/repl)
-  - `.arc`
+  - `.arc` pragmas
     - [@app](/reference/arc/app)
     - [@aws](/reference/arc/aws)
     - [@events](/reference/arc/events)
@@ -41,18 +41,18 @@
     - [@static](/reference/arc/static)
     - [@tables](/reference/arc/tables)
     - [@ws](/reference/arc/ws)
-  - `.arc-config`
+  - `.arc-config` pragmas
     - [@aws](/reference/arc-config/aws)
     - [timeout](/reference/arc-config/timeout)
     - [memory](/reference/arc-config/memory)
     - [concurrency](/reference/arc-config/concurrency)
     - [policies](/reference/arc-config/policies)
     - [layers](/reference/arc-config/layers)
-  - `.arc-env`
+  - `.arc-env` pragmas
     - [@testing](/reference/arc-env/testing)
     - [@staging](/reference/arc-env/staging)
     - [@production](/reference/arc-env/production)
-  - Runtime
+  - Runtime utilities (`@architect/functions`)
     - [arc.events](/reference/functions/events)
     - [arc.http](/reference/functions/http)
     - [arc.queues](/reference/functions/queues)
