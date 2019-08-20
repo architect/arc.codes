@@ -111,26 +111,25 @@ code.language-arc,
 code.language-ruby,
 code.language-python,
 code.language-javascript {
-  font-size:1.1em;
+  font-size: 1em;
 }
 
 code {
   font-size: 1em;
   line-height: 1em;
-  /*background: rgba(255,255,255,0.5);*/
   padding-top: 2px;
   padding-bottom: 2px;
   padding-left: 4px;
   padding-right: 4px;
   color: #00c26e;
-  border-radius: 5px;
+  border-radius: 0.25em;
 }
 
 pre code {
   display: block;
-  padding: 20px;
   opacity: 1;
   overflow: auto;
+  font-size: 1em;
 }
 
 .cloud {
@@ -225,6 +224,7 @@ nav ul li ul li a code {
   padding: 0;
   border: none;
   color: white;
+  font-size: 1em;
 }
 
 nav ul li code {
@@ -311,12 +311,12 @@ a.github-corner:hover {
 }
 
 table {
-  font-size: 1rem;
+  font-size: 1em;
 }
 
 td {
   vertical-align: top;
-  padding-bottom: 1rem;
+  padding-bottom: 1em;
 }
 
 td:first-child {
@@ -324,7 +324,7 @@ td:first-child {
 }
 
 th:last-child, td:last-child {
-  padding-left: 1rem;
+  padding-left: 1em;
 }
 
 th {
@@ -332,7 +332,7 @@ th {
 }
 
 @media (max-width: 600px) {
-  
+
   .github-corner {
     display: none;
   }
@@ -398,38 +398,25 @@ th {
 pre.arcfile,
 pre.language-bash,
 pre.language-arc {
-  margin:0;
-  padding: 5px;
-  border-radius: 10px;
+  margin: 0;
+  border-radius: 0.25em;
   background: #333;
+  font-size: 16px;
 }
 
-pre.language-bash code {
-  background: black;
-  color: lightgreen;
+/* pre.language-bash code {
+  background: #333;
+  /* color: lightgreen;
   text-shadow: none;
   font-weight: bold;
-  font-size: 1.1em;
-}
+  font-size: 1em;
+} */
 
 pre.language-arc code {
   color: cyan;
   text-shadow: none;
-  background:black;
+  background: #333;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
  * atom-dark theme for `prism.js`
@@ -447,7 +434,8 @@ pre[class*="language-"] {
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
-	line-height: 1.5;
+  line-height: 1.5;
+  font-size: 1em;
 
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
@@ -462,20 +450,20 @@ pre[class*="language-"] {
 /* Code blocks */
 pre[class*="language-"] {
 	padding: 1em;
-	margin: .5em 0;
+	margin: 0.5em 0;
 	overflow: auto;
-	border-radius: 0.3em;
+	border-radius: 0.25em;
 }
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-	background: #1d1f21;
+  background: #333;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
 	padding: .1em;
-	border-radius: .3em;
+	border-radius: 0.25em;
 }
 
 .token.comment,
@@ -582,6 +570,7 @@ pre[class*="language-"] {
   display: grid;
   grid-template-rows: 48px auto;
   background-color: #333;
+  border-radius: 0.25em;
 }
 
 .code-examples header {
@@ -589,7 +578,7 @@ pre[class*="language-"] {
   padding: 12px;
   grid-template-columns: 100px auto;
   align-content: center;
-  justify-content: space-between;
+  justify-content: start;
 }
 
 .code-examples header h4 {
@@ -599,6 +588,7 @@ pre[class*="language-"] {
   background-color: transparent;
   text-transform: uppercase;
   font-size: 10pt;
+  padding-left: 0.5em;
 }
 
 .code-examples header h4, .code-examples header select  {
@@ -607,7 +597,7 @@ pre[class*="language-"] {
 
 .code-examples header select {
   padding: 3px;
-  border-radius: 3px;
+  border-radius: 0.25em;
 
 }
 

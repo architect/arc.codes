@@ -1,4 +1,4 @@
-// Make langues into a tabbed 
+// Make langues into a tabbed
 // So Ruby folk only have to see Ruby examples, JS folk JS examples, etc.
 
 const PRETTY_LANGUAGES = {
@@ -9,7 +9,7 @@ const PRETTY_LANGUAGES = {
 
 const LANGUAGES = Object.keys(PRETTY_LANGUAGES)
 
-window.prefferedLanguage = LANGUAGES[0]
+window.preferredLanguage = LANGUAGES[0]
 
 // See https://stackoverflow.com/questions/494143/creating-a-new-dom-element-from-an-html-string-using-built-in-dom-methods-or-pro
 function htmlToElement(html) {
@@ -31,22 +31,22 @@ codeExamples.forEach(function(codeExample){
     // Find each example
     var exampleCode = codeExample.querySelector(`.language-${language}`)
 
-    var isSelected = language === window.prefferedLanguage ? 'selected' : ''
+    var isSelected = language === window.preferredLanguage ? 'selected' : ''
 
     // Add it (as text) to our list of examples
     examples += `<section class="example ${isSelected} ${language}">${exampleCode.outerHTML}</section>`
 
     // Add option to <select>
     languageOptions += `<option ${isSelected} value="${language}">${PRETTY_LANGUAGES[language]}</option>`
-  })  
+  })
 
   var newHTML = htmlToElement(`
     <section class="code-examples">
       <header>
-        <h4>EXAMPLE</h4>
         <select>
           ${languageOptions}
         </select>
+        <h4>EXAMPLE</h4>
       </header>
       ${examples}
     </section>
@@ -58,13 +58,13 @@ codeExamples.forEach(function(codeExample){
 // Make `select` elements change the preferred language on every example
 document.querySelectorAll('.code-examples select').forEach(function(selectElement){
   selectElement.addEventListener('change', function(event){
-    window.prefferedLanguage = event.target.value
+    window.preferredLanguage = event.target.value
     // TODO: We really should save this to the user's cookies
     // So they don't have to change it on other pages, but anyway
 
     // Update the selected options
     document.querySelectorAll('.code-examples select option').forEach(function(optionElement){
-      if ( optionElement.textContent === window.prefferedLanguage ) {
+      if ( optionElement.textContent === window.preferredLanguage ) {
         optionElement.classList.add('selected')
       } else {
         optionElement.classList.remove('selected')
@@ -73,7 +73,7 @@ document.querySelectorAll('.code-examples select').forEach(function(selectElemen
 
     // Update the selected code examples
     document.querySelectorAll('.code-examples .example').forEach(function(exampleElement){
-      if ( exampleElement.classList.contains(window.prefferedLanguage) ) {
+      if ( exampleElement.classList.contains(window.preferredLanguage) ) {
         exampleElement.classList.add('selected')
       } else {
         exampleElement.classList.remove('selected')
