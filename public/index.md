@@ -1,9 +1,14 @@
+<img src="/_static/architect-logo-500b@2x.png" width=500>
+
 # The simplest, most powerful way to build modern applications
-## Instantly create powerful serverless JS, Python, and Ruby cloud apps
 
-Architect provides everything you need to build **fast, modern, massively scalable cloud apps** with **low code, clear and terse config, and zero ceremony**.
+## Instantly create powerful serverless JS, Python, and Ruby apps
 
-### Try it in 30 seconds:
+> Architect provides everything you need to build **fast, modern, massively scalable cloud apps** with **low code, clear and terse config, and zero ceremony**.
+
+---
+
+## Try it in 30 seconds:
 
 ## 1. Install Architect
 
