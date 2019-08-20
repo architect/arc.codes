@@ -6,22 +6,5 @@
 
 [![Build Status](https://travis-ci.com/arc-repos/arc.codes.svg?branch=master)](https://travis-ci.com/arc-repos/arc.codes)
 
----
+Docs are in [`/public`](/public)
 
-Initialize the repo by running: `npm i && npx hydrate`
-
-Docs are in: `src/shared/`
-
-PRs are most welcome!
-
-
-## Preview
-
-Kick up a local dev server by running `npm start`
-
-
-## Test
-
-```
-npm it
-```

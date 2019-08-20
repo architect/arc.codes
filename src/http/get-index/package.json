@@ -1,8 +1,25 @@
 {
-  "name": "arc-codes-get-index",
+  "name": "get-index",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "dependencies": {
-    "@architect/data": "^2.0.13",
-    "@architect/functions": "^1.13.7",
-    "marked": "^0.6.1"
-  }
+    "@architect/parser": "^1.1.7",
+    "@architect/proxy-plugin-md": "^1.0.0",
+    "cookie": "^0.3.1",
+    "cookie-signature": "^1.1.0",
+    "csrf": "^3.1.0",
+    "marked": "^0.6.2",
+    "mime-types": "^2.1.24",
+    "node-webtokens": "^1.0.0",
+    "run-parallel": "^1.1.9",
+    "run-waterfall": "^1.1.6",
+    "uid-safe": "^2.1.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }

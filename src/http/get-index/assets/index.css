@@ -1,0 +1,655 @@
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body {
+  display: flex;
+  justify-content: left;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  color: #333333;
+  line-height: 1.5em;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+a {
+  color: #16c2ff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #00afee;
+  text-decoration: none;
+}
+
+.ir {
+  font: 0/0 a;
+  text-shadow: none;
+  color: transparent;
+}
+
+.logo {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.logo a {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.logo svg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.content .logo {
+  max-width: 300px;
+}
+
+#nav-logo-main {
+  margin: 25px auto 0px auto;
+}
+
+.nav .logo {
+  height: 45px;
+  width: 80%;
+  margin: 30px auto;
+}
+
+.nav.home {
+  padding-top: 80px;
+}
+
+.nav.home .logo {
+  display: none;
+}
+
+.main {
+  position: relative;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-width: 600px;
+}
+
+a code {
+  color: #16c2ff;
+  text-decoration: none;
+}
+
+a:hover code {
+  color: #00afee;
+  text-decoration: none;
+}
+
+.footer {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+.footer span, .footer a {
+  vertical-align: top;
+}
+
+.footer svg {
+  height: 30px;
+}
+
+@media (max-width: 600px) {
+  .main {
+    min-width: 300px;
+  }
+  a {
+    line-height: initial;
+  }
+  a code {
+    line-height: initial;
+  }
+  .nav ul li a {
+    line-height: 1.5em;
+  }
+}
+
+code.language-bash,
+code.language-ini,
+code.language-arc,
+code.language-ruby,
+code.language-python,
+code.language-javascript {
+  font-size: 1em;
+}
+
+code {
+  font-size: 1em;
+  line-height: 1em;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+  color: #00c26e;
+  border-radius: 0.25em;
+}
+
+pre code {
+  display: block;
+  opacity: 1;
+  overflow: auto;
+  font-size: 1em;
+}
+
+.cloud {
+  font-size: 2.4em;
+}
+
+blockquote {
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #ccc;
+  margin: 0;
+}
+
+hr {
+  border: 1px dotted #eaeaea;
+  width: 75%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.nav {
+  width: 270px;
+  background: #333;
+  color:white;
+  position: fixed;
+  overflow: auto;
+  height: 100%;
+}
+
+h1, h2, h3 {
+  font-weight: 300;
+  line-height: 1em;
+}
+
+h2 {
+  margin-top: 30px;
+  line-height: 1.5em;
+}
+
+ul li {
+  line-height: 1.5em;
+}
+
+.nav ul {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 0;
+  margin-left: 10px;
+  padding-top: 10px;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+}
+
+.nav ul ul {
+  margin:0px;
+}
+
+.nav ul li {
+  color: rgba(255,255,255,0.5);
+  list-style: none;
+  margin-left: 15px;
+  padding-bottom: 5px;
+  line-height: 1.5em;
+}
+
+nav>ul>li {
+  padding-top: 15px
+}
+
+nav>ul>li:first-child {
+  padding-top: 0;
+}
+
+.nav ul ul li {
+  list-style: none;
+  margin-left: 20px;
+}
+
+.nav ul ul li:last-child {
+  margin-bottom: 10px;
+}
+
+.nav ul a {
+  font-weight: bold;
+  text-decoration: none;
+  width: 100%;
+  display: block;
+  color: white;
+  padding-bottom: 5px;
+}
+
+.nav ul ul a {
+  font-weight: normal;
+}
+
+nav ul li code,
+nav ul li ul li a code {
+  background: none;
+  padding: 0;
+  border: none;
+  color: white;
+  font-size: 1em;
+}
+
+nav ul li code {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+
+.nav ul a:hover {
+  color: #00afee;
+}
+
+.nav-toggle {
+  width: 44px;
+  height: 44px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+}
+
+.nav-toggle:active,
+.nav-toggle:focus {
+  outline: none;
+}
+
+.nav-toggle span,
+.nav-toggle:before,
+.nav-toggle:after {
+  content: '';
+  width: 30px;
+  height: 3px;
+  background: white;
+}
+
+.nav-open .nav-toggle span {
+  display: none;
+}
+
+.nav-open .nav-toggle:before {
+  transform: rotate(45deg);
+}
+
+.nav-open .nav-toggle:after {
+  transform: rotate(-45deg) translate(2px, -3px);
+}
+
+.nav-toggle span {
+  margin: 8px 0;
+}
+
+.content {
+  /*background: #eaeaea;*/
+  padding: 40px 40px 40px 340px;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.inner {
+  max-width: 750px;
+}
+
+section>section h1 {
+  font-size: 3em;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.github-corner {
+  fill:#333333;
+  color: #ffffff;
+  position: fixed;
+  top: 0;
+  border: 0;
+  right: 0;
+}
+
+a.github-corner:hover {
+  color: #ffffff;
+}
+
+table {
+  font-size: 1em;
+}
+
+td {
+  vertical-align: top;
+  padding-bottom: 1em;
+}
+
+td:first-child {
+  padding-top: 4px;
+}
+
+th:last-child, td:last-child {
+  padding-left: 1em;
+}
+
+th {
+  text-align: left;
+}
+
+.footer {
+  font-size: 24px;
+  margin-bottom: 10px;
+  margin-left: 300px;
+}
+
+.footer span, .footer a {
+  vertical-align: top;
+}
+
+.footer svg {
+  height: 30px;
+}
+
+@media (max-width: 600px) {
+
+  .github-corner {
+    display: none;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .nav {
+    width: 100%;
+    position: relative;
+    height: 80px;
+    overflow: hidden;
+    padding-top: 10px !important;
+  }
+
+  #nav-logo-main {
+    margin: 10px auto 0px 20px;
+  }
+
+  .nav .logo {
+    display: block !important;
+    padding-right: 40px;
+    max-width: 250px;
+  }
+
+  .home .content .logo {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-open .nav {
+    height: auto;
+  }
+
+  .footer {
+    margin-left: 20px;
+  }
+
+}
+
+/** new nav! **/
+.nav > nav > ul > li > ul > li > ul > li > a {
+  font-family: monospace;
+  font-size: 16px;
+}
+
+.nav nav ul li b {
+  display:block;
+  cursor: pointer;
+  /*content: '▲: &#9650; and ▼: &#9660;'*/
+}
+.nav nav ul li b:after {
+  content: '▼';
+  color:#333;
+  position: absolute;
+  right: 30px;
+}
+
+.hide {
+  display: none;
+}
+
+pre.arcfile,
+pre.language-bash,
+pre.language-arc {
+  margin: 0;
+  border-radius: 0.25em;
+  background: #333;
+  font-size: 16px;
+}
+
+/* pre.language-bash code {
+  background: #333;
+  /* color: lightgreen;
+  text-shadow: none;
+  font-weight: bold;
+  font-size: 1em;
+} */
+
+pre.language-arc code {
+  color: cyan;
+  text-shadow: none;
+  background: #333;
+}
+
+/**
+ * atom-dark theme for `prism.js`
+ * Based on Atom's `atom-dark` theme: https://github.com/atom/atom-dark-syntax
+ * @author Joe Gibson (@gibsjose)
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #c5c8c6;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+    font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+  line-height: 1.5;
+  font-size: 1em;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: 0.5em 0;
+	overflow: auto;
+	border-radius: 0.25em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: #333;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: 0.25em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #7C7C7C;
+}
+
+.token.punctuation {
+	color: #c5c8c6;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.keyword,
+.token.tag {
+    color: #96CBFE;
+}
+
+.token.class-name {
+	color: #FFFFB6;
+	text-decoration: underline;
+}
+
+.token.boolean,
+.token.constant {
+    color: #99CC99;
+}
+
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.number {
+	color: #FF73FD;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #A8FF60;
+}
+
+.token.variable {
+	color: #C6C5FE;
+}
+
+.token.operator {
+    color: #EDEDED;
+}
+
+.token.entity {
+    color: #FFFFB6;
+    /* text-decoration: underline; */
+}
+
+.token.url {
+    color: #96CBFE;
+}
+
+.language-css .token.string,
+.style .token.string {
+	color: #87C38A;
+}
+
+.token.atrule,
+.token.attr-value {
+    color: #F9EE98;
+}
+
+.token.function {
+	color: #DAD085;
+}
+
+.token.regex {
+    color: #E9C062;
+}
+
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+.code-examples {
+  display: grid;
+  grid-template-rows: 48px auto;
+  background-color: #333;
+  border-radius: 0.25em;
+}
+
+.code-examples header {
+  display: grid;
+  padding: 12px;
+  grid-template-columns: 100px auto;
+  align-content: center;
+  justify-content: start;
+}
+
+.code-examples header h4 {
+  color: white;
+  letter-spacing: 1px;
+  font-weight: 300;
+  background-color: transparent;
+  text-transform: uppercase;
+  font-size: 10pt;
+  padding-left: 0.5em;
+}
+
+.code-examples header h4, .code-examples header select  {
+  margin: 0;
+}
+
+.code-examples header select {
+  padding: 3px;
+  border-radius: 0.25em;
+
+}
+
+.code-examples .example {
+  display: none; /* Hide by default, enable if .selected is also used */
+  overflow-x: scroll
+}
+
+.code-examples .example code {
+  padding: 12px;
+}
+
+.code-examples .example.selected {
+  display: grid;
+}

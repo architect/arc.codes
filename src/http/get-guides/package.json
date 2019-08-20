@@ -1,8 +1,0 @@
-{
-  "name": "arc-codes-get-guides",
-  "dependencies": {
-    "@architect/data": "^2.0.13",
-    "@architect/functions": "^1.13.7",
-    "marked": "^0.6.1"
-  }
-}
