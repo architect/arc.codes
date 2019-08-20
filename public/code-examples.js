@@ -1,6 +1,9 @@
-// Make langues into a tabbed
-// So Ruby folk only have to see Ruby examples, JS folk JS examples, etc.
-
+/* eslint-disable */
+// eslintrc linting for modules, not scripts
+/**
+ * Examples selectable by language
+ * So Ruby folk only have to see Ruby examples, JS folk JS examples, etc.
+ */
 const PRETTY_LANGUAGES = {
   'javascript': 'JavaScript',
   'ruby': 'Ruby',

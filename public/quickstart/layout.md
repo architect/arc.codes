@@ -28,7 +28,7 @@ Architect ignores any other files and folders.
 
 ## Manifest format overview
 
-The `.arc` manifest format is intentionally simple to author and straighforward to read.
+The `.arc` manifest format is intentionally simple to author and straightforward to read.
 
 Resources are defined within pragmas, pragmas can be ordered arbitrarily, and comments are preceded by a `#`:
 

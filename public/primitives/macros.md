@@ -2,11 +2,11 @@
 
 ## Extend `.arc` with standard CloudFormation
 
-The `@macro` primitive defines macros to run in descending order on the generated CloudFormation template before deployment. 
+The `@macro` primitive defines macros to run in descending order on the generated CloudFormation template before deployment.
 
 ---
 
-- <a href=#local><b>🚜 Define</b></a> 
+- <a href=#local><b>🚜 Define</b></a>
 - <a href=#deploy><b>⛵️ Deploy</b></a>
 
 ---
@@ -41,7 +41,7 @@ exports.module = function myCustomMacro(arc, cfn) {
 }
 ```
 
-Macros recieve the parsed `.arc` file so custom pragmas and config can be defined. The second argument is the current CloudFormation template. Macros allow devs to add any resources or modify existing ones extending Architect into the entire AWS ecosytem supported by CloudFormation.
+Macros receive the parsed `.arc` file so custom pragmas and config can be defined. The second argument is the current CloudFormation template. Macros allow devs to add any resources or modify existing ones extending Architect into the entire AWS ecosystem supported by CloudFormation.
 
 > **Note:** macros are a new feature and only JavaScript macros are supported at this time; however Python and Ruby are planned
 
