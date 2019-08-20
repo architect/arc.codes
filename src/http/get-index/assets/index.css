@@ -90,6 +90,20 @@ a:hover code {
   text-decoration: none;
 }
 
+.footer {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+.footer span, .footer a {
+  vertical-align: top;
+}
+
+.footer svg {
+  height: 30px;
+}
+
 @media (max-width: 600px) {
   .main {
     min-width: 300px;

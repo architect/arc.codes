@@ -4,9 +4,10 @@ let fs = require('fs')
 
 let cache = {}
 let nav = md(fs.readFileSync(path.join(__dirname, 'toc.md')).toString())
-let github = fs.readFileSync(path.join(__dirname, 'github.svg')).toString()
-let logo = fs.readFileSync(path.join(__dirname, 'architect-logo-white.svg')).toString()
-let style = fs.readFileSync(path.join(__dirname, 'index.css')).toString()
+let github = fs.readFileSync(path.join(__dirname, 'assets', 'github.svg')).toString()
+let openJSF = fs.readFileSync(path.join(__dirname, 'assets', 'openjsf.svg')).toString()
+let logo = fs.readFileSync(path.join(__dirname, 'assets', 'architect-logo-white.svg')).toString()
+let style = fs.readFileSync(path.join(__dirname, 'assets', 'index.css')).toString()
 
 module.exports = function layout(filename, {headers, body}) {
   if (!cache[filename]) {
@@ -31,8 +32,12 @@ module.exports = function layout(filename, {headers, body}) {
         <button class=nav-toggle><span class="ir">Toggle Navigation</span></button>
         <nav>${nav}</nav>
       </section>
-      <section class=content><div class=inner>${body}</div></section>
-      <footer class=footer></footer>
+      <section class=content>
+        <div class=inner>${body}</div>
+        <footer class=footer>
+        <span>Architect is a project of the </span><a href="https://openjsf.org" class="openJSFLogo">${openJSF}</a>
+        </footer>
+      </section>
     </section>
     <a href="https://github.com/arc-repos/arc.codes" class="github-corner" aria-label="View source on Github">${github}</a>
 <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
