@@ -240,7 +240,7 @@ exports.handler = async function http(req) {
   let cookie = await arc.http.session.write({loggedIn})
   return {
     headers: {
-     'set-cookie': cookie
+     'set-cookie': cookie,
      'location: '/'
     },
     statusCode: 302,
