@@ -11,7 +11,7 @@ module.exports = old
 /**
  * arc.ws.send
  *
- * publish web socket events
+ * publish WebSocket events
  *
  * @param {Object} params
  * @param {String} params.id - the ws connecton id (required)

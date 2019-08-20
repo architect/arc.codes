@@ -1,12 +1,12 @@
-# Web Sockets
+# WebSockets
 ## Real time web apps with stateless cloud functions
 
-The `@ws` primitive creates a web socket endpoint and stateless handler functions: `connect`, `disconnect` and `default`. 
+The `@ws` primitive creates a WebSocket endpoint and stateless handler functions: `connect`, `disconnect` and `default`.
 
 ---
 
-- <a href=#local><b>🚜 Work Locally</b></a> 
-- <a href=#provision><b>🌾 Provision</b></a> 
+- <a href=#local><b>🚜 Work Locally</b></a>
+- <a href=#provision><b>🌾 Provision</b></a>
 - <a href=#deploy><b>⛵️ Deploy</b></a>
 - <a href=#event><b>🎉 Event Payload</b></a>
 - <a href=#browser><b>🧭 Browser Implementation</b></a>
@@ -32,17 +32,17 @@ get /
 
 Architect generates the following functions:
 
-- `src/ws/connect` invoked when the web socket is connected
+- `src/ws/connect` invoked when the WebSocket is connected
 - `src/ws/default` invoked whenever a message is sent
 - `src/ws/disconnect` invoked when disconnected
 
 ## `connect`
 
-The `connect` Lambda is primarily intended to verify `event.header.Origin`. 
+The `connect` Lambda is primarily intended to verify `event.header.Origin`.
 
 ## `default`
 
-The `default` Lambda will be the main event bus for web socket events. The `event.requestContext.connectionId` variable is used for determining the current web socket.
+The `default` Lambda will be the main event bus for WebSocket events. The `event.requestContext.connectionId` variable is used for determining the current WebSocket.
 
 ## `disconnect`
 
@@ -52,7 +52,7 @@ The `disconnect` Lambda is used to cleanup any records of `event.requestContext.
 
 <h2 id=provision>🌾 Provision</h2>
 
-Web socket functions generate many supporting AWS resources. Some highlights:
+WebSocket functions generate many supporting AWS resources. Some highlights:
 
 - `AWS::ApiGatewayV2::Route`
 - `AWS::ApiGatewayV2::Integration`
@@ -72,7 +72,7 @@ Additionally these `AWS::SSM::Parameter` resources are created which can be insp
 <h2 id=deploy>⛵️ Deploy</h2>
 
 - `arc deploy` to deploy with CloudFormation to staging
-- `arc deploy dirty` to overwrite deployed staging lambda functions 
+- `arc deploy dirty` to overwrite deployed staging lambda functions
 - `arc deploy production` to run a full CloudFormation production deployment
 
 > 🔭 Find [the example repo on GitHub](https://github.com/architect/arc-example-ws).
@@ -81,10 +81,10 @@ Additionally these `AWS::SSM::Parameter` resources are created which can be insp
 
 <h2 id=event>🎉 Event Payload</h2>
 
-Web socket functions are always invoked with an `event` payload that contains useful information:
+WebSocket functions are always invoked with an `event` payload that contains useful information:
 
-- `event.requestContext.connectionId` the currently executing web socket connection
-- `event.requestContext.apiId` the currently executing web socket `apiId`
+- `event.requestContext.connectionId` the currently executing WebSocket connection
+- `event.requestContext.apiId` the currently executing WebSocket `apiId`
 - `event.body` the message payload
 
 ```javascript
@@ -100,7 +100,7 @@ exports.handler = async function ws(event) {
 
 <h2 id=browser>🧭 Browser Implementation</h2>
 
-Render the app HTML shell and embed the current web socket URL in a global `WS_URL`.
+Render the app HTML shell and embed the current WebSocket URL in a global `WS_URL`.
 
 ```javascript
 // src/http/get-index/index.js
@@ -115,7 +115,7 @@ exports.handler = async function http(req) {
     body: `<!doctype html>
 <html>
 <body>
-<h1>Web sockets</h1>
+<h1>WebSockets</h1>
 <main>Loading...</main>
 <input id=message type=text placeholder="Enter message" autofocus>
 <script>
@@ -133,27 +133,27 @@ We'll put the browser JavaScript in `public/index.mjs`:
 ```javascript
 // public/index.mjs
 
-// get the web socket url from the backend
+// get the WebSocket url from the backend
 let url = window.WS_URL
 
 // all the DOM nodes this script will mutate
 let main = document.getElementsByTagName('main')[0]
 let msg = document.getElementById('message')
 
-// setup the web socket
+// setup the WebSocket
 let ws = new WebSocket(url)
 ws.onopen = open
 ws.onclose = close
 ws.onmessage = message
 ws.onerror = console.log
 
-// connect to the web socket
+// connect to the WebSocket
 function open() {
   let ts = new Date(Date.now()).toISOString()
   main.innerHTML = `<p><b><code>${ts} - opened</code></b></p>`
 }
 
-// report a closed web socket connection
+// report a closed WebSocket connection
 function close() {
   main.innerHTML = 'Closed <a href=/>reload</a>'
 }
@@ -196,7 +196,7 @@ exports.handler = async function connected(event) {
 
 <h2 id=custom>🚙 Custom Routes</h2>
 
-Specify custom web socket route keys:
+Specify custom WebSocket route keys:
 
 ```arc
 @app

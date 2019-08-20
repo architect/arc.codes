@@ -1,11 +1,11 @@
 # `@ws`
 
-## `@ws` section defines Web Socket handlers
+## `@ws` section defines WebSocket handlers
 
 
 ### Example
 
-This `.arc` file defines both HTTP and Web Socket endpoints:
+This `.arc` file defines both HTTP and WebSocket endpoints:
 
 ```arc
 @app

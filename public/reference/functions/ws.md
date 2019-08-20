@@ -1,4 +1,4 @@
-# Web Sockets
+# WebSockets
 
 Invoke `@ws` connected clients any function defined under the `@app` namespace.
 
@@ -30,7 +30,7 @@ pip install --target ./vendor architect-functions
 
 ---
 
-## Publish JSON payload to a Web Socket client
+## Publish JSON payload to a WebSocket client
 
 Node
 

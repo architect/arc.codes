@@ -1,5 +1,5 @@
-# Project Philosophy 
-## Build apps free from infra complexity and cruft 
+# Project Philosophy
+## Build apps free from infra complexity and cruft
 
 Focus on the core business logic required to create value, ship only the code that matters, iterate faster and still enjoy unprecedented availability guarantees.
 
@@ -30,11 +30,11 @@ The `.arc` format follows a few simple rules:
 - [`@aws`](/reference/aws) defines AWS variables
 - [`@events`](/reference/events) defines application events you can publish and subscribe to
 - [`@http`](/reference/http) defines HTTP (i.e. `text/html`) handlers
-- [`@indexes`](/reference/indexes) defines table global secondary indexes 
+- [`@indexes`](/reference/indexes) defines table global secondary indexes
 - [`@scheduled`](/reference/scheduled) defines functions that run on a schedule
 - [`@static`](/reference/static) defines S3 buckets for static assets
-- [`@tables`](/reference/tables) defines DynamoDB database tables and trigger functions for them 
-- [`@ws`](/reference/ws) defines Web Socket handlers 
+- [`@tables`](/reference/tables) defines DynamoDB database tables and trigger functions for them
+- [`@ws`](/reference/ws) defines WebSocket handlers
 
 This is a complete `.arc` file example:
 

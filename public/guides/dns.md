@@ -7,7 +7,7 @@ DNS is how you assign a domain name to a deployed app. This guide lists ways to 
 
 ## Setting up `.arc` with a custom domain name
 
-`arc` has built-in first-class support for setting up DNS and assigning a domain. First add [`@domain`](/reference/domain) to your `.arc` file with a value of the domain name you wish to set up. 
+`arc` has built-in first-class support for setting up DNS and assigning a domain. First add [`@domain`](/reference/domain) to your `.arc` file with a value of the domain name you wish to set up.
 
 ```arc
 @app
@@ -68,7 +68,7 @@ If something goes wrong you can destroy the generated resources and re-create.
 If you _really_ want to manually configure DNS you can follow these guides below:
 
 * [Route 53](#route-53)
-* [Cloudflare](#cloudflare) 
+* [Cloudflare](#cloudflare)
 
 <a name="route-53"></a>
 
@@ -135,5 +135,5 @@ These instructions are adapted from the tutorial at [LEANX](https://www.leanx.eu
 ---
 
 
-## Next: [Web Sockets](/guides/ws)
+## Next: [WebSockets](/guides/ws)
 
