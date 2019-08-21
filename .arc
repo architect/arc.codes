@@ -2,9 +2,9 @@
 arc-codes
 
 @aws
-region us-east-1
-profile smallwins
-bucket cf-sam-deployments-east
+region us-west-1
+profile openjsf
+bucket arc.codes-deploy
 
 @static
 @http
