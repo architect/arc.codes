@@ -3,12 +3,10 @@ name: CI
 on:
   push:
     branches:
-    - ghci
-    - !master
+    - refs/pull/*
   pull_request:
     branches:
-    - ghci
-    - !master
+    - refs/pull/*
 
 jobs:
   build:
