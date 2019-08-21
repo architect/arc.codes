@@ -3,10 +3,12 @@ name: CI
 on:
   push:
     branches:
-    - refs/pull/*
+    - refs/heads/*
+    - !refs/heads/master
   pull_request:
     branches:
-    - refs/pull/*
+    - refs/heads/*
+    - !refs/heads/master
 
 jobs:
   build:
