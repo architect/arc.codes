@@ -34,5 +34,5 @@ jobs:
       run: npm test
 
     - name: Deploy
-      if: job.steps.Test.status == success
+      if: success
       run: ./scripts/deploy
