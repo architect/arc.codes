@@ -24,8 +24,8 @@
     "eslint": "^5.10.0",
     "spellchecker-cli": "^4.0.1",
     "tap-spec": "^5.0.0",
-    "tape": "^4.9.1",
-    "tiny-json-http": "^7.0.0"
+    "tape": "^4.11.0",
+    "tiny-json-http": "^7.1.2"
   },
   "prettier": {
     "semi": false,
