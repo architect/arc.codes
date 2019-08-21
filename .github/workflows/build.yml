@@ -1,14 +1,6 @@
 name: CI
 
-on:
-  push:
-    branches:
-    - refs/heads/*
-    - !refs/heads/master
-  pull_request:
-    branches:
-    - refs/heads/*
-    - !refs/heads/master
+on: [push, pull_request]
 
 jobs:
   build:
