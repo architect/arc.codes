@@ -5,7 +5,7 @@
 ## 6.x
 
 New:
-- This version of Architect is CloudFormation based!
+- This version of Architect is CloudFormation based! This allows Architect apps to use anything in the AWS ecosystem and allows users to extend the `.arc` format.
 - Global `arc` CLI tool (or just use `npx` per previous releases)
 - Ruby and Python fully supported (including local `sandbox`)
 - Workflows start local (`arc init && arc sandbox`) and `arc deploy` is opt in
