@@ -90,5 +90,8 @@ let plugins = {
     layout
   ]
 }
+let headers = {
+  'Cache-Control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0'
+}
 
-exports.handler = arc.http.proxy.public({alias, plugins})
+exports.handler = arc.http.proxy.public({alias, plugins, headers})

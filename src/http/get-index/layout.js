@@ -3,11 +3,16 @@ let md = require('marked')
 let fs = require('fs')
 
 let cache = {}
-let nav = md(fs.readFileSync(path.join(__dirname, 'toc.md')).toString())
+let toc = md(fs.readFileSync(path.join(__dirname, 'toc.md')).toString())
 let github = fs.readFileSync(path.join(__dirname, 'assets', 'github.svg')).toString()
 let openJSF = fs.readFileSync(path.join(__dirname, 'assets', 'openjsf.svg')).toString()
 let logo = fs.readFileSync(path.join(__dirname, 'assets', 'architect-logo-white.svg')).toString()
 let style = fs.readFileSync(path.join(__dirname, 'assets', 'index.css')).toString()
+
+// scripts
+let arcfile = fs.readFileSync(path.join(__dirname, 'assets', 'arcfile.js')).toString()
+let codeExamples = fs.readFileSync(path.join(__dirname, 'assets', 'code-examples.js')).toString()
+let nav = fs.readFileSync(path.join(__dirname, 'assets', 'nav.js')).toString()
 
 module.exports = function layout(filename, {headers, body}) {
   if (!cache[filename]) {
@@ -30,7 +35,7 @@ module.exports = function layout(filename, {headers, body}) {
       <section class="nav">
         <span id=nav-logo-main class=logo><a href="/">${logo}</a></span>
         <button class=nav-toggle><span class="ir">Toggle Navigation</span></button>
-        <nav>${nav}</nav>
+        <nav>${toc}</nav>
       </section>
       <section class=content>
         <div class=inner>${body}</div>
@@ -64,12 +69,11 @@ module.exports = function layout(filename, {headers, body}) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/plugins/autoloader/prism-autoloader.min.js"></script>
 <script>
   Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/'
-
 </script>
 
-<script type=module src=/_static/nav.js></script>
-<script type=module src=/_static/code-examples.js></script>
-<script type=module src=/_static/arcfile.js></script>
+<script>${nav}</script>
+<script>${arcfile}</script>
+<script>${codeExamples}</script>
 <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-74655805-3', 'auto');ga('send', 'pageview');
 </script>

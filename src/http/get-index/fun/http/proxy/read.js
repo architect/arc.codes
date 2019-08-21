@@ -66,10 +66,10 @@ module.exports = async function read({Bucket, Key, IfNoneMatch, config}) {
 
       let neverCache = noCache.some(n => type.startsWith(n))
       if (neverCache) {
-        headers['cache-control'] = 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0'
+        headers['Cache-control'] = 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0'
       }
       else {
-        headers['cache-control'] = 'max-age=86400'
+        headers['Cache-Control'] = 'max-age=86400'
       }
 
       response = transform({
@@ -82,7 +82,13 @@ module.exports = async function read({Bucket, Key, IfNoneMatch, config}) {
       })
     }
 
-    console.log('GOT RESPONSE', response)
+    // TODO mainline this change if it works!
+    if (config.headers['Cache-Control'])
+      response.headers['Cache-Control'] = config.headers['Cache-Control']
+
+    if (config.headers['cache-control'])
+      response.headers['Cache-Control'] = config.headers['cache-control']
+
     return response
   }
   catch(e) {
