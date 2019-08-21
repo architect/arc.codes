@@ -5,7 +5,7 @@ before_install:
   - npm i -g npm@latest
 install:
   - npm i
-  - scripts/modules-init-travis.sh
+  - npx arc hydrate
 script:
   - npm run lint
   - npm run spellcheck
