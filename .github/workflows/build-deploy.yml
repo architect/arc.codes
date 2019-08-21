@@ -33,6 +33,15 @@ jobs:
     - name: Test
       run: npm test
 
-    - name: Deploy
+    - name: Set up Python
       if: success()
-      run: ./scripts/deploy
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.x'
+
+    - name: Set up AWS-CLI
+      uses: actions/aws/cli@master
+      run: aws --version
+
+    # - name: Deploy
+    #   run: ./scripts/deploy
