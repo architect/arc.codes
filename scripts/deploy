@@ -1,0 +1,12 @@
+#!/bin/bash
+# Checks if last commit message was semver
+#   If so, deploys to production & staging
+#   Otherwise deploys to staging
+TAG=`git log -1 --pretty=%B`
+if echo "$TAG" | grep '^\([0-9]\{1,\}\.\?\)\{3\}'; then
+  npx arc deploy --production;
+  npx arc deploy;
+else
+  npx arc deploy;
+fi
+echo "Exit:" $?
