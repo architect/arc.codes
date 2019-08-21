@@ -33,13 +33,6 @@ jobs:
     - name: Test
       run: npm test
 
-  deploy:
-    name: deploy
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Deploy app
+    - name: Deploy
+      if: job.steps.Test.status == success
       run: ./scripts/deploy
-
-
