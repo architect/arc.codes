@@ -1,46 +1,21 @@
-# Contributor Covenant Code of Conduct
+# Architect Code of Conduct
 
-## Our Pledge
+We are strongly committed to ensuring the Architect community, and the various online and offline spaces in which its members congregate and collaborate, are safe, positive, inclusive, constructive, and welcoming environments.
 
-In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
+As such, the Architect project adheres to the [OpenJS Foundation Code of Conduct](https://github.com/openjs-foundation/cross-project-council/blob/master/CODE_OF_CONDUCT.md), which itself adheres to the [Contributor Covenant](https://www.contributor-covenant.org).
 
-## Our Standards
+Lack of familiarity with this or the OpenJS Foundation Codes of Conduct, or the Contributor covenant, is not an excuse for non-adherence.
 
-Examples of behavior that contributes to creating a positive environment include:
 
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
+# Reporting
+If you are the subject of any behavior prohibited by this Code of Conduct, or observe someone who is, please contact an Architect team member immediately.
 
-Examples of unacceptable behavior by participants include:
+If you know an Architect team member, you may wish to contact them personally (and you should); but if not, please [contact us via email](mailto:conduct@arc.codes).
 
-* The use of sexualized language or imagery and unwelcome sexual attention or advances
-* Trolling, insulting/derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or electronic address, without explicit permission
-* Other conduct which could reasonably be considered inappropriate in a professional setting
+If possible, please attempt to collect any relevant information and evidence, including links, screenshots, or other recordings of any incident.
 
-## Our Responsibilities
+Reports will be handled with the utmost care, confidence, and sensitivity towards the individual(s) reporting.
 
-Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
 
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
-
-## Scope
-
-This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
-
-## Enforcement
-
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at coc@begin.com. The project team will review and investigate all complaints, and will respond in a way that it deems appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
-
-Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
-
-## Attribution
-
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4, available at [https://contributor-covenant.org/version/1/4][version]
-
-[homepage]: https://contributor-covenant.org
-[version]: https://contributor-covenant.org/version/1/4/
+# Enforcement
+Should incidents arise, upon adjudication those found to be in violation of this Code of Conduct may be immediately expelled from the Architect community, including events, forums, chat workspaces, code repositories, and any other place where Architect community members collaborate.
