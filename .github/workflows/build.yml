@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - !master
+      - ghci
   pull_request:
     branches:
       - !master
+      - ghci
 
 jobs:
   build:
