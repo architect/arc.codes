@@ -41,7 +41,12 @@ jobs:
 
     - name: Set up AWS-CLI
       uses: actions/aws/cli@master
-      run: aws --version
+
+    - name: Versions
+      run: |
+        node --version
+        python --version
+        aws --version
 
     # - name: Deploy
     #   run: ./scripts/deploy
