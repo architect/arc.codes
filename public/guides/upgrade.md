@@ -6,7 +6,7 @@
 
 New:
 - This version of Architect is CloudFormation based!
-- Global CLI tool (or just install and `npx` as usual)
+- Global `arc` CLI tool (or just use `npx` per previous releases)
 - Ruby and Python fully supported (including local `sandbox`)
 - Workflows start local (`arc init && arc sandbox`) and `arc deploy` is opt in
 - Runtime helpers:
