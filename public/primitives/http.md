@@ -109,15 +109,57 @@ The request payload has the following keys:
 - **`headers`** - **Object**
   - All client request headers
 - **`body`** - **String (base64)**
-  - Contains request body in a base64-encoded buffer
-  - Decoded payload is raw and will require parsing by the tool of your choosing
-  - Architect also provides multiple runtime tools to parse the body for you:
-    - Architect Functions HTTP (classic continuation passing-style middleware) - [`arc.http()`](/reference/functions/http)
-    - Architect Functions body parser helper - [`arc.http.helpers.bodyParser()`](/reference/functions/http/node/helpers)
+  - The request body in a base64-encoded buffer. You'll need to parse `request.body` before you can use it, but Architect provides  tools to do this - see <a href=#req><b>parsing request bodies</b></a>.
+
 - **`isBase64Encoded`** - **Boolean**
   - Indicates whether `body` is base64-encoded binary payload (will always be true if `body` has not `null`)
 
 ---
+
+## <span id=req.body>Parsing request bodies</span>
+
+To use `request.body` you'll need to parse it first. You have multiple options, based on your preferred style:
+
+### Request body in `await` style functions
+
+If you're using `await` style functions, send the request through [`arc.http.middleware`](/reference/functions/http/node/middleware) which will create `request.body` then pass the request on to your lambda function. You don't need to specify anything asides from the lambda function to parse the body - `arc.http.middleware` adds `request.body` for you.
+
+```javascript
+const route = async function http(request) {
+  let name = request.body.email
+  return {
+    status: 200,
+    body: `<h1>Hi ${name}</h1>`
+  }
+}
+
+exports.handler = arc.http.middleware(route)
+
+```
+
+### Parsing request bodies in `callback` style functions
+
+If you're using callback functions, you can use [`arc.http()`](/reference/functions/http/node/classic). Add an Express-style middleware:
+
+```javascript
+let arc = require('@architect/functions')
+
+function parseBody(req, res, next) {
+  req.body = arc.http.bodyParser(req)
+  next()
+}
+
+function route(req, res) {
+  let name = request.body.email
+  res({
+    status: 200,
+    html:  `<h1>Hi ${name}</h1>`
+  })
+}
+
+exports.handler = arc.http(parseBody, route)
+
+```
 
 ## <span id=res>Response payload</span>
 
