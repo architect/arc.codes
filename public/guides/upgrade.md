@@ -22,6 +22,9 @@ Removed:
 - `npx inventory` removed (just use CloudFormation console)
 - `npx dns` removed (but we plan to revisit)
 
+Deprecated:
+ - `arc.http.helpers.static()` is now just `arc.static()`
+
 Breaking:
 - DynamoDB triggers are now defined with `stream true`
 - `arc.proxy` and `arc.middleware` are now `arc.http.proxy` and `arc.http.middleware`
