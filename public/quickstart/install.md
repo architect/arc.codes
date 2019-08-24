@@ -5,7 +5,7 @@ This will go fast!
 ### Open your terminal
 
 ```bash
-npm install -g @architect/cli
+npm install -g @architect/architect
 ```
 
 
