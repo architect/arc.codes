@@ -1,125 +1,209 @@
-# `arc.yaml` and `arc.json`
+# Architect project manifest format
 
-## Opt into `arc.yaml` or `arc.json` configuration manifests
+Architect favors <em>convention over configuration</em>. Projects have a lightweight `.arc` (or `app.arc`, [`arc.yaml`, or `arc.json`](#yaml-json)) manifest file in the root.
 
-Developers that prefer `yaml` or `json` syntax can opt into using YAML or JSON instead of `.arc` syntax.
+This project manifest defines the application primitives used to generate your infrastructure.
 
-**YAML Example**
-
-```yaml
 ---
-# comments oo ehh
-app: testapp
-description: Example arc-to-json
-domain: testapp.com
-aws:
-  region: us-west-2
-  profile: personal
-static:
-  staging: testapp-bucket
-  production: testapp-bucket-prod
-http:
-- get: "/"
-- post: "/login"
-- get: "/index.css"
-- get: "/js/index.js"
-- get: "/js/:mjs"
-- get: "/api/notes"
-- put: "/api/notes/:noteID"
-- post: "/api/notes"
-- delete: "/api/notes/:noteID"
-- patch: "/api/notes/:noteID"
-events:
-- send-welcome-sms
-tables:
-- notes:
-    authorID: "*String"
-    noteID: "**String"
-- authors:
-    authorID: "*String"
-indexes:
-- authors:
-    phone: "*String"
-scheduled:
-  daily-report: rate(1 day)
+
+### Topics
+
+<a href=#manifest-format-overview><b>Manifest format overview</b></a>
+
+<a href=#yaml-json><b>Opt into `arc.yaml` or `arc.json` manifests</b></a>
+
+---
+
+
+
+## Manifest format overview
+
+The `.arc` manifest format is intentionally simple to author and straightforward to read.
+
+Resources are defined within pragmas, pragmas can be ordered arbitrarily, and comments are preceded by a `#`:
+
+```arc
+# This is going to be great!
+@app
+testapp
+
+@http
+get /api
+post /api
 ```
 
-**JSON Example**
+The `.arc` manifest can be broadly split into three conceptual classifications of configuration:
+
+
+### 1. Global / system
+
+These pragmas are for global and cloud-vendor configuration, the most important of which being the `@app` namespace (which is used to prefix and identify all generated resources).
+
+- [`@app`](/reference/app) - **[Required]** The application namespace
+- [`@aws`](/reference/aws) - AWS-specific config
+
+
+### 2. Functions
+
+These pragmas deal with cloud functions (i.e. Lambdas); function pragmas are always reflective of a single event source (i.e. `@http` functions are invoked by HTTP events; `@events` functions are invoked by events to the event bus).
+
+- [`@http`](/reference/http) - HTTP routes (API Gateway)
+- [`@events`](/reference/events) - Event pub/sub (SNS)
+- [`@queues`](/reference/queues) - Queues & queue handlers (SQS)
+- [`@scheduled`](/reference/scheduled) - Invoke functions on specified schedules (CloudWatch Events)
+- [`@ws`](/reference/ws) - WebSocket functions (API Gateway)
+
+
+### 3. Persistence
+
+These pragmas specify various persistence resources.
+
+- [`@static`](/reference/static) - Buckets for hosting static assets (S3)
+- [`@tables`](/reference/tables) - Database tables & trigger functions (DynamoDB)
+- [`@indexes`](/reference/indexes) - Table global secondary indexes (DynamoDB)
+
+
+## Example
+
+Here we'll provision an extensive Architect project with the following `.arc` file:
+
+```arc
+# This is going to be great!
+@app
+testapp
+
+@aws
+profile fooco
+region us-west-1
+bucket your-private-deploy-bucket
+
+@static
+fingerprint true
+
+@ws
+@http
+get /
+get /things # the things go here
+post /form
+delete /api/:item
+
+@events
+an-important-background-task
+
+@queues
+our-event-bus
+
+@scheduled
+backups
+
+@tables
+accounts
+  accountID *String
+  created **String
+
+@indexes
+accounts
+  username *String
+
+```
+
+Running `arc init` creates the following code:
+
+```bash
+/
+├── src
+│   ├── events
+│   │   └── hello/
+│   └── http
+│       ├── get-index/
+│       └── get-things/
+└── .arc
+```
+
+If you add further pragmas, it is safe to run (and re-run) `arc init` to generate further code.
+
+---
+
+## <span id=yaml-json>Opt into `arc.yaml` or `arc.json` manifests</span>
+
+Developers that prefer JSON or YAML can opt into using either syntax in `arc.json` or `arc.yaml`, respectively (instead of `.arc or app.arc`).
+
+
+## JSON example
 
 ```json
 {
   "app": "testapp",
   "description": "Example arc-to-json",
-  "domain": "testapp.com",
   "aws": {
-    "region": "us-west-2",
-    "profile": "personal"
+    "region": "us-west-1",
+    "profile": "fooco"
   },
   "static": {
-    "staging": "testapp-bucket",
-    "production": "testapp-bucket-prod"
+    "fingerprint": true
   },
   "http": [
-    {
-      "get": "/"
-    },
-    {
-      "post": "/login"
-    },
-    {
-      "get": "/index.css"
-    },
-    {
-      "get": "/js/index.js"
-    },
-    {
-      "get": "/js/:mjs"
-    },
-    {
-      "get": "/api/notes"
-    },
-    {
-      "put": "/api/notes/:noteID"
-    },
-    {
-      "post": "/api/notes"
-    },
-    {
-      "delete": "/api/notes/:noteID"
-    },
-    {
-      "patch": "/api/notes/:noteID"
-    }
+    {"get": "/"},
+    {"get": "/things"},
+    {"post": "/form"},
+    {"delete": "/api/:item"},
   ],
   "events": [
-    "send-welcome-sms"
+    "an-important-background-task"
   ],
+  "queues": [
+    "our-event-bus"
+  ],
+  "scheduled": {
+    "backups": "rate(1 day)"
+  },
   "tables": [
     {
-      "notes": {
-        "authorID": "*String",
-        "noteID": "**String"
-      }
-    },
-    {
-      "authors": {
-        "authorID": "*String"
+      "accounts": {
+        "accountID": "*String",
+        "created": "**String"
       }
     }
   ],
   "indexes": [
     {
-      "authors": {
-        "phone": "*String"
+      "accounts": {
+        "username": "*String"
       }
     }
-  ],
-  "scheduled": {
-    "daily-report": "rate(1 day)"
-  }
+  ]
 }
 ```
 
----
 
-## Next: [Dependencies](/guides/deps)
+## YAML example
+
+```yaml
+---
+# comments ooh ahh
+app: testapp
+description: Example arc-to-json
+aws:
+  region: us-west-1
+  profile: personal
+static:
+  fingerprint: true
+http:
+- get: /
+- get: /things
+- post: /form
+- delete: /api/:item
+events:
+- an-important-background-task
+queues:
+- our-event-bus
+scheduled:
+- backups
+tables:
+- accounts:
+    accountidID: "*String"
+    created: "**String"
+indexes:
+- accounts:
+    username: "*String"
+```

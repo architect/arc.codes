@@ -18,8 +18,9 @@
   - [Tables](/primitives/tables)
   - [Macros](/primitives/macros)
 - <b id=guides>Guides</b>
-  - [App testing](/guides/testing)
   - [Upgrade guide](/guides/upgrade)
+  - [App testing](/guides/testing)
+  - [Architect project format](/guides/project-manifest)
 - <b id=ref>Reference</b>
   - CLI commands
     - [arc deploy](/reference/cli/deploy)
