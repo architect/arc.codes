@@ -367,6 +367,16 @@ th {
   height: 30px;
 }
 
+.inner img {
+  width:800px;
+  max-width:100%;
+}
+
+#main-logo {
+  width:500px;
+  max-width:100%;
+}
+
 @media (max-width: 600px) {
 
   .github-corner {

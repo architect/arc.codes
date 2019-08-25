@@ -1,4 +1,4 @@
-<img src="/_static/architect-logo-500b@2x.png" width=500>
+<img src="/_static/architect-logo-500b@2x.png" id=main-logo>
 
 # The simplest, most powerful way to build modern applications
 

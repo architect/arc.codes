@@ -187,6 +187,7 @@ Because this can have very adverse effects on your application, we strongly sugg
 
 ```javascript
 {
+  // The rest of your response here
   headers: {
     'Cache-Control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0'
   }
