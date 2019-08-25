@@ -91,6 +91,7 @@ a:hover code {
 }
 
 .footer {
+  padding-top: 20px;
   font-size: 1.1em;
   margin-bottom: 10px;
   text-align: right;
@@ -356,7 +357,6 @@ th {
 .footer {
   font-size: 24px;
   margin-bottom: 10px;
-  margin-left: 300px;
 }
 
 .footer span, .footer a {
