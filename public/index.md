@@ -89,6 +89,7 @@ Your new app will be online within seconds.
 ---
 
 ### Useful links
+- [Details for upgrading from Architect 5 to 6](/guides/upgrade)
 - [Tinker in the playground](/intro/playground)
 - [Learn about HTTP Functions](/primitives/http)
 ---
