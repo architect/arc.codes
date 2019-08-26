@@ -98,28 +98,32 @@ A number of Architect v5 workflows have since been deprecated, including:
 - The dependency-free `request` and `response` signatures of Node.js-based HTTP functions have changed from the standard Architect format. These changes are non-breaking if you use `@architect/functions` – [more on this below](#upgrade-path).
 - However, if you use dependency-free, `async/await` style Node.js HTTP functions, the following describes the specific breaking changes to the `request` and `response` signatures:
 
-#### `request` breaking changes:
-  - `method` is now `httpMethod`
-    - Still one of `GET`, `POST`, `PATCH`, `PUT`, or `DELETE`
-  - `body` is no longer a pre-parsed object
-    - `body` is now either `null` or a base64-encoded buffer
-    - `body` must first be decoded, then parsed, to make use of it; Architect provides a handy helper to take care of this for you, see: [parsing HTTP request bodies](/primitives/http#parsing-request-bodies)
-  - `params` is now `pathParameters`
-    - Still an object containing any URL params, if defined in your HTTP function's path (e.g. `foo` in `GET /:foo/bar`)
-  - `query` is now `queryStringParameters`
-    - Still an object containing any query params if present in the client request
-  - Note: the `request` signature change is fully papered over with `@architect/functions`; if you are already using `@architect/functions` as your HTTP functions' handlers, you don't have to change anything, but you will need to upgrade to version `^3.3.0`
+#### `request` breaking changes
 
-#### `response` breaking changes:
-  - `location` is now deprecated
-    - To set the `Location` of your content, please do so in the `headers` object, e.g. `headers: {'Location': '/new/path'}`
-  - `cookie` is now deprecated
-    - `cookie` is now respected interchangeably with `session` by `@architect/functions`, however
-  - `status` & `code` are now `statusCode`
-    - Still a `number` that sets the HTTP status code
-    - Note: Arc 5 also supported `statusCode`, so if you're using that, there's no change
-  - `type` is now deprecated
-    - To set the `Content-Type` of your content, please do so in the `headers` object, e.g. `headers: {'Content-Type': 'text/html; charset=utf-8;'}`
+The following Architect 5 `request` parameters changed in Architect 6:
+- `method` is now `httpMethod`
+  - Still one of `GET`, `POST`, `PATCH`, `PUT`, or `DELETE`
+- `body` is no longer a pre-parsed object
+  - `body` is now either `null` or a base64-encoded buffer
+  - `body` must first be decoded, then parsed, to make use of it; Architect provides a handy helper to take care of this for you, see: [parsing HTTP request bodies](/primitives/http#parsing-request-bodies)
+- `params` is now `pathParameters`
+  - Still an object containing any URL params, if defined in your HTTP function's path (e.g. `foo` in `GET /:foo/bar`)
+- `query` is now `queryStringParameters`
+  - Still an object containing any query params if present in the client request
+- Note: the `request` signature change is fully papered over with `@architect/functions`; if you are already using `@architect/functions` as your HTTP functions' handlers, you don't have to change anything, but you will need to upgrade to version `^3.3.0`
+
+#### `response` breaking changes
+
+The following Architect 5 `response` parameters changed in Architect 6:
+- `location` is now deprecated
+  - To set the `Location` of your content, please do so in the `headers` object, e.g. `headers: {'Location': '/new/path'}`
+- `cookie` is now deprecated
+  - `cookie` is now respected interchangeably with `session` by `@architect/functions`, however
+- `status` & `code` are now `statusCode`
+  - Still a `number` that sets the HTTP status code
+  - Note: Arc 5 also supported `statusCode`, so if you're using that, there's no effective change
+- `type` is now deprecated
+  - To set the `Content-Type` of your content, please do so in the `headers` object, e.g. `headers: {'Content-Type': 'text/html; charset=utf-8;'}`
 
 
 ### Upgrade path

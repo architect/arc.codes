@@ -110,9 +110,10 @@ The request payload has the following keys:
   - All client request headers
 - **`body`** - **String (base64)**
   - The request body in a base64-encoded buffer. You'll need to parse `request.body` before you can use it, but Architect provides  tools to do this - see <a href=#parsing-request-bodies><b>parsing request bodies</b></a>.
-
 - **`isBase64Encoded`** - **Boolean**
   - Indicates whether `body` is base64-encoded binary payload (will always be true if `body` has not `null`)
+
+> Note: if you are an Architect 5 user upgrading to Architect 6, please refer to the [upgrade guide for information on `request` payload changes](/guides/upgrade#request-breaking-changes)
 
 ---
 
@@ -192,6 +193,8 @@ Responses are returned by your `handler` function in an object, and support the 
 - `isBase64Encoded` - **Boolean**
   - Indicates whether `body` is base64-encoded binary payload
   - Required to be set to `true` if emitting a binary payload
+
+> Note: if you are an Architect 5 user upgrading to Architect 6, please refer to the [upgrade guide for information on `response` payload changes](/guides/upgrade#response-breaking-changes)
 
 > Read more about the <a target=blank href=https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format>response payload on the AWS docs</a>
 
