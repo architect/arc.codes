@@ -122,7 +122,7 @@ To use `request.body` you'll need to parse it first. You have multiple options, 
 
 ### Parse it with `arc.http.helpers.bodyParser()`
 
-Architect Functions provides a simple body parser helper; this helper takes a request object, and returnes a parsed body object.
+Architect Functions provides a simple body parser helper; this helper takes a request object, and returns a parsed body object.
 
 ```javascript
 let arc = require('@architect/functions')

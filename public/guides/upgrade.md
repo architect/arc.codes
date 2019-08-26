@@ -77,7 +77,7 @@ A number of Architect v5 workflows have since been deprecated, including:
     - Or alternately, just start your project in `sandbox`, which will auto-initialize it)
   - Otherwise, create and deploy your app's live infra using `npx arc deploy`
 - **`npx audit`** - **Removed**
-  - App infra IAM roles are dynamically generated and scoped with least-privilege to various cloud infra services services
+  - App infra IAM roles are dynamically generated and scoped with least-privilege to various cloud infra services
 - **`npx config`** - **Removed**
   - No longer necessary, as `.arc-config` settings are now serialized as part of every deploy
 - **`npx inventory`** - **Removed**
@@ -85,7 +85,7 @@ A number of Architect v5 workflows have since been deprecated, including:
 - **`npx inventory --nuke`** - **Temporarily removed**
   - This command destroys your app infra, and is not currently available in Architect 6 (but will be returning shortly!)
   - [Follow this feature here](https://github.com/architect/architect/issues/430)
-  - In the mean time, you can manually delete your app (aka "stack" in Cloudformation paralance) from the AWS CloudFormation console
+  - In the mean time, you can manually delete your app (aka "stack" in CloudFormation parlance) from the AWS CloudFormation console
 - **`npx dns`** - **Temporarily removed**
   - This feature is not currently available in Architect 6 (but will be returning shortly!)
   - [Follow this feature here](https://github.com/architect/architect/issues/430)
@@ -107,7 +107,7 @@ A number of Architect v5 workflows have since been deprecated, including:
   - `params` is now `pathParameters`
     - Still an object containing any URL params, if defined in your HTTP function's path (e.g. `foo` in `GET /:foo/bar`)
   - `query` is now `queryStringParameters`
-    - Still an object containing any any query params if present in the client request
+    - Still an object containing any query params if present in the client request
   - Note: the `request` signature change is fully papered over with `@architect/functions`; if you are already using `@architect/functions` as your HTTP functions' handlers, you don't have to change anything, but you will need to upgrade to version `^3.3.0`
 
 #### `response` breaking changes:
