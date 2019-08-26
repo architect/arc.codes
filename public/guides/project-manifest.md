@@ -188,6 +188,7 @@ aws:
   profile: personal
 static:
   fingerprint: true
+# static: {} also valid
 http:
 - get: /
 - get: /things

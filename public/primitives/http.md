@@ -109,23 +109,41 @@ The request payload has the following keys:
 - **`headers`** - **Object**
   - All client request headers
 - **`body`** - **String (base64)**
-  - The request body in a base64-encoded buffer. You'll need to parse `request.body` before you can use it, but Architect provides  tools to do this - see <a href=#req><b>parsing request bodies</b></a>.
+  - The request body in a base64-encoded buffer. You'll need to parse `request.body` before you can use it, but Architect provides  tools to do this - see <a href=#parsing-request-bodies><b>parsing request bodies</b></a>.
 
 - **`isBase64Encoded`** - **Boolean**
   - Indicates whether `body` is base64-encoded binary payload (will always be true if `body` has not `null`)
 
 ---
 
-## <span id=req.body>Parsing request bodies</span>
+## <span id=parsing-request-bodies>Parsing request bodies</span>
 
 To use `request.body` you'll need to parse it first. You have multiple options, based on your preferred style:
 
-### Request body in `await` style functions
+### Parse it with `arc.http.helpers.bodyParser()`
 
-If you're using `await` style functions, send the request through [`arc.http.middleware`](/reference/functions/http/node/middleware) which will create `request.body` then pass the request on to your lambda function. You don't need to specify anything asides from the lambda function to parse the body - `arc.http.middleware` adds `request.body` for you.
+Architect Functions provides a simple body parser helper; this helper takes a request object, and returnes a parsed body object.
 
 ```javascript
-const route = async function http(request) {
+let arc = require('@architect/functions')
+
+exports.handler = async function handler(request) {
+  let body = arc.http.helpers.bodyParser(request)
+  let name = body.email
+  return {
+    status: 200,
+    body: `<h1>Hi ${name}</h1>`
+  }
+}
+```
+
+
+### Request body in `await` style functions
+
+If you're using `await` style functions, send the request through Architect Functions [`arc.http.middleware`](/reference/functions/http/node/middleware) which will create `request.body` then pass the request on to your lambda function. You don't need to specify anything asides from the lambda function to parse the body - `arc.http.middleware` adds `request.body` for you.
+
+```javascript
+const route = async function handler(request) {
   let name = request.body.email
   return {
     status: 200,
@@ -134,7 +152,6 @@ const route = async function http(request) {
 }
 
 exports.handler = arc.http.middleware(route)
-
 ```
 
 ### Parsing request bodies in `callback` style functions
@@ -145,7 +162,7 @@ If you're using callback functions, you can use [`arc.http()`](/reference/functi
 let arc = require('@architect/functions')
 
 function parseBody(req, res, next) {
-  req.body = arc.http.bodyParser(req)
+  req.body = arc.http.helpers.bodyParser(req)
   next()
 }
 
@@ -158,8 +175,8 @@ function route(req, res) {
 }
 
 exports.handler = arc.http(parseBody, route)
-
 ```
+
 
 ## <span id=res>Response payload</span>
 
