@@ -61,6 +61,7 @@ Architect 6 is a milestone release that solves some of the most crucial feedback
     2. Add an empty `dependencies` object (see below)
     3. Then simply install whatever you please from within that directory (e.g. `cd src/events/a-background-task/ && npm i a-small-dependency`).
 Example basic cloud function `package.json`:
+
 ```json
 {
   "dependencies":{
@@ -129,32 +130,37 @@ The following Architect 5 `response` parameters changed in Architect 6:
 ### Upgrade path
 
 Architect support two styles of authoring Node.js cloud function handlers:
-- `callback` style, which uses Architect Functions to deliver a `response` (in addition to other features, such as middleware, etc.)
+- Continuation-passing style (i.e. `callback`s), which uses Architect Functions to deliver a `response` (in addition to other features, such as middleware, etc.)
 - `async/await` style, which does not depend on Architect Functions to deliver a `response`
 
 The upgrade path for each of which is covered below:
 
 
-#### `callback` style HTTP functions
-If your HTTP functions are authored `callback` style using Architect Functions, you have no breaking code changes. Simply run `npx arc hydrate --update` and ensure all your HTTP functions are running `@architect/functions` version `^3.3.0` or greater.
+#### Continuation-passing style HTTP functions
+If your HTTP functions are authored continuation-passing style using Architect Functions, you have no breaking code changes. Simply run `npx arc hydrate --update` and ensure all your HTTP functions are running `@architect/functions` version `^3.3.0` (or greater).
 
 
 #### `async/await` style HTTP functions
 
-If your HTTP functions are authored `async/await` style, you will have to make one of two code changes to ensure compatibility with Architect 6:
+If you already use `@architect/functions`'s `arc.middleware` (now `arc.http.async`) with your functions, you have no breaking code changes. Simply run `npx arc hydrate --update` and ensure all your HTTP functions are running `@architect/functions` version `^3.3.5` (or greater).
 
-1. Per the list of breaking changes above, update any logic related to `request`s and `response`s to the new Architect 6 signatures, or
-2. With a minor code change, run your existing logic through Architect Functions, like so:
+If your HTTP functions are authored in `async/await` style without `arc.middleware`, you'll have two paths forward to ensure compatibility with Architect 6:
+
+1. Opt not to use `@architect/functions` with your functions
+- If you opt not to use `@architect/functions`, per the [list of signature changes above](#architect-6-breaking-changes), you'll need to update any logic related to `request`s and `response`s to the new Architect 6 signatures
+
+2. Opting to use `@architect/functions` with your functions
+- You can opt into using `@architect/functions` with a minor code change, namely by running your existing logic through `arc.http.async`, like so:
 
 
 #### Example (before)
 ```javascript
-// `async/await` style Arc 5 HTTP function
+// `async/await` Arc 5 function is incompatible with Arc 6
 exports.handler = async function handler(request) {
-  let name = request.body.email       // Body no longer automatically parsed
+  let name = request.body.email   // Accessor will fail, as `request.body` is no longer automatically parsed
   return {
-    status: 200,                      // Param no longer valid
-    type: 'text/html; charset=utf-8;' // Param no longer valid
+    status: 200,                  // Response will fail, `status` param no longer valid
+    type: 'text/html'             // Response will fail, `type` param no longer valid
     body: `<h1>Hi ${name}</h1>`
   }
 }
@@ -162,22 +168,20 @@ exports.handler = async function handler(request) {
 
 #### Example (after)
 ```javascript
-// `callback` style Arc Functions HTTP function
+// Same `async/await` Arc 5 function made Arc 6 compatible via `arc.http.async`
 let arc = require('@architect/functions')
 
-exports.handler = arc.http(handler)
+exports.handler = arc.http.async(handler)
 
-function handler(request, response) {
-  let name = request.body.email         // Body automatically parsed again
-  response({
-    status: 200,                        // Param valid within `response`
-    type: 'text/html; charset=utf-8;'   // Param valid within `response`
+async function handler(request) {
+  let name = request.body.email   // `request.body` automatically parsed by arc.http.async
+  return {
+    status: 200,                  // `status` param valid when passed through arc.http.async
+    type: 'text/html'             // `type` param valid when passed through arc.http.async
     body: `<h1>Hi ${name}</h1>`
-  })
+  }
 }
 ```
-
-> Note: currently, forward-compatibility is limited to `arc.http` (`callback` style HTTP functions), and not `arc.http.middleware`; this drop-in upgrade path is coming shortly, [follow its progress here](https://github.com/architect/functions/issues/64)!
 
 ---
 
@@ -192,9 +196,15 @@ The Architect Functions module is now also available as a dependency for [Ruby](
 
 ### Changes
 
+- `arc.http.middleware` has been deprecated, and is now `arc.static`
+  - These methods are functionally the same
 - `arc.http.helpers.static` has been deprecated, and is now `arc.static`
+  - These methods are functionally the same
+  - Due to some under-the-hood changes, if you use `arc.http.helpers.static` or `arc.static`, you will need to upgrade to `@architect/functions` version `^3.3.4` (or greater)
 - `arc.proxy` has been deprecated, and is now `arc.http.proxy`
-- `arc.middleware` has been deprecated, and is now `arc.http.middleware`
+  - These methods are functionally the same
+- `arc.middleware` has been deprecated, and is now `arc.http.async
+  - These methods are functionally the same
 
 In all three cases, these are functionally the same. The old aliases will remain for a while to come, but we suggest moving any deprecated calls over to their new equivalents by mid-2020.
 
