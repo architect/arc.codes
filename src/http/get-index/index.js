@@ -48,7 +48,7 @@ let alias = {
   '/reference/functions/http':                 '/reference/functions/http/index.md',
   '/reference/functions/http/node/classic':    '/reference/functions/http/node/classic.md',
   '/reference/functions/http/node/helpers':    '/reference/functions/http/node/helpers.md',
-  '/reference/functions/http/node/middleware': '/reference/functions/http/node/middleware.md',
+  '/reference/functions/http/node/async':      '/reference/functions/http/node/async.md',
   '/reference/functions/http/node/proxy':      '/reference/functions/http/node/proxy.md',
   '/reference/functions/http/node/session':    '/reference/functions/http/node/session.md',
   '/reference/functions/http/ruby/session':    '/reference/functions/http/ruby/session.md',

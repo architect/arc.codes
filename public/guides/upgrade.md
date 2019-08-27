@@ -196,14 +196,12 @@ The Architect Functions module is now also available as a dependency for [Ruby](
 
 ### Changes
 
-- `arc.http.middleware` has been deprecated, and is now `arc.static`
+- `arc.http.middleware` has been deprecated, and is now `arc.http.async`
   - These methods are functionally the same
 - `arc.http.helpers.static` has been deprecated, and is now `arc.static`
   - These methods are functionally the same
-  - Due to some under-the-hood changes, if you use `arc.http.helpers.static` or `arc.static`, you will need to upgrade to `@architect/functions` version `^3.3.4` (or greater)
+  - Due to some under-the-hood changes, if you use `arc.http.helpers.static` or `arc.static`, you will need to upgrade to `@architect/functions` version `^3.3.4` (or greater) in Architect 6
 - `arc.proxy` has been deprecated, and is now `arc.http.proxy`
-  - These methods are functionally the same
-- `arc.middleware` has been deprecated, and is now `arc.http.async
   - These methods are functionally the same
 
 In all three cases, these are functionally the same. The old aliases will remain for a while to come, but we suggest moving any deprecated calls over to their new equivalents by mid-2020.
