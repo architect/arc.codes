@@ -4,15 +4,15 @@ Runtime helpers for <i>Hypertext Transfer Protocol</i>
 
 ---
 
-## Node
+## Node.js
 
-- [`arc.http`](/reference/functions/http/node/classic) - classic continuation passing style middleware
+- [`arc.http`](/reference/functions/http/node/classic) - classic continuation-passing style middleware
+- [`arc.http.async`](/reference/functions/http/node/async) - `async/await` style middleware
+- [`arc.http.session`](/reference/functions/http/node/session) - read/write secure, anonymous sessions from client cookie stores or a secure database
+- [`arc.http.proxy`](/reference/functions/http/node/proxy) - proxy the `public/` folder at the root of your app
 - [`arc.http.helpers`](/reference/functions/http/node/helpers) - additional webby helpers
-- [`arc.http.middleware`](/reference/functions/http/node/middleware) - async function middleware
-- [`arc.http.proxy`](/reference/functions/http/node/proxy) - proxy the public folder at the root
-- [`arc.http.session`](/reference/functions/http/node/session)
 
-Install runtime helpers for Node
+Install runtime helpers for Node.js:
 
 ```bash
 cd path/to/lambda

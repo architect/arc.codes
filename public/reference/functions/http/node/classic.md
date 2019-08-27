@@ -1,9 +1,15 @@
 # <a id=arc.http href=#arc.http>`arc.http`</a>
 
-Architect provides two optional middleware helpers for cutting down boilerplate HTTP operations. Use whatever feels right for your project and team needs! 
+Architect provides two optional middleware helpers for cutting down on boilerplate HTTP operations.
 
-- `arc.http` is a classic continuation passing style middleware API supported since the earliest versions of Architect similar to Express
-- [`arc.http.middleware`](/reference/functions/http/node/middleware) is an `async`/`await` style middleware API 
+Both middleware helpers conveniently attach user sessions to incoming `request` object (if applicable), and decode and parse the `request` body (again, if applicable).
+
+Use whatever feels right for your project and team needs!
+
+- `arc.http` is a classic continuation-passing style middleware API
+  - Functions similarly to Express, and supported since the earliest versions of Architect
+- [`arc.http.async`](/reference/functions/http/node/async) is an `async/await` style middleware API
+
 
 ## Basic Usage
 
@@ -84,7 +90,7 @@ function validate(req, res, next) {
 function handler(req, res) {
   sendEmail({
     email: req.body.email
-  }, 
+  },
   function _email(err) {
     res({
       location: `/contact?success=${err? 'yep' : 'ruhroh'}`
@@ -99,12 +105,12 @@ Things to understand:
 
 - `arc.http` accepts one or more functions that follow Express-style middleware signature: `(req, res, next)=>`
 - `req` is a plain JavaScript `Object` with `path`, `method`, `query`, `params`, `body` keys
-- `res` is a function that must be invoked with named params: 
+- `res` is a function that must be invoked with named params:
   - `location` with a URL value (a string starting w `/`)
   - `session` (optional) a plain `Object`
 - `res` can also be invoked with an `Error`
   - optionally the `Error` instance property of `code`, `status` or `statusCode` can be one of `403`, `404` or `500` to change the HTTP status code
-- `next` (optional) is a function to continue middleware execution 
+- `next` (optional) is a function to continue middleware execution
 
 Here's an example using `session` and `location`. First we render a form:
 
