@@ -1,6 +1,6 @@
 {
   "name": "@architect/arc.codes",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Architect docs: https://arc.codes - Create, deploy, and maintain next-generation AWS cloud function-based serverless infrastructure with full local, offline workflows, and more.",
   "scripts": {
     "lint": "eslint . --ignore-pattern node_modules --fix",
