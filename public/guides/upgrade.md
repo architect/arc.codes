@@ -136,21 +136,22 @@ Architect support two styles of authoring Node.js cloud function handlers:
 The upgrade path for each of which is covered below:
 
 
-#### Continuation-passing style HTTP functions
-If your HTTP functions are authored continuation-passing style using Architect Functions, you have no breaking code changes. Simply run `npx arc hydrate --update` and ensure all your HTTP functions are running `@architect/functions` version `^3.3.0` (or greater).
+#### Continuation-passing style HTTP functions (via `arc.http`)
+
+If your HTTP functions are authored continuation-passing style using Architect Functions (i.e. `arc.http`), you have no breaking code changes. Simply run `npx arc hydrate --update` and ensure all your HTTP functions are running `@architect/functions` version `^3.3.0` (or greater).
 
 
-#### `async/await` style HTTP functions
+#### <span id=arc-http-async>`async/await` style HTTP functions (via `arc.http.async`)</span>
 
-If you already use `@architect/functions`'s `arc.middleware` (now `arc.http.async`) with your functions, you have no breaking code changes. Simply run `npx arc hydrate --update` and ensure all your HTTP functions are running `@architect/functions` version `^3.3.5` (or greater).
+If you already use `@architect/functions`'s `arc.middleware` (now `arc.http.async`) with your functions, you have no breaking code changes. Simply run `npx arc hydrate --update` and ensure all your HTTP functions are running `@architect/functions` version `^3.3.4` (or greater).
 
-If your HTTP functions are authored in `async/await` style without `arc.middleware`, you'll have two paths forward to ensure compatibility with Architect 6:
+If your HTTP functions are authored in `async/await` style without `arc.http.async`, you'll have two paths forward to ensure compatibility with Architect 6:
 
-1. Opt not to use `@architect/functions` with your functions
-- If you opt not to use `@architect/functions`, per the [list of signature changes above](#architect-6-breaking-changes), you'll need to update any logic related to `request`s and `response`s to the new Architect 6 signatures
+1. Continue to opt out of using `@architect/functions` with your functions
+- If you opt not to use `@architect/functions`, per the [list of signature changes above](#architect-6-breaking-changes), you'll need to update any logic related to `request`s and `response`s to the new Architect 6 signatures; generally this should be fairly low-impact and straightforward, but your mileage may vary
 
 2. Opting to use `@architect/functions` with your functions
-- You can opt into using `@architect/functions` with a minor code change, namely by running your existing logic through `arc.http.async`, like so:
+- You can opt into using `@architect/functions` with a very minor code change, namely by running your existing functions through `arc.http.async`, like so:
 
 
 #### Example (before)
