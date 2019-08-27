@@ -33,11 +33,12 @@ For this example `.arc` above the macro is in `src/macros/my-custom-macro.js`
 ```javascript
 /**
  * @param {object} arc - the parsed .arc file currently executing
- * @param {object} cfn - the current AWS::Serverless CloudFormation template
+ * @param {object} cloudformation - the current AWS::Serverless CloudFormation template
+ * @param {object} stage - the application stage (one of `staging` or `production`)
  */
-exports.module = function myCustomMacro(arc, cfn) {
-  // modify cfn.Resources here
-  return cfn
+exports.module = function myCustomMacro(arc, cloudformation, stage) {
+  // modify cloudformation.Resources here
+  return cloudformation
 }
 ```
 
