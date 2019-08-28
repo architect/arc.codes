@@ -141,7 +141,7 @@ exports.handler = async function handler(request) {
 
 ### Request body in `await` style functions
 
-If you're using `await` style functions, send the request through Architect Functions [`arc.http.middleware`](/reference/functions/http/node/middleware) which will create `request.body` then pass the request on to your lambda function. You don't need to specify anything asides from the lambda function to parse the body - `arc.http.middleware` adds `request.body` for you.
+If you're using `await` style functions, send the request through Architect Functions [`arc.http.async`](/reference/functions/http/node/async) which will create `request.body` then pass the request on to your lambda function. You don't need to specify anything asides from the lambda function to parse the body - `arc.http.async` adds `request.body` for you.
 
 ```javascript
 const route = async function handler(request) {
@@ -152,7 +152,7 @@ const route = async function handler(request) {
   }
 }
 
-exports.handler = arc.http.middleware(route)
+exports.handler = arc.http.async(route)
 ```
 
 ### Parsing request bodies in `callback` style functions
