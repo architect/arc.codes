@@ -9,7 +9,7 @@ Both middleware helpers conveniently attach user sessions to incoming `request` 
 Use whatever feels right for your project and team needs!
 
 - `arc.http.async` is an `async/await` style middleware API
-- [`arc.http`](/reference/functions/http/node/classic) is a classic continuation-passing style middleware API
+- [`arc.http`](/reference/functions/http/node/classic) is a classic callback-style middleware API
   - Functions similarly to Express, and supported since the earliest versions of Architect
 
 
