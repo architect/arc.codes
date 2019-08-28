@@ -1,4 +1,4 @@
-let arc = require('./fun')
+let arc = require('@architect/functions')
 let layout = require('./layout')
 
 let alias = {
@@ -91,8 +91,5 @@ let plugins = {
     layout
   ]
 }
-let headers = {
-  'Cache-Control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0'
-}
 
-exports.handler = arc.http.proxy.public({alias, plugins, headers})
+exports.handler = arc.http.proxy.public({alias, plugins})
