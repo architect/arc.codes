@@ -47,33 +47,33 @@ async function addCountryCode(request) {
 
 // Redirect if the user isn't logged in
 async function requireLogin(request) {
-	let state = request.session
+  let state = request.session
 
-	if (!state.isLoggedIn) {
-		console.log(`Attempt to access dashboard without logging in!`)
-		return {
-			status: 302,
-      			location: `/login`
-      		}
-	}
-	console.log(`We're logged in`)
-	// return nothing, so execution continues
+  if (!state.isLoggedIn) {
+    console.log(`Attempt to access dashboard without logging in!`)
+    return {
+      status: 302,
+      location: `/login`
+    }
+  }
+  console.log(`We're logged in`)
+  // return nothing, so execution continues
 }
 
 // Show a HTML page. If we've reached this step we know the user is logged in, and we know their country code!
 async function showDashboard(request) {
-	console.log(`Showing dashboard`)
+  console.log(`Showing dashboard`)
 
-	let body = `
-	<body>
-		<h1>Dashboard</h1>
-		<p>You are logged in from ${request.countryCode}! <a href="/logout">logout</a><p>
-	</body>`
-	return {
-		status: 200,
-		type: 'text/html',
-		body
-	}
+  let body = `
+  <body>
+    <h1>Dashboard</h1>
+    <p>You are logged in from ${request.countryCode}! <a href="/logout">logout</a><p>
+  </body>`
+  return {
+    status: 200,
+    type: 'text/html',
+    body
+  }
 }
 
 exports.handler = arc.http.async(addCountryCode, requireLogin, showDashboard)

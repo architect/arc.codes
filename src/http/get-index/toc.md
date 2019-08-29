@@ -57,6 +57,7 @@
   - Runtime utilities (`@architect/functions`)
     - [arc.events](/reference/functions/events)
     - [arc.http](/reference/functions/http)
+    - [arc.http.async](/reference/functions/http/node/async)
     - [arc.queues](/reference/functions/queues)
     - [arc.static](/reference/functions/static)
     - [arc.tables](/reference/functions/tables)
