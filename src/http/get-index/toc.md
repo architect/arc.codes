@@ -44,11 +44,12 @@
     - [@ws](/reference/arc/ws)
   - `.arc-config` pragmas
     - [@aws](/reference/arc-config/aws)
-    - [timeout](/reference/arc-config/timeout)
+    - [runtime](/reference/arc-config/runtime)
     - [memory](/reference/arc-config/memory)
+    - [timeout](/reference/arc-config/timeout)
     - [concurrency](/reference/arc-config/concurrency)
-    - [policies](/reference/arc-config/policies)
     - [layers](/reference/arc-config/layers)
+    - [policies](/reference/arc-config/policies)
   - `.arc-env` pragmas
     - [@testing](/reference/arc-env/testing)
     - [@staging](/reference/arc-env/staging)

@@ -75,11 +75,12 @@ let alias = {
 
   // .arc-config
   '/reference/arc-config/aws':         '/reference/arc-config/index.md',
-  '/reference/arc-config/timeout':     '/reference/arc-config/index.md',
+  '/reference/arc-config/runtime':     '/reference/arc-config/index.md',
   '/reference/arc-config/memory':      '/reference/arc-config/index.md',
+  '/reference/arc-config/timeout':     '/reference/arc-config/index.md',
   '/reference/arc-config/concurrency': '/reference/arc-config/index.md',
-  '/reference/arc-config/policies':    '/reference/arc-config/index.md',
   '/reference/arc-config/layers':      '/reference/arc-config/index.md',
+  '/reference/arc-config/policies':    '/reference/arc-config/index.md',
   '/reference/arc-env/testing':        '/reference/arc-env/index.md',
   '/reference/arc-env/staging':        '/reference/arc-env/index.md',
   '/reference/arc-env/production':     '/reference/arc-env/index.md',

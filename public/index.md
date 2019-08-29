@@ -34,11 +34,11 @@ npm install -g @architect/architect
 @app
 your-app-name
 
-@aws
-bucket your-private-deploy-bucket
-
 @http
 get /
+
+@aws
+bucket your-private-deploy-bucket
 ```
 
 <section class="code-examples">

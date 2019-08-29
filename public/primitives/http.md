@@ -54,7 +54,7 @@ Running `arc init` with the project manifest above will generate the following l
 - `/src/http/patch-posts-000postID`
 - `/src/http/delete-posts-000postID`
 
-> Learn more about [Architect project structure and layout here](/quickstart/layout)
+> Learn more about [Architect project structure and layout here](/quickstart/layout), and learn how to [change your functions' runtimes here](/reference/arc-config/runtime)
 
 By default, HTTP functions are dependency-free:
 

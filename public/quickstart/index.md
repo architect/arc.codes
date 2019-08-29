@@ -26,6 +26,16 @@ Architect supports the following runtime versions when working locally:
 
 > Working locally with the Architect `sandbox` dev server requires target runtimes to be installed and available in $PATH. For example, if you are only targeting Node, then only Node needs to be installed locally. (Likewise for Ruby and Python.)
 
+To use the same runtime across all functions in your project, add it to your `@aws` pragma like so:
+
+```arc
+# Valid runtimes: `nodejs10.x`, `nodejs8.10`, `python3.7`, `python3.6`, or `ruby2.5`
+@aws
+runtime python3.7
+```
+
+This setting can be overridden on a function-by-function basis with [`.arc-config`](/reference/arc-config/runtime).
+
 Architect also supports the following runtimes in live infra, but not while working locally (at present):
 - Go: `1.x`,
 - .NET: `2.1`

@@ -50,7 +50,7 @@ The `.arc` manifest can be broadly split into three conceptual classifications o
 These pragmas are for global and cloud-vendor configuration, the most important of which being the `@app` namespace (which is used to prefix and identify all generated resources).
 
 - [`@app`](/reference/app) - **[Required]** The application namespace
-- [`@aws`](/reference/aws) - AWS-specific config
+- [`@aws`](/reference/aws) - AWS-specific config (also includes global runtime setting)
 
 
 ### 2. Functions
