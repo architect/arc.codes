@@ -36,7 +36,7 @@ For this example `.arc` above the macro is in `src/macros/my-custom-macro.js`
  * @param {object} cloudformation - the current AWS::Serverless CloudFormation template
  * @param {object} stage - the application stage (one of `staging` or `production`)
  */
-exports.module = function myCustomMacro(arc, cloudformation, stage) {
+module.exports = function myCustomMacro(arc, cloudformation, stage) {
   // modify cloudformation.Resources here
   return cloudformation
 }
