@@ -105,7 +105,7 @@ Running `arc init` creates the following code:
 
 If you add further pragmas, it is safe to run (and re-run) `arc init` to generate further code. Local code is deployed to a dedicated, isolated `staging` environment by running `arc deploy`.
 
-Happy with # API calls go here? Ship a release to production by running `arc deploy --production`.
+Ship a release to production by running `arc deploy production`.
 
 Time to celebrate! ✨
 
