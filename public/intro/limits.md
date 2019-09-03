@@ -6,19 +6,22 @@ The cloud has its limits. And `arc` itself is an abstraction with deliberate con
 
 ## Supported services
 
+Architect primitives are based on the following AWS serverless ecosystem services:
+
 - [CloudFormation](https://aws.amazon.com/cloudformation/) and [SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-reference.html#serverless-sam-cli) for AWS standard deployments
 - [Lambda](https://aws.amazon.com/lambda/) *cloud native* functions for compute
 - [API Gateway](https://aws.amazon.com/api-gateway/) for HTTP and Websocket functions
-- [Route53](https://aws.amazon.com/route53) for DNS and [CloudFront](https://aws.amazon.com/cloudfront/) for CDN
+- [Route53](https://aws.amazon.com/route53) for DNS
+- [CloudFront](https://aws.amazon.com/cloudfront/) for CDN
 - [S3](https://aws.amazon.com/s3/) for static assets
 - [Simple Notification Service](https://aws.amazon.com/sns/) for event pub/sub functions
 - [Simple Queue Service](https://aws.amazon.com/sqs/) for queue functions
 - [CloudWatch Events](https://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html) for scheduled functions
-- [DynamoDB](https://aws.amazon.com/dynamodb/) for data persistence, querying and trigger functions
+- [DynamoDB](https://aws.amazon.com/dynamodb/) for persistence of structured data and trigger functions
 - [Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-paramstore.html) for service discovery and environment variables
 - [IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) automatically generated least privilege role
 
-> **Note:** with [Architect Macros](/primitives/macros) all AWS services supported by CloudFormation can be utilized
+> **Note:** with [Architect Macros](/primitives/macros) all AWS services supported by CloudFormation can be utilized!
 
 ---
 
