@@ -62,7 +62,7 @@ By default, HTTP functions are dependency-free:
 
 Node
 ```javascript
-export.handler = async function http(request) {
+export.handler = async function http(request, context) {
   return {statusCode: 200}
 }
 ```
@@ -178,6 +178,9 @@ function route(req, res) {
 exports.handler = arc.http(parseBody, route)
 ```
 
+### The `context` argument
+
+`context` is an optional argument containing [metadata about the lambda request](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html).
 
 ## <span id=res>Response payload</span>
 
