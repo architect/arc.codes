@@ -10,4 +10,5 @@ bucket arc.codes-deploy
 @static
 @http
 get /
+get /playground
 get /api/:version/package
