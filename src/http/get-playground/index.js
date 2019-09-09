@@ -10,6 +10,7 @@ exports.handler = async function http (req) {
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" type="text/css">
   <style>
     :root {
+      --header-height: 4.75rem;
       --dark: #333;
       --zero: #333;
       --one: #666;
@@ -35,29 +36,17 @@ exports.handler = async function http (req) {
     .width-2 {
       width: 2rem;
     }
+    .min-width-0 {
+      min-width: 0;
+    }
     .min-width-2 {
       min-width: 2rem;
     }
-    .top-0 {
-      top: 0;
-    }
-    .right-0 {
-      right: 0;
-    }
-    .bottom-0 {
-      bottom: 0;
-    }
-    .left-0 {
-      left: 0;
+    .form-height {
+      height: calc(100vh - var(--header-height));
     }
     .text-align-right {
       text-align: right;
-    }
-    .position-absolute {
-      position: absolute;
-    }
-    .position-relative {
-      position: relative;
     }
     .display-flex {
       display: flex;
@@ -248,6 +237,7 @@ exports.handler = async function http (req) {
     <form
       action="/api/1/package"
       class="
+        form-height
         display-flex
       "
     >
@@ -299,8 +289,10 @@ exports.handler = async function http (req) {
       </div>
       <div
         class="
+          flex-grow-1
           display-flex
           flex-direction-column
+          min-width-0
         "
       >
         <h2
