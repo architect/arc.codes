@@ -15,8 +15,17 @@ async function render () {
 
   // render share input
   let share = `${window.location}?arc=${encodeURIComponent(arc)}`
-  let shareInput = document.getElementById('share')
+  let shareInput = document.getElementById('js-share-input')
   shareInput.setAttribute('value', share)
+  let shareButton = document.getElementById('js-share-button')
+  shareButton.onclick = function () {
+    shareInput.select()
+    document.execCommand('copy')
+    shareButton.innerHTML = 'Copied to clipboard'
+    setTimeout(function resetButton () {
+      shareButton.innerHTML = 'Share'
+    }, 2000)
+  }
 }
 
 function cloudFormation (props) {

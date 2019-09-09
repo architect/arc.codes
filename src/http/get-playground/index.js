@@ -159,6 +159,14 @@ exports.handler = async function http () {
     .cursor-pointer {
       cursor: pointer;
     }
+    .hidden {
+      height: 0;
+      width: 0;
+      padding: 0;
+      margin: 0;
+      opacity: 0.0001;
+      position: absolute;
+    }
   </style>
 </head>
 <body class="overflow-hidden">
@@ -183,14 +191,21 @@ exports.handler = async function http () {
         align-items-center
       "
     >
-      <svg
+      <a
+        href="/"
         class="
+          display-block
           width-2
           min-width-2
           margin-right-8
-          fill-light
         "
-        viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="m23.7.44c13.02 0 23.63 10.6 23.63 23.63s-10.6 23.63-23.63 23.63-23.63-10.6-23.63-23.63 10.6-23.63 23.63-23.63zm16.22 34.63-16.23-15.73-16.2 15.78c3.68 5.37 9.71 8.57 16.2 8.57 6.52 0 12.55-3.21 16.23-8.62zm3.4-11c0-10.83-8.8-19.63-19.62-19.63s-19.63 8.81-19.63 19.63c0 2.54.49 5.02 1.46 7.39l16.16-15.75c1.1-1.1 2.91-1.09 4.02.02l16.17 15.68c.96-2.35 1.44-4.82 1.44-7.34z" fill-rule="evenodd"/></svg>
+      >
+        <svg
+          class="
+            fill-light
+          "
+          viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="m23.7.44c13.02 0 23.63 10.6 23.63 23.63s-10.6 23.63-23.63 23.63-23.63-10.6-23.63-23.63 10.6-23.63 23.63-23.63zm16.22 34.63-16.23-15.73-16.2 15.78c3.68 5.37 9.71 8.57 16.2 8.57 6.52 0 12.55-3.21 16.23-8.62zm3.4-11c0-10.83-8.8-19.63-19.62-19.63s-19.63 8.81-19.63 19.63c0 2.54.49 5.02 1.46 7.39l16.16-15.75c1.1-1.1 2.91-1.09 4.02.02l16.17 15.68c.96-2.35 1.44-4.82 1.44-7.34z" fill-rule="evenodd"/></svg>
+      </a>
       <h1 class="color-light">
         Playground
       </h1>
@@ -198,6 +213,7 @@ exports.handler = async function http () {
 
     <div>
       <button
+        id="js-share-button"
         class="
           display-block
           padding-top-8
@@ -219,20 +235,7 @@ exports.handler = async function http () {
       </button>
     </div>
   </div>
-  <div
-    class="
-      display-none
-      background-dark
-      padding-8
-      text-align-right
-    "
-  >
-    <input
-      id="share"
-      type="text"
-      name="share"
-    />
-  </div>
+  <input class="hidden" id="js-share-input" type="text"/>
   <section class="flex-grow-1">
     <form
       action="/api/1/package"
