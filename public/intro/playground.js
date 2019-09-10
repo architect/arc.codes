@@ -31,7 +31,7 @@ async function render () {
 
   // Drag divider
   let divider = document.getElementById('js-divider')
-  divider.onmousedown = function down (e) {
+  divider.onmousedown = function down () {
     window.addEventListener('mousemove', resize)
     window.addEventListener('mouseup', resizeEnd)
   }
@@ -44,7 +44,7 @@ async function render () {
     arcColumn.style['min-width'] = `${newWidth}px`
   }
 
-  function resizeEnd (e) {
+  function resizeEnd () {
     window.removeEventListener('mousemove', resize)
   }
 }
