@@ -9,7 +9,7 @@ async function render () {
   let json = await result.json()
 
   // render preview
-  let preview = document.querySelector('div#preview')
+  let preview = document.getElementById('js-preview')
   let code = JSON.stringify(json, null, 2)
   preview.innerHTML = cloudFormation({code})
 
@@ -26,13 +26,34 @@ async function render () {
       shareButton.innerHTML = 'Share'
     }, 2000)
   }
+
+  let arcColumn = document.getElementById('js-arc-column')
+
+  // Drag divider
+  let divider = document.getElementById('js-divider')
+  divider.onmousedown = function down (e) {
+    window.addEventListener('mousemove', resize)
+    window.addEventListener('mouseup', resizeEnd)
+  }
+
+  function resize (e) {
+    let windowX = e.pageX
+    let bounds = arcColumn.getBoundingClientRect()
+    let left = bounds.left
+    let newWidth = windowX + left
+    arcColumn.style['min-width'] = `${newWidth}px`
+  }
+
+  function resizeEnd (e) {
+    window.removeEventListener('mousemove', resize)
+  }
 }
 
 function cloudFormation (props) {
   props = props || {}
   let code = props.code || ''
   return `
-<pre>
+<pre id="js-pre" class="font-size-0">
   ${code}
 </pre>
   `

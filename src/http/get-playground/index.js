@@ -6,6 +6,7 @@ exports.handler = async function http () {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Architect Playground</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" type="text/css">
   <style>
@@ -21,6 +22,7 @@ exports.handler = async function http () {
       --accent: #00afdd;
       --hover: #00afee;
       --active: #00afcc;
+      --code: lightseagreen;
     }
     * {
       margin: 0;
@@ -33,6 +35,9 @@ exports.handler = async function http () {
     .width-100 {
       width: 100%;
     }
+    .width-hairline {
+      width: 2px;
+    }
     .width-2 {
       width: 2rem;
     }
@@ -44,6 +49,9 @@ exports.handler = async function http () {
     }
     .form-height {
       height: calc(100vh - var(--header-height));
+    }
+    .text-align-center {
+      text-align: center;
     }
     .text-align-right {
       text-align: right;
@@ -74,6 +82,9 @@ exports.handler = async function http () {
     }
     .margin-right-8 {
       margin-right: 0.5rem;
+    }
+    .margin-bottom-16 {
+      margin-bottom: 1rem;
     }
     .padding-top-8 {
       padding-top: 0.5rem;
@@ -123,8 +134,8 @@ exports.handler = async function http () {
     .border-radius-4 {
       border-radius: 4px;
     }
-    .resize-none {
-      resize: none;
+    .color-code {
+      color: var(--code);
     }
     .color-dark {
       color: var(--dark);
@@ -159,6 +170,9 @@ exports.handler = async function http () {
     .cursor-pointer {
       cursor: pointer;
     }
+    .cursor-ew-resize {
+      cursor: ew-resize;
+    }
     .hidden {
       height: 0;
       width: 0;
@@ -167,6 +181,30 @@ exports.handler = async function http () {
       opacity: 0.0001;
       position: absolute;
     }
+    .resize-vertical {
+      resize: vertical;
+    }
+
+  @media only screen and (min-width:48em) {
+    .display-flex-large {
+      display: flex;
+    }
+    .flex-direction-row-large {
+      flex-direction: row;
+    }
+    .margin-bottom-none-large {
+      margin-bottom: 0;
+    }
+    .width-auto-large {
+      width: auto;
+    }
+    .overflow-initial-large {
+      overflow: initial;
+    }
+    .resize-none-large {
+      resize: none;
+    }
+  }
   </style>
 </head>
 <body class="overflow-hidden">
@@ -179,7 +217,7 @@ exports.handler = async function http () {
   <div
     class="
       padding-16
-      display-flex
+      display-flex-large
       align-items-center
       justify-content-space-between
       background-dark
@@ -189,16 +227,19 @@ exports.handler = async function http () {
       class="
         display-flex
         align-items-center
+        margin-bottom-16
+        margin-bottom-none-large
       "
     >
       <a
         href="/"
         class="
-          display-block
+          display-flex
           width-2
           min-width-2
           margin-right-8
         "
+        alt="back to arc.codes"
       >
         <svg
           class="
@@ -211,11 +252,13 @@ exports.handler = async function http () {
       </h1>
     </div>
 
-    <div>
+    <div class="width-100 width-auto-large">
       <button
         id="js-share-button"
         class="
           display-block
+          width-100
+          width-auto-large
           padding-top-8
           padding-right-16
           padding-bottom-8
@@ -229,6 +272,7 @@ exports.handler = async function http () {
           border-color-light
           border-radius-4
           cursor-pointer
+          text-align-center
         "
       >
         Share
@@ -242,14 +286,17 @@ exports.handler = async function http () {
       class="
         form-height
         display-flex
+        flex-direction-column
+        flex-direction-row-large
+        overflow-auto
+        overflow-initial-large
       "
     >
       <div
+        id="js-arc-column"
         class="
           display-flex
           flex-direction-column
-          border-right-1
-          border-color-dark
         "
       >
         <h2
@@ -275,10 +322,14 @@ exports.handler = async function http () {
         >
         <textarea
           class="
+            language-arc
             flex-grow-1
             padding-16
+            font-size-0
             border-none
-            resize-none
+            resize-vertical
+            resize-none-large
+            color-code
           "
           name="arc"
         >
@@ -289,6 +340,15 @@ exports.handler = async function http () {
     get /
         </textarea>
       </div>
+      </div>
+      <div
+        id="js-divider"
+        class="
+          cursor-ew-resize
+          width-hairline
+          background-dark
+        "
+      >
       </div>
       <div
         class="
@@ -311,14 +371,16 @@ exports.handler = async function http () {
         >
           CloudFormation
         </h2>
-        <div
-          id="preview"
+        <code
+          id="js-preview"
           class="
+            language-javascript
             flex-grow-1
             padding-16
             overflow-auto
+            color-code
           "
-        ></div>
+        ></code>
       </div>
       <button type="submit">arc package</button>
     </form>
