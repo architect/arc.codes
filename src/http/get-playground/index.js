@@ -149,6 +149,9 @@ exports.handler = async function http () {
     .background-transparent {
       background: transparent;
     }
+    .background-light {
+      background: var(--light);
+    }
     .background-dark {
       background: var(--dark);
     }
@@ -321,6 +324,7 @@ exports.handler = async function http () {
           "
         >
         <textarea
+          id="js-textarea"
           class="
             language-arc
             flex-grow-1
@@ -339,6 +343,26 @@ exports.handler = async function http () {
     @http
     get /
         </textarea>
+        <button
+          id="js-submit"
+          class="
+            width-100
+            padding-top-8
+            padding-right-16
+            padding-bottom-8
+            padding-left-16
+            white-space-nowrap
+            font-size-0
+            font-weight-bold
+            color-dark
+            border-none
+            background-light
+            cursor-pointer
+            text-align-center
+          "
+        >
+          Submit
+        </button>
       </div>
       </div>
       <div
@@ -382,7 +406,6 @@ exports.handler = async function http () {
           "
         ></code>
       </div>
-      <button type="submit">arc package</button>
     </form>
   </section>
 </div>

@@ -60,8 +60,8 @@ function cloudFormation (props) {
 }
 
 function main () {
-  let button = document.querySelector('form button')
-  let textarea = document.querySelector('form textarea')
+  let button = document.getElementById('js-submit')
+  let textarea = document.getElementById('js-textarea')
   let query = new URLSearchParams(window.location.search)
   let arc = query.get('arc')
   if (!arc) {
