@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@architect/package": "^1.0.30",
+    "@architect/package": "^1.0.44",
     "@architect/parser": "^1.1.7"
   },
   "devDependencies": {},
