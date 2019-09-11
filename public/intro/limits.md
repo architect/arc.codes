@@ -48,7 +48,7 @@ Focus on unique business value, only maintain differentiated code and iterate fa
 ---
 
 > Next steps
-> - [Play in the playground](/intro/playground)
+> - [Play in the playground](/playground)
 > - [Follow the quickstart](/quickstart)
 > - [HTTP Functions](/primitives/http)
 ---

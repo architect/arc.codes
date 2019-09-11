@@ -7,7 +7,6 @@ let alias = {
   // Intro
   '/intro/philosophy': '/intro/philosophy.md',
   '/intro/limits':     '/intro/limits.md',
-  '/intro/playground': '/intro/playground.md',
   '/intro/community':  '/intro/community.md',
 
   // Quickstart

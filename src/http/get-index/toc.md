@@ -1,7 +1,7 @@
 - <b id=intro>Intro & background</b>
   - [Project philosophy](/intro/philosophy)
   - [Limits &amp; superpowers](/intro/limits)
-  <!-- - [Playground](/intro/playground) -->
+  - [Playground](/playground)
   - [Community links](/intro/community)
 - <b id=quickstart>Quickstart</b>
   - [Prerequisites](/quickstart)
