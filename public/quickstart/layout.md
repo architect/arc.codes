@@ -49,28 +49,28 @@ The `.arc` manifest can be broadly split into three conceptual classifications o
 
 These pragmas are for global and cloud-vendor configuration, the most important of which being the `@app` namespace (which is used to prefix and identify all generated resources).
 
-- [`@app`](/reference/app) - **[Required]** The application namespace
-- [`@aws`](/reference/aws) - AWS-specific config (also includes global runtime setting)
+- [`@app`](/reference/arc-config/app) - **[Required]** The application namespace
+- [`@aws`](/reference/arc-config/aws) - AWS-specific config (also includes global runtime setting)
 
 
 ### 2. Functions
 
 These pragmas deal with cloud functions (i.e. Lambdas); function pragmas are always reflective of a single event source (i.e. `@http` functions are invoked by HTTP events; `@events` functions are invoked by events to the event bus).
 
-- [`@http`](/reference/http) - HTTP routes (API Gateway)
-- [`@events`](/reference/events) - Event pub/sub (SNS)
-- [`@queues`](/reference/queues) - Queues & queue handlers (SQS)
-- [`@scheduled`](/reference/scheduled) - Invoke functions on specified schedules (CloudWatch Events)
-- [`@ws`](/reference/ws) - WebSocket functions (API Gateway)
+- [`@http`](/reference/arc/http) - HTTP routes (API Gateway)
+- [`@events`](/reference/arc/events) - Event pub/sub (SNS)
+- [`@queues`](/reference/arc/queues) - Queues & queue handlers (SQS)
+- [`@scheduled`](/reference/arc/scheduled) - Invoke functions on specified schedules (CloudWatch Events)
+- [`@ws`](/reference/arc/ws) - WebSocket functions (API Gateway)
 
 
 ### 3. Persistence
 
 These pragmas specify various persistence resources.
 
-- [`@static`](/reference/static) - Buckets for hosting static assets (S3)
-- [`@tables`](/reference/tables) - Database tables & trigger functions (DynamoDB)
-- [`@indexes`](/reference/indexes) - Table global secondary indexes (DynamoDB)
+- [`@static`](/reference/arc/static) - Buckets for hosting static assets (S3)
+- [`@tables`](/reference/arc/tables) - Database tables & trigger functions (DynamoDB)
+- [`@indexes`](/reference/arc/indexes) - Table global secondary indexes (DynamoDB)
 
 
 ## Example
