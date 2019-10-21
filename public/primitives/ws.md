@@ -181,7 +181,7 @@ msg.addEventListener('keyup', function(e) {
 Send a JSON payload to any `connectionId` from runtime function code.
 
 ```javascript
-// src/ws/connected
+// src/ws/connect
 let arc = require('@architect/functions')
 
 exports.handler = async function connected(event) {
