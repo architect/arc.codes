@@ -2,8 +2,8 @@
 
 ## [`https://arc.codes`](https://arc.codes)
 
-> [Docs site for the Architect serverless framework](https://arc.codes)! Create, deploy, and maintain next-generation AWS cloud function-based serverless infrastructure with full local, offline workflows, and more.
+[![GitHub CI status](https://github.com/architect/arc.codes/workflows/Node%20CI/badge.svg)](https://github.com/architect/arc.codes/actions?query=workflow%3A%22Node+CI%22)
 
-[![Build Status](https://travis-ci.com/arc-repos/arc.codes.svg?branch=master)](https://travis-ci.com/arc-repos/arc.codes)
+> [Docs site for the Architect serverless framework](https://arc.codes)! Create, deploy, and maintain next-generation AWS cloud function-based serverless infrastructure with full local, offline workflows, and more.
 
 Docs are in [`/public`](/public)
