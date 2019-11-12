@@ -7,4 +7,3 @@
 [![Build Status](https://travis-ci.com/arc-repos/arc.codes.svg?branch=master)](https://travis-ci.com/arc-repos/arc.codes)
 
 Docs are in [`/public`](/public)
-
