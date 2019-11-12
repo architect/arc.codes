@@ -1,31 +1,76 @@
-name: CI
+name: Node CI
 
+# Push tests commits; pull_request tests PR merges
 on: [push, pull_request]
 
 jobs:
-  build:
-    name: test
-    runs-on: ubuntu-latest
 
+  # Test the build
+  build:
+    # Setup
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x]
+        node-version: [10.x, 12.x]
         os: [windows-latest, ubuntu-latest, macOS-latest]
 
+    # Go
     steps:
-    - uses: actions/checkout@v1
+      - name: Check out repo
+        uses: actions/checkout@v1
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Versions
-      run: |
-        node --version
+      - name: Version
+        run: node --version
 
-    - name: Install
-      run: npm install
+      - name: Install
+        run: npm install
 
-    - name: Test
-      run: npm test
+      - name: Test
+        run: npm test
+
+  # Assuming all that went fine (and it's master): deploy!
+  deploy:
+    # Setup
+    needs: build
+    if: github.event_name == 'create' && startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+
+    # Go
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: Create ~/.aws/credentials
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: mkdir $HOME/.aws && printf "[openjsf]\naws_access_key_id=$AWS_ACCESS_KEY_ID\naws_secret_access_key=$AWS_SECRET_ACCESS_KEY\nregion=us-west-1\n" > $HOME/.aws/credentials && cat $HOME/.aws/credentials
+
+      - name: Install
+        run: npm ci
+
+      - name: Deploy (production)
+        if: github.event_name == 'create' && startsWith(github.ref, 'refs/tags/v')
+        run: npx deploy --production
+        env:
+          CI: true
+          ARC_MAX_NPM: 10
+          AWS_PROFILE: openjsf
+
+      - name: Deploy (staging)
+        if: github.ref == 'refs/heads/master'
+        run: npx deploy --staging
+        env:
+          CI: true
+          ARC_MAX_NPM: 10
+          AWS_PROFILE: openjsf
