@@ -84,6 +84,11 @@ Ensure you've [met the system prerequisites](/quickstart) and run: `arc deploy`.
 
 Your new app will be online within seconds.
 
+
+## Want to talk about what you just made?
+
+[Join the Architect community on Slack!](https://join.slack.com/t/architecture-as-text/shared_invite/MjE2MzU4Nzg0NTY1LTE1MDA2NzgyMzYtODE2NzRkOGRmYw)
+
 ---
 ## Next: [Follow the quickstart](/quickstart)
 ---
@@ -93,4 +98,3 @@ Your new app will be online within seconds.
 - [Tinker in the playground](/playground)
 - [Learn about HTTP Functions](/primitives/http)
 ---
-
