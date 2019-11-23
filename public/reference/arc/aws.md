@@ -43,5 +43,5 @@ layer arn:aws:lambda:us-west-2:800406105498:layer:nsolid-node-10:6
 
 ---
 
-## Next: [Setup DNS with `@domain`](/reference/domain)
+## Next: [define SNS topics with `@events`](/reference/arc/events)
 
