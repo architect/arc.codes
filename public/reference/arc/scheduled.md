@@ -34,4 +34,4 @@ Which generates the following code:
 └── package.json
 ```
 ---
-## Next: [Creating `@static` asset buckets](/reference/static)
+## Next: [Creating `@static` asset buckets](/reference/arc/static)

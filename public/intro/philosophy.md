@@ -27,15 +27,15 @@ The `.arc` format follows a few simple rules:
 
 `.arc` files are made up of the following sections:
 
-- [`@app`](/reference/app) [*required*] defines your application namespace
-- [`@aws`](/reference/aws) defines AWS variables
-- [`@events`](/reference/events) defines application events you can publish and subscribe to
-- [`@http`](/reference/http) defines HTTP (i.e. `text/html`) handlers
-- [`@indexes`](/reference/indexes) defines table global secondary indexes
-- [`@scheduled`](/reference/scheduled) defines functions that run on a schedule
-- [`@static`](/reference/static) defines S3 buckets for static assets
-- [`@tables`](/reference/tables) defines DynamoDB database tables and trigger functions for them
-- [`@ws`](/reference/ws) defines WebSocket handlers
+- [`@app`](/reference/arc/app) [*required*] defines your application namespace
+- [`@aws`](/reference/arc/aws) defines AWS variables
+- [`@events`](/reference/arc/events) defines application events you can publish and subscribe to
+- [`@http`](/reference/arc/http) defines HTTP (i.e. `text/html`) handlers
+- [`@indexes`](/reference/arc/indexes) defines table global secondary indexes
+- [`@scheduled`](/reference/arc/scheduled) defines functions that run on a schedule
+- [`@static`](/reference/arc/static) defines S3 buckets for static assets
+- [`@tables`](/reference/arc/tables) defines DynamoDB database tables and trigger functions for them
+- [`@ws`](/reference/arc/ws) defines WebSocket handlers
 
 This is a complete `.arc` file example:
 
