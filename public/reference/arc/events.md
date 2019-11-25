@@ -34,5 +34,5 @@ Which generates the corresponding code:
 
 ---
 
-## Next: [Defining routes with `@http`](/reference/http)
+## Next: [Defining routes with `@http`](/reference/arc/http)
 

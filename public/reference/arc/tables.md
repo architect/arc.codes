@@ -39,5 +39,5 @@ cats
 ```
 
 
-## Next: [WebSockets with `@ws`](/reference/ws)
+## Next: [WebSockets with `@ws`](/reference/arc/ws)
 
