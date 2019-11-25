@@ -67,4 +67,4 @@ get /
 Running `arc deploy` will serialize `public/` into `sam.json`.
 
 ---
-## Next: [Create dynamo tables with `@tables`](/reference/tables)
+## Next: [Create dynamo tables with `@tables`](/reference/arc/tables)

@@ -18,5 +18,5 @@ foobaz
 
 ---
 
-## Next: [Setup AWS region & profile with `@aws`](/reference/aws)
+## Next: [Setup AWS region & profile with `@aws`](/reference/arc/aws)
 
