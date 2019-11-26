@@ -36,5 +36,5 @@ Which generates the corresponding code:
 
 ---
 
-## Next: [Scheduling functions with `@scheduled`](/reference/scheduled)
+## Next: [Scheduling functions with `@scheduled`](/reference/arc/scheduled)
 

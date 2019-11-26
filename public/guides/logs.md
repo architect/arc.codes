@@ -25,5 +25,5 @@ To clear the logs run `npx logs nuke`.
 
 <hr>
 
-## Next: [Assigning a Custom Domain Name](/guides/custom-dns)
+## Next: [Assigning a Custom Domain Name](#null)
 

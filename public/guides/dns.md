@@ -7,7 +7,7 @@ DNS is how you assign a domain name to a deployed app. This guide lists ways to 
 
 ## Setting up `.arc` with a custom domain name
 
-`arc` has built-in first-class support for setting up DNS and assigning a domain. First add [`@domain`](/reference/domain) to your `.arc` file with a value of the domain name you wish to set up.
+`arc` has built-in first-class support for setting up DNS and assigning a domain. First add [`@domain`]('#null') to your `.arc` file with a value of the domain name you wish to set up.
 
 ```arc
 @app
@@ -75,7 +75,7 @@ If you _really_ want to manually configure DNS you can follow these guides below
 
 ## Route 53
 
-Follow these instructions to manually configure Route 53 to serve your application from your domain. As a friendly reminder: the `arc` happy path for using Route 53 remains the [`@domain`](/reference/domain) section (per the instructions above).
+Follow these instructions to manually configure Route 53 to serve your application from your domain. As a friendly reminder: the `arc` happy path for using Route 53 remains the [`@domain`](#null) section (per the instructions above).
 
 > ⛳️ Tip: These instructions will serve your app's production environment; if you'd also like a friendly URL for your staging environment (i.e. `staging.foo.com`), follow steps 10-15 below a second time, swapping `production` values for `staging` values.
 

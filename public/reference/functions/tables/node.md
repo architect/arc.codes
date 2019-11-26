@@ -67,7 +67,7 @@ The generated data layer also allows direct access to DynamoDB through a few met
 - `data._doc` returns an instance of [`AWS.DynamoDB.DocumentClient`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
 - `data._name` helper function that returns a completely resolved resource name which is useful for constructing queries to tables or indexes
 
-## Next: [`data._name`](/reference/data-name)
+## Next: [`data._name`](#null)
 # <a id=data.db href=#data.db>`data._db`</a>
 
 ## Get an instance of `AWS.DynamoDB` from the `aws-sdk`
@@ -269,7 +269,7 @@ async function handler(req, res) {
 exports.handler = arc.http(handler)
 ```
 
-## Next: [`put`](/reference/data-put)
+## Next: [`put`](#null)
 
 
 # <a id=data.get href=#data.get>`data.tablename.put`</a>

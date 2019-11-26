@@ -49,5 +49,5 @@ Note: The route `/pages/:dateID` corresponding handler deliberately looks a bit 
 
 ---
 
-## Next: [`Creating table indexes with @indexes`](/reference/indexes)
+## Next: [`Creating table indexes with @indexes`](/reference/arc/indexes)
 
