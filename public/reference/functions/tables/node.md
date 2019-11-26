@@ -93,10 +93,10 @@ bikes
 Connect directly to DynamoDB.
 
 ```javascript
-let data = require('@architect/data')
+let arc = require('@architect/functions')
 
 // list all tables 
-let tables = await data._db.listTables({})
+let tables = await arc.tables._db.listTables({})
 // result: {Tables: ['testapp-staging-bikes', 'testapp-production-bikes']}
 ```
 
@@ -135,10 +135,10 @@ comics
 Accessing the data with `DynamoDB.DocumentClient` is slightly nicer than the lower level `DynamoDB` client because it returns rows unformatted by their underlying DynamoDB types.
 
 ```javascript
-let data = require('@architect/data')
+let {tables} = require('@architect/functions')
 
 let email = 'b@brian.io'
-
+let data = await tables()
 let TableName = data._name('purchases')
 
 let purchases = await data._doc.query({
@@ -177,18 +177,18 @@ And then in a Lambda function:
 
 ```javascript
 // src/html/get-index/index.js
-let arc = require('@architect/functions')
-let data = require('@architect/data')
+let {http, tables} = require('@architect/functions')
 
 async function handler(req, res) {
   let noteID = req.query.noteID
+  let data = await tables()
   let note = await data.notes.get({noteID})
   res({
     html: note.body
   })
 }
 
-exports.handler = arc.http(handler)
+exports.handler = http(handler)
 ```
 
 # <a id=data.get href=#data.get>`data.tablename.query`</a>
@@ -214,11 +214,11 @@ And then in a Lambda function:
 
 ```javascript
 // src/html/get-index/index.js
-let arc = require('@architect/functions')
-let data = require('@architect/data')
+let {http, tables} = require('@architect/functions')
 
 async function handler(req, res) {
   let noteID = req.query.noteID
+  let data = await tables()
   let result = await data.notes.query({
     KeyConditionExpression: 'noteID = :noteID',
     ExpressionAttributeValues: {
@@ -256,17 +256,17 @@ And then in a Lambda function:
 
 ```javascript
 // src/html/get-index/index.js
-let arc = require('@architect/functions')
-let data = require('@architect/data')
+let {http, tables} = require('@architect/functions')
 
 async function handler(req, res) {
+  let data = await tables()
   let notes = await data.notes.scan({})
   res({
     html: `count: ${notes.Count}`
   })
 }
 
-exports.handler = arc.http(handler)
+exports.handler = http(handler)
 ```
 
 ## Next: [`put`](#null)
@@ -302,8 +302,7 @@ Implement a function to save a note:
 
 ```javascript
 // src/html/post-notes/index.js
-let arc = require('@architect/functions')
-let data = require('@architect/data')
+let {http, tables} = require('@architect/functions')
 let Hashids = require('hashids')
 
 function getID() {
@@ -317,13 +316,14 @@ async function handler(req, res) {
   let body = req.body.body
   let title = req.body.title
   let ts = new Date(Date.now()).toISOString()
+  let data = await tables()
   let note = await data.notes.put({noteID, body, title, ts})
   res({
     location
   })
 }
 
-exports.handler = arc.http(handler)
+exports.handler = http(handler)
 ```
 
 The function defines `getID` helper. Internally the function uses a custom UNIX epoch by hardcoding an app specific start value. The value returned is a very short and unique key that is also URL safe.
@@ -351,10 +351,10 @@ And then in a Lambda function:
 
 ```javascript
 // src/html/get-index/index.js
-let arc = require('@architect/functions')
-let data = require('@architect/data')
+let {http, tables} = require('@architect/functions')
 
 async function handler(req, res) {
+  let data = await tables()
   await data.accounts.update({
     Key: { accountID: req.body.accountID },
     UpdateExpression: 'SET login = :login' ,
@@ -367,7 +367,7 @@ async function handler(req, res) {
   })
 }
 
-exports.handler = arc.http(handler)
+exports.handler = http(handler)
 ```
 
 # <a id=data.delete href=#data.delete>`data.tablename.delete`</a>
@@ -394,11 +394,11 @@ And then in a Lambda function:
 
 ```javascript
 // src/http/get-index/index.js
-let arc = require('@architect/functions')
-let data = require('@architect/data')
-let url = arc.http.helpers.url
+let {http, tables} = require('@architect/functions')
+let url = http.helpers.url
 
 async function handler(req, res) {
+  let data = await tables()
   let notes = await data.notes.scan({})
   let noteID = notes.Count > 0? notes.Items[0] : false
   if (noteID) {
@@ -424,7 +424,7 @@ async function handler(req, res) {
   res({html})
 }
 
-exports.handler = arc.http(handler)
+exports.handler = http(handler)
 ```
 
 The POST to `/notes` creates a row and redirects home:
@@ -432,12 +432,12 @@ The POST to `/notes` creates a row and redirects home:
 ```javascript
 // src/http/post-notes/index.js
 let arc = require('@architect/functions')
-let data = require('@architect/data')
 let url = arc.http.helpers.url
 
 exports.handler = async function http(req) {
   let noteID = req.body.noteID
   let msg = 'hello world!'
+  let data = await tables()
   let note = await data.notes.put({noteID, msg})
   return {
     status: 302,
@@ -451,11 +451,11 @@ The POST to `/notes/:noteID/del` deletes the row and redirects home:
 ```javascript
 // src/http/post-notes-000noteID-del/index.js
 let arc = require('@architect/functions')
-let data = require('@architect/data')
 let url = arc.http.helpers.url
 
 exports.handler = async function http(req) {
   let noteID = req.body.noteID
+  let data = await tables()
   let note = await data.notes.delete({noteID})
   return {
     status: 302,
