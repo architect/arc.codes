@@ -3,6 +3,7 @@
   "version": "2.1.0",
   "description": "Architect docs: https://arc.codes - Create, deploy, and maintain next-generation AWS cloud function-based serverless infrastructure with full local, offline workflows, and more.",
   "scripts": {
+    "deploy": "./scripts/deploy",
     "lint": "eslint . --ignore-pattern node_modules --fix",
     "spellcheck": "npx spellchecker ./public/**/*.md --no-suggestions -q -d ./scripts/dictionary.js --plugins spell indefinite-article repeated-words syntax-mentions syntax-urls",
     "start": "npx sandbox",
