@@ -49,6 +49,8 @@ jobs:
           type: ${{ job.status }}
           job_name: '*Build*'
           url: ${{ secrets.SLACK_WEBHOOK }}
+          commit: true
+          token: ${{ secrets.GITHUB_TOKEN }}
 
   # Assuming all that went fine (and it's master): deploy!
   deploy:
@@ -90,3 +92,5 @@ jobs:
           type: ${{ job.status }}
           job_name: '*Deploy*'
           url: ${{ secrets.SLACK_WEBHOOK }}
+          commit: true
+          token: ${{ secrets.GITHUB_TOKEN }}
