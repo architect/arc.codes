@@ -5,8 +5,7 @@
 TAG=`git log -1 --pretty=%B`
 if echo "$TAG" | grep '^\([0-9]\{1,\}\.\?\)\{3\}'; then
   npx arc deploy --production;
-  npx arc deploy;
+  npx arc deploy --staging;
 else
-  npx arc deploy;
+  npx arc deploy --staging;
 fi
-echo "Exit:" $?
