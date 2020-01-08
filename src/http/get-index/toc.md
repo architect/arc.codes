@@ -1,8 +1,8 @@
-- <b id=intro>Intro & background</b>
-  - [Project philosophy](/intro/philosophy)
-  - [Limits &amp; superpowers](/intro/limits)
+- <b id=intro>About</b>
+  - [Mission](/intro/mission)
+  - [Benefits &amp; Differentiators](/intro/benefits)
+  - [Community](/intro/community)
   - [Playground](/playground)
-  - [Community links](/intro/community)
 - <b id=quickstart>Quickstart</b>
   - [Prerequisites](/quickstart)
   - [Install Architect](/quickstart/install)
