@@ -8,7 +8,7 @@ App Primitives in Architect allow devlopers to combine the most common cloud nat
 [Learn more about App Primitives]
 
 ## Declarative Infrastructure as Code 
-Architect does the heavy lifting of formatting and creating CloudFormation stacks on AWS with a lightweight Arc file that describes the resources you need to run the application in far fewer lines of code. 
+Architect does the heavy lifting of formatting and creating CloudFormation stacks on AWS with a lightweight manifest file that describes the resources you need to run the application in far fewer lines of code. 
 
 [Check out this example in our Playground](https://arc.codes/playground)
 
@@ -23,3 +23,7 @@ The most recent advancements in creating web apps involves running your code on 
 The `.arc` manifest takes inspiration from UNIX 'run command' files (like `.vimrc`, `.bashrc`, etc). Architect started out as `arc` which itself was an acronym for "Amazon run commands".
 
 The code was developed building [Begin](https://begin.com) and granted to [JS Foundation](https://js.foundation/) in July of 2017 under the `Apache-2.0` license.
+
+---
+
+## Ready to Build? [Check out the quickstart](/quickstart)

@@ -1,6 +1,6 @@
 <img src="/_static/architect-logo-500b@2x.png" id=main-logo>
 
-# The simplest, most powerful way to build modern applications
+# The simplest, most powerful way to build modern web applications
 
 ## Instantly create powerful serverless JS, Python, and Ruby apps
 
@@ -13,7 +13,7 @@
 ## 1. Install Architect
 
 ```bash
-npm install -g @architect/architect
+$ npm install -g @architect/architect
 ```
 
 
