@@ -5,8 +5,8 @@ let alias = {
   '/': '/index.md',
 
   // Intro
-  '/intro/philosophy': '/intro/philosophy.md',
-  '/intro/limits':     '/intro/limits.md',
+  '/intro/mission': '/intro/mission.md',
+  '/intro/benefits': '/intro/benefits.md',
   '/intro/community':  '/intro/community.md',
 
   // Quickstart
