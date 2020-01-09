@@ -7,7 +7,9 @@ You can now develop applications faster with less cloud infra configuration, sho
 
 Security in the cloud is also important, Architect structures its projects to help minimize security risks. Architect adopts best practices for optimizing your code to be ready for production. 
 
-Functions are provisioned and deployed with least priveledges. This follows the [Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model/) in the cloud. For example, an http function will be created with the most minimal IAM role to execute. This opt-in model of permissions prevents your functions from having over reaching authorization.
+Functions are provisioned and deployed with a model of least priveledges, following the [Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model/) in the cloud. For example, an http function will be created with the most minimal IAM role to execute. This opt-in model of permissions prevents your functions from having over reaching authorization.
+
+Architect applications also create staging and production environments by default to take full advantage of modern CI/CD tooling and workflows.
 
 ## Developer Experience - Cloud Native Framework
 
