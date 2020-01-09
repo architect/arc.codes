@@ -5,9 +5,12 @@ let alias = {
   '/': '/index.md',
 
   // Intro
-  '/intro/mission': '/intro/mission.md',
-  '/intro/powers': '/intro/powers.md',
-  '/intro/community':  '/intro/community.md',
+  '/intro/mission':     '/intro/mission.md',
+  '/intro/powers':      '/intro/powers.md',
+  '/intro/community':   '/intro/community.md',
+
+  //
+  '/get-started/quickstart': '/get-started/quickstart.md',
 
   // Quickstart
   '/quickstart':         '/quickstart/index.md',
