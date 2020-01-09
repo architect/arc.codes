@@ -1,6 +1,6 @@
 - <b id=intro>About</b>
   - [Mission](/intro/mission)
-  - [Benefits &amp; Differentiators](/intro/benefits)
+  - [Superpowers &amp; Differentiators](/intro/powers)
   - [Community](/intro/community)
   - [Playground](/playground)
 - <b id=quickstart>Quickstart</b>

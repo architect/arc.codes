@@ -1,4 +1,4 @@
-# Architect's Benefits & Differentiators
+# Architect's Superpowers & Differentiators
 
 ## Speed - Tools to Help You Write Less Code
 You can now develop applications faster with less cloud infra configuration, shorten the feedback loop with local testing, and keep writing in your project's language. Architect's manifest file uses a parser to create AWS CloudFormation to save you from typing hundreds of line of boilerplate and permissions. Architect also comes with a local sandbox built in to let you build and test your application without having to push your code to the cloud first. 
