@@ -14,11 +14,13 @@ Architect does the heavy lifting of formatting and creating CloudFormation stack
 
 You will see how declaring an app namespace and its components will output a CloudFormation stack that is many lines longer.
 
+[Learn more about why Infrastucture as Code is important to modern applications]
+
 ## Convention over Configuration
 Architect is designed to manage the complexity of composing many cloud functions to operate as one distributed system. Architect lets you and your team become immediately productive by looking at a single project structure with a manifest file at the root of your application. We decrease the number of decisions that a developer has to make without necessarily losing flexibility. [Learn more about Project Structure]
 
-## History Lesson - Someone else's computer
-The most recent advancements in creating web apps involves running your code on abstractions of hardware and operating systems using services from cloud providers like AWS and Azure. Instead of purchasing or leasing physical hardware and all of the administration comes with it, developers are now empowered to use cloud services to get their job done and focus only on shipping code. Shifting away from onprem environments to the cloud enables larger scale computing and higher availability. The cloud providers turned compute resources into services. Serverless, a fast growing cloud paradigm, is enabling applications to be run in the cloud with many different benefits. Architect was orginally created to build production products and open sourced as a framework for other serverless developers. [Learn more about serverless]
+## History Lesson - Someone Else's Computer
+The most recent change in creating web apps involves running your code on abstractions of hardware and operating systems using services from cloud providers like AWS and Azure. The cloud providers turned compute resources into services. Instead of operating on physical hardware or even virtual machines, developers are now empowered to use the cloud services to focus only on shipping code. The cloud began enabling larger scale computing and higher availability.  Serverless, a fast growing cloud paradigm, is taking the abstractions even further. Architect was orginally created to build production product at the cloud native and serverless sacale. It was then open sourced as a framework for other serverless developers. [Learn more about serverless]
 
 The `.arc` manifest takes inspiration from UNIX 'run command' files (like `.vimrc`, `.bashrc`, etc). Architect started out as `arc` which itself was an acronym for "Amazon run commands".
 
