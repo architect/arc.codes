@@ -6,7 +6,7 @@ let alias = {
 
   // Intro
   '/intro/mission': '/intro/mission.md',
-  '/intro/benefits': '/intro/benefits.md',
+  '/intro/powers': '/intro/powers.md',
   '/intro/community':  '/intro/community.md',
 
   // Quickstart
