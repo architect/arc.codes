@@ -3,10 +3,8 @@
   - [Superpowers &amp; Differentiators](/intro/powers)
   - [Community](/intro/community)
   - [Playground](/playground)
-- <b id=quickstart>Quickstart</b>
-  - [Prerequisites](/quickstart)
-  - [Install Architect](/quickstart/install)
-  - [Project layout](/quickstart/layout)
+- <b id=get-started>Get Started</b>
+  - [Quickstart](/get-started/quickstart)
 - <b id=primitives>App primitives</b>
   - [HTTP functions](/primitives/http)
   - [WebSocket functions](/primitives/ws)
