@@ -10,14 +10,13 @@
 
 ## Try it in 30 seconds:
 
-## 1. Install Architect
+## 1. Install Architect - requires Node to be installed. 
 
 ```bash
 $ npm install -g @architect/architect
 ```
 
-
-## 2. Run `arc init` to generate a basic project:
+## 2. Run `$ arc init` in the project directory to generate a single http function:
 
 ```bash
 /
@@ -38,8 +37,36 @@ your-app-name
 get /
 
 @aws
-bucket your-private-deploy-bucket
+# profile default
+# region us-west-1
+# bucket your-private-deploy-bucket
 ```
+
+## 4. Run `$ arc sandbox` to start the local development environment
+
+```bash
+# terminal output
+    App ⌁ your-app-name
+    Region ⌁ us-west-1
+    Profile ⌁ default
+    Version ⌁ Architect 6.0.29
+    cwd ⌁ project/path/your-app-name
+
+✓ Sandbox Found Architect manifest, starting up
+✓ Sandbox Project files hydrated into functions
+✓ Sandbox Loaded routes
+    get / ................................. get-index
+
+✓ Sandbox Sandbox started in 53ms
+✈︎ Local environment ready!
+
+    http://localhost:3333
+```
+## 5. Check out your new app! 
+
+> http://localhost:3333
+
+![Hello World](https://i.imgur.com/DiBaLhHm.png)
 
 <section class="code-examples">
 
@@ -77,6 +104,7 @@ def handler(request, context):
 ```
 
 </section>
+
 
 ## That's it! Ready to ship?
 
