@@ -18,6 +18,7 @@ Architect `@tables` defines DynamoDB tables and `@indexes` define global seconda
 - <a href=#write><b>🔏 Write Data</b></a>
 - <a href=#read><b>📖 Read Data</b></a>
 - <a href=#stream><b>📚 Stream Data</b></a>
+- <a href=#recovery><b>📀 Point-in-time Data Recovery</b></a>
 
 ---
 
@@ -246,6 +247,20 @@ def handler(event, context):
 ```
 
 </section>
+
+---
+
+<h2 id=recovery>📀 Point-in-time Data Recovery</h2>
+
+DynamoDB has a feature which [lets you recover your data](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery.html) to any point in time over the last 35 days (from the time its enabled).
+
+This is not enabled by default. To enable this for a given table, within your `.arc` file:
+
+```arc
+@tables
+myTable
+    PointInTimeRecovery true
+```
 
 ---
 
