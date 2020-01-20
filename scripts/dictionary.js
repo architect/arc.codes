@@ -234,7 +234,8 @@ let dictionary = [
   'XSS',
   'YAML',
   'ZoneEdit',
-  'CMK'
+  'CMK',
+  'TTL'
 ]
 
 dictionary.unshift(/[KMG]B/) // Data quantities, ostensibly
