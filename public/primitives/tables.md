@@ -19,6 +19,7 @@ Architect `@tables` defines DynamoDB tables and `@indexes` define global seconda
 - <a href=#read><b>📖 Read Data</b></a>
 - <a href=#stream><b>📚 Stream Data</b></a>
 - <a href=#recovery><b>📀 Point-in-time Data Recovery</b></a>
+- <a href=#ttl><b>⏰ Time To Live</b></a>
 
 ---
 
@@ -261,6 +262,25 @@ This is not enabled by default. To enable this for a given table, within your `.
 myTable
     PointInTimeRecovery true
 ```
+
+<h2 id=ttl>⏰ Time To Live</h2>
+
+From the [AWS Docs](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html):
+
+> Time to Live (TTL) for Amazon DynamoDB lets you define when items in a table expire so that they can be automatically deleted from the database. With TTL enabled on a table, you can set a timestamp for deletion on a per-item basis, allowing you to limit storage usage to only those records that are relevant.
+
+In order to specify a TTL in arc
+
+```arc
+@tables
+wines
+  id *String
+  _ttl TTL
+```
+
+`_ttl` becomes the item attribute holding the timestamp of when the item should expire, in epoch,
+
+> **Protip:** items are rarely deleted at the moment specified by the specified TTL attribute. They are _typically_ deleted within 48 hours of the timestamp. You application logic should still check the value of that attribute. The convenience here is not having to remember to delete data from your table that is time bound. It will get deleted, eventually.
 
 ---
 
