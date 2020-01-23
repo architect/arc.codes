@@ -7,7 +7,7 @@
   - **`region *`**: [AWS region ID](https://docs.aws.amazon.com/general/latest/gr/rande.html) of the region you'll deploy this project to
   - **`profile *`**: name of the profile you prefer to use with this project, as defined in your local [AWS profile](/quickstart)
   - `runtime`: Lambda runtime, can be one of:
-    - `nodejs10.x`, `nodejs8.10`, `python3.7`, `python3.6`, or `ruby2.5`
+    - `nodejs12.x`, `nodejs10.x`, `deno`, `python3.7`, `python3.6`, or `ruby2.5`
   - **`bucket *`**: bucket (in same region) for CloudFormation deployment artifacts
 
 > **`*`** - Required to deploy to AWS
@@ -44,4 +44,3 @@ layer arn:aws:lambda:us-west-2:800406105498:layer:nsolid-node-10:6
 ---
 
 ## Next: [define SNS topics with `@events`](/reference/arc/events)
-
