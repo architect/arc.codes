@@ -29,7 +29,7 @@ Architect supports the following runtime versions when working locally:
 To use the same runtime across all functions in your project, add it to your `@aws` pragma like so:
 
 ```arc
-# Valid runtimes: `nodejs10.x`, `nodejs8.10`, `python3.7`, `python3.6`, or `ruby2.5`
+# Valid runtimes: `nodejs12.x`, `nodejs10.x`, `deno`, `python3.7`, `python3.6`, or `ruby2.5`
 @aws
 runtime python3.7
 ```
@@ -83,4 +83,3 @@ aws_secret_access_key=yyy
 * [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
 * [Amazon Configuration and Credential Files](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html)
 * [Working with multiple AWS accounts](/guides/multiple-aws-accounts)
-
