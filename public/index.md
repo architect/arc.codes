@@ -10,7 +10,7 @@
 
 ## Try it in 30 seconds:
 
-## 1. Install Architect - requires Node to be installed. 
+## 1. Install Architect - requires Node to be installed.
 
 ```bash
 $ npm install -g @architect/architect
@@ -62,11 +62,11 @@ get /
 
     http://localhost:3333
 ```
-## 5. Check out your new app! 
+## 5. Check out your new app!
 
 > http://localhost:3333
 
-![Hello World](https://i.imgur.com/DiBaLhHm.png)
+<!-- Add hello world here! -->
 
 <section class="code-examples">
 
