@@ -42,6 +42,7 @@ CloudFormation
 CloudFront
 ClouDNS
 CloudWatch
+CMK
 CNAME
 codebase
 Codeship
@@ -218,6 +219,7 @@ transpilers
 transpiling
 tsx
 TSX
+TTL
 UI
 unauthenticated
 unformatted
