@@ -3,20 +3,23 @@
 
 Durable persistence of structured data is the foundation for all powerful web apps. Data needs to be instantaneous, consistent, secure, and transparently scale to meet demand.
 
-Architect `@tables` defines DynamoDB tables and `@indexes` define global secondary indexes to facilitate more advanced access patterns. 
+Architect `@tables` defines DynamoDB tables and `@indexes` define global secondary indexes to facilitate more advanced access patterns.
 
 > Read the official [AWS docs on DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
 
 ---
 
-- <a href=#local><b>🚜 Work Locally</b></a> 
-- <a href=#provision><b>🌾 Provision</b></a> 
-- <a href=#sec><b>💰 Security</b></a>
+- <a href=#local><b>🚜 Work Locally</b></a>
+- <a href=#provision><b>🌾 Provision</b></a>
+- <a href=#encrypt><b>🔒 Encryption</b></a>
+- <a href=#sec><b>💰 IAM Permissions</b></a>
 - <a href=#deploy><b>⛵️ Deploy</b></a>
 - <a href=#repl><b>🔪 REPL</b></a>
 - <a href=#write><b>🔏 Write Data</b></a>
 - <a href=#read><b>📖 Read Data</b></a>
 - <a href=#stream><b>📚 Stream Data</b></a>
+- <a href=#recovery><b>📀 Point-in-time Data Recovery</b></a>
+- <a href=#ttl><b>⏰ Time To Live</b></a>
 
 ---
 
@@ -36,6 +39,10 @@ cats
   accountID *String
   catID **String
 
+secretDogs
+  encrypt true
+  accountId *String
+
 @indexes
 accounts
   email *String
@@ -43,7 +50,7 @@ accounts
 
 *Table names are _lowercase alphanumeric_ and can contain _dashes_.* The hash key is indented two spaces and must be of the type `*String` or `*Number`. The optional partition key is defined `**String` or `**Number`.
 
-> **Protip:** table names can be anything but choose a consistent naming scheme within your app namespace; one useful scheme is plural nouns like: `accounts` or `email-invites` 
+> **Protip:** table names can be anything but choose a consistent naming scheme within your app namespace; one useful scheme is plural nouns like: `accounts` or `email-invites`
 
 Running `arc sandbox` will mount the current `.arc` into a local in memory database on `http://localhost:5000`.
 
@@ -61,11 +68,37 @@ Additionally `AWS::SSM::Parameter` resources are created for every table which c
 
 > All runtime functions have the environment variable `AWS_CLOUDFORMATION` which is the currently deployed CloudFormation stack name; this combined w the runtime `aws-sdk` or `@architect/functions` can be used to lookup these values in SSM
 
---- 
+---
 
-<h2 id=sec>💰 Security</h2>
+<h2 id=encypt>🔒 Encryption</h2>
 
-By default all runtime functions generated with Architect have one generated <a href=https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege target=blank>IAM role</a> with the least privileges possible. This means Lambda functions can only access other resources defined in the same `.arc` file. 
+By default tables are not encrypted. To enable encryption:
+
+**AWS Managed**
+
+Add `encrypt true` to any table
+
+```
+@tables
+mySekretTable
+  encrypt true
+```
+
+**Customer Managed Key**
+
+Add `encrypt someValue` where `someValue` can be a CMK key ID, Amazon Resource Name (ARN), alias name, or alias ARN
+
+```
+@tables
+senzitiveData
+  encrypt arn:aws:kms:us-west-2:1234567890:key/12345-67890-1234-5678-901234567
+```
+
+--
+
+<h2 id=sec>💰 IAM Permissions</h2>
+
+By default all runtime functions generated with Architect have one generated <a href=https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege target=blank>IAM role</a> with the least privileges possible. This means Lambda functions can only access other resources defined in the same `.arc` file.
 
 For `@tables` only the following IAM actions are allowed at runtime:
 
@@ -97,7 +130,7 @@ For `@tables` only the following IAM actions are allowed at runtime:
 
 - `arc repl` to connect to a local in memory sandbox
 - `arc repl staging` to connect to staging tables
-- `arc repl production` to connect to production tables 
+- `arc repl production` to connect to production tables
 
 ---
 
@@ -129,7 +162,7 @@ cats.update({
   }
 })
 ```
- 
+
 And `delete` with Python
 
 ```python
@@ -186,7 +219,7 @@ cats
   stream true
 ```
 
-> `arc init` creates `src/tables/cats` local code and 
+> `arc init` creates `src/tables/cats` local code and
 > `arc deploy` to publishes to Lambda
 
 <section class="code-examples">
@@ -215,6 +248,39 @@ def handler(event, context):
 ```
 
 </section>
+
+---
+
+<h2 id=recovery>📀 Point-in-time Data Recovery</h2>
+
+DynamoDB has a feature which [lets you recover your data](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery.html) to any point in time over the last 35 days (from the time its enabled).
+
+This is not enabled by default. To enable this for a given table, within your `.arc` file:
+
+```arc
+@tables
+myTable
+    PointInTimeRecovery true
+```
+
+<h2 id=ttl>⏰ Time To Live</h2>
+
+From the [AWS Docs](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html):
+
+> Time to Live (TTL) for Amazon DynamoDB lets you define when items in a table expire so that they can be automatically deleted from the database. With TTL enabled on a table, you can set a timestamp for deletion on a per-item basis, allowing you to limit storage usage to only those records that are relevant.
+
+In order to specify a TTL in arc
+
+```arc
+@tables
+wines
+  id *String
+  _ttl TTL
+```
+
+`_ttl` becomes the item attribute holding the timestamp of when the item should expire, in epoch,
+
+> **Protip:** items are rarely deleted at the moment specified by the specified TTL attribute. They are _typically_ deleted within 48 hours of the timestamp. You application logic should still check the value of that attribute. The convenience here is not having to remember to delete data from your table that is time bound. It will get deleted, eventually.
 
 ---
 
