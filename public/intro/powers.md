@@ -1,4 +1,4 @@
-# Architect's Superpowers & Differentiators
+# Architect's Superpowers
 
 ## Speed - Tools to Help You Write Less Code
 You can now develop applications faster with less cloud infra configuration, shorten the feedback loop with local testing, and keep writing in your project's language. Architect's manifest file uses a parser to create AWS CloudFormation to save you from typing hundreds of line of boilerplate and permissions. Architect also comes with a local sandbox built in to let you build and test your application without having to push your code to the cloud first. 
@@ -7,7 +7,7 @@ You can now develop applications faster with less cloud infra configuration, sho
 
 Security in the cloud is also important, Architect structures its projects to help minimize security risks. Architect adopts best practices for optimizing your code to be ready for production. 
 
-Functions are provisioned and deployed with a model of least privileges, following the [Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model/) in the cloud. For example, a http function will be created with the most minimal IAM role to execute. This opt-in model of permissions prevents your functions from having over reaching authorization.
+Functions are provisioned and deployed with a model of least privileges, following the [Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model/) in the cloud. For example, a HTTP function will be created with the most minimal IAM role to execute. This opt-in model of permissions prevents your functions from having over reaching authorization.
 
 Architect applications also create staging and production environments by default to take full advantage of modern CI/CD tooling and workflows.
 
@@ -28,23 +28,3 @@ Architect aims to give a developer really simple building blocks that represent 
 - [IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) automatically generated least privilege role
 
 > **Note:** with [Architect Macros](/primitives/macros) all AWS services supported by CloudFormation can be utilized!
-
-Primitives are important - composable pieces of the framework 
-
-## Tradeoffs in Your Application Architecture
-
-Limits of using lambda functions  
-
-Core set of AWS Services supported by Architect out of the box, can be extended with Macros and valid CloudFormation. Take a look at an example Macro that extends the arc file. 
-
-Architect uses primitives in the .arc file to generate the CloudFormation templates necessary to deploy your code onto AWS. **[Link to CF Playground]** 
-
-Learn about App Primitives and Framework decisions
-
-EXTERNAL REFERENCE - GOOD WORDS HERE [https://medium.com/@dm03514/devops-architecture-platform-primitives-frameworks-b8f5a7ab7ff5](https://medium.com/@dm03514/devops-architecture-platform-primitives-frameworks-b8f5a7ab7ff5)
-
-## Differentiators
-Open Source 
-Open Parser 
-Local Testing 
-Portable
