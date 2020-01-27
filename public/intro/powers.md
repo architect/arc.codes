@@ -7,7 +7,7 @@ You can now develop applications faster with less cloud infra configuration, sho
 
 Security in the cloud is also important, Architect structures its projects to help minimize security risks. Architect adopts best practices for optimizing your code to be ready for production. 
 
-Functions are provisioned and deployed with a model of least priveledges, following the [Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model/) in the cloud. For example, an http function will be created with the most minimal IAM role to execute. This opt-in model of permissions prevents your functions from having over reaching authorization.
+Functions are provisioned and deployed with a model of least privileges, following the [Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model/) in the cloud. For example, a http function will be created with the most minimal IAM role to execute. This opt-in model of permissions prevents your functions from having over reaching authorization.
 
 Architect applications also create staging and production environments by default to take full advantage of modern CI/CD tooling and workflows.
 
@@ -16,7 +16,7 @@ Architect applications also create staging and production environments by defaul
 Architect aims to give a developer really simple building blocks that represent cloud native services to create the most productive and modern web architectures. These building blocks are known as application primitives, and are comprised of the following AWS Services: 
 - [CloudFormation](https://aws.amazon.com/cloudformation/) and [SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-reference.html#serverless-sam-cli) for AWS standard deployments
 - [Lambda](https://aws.amazon.com/lambda/) *cloud native* functions for compute
-- [API Gateway](https://aws.amazon.com/api-gateway/) for HTTP and Websocket functions
+- [API Gateway](https://aws.amazon.com/api-gateway/) for HTTP and WebSocket functions
 - [Route53](https://aws.amazon.com/route53) for DNS
 - [CloudFront](https://aws.amazon.com/cloudfront/) for CDN
 - [S3](https://aws.amazon.com/s3/) for static assets
