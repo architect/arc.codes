@@ -1,6 +1,6 @@
 {
   "name": "@architect/arc.codes",
-  "version": "2.1.3",
+  "version": "2.1.5",
   "description": "Architect docs: https://arc.codes - Create, deploy, and maintain next-generation AWS cloud function-based serverless infrastructure with full local, offline workflows, and more.",
   "scripts": {
     "deploy": "./scripts/deploy",
@@ -19,13 +19,13 @@
   },
   "homepage": "https://github.com/arc-repos/arc.codes#readme",
   "dependencies": {
-    "@architect/architect": "^6.0.28"
+    "@architect/architect": "^6.1.7"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
-    "spellchecker-cli": "^4.0.1",
+    "spellchecker-cli": "^4.0.2",
     "tap-spec": "^5.0.0",
-    "tape": "^4.12.1",
+    "tape": "^4.13.0",
     "tiny-json-http": "^7.1.2"
   },
   "prettier": {

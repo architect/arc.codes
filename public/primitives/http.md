@@ -162,12 +162,12 @@ If you're using callback functions, you can use [`arc.http()`](/reference/functi
 ```javascript
 let arc = require('@architect/functions')
 
-function parseBody(req, res, next) {
-  req.body = arc.http.helpers.bodyParser(req)
+function parseBody(request, res, next) {
+  request.body = arc.http.helpers.bodyParser(request)
   next()
 }
 
-function route(req, res) {
+function route(request, res) {
   let name = request.body.email
   res({
     status: 200,
