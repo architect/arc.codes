@@ -66,7 +66,7 @@ get /
 
 > http://localhost:3333
 
-<!-- Add hello world here! -->
+<img src="/_static/img/hello-world.jpg" width= 300 id=main-logo>
 
 <section class="code-examples">
 
