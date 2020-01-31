@@ -81,7 +81,7 @@ exports.handler = arc.http.async(addCountryCode, requireLogin, showDashboard)
 
 Super clean!
 
-The `arc.http.async` API works well with [the `shared` folder](/guides/sharing-common-code) to do things like re-use `requireLogin` to protect multiple HTTP functions.
+The `arc.http.async` API works well with [the `shared` folder](/guides/share-code) to do things like re-use `requireLogin` to protect multiple HTTP functions.
 
 Like normal [Architect routes](/guides/http), `arc.http.async` routes also support the AWS [`context`](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html) object. `context` will be passed on as a second option to each route.
 
