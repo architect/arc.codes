@@ -193,5 +193,5 @@ test('arc.sandbox.db.close', t=>{
 ---
 
 
-## Next: [Sharing Common Code Between Functions](/guides/sharing-common-code)
+## Next: [Sharing Common Code Between Functions](/guides/share-code)
 
