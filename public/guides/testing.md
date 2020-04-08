@@ -8,7 +8,7 @@ Directly require `@architect/sandbox` for headless testing:
 
 ```javascript
 let sandbox = require('@architect/sandbox')
-let tape = require('tape')
+let test = require('tape')
 let end
 
 test('start', async t=> {
