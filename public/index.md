@@ -17,13 +17,15 @@ npm install -g @architect/architect
 ```
 
 
-## 2. Run `arc init` to generate a basic project:
+## 2. Run `mkdir your-app-name && arc init your-app-name` to generate a basic project:
 
 ```bash
 /
-├── src
-│   └── http
-│       └── get-index/
+├── src/
+├── http
+│   └── get-index
+│       ├── .arc-config
+│       └── index.js
 └── .arc
 ```
 
@@ -37,8 +39,9 @@ your-app-name
 @http
 get /
 
-@aws
-bucket your-private-deploy-bucket
+# @aws
+# profile default
+# region us-west-1
 ```
 
 <section class="code-examples">
