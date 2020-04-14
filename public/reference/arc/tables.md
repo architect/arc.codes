@@ -14,7 +14,7 @@
 - The required partition key is denoted by `*`
 - The optional sort key is denoted by `**`
 - Currently only `*String`, `**String`, `*Number` and `**Number` are supported
-- Lambdas can only be values of: `insert`, `update`, or `destroy`
+- Streaming data has replaced the `insert`, `update`, and `destroy` events.
 
 > Note: `.arc` creates fully isolated tables for `staging` and `production`.
 
@@ -29,15 +29,15 @@ testapp
 @tables
 people
   pplID *String
-  insert Lambda
-  update Lambda
-  delete Lambda
+  stream true
 
 cats
   pplID *String
   catID **String
 ```
 
+### Resources
+- [Tables Primitive](/primitives/tables#stream)
 
 ## Next: [WebSockets with `@ws`](/reference/arc/ws)
 
