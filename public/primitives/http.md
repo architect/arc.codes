@@ -132,7 +132,7 @@ exports.handler = async function handler(request) {
   let body = arc.http.helpers.bodyParser(request)
   let name = body.email
   return {
-    status: 200,
+    statusCode: 200,
     body: `<h1>Hi ${name}</h1>`
   }
 }
@@ -147,7 +147,7 @@ If you're using `await` style functions, send the request through Architect Func
 const route = async function handler(request) {
   let name = request.body.email
   return {
-    status: 200,
+    statusCode: 200,
     body: `<h1>Hi ${name}</h1>`
   }
 }
@@ -170,7 +170,7 @@ function parseBody(request, res, next) {
 function route(request, res) {
   let name = request.body.email
   res({
-    status: 200,
+    statusCode: 200,
     html:  `<h1>Hi ${name}</h1>`
   })
 }
