@@ -89,7 +89,7 @@ A number of Architect v5 workflows have since been deprecated, including:
   - In the mean time, you can manually delete your app (aka "stack" in CloudFormation parlance) from the AWS CloudFormation console
 - **`npx dns`** - **Temporarily removed**
   - This feature is not currently available in Architect 6 (but will be returning shortly!)
-  - [Follow this feature here](https://github.com/architect/architect/issues/430)
+  - [Follow this feature here](https://github.com/architect/architect/issues/431)
   - In the mean time, you can manually add a domain to your app from the AWS console for API Gateway or CloudFront CDN (depending on how you've configured your Architect app to deliver HTTP)
 
 
