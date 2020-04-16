@@ -7,7 +7,6 @@ Read and write environment variables. Sensitive configuration data, such as API 
 - `arc env` displays environment variables for the current `.arc`
 - `arc env staging FOOBAZ somevalue` writes env variable `FOOBAZ=somevalue` to staging Lambdas
 - `arc env remove testing FOOBAZ` removes a `testing` env var
-- `arc env verify` display a report of Lambdas and their env variables
 
 Things to note
 
