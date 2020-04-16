@@ -62,7 +62,7 @@ By default, HTTP functions are dependency-free:
 
 Node
 ```javascript
-export.handler = async function http(request, context) {
+exports.handler = async function http(request, context) {
   return {statusCode: 200}
 }
 ```
