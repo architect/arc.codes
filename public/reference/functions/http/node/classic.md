@@ -115,7 +115,7 @@ Things to understand:
 Here's an example using `session` and `location`. First we render a form:
 
 ```javascript
-// src/html/get-index
+// src/http/get-index
 var arc = require('@architect/functions')
 
 var form = `
@@ -138,7 +138,7 @@ exports.handler = arc.http(handler)
 The form handler increments `req.session.count` and redirects back home.
 
 ```javascript
-// src/html/post-count
+// src/http/post-count
 var arc = require('@architect/functions')
 
 function handler(req, res) {
