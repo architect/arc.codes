@@ -21,6 +21,7 @@
   - [Upgrade guide](/guides/upgrade)
   - [App testing](/guides/testing)
   - [Architect project format](/guides/project-manifest)
+  - [Sharing code](/guides/share-code)
 - <b id=ref>Reference</b>
   - CLI commands
     - [arc deploy](/reference/cli/deploy)

@@ -29,6 +29,7 @@ let alias = {
   '/guides/testing': '/guides/testing.md',
   '/guides/upgrade': '/guides/upgrade.md',
   '/guides/project-manifest': '/guides/project-manifest.md',
+  '/guides/share-code': '/guides/share-code.md',
 
   // Reference
   '/reference/cli/deploy':  '/reference/cli/deploy.md',

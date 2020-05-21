@@ -59,12 +59,6 @@ Similarly, files found in `src/views` will be copied into just `GET /`, `GET /ab
 
 > You can also specify a list of `@http` functions you want `src/views` to target by specifying them in the `@views` section of your `.arc` file.
 
-Architect will refresh your functions' shared code whenever you:
-
-- Start up `npx sandbox` (or `arc.sandbox` in tests)
-- Run `npx deploy`
-- Run `npx hydrate`
-
 Example: create `src/shared/layout.js`:
 
 ```javascript
