@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "eslint": "^6.8.0",
-    "spellchecker-cli": "^4.0.2",
+    "spellchecker-cli": "^4.3.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.13.2",
     "tiny-json-http": "^7.2.0"
