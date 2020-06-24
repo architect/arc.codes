@@ -1,10 +1,10 @@
 # `arc env`
 
-Read and write environment variables. Sensitive configuration data, such as API keys, needs to happen _outside_ of the codebase in revision control and you can use this tool to ensure an entire team and the deployment targets are in sync. 
+Read and write environment variables. Sensitive configuration data, such as API keys, needs to happen _outside_ of the codebase in revision control and you can use this tool to ensure an entire team and the deployment targets are in sync.
 
 ## Example Usage
 
-- `arc env` displays environment variables for the current `.arc`
+- `arc env` displays environment variables for the current `app.arc`
 - `arc env staging FOOBAZ somevalue` writes env variable `FOOBAZ=somevalue` to staging Lambdas
 - `arc env remove testing FOOBAZ` removes a `testing` env var
 
@@ -12,7 +12,7 @@ Things to note
 
 - `NODE_ENV`, `ARC_APP_NAME` and `SESSION_TABLE_NAME` are reserved
 
-> Currently `.arc` uses AWS Systems Manager Parameter Store as a centralized backing storage mechanism for app environment variables. [Read more about AWS Systems Manager Parameter Store.](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-paramstore.html)
+> Currently `app.arc` uses AWS Systems Manager Parameter Store as a centralized backing storage mechanism for app environment variables. [Read more about AWS Systems Manager Parameter Store.](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-paramstore.html)
 
 ## The `.arc-env` File
 
@@ -26,7 +26,7 @@ This is an example file:
 
 ```arc
 # example .arc-env
-@testing 
+@testing
 GLOBAL asdfasdf
 
 @staging

@@ -6,26 +6,26 @@ Focus on the core business logic required to create value, ship only the code th
 
 ---
 
-Architect defines a high level plaintext format, `.arc`, as a manifest file and otherwise views cloud infrastructure and configuration as a build artifact.
+Architect defines a high level plaintext format, `app.arc`, as a manifest file and otherwise views cloud infrastructure and configuration as a build artifact.
 
 - Focus on defining app architecture with simple, plain and clear language
 - Generate code to work locally and totally offline
 - Deploy and extend with standard CloudFormation templates
 - The format, parser, and tooling are also all completely open to extension
 
-> In theory, the `.arc` format is entirely portable between cloud vendors. However no ports to clouds other than AWS have been made as of today.
+> In theory, the `app.arc` format is entirely portable between cloud vendors. However no ports to clouds other than AWS have been made as of today.
 
 ---
 
 ## The Architect format
 
-The `.arc` format follows a few simple rules:
+The `app.arc` format follows a few simple rules:
 
 - Comments start with `#`
 - Sections start with `@`
 - **Everything between sections becomes instructions for generating AWS resources**
 
-`.arc` files are made up of the following sections:
+`app.arc` files are made up of the following sections:
 
 - [`@app`](/reference/arc/app) [*required*] defines your application namespace
 - [`@aws`](/reference/arc/aws) defines AWS variables
@@ -37,10 +37,10 @@ The `.arc` format follows a few simple rules:
 - [`@tables`](/reference/arc/tables) defines DynamoDB database tables and trigger functions for them
 - [`@ws`](/reference/arc/ws) defines WebSocket handlers
 
-This is a complete `.arc` file example:
+This is a complete `app.arc` file example:
 
 ```arc
-# .arc
+# app.arc
 @app
 hello
 
@@ -74,7 +74,7 @@ likes
   date *String
 ```
 
-Running `arc init` in the same directory as the `.arc` file above generates the following function code:
+Running `arc init` in the same directory as the `app.arc` file above generates the following function code:
 
 ```bash
 /
@@ -94,12 +94,11 @@ Running `arc init` in the same directory as the `.arc` file above generates the 
 |   |-connect/
 |   |-default/
 |   '-disconnect/
-'-.arc
+'-app.arc
 ```
 
-The `.arc` format is terse, easy to read, and quickly learnable to author. The expressions in a `.arc` file unlock the formerly complex tasks of cloud infrastructure provisioning, deployment, and orchestration.
+The `app.arc` format is terse, easy to read, and quickly learnable to author. The expressions in a `app.arc` file unlock the formerly complex tasks of cloud infrastructure provisioning, deployment, and orchestration.
 
 ---
 
 ## Next: [Check out the quickstart](/quickstart)
-

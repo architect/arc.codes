@@ -11,7 +11,7 @@
 
 ### Example
 
-This `.arc` file defines some scheduled functions:
+This `app.arc` file defines some scheduled functions:
 
 ```arc
 @app
@@ -30,7 +30,7 @@ Which generates the following code:
 │   └── scheduled/
 │       ├── daily-update-buddy/
 │       └── friyay-only/
-├── .arc
+├── app.arc
 └── package.json
 ```
 ---

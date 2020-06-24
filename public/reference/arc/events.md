@@ -10,7 +10,7 @@
 
 ### Example
 
-This `.arc` file defines two `@events`:
+This `app.arc` file defines two `@events`:
 
 ```arc
 @app
@@ -28,11 +28,10 @@ Which generates the corresponding code:
 ├── events
 │   ├── hit-counter/
 │   └── likes/
-├── .arc
+├── app.arc
 └── package.json
 ```
 
 ---
 
 ## Next: [Defining routes with `@http`](/reference/arc/http)
-

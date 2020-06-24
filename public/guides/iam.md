@@ -2,9 +2,9 @@
 
 > Define custom IAM Roles per Lambda function
 
-Running `npx audit` will display all the functions represented by the current `.arc` file. 
+Running `npx audit` will display all the functions represented by the current `app.arc` file.
 
-Given the following `.arc` file:
+Given the following `app.arc` file:
 
 ```arc
 @app
@@ -20,7 +20,7 @@ Create a custom IAM Role by adding `role.json` to your Lambda function source co
 // this file is in src/html/get-index/role.json
 {
   "policies": [
-    "arn:aws:iam::aws:policy/AmazonDynamoDBReadOnlyAccess", 
+    "arn:aws:iam::aws:policy/AmazonDynamoDBReadOnlyAccess",
     "arn:aws:iam::aws:policy/AlexaForBusinessReadOnlyAccess"
   ]
 }
@@ -31,4 +31,3 @@ Running `npx audit apply` will create a new role named "testapp-get-index" with 
 ---
 
 ## Next: [YAML/JSON Config](/guides/yaml-and-json)
-

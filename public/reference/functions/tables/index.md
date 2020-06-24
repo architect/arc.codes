@@ -1,5 +1,5 @@
 # `arc.tables`
-## Work with tables defined in `.arc`
+## Work with tables defined in `app.arc`
 
 Node
 

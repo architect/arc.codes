@@ -11,7 +11,7 @@
 
 ### Example
 
-The following `.arc` file defines a DynamoDB table with two Global Secondary Indexes:
+The following `app.arc` file defines a DynamoDB table with two Global Secondary Indexes:
 
 ```arc
 @app
@@ -29,11 +29,10 @@ accounts
   created *String
 ```
 
-## Recommended 
+## Recommended
 
 DynamoDB is a powerful database. There is a great deal more to learn to take full advantage of it. Dig into [Amazon's DynamoDB documentation](https://aws.amazon.com/documentation/dynamodb/) to build out your app's data layer.
 
 ---
 
 ## Next: [Creating SQS queues with `@queues`](/reference/arc/queues)
-

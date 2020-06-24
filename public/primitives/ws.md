@@ -17,7 +17,7 @@ The `@ws` primitive creates a WebSocket endpoint and stateless handler functions
 
 <h2 id=local>🚜 Work Locally</h2>
 
-An example `.arc` file:
+An example `app.arc` file:
 
 ```arc
 @app

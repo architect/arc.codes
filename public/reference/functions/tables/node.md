@@ -1,6 +1,6 @@
 # `arc.tables`
 
-Example, given the following `.arc` file:
+Example, given the following `app.arc` file:
 
 ```arc
 @app
@@ -18,7 +18,7 @@ ppl
   personID *String
 ```
 
-Generate a lightweight data access layer. 
+Generate a lightweight data access layer.
 
 ```javascript
 // src/http/get-index
@@ -72,9 +72,9 @@ The generated data layer also allows direct access to DynamoDB through a few met
 
 ## Get an instance of `AWS.DynamoDB` from the `aws-sdk`
 
-Example, given the following `.arc` file:
+Example, given the following `app.arc` file:
 
-```.arc
+```arc
 @app
 testapp
 
@@ -95,7 +95,7 @@ Connect directly to DynamoDB.
 ```javascript
 let arc = require('@architect/functions')
 
-// list all tables 
+// list all tables
 let tables = await arc.tables._db.listTables({})
 // result: {Tables: ['testapp-staging-bikes', 'testapp-production-bikes']}
 ```
@@ -106,7 +106,7 @@ let tables = await arc.tables._db.listTables({})
 
 ## Get an instance of `AWS.DynamoDB.DocumentClient` from the `aws-sdk`
 
-In this example we'll model a comic book store. Accounts are uniquely identified by email. One account has many purchases. Notice how the `.arc` comments annotates the extra fields on the purchases table definition (`#comicID` and `#price`). DynamoDB tables only define a schema for keys. All other attributes are optional. Likewise these comments are not significant but they will help your future colleagues understand the schema intent. 
+In this example we'll model a comic book store. Accounts are uniquely identified by email. One account has many purchases. Notice how the `app.arc` comments annotates the extra fields on the purchases table definition (`#comicID` and `#price`). DynamoDB tables only define a schema for keys. All other attributes are optional. Likewise these comments are not significant but they will help your future colleagues understand the schema intent.
 
 ```arc
 @app
@@ -118,7 +118,7 @@ get /
 @tables
 accounts
   email *String
-  
+
 purchases
   email *String
   #comicID

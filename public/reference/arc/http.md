@@ -16,7 +16,7 @@
 
 ### Example
 
-This `.arc` file defines some typical HTML routes:
+This `app.arc` file defines some typical HTML routes:
 
 ```arc
 @app
@@ -30,7 +30,7 @@ get /contact
 post /contact
 ```
 
-The `.arc` above generates the following functions:
+The `app.arc` above generates the following functions:
 
 ```bash
 /
@@ -40,14 +40,13 @@ The `.arc` above generates the following functions:
 │   ├── get-pages-000dateID/
 │   ├── get-contact/
 │   └── post-contact/
-├── .arc
+├── app.arc
 └── package.json
 ```
 
-Note: The route `/pages/:dateID` corresponding handler deliberately looks a bit weird with the triple `000`. This is so you can quickly differentiate URL params from URL parts. 
+Note: The route `/pages/:dateID` corresponding handler deliberately looks a bit weird with the triple `000`. This is so you can quickly differentiate URL params from URL parts.
 
 
 ---
 
 ## Next: [`Creating table indexes with @indexes`](/reference/arc/indexes)
-

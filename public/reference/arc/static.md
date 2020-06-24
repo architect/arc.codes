@@ -9,7 +9,7 @@
 
 ### Example
 
-This `.arc` file defines a static bucket:
+This `app.arc` file defines a static bucket:
 
 ```arc
 @app
@@ -35,7 +35,7 @@ To _delete_ remote static assets on the S3 bucket that do not exist locally, pro
 
 <h2 id=serialize>🥣 Serialize</h2>
 
-_This is an experimental feature._ Serialize static assets directly into API Gateway as mocks. 
+_This is an experimental feature._ Serialize static assets directly into API Gateway as mocks.
 
 Benefits
 - Minimize network traffic

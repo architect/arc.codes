@@ -1,14 +1,14 @@
 # Queues
 ## Run cloud functions in the background
 
-Subscribe a Lambda function to an SQS Queue and then asynchronously publish JSON payloads to it. SQS automatically polls to receive messages. The programming model is identical to SNS but offers different service guarantees and configuration options. In particular, SNS will retry failed invocations twice whereas SQS will retry for 4 days (by default). 
+Subscribe a Lambda function to an SQS Queue and then asynchronously publish JSON payloads to it. SQS automatically polls to receive messages. The programming model is identical to SNS but offers different service guarantees and configuration options. In particular, SNS will retry failed invocations twice whereas SQS will retry for 4 days (by default).
 
 > Read the official [AWS docs on Lambda retry behavior](https://docs.aws.amazon.com/lambda/latest/dg/retries-on-errors.html)
 
 ---
 
-- <a href=#local><b>🚜 Work Locally</b></a> 
-- <a href=#provision><b>🌾 Provision</b></a> 
+- <a href=#local><b>🚜 Work Locally</b></a>
+- <a href=#provision><b>🌾 Provision</b></a>
 - <a href=#deploy><b>⛵️ Deploy</b></a>
 - <a href=#publish><b>💌 Publish</b></a>
 
@@ -16,7 +16,7 @@ Subscribe a Lambda function to an SQS Queue and then asynchronously publish JSON
 
 <h2 id=local>🚜 Work Locally</h2>
 
-Events are defined in `.arc` under `@queues`:
+Events are defined in `app.arc` under `@queues`:
 
 ```arc
 @app
@@ -31,12 +31,12 @@ repo-close-stale-issues
 
 ### Queue Subscribers
 
-Running `arc init` with the `.arc` file above will generate the following local source code:
+Running `arc init` with the `app.arc` file above will generate the following local source code:
 
 - `/src/queues/system-backup`
 - `/src/queues/repo-close-stale-issues`
 
-These are queue handlers subscribed to the queue name defined in `.arc`.
+These are queue handlers subscribed to the queue name defined in `app.arc`.
 
 > Queues are supported by `arc sandbox`
 
@@ -56,19 +56,19 @@ Additionally `AWS::SSM::Parameter` resources are created for every SQS Queue whi
 
 > All runtime functions have the environment variable `AWS_CLOUDFORMATION` which is the currently deployed CloudFormation stack name; this combined w the runtime `aws-sdk` or `@architect/functions` can be used to lookup these values in SSM
 
---- 
+---
 
 <h2 id=deploy>⛵️ Deploy</h2>
 
 - `arc deploy` to deploy with CloudFormation to staging
-- `arc deploy dirty` to overwrite deployed staging lambda functions 
+- `arc deploy dirty` to overwrite deployed staging lambda functions
 - `arc deploy production` to run a full CloudFormation production deployment
 
 ---
 
 <h2 id=publish>💌 Publish</h2>
 
-All runtime Lambda functions share an IAM Role that allows them to publish events to any SQS Queue in the currently deployed CloudFormation stack. 
+All runtime Lambda functions share an IAM Role that allows them to publish events to any SQS Queue in the currently deployed CloudFormation stack.
 
 ### Publish an event payload to an SQS Queue URL
 
