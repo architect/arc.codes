@@ -313,7 +313,7 @@ exports.handler = async function http () {
             color-light
           "
         >
-          .arc
+          app.arc
         </h2>
         <div
           class="

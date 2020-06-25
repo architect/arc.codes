@@ -16,7 +16,7 @@ For more on working with AWS, please see: [Multiple AWS Accounts](/guides/multip
 
 Alternatively, if you want a less granular approach, you can declare your preferred region and profile in your `.bashrc` ([more information here](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)).
 
-If you have AWS exports in your `.bashrc` and `@aws` specified in your `.arc` project, the `@aws` section will win.
+If you have AWS exports in your `.bashrc` and `@aws` specified in your `app.arc` project, the `@aws` section will win.
 
 ### Example
 For example, to deploy to the northern California AWS AZ with your AWS `work` profile's credentials, use:

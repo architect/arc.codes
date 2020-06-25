@@ -9,7 +9,7 @@ Architect generally relies primarily on AWS's standard means of logging: CloudWa
 - [X-Ray](https://aws.amazon.com/xray/) offers deeper service call introspection capabilities
 - There are many third party tools to further extend your app with structured logs
 
-To view logs for a function run `npx logs [production] path/to/function`. For example, given the following `.arc` file:
+To view logs for a function run `npx logs [production] path/to/function`. For example, given the following `app.arc` file:
 
 ```
 @app
@@ -26,4 +26,3 @@ To clear the logs run `npx logs nuke`.
 <hr>
 
 ## Next: [Assigning a Custom Domain Name](#null)
-

@@ -6,7 +6,7 @@ Architect projects support text and binary assets such as images, styles, and sc
 ---
 
 - <a href=#local><b>🚜 Work locally</b></a> without reloading
-- <a href=#provision><b>🌾 Provision</b></a> a bucket on S3 with all the right permissions to proxy 
+- <a href=#provision><b>🌾 Provision</b></a> a bucket on S3 with all the right permissions to proxy
 - <a href=#deploy><b>🛳 Deploy</b></a> anytime with (and without) CloudFormation
 - <a href=#fingerprint><b>🔎 Fingerprint</b></a> files and cache them forever while still maintaining instant deployment
 - <a href=#ignore><b>🙈 Ignore</b></a> files in public
@@ -19,13 +19,13 @@ Running `arc sandbox` mounts `public/` at `http://localhost:3333`.
 
 Some frontend JavaScript workflows involve a build step, in which case the `public/` folder can be considered a staging area for build artifacts.
 
-> 💡 **Protip:** Architect works with any module bundler like [Browserify](http://browserify.org/), [Parcel](https://parceljs.org/) or [Webpack](https://webpack.js.org/) 
+> 💡 **Protip:** Architect works with any module bundler like [Browserify](http://browserify.org/), [Parcel](https://parceljs.org/) or [Webpack](https://webpack.js.org/)
 
 ---
 
 <h2 id=provision>🌾 Provision</h2>
 
-Given the following `.arc` file:
+Given the following `app.arc` file:
 
 ```arc
 @app
@@ -47,7 +47,7 @@ Running `arc deploy` will setup create the following resources:
 - `arc deploy static` immediately copies `public/` directly to S3
 - `arc deploy static production` immediately copies `public/` directly to S3
 
-You can change the static deployment folder in `.arc`:
+You can change the static deployment folder in `app.arc`:
 
 ```arc
 @static

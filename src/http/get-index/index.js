@@ -61,7 +61,7 @@ let alias = {
   '/reference/functions/tables/python':        '/reference/functions/tables/python.md',
   '/reference/functions/ws':                   '/reference/functions/ws.md',
 
-  // .arc
+  // app.arc
   '/reference/arc/app':       '/reference/arc/app.md',
   '/reference/arc/aws':       '/reference/arc/aws.md',
   '/reference/arc/events':    '/reference/arc/events.md',

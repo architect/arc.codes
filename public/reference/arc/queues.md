@@ -12,7 +12,7 @@
 
 ### Example
 
-This `.arc` file defines two `@queues`:
+This `app.arc` file defines two `@queues`:
 
 ```arc
 @app
@@ -30,11 +30,10 @@ Which generates the corresponding code:
 ├── queues
 │   ├── convert-image/
 │   └── publish-log/
-├── .arc
+├── app.arc
 └── package.json
 ```
 
 ---
 
 ## Next: [Scheduling functions with `@scheduled`](/reference/arc/scheduled)
-

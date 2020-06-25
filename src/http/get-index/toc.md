@@ -32,7 +32,7 @@
     - [arc package](/reference/cli/package)
     - [arc sandbox](/reference/cli/sandbox)
     - [arc repl](/reference/cli/repl)
-  - `.arc` pragmas
+  - `app.arc` pragmas
     - [@app](/reference/arc/app)
     - [@aws](/reference/arc/aws)
     - [@events](/reference/arc/events)

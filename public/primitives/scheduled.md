@@ -2,12 +2,12 @@
 
 ## Run cloud functions on an interval
 
-The `@scheduled` primitive creates stateless functions that run on a schedule. 
+The `@scheduled` primitive creates stateless functions that run on a schedule.
 
 ---
 
-- <a href=#local><b>🚜 Work Locally</b></a> 
-- <a href=#provision><b>🌾 Provision</b></a> 
+- <a href=#local><b>🚜 Work Locally</b></a>
+- <a href=#provision><b>🌾 Provision</b></a>
 - <a href=#deploy><b>⛵️ Deploy</b></a>
 - <a href=#expressions><b>🕰 Expressions</b></a>
 - <a href=#event><b>🎉 Event Payload</b></a>
@@ -16,7 +16,7 @@ The `@scheduled` primitive creates stateless functions that run on a schedule.
 
 <h2 id=local>🚜 Work Locally</h2>
 
-An example `.arc` file:
+An example `app.arc` file:
 
 ```arc
 @app
@@ -29,8 +29,8 @@ tweet rate(1 hour)
 
 Architect generates the following functions:
 
-- `src/scheduled/cleanup` 
-- `src/scheduled/tweet` 
+- `src/scheduled/cleanup`
+- `src/scheduled/tweet`
 
 ---
 
@@ -42,26 +42,26 @@ Scheduled functions create the following AWS resources:
 - `AWS::Lambda::Function`
 - `AWS::Lambda::Permission`
 
-> **Protip:** increase `timeout` in `.arc-config` for longer running functions 
+> **Protip:** increase `timeout` in `.arc-config` for longer running functions
 
 ---
 
 <h2 id=deploy>⛵️ Deploy</h2>
 
 - `arc deploy` to deploy with CloudFormation to staging
-- `arc deploy dirty` to overwrite deployed staging lambda functions 
+- `arc deploy dirty` to overwrite deployed staging lambda functions
 - `arc deploy production` to run a full CloudFormation production deployment
 
 ---
 
 <h2 id=expressions>🕰 Expressions</h2>
 
-Scheduled functions can be configured with either `rate` or `cron`. 
+Scheduled functions can be configured with either `rate` or `cron`.
 
 > Rate expressions are simpler to define but don't offer the fine-grained schedule control that cron expressions support. For example, with a cron expression, you can define a rule that triggers at a specified time on a certain day of each week or month. In contrast, rate expressions trigger a rule at a regular rate, such as once every hour or once every day. <br> ☛ [AWS Scheduled Events Docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
 
-Example `.arc`:
-  
+Example `app.arc`:
+
 ```arc
 @app
 testapp

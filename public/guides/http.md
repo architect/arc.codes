@@ -2,7 +2,7 @@
 
 Let's implement a proof-of-concept login flow. There's [a repo with the example below on GitHub](https://github.com/architect/arc-example-login-flow).
 
-This example `.arc` project brings together all the concepts for defining HTTP Lambdas:
+This example `app.arc` project brings together all the concepts for defining HTTP Lambdas:
 
 ```arc
 @app
@@ -26,7 +26,7 @@ post /login
 │   │   ├── get-protected/
 │   │   └── post-login/
 │   └── shared/
-├── .arc
+├── app.arc
 └── package.json
 ```
 
@@ -48,7 +48,7 @@ exports.handler = async function http(req) {
 	</p>`
 
   var notLoggedInPage = `
-  	<h2>Logged out</h2>	
+  	<h2>Logged out</h2>
     <form action=${url('/login')} method=post>
       <label for=email>Email</label>
       <input type=text name=email>
@@ -88,7 +88,7 @@ exports.handler = async function http(request) {
 }
 ```
 
-If successful `session.isLoggedIn` will be `true` and we'll redirect to `/`, which, since we're logged in now, will show different content. 
+If successful `session.isLoggedIn` will be `true` and we'll redirect to `/`, which, since we're logged in now, will show different content.
 
 `/protected` utilizes middleware to ensure only logged in users can see it.
 
@@ -151,4 +151,3 @@ And that's it! Remember you can find [the example repo on GitHub.](https://githu
 <hr>
 
 ## Next: [Working locally & offline](/guides/offline)
-

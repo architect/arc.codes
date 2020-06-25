@@ -1,6 +1,6 @@
 # Architect project layout
 
-Architect favors <em>convention over configuration</em>. Projects have a lightweight `.arc` (or `app.arc`, `arc.yaml`, or `arc.json`) manifest file in the root.
+Architect favors <em>convention over configuration</em>. Projects have a lightweight `app.arc` (or `.arc`, `arc.yaml`, or `arc.json`) manifest file in the root.
 
 This project manifest defines the application primitives used to generate your infrastructure.
 
@@ -18,7 +18,7 @@ Architect projects have the following significant folder structure:
 │   ├── ws .......... WebSocket functions
 │   ├── shared ...... Code shared by ALL functions
 │   └── views ....... Code shared by HTTP GET functions
-└── .arc
+└── app.arc
 ```
 
 ### **All folders are optional.**
@@ -28,7 +28,7 @@ Architect ignores any other files and folders.
 
 ## Manifest format overview
 
-The `.arc` manifest format is intentionally simple to author and straightforward to read.
+The `app.arc` manifest format is intentionally simple to author and straightforward to read.
 
 Resources are defined within pragmas, pragmas can be ordered arbitrarily, and comments are preceded by a `#`:
 
@@ -42,7 +42,7 @@ get /api
 post /api
 ```
 
-The `.arc` manifest can be broadly split into three conceptual classifications of configuration:
+The `app.arc` manifest can be broadly split into three conceptual classifications of configuration:
 
 
 ### 1. Global / system
@@ -75,7 +75,7 @@ These pragmas specify various persistence resources.
 
 ## Example
 
-Provision a project with the following `.arc` file:
+Provision a project with the following `app.arc` file:
 
 ```arc
 # This is going to be great!
@@ -100,7 +100,7 @@ Running `arc init` creates the following code:
 │   └── http
 │       ├── get-index/
 │       └── get-things/
-└── .arc
+└── app.arc
 ```
 
 If you add further pragmas, it is safe to run (and re-run) `arc init` to generate further code. Local code is deployed to a dedicated, isolated `staging` environment by running `arc deploy`.
@@ -112,4 +112,3 @@ Time to celebrate! ✨
 ---
 
 ## Next: [HTTP functions](/primitives/http)
-

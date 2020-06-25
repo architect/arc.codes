@@ -5,9 +5,9 @@
 DNS is how you assign a domain name to a deployed app. This guide lists ways to set up custom DNS with several popular DNS providers and we are always happy to accept contributions for steps to use additional providers.
 
 
-## Setting up `.arc` with a custom domain name
+## Setting up `app.arc` with a custom domain name
 
-`arc` has built-in first-class support for setting up DNS and assigning a domain. First add [`@domain`]('#null') to your `.arc` file with a value of the domain name you wish to set up.
+`arc` has built-in first-class support for setting up DNS and assigning a domain. First add [`@domain`]('#null') to your `app.arc` file with a value of the domain name you wish to set up.
 
 ```arc
 @app
@@ -46,7 +46,7 @@ When to do this: if you want to use Route53 to manage your DNS records.
 
 Run `npx dns route53` and follow the instructions. The process is:
 
-1. Read (or create) a Route53 Hosted Zone with the value of `@domain` from the `.arc` file and a certificate validation CNAME record
+1. Read (or create) a Route53 Hosted Zone with the value of `@domain` from the `app.arc` file and a certificate validation CNAME record
   a. If you registered the domain with AWS the name servers are mapped automatically
   b. If you registered the domain elsewhere you need to ensure the name servers are set with your domain registrar
 2. After a few minutes the certificate is automatically verified
@@ -136,4 +136,3 @@ These instructions are adapted from the tutorial at [LEANX](https://www.leanx.eu
 
 
 ## Next: [WebSockets](/guides/ws)
-

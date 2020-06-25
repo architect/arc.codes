@@ -5,7 +5,7 @@
 
 ### Example
 
-This `.arc` file defines both HTTP and WebSocket endpoints:
+This `app.arc` file defines both HTTP and WebSocket endpoints:
 
 ```arc
 @app
@@ -29,7 +29,7 @@ Running `arc create` generates the following functions:
 |   |-connect/
 |   |-default/
 |   '-disconnect/
-'-.arc
+'-app.arc
 ```
 
 ---

@@ -2,9 +2,9 @@
 
 ## Static and dynamic API endpoints coexisting at the same origin
 
- This means your single page application and API can share the same domain name, session support and database access *without CORS* and *without 3rd party proxies*. 
+ This means your single page application and API can share the same domain name, session support and database access *without CORS* and *without 3rd party proxies*.
 
-Override the root with a `get /` HTTP function in the `.arc` file:
+Override the root with a `get /` HTTP function in the `app.arc` file:
 
 ```arc
 @app
@@ -34,7 +34,7 @@ To workaround CORS you can proxy S3 directly through API Gateway at `/_static`.
 
 All Lambdas will have `process.env.ARC_STATIC_BUCKET` environment variable with the generated S3 bucket name. The generated API can proxy to the S3 bucket at the root with the help of Lambda and by-passes Lambda altogether with a direct proxy at `/_static`.
 
-<a href="/api/1/package?arc=%40app%0Atestapp%0A%40static%0A%40http%0Aget%20%2F%0A" 
+<a href="/api/1/package?arc=%40app%0Atestapp%0A%40static%0A%40http%0Aget%20%2F%0A"
   target="blank"><b>* Note:</b> Architect creates a many supporting resources!</a>
 ## Proxy Public
 
@@ -48,7 +48,7 @@ exports.handler = arc.http.proxy.public()
 
 Now all static assets in `./public` will be served from the root of your application.
 
-The `arc.http.proxy.public` function accepts an optional configuration param `spa` which will force loading `index.html` no matter what route is invoked (note however that routes defined in `.arc` will take precedence). 
+The `arc.http.proxy.public` function accepts an optional configuration param `spa` which will force loading `index.html` no matter what route is invoked (note however that routes defined in `app.arc` will take precedence).
 
 ```javascript
 // src/http/get-index/index.js
@@ -56,7 +56,7 @@ let arc = require('@architect/functions')
 exports.handler = arc.http.proxy.public({spa: true})
 ```
 
-Set `{spa:false}`, or omit, if you want the proxy to return a `404` error when a directory or file does not exist. 
+Set `{spa:false}`, or omit, if you want the proxy to return a `404` error when a directory or file does not exist.
 
 > Bonus: when `404.html` is present that file will be returned
 
@@ -79,9 +79,9 @@ exports.handler = arc.http.proxy.public({
 
 The `arc.proxy.public` can be further augmented with per filetype transform plugins. Each key in `plugins` is a file extension for processing with an array of transform plugins to run anytime that filetype is matched.
 
-The first use case for this feature is to fix URLs. API Gateway creates ugly URLs by default appending `/staging` and `/production` to the application root. This pain goes away once you setup DNS but setting up static sites is much more complicated because most tools do not expect these paths. 
+The first use case for this feature is to fix URLs. API Gateway creates ugly URLs by default appending `/staging` and `/production` to the application root. This pain goes away once you setup DNS but setting up static sites is much more complicated because most tools do not expect these paths.
 
-This demonstrates using proxy plugins to transform all links so they are prefixed with the correct URL. 
+This demonstrates using proxy plugins to transform all links so they are prefixed with the correct URL.
 
 ```javascript
 // src/http/get-index/index.js
@@ -105,7 +105,7 @@ exports.handler = arc.proxy.public({
 })
 ```
 
-While not necessary until DNS is set up it's super helpful. Transform plugins open the door to other useful capabilities for authoring dynamic single page apps. 
+While not necessary until DNS is set up it's super helpful. Transform plugins open the door to other useful capabilities for authoring dynamic single page apps.
 
 Architect supports the following transform plugins:
 
@@ -131,7 +131,7 @@ Architect supports the following transform plugins:
 *release*
 
 - `@architect/proxy-plugin-html-min` minify HTML
-- `@architect/proxy-plugin-css-min` minify CSS 
+- `@architect/proxy-plugin-css-min` minify CSS
 - `@architect/proxy-plugin-mjs-min` minify JS
 
 ---

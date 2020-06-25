@@ -5,7 +5,7 @@
 
 Applications tend to share logic, templates, and other assets. Architect gives you a simple, seamless way to share things across your project's many functions.
 
-Given the following `.arc` file:
+Given the following `app.arc` file:
 
 ```arc
 @app
@@ -28,7 +28,7 @@ You would have the following file system layout:
 │       ├── get-about/
 │       ├── get-contact/
 │       └── post-contact/
-├── .arc
+├── app.arc
 └── package.json
 ```
 
@@ -49,7 +49,7 @@ Create either or both `src/shared` and `src/views` directories, and Architect wi
   │   │   └── post-contact/
 > │   ├── shared/
 > │   └── views/
-  ├── .arc
+  ├── app.arc
   └── package.json
 ```
 
@@ -57,7 +57,7 @@ In the above example, files found in `src/shared` will be copied into every func
 
 Similarly, files found in `src/views` will be copied into just `GET /`, `GET /about`, and `GET /contact`'s `/node_modules/@architect/shared` directories, but not `POST /contact`.
 
-> You can also specify a list of `@http` functions you want `src/views` to target by specifying them in the `@views` section of your `.arc` file.
+> You can also specify a list of `@http` functions you want `src/views` to target by specifying them in the `@views` section of your `app.arc` file.
 
 Example: create `src/shared/layout.js`:
 
@@ -86,7 +86,7 @@ exports.handler = async function http(req) {
 }
 ```
 
-Anytime you preview locally, run tests, or deploy the layout, your shared modules get updated. 
+Anytime you preview locally, run tests, or deploy the layout, your shared modules get updated.
 
 > Caution! Since `src/shared` gets copied recursively into all Lambdas' node_modules we strongly suggest keeping the directory structure as flat as possible, and the payloads as small possible, so as not bloat your Lambda functions and suffer worse cold starts.
 
@@ -94,4 +94,3 @@ Anytime you preview locally, run tests, or deploy the layout, your shared module
 
 
 ## Next: [Static Assets](/guides/static-assets)
-

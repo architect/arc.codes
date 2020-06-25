@@ -41,7 +41,7 @@ patch /posts/:postID
 delete /posts/:postID
 ```
 
-> Note how clear it is what this app does simply by reviewing its `.arc` file!
+> Note how clear it is what this app does simply by reviewing its `app.arc` file!
 
 Running `arc init` with the project manifest above will generate the following local source code in these folders:
 

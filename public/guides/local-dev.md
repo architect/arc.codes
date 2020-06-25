@@ -10,11 +10,11 @@ Arc targets two use cases:
 1. **Previewing** - code runs locally and can be opened in a web browser
 2. **Testing** - code runs headlessly in a terminal
 
-Following the [quickstart](/quickstart) you should have everything wired up so `npx sandbox` kicks up a local web server and creates tables and indexes defined in `.arc` for previewing work. 
+Following the [quickstart](/quickstart) you should have everything wired up so `npx sandbox` kicks up a local web server and creates tables and indexes defined in `app.arc` for previewing work.
 
 If you want to write tests (and we very much think you should!) against the infra without deployment you'll need to set up the `sandbox` as a module.
 
-This guide will use the following example `.arc` file:
+This guide will use the following example `app.arc` file:
 
 ```arc
 @app
@@ -129,7 +129,7 @@ test('get /', async t=> {
   t.ok(result.body, 'got 200 response')
 })
 
-/** 
+/**
  * finally close the server so we cleanly exit the test
  */
 test('server.close', t=> {
@@ -144,7 +144,7 @@ As your app matures you will want to augment these tests with more elaborate res
 
 ## DB Testing
 
-In an `.arc` defined project `NODE_ENV` is used for knowing where the code is running. This way apps with `NODE_ENV` set to `staging` or `production` will load the correct DynamoDB endpoints. Your test suite and any client wrappers you author should follow suit.
+In an `app.arc` defined project `NODE_ENV` is used for knowing where the code is running. This way apps with `NODE_ENV` set to `staging` or `production` will load the correct DynamoDB endpoints. Your test suite and any client wrappers you author should follow suit.
 
 ```javascript
 // tests/db-test.js
@@ -158,7 +158,7 @@ var arc = require('@architect/architect')
 /**
  * first we need to start the local db server and grab a reference to the client
  */
-var client 
+var client
 test('arc.sandbox.db.start', t=>{
   t.plan(1)
   client = arc.sandbox.db.start(xxx=> t.ok(true, 'started'))
@@ -170,15 +170,15 @@ test('arc.sandbox.db.start', t=>{
 test('db', t=> {
   t.plan(1)
   // note: we do not need to create the tables the
-  // sandbox detected the .arc and did that above
+  // sandbox detected the app.arc and did that above
   db.listTables({}, function _list(err, result) {
     if (err) throw err
     t.ok(result, 'got result')
-    console.log(result) 
+    console.log(result)
   })
 })
 
-/** 
+/**
  * finally close the db client so we cleanly exit the test
  */
 test('arc.sandbox.db.close', t=>{
@@ -194,4 +194,3 @@ test('arc.sandbox.db.close', t=>{
 
 
 ## Next: [Sharing Common Code Between Functions](/guides/share-code)
-

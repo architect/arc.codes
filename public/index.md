@@ -26,13 +26,13 @@ npm install -g @architect/architect
 │   └── get-index
 │       ├── .arc-config
 │       └── index.js
-└── .arc
+└── app.arc
 ```
 
-## 3. Check out your first `.arc` file & HTTP function!
+## 3. Check out your first `app.arc` file & HTTP function!
 
 ```arc
-# /project/path/.arc
+# /project/path/app.arc
 @app
 your-app-name
 

@@ -2,12 +2,12 @@
 
 ## Run cloud functions in the background
 
-Subscribe a Lambda function to an SNS Topic and then asynchronously publish JSON payloads to it. SNS is a publish-subscribe (pub/sub) system. Messages are immediately pushed to subscribers when they are sent by publishers. 
+Subscribe a Lambda function to an SNS Topic and then asynchronously publish JSON payloads to it. SNS is a publish-subscribe (pub/sub) system. Messages are immediately pushed to subscribers when they are sent by publishers.
 
 ---
 
-- <a href=#local><b>🚜 Work Locally</b></a> 
-- <a href=#provision><b>🌾 Provision</b></a> 
+- <a href=#local><b>🚜 Work Locally</b></a>
+- <a href=#provision><b>🌾 Provision</b></a>
 - <a href=#deploy><b>⛵️ Deploy</b></a>
 - <a href=#publish><b>💌 Publish</b></a>
 
@@ -15,7 +15,7 @@ Subscribe a Lambda function to an SNS Topic and then asynchronously publish JSON
 
 <h2 id=local>🚜 Work Locally</h2>
 
-Events are defined in `.arc` under `@events`:
+Events are defined in `app.arc` under `@events`:
 
 ```arc
 @app
@@ -30,12 +30,12 @@ account-check-email
 
 ### Event Subscribers
 
-Running `arc init` with the `.arc` file above will generate the following local source code:
+Running `arc init` with the `app.arc` file above will generate the following local source code:
 
 - `/src/events/account-signup`
 - `/src/events/account-check-email`
 
-These are event handlers subscribed to the event name defined in `.arc`.
+These are event handlers subscribed to the event name defined in `app.arc`.
 
 > Events are supported by `arc sandbox`
 
@@ -55,19 +55,19 @@ Additionally `AWS::SSM::Parameter` resources are created for every SNS Topic whi
 
 > All runtime functions have the environment variable `AWS_CLOUDFORMATION` which is the currently deployed CloudFormation stack name; this combined w the runtime `aws-sdk` or `@architect/functions` can be used to lookup these values in SSM
 
---- 
+---
 
 <h2 id=deploy>⛵️ Deploy</h2>
 
 - `arc deploy` to deploy with CloudFormation to staging
-- `arc deploy dirty` to overwrite deployed staging lambda functions 
+- `arc deploy dirty` to overwrite deployed staging lambda functions
 - `arc deploy production` to run a full CloudFormation production deployment
 
 ---
 
 <h2 id=publish>💌 Publish</h2>
 
-All runtime Lambda functions share an IAM Role that allows them to publish events to any SNS Topic in the currently deployed CloudFormation stack. 
+All runtime Lambda functions share an IAM Role that allows them to publish events to any SNS Topic in the currently deployed CloudFormation stack.
 
 ### Publish an event payload to an SNS Topic
 

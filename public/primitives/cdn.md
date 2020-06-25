@@ -5,15 +5,15 @@ One of the most mature and powerful content delivery networks is AWS CloudFront.
 
 ---
 
-- <a href=#provision><b>🌾 Provision and Deploy</b></a>  
+- <a href=#provision><b>🌾 Provision and Deploy</b></a>
 - <a href=#important><b>⚠️ Important</b></a> implementation notes
-- <a href=#fingerprint><b>🔎 Fingerprint</b></a> and ensure cache invalidation 
+- <a href=#fingerprint><b>🔎 Fingerprint</b></a> and ensure cache invalidation
 
 ---
 
 <h2 id=provision>🌾 Provision</h2>
 
-Given the following `.arc` file:
+Given the following `app.arc` file:
 
 ```arc
 @app
@@ -25,7 +25,7 @@ my-site
 
 Running `arc deploy` will create a CloudFront distribution for the S3 bucket website URL.
 
-Likewise, the following `.arc`:
+Likewise, the following `app.arc`:
 
 ```arc
 @app
@@ -44,15 +44,15 @@ Running `arc deploy` will create a CloudFront distribution for the S3 website an
 
 <h2 id=important>⚠️ Important</h2>
 
-CloudFront support is implemented independently of CloudFormation because the deployment performance combining these services is unacceptably slow. 
+CloudFront support is implemented independently of CloudFormation because the deployment performance combining these services is unacceptably slow.
 
-Unfortunately when CF distributions are deployed via CloudFormation they are updated every deployment and this can push the feedback cycle 15 to 20 minutes. For this reason Architect creates a CDN distribution if you have `@cdn` in the `.arc` asynchronously via the AWS SDK and when it is available you will see `cloudfront.com` URLs printed into the console. Likewise, removing `@cdn` from the distribution will mark it for deletion (which itself can take a long time). 
+Unfortunately when CF distributions are deployed via CloudFormation they are updated every deployment and this can push the feedback cycle 15 to 20 minutes. For this reason Architect creates a CDN distribution if you have `@cdn` in the `app.arc` asynchronously via the AWS SDK and when it is available you will see `cloudfront.com` URLs printed into the console. Likewise, removing `@cdn` from the distribution will mark it for deletion (which itself can take a long time).
 
 ---
 
 <h2 id=fingerprint>🔎 Fingerprint</h2>
 
-Enable fingerprinting in `.arc`:
+Enable fingerprinting in `app.arc`:
 
 ```arc
 @app

@@ -5,7 +5,7 @@ All `@http` defined routes are session capable via `@architect/functions`
 - Requests are tagged to a session via a stateless, signed, encrypted, httpOnly cookie `_idx`
 - Session data expires after a week of inactivity
 
-This allows you to write fully stateful applications despite Lambda functions being completely stateless. 
+This allows you to write fully stateful applications despite Lambda functions being completely stateless.
 
 Read the session:
 
@@ -49,13 +49,13 @@ Ensure your app has a strong secret key:
 npx env production ARC_APP_SECRET something-much-better-than-this
 ```
 
-Environment variables are automatically synced with all your lambda functions. When you add new functions you will need to sync their env variables by running `npx env verify`. 
+Environment variables are automatically synced with all your lambda functions. When you add new functions you will need to sync their env variables by running `npx env verify`.
 
 ## Database Sessions
 
 If you have stricter security requirements and do not want to expose any session state to clients you can opt into sessions backed by DynamoDB tables.
 
-You'll need to define a session table in your `.arc` file with `_idx` partition key and `_ttl` attribute for token expiry:
+You'll need to define a session table in your `app.arc` file with `_idx` partition key and `_ttl` attribute for token expiry:
 
 ```arc
 @app

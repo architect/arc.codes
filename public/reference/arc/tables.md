@@ -16,11 +16,11 @@
 - Currently only `*String`, `**String`, `*Number` and `**Number` are supported
 - Streaming data has replaced the `insert`, `update`, and `destroy` events.
 
-> Note: `.arc` creates fully isolated tables for `staging` and `production`.
+> Note: `app.arc` creates fully isolated tables for `staging` and `production`.
 
 ### Example
 
-This `.arc` file defines two database tables:
+This `app.arc` file defines two database tables:
 
 ```arc
 @app
@@ -40,4 +40,3 @@ cats
 - [Tables Primitive](/primitives/tables#stream)
 
 ## Next: [WebSockets with `@ws`](/reference/arc/ws)
-
