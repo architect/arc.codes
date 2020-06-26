@@ -89,8 +89,3 @@ exports.handler = async function http(req) {
 Anytime you preview locally, run tests, or deploy the layout, your shared modules get updated.
 
 > Caution! Since `src/shared` gets copied recursively into all Lambdas' node_modules we strongly suggest keeping the directory structure as flat as possible, and the payloads as small possible, so as not bloat your Lambda functions and suffer worse cold starts.
-
----
-
-
-## Next: [Static Assets](/guides/static-assets)
