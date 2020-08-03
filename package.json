@@ -22,7 +22,7 @@
     "@architect/architect": "^6.5.4"
   },
   "devDependencies": {
-    "eslint": "^7.5.0",
+    "eslint": "^7.6.0",
     "spellchecker-cli": "^4.4.0",
     "tap-spec": "^5.0.0",
     "tape": "^5.0.1",
