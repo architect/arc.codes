@@ -22,10 +22,10 @@ npm install -g @architect/architect
 ```bash
 /
 ├── src/
-├── http
-│   └── get-index
-│       ├── .arc-config
-│       └── index.js
+│  └── http
+│     └── get-index
+│        ├── .arc-config
+│        └── index.js
 └── app.arc
 ```
 
