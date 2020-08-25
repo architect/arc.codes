@@ -307,7 +307,7 @@ exports.handler = async function http(req) {
   return {
     headers: {
      'set-cookie': cookie,
-     'location: '/'
+     'location': '/'
     },
     statusCode: 302,
   }
