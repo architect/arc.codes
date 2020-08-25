@@ -7,6 +7,8 @@
 - `ignore` ignores files from `public/` folder
 - `serialize` will serialize smaller files into API Gateway upon deployment
 
+> Note: apps using `@http` can access static assets via `/_static` proxy; this is handy for keeping assets on the same-origin without ugly CORS hacks
+
 ### Example
 
 This `app.arc` file defines a static bucket:
@@ -31,40 +33,6 @@ To _only_ deploy static assets from `/public` (and not function sources from `/s
 
 To _delete_ remote static assets on the S3 bucket that do not exist locally, provide the optional `--prune` or `--delete` flag, i.e. `arc deploy static --prune`.
 
----
-
-<h2 id=serialize>🥣 Serialize</h2>
-
-_This is an experimental feature._ Serialize static assets directly into API Gateway as mocks.
-
-Benefits
-- Minimize network traffic
-- Save on Lambda invocations
-
-Downsides
-- Requires a CloudFormation stack update to deploy which is slower than syncing a file to S3
-- Can quickly bloat the generated CloudFormation template to max
-
-Currently supported file types
-- html
-- css
-- js
-- mjs
-- svg
-
-Opt in:
-```arc
-@app
-testapp
-
-@static
-serialize true
-
-@http
-get /
-```
-
-Running `arc deploy` will serialize `public/` into `sam.json`.
 
 ---
 ## Next: [Create dynamo tables with `@tables`](/reference/arc/tables)

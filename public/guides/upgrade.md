@@ -1,6 +1,6 @@
 # Architect upgrade guide
 
-This document covers upgrading from previous versions of Architect – specifically, `5.x (Yeti)` – to `6.x (Ogopogo)`.
+This document covers upgrading from previous versions of Architect.
 
 View upgrade guides for legacy versions of Architect at the [Arc v5 docs site](https://v5.arc.codes/guides/upgrade).
 
@@ -16,7 +16,9 @@ What breaking changes there are, **we have attempted to provide simple, forwards
 
 ### Topics
 
-<a href=#architect-5-to-6><b>Architect 5 → 6</b></a>
+<a href=#architect-6-to-7><b>Architect 6 &rarr; 7</b></a>
+
+<a href=#architect-5-to-6><b>Architect 5 &rarr; 6</b></a>
 
 <a href=#architect-functions><b>Architect Functions module (`@architect/functions`)</b></a>
 

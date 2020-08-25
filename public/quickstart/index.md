@@ -20,7 +20,9 @@
 Architect supports the following runtime versions when working locally:
 
 **Recommended**
-- Node: `10.x` & `8.10` using `npm`
+
+- Node: `12.x` using `npm` or `yarn`
+- Deno `1.3`
 - Ruby: `2.5` using `bundle`
 - Python: `3.7` & `3.6` using `pip3`
 
@@ -29,12 +31,11 @@ Architect supports the following runtime versions when working locally:
 To use the same runtime across all functions in your project, add it to your `@aws` pragma like so:
 
 ```arc
-# Valid runtimes: `nodejs12.x`, `nodejs10.x`, `deno`, `python3.7`, `python3.6`, or `ruby2.5`
 @aws
 runtime python3.7
 ```
 
-This setting can be overridden on a function-by-function basis with [`.arc-config`](/reference/arc-config/runtime).
+> This setting can be overridden on a function-by-function basis with [`.arc-config`](/reference/arc-config/runtime).
 
 Architect also supports the following runtimes in live infra, but not while working locally (at present):
 - Go: `1.x`,

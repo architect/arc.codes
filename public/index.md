@@ -52,6 +52,7 @@ Node
 // /project/path/src/http/get-index/index.js
 exports.handler = async function http(request) {
   return {
+    statusCode: 200,
     headers: {'content-type': 'text/html; charset=utf-8;'},
     body: '<h1>Hello World! 🎉</h1>'
   }
@@ -64,6 +65,7 @@ Ruby
 # /project/path/src/http/get-index/index.rb
 def handler(request, context)
   {
+    statusCode: 200,
     headers: {'content-type': 'text/html; charset=utf-8;'},
     body: '<h1>Hello World! 🎉</h1>'
   }
@@ -76,7 +78,7 @@ Python
 # /project/path/src/http/get-index/index.py
 def handler(request, context):
     headers = {'content-type': 'text/html; charset=utf-8;'}
-    return {'headers': headers, 'body': '<h1>Hello World! 🎉</h1>'}
+    return {'statusCode': 200, 'headers': headers, 'body': '<h1>Hello World! 🎉</h1>'}
 ```
 
 </section>
@@ -97,7 +99,7 @@ Your new app will be online within seconds.
 ---
 
 ### Useful links
-- [Details for upgrading from Architect 5 to 6](/guides/upgrade)
+- [Details for upgrading from Architect 6 to 7](/guides/upgrade)
 - [Tinker in the playground](/playground)
 - [Learn about HTTP Functions](/primitives/http)
 ---
