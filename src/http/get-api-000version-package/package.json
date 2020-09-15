@@ -1,16 +1,6 @@
 {
-  "name": "get-api-000version-package",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "dependencies": {
-    "@architect/package": "^1.0.44",
-    "@architect/parser": "^1.1.7"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+    "@architect/package": "^1.3.8",
+    "@architect/parser": "^1.2.2"
+  }
 }
