@@ -53,6 +53,12 @@ That said, Architect Sandbox workflows may potentially be impacted by this chang
 
 ### Overview
 
+tldr – if you have an existing Architect 6 project:
+- **You can continue to safely deploy that project with Architect 7**
+- No breaking infrastructure changes will be applied by Architect 7 unless manually and explicitly opting in
+- However, it is possible **Sandbox may be broken for your local workflows and testing**
+  - If so, you'll need to **add a new setting API type setting** ([see breaking changes](#architect-7-breaking-changes))
+
 We know the "`HTTP`" and "`REST`" API nomenclature is confusing – don't REST APIs use HTTP? Can't you use an HTTP API to build a REST interface? – but AWS named these API types, not us. Please allow us to do our best to explain!
 
 AWS now offers two API Gateway types for marshaling (non-WebSocket) HTTPS requests and responses:
@@ -69,8 +75,6 @@ Architect 7 (Chupacabra) evolves the Architect web application stack by **defaul
 
 Architect 7 retains full backward compatibility for existing Architect 6 projects by continuing to deploy the same API type as you're currently using.
 
-**tldr – if you have an existing Architect 6 project, you can continue to deploy that project with Architect 7. No breaking infrastructure changes will be applied by Architect 7 unless manually and explicitly opting in. However, Sandbox may be broken for your local workflows and testing until you specify which API type you're using; [see breaking changes](#architect-7-breaking-changes)**
-
 
 ### Other changes
 
@@ -85,30 +89,34 @@ Architect 7 retains full backward compatibility for existing Architect 6 project
 
 ### <span id=architect-7-breaking-changes>Breaking changes
 
-All breaking changes in Architect 7 pertain to local development and testing with Sandbox, Architect's development environment. **But good news: Sandbox 2.0, included in Architect 7, also has compatibility paths for Architect 6 that only require a few seconds of your time.** Read on!
+All breaking changes in Architect 7 pertain to local development and testing with Sandbox, Architect's development environment. **But good news: Sandbox 2.0, included in Architect 7, also has compatibility paths for Architect 6 that only require a few seconds of your time.**
 
 A core goal of Sandbox is to operate entirely locally and offline; that means no phoning home to AWS to introspect your current application configuration. Sandbox must run entirely from your machine using only your Architect project manifest. Thus, with the addition of `HTTP` APIs, Sandbox must now have a default API type.
 
-It naturally follows that Sandbox's default would be `HTTP` (with Lambda payload format version 2.0), since that is now the default for new projects. Because [API Gateway `HTTP` APIs introduced breaking changes with `REST` APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html#http-api-develop-integrations-lambda.proxy-format), existing projects may not function correctly until reconfigured to enter `REST` mode.
+It naturally follows that Sandbox's default would now be `HTTP` (with Lambda payload format version 2.0), since that is now the default for new projects. Because [API Gateway `HTTP` APIs introduced breaking changes with `REST` APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html#http-api-develop-integrations-lambda.proxy-format), existing projects may not function correctly until reconfigured to operate in `REST` mode.
 
 
-#### Configuring the API type in Sandbox
+#### Sandbox API type
 
 The following are the valid settings for API types:
 - **`http` (default)** - `HTTP` API + Lambda payload format version 2.0
-  - `httpv2` (aliased to `http`)
-- **`httpv1`** - `HTTP` API + Lambda payload format version 1.0; use this if you'd like to take advantage of `HTTP` APIs, but aren't yet ready to refactor your code for payload format 2.0
-- **`rest` (previous default)** - `REST` API + original API Gateway payload format (essentially the same as what is now called Lambda payload format version 1.0)
+  - `httpv2` – aliased to `http`
+- **`httpv1`** - `HTTP` API + Lambda payload format version 1.0
+  - Use this if you'd like to take advantage of `HTTP` APIs, but aren't yet ready to refactor your code for payload format 2.0
+- **`rest` (previous default)** - `REST` API + original API Gateway payload format
+  - Essentially the same as what is now called Lambda payload format version 1.0
 
-Changing API types from `rest` to `http` **is a partially destructive change** that will result in new API Gateway URLs being generated. Your old URLs will be destroyed – if not accounted for, this may result in a service outage.
+Changing API types from `rest` to `http` **is a partially destructive change** that will result in new API Gateway URLs being generated. **Your old URLs will be destroyed** – if not accounted for, this may result in a service outage.
 
-However, once you're using a `HTTP` API, you can safely toggle between `http/httpv2` and `httpv1` non-destructively (although code may no longer function; see `@architect/functions` below for information about a seamless upgrade).
+Once you're using a `HTTP` API, you can safely toggle between `http/httpv2` and `httpv1` non-destructively (although because the payloads differ, your code may no longer function; see below for information on seamlessly normalizing request / response payloads with `@architect/functions`).
+
+#### Configuring the Sandbox API type
 
 Configure your project's API type one of the following ways:
 
-1. Architect project manifest
+**1. Architect project manifest**
 
-Using `httpv1` as the example:
+Using `httpv1` as your API type:
 ```arc
 # app.arc|.arc|arc.yaml|etc.
 @aws
@@ -117,9 +125,9 @@ apigateway httpv1
 
 or:
 
-2. Environment variable
+**2. Environment variable**
 
-Using `rest` as the example:
+Using `rest` as your API type via CLI:
 ```sh
 ARC_API_TYPE=rest npx arc sandbox
 ```
@@ -143,7 +151,7 @@ If your existing Architect 6 app **does not use `@http` or `@static` pragmas**, 
 
 If, like many, you use `@http` or `@static`, and you've configured Sandbox to operate `REST` API mode per the above instructions, you're also ready to use Architect 7.
 
-However, you may also want to use Architect 7 to upgrade your existing `REST` API to the shiny `HTTP` stuff. If so, read on, but note: **doing so is a partially destructive change, as it would result in new API Gateway URLs being generated, and your old URLs being destroyed. If not accounted for, this may result in downtime**.
+However, you may also want to use Architect 7 to upgrade your existing `REST` API to the shiny `HTTP` stuff. If so, read on, but note: **is a partially destructive change** that will result in new API Gateway URLs being generated. **Your old URLs will be destroyed** – if not accounted for, this may result in a service outage.
 
 
 #### Why upgrade to `HTTP` APIs?
@@ -190,16 +198,16 @@ npx arc deploy --production # Production environment
 
 or:
 
-**2. One-time deployment using the `--apigateway` flag**
+**2. One-time deployment using the `--apigateway` flag via CLI**
 
 ```sh
 npx arc deploy --apigateway http # Staging environment
 npx arc deploy --apigateway http --production # Production environment
 ```
 
-Tip: if you'd like to use `HTTP` APIs with code authored for an existing `REST` API project, manually specify the Lambda v1.0 payload format with `httpv1`
+Tip: if you'd like to use `HTTP` APIs with code authored for an existing `REST` API project, manually specify the Lambda v1.0 payload format with `httpv1`.
 
-Of course, backward compatibility for `REST` APIs is retained with `rest` setting. Should you need to revert to `REST` mode, apply that via CLI with `--apigateway rest`, or in project manifest with `@aws apigateway rest`. (Again, that will destroy your URLs and generate new ones, so plan ahead for that.)
+As you might expect, backward compatibility for `REST` APIs is retained with the `rest` setting; should you need to revert to `REST` mode, apply that via CLI with `--apigateway rest`, or in project manifest with `@aws apigateway rest`. (Again, that will destroy your URLs and generate new ones, so plan ahead for that.)
 
 
 #### Apps that use `@architect/macro-http-api` macro
@@ -208,23 +216,24 @@ Unfortunately, we have observed strange side effects when using the Architect 6 
 
 If you are currently using `@architect/macro-http-api` in production, please exercise caution when upgrading to Architect 7.
 
-We've observed the following behavior in CloudFormation (which may vary or be subject to change) when running Architect 7 and `@architect/macro-http-api`:
+We've observed the following behavior in CloudFormation when running Architect 7 and `@architect/macro-http-api`:
 
 - If you leave the `@architect/macro-http-api` macro in your app and deploy with Architect 7, CloudFormation will leave your existing API intact, and deploy a second API alongside it
   - This may be useful during a transition phase, but we cannot guarantee changes will be properly reflected in both APIs
 - If you remove the `@architect/macro-http-api` macro from your app and deploy with Architect 7, CloudFormation will remove your original API (and its corresponding URL), leaving you with a fresh API and URL
 
-Because CloudFormation behavior is subject to change at AWS, and due to the aforementioned observed side effects, we advise existing `@architect/macro-http-api` macro users exercise caution upgrading to 7.
+Because CloudFormation behavior is subject to change, and due to the aforementioned observed side effects, we advise existing `@architect/macro-http-api` macro users exercise caution upgrading to Architect 7.
 
 **If you are using `@architect/macro-http-api` in production today, you should not upgrade to Architect 7 until you've conducted field testing of your own, and are certain you are ready to transition your API URLs**.
 
 
 ### Compatibility with `@architect/functions`
 
-If you're using `@architect/functions`, good news! >= `3.13.0` is fully forwards and backward compatible with `HTTP` APIs, meaning:
+If you're using `@architect/functions`, good news! `>= 3.13.0` is fully forward compatible with `HTTP` APIs and backward compatible with `REST` APIs. This means:
 - You can use existing `REST` API code with `HTTP` APIs when run through `@architect/functions`
+- You can implement `@architect/functions` in your codebase to ease any future `REST` to `HTTP` upgrades
 
-Caveat: [per AWS](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html#http-api-develop-integrations-lambda.proxy-format), `HTTP` APIs + Lambda payload format version 2.0 does not have support for `multiValueHeaders` or `multiValueQueryStringParameters`, so any code relying on those parameters should be adjusted, whether using `@architect/functions` or not.
+Caveat: [per AWS](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html#http-api-develop-integrations-lambda.proxy-format), `HTTP` APIs + Lambda payload format version 2.0 does not have support in requests for `multiValueHeaders` or `multiValueQueryStringParameters`, so any code relying on those parameters should be adjusted, whether using `@architect/functions` or not.
 
 
 ### Additional resources
@@ -237,7 +246,7 @@ Caveat: [per AWS](https://docs.aws.amazon.com/apigateway/latest/developerguide/h
 
 ## <span id=architect-6-maintenance>Architect 6 maintenance</span>
 
-Unlike [Architect 5, which remains in LTS (long-term support)](#architect-5), as of September 2020, Architect 6 will no longer be actively maintained. This is specifically because Architect 6 is a largely forward compatible release that contains potentially breaking changes only in Sandbox.
+Unlike [Architect 5, which remains in LTS (long-term support)](#architect-5), as of September 2020, Architect 6 will no longer be actively maintained. This is specifically because Architect 7 is a largely forward compatible release that only contains potentially breaking changes in Sandbox.
 
 We suggest upgrading to Architect 7 as soon as possible to take advantage of the great new features planned for 7.x.
 
