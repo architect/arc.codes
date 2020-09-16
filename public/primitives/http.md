@@ -7,9 +7,13 @@ Each `@http` function defined in your Architect project manifest, results in the
 This page covers the following topics:
 
 <a href=#provisioning><b>Provisioning HTTP functions</b></a>
+
 <a href=#req><b>Request payload</b></a>
+
 <a href=#res><b>Response payload</b></a>
+
 <a href=#sec><b>Security</b></a>
+
 <a href=#examples><b>Examples</b></a>
 
 ---
