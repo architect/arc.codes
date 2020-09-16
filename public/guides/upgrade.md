@@ -7,25 +7,25 @@ As a general philosophy, Architect's core maintainers endeavor to minimize the f
 
 ## Overview of Architect versions
 
-### Architect 5
+### Architect 5 (Yeti)
 
 Architect 5 (Yeti) represented a major milestone in the project's functionality, and was the last version to rely primarily on SDK calls to provision AWS infrastructure.
 
 Information on upgrading from Architect versions prior to v5 are still available at the [Architect v5 docs archive](https://v5.arc.codes/guides/upgrade).
 
 
-### Architect 6
+### Architect 6 (Ogopogo)
 
 Architect 6 (Ogopogo) was a ground-up rewrite of Architect, driven by user feedback, cloud vendor best practices, and extensive learnings by Architect maintainers from the first three years of the project's life.
 
-Architect 6 is largely backward compatible with Architect 5, but **depending on how you authored your Architect 5 project, there may have been [breaking changes going from 5 to 6](#architect-5-to-6)**.
+Architect 6 is largely backward compatible with Architect 5, but depending on how you authored your Architect 5 project, there may have been [breaking changes going from 5 to 6](#architect-5-to-6).
 
-What breaking changes there are, **we have attempted to provide simple, forwards-compatible upgrade paths wherever possible**.
+What breaking changes there are, we have attempted to provide simple, forwards-compatible upgrade paths wherever possible.
 
 
-### Architect 7
+### Architect 7 (Chupacabra)
 
-Architect 7 (TKTK) evolves the Architect web application stack by defaulting to API Gateway `HTTP` APIs. (AWS considers `HTTP` APIs "v2.0"; the `REST` APIs Architect has provisioned since 2017 are now considered "v1.0".)
+Architect 7 (Chupacabra) evolves the Architect web application stack by defaulting to API Gateway `HTTP` APIs. (AWS considers `HTTP` APIs "v2.0"; the `REST` APIs Architect has provisioned since 2017 are now considered "v1.0".)
 
 Deploying to an existing Architect project (that makes use of REST APIs) is completely forwards compatible; **no breaking infrastructure changes will be applied by Architect 7 unless manually and explicitly opted into**.
 
@@ -55,15 +55,15 @@ That said, Architect Sandbox workflows may potentially be impacted by this chang
 
 We know the "`HTTP`" and "`REST`" API nomenclature is confusing – don't REST APIs use HTTP? Can't you use an HTTP API to build a REST interface? – but AWS named these API types, not us. Please allow us to do our best to explain!
 
-AWS now offers three ways of using API Gateway for marshaling (non-WebSocket) HTTPS requests and responses:
-- `REST` APIs - what Architect provisioned by default through version 6.x, aka "API Gateway v1.0"
-- `HTTP` APIs - what Architect provisions by default starting in version 7.0, aka "API Gateway v2.0"
-  - Additionally, `HTTP` APIs integrate with Lambda using one of two payload format versions:
-    - Lambda payload format version 2.0 - the latest format, designed from the ground up for integrating `HTTP` APIs + Lambda
-    - Lambda payload format version 1.0 – the legacy format, which provides close – *but not exact* – emulation of legacy `REST` API + Lambda payloads
+AWS now offers two API Gateway types for marshaling (non-WebSocket) HTTPS requests and responses:
+1. **`REST`** APIs - what Architect provisioned by default through version 6.x, aka "API Gateway v1.0"
+2. **`HTTP`** APIs - what Architect provisions by default starting in version 7.0, aka "API Gateway v2.0"
+  - Additionally, `HTTP` APIs integrate with Lambda using one of two request / response payload format versions:
+    1. **Lambda payload format version 2.0** - the latest format, designed from the ground up for integrating `HTTP` APIs + Lambda
+    2. **Lambda payload format version 1.0** – the legacy format, which provides close – *but not exact* – emulation of legacy `REST` API + Lambda payloads
     - [Learn more about `HTTP` API payload formats here](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html#http-api-develop-integrations-lambda.proxy-format)
 
-Architect 7 (TKTK) evolves the Architect web application stack by **defaulting to API Gateway `HTTP` APIs using Lambda payload format version 2.0**.
+Architect 7 (Chupacabra) evolves the Architect web application stack by **defaulting to API Gateway `HTTP` APIs using Lambda payload format version 2.0**.
 
 `HTTP` APIs with Lambda payload format version 2.0 are themselves a breaking change with `REST` APIs; `HTTP` APIs with Lambda payload format version 1.0 are largely (but may not be 100%) compatible with `REST` APIs.
 
@@ -79,17 +79,17 @@ Architect 7 retains full backward compatibility for existing Architect 6 project
 
 ### Removed
 
-- Removed experimental support for `@http` static mocks
+- Removed experimental support for static mocks
   - This was a very obscure experimental feature and should not impact anyone (but can be restored by building a macro)
 
 
 ### <span id=architect-7-breaking-changes>Breaking changes
 
-All breaking changes in Architect 7 pertain to local development and testing with Sandbox, Architect's development environment. **But good news: are backward compatibility paths for Architect 6 that only require a few seconds of your time.** Read on!
+All breaking changes in Architect 7 pertain to local development and testing with Sandbox, Architect's development environment. **But good news: Sandbox 2.0, included in Architect 7, also has compatibility paths for Architect 6 that only require a few seconds of your time.** Read on!
 
 A core goal of Sandbox is to operate entirely locally and offline; that means no phoning home to AWS to introspect your current application configuration. Sandbox must run entirely from your machine using only your Architect project manifest. Thus, with the addition of `HTTP` APIs, Sandbox must now have a default API type.
 
-It naturally follows that Sandbox's default would be `HTTP` (with Lambda payload format version 2.0), since that is now the default for new projects. Because API Gateway `HTTP` APIs introduced breaking changes with `REST` APIs, existing projects may not function correctly until reconfigured to enter `REST` mode.
+It naturally follows that Sandbox's default would be `HTTP` (with Lambda payload format version 2.0), since that is now the default for new projects. Because [API Gateway `HTTP` APIs introduced breaking changes with `REST` APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html#http-api-develop-integrations-lambda.proxy-format), existing projects may not function correctly until reconfigured to enter `REST` mode.
 
 
 #### Configuring the API type in Sandbox
@@ -100,20 +100,26 @@ The following are the valid settings for API types:
 - **`httpv1`** - `HTTP` API + Lambda payload format version 1.0; use this if you'd like to take advantage of `HTTP` APIs, but aren't yet ready to refactor your code for payload format 2.0
 - **`rest` (previous default)** - `REST` API + original API Gateway payload format (essentially the same as what is now called Lambda payload format version 1.0)
 
-You can safely toggle between `http/httpv2` and `httpv1` without destroying your current API URLs (although code may no longer function; see `@architect/functions` below for information about a seamless upgrade).
+Changing API types from `rest` to `http` **is a partially destructive change** that will result in new API Gateway URLs being generated. Your old URLs will be destroyed – if not accounted for, this may result in a service outage.
 
-Configure your project's API type to `REST` (for example) one of the following ways:
+However, once you're using a `HTTP` API, you can safely toggle between `http/httpv2` and `httpv1` non-destructively (although code may no longer function; see `@architect/functions` below for information about a seamless upgrade).
+
+Configure your project's API type one of the following ways:
 
 1. Architect project manifest
+
+Using `httpv1` as the example:
 ```arc
 # app.arc|.arc|arc.yaml|etc.
 @aws
-apigateway rest
+apigateway httpv1
 ```
 
 or:
 
 2. Environment variable
+
+Using `rest` as the example:
 ```sh
 ARC_API_TYPE=rest npx arc sandbox
 ```
@@ -121,25 +127,23 @@ ARC_API_TYPE=rest npx arc sandbox
 
 #### Sandbox test environment changes
 
-- Several seldom used and largely undocumented Sandbox module APIs have breaking changes:
+- Several seldom used and largely undocumented Sandbox module APIs intended for testing have breaking changes:
   - `sandbox.start()` no longer returns a function to shut down, and should now be shut down directly with `sandbox.end()`
   - `sandbox.db()` is now `sandbox.tables()`
   - `http.close()` is now `http.end()`
   - `events.start()` & `tables.start()` no longer return server objects to be invoked with `.close()`, and should now be shut down directly with `events.end()` and `tables.end()`
-- tldr the Sandbox module API is now:
-  - `sandbox.start()`, `sandbox.end()` - almost all normal use cases
-  - `http.start()`, `http.end()` - if you just need to test HTTP things
-  - `events.start()`, `events.end()` - if you just need to test events things
-  - `tables.start()`, `tables.end()` - if you just need to test DB things
+- Please see Sandbox for additional information:
+  - [Sandbox 2.0 API](https://github.com/architect/sandbox/blob/master/readme.md)
+  - [Breaking changes to undocumented module APIs](https://github.com/architect/sandbox/blob/master/changelog.md#200-2020-09-15)
 
 
 ### Upgrade scenarios
 
 If your existing Architect 6 app **does not use `@http` or `@static` pragmas**, you're already ready to use to Architect 7.
 
-If, like many, you use `@http` or `@static`, and you cleared the above minor Sandbox changes necessary to unbreak your `REST` API usage, you're also ready to use Architect 7.
+If, like many, you use `@http` or `@static`, and you've configured Sandbox to operate `REST` API mode per the above instructions, you're also ready to use Architect 7.
 
-You may also want to use Architect 7 to upgrade your existing `REST` API to the shiny `HTTP` stuff. If so, read on, but note: **doing so is a partially destructive change, as it would result in new API Gateway URLs being generated, and your old URLs being deactivated. If not accounted for, this may result in a service outage**.
+However, you may also want to use Architect 7 to upgrade your existing `REST` API to the shiny `HTTP` stuff. If so, read on, but note: **doing so is a partially destructive change, as it would result in new API Gateway URLs being generated, and your old URLs being destroyed. If not accounted for, this may result in downtime**.
 
 
 #### Why upgrade to `HTTP` APIs?
@@ -150,17 +154,22 @@ For most applications most of the time, we now believe `HTTP` APIs are the right
 
 - `HTTP` APIs are designed to be lower-latency
 - `HTTP` APIs provision and integrate changes significantly faster
+- `HTTP` APIs are significantly less expensive: as of this writing, they cost ≤$1.00/million requests, compared to `REST` APIs, which charge $3.50/million requests (plus data transferred)
 - Default stages and routes, meaning we can finally escape the dreaded API Stage Path Part Problem (e.g. `/staging` in `https://{id}.execute-api.{region}.amazonaws.com/staging`)
 - `HTTP` APIs are where AWS is now putting the bulk of its API Gateway development effort
 - As of September 2020, `HTTP` APIs now support authorizers (which can be implemented via Architect Macros)
-- For more information, please see [issue #838](https://github.com/architect/architect/issues/838)
+- For more information, please [compare `HTTP` to `REST` APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html), and see [Architect issue #838](https://github.com/architect/architect/issues/838)
 
 
 #### Upgrading from `REST` to `HTTP`
 
-As mentioned above: **this is a partially destructive change if performed on running project**, and will result in a new API Gateway URLs being generated, and your old URLs being deactivated.
+As mentioned above: **this is a partially destructive change if performed on a running project**, and will result in a new API Gateway URLs being generated, and your old URLs being deactivated.
 
-If you'd like to upgrade your existing Architect 6 (`REST`) app to `HTTP`, here's how:
+If you need a zero-downtime means of upgrading from `REST` to `HTTP`, the simplest and most reliable built-in means for doing so is to create a second app for your new `HTTP` API.
+
+Creating a second app can be accomplished by deploying your existing app to a different AWS (org) account than your current app (i.e. by changing is keys), or simply by changing your app's name. Each has its own set of trade-offs and may result in additional complexity during your migration, so we encourage you to carefully consider and research the process by which you intend to migrate.
+
+When you're ready to upgrade your existing Architect 6 (`REST`) app to `HTTP`, here's how:
 
 **1. Architect project manifest**
 
@@ -216,6 +225,13 @@ If you're using `@architect/functions`, good news! >= `3.13.0` is fully forwards
 - You can use existing `REST` API code with `HTTP` APIs when run through `@architect/functions`
 
 Caveat: [per AWS](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html#http-api-develop-integrations-lambda.proxy-format), `HTTP` APIs + Lambda payload format version 2.0 does not have support for `multiValueHeaders` or `multiValueQueryStringParameters`, so any code relying on those parameters should be adjusted, whether using `@architect/functions` or not.
+
+
+### Additional resources
+
+- [Learn more about `HTTP` API payload formats here](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html#http-api-develop-integrations-lambda.proxy-format)
+- [Compare `HTTP` to `REST` APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html)
+- [Architect issue 838: `Promoting HTTP APIs to the default`](https://github.com/architect/architect/issues/838)
 
 ---
 
