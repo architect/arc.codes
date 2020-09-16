@@ -18,7 +18,7 @@ Information on upgrading from Architect versions prior to v5 are still available
 
 Architect 6 (Ogopogo) was a ground-up rewrite of Architect, driven by user feedback, cloud vendor best practices, and extensive learnings by Architect maintainers from the first three years of the project's life.
 
-Architect 6 is largely backward compatible with Architect 5, but **depending on how you authored your Architect 5 project, there may hae been [breaking changes going from 5 to 6](#architect-5-to-6)**.
+Architect 6 is largely backward compatible with Architect 5, but **depending on how you authored your Architect 5 project, there may have been [breaking changes going from 5 to 6](#architect-5-to-6)**.
 
 What breaking changes there are, **we have attempted to provide simple, forwards-compatible upgrade paths wherever possible**.
 
@@ -27,7 +27,7 @@ What breaking changes there are, **we have attempted to provide simple, forwards
 
 Architect 7 (TKTK) evolves the Architect web application stack by defaulting to API Gateway `HTTP` APIs. (AWS considers `HTTP` APIs "v2.0"; the `REST` APIs Architect has provisioned since 2017 are now considered "v1.0".)
 
-Deploying to an existing Architect project (that makse use of REST APIs) is completely forwards compatible; **no breaking infrastructure changes will be applied by Architect 7 unless manually and explicitly opted into**.
+Deploying to an existing Architect project (that makes use of REST APIs) is completely forwards compatible; **no breaking infrastructure changes will be applied by Architect 7 unless manually and explicitly opted into**.
 
 That said, Architect Sandbox workflows may potentially be impacted by this change. [See more below](#architect-6-to-7).
 
@@ -69,7 +69,7 @@ Architect 7 (TKTK) evolves the Architect web application stack by **defaulting t
 
 Architect 7 retains full backward compatibility for existing Architect 6 projects by continuing to deploy the same API type as you're currently using.
 
-**tl;dr – if you have an existing Architect 6 project, you can continue to deploy that project with Architect 7. No breaking infrastructure changes will be applied by Architect 7 unless manually and explicitly opting in. However, Sandbox may be broken for your local workflows and testing until you specify which API type you're using; [see breaking changes](#architect-7-breaking-changes)**
+**tldr – if you have an existing Architect 6 project, you can continue to deploy that project with Architect 7. No breaking infrastructure changes will be applied by Architect 7 unless manually and explicitly opting in. However, Sandbox may be broken for your local workflows and testing until you specify which API type you're using; [see breaking changes](#architect-7-breaking-changes)**
 
 
 ### Other changes
@@ -113,7 +113,7 @@ apigateway rest
 
 or:
 
-2. Env var
+2. Environment variable
 ```sh
 ARC_API_TYPE=rest npx arc sandbox
 ```
@@ -126,16 +126,16 @@ ARC_API_TYPE=rest npx arc sandbox
   - `sandbox.db()` is now `sandbox.tables()`
   - `http.close()` is now `http.end()`
   - `events.start()` & `tables.start()` no longer return server objects to be invoked with `.close()`, and should now be shut down directly with `events.end()` and `tables.end()`
-- tl;dr the Sandbox module API is now:
+- tldr the Sandbox module API is now:
   - `sandbox.start()`, `sandbox.end()` - almost all normal use cases
   - `http.start()`, `http.end()` - if you just need to test HTTP things
   - `events.start()`, `events.end()` - if you just need to test events things
-  - `tables.start()`, `tables.end()` - if oyu just need to test DB things
+  - `tables.start()`, `tables.end()` - if you just need to test DB things
 
 
 ### Upgrade scenarios
 
-If your existing Archtect 6 app **does not use `@http` or `@static` pragmas**, you're already ready to use to Architect 7.
+If your existing Architect 6 app **does not use `@http` or `@static` pragmas**, you're already ready to use to Architect 7.
 
 If, like many, you use `@http` or `@static`, and you cleared the above minor Sandbox changes necessary to unbreak your `REST` API usage, you're also ready to use Architect 7.
 
@@ -190,7 +190,7 @@ npx arc deploy --apigateway http --production # Production environment
 
 Tip: if you'd like to use `HTTP` APIs with code authored for an existing `REST` API project, manually specify the Lambda v1.0 payload format with `httpv1`
 
-Of course, backward compatibility for `REST` APIs is retained with `rest` setting. Should you need to rever to `REST` mode, apply that via CLI with `--apigateway rest`, or in project manifest with `@aws apigateway rest`. (Again, that will destroy your URLs and generate new ones, so plan ahead for that.)
+Of course, backward compatibility for `REST` APIs is retained with `rest` setting. Should you need to revert to `REST` mode, apply that via CLI with `--apigateway rest`, or in project manifest with `@aws apigateway rest`. (Again, that will destroy your URLs and generate new ones, so plan ahead for that.)
 
 
 #### Apps that use `@architect/macro-http-api` macro
@@ -205,7 +205,7 @@ We've observed the following behavior in CloudFormation (which may vary or be su
   - This may be useful during a transition phase, but we cannot guarantee changes will be properly reflected in both APIs
 - If you remove the `@architect/macro-http-api` macro from your app and deploy with Architect 7, CloudFormation will remove your original API (and its corresponding URL), leaving you with a fresh API and URL
 
-Because CloudFormation behavior is subject to change at AWS, and due to the aforementioned observed side effects, we strongly suggest existing `@architect/macro-http-api` macro users exercise caution upgrading to 7.
+Because CloudFormation behavior is subject to change at AWS, and due to the aforementioned observed side effects, we advise existing `@architect/macro-http-api` macro users exercise caution upgrading to 7.
 
 **If you are using `@architect/macro-http-api` in production today, you should not upgrade to Architect 7 until you've conducted field testing of your own, and are certain you are ready to transition your API URLs**.
 
@@ -434,7 +434,7 @@ Yes! `@architect/functions` is fully backward compatible with Architect 5. You c
 
 ## <span id=architect-data>Architect Data module (`@architect/data`)</span>
 
-As of the release of Architect 6, the **Architect Data module (`@architect/data`) is now deprecated**, and has been superceded by `@architect/functions` `tables()` method.
+As of the release of Architect 6, the **Architect Data module (`@architect/data`) is now deprecated**, and has been superseded by `@architect/functions` `tables()` method.
 
 
 ### Overview

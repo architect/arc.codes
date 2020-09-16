@@ -10,7 +10,7 @@ Architect primitives are based on the following AWS serverless ecosystem service
 
 - [CloudFormation](https://aws.amazon.com/cloudformation/) and [SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-reference.html#serverless-sam-cli) for AWS standard deployments
 - [Lambda](https://aws.amazon.com/lambda/) *cloud native* functions for compute
-- [API Gateway](https://aws.amazon.com/api-gateway/) for HTTP and Websocket functions
+- [API Gateway](https://aws.amazon.com/api-gateway/) for HTTP and WebSocket functions
 - [Route53](https://aws.amazon.com/route53) for DNS
 - [CloudFront](https://aws.amazon.com/cloudfront/) for CDN
 - [S3](https://aws.amazon.com/s3/) for static assets
