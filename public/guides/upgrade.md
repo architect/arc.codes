@@ -14,7 +14,7 @@ Architect 4 (Yeti) introduced generic, dependency-free HTTP functions, enhanced 
 
 ### Architect 5 (Catalope)
 
-Architect 5 (Catalope) represented a major milestone in the project's functionality, intoducing `@ws` (WebSocket) support. Catalope and was the last version to rely primarily on SDK calls to provision AWS infrastructure, and is currently in [LTS status](#architect-5).
+Architect 5 (Catalope) represented a major milestone in the project's functionality, introducing `@ws` (WebSocket) support. Catalope and was the last version to rely primarily on SDK calls to provision AWS infrastructure, and is currently in [LTS status](#architect-5).
 
 
 ### Architect 6 (Ogopogo)
