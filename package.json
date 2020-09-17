@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/arc-repos/arc.codes#readme",
   "dependencies": {
-    "@architect/architect": "^7.0.0"
+    "@architect/architect": "^7.0.1"
   },
   "devDependencies": {
     "eslint": "^7.9.0",
