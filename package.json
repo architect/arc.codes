@@ -6,7 +6,7 @@
     "deploy": "./scripts/deploy",
     "lint": "eslint . --ignore-pattern node_modules --fix",
     "spellcheck": "npx spellchecker ./public/**/*.md --no-suggestions -q -d ./scripts/dictionary.js --plugins spell indefinite-article repeated-words syntax-mentions syntax-urls",
-    "start": "npx sandbox",
+    "start": "npx arc sandbox",
     "test": "npm run lint && npm run spellcheck"
   },
   "repository": {
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/arc-repos/arc.codes#readme",
   "dependencies": {
-    "@architect/architect": "^6.6.6"
+    "@architect/architect": "^7.0.0"
   },
   "devDependencies": {
     "eslint": "^7.9.0",

@@ -5,6 +5,7 @@ arc-codes
 region us-west-1
 profile openjsf
 bucket arc.codes-deploy
+apigateway rest
 
 @cdn
 @static
