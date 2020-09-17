@@ -7,25 +7,28 @@ As a general philosophy, Architect's core maintainers endeavor to minimize the f
 
 ## Overview of Architect versions
 
-### Architect 5 (Yeti)
+### Architect 4 (Yeti)
 
-Architect 5 (Yeti) represented a major milestone in the project's functionality, and was the last version to rely primarily on SDK calls to provision AWS infrastructure.
+Architect 4 (Yeti) introduced generic, dependency-free HTTP functions, enhanced static asset support, and improved configurability. Information on upgrading from Yeti and versions prior to 4 are still available at the [Architect 5 docs archive](https://v5.arc.codes/guides/upgrade).
 
-Information on upgrading from Architect versions prior to v5 are still available at the [Architect v5 docs archive](https://v5.arc.codes/guides/upgrade).
+
+### Architect 5 (Catalope)
+
+Architect 5 (Catalope) represented a major milestone in the project's functionality, intoducing `@ws` (WebSocket) support. Catalope and was the last version to rely primarily on SDK calls to provision AWS infrastructure, and is currently in [LTS status](#architect-5).
 
 
 ### Architect 6 (Ogopogo)
 
 Architect 6 (Ogopogo) was a ground-up rewrite of Architect, driven by user feedback, cloud vendor best practices, and extensive learnings by Architect maintainers from the first three years of the project's life.
 
-Architect 6 is largely backward compatible with Architect 5, but depending on how you authored your Architect 5 project, there may have been [breaking changes going from 5 to 6](#architect-5-to-6).
+Ogopogo is backward compatible with Architect 4 & 5, but depending on how you authored your project, there may have been [breaking changes going from 4/5 to 6](#architect-5-to-6).
 
 What breaking changes there are, we have attempted to provide simple, forwards-compatible upgrade paths wherever possible.
 
 
 ### Architect 7 (Chupacabra)
 
-Architect 7 (Chupacabra) evolves the Architect web application stack by defaulting to API Gateway `HTTP` APIs. (AWS considers `HTTP` APIs "v2.0"; the `REST` APIs Architect has provisioned since 2017 are now considered "v1.0".)
+Architect 7 (Chupacabra) evolves the Architect web application stack by defaulting to API Gateway `HTTP` APIs. (AWS considers `HTTP` APIs "v2.0"; the `REST` APIs provisioned by Architect since 2017 are now considered "v1.0".)
 
 Deploying to an existing Architect project (that makes use of REST APIs) is completely forwards compatible; **no breaking infrastructure changes will be applied by Architect 7 unless manually and explicitly opted into**.
 
