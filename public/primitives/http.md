@@ -4,9 +4,7 @@
 
 Each `@http` function defined in your Architect project manifest, results in the creation of a corresponding HTTP route and AWS Lambda functions (wired to that HTTP route in API Gateway). These HTTP functions receive and respond to regular HTTP (and HTTPS) requests.
 
----
-
-### Topics
+This page covers the following topics:
 
 <a href=#provisioning><b>Provisioning HTTP functions</b></a>
 
@@ -94,26 +92,46 @@ To provision live infrastructure from your local project, running `arc deploy` w
 
 ## <span id=req>Request payload</span>
 
-The request payload has the following keys:
+- Architect `7.x` uses API Gateway [`HTTP` APIs + Lambda payload format version 2.0](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html) by default
+- Architect `<=6.x` uses API Gateway `REST` API (roughly equivalent to [Lambda payload format version 1.0](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html))
 
-- **`httpMethod`** - **String**
-  - One of `GET`, `POST`, `PATCH`, `PUT`, or `DELETE`
-- **`path`** - **String**
+> If you are an Architect 6 or earlier, please refer to the [upgrade guide](/guides/upgrade)
+
+Requests are passed to your `handler` function in an object, and include the following parameters:
+
+- `version` - **String**
+  - Payload version (e.g. `2.0`)
+- `routeKey` - **String**
+  - Tuple of HTTP method (`GET`, `POST`, `PATCH`, `PUT`, or `DELETE`) and path; URL params are surrounded in braces
+  - If path is not captured by a specific function, `routeKey` will be `$default` (and be handled by the `get /` function)
+  - Example: `GET /`, `GET /shop/{product}`
+- `rawPath` - **String**
   - The absolute path of the request
-- **`resource`** - **String**
-  - The absolute path of the request, with resources substituted for actual path parts (e.g. `/{foo}/bar`)
-- **`pathParameters`** - **Object**
-  - Any URL params, if defined in your HTTP Function's path (e.g. `foo` in `GET /:foo/bar`)
-- **`queryStringParameters`** - **Object**
+  - Example: `/`, `/shop/chocolate-chip-cookies`
+- `pathParameters` - **not present** or **Object**
+  - Any URL params, if defined in your HTTP function's path (e.g. `product` in `/shop/:product`)
+  - Example: `{ product: 'chocolate-chip-cookies' }`
+- `rawQueryString` - **String**
+  - String containing query string params of request, if any
+  - Example: `?someParam=someValue`, `''` (if none)
+- `queryStringParameters` - **not present** or **Object**
   - Any query params if present in the client request
-- **`headers`** - **Object**
+  - Example: `{ someParam: someValue }`
+- `cookies` - **not present** or **Array**
+  - Array containing all cookies, if present in client request
+  - Example: `[ 'some_cookie_name=some_cookie_value' ]`
+- `headers` - **Object**
   - All client request headers
-- **`body`** - **String (base64)**
-  - The request body in a base64-encoded buffer. You'll need to parse `request.body` before you can use it, but Architect provides  tools to do this - see <a href=#parsing-request-bodies><b>parsing request bodies</b></a>.
-- **`isBase64Encoded`** - **Boolean**
-  - Indicates whether `body` is base64-encoded binary payload (will always be true if `body` has not `null`)
+  - Example: `{ 'accept-encoding': 'gzip' }`
+- `requestContext` - **Object**
+  - Request metadata, including `http` object containing `method` and `path` (should you not want to parse the `routeKey`)
+- `body` - **not present** or **String (base64-encoded)**
+  - Contains unparsed, base64-encoded request body
+  - We suggest parsing with a [body parser helper](#parsing-request-bodies)
+- `isBase64Encoded` - **Boolean**
+  - Indicates whether `body` is base64-encoded binary payload
 
-> Note: if you are an Architect 5 user upgrading to Architect 6, please refer to the [upgrade guide for information on `request` payload changes](/guides/upgrade#request-breaking-changes)
+For additional examples, please refer to [AWS API Gateway / Lambda payload docs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html).
 
 ---
 
@@ -121,9 +139,10 @@ The request payload has the following keys:
 
 To use `request.body` you'll need to parse it first. You have multiple options, based on your preferred style:
 
-### Parse it with `arc.http.helpers.bodyParser()`
 
-Architect Functions provides a simple body parser helper; this helper takes a request object, and returns a parsed body object.
+### `arc.http.helpers.bodyParser()` helper
+
+Architect Functions provides a simple body parser; this helper takes a request object, and returns a parsed body object.
 
 ```javascript
 let arc = require('@architect/functions')
@@ -133,74 +152,83 @@ exports.handler = async function handler(request) {
   let name = body.email
   return {
     statusCode: 200,
+    headers: { 'content-type': 'text/html; charset=utf-8' },
     body: `<h1>Hi ${name}</h1>`
   }
 }
 ```
 
 
-### Request body in `await` style functions
+### Auto-parsed bodies with `async/await` handlers
 
-If you're using `await` style functions, send the request through Architect Functions [`arc.http.async`](/reference/functions/http/node/async) which will create `request.body` then pass the request on to your lambda function. You don't need to specify anything asides from the lambda function to parse the body - `arc.http.async` adds `request.body` for you.
-
-```javascript
-const route = async function handler(request) {
-  let name = request.body.email
-  return {
-    statusCode: 200,
-    body: `<h1>Hi ${name}</h1>`
-  }
-}
-
-exports.handler = arc.http.async(route)
-```
-
-### Parsing request bodies in `callback` style functions
-
-If you're using callback functions, you can use [`arc.http()`](/reference/functions/http/node/classic). Add an Express-style middleware:
+If you're using `async/await` style functions, run your function handler through Architect Functions [`arc.http.async`](/reference/functions/http/node/async), which (among other helpful things) will automatically parse the body and pass the parsed version to your function in `request.body`.
 
 ```javascript
 let arc = require('@architect/functions')
 
-function parseBody(request, res, next) {
-  request.body = arc.http.helpers.bodyParser(request)
-  next()
+async function handler (request) {
+  let name = request.body.email
+  return {
+    statusCode: 200,
+    headers: { 'content-type': 'text/html; charset=utf-8' },
+    body: `<h1>Hi ${name}</h1>`
+  }
 }
 
-function route(request, res) {
+exports.handler = arc.http.async(handler)
+```
+
+### Auto-parsed bodies in `callback` handlers
+
+If you're using callback functions, you can use [`arc.http()`](/reference/functions/http/node/classic), which (among other helpful things) will automatically parse the body and pass the parsed version to your function in `request.body`. Add an Express-style middleware:
+
+```javascript
+let arc = require('@architect/functions')
+
+function handler (request, res) {
   let name = request.body.email
   res({
     statusCode: 200,
-    html:  `<h1>Hi ${name}</h1>`
+    headers: { 'content-type': 'text/html; charset=utf-8' },
+    body: `<h1>Hi ${name}</h1>`
   })
 }
 
-exports.handler = arc.http(parseBody, route)
+exports.handler = arc.http(handler)
 ```
 
 ### The `context` argument
 
-`context` is an optional argument containing [metadata about the lambda request](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html).
+`context` is an optional final argument in your handler call that contains [metadata about the Lambda request](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html).
+
 
 ## <span id=res>Response payload</span>
 
-Responses are returned by your `handler` function in an object, and support the following parameters:
+- Architect `7.x` uses API Gateway [`HTTP` APIs + Lambda payload format version 2.0](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html) by default
+- Architect `<=6.x` uses API Gateway `REST` API (roughly equivalent to [Lambda payload format version 1.0](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html))
 
-- `statusCode` - **Number**
-  - Sets the [HTTP status code](https://http.cat)
-- `headers` - **Object**
+> If you are an Architect 6 or earlier, please refer to the [upgrade guide](/guides/upgrade)
+
+The default request payload has the following keys:
+
+If you do not include the standard response parameters below, your response will be serialized to JSON, with a status code of `200` and a JSON `content-type` header.
+
+Instead of using that JSON inference convenience, most people structure their responses using the following standard response parameters:
+
+- `statusCode` - **Number** (required)
+  - Sets the HTTP status code; usually to `200`
+- `headers` - **Object** (optional)
   - All response headers
-- `body` - **String**
-  - Contains request body, either as a plain string (no encoding or serialization required) or, if binary, base64-encoded buffer
-  - Note: The maximum `body` payload size is 6MB
-- `isBase64Encoded` - **Boolean**
-  - Indicates whether `body` is base64-encoded binary payload
+- `body` - **String** (optional)
+  - Contains response body, either as a plain string, or, if binary, a base64-encoded buffer
+  - Note: The maximum `body` payload size is 6MB; files being delivered non-dynamically should use the [Begin CDN](/en/getting-started/static-assets)
+- `isBase64Encoded` - **Boolean** (optional)
+  - Indicates whether `body` is base64-encoded binary payload; defaults to `false`
   - Required to be set to `true` if emitting a binary payload
 
-> Note: if you are an Architect 5 user upgrading to Architect 6, please refer to the [upgrade guide for information on `response` payload changes](/guides/upgrade#response-breaking-changes)
+For additional examples, please refer to [AWS API Gateway / Lambda payload docs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html).
 
-> Read more about the <a target=blank href=https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format>response payload on the AWS docs</a>
-
+---
 
 ### Anti-caching headers
 
@@ -229,30 +257,29 @@ Wider account access can be explicitly granted with custom resource policies, [d
 
 ## <span id=examples>Examples</span>
 
-### Incoming `request` object
-
-`request` is being handled by the HTTP Function `GET /salutations/:greeting`:
+Incoming `request` handled by the HTTP Function `GET /hello-world/:greeting`:
 
 ```javascript
-// Client requested yourapp.com/salutations/hello-world?testing=123
+// Client requested yourapp.com/hello-world/friend?testing=123
 {
-  httpMethod: 'GET',
-  path: '/salutations/hello-world',
-  resource: '/salutations/{greeting}',
+  version: '2.0',
+  routeKey: 'GET /hello-world/{greeting}',
+  rawPath: '/hello-world/friend',
+  rawQueryString: 'testing=123',
   headers: {
-    host: 'yourapp.com',
-    connection: 'keep-alive',
-    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36',
-    accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-    dnt: '1',
-    'accept-encoding': 'gzip, deflate, br',
-    'accept-language': 'en-US,en;q=0.9',
-    Cookie: '_idx=LbyL0kPK2xOLfdm_WnESzlsG.8kStzevVXstnEkosp0k5PK2xOz3e820NtoEx1b3VXnEC8'
+    accept: 'text/html',
+    // ... more headers
   },
-  queryStringParameters: {testing: '123'},
-  pathParameters: {greeting: 'hello-world'},
-  body: null,
-  isBase64Encoded: false
+  queryStringParameters: {
+    testing: '123'
+  },
+  requestContext: {
+    // ... various request context params
+  },
+  pathParameters: {
+    greeting: 'friend'
+  },
+  isBase64Encoded:false
 }
 ```
 
@@ -267,7 +294,8 @@ Node
 // src/http/get-index/index.js
 exports.handler = async function http(req) {
   return {
-    headers: {'content-type': 'text/html; charset=utf-8;'},
+    statusCode: 200,
+    headers: { 'content-type': 'text/html; charset=utf-8' },
     body: `<blink>Hello world from Node!</blink>`
   }
 }
@@ -279,7 +307,7 @@ Ruby:
 # src/http/get-index/index.rb
 def handler(request, context)
   html = '<b>Hello world from Ruby!</b>'
-  {headers: {'content-type': 'text/html; charset=utf-8;'}, body: html}
+  {statusCode: 200, headers: {'content-type': 'text/html; charset=utf-8;'}, body: html}
 end
 ```
 
@@ -289,7 +317,7 @@ Python:
 # src/http/get-index/index.py
 def handler(req):
   body = 'Hello world from Python!'
-  return {headers: {'content-type': 'text/html; charset=utf-8;'}, 'body': body}
+  return {'statusCode': 200, headers: {'content-type': 'text/html; charset=utf-8;'}, 'body': body}
 ```
 
 </section>

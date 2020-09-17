@@ -18,7 +18,7 @@ We ask that you do your part in helping us ensure a safe, positive, inclusive, c
 
 ## A very brief history
 
-The `app.arc` manifest takes inspiration from UNIX 'run command' files (like `.vimrc`, `.bashrc`, etc). Architect started out as `arc` which itself was an acronym for "Amazon run commands".
+The `app.arc` manifest takes inspiration from UNIX 'run command' files (like `.vimrc`, `.bashrc`, etc). Architect started out as `.arc` which itself was an acronym for "Amazon run commands".
 
 The code was developed building [Begin](https://begin.com) and granted to [JS Foundation](https://js.foundation/) in July of 2017 under the `Apache-2.0` license.
 

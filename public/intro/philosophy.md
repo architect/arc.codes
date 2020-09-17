@@ -44,10 +44,8 @@ This is a complete `app.arc` file example:
 @app
 hello
 
-@aws
-bucket cloudformation-bucket
-
 @static
+folder src/frontend
 fingerprint true
 
 @ws
@@ -79,6 +77,7 @@ Running `arc init` in the same directory as the `app.arc` file above generates t
 ```bash
 /
 |-src
+| |-frontend/
 | |-http
 | | |-get-index/
 | | |-get-likes/
