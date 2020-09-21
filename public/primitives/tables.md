@@ -48,7 +48,7 @@ accounts
   email *String
 ```
 
-*Table names are _lowercase alphanumeric_ and can contain _dashes_.* The hash key is indented two spaces and must be of the type `*String` or `*Number`. The optional partition key is defined `**String` or `**Number`.
+*Table names are _lowercase alphanumeric_ and can contain _dashes_.* The hash key is indented two spaces and must be of the type `*String` or `*Number`. The optional sort key is defined `**String` or `**Number`.
 
 > **Protip:** table names can be anything but choose a consistent naming scheme within your app namespace; one useful scheme is plural nouns like: `accounts` or `email-invites`
 
