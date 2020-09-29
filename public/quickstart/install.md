@@ -32,6 +32,12 @@ arc sandbox
 arc deploy
 ```
 
+### Check Architect version
+
+```bash
+arc version
+```
+
 Congrats, you've successfully created a powerful, modern, serverless app! Nice work. 💖
 
 ---
