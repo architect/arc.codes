@@ -8,6 +8,12 @@ This will go fast!
 npm install -g @architect/architect
 ```
 
+### Check Architect version
+
+```bash
+arc version
+```
+
 
 ### Create a project folder
 
@@ -30,12 +36,6 @@ arc sandbox
 
 ```bash
 arc deploy
-```
-
-### Check Architect version
-
-```bash
-arc version
 ```
 
 Congrats, you've successfully created a powerful, modern, serverless app! Nice work. 💖
