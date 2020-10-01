@@ -74,7 +74,7 @@ end
 
 Python
 ```python
-def handler(request):
+def handler(request, context):
   return {'statusCode': 200}
 ```
 
@@ -315,9 +315,9 @@ Python:
 
 ```python
 # src/http/get-index/index.py
-def handler(req):
+def handler(request, context):
   body = 'Hello world from Python!'
-  return {'statusCode': 200, headers: {'content-type': 'text/html; charset=utf-8;'}, 'body': body}
+  return {'statusCode': 200, 'headers': {'content-type': 'text/html; charset=utf-8;'}, 'body': body}
 ```
 
 </section>
