@@ -17,7 +17,7 @@ npm install -g @architect/architect
 ```
 
 
-## 2. Run `mkdir your-app-name && arc init your-app-name` to generate a basic project:
+## 2. Run `mkdir your-app-name && arc init your-app-name & cd your-app-name` to generate a basic project:
 
 ```bash
 /
