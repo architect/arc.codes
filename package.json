@@ -1,0 +1,11 @@
+{
+  "name": "begin-app",
+  "version": "0.0.0",
+  "description": "A simple Begin app with the minimum necessary file structure",
+  "scripts": {
+    "start": "npx sandbox"
+  },
+  "devDependencies": {
+    "@architect/sandbox": "^2.0"
+  }
+}

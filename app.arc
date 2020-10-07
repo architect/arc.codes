@@ -1,0 +1,4 @@
+@app
+begin-app
+
+@static
