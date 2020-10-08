@@ -21,5 +21,5 @@ production https://exmple.com
 
 ---
 
-## Next: [Scheduling functions with `@scheduled`](/reference/arc/scheduled)
+## Next: [Creating SQS queues with `@queues`](/reference/arc/queues)
 

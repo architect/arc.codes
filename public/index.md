@@ -99,7 +99,7 @@ Your new app will be online within seconds.
 ---
 
 ### Useful links
-- [Details for upgrading from Architect 6 to 7](/guides/upgrade)
+- [Details for upgrading Architect](/guides/upgrade)
 - [Tinker in the playground](/playground)
 - [Learn about HTTP Functions](/primitives/http)
 ---
