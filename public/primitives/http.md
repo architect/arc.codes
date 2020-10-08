@@ -31,12 +31,15 @@ testapp
 @http
 get /
 get /about
-get /posts/:postID
+any /posts/:postID
 post /login
 post /logout
 post /posts
 patch /posts/:postID
 delete /posts/:postID
+options /
+head /
+get /*
 ```
 
 > Note how clear it is what this app does simply by reviewing its `app.arc` file!
@@ -45,12 +48,15 @@ Running `arc init` with the project manifest above will generate the following l
 
 - `/src/http/get-index`
 - `/src/http/get-about`
-- `/src/http/get-posts-000postID`
+- `/src/http/any-posts-000postID`
 - `/src/http/post-login`
 - `/src/http/post-logout`
 - `/src/http/post-posts`
 - `/src/http/patch-posts-000postID`
 - `/src/http/delete-posts-000postID`
+- `/src/http/options-index`
+- `/src/http/head-index`
+- `/src/http/get-catchall`
 
 > Learn more about [Architect project structure and layout here](/quickstart/layout), and learn how to [change your functions' runtimes here](/reference/arc-config/runtime)
 
