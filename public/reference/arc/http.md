@@ -4,7 +4,7 @@
 
 ### Syntax
 
-Each route is a tuple of an HTTP method and a path
+Each HTTP route is a tuple of an HTTP method and a path.
 
 #### Methods
 - Each route begins with one of the following:
@@ -19,24 +19,25 @@ Each route is a tuple of an HTTP method and a path
 
 #### Path syntax
 
-- Paths support the following syntax:
-  - Paths must begin with a leading slash
-  - Static paths (and each subsequent part) must begin with a letter
-    - Static paths may contain `[a-z0-9-_.]`
-    - Example: `get /foo/bar123`
-  - Dynamic paths can contain URL parameters or catchalls
-    - URL parameters are denoted with colons: `:`, followed by `[A-Za-z0-9]`
-      - Params do not capture requests for resources nested in lower path parts
-      - Example: `get /:foo`
-      - See also: [Express route parameters](https://expressjs.com/en/guide/routing.html#route-parameters)
-    - Catchalls are defined with a `*`, followed by no additional characters
-      - Catchalls are greedy and capture requests for resources in all nested path parts
-      - Example: `get /foo/*`
+Paths support the following syntax:
+
+- Paths must begin with a leading slash
+- Static paths (and each subsequent part) must begin with a letter
+  - Static paths may contain `[a-z0-9-_.]`
+  - Example: `get /foo/bar123`
+- Dynamic paths can contain **URL parameters** or **catchalls**
+  - URL parameters are denoted with colons: `:`, followed by `[A-Za-z0-9]`
+    - Params do not capture requests for resources nested in lower path parts
+    - Example: `get /:foo`
+    - See also: [Express route parameters](https://expressjs.com/en/guide/routing.html#route-parameters)
+  - Catchalls are defined with a `*`, followed by no additional characters
+    - Catchalls are greedy and capture requests for resources in all nested path parts
+    - Example: `get /foo/*`
 
 
 ### Example
 
-This `app.arc` file defines some typical HTML routes:
+This `app.arc` file defines some typical routes:
 
 ```arc
 @app
@@ -50,7 +51,7 @@ get /contact
 post /contact
 ```
 
-The `app.arc` above generates the following functions:
+The `app.arc` above generates the following functions within your project:
 
 ```bash
 /
