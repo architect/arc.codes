@@ -40,7 +40,6 @@ let alias = {
   '/reference/cli/logs':    '/reference/cli/logs.md',
   '/reference/cli/package': '/reference/cli/package.md',
   '/reference/cli/sandbox': '/reference/cli/sandbox.md',
-  '/reference/cli/repl':    '/reference/cli/repl.md',
   '/reference/cli/version': '/reference/cli/version.md',
 
   // Runtime helpers

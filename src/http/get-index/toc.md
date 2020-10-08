@@ -31,7 +31,6 @@
     - [arc logs](/reference/cli/logs)
     - [arc package](/reference/cli/package)
     - [arc sandbox](/reference/cli/sandbox)
-    - [arc repl](/reference/cli/repl)
   - `app.arc` pragmas
     - [@app](/reference/arc/app)
     - [@aws](/reference/arc/aws)
