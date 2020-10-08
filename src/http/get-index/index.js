@@ -67,6 +67,7 @@ let alias = {
   '/reference/arc/events':    '/reference/arc/events.md',
   '/reference/arc/http':      '/reference/arc/http.md',
   '/reference/arc/indexes':   '/reference/arc/indexes.md',
+  '/reference/arc/proxy':   '/reference/arc/proxy.md',
   '/reference/arc/queues':    '/reference/arc/queues.md',
   '/reference/arc/scheduled': '/reference/arc/scheduled.md',
   '/reference/arc/static':    '/reference/arc/static.md',

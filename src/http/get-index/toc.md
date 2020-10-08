@@ -38,6 +38,7 @@
     - [@events](/reference/arc/events)
     - [@http](/reference/arc/http)
     - [@indexes](/reference/arc/indexes)
+    - [@proxy](/reference/arc/proxy)
     - [@queues](/reference/arc/queues)
     - [@scheduled](/reference/arc/scheduled)
     - [@static](/reference/arc/static)
