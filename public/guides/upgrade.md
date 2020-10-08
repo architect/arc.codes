@@ -7,23 +7,11 @@ As a general philosophy, Architect's core maintainers endeavor to minimize the f
 
 ## Overview of Architect versions
 
-### Architect 4 (Yeti)
+### Architect 8 (El Chupacabra)
 
-Architect 4 (Yeti) introduced generic, dependency-free HTTP functions, enhanced static asset support, and improved configurability. Information on upgrading from Yeti and versions prior to 4 are still available at the [Architect 5 docs archive](https://v5.arc.codes/guides/upgrade).
+Architect 8 (El Chupacabra) improves API Gateway `HTTP` APIs by adding [`@proxy`](/reference/arc/proxy) support for migrating old APIs, and `any` HTTP method support and `*` catchall syntax, while also improving the default greedy catchall behavior of `get /` to be literal to what's found in the Architect manifest.
 
-
-### Architect 5 (Catalope)
-
-Architect 5 (Catalope) represented a major milestone in the project's functionality, introducing `@ws` (WebSocket) support. Catalope and was the last version to rely primarily on SDK calls to provision AWS infrastructure, and is currently in [LTS status](#architect-5).
-
-
-### Architect 6 (Ogopogo)
-
-Architect 6 (Ogopogo) was a ground-up rewrite of Architect, driven by user feedback, cloud vendor best practices, and extensive learnings by Architect maintainers from the first three years of the project's life.
-
-Ogopogo is backward compatible with Architect 4 & 5, but depending on how you authored your project, there may have been [breaking changes going from 4/5 to 6](#architect-5-to-6).
-
-What breaking changes there are, we have attempted to provide simple, forwards-compatible upgrade paths wherever possible.
+Although uncommon, certain Architect applications that use `get /` beyond handling `get` requests to `/` may be impacted by this change. [See more below](#architect-7-to-8).
 
 
 ### Architect 7 (Chupacabra)
@@ -35,11 +23,23 @@ Deploying to an existing Architect project (that makes use of REST APIs) is comp
 That said, Architect Sandbox workflows may potentially be impacted by this change. [See more below](#architect-6-to-7).
 
 
-### Architect 8 (El Chupacabra)
+### Architect 6 (Ogopogo)
 
-Architect 8 (El Chupacabra) improves API Gateway `HTTP` APIs by adding `any` HTTP method support and `*` catchall syntax, while also improving the default greedy catchall behavior of `get /` to be literal to what's found in the Architect manifest.
+Architect 6 (Ogopogo) was a ground-up rewrite of Architect, driven by user feedback, cloud vendor best practices, and extensive learnings by Architect maintainers from the first three years of the project's life.
 
-Although uncommon, certain Architect applications that use `get /` beyond handling `get` requests to `/` may be impacted by this change. [See more below](#architect-7-to-8).
+Ogopogo is backward compatible with Architect 4 & 5, but depending on how you authored your project, there may have been [breaking changes going from 4/5 to 6](#architect-5-to-6).
+
+What breaking changes there are, we have attempted to provide simple, forwards-compatible upgrade paths wherever possible.
+
+
+### Architect 5 (Catalope)
+
+Architect 5 (Catalope) represented a major milestone in the project's functionality, introducing `@ws` (WebSocket) support. Catalope and was the last version to rely primarily on SDK calls to provision AWS infrastructure, and is currently in [LTS status](#architect-5).
+
+
+### Architect 4 (Yeti)
+
+Architect 4 (Yeti) introduced generic, dependency-free HTTP functions, enhanced static asset support, and improved configurability. Information on upgrading from Yeti and versions prior to 4 are still available at the [Architect 5 docs archive](https://v5.arc.codes/guides/upgrade).
 
 ---
 
@@ -47,9 +47,9 @@ Although uncommon, certain Architect applications that use `get /` beyond handli
 
 <a href=#architect-7-to-8><b>Architect 7 &rarr; 8</b></a>
 
-<a href=#architect-6-to-7><b>Architect 6 &rarr; 7</b></a>
+<a href=#architect-6-7-maintenance><b>Architect 6 / 7 maintenance</b></a>
 
-<a href=#architect-6-maintenance><b>Architect 6 maintenance</b></a>
+<a href=#architect-6-to-7><b>Architect 6 &rarr; 7</b></a>
 
 <a href=#architect-5-to-6><b>Architect 5 &rarr; 6</b></a>
 
@@ -120,6 +120,14 @@ Architect 8 is fully compatible with `@architect/functions`.
 
 - [Architect issue 973: `Improve the default behavior of get /`](https://github.com/architect/architect/issues/973)
 - [Architect issue 969: `New @http syntax: * for {proxy+}`](https://github.com/architect/architect/issues/969)
+
+---
+
+## <span id=architect-6-7-maintenance>Architect 6 + 7 maintenance</span>
+
+Unlike [Architect 5, which remains in LTS (long-term support)](#architect-5), Architect 6 + 7-series are not actively maintained. This is specifically because Architect 6 + 7 are a largely forward-compatible releases that only contain minor breaking changes that are easily remediated.
+
+We suggest upgrading to Architect 8 as soon as possible to take advantage of the great new features planned for 8.x.
 
 ---
 
@@ -315,14 +323,6 @@ Caveat: [per AWS](https://docs.aws.amazon.com/apigateway/latest/developerguide/h
 - [Learn more about `HTTP` API payload formats here](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html#http-api-develop-integrations-lambda.proxy-format)
 - [Compare `HTTP` to `REST` APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html)
 - [Architect issue 838: `Promoting HTTP APIs to the default`](https://github.com/architect/architect/issues/838)
-
----
-
-## <span id=architect-6-maintenance>Architect 6 maintenance</span>
-
-Unlike [Architect 5, which remains in LTS (long-term support)](#architect-5), as of September 2020, Architect 6 will no longer be actively maintained. This is specifically because Architect 7 is a largely forward compatible release that only contains potentially breaking changes in Sandbox.
-
-We suggest upgrading to Architect 7 as soon as possible to take advantage of the great new features planned for 7.x.
 
 ---
 

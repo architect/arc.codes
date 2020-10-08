@@ -35,4 +35,4 @@ DynamoDB is a powerful database. There is a great deal more to learn to take ful
 
 ---
 
-## Next: [Creating SQS queues with `@queues`](/reference/arc/queues)
+## Next: [Setup `@proxy`](/reference/arc/proxy)

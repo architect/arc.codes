@@ -51,6 +51,7 @@ These pragmas are for global and cloud-vendor configuration, the most important 
 
 - [`@app`](/reference/arc-config/app) - **[Required]** The application namespace
 - [`@aws`](/reference/arc-config/aws) - AWS-specific config (also includes global runtime setting)
+- [`@proxy`](/reference/arc/proxy) - Proxy to legacy systems for migrating to serverless
 
 
 ### 2. Functions

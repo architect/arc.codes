@@ -32,6 +32,7 @@ The `app.arc` format follows a few simple rules:
 - [`@events`](/reference/arc/events) defines application events you can publish and subscribe to
 - [`@http`](/reference/arc/http) defines HTTP (i.e. `text/html`) handlers
 - [`@indexes`](/reference/arc/indexes) defines table global secondary indexes
+- [`@proxy`](/reference/arc/proxy) proxy an existing legacy app to migrate to serverless
 - [`@scheduled`](/reference/arc/scheduled) defines functions that run on a schedule
 - [`@static`](/reference/arc/static) defines S3 buckets for static assets
 - [`@tables`](/reference/arc/tables) defines DynamoDB database tables and trigger functions for them

@@ -17,7 +17,7 @@ npm install -g @architect/architect
 ```
 
 
-## 2. Run `mkdir your-app-name && arc init your-app-name & cd your-app-name` to generate a basic project:
+## 2. Run `mkdir your-app-name && arc init your-app-name && cd your-app-name` to generate a basic project:
 
 ```bash
 /
@@ -99,7 +99,7 @@ Your new app will be online within seconds.
 ---
 
 ### Useful links
-- [Details for upgrading from Architect 6 to 7](/guides/upgrade)
+- [Details for upgrading Architect](/guides/upgrade)
 - [Tinker in the playground](/playground)
 - [Learn about HTTP Functions](/primitives/http)
 ---
