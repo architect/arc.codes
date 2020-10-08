@@ -4,15 +4,35 @@
 
 ### Syntax
 
-- Each route begins with `get`, `post`, `put`, `patch` or `delete` followed by the desired path
-- Must have a `/` route defined
-- Additional routes must include a leading slash
-- Dashes and underscores are not allowed
-- Must begin with a letter
+Each route is a tuple of an HTTP method and a path
 
-### Additional bits
-- Advised maximum of 100 characters
-- Optional Express-style URL parameters denoted with colons (`:`)
+#### Methods
+- Each route begins with one of the following:
+  - `get`
+  - `post`
+  - `put`
+  - `patch`
+  - `delete`
+  - `options`
+  - `head`
+  - `any` (which receives all method types)
+
+#### Path syntax
+
+- Paths support the following syntax:
+  - Paths must begin with a leading slash
+  - Static paths (and each subsequent part) must begin with a letter
+    - Static paths may contain `[a-z0-9-_.]`
+    - Example: `get /foo/bar123`
+  - Dynamic paths can contain URL parameters or catchalls
+    - URL parameters are denoted with colons: `:`, followed by `[A-Za-z0-9]`
+      - Params do not capture requests for resources nested in lower path parts
+      - Example: `get /:foo`
+      - See also: [Express route parameters](https://expressjs.com/en/guide/routing.html#route-parameters)
+    - Catchalls are defined with a `*`, followed by no additional characters
+      - Catchalls are greedy and capture requests for resources in all nested path parts
+      - Example: `get /foo/*`
+
 
 ### Example
 
@@ -44,7 +64,7 @@ The `app.arc` above generates the following functions:
 └── package.json
 ```
 
-Note: The route `/pages/:dateID` corresponding handler deliberately looks a bit weird with the triple `000`. This is so you can quickly differentiate URL params from URL parts.
+> Note: The route `/pages/:dateID`'s corresponding handler deliberately looks a bit strange, thanks to its leading `000`. This is to aid in quickly differentiating URL parameters from other path parts.
 
 
 ---

@@ -34,9 +34,18 @@ Deploying to an existing Architect project (that makes use of REST APIs) is comp
 
 That said, Architect Sandbox workflows may potentially be impacted by this change. [See more below](#architect-6-to-7).
 
+
+### Architect 8 (El Chupacabra)
+
+Architect 8 (El Chupacabra) improves API Gateway `HTTP` APIs by adding `any` HTTP method support and `*` catchall syntax, while also improving the default greedy catchall behavior of `get /` to be literal to what's found in the Architect manifest.
+
+Although uncommon, certain Architect applications that use `get /` beyond handling `get` requests to `/` may be impacted by this change. [See more below](#architect-7-to-8).
+
 ---
 
 ### Topics
+
+<a href=#architect-7-to-8><b>Architect 7 &rarr; 8</b></a>
 
 <a href=#architect-6-to-7><b>Architect 6 &rarr; 7</b></a>
 
@@ -49,6 +58,68 @@ That said, Architect Sandbox workflows may potentially be impacted by this chang
 <a href=#architect-data><b>Architect Data module (`@architect/data`)</b></a>
 
 <a href=#architect-5><b>Architect 5 LTS maintenance schedule</b></a>
+
+---
+
+## <span id=architect-7-to-8>Architect 7 &rarr; 8</span>
+
+### Overview
+
+Architect 8 (El Chupacabra) addresses some common feedback related to `@http get /`. Folks have told us that it's confusing that `get /` is a special route that also serves as a greedy catchall, capturing anything not explicitly defined in their manifest.
+
+Architect 8 adds `any` and `*` to Architect's `@http` route syntax for `HTTP` APIs. This allows us to make `@http get /` literal, and enable users to opt into explicitly defining a greedy root catchall with `any /*`.
+
+If your existing Architect app **does not use `@http` or `@static` pragmas**, or is running an API Gateway `REST` API, you're already ready to use to Architect 8.
+
+
+### Removed
+
+The `arc repl` local workflow has been retired. The module remains available for download at `@architect/repl` if you want to install and run it with `npx arc-repl`, although we will no longer officially support or maintain it.
+
+
+### <span id=architect-8-breaking-changes>Breaking changes
+
+Architect 8 has a single breaking deploytime change that alters core application behavior: `@http get /` is now completely literal for `HTTP` APIs, and no longer serves as a greedy catchall.
+
+However, even if you use `@http get /` with an `HTTP` API, you may not be broken by this change. The following criteria should identify whether you would be impacted by upgrading:
+
+1. You are running Architect 7
+2. Your project has `@http get /`
+3. You've deployed an API Gateway `HTTP` API (and not a `REST` API.
+4. You're using `get /` as a greedy catchall (i.e. it's handling requests for non-`get` methods, or non-`/` paths)
+
+If your project does not meet all four of the above criteria, you can safely upgrade from 7 to 8.
+
+> If you're not sure whether you're using an `HTTP` or `REST` API, visit the API Gateway console; its type will be shown next to it in the API list
+
+#### Resolution
+
+If all four of the above criteria describe your project, you will need to make a minor alteration to your project in order to upgrade to Architect 8. It should take no more than 30 seconds, and poses no risk.
+- Change `get /` in your Architect project manifest to `any /*`
+- Move your `src/http/get-index` folder to `src/http/any-catchall`
+- That's it!
+
+#### Example (before)
+```arc
+@http
+get /
+```
+
+#### Example (after)
+```arc
+@http
+any /*
+```
+
+### Compatibility with `@architect/functions`
+
+Architect 8 is fully compatible with `@architect/functions`.
+
+
+### Additional resources
+
+- [Architect issue 973: `Improve the default behavior of get /`](https://github.com/architect/architect/issues/973)
+- [Architect issue 969: `New @http syntax: * for {proxy+}`](https://github.com/architect/architect/issues/969)
 
 ---
 
@@ -166,7 +237,7 @@ For most applications most of the time, we now believe `HTTP` APIs are the right
 - `HTTP` APIs are designed to be lower-latency
 - `HTTP` APIs provision and integrate changes significantly faster
 - `HTTP` APIs are significantly less expensive: as of this writing, they cost ≤$1.00/million requests, compared to `REST` APIs, which charge $3.50/million requests (plus data transferred)
-- Default stages and routes, meaning we can finally escape the dreaded API Stage Path Part Problem (e.g. `/staging` in `https://{id}.execute-api.{region}.amazonaws.com/staging`)
+- `HTTP` APIs support default stages and routes, meaning we can finally escape the dreaded API Stage Path Part Problem (e.g. `/staging` in `https://{id}.execute-api.{region}.amazonaws.com/staging`)
 - `HTTP` APIs are where AWS is now putting the bulk of its API Gateway development effort
 - As of September 2020, `HTTP` APIs now support authorizers (which can be implemented via Architect Macros)
 - For more information, please [compare `HTTP` to `REST` APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html), and see [Architect issue #838](https://github.com/architect/architect/issues/838)
@@ -236,7 +307,7 @@ If you're using `@architect/functions`, good news! `>= 3.13.0` is fully forward 
 - You can use existing `REST` API code with `HTTP` APIs when run through `@architect/functions`
 - You can implement `@architect/functions` in your codebase to ease any future `REST` to `HTTP` upgrades
 
-Caveat: [per AWS](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html#http-api-develop-integrations-lambda.proxy-format), `HTTP` APIs + Lambda payload format version 2.0 does not have support in requests for `multiValueHeaders` or `multiValueQueryStringParameters`, so any code relying on those parameters should be adjusted, whether using `@architect/functions` or not.
+Caveat: [per AWS](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html#http-api-develop-integrations-lambda.proxy-format), `HTTP` APIs + Lambda payload format version 2.0 requests do not support `multiValueHeaders` or `multiValueQueryStringParameters`, so any code relying on those parameters should be adjusted, whether using `@architect/functions` or not.
 
 
 ### Additional resources
