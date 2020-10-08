@@ -13,9 +13,9 @@ Each HTTP route is a tuple of an HTTP method and a path.
   - `put`
   - `patch`
   - `delete`
-  - `options`
-  - `head`
-  - `any` (which receives all method types)
+  - `options` - Only available in `HTTP`-type APIs in Architect 8+
+  - `head` - Only available in `HTTP`-type APIs in Architect 8+
+  - `any` - Receives all method types, only available in `HTTP`-type APIs
 
 #### Path syntax
 
@@ -31,6 +31,7 @@ Paths support the following syntax:
     - Example: `get /:foo`
     - See also: [Express route parameters](https://expressjs.com/en/guide/routing.html#route-parameters)
   - Catchalls are defined with a `*`, followed by no additional characters
+    - Only available in `HTTP`-type APIs in Architect 8+
     - Catchalls are greedy and capture requests for resources in all nested path parts
     - Example: `get /foo/*`
 
