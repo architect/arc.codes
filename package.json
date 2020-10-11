@@ -28,16 +28,6 @@
     "tape": "^5.0.1",
     "tiny-json-http": "^7.3.0"
   },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "tabWidth": 2,
-    "useTabs": false,
-    "trailingComma:": "es5",
-    "bracketSpacing": false,
-    "endOfLine": "lf",
-    "printWidth": 1000
-  },
   "keywords": [
     "aws",
     "lambda",
