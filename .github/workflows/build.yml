@@ -40,6 +40,11 @@ jobs:
       - name: Install
         run: npm install
 
+      - name: Hydrate
+        run: npx arc hydrate
+        env:
+          CI: true
+
       - name: Test
         run: npm test
         env:
