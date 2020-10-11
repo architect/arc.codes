@@ -1,6 +1,6 @@
 # Static
 
-Get the URL of a static assset
+Get the URL of a static asset
 
 ---
 
@@ -30,7 +30,7 @@ pip install --target ./vendor architect-functions
 
 ---
 
-## Get the URL for an asset on S3 
+## Get the URL for an asset on S3
 
 Node
 
@@ -57,4 +57,3 @@ avatar = arc.static('/avatar')
 ```
 
 ---
-
