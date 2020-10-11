@@ -44,6 +44,9 @@
     "framework"
   ],
   "eslintConfig": {
-    "extends": "@architect/eslint-config"
+    "extends": "@architect/eslint-config",
+    "rules": {
+      "require-await": "off"
+    }
   }
 }

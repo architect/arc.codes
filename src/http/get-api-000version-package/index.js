@@ -5,7 +5,7 @@ let pkg = require('@architect/package')
  * @param {String} req.query.arc
  * @returns {AWS::Serverless} sam.json
  */
-exports.handler = async function http(req) {
+exports.handler = async function http (req) {
 
   let statusCode
   let body
@@ -14,7 +14,7 @@ exports.handler = async function http(req) {
     statusCode = 200
     body = JSON.stringify(pkg(parse(req.queryStringParameters.arc)))
   }
-  catch(e) {
+  catch (e) {
     statusCode = 500
     body = JSON.stringify({
       name: e.name,
@@ -23,5 +23,5 @@ exports.handler = async function http(req) {
     })
   }
 
-  return {statusCode, body}
+  return { statusCode, body }
 }

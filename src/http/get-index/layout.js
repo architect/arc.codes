@@ -14,7 +14,7 @@ let arcfile = fs.readFileSync(path.join(__dirname, 'assets', 'arcfile.js')).toSt
 let codeExamples = fs.readFileSync(path.join(__dirname, 'assets', 'code-examples.js')).toString()
 let nav = fs.readFileSync(path.join(__dirname, 'assets', 'nav.js')).toString()
 
-module.exports = function layout(filename, {headers, body}) {
+module.exports = function layout (filename, { headers, body }) {
   if (!cache[filename]) {
     let title = 'Architect serverless framework'
     let classes = !logo ? '' : 'home'
@@ -80,6 +80,6 @@ module.exports = function layout(filename, {headers, body}) {
 </body>
 </html>`.trim()
   }
-  return {headers, body: cache[filename]}
+  return { headers, body: cache[filename] }
 }
 

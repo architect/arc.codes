@@ -93,4 +93,4 @@ let plugins = {
   ]
 }
 
-exports.handler = arc.http.proxy.public({alias, plugins})
+exports.handler = arc.http.proxy.public({ alias, plugins })
