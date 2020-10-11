@@ -11,7 +11,7 @@ async function render () {
   // render preview
   let preview = document.getElementById('js-preview')
   let code = JSON.stringify(json, null, 2)
-  preview.innerHTML = cloudFormation({code})
+  preview.innerHTML = cloudFormation({ code })
 
   // render share input
   let share = `${window.location}?arc=${encodeURIComponent(arc)}`

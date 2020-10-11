@@ -1,6 +1,6 @@
 /* eslint-env browser */
 for (let item of document.querySelectorAll('.nav > nav ul li b')) {
-  item.addEventListener('click', function click(e) {
+  item.addEventListener('click', function click (e) {
     e.target.nextSibling.classList.toggle('hide')
   })
 }
@@ -11,7 +11,7 @@ let defaults = [
 ]
 
 let current = window.location.pathname.replace('/production', '')
-let isDefault = defaults.some(i=> current.startsWith(i))
+let isDefault = defaults.some(i => current.startsWith(i))
 
 if (isDefault || current === '/') {
   document.getElementById('intro').nextSibling.classList.toggle('hide')

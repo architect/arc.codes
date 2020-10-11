@@ -6,7 +6,7 @@ for (let item of els) {
   parent.classList.add('language-arc')
   item.remove()
   let html = ``
-  arc.forEach(line=> {
+  arc.forEach(line => {
     if (line.startsWith('#')) {
       html += `<code style="color:grey;">${line}\n</code>`
     }
