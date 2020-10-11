@@ -4,8 +4,8 @@
   "description": "Architect docs: https://arc.codes - Create, deploy, and maintain next-generation AWS cloud function-based serverless infrastructure with full local, offline workflows, and more.",
   "scripts": {
     "deploy": "./scripts/deploy",
-    "lint": "eslint . --ignore-pattern node_modules --fix",
-    "spellcheck": "npx spellchecker ./public/**/*.md --no-suggestions -q -d ./scripts/dictionary.js --plugins spell indefinite-article repeated-words syntax-mentions syntax-urls",
+    "lint": "eslint . --fix",
+    "spellcheck": "cross-env npx spellchecker ./public/**/*.md --no-suggestions -q -d ./scripts/dictionary.js --plugins spell indefinite-article repeated-words syntax-mentions syntax-urls",
     "start": "npx arc sandbox",
     "test": "npm run lint && npm run spellcheck"
   },
@@ -18,10 +18,11 @@
     "url": "https://github.com/arc-repos/arc.codes/issues"
   },
   "homepage": "https://github.com/arc-repos/arc.codes#readme",
-  "dependencies": {
-    "@architect/architect": "^8.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@architect/architect": "^8.0.0",
+    "@architect/eslint-config": "^1.0.0",
+    "cross-env": "^7.0.2",
     "eslint": "^7.11.0",
     "spellchecker-cli": "^4.4.0",
     "tap-spec": "^5.0.0",
