@@ -65,7 +65,7 @@ Architect 4 (Yeti) introduced generic, dependency-free HTTP functions, enhanced 
 
 ### Overview
 
-Architect 8 (El Chupacabra) addresses some common feedback related to `@http get /`. Folks have told us that it's confusing that `get /` is a special route that also serves as a greedy catchall, capturing anything not explicitly defined in their manifest.
+Architect 8 (El Chupacabra) addresses some common feedback related to `@http get /`. Folks have told us that it's confusing that `get /` is a special route that also serves as a greedy catchall, capturing requests to routes not explicitly defined in their manifest.
 
 Architect 8 adds `any` and `*` to Architect's `@http` route syntax for `HTTP` APIs. This allows us to make `@http get /` literal, and enable users to opt into explicitly defining a greedy root catchall with `any /*`.
 
@@ -85,12 +85,13 @@ However, even if you use `@http get /` with an `HTTP` API, you may not be broken
 
 1. You are running Architect 7
 2. Your project has `@http get /`
-3. You've deployed an API Gateway `HTTP` API (and not a `REST` API.
-4. You're using `get /` as a greedy catchall (i.e. it's handling requests for non-`get` methods, or non-`/` paths)
+3. You've deployed an API Gateway `HTTP` API (and not a `REST` API).
+4. You're using `get /` as a greedy catchall (i.e. your `get /` function is handling requests for non-`get` methods, or non-`/` paths)
 
-If your project does not meet all four of the above criteria, you can safely upgrade from 7 to 8.
+If your project **does not meet all four of the above criteria, you can safely upgrade** from 7 to 8.
 
-> If you're not sure whether you're using an `HTTP` or `REST` API, visit the API Gateway console; its type will be shown next to it in the API list
+> If you're not sure whether you're using an `HTTP` or `REST` API, visit the API Gateway console; its type will be shown next to it in the API list.
+
 
 #### Resolution
 
