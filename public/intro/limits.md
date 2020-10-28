@@ -27,9 +27,11 @@ Architect primitives are based on the following AWS serverless ecosystem service
 
 ## Cloud limits and gotchas
 
-- Lambda cold starts are vicious on large Lambdas; the best antidote is to author small as possible Lambda functions (rule of thumb: sub 5MB compressed, including modules, usually results in sub-second execution)
+- Cold starts happen to large Lambdas; the solution is small as possible function payloads (rule of thumb: sub 5MB compressed, including modules, will always result in sub-second execution)
 - Lambda functions are time-limited to 5 seconds [by default](/reference/arc-config/aws). This can be [adjusted](/reference/arc-config/aws), however they cannot execute for longer than 15 minutes maximum. You can also use events and queues as background tasks to break work down into smaller chunks.
-- CloudFormation templates can only have 200 resources; Architect can nest templates but API Gateway can only support 300 routes and many other limits can apply
+- CloudFormation templates can only have 500 resources
+
+…and many other limits can apply! When in doubt refer to the [official AWS documentation](https://docs.aws.amazon.com) for all limits and quotas; remember you can often request increases through support also! 
 
 ---
 
