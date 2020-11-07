@@ -35,7 +35,7 @@ pip install --target ./vendor architect-functions
 Node
 
 ```javascript
-let arc = require('@achitect/functions')
+let arc = require('@architect/functions')
 
 let avatar = arc.static('/avatar')
 ```
