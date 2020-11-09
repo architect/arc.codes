@@ -1,0 +1,35 @@
+:root {
+  --sidebar: 17.666rem;
+}
+.two-column {
+  /* Height: Header | Content */
+  grid-template-rows: 3rem 1fr;
+  /* Width: Sidebar | Content */
+  grid-template-columns: 17.666rem 1fr;
+}
+.h-logo {
+  height:1.5rem;
+}
+.left-sidebar {
+  /* Hide Sidebar off screen in mobile */
+  left: calc(var(--sidebar) * -1);
+}
+.open,
+.transition-x {
+  transition: transform 100ms cubic-bezier(0.23, 1, 0.320, 1);
+}
+.open,
+.translate-x-sidebar {
+  transform: translateX(var(--sidebar));
+}
+
+@media only screen and (min-width:48em) {
+  .open,
+  .transition-x {
+    transition: none;
+   }
+  .open,
+  .translate-x-sidebar {
+    transform: translateX(0);
+  }
+}
