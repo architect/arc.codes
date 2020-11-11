@@ -116,5 +116,3 @@ module.exports = {
   reference,
   about
 }
-
-

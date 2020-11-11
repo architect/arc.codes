@@ -6,14 +6,21 @@ import toc from '../../docs/table-of-contents.js'
 import Logo from '../components/logo.js'
 
 export default function HTML (props={}) {
-  let { children=[], lang='en', scripts='', state={}, thirdparty='', title=''  } = props
+  let {
+    children=[],
+    lang='en',
+    scripts='',
+    state={},
+    thirdparty='',
+    title=''
+  } = props
   let scriptTags = scripts &&
     Array.isArray(props.scripts)
       ? scripts.map(src => Script({src}))
       : Script(scripts)
   let stateTag = state &&
       State(state) || ''
-  let navData = parseTOC(toc)
+  let nav = parseTOC(toc).join('')
 
   function parseTOC(obj) {
     return Object.keys(obj)
@@ -25,14 +32,19 @@ export default function HTML (props={}) {
               return c
             }
             else {
-              return parseTOC(c)
+              return Object.keys(c)
+                .map(cc => {
+                  //
+
+                })
             }
           })
 
-        return {
-          title: t,
-          children
-        }
+        return List({
+          children,
+          lang,
+          title: t
+        })
       })
   }
 
@@ -132,7 +144,7 @@ ${Head(props)}
         bg-g0
       "
     >
-      ${ Navigation({ data: navData, lang }) }
+      ${ nav }
     </aside>
     <main
       class="
