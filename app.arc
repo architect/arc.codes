@@ -6,9 +6,7 @@ fingerprint true
 
 @http
 get /
-get /:lang
-get /:lang/:cat
-get /:lang/:cat/:doc
+get /docs/:lang/*
 get /modules/*
 
 @tables

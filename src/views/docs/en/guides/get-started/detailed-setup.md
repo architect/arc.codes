@@ -45,7 +45,7 @@ Architect supports the following runtime versions when working locally:
 
 To use the same runtime across all functions in your project, add it to your `@aws` pragma like so:
 
-```
+```bash
 # Valid runtimes: `nodejs12.x`, `nodejs10.x`, `deno`, `python3.7`, `python3.6`, or `ruby2.5`
 @aws
 runtime python3.7
@@ -92,7 +92,7 @@ aws_access_key_id=xxx
 aws_secret_access_key=xxx
 ```
 
-You will also need to set a default profile and region with the environment variables 
+You will also need to set a default profile and region with the environment variables
 
 - `AWS_PROFILE`
 - `AWS_REGION`
@@ -150,7 +150,7 @@ arc sandbox
 
 Run `arc init` to generate a basic project:
 
-```
+```bash
 /
 ├── src
 │   └── http

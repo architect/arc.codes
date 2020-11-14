@@ -1,16 +1,18 @@
 {
-  "name": "get-000lang-000cat-000doc",
+  "name": "get-docs-000lang-catchall",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
     "esm": "^3.2.25",
-    "marked": "^1.2.0"
+    "marked": "^1.2.3",
+    "prismjs": "^1.22.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "@dam",
+  "keywords": [],
+  "author": "kj <kj@begin.com>",
   "license": "Apache-2.0"
 }

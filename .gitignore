@@ -1,3 +1,4 @@
 .arc-env
 .DS_Store
 node_modules
+/src/shared/static.json

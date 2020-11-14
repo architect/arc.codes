@@ -9,22 +9,22 @@ sections:
 
 ## Minimum viable permissions
 
-Architect deploys to AWS using the AWS Command Line Interface (CLI) and CloudFormation to preserve determinism and adheres to the ideals of Infrastructure as Code. 
+Architect deploys to AWS using the AWS Command Line Interface (CLI) and CloudFormation to preserve determinism and adheres to the ideals of Infrastructure as Code.
 
 In order to manage resources with least privileges, the IAM user associated with deployments must have the `AdministratorAccess` [Managed Policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies). [Learn more about Creating an IAM User here.](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html)
 
-This ensures that the human developer who is maintaining the infrastructure code will have all the privileges to restrict the roles and access policies of the resources they are deploying. Therefore it is important to understand how to load these credentials under different situations which will enable your workflow. 
+This ensures that the human developer who is maintaining the infrastructure code will have all the privileges to restrict the roles and access policies of the resources they are deploying. Therefore it is important to understand how to load these credentials under different situations which will enable your workflow.
 
 ## Working with multiple profiles
 
 It is common to accrue AWS accounts in this modern era of cloud computing. If you are lucky enough to have this problem: congratulations! It is a huge privilege to wield such awesome power.
 [Learn more about Configuring the AWS CLI here.](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
 
-On Linux or macOS AWS credentials are listed in `~/.aws/credentials` 
+On Linux or macOS AWS credentials are listed in `~/.aws/credentials`
 On Windows systems AWS credentials are listed in `C:\Users\USER_NAME\.aws\credentials`
 
-An example credentials file with multiple accounts might look like this: 
-```
+An example credentials file with multiple accounts might look like this:
+```bash
 [default]
 aws_access_key_id=AKIAIOSFODNN7EXAMPLE
 aws_secret_access_key=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
@@ -38,13 +38,13 @@ aws_access_key_id=AKIAIOSFODNN7EXAMPLE3
 aws_secret_access_key=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY3
 ```
 You also need to specify a region which is in a `/.aws/config` file with the example below:
-```
+```bash
 [defualt]
 region=us-east-1
 ```
-This keeps your sensitive credential keys (`~/.aws/credentials`) separate from non-sensitive configuration (`~/.aws/config`). 
+This keeps your sensitive credential keys (`~/.aws/credentials`) separate from non-sensitive configuration (`~/.aws/config`).
 
-You can specify the AWS profile that your Architect project will use to deploy in the `app.arc` file under the `@aws` pragma 
+You can specify the AWS profile that your Architect project will use to deploy in the `app.arc` file under the `@aws` pragma
 ```md
 # app.arc
 @aws
@@ -53,7 +53,7 @@ profile work
 
 ## Credentials file vs. environment variables
 
-Alternatively, you can set AWS credentials with environment variables, which is useful for scripting and temporarily setting profiles. 
+Alternatively, you can set AWS credentials with environment variables, which is useful for scripting and temporarily setting profiles.
 
 If you do not specify these environment variables, Architect will fallback to whatever credentials you defined for your `[default]` in `~/.aws/credentials` (or `C:\Users\USER_NAME\.aws\credentials`).
 

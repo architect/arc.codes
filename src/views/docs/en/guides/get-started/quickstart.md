@@ -15,7 +15,7 @@ cd testapp
 
 3. Run `arc init` to generate a basic project:
 
-```
+```bash
 /
 ├── src
 │   └── http

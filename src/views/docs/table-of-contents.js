@@ -12,7 +12,7 @@ let guides = [
   {
     'Tutorials': [
       'Developing with cloud functions',
-      'Working locally & offline',
+      'Working locally and offline',
       'Code sharing across functions',
       'Cloud function middleware',
       'Single page apps',

@@ -4,8 +4,7 @@
  * @author ocodia
  */
 
- code[class*="language-"],
- pre[class*="language-"] {
+ code[class*="language-"] {
    color: #f8f8f2;
    text-shadow: 0px 1px rgba(0,0,0,0.3);
    font-family: Consolas, Monaco, 'Andale Mono', monospace;
@@ -25,20 +24,18 @@
  }
 
  /* Code blocks */
- pre[class*="language-"] {
-   padding: 1em;
+ pre {
+   padding: 1rem;
    margin: .5em 0;
    overflow: auto;
  }
 
- :not(pre) > code[class*="language-"],
- pre[class*="language-"] {
-   background: #272822;
+ pre {
+   background: var(--g10);
  }
 
  /* Inline code */
- :not(pre) > code[class*="language-"] {
-   padding: .1em;
+ pre {
    border-radius: .3em;
  }
 
