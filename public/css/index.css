@@ -12,7 +12,7 @@
 }
 .left-sidebar {
   /* Hide Sidebar off screen in mobile */
-  left: calc(var(--sidebar) * -1);
+  left: calc((var(--sidebar) + 3rem /* Padding */) * -1);
 }
 .open,
 .transition-x {

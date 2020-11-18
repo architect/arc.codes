@@ -20,7 +20,7 @@ export default function Sidebar(props={}) {
     bg-g0
   "
 >
-<ul>
+<ul class="pb4">
   <li>
     Guides
     <ul>

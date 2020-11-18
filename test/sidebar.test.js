@@ -1,43 +1,159 @@
-const test = require('tape')
-const toc = require('../src/views/docs/table-of-contents')
+import test from 'tape'
+import listFromObject from '../src/views/modules/helpers/list.js'
+import strip from './helpers/strip.js'
 
-function strip(str='') {
-  return str.replace(/\s/g,'')
-}
-
-function Ul(props={}) {
-  let { children } = props
-  return `
+test('render object to list', t => {
+  let data = {
+    'one': [
+      'a',
+      'b',
+      'c'
+    ],
+    'two': [
+      'd',
+      'e',
+      'f'
+    ]
+  }
+  let expected = `
 <ul>
-  ${children}
+  <li>
+    one
+    <ul>
+      <li>a</li>
+      <li>b</li>
+      <li>c</li>
+    </ul>
+  </li>
+  <li>
+    two
+    <ul>
+      <li>d</li>
+      <li>e</li>
+      <li>f</li>
+    </ul>
+  </li>
 </ul>
   `
-}
+  let actual = listFromObject(data)
 
-function Li(props={}) {
-  let { children } = props
-  return `
-<li>
-  ${children}
-</li>
+  t.equal(strip(actual), strip(expected), 'Should render object to list', actual)
+  t.end()
+})
+
+test('render nested object to list', t => {
+  let data = {
+    'label': [
+      {
+        'one': [
+          'a',
+          'b',
+          'c'
+        ]
+      },
+      {
+        'two': [
+          'd',
+          'e',
+          'f'
+        ]
+      }
+    ]
+  }
+  let expected = `
+<ul>
+  <li>
+    label
+    <ul>
+      <li>
+        one
+        <ul>
+          <li>a</li>
+          <li>b</li>
+          <li>c</li>
+        </ul>
+      </li>
+      <li>
+        two
+        <ul>
+          <li>d</li>
+          <li>e</li>
+          <li>f</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
   `
-}
+  let actual = listFromObject(data)
 
-function Anchor(props={}) {
-  let { children, href, id } = props
-  return `
-<a ${id ? `id='${id}'` : '' } href='${href}'>${children}</a>
+  t.equal(strip(actual), strip(expected),'Should render object to list', actual)
+  t.end()
+})
+
+test('render deeply nested object to list', t => {
+  let data = {
+    'label': [
+      {
+        'one': [
+          {
+            'a': [
+              '1',
+              '2',
+              '3'
+            ]
+          },
+          'b',
+          'c'
+        ]
+      },
+      {
+        'two': [
+          'd',
+          'e',
+          'f'
+        ]
+      }
+    ]
+  }
+  let expected = `
+<ul>
+  <li>
+    label
+    <ul>
+      <li>
+        one
+        <ul>
+          <li>
+            a
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+            </ul>
+          </li>
+          <li>b</li>
+          <li>c</li>
+        </ul>
+      </li>
+      <li>
+        two
+        <ul>
+          <li>d</li>
+          <li>e</li>
+          <li>f</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
   `
-}
+  let actual = listFromObject(data)
 
-function slugify(str='') {
-  return str
-    .toLowerCase()
-    .replace(/&/g, 'and')
-    .replace(/"/g, '')
-    .replace(/\s/g, '-')
-}
-
+  t.equal(strip(actual), strip(expected),'Should render object to list', actual)
+  t.end()
+})
+/*
 function Section(props={}) {
   let {
     data={},
@@ -320,3 +436,4 @@ test('Render labelled section', t=> {
   t.equals(strip(actual), strip(expected), `Labelled section rendered correctly`)
   t.end()
 })
+*/

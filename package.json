@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "esm": "^3.2.25",
+    "slugify": "^1.4.6",
     "tap-spec": "^5.0.0",
     "tape": "^5.0.1"
   },
