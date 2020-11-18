@@ -41,6 +41,7 @@ let alias = {
   '/reference/cli/package': '/reference/cli/package.md',
   '/reference/cli/sandbox': '/reference/cli/sandbox.md',
   '/reference/cli/version': '/reference/cli/version.md',
+  '/reference/cli/destroy': '/reference/cli/destroy.md',
 
   // Runtime helpers
   '/reference/functions/events':               '/reference/functions/events.md',
