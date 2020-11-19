@@ -1,14 +1,11 @@
-import capitalize from './capitalize.js'
-import slugify from './slugify.js'
-
-export default function listFromObject(obj={}, list=Ul, item=Li, anchor=Anchor) {
+export default function listFromObject(obj={}, list=Ul, item=Li, heading=Heading, anchor=Anchor) {
   let children = itemsFromObject(obj, list, item)
   return list({
     children
   })
 }
 
-function itemsFromObject(obj={}, list, item) {
+function itemsFromObject(obj={}, list, item, heading) {
   return Object.keys(obj).map(child => {
     let children = obj[child]
     return item({
@@ -21,16 +18,15 @@ function itemsFromObject(obj={}, list, item) {
 }
 
 function listFromArray(arr=[], list, item) {
-  let children = arr.map(kid => {
-      if(typeof kid === 'string') {
-        return item({ children: kid })
-      }
-      else {
-        return itemsFromObject(kid, list, item)
-      }
-    }).join('')
-
+  let gi = getItem.bind(null, item, list)
+  let children = arr.map(gi).join('')
   return list({ children })
+}
+
+function getItem(item, list, child) {
+  return typeof child === 'string'
+    ? item({ children: child })
+    : itemsFromObject(child, list, item)
 }
 
 function Ul(state={}) {
@@ -48,6 +44,13 @@ function Li(state={}) {
 <li>
   ${ children }
 </li>
+  `
+}
+
+function Heading(state={}) {
+  let { children } = state
+  return `
+<h3>${ children }</h3>
   `
 }
 

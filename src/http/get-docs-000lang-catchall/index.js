@@ -45,7 +45,7 @@ exports.handler = async function http (req) {
     highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
-        return '<pre class="hljs"><code>' +
+        return '<pre class="hljs mb0 mb1-lg"><code>' +
                hljs.highlight(lang, str, true).value +
                '</code></pre>'
       }
@@ -54,7 +54,7 @@ exports.handler = async function http (req) {
       }
     }
 
-    return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>'
+    return '<pre class="hljs mb0 mb1-lg"><code>' + md.utils.escapeHtml(str) + '</code></pre>'
   }})
     .use(markdownClass, classMapping)
 
