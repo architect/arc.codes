@@ -51,10 +51,10 @@
     - [concurrency](/reference/arc-config/concurrency)
     - [layers](/reference/arc-config/layers)
     - [policies](/reference/arc-config/policies)
-  - `.arc-env` pragmas
-    - [@testing](/reference/arc-env/testing)
-    - [@staging](/reference/arc-env/staging)
-    - [@production](/reference/arc-env/production)
+  - `preferences.arc` pragmas
+    - [@testing](/reference/pref-arc/testing)
+    - [@staging](/reference/pref-arc/staging)
+    - [@production](/reference/pref-arc/production)
   - Runtime utilities (`@architect/functions`)
     - [arc.events](/reference/functions/events)
     - [arc.http](/reference/functions/http)
