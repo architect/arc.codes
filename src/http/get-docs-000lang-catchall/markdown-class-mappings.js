@@ -23,8 +23,8 @@ module.exports = {
   ],
   a: [
     'font-medium',
-    'text-p0',
-    'text-h0'
+    'text-p1',
+    'text-h1'
   ],
   strong: [
     'font-semibold',
