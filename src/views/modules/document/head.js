@@ -13,7 +13,7 @@ export default function Head (props={}) {
   <title>${fullTitle}</title>
   <link rel="stylesheet" type="text/css" href="/_static/css/styles.css">
   <link rel="stylesheet" type="text/css" href="/_static/css/index.css">
-  <link rel="stylesheet" type="text/css" href="/_static/css/prism.css">
+  <link rel="stylesheet" type="text/css" href="/_static/css/syntax.css">
 </head>
 `
 }

@@ -2,7 +2,6 @@ import Head from './head.js'
 // import Symbols from './symbols.mjs'
 import Script from './script.js'
 import State from './state.js'
-import toc from '../../docs/table-of-contents.js'
 import Logo from '../components/logo.js'
 import Sidebar from '../components/sidebar.js'
 

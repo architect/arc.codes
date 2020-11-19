@@ -2,9 +2,10 @@ require = require('esm')(module) // eslint-disable-line
 const path = require('path')
 const util = require('util')
 const fs = require('fs')
-const prism = require('prismjs')
-const loadLanguages = require('prismjs/components/')
-const Marked = require('marked')
+const Markdown = require('markdown-it')
+const markdownClass = require('@toycode/markdown-it-class')
+const hljs = require('highlight.js')
+const classMapping = require('./markdown-class-mappings')
 const readFile = util.promisify(fs.readFile)
 const Html = require('@architect/views/modules/document/html.js').default
 const toc = require('@architect/views/docs/table-of-contents')
@@ -40,31 +41,25 @@ exports.handler = async function http (req) {
   }
 
 
-  loadLanguages([
-    'bash',
-    'css',
-    'html',
-    'json',
-    'javascript',
-    'markdown',
-    'powershell',
-    'python',
-    'ruby',
-    'yaml'
-  ])
-
-  Marked.setOptions({
-    highlight: function(code, lang) {
-      if (prism.languages[lang]) {
-        return prism.highlight(code, prism.languages[lang], lang)
-      } else {
-        return code
+  const md = Markdown({
+    highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return '<pre class="hljs"><code>' +
+               hljs.highlight(lang, str, true).value +
+               '</code></pre>'
+      }
+      catch (err) {
+        console.error(err)
       }
     }
-  })
 
-  let children = Marked.parse(file)
-  let title = capitalize(docName.replace(/-/g, ' '))
+    return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>'
+  }})
+    .use(markdownClass, classMapping)
+
+  const children = md.render(file)
+  const title = capitalize(docName.replace(/-/g, ' '))
 
   return {
     statusCode: 200,

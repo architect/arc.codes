@@ -1,7 +1,7 @@
 import toc from '../../docs/table-of-contents.js'
+import listFromObject from '../helpers/list.js'
 
 export default function Sidebar(props={}) {
-  let Navigation = ''
   return `
 <aside
   slot=sidebar
@@ -20,6 +20,13 @@ export default function Sidebar(props={}) {
     bg-g0
   "
 >
+  ${ listFromObject(toc) }
+</aside>
+  `
+}
+
+/*
+ // EXPECTED
 <ul class="pb4">
   <li>
     Guides
@@ -396,6 +403,4 @@ export default function Sidebar(props={}) {
     </ul>
   </li>
 </ul>
-</aside>
-  `
-}
+*/

@@ -1,4 +1,7 @@
-export default function listFromObject(obj={}, list=Ul, item=Li) {
+import capitalize from './capitalize.js'
+import slugify from './slugify.js'
+
+export default function listFromObject(obj={}, list=Ul, item=Li, anchor=Anchor) {
   let children = itemsFromObject(obj, list, item)
   return list({
     children
@@ -30,8 +33,8 @@ function listFromArray(arr=[], list, item) {
   return list({ children })
 }
 
-function Ul(props={}) {
-  let { children } = props
+function Ul(state={}) {
+  let { children } = state
   return `
 <ul>
   ${ children }
@@ -39,11 +42,18 @@ function Ul(props={}) {
   `
 }
 
-function Li(props={}) {
-  let { children } = props
+function Li(state={}) {
+  let { children } = state
   return `
 <li>
   ${ children }
 </li>
+  `
+}
+
+function Anchor(state={}) {
+  let { children, href } = state
+  return `
+<a href=${href}>${ children }</a>
   `
 }
