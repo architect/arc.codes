@@ -1,6 +1,6 @@
 ---
 title: hydrate
-description: Quickly install and update dependencies for all functions in the `src` directory.
+description: Quickly install and update dependencies for all functions in the src directory.
 sections:
   - Overview
   - Usage
@@ -8,7 +8,8 @@ sections:
 ---
 
 ## Overview
-@architect/hydrate ensures that all functions managed by architect have their dependencies installed. Functions containing all its required dependencies are considered to be 'hydrated' - thus the name!
+
+[`@architect/hydrate`](Architect env) ensures that all functions managed by architect have their dependencies installed. Functions containing all its required dependencies are considered to be 'hydrated' - thus the name!
 
 
 ## Usage

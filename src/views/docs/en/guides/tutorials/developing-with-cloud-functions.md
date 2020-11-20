@@ -118,6 +118,7 @@ And now you can reference it from any other function:
 
 ```javascript
 // src/http/get-index/index.js
+
 let layout = require('@architect/shared/layout')
 
 module.exports = async function http(req) {
@@ -146,9 +147,9 @@ let data = require('@architect/data')
 
 In the example below we'll use some of the helpers from  `@architect/functions`:
 
-- [`arc.http.session`](/en/reference/arc.http.helpers) - read the session using the request cookie, write the session returning a cookie string
-- [`arc.http.helpers.url`](/guides/urls) - transform `/` into the appropriate `staging` and `production` API Gateway paths
-- [`arc.http.helpers.static`](/guides/static-assets) - accepts a path part and returns path to `localhost:3333` or `staging` and `production` S3 buckets
+- [`arc.http.session`](/en/reference/runtime-helper-reference/arc-http-session) - read the session using the request cookie, write the session returning a cookie string
+- [`arc.http.helpers.url`](/en/reference/runtime-helper-reference/arc-http-helpers#url) - transform `/` into the appropriate `staging` and `production` API Gateway paths
+- [`arc.http.helpers.static`](http://localhost:3333/en/reference/runtime-helper-reference/arc-static) - accepts a path part and returns path to `localhost:3333` or `staging` and `production` S3 buckets
 - `arc.http.helpers.verify` - verify a `csrf` token
 
 ---
@@ -216,6 +217,7 @@ Then fall back to the regular home page:
 
 ```javascript
 // Regular route for GET /
+
 const showHomepage = async function http(request) {
   return {
     type: 'text/html; charset=utf8'
@@ -228,6 +230,7 @@ Use middleware to combine the lambdas:
 
 ```javascript
 // Combine the handlers together using Arc middleware
+
 exports.handler = arc.http.middleware(notFound, showHomepage)
 ```
 

@@ -7,6 +7,7 @@ sections:
   - YAML
   - TOML
 ---
+
 ## Opt into arc.yaml or arc.json manifests
 
 Developers that prefer JSON or YAML can opt into using either syntax in arc.json or arc.yaml, respectively (instead of .arc or app.arc).

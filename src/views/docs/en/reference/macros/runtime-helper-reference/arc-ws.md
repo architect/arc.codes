@@ -1,6 +1,6 @@
 ---
 title: arc.ws
-description: 160 (or fewer) character description of this document!
+description: Invoke @ws connected clients any function defined under the @app namespace
 sections:
   - Overview
   - Send messages

@@ -1,6 +1,6 @@
 ---
 title: Static
-description: 160 (or fewer) character description of this document!
+description: Architect projects support text and binary assets such as images, styles, and scripts.
 sections:
   - Overview
   - Fingerprint
@@ -18,7 +18,7 @@ Architect projects support text and binary assets such as images, styles, and sc
 
 The `@static` pragma utilizes [**Amazon Simple Storage Service (Amazon S3)**](https://aws.amazon.com/s3/). Amazon S3 is an object storage service that offers industry-leading scalability, data availability, security, and performance. It is the original serverless primitive. 
 
-Architect projects support a `public/` directory in the root of your project for static assets. The `public/` directory typically includes static assets such as images, styles, and scripts required in your front-end workflows. Anything in `public/` directory is available at http://localhost:3333/_static/ when running in the sandbox. For `production` and `staging` environments, Architect can have `staging` and `production` S3 buckets for file syncing from the `public/` folder. They'll be available at https://yourapi.com/_static once deployed.
+Architect projects support a `public/` directory in the root of your project for static assets. The `public/` directory typically includes static assets such as images, styles, and scripts required in your front-end workflows. Anything in `public/` directory is available at `http://localhost:3333/_static/` when running in the sandbox. For `production` and `staging` environments, Architect can have `staging` and `production` S3 buckets for file syncing from the `public/` folder. They'll be available at `https://yourapi.com/_static` once deployed.
 
 **`@static` defines S3 buckets for hosting static assets, uploaded from public/ folder**
 
@@ -73,7 +73,7 @@ The simplest possible build script defined in `package.json`:
 ```
 Running the script defined above with `npm run build` just blindly copies files from `src/shared/client` to `public/`.
 
-Running `npm start` builds the JS and starts a local web server on http://localhost:3333 for previewing.
+Running `npm start` builds the JS and starts a local web server on `http://localhost:3333` for previewing.
 
 ## Ignore
 
@@ -89,7 +89,7 @@ ignore
 ```
 This works with a simple string search, so if you ignore foo, all filenames containing foo (or files with paths containing foo) will be ignored.
 
-> By default, Architect ignores .DS_Store, node_modules, and readme.md files
+> By default, Architect ignores `.DS_Store`, `node_modules`, and `readme.md` files
 
 ## Serialize
 
@@ -122,6 +122,7 @@ serialize true
 @http
 get /
 ```
+
 > Running `arc deploy` will serialize `public/` into `sam.json`.
 
 ## Linking

@@ -47,6 +47,7 @@ Which generates the corresponding code:
 ```
 
 ### Syntax
+
 - Lowercase alphanumeric string
 - Maximum of 50 characters
 - Dashes are allowed; underscores are not allowed

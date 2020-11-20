@@ -21,20 +21,20 @@ Each type of function enables a reliable way for Lambda functions to call one an
 
 ## @events example
 
-`@events` give your application a pub/sub message bus with [AWS Simple Notification Service(SNS)](https://docs.aws.amazon.com/sns/latest/dg/welcome.html).
-In this tutorial, we will create an event topic, POST JSON data to invoke a subscribed Lambda function. Any `@event` function subscribed to the named topic will catch the event object, at least once. The event functions are also good for creating a one to many pattern. The same original event object can be sent to any number of functions
+`@events` give your application a pub/sub message bus with [AWS Simple Notification Service(SNS)](https://docs.aws.amazon.com/sns/latest/dg/welcome.html). 
+In this tutorial, we will create an event topic, POST JSON data to invoke a subscribed Lambda function. Any `@event` function subscribed to the named topic will catch the event object, at least once. The event functions are also good for creating a one to many pattern. The same original event object can be sent to any number of functions 
 
 1. We will start with a fresh project and install dependencies.
 
-```md
+``` bash
 npm init @architect ./arc-event-app
 cd arc-event-app
 ```
+2. Open up your `app.arc` file and add the `@event` pragma along with a POST route 
 
-2. Open up your `app.arc` file and add the `@event` pragma along with a POST route
-
-```md
+```bash
 # app.arc
+
 @app
 arc-event-app
 
@@ -48,21 +48,22 @@ yolo
 
 Run the command `arc init` to scaffold the functions that are declared in the `app.arc` file.
 
-Now we can write our `get-index` handler. This function handler sends an HTML form to the client, and allows them to make a POST request to the `/yolo` endpoint.
+Now we can write our `get-index` handler. This function handler sends an HTML form to the client, and allows them to make a POST request to the `/yolo` endpoint. 
 
 ```javascript
 // src/http/get-index/index.js
-  exports.handler = async function http() {
 
-    let form =
+  exports.handler = async function http() {
+    
+    let form = 
     `<form action=/yolo method=post>
       <button>YOLO</button>
     </form>`
-
+    
     let html = `<!doctype html><html><body>${ form }</body></html>`
-
-    return {
-      statusCode: 200,
+    
+    return { 
+      statusCode: 200, 
       headers: { 'content-type': 'text/html' },
       body: html
     }
@@ -73,6 +74,7 @@ Next we're going to create a new event function in `/src/events/yolo/`. This fun
 
 ```javascript
 // src/events/yolo/index.js
+
 let arc = require('@architect/functions')
 
 async function yoloEvent(event) {
@@ -83,47 +85,45 @@ async function yoloEvent(event) {
 exports.handler = arc.events.subscribe(yoloEvent)
 ```
 
-The final step is creating a POST endpoint for the client to send JSON data. Good thing we can make another Lambda function, and the `@architect/functions` library will handle publishing and service discovery of the SNS topic. Since each function is separated in it's execution, we will have to install it locally and declare a `package.json` in the function folder.
+The final step is creating a POST endpoint for the client to send JSON data. Good thing we can make another Lambda function, and the `@architect/functions` library will handle publishing and service discovery of the SNS topic. Since each function is separated in it's execution, we will have to install it locally and declare a `package.json` in the function folder. 
 
-```bash
+``` bash
 cd src/http/post-yolo/
 npm init -y
 npm install @architect/functions
 ```
-
 After the library is installed we can now use it for a clean method to interact with the SNS topic. The function accepts a JSON payload with two keys: `name` and `payload`.
 
-```javascript
+``` javascript
 // src/http/post-yolo/index.js
+
 let arc = require('@architect/functions')
 
 async function yolo() {
   await arc.events.publish({
     // the name of the event
-    name: 'yolo',
+    name: 'yolo', 
     // the JSON payload you want to send
-    payload: {
+    payload: { 
       message: 'swag',
       timestamp: new Date(Date.now()).toISOString()
     }
   })
-  return { location: '/' }
+  return { location: '/' } 
 }
 
 exports.handler = arc.http.async(yolo)
 ```
-
 Test it locally by running `npm start` in your terminal from the project root. Architect's Sandbox environment will emulate the same behavior once your project is deployed. Within the event function, you can split logic among code from `src/shared`.
 
 ```bash
 cd ../../..
 npm start
 ```
-
 Navigate to http://localhost:3333 and click the "YOLO" button, watch your terminal for the output. You should see Sandbox output the `@event` object and log the output of your `yolo` event function.
 
 ## @scheduled example
-Another common background task is `@scheduled` functions. These functions are invoked on a schedule defined in the `app.arc` file. These functions are good for cleanup tasks or kicking off other kinds of health checks. Let's make a new project and add a `@scheduled` function.
+Another common background task is `@scheduled` functions. These functions are invoked on a schedule defined in the `app.arc` file. These functions are good for cleanup tasks or kicking off other kinds of health checks. Let's make a new project and add a `@scheduled` function. 
 
 The first thing we will need is a fresh Architect project. We can create one directly from the terminal.
 
@@ -131,14 +131,13 @@ The first thing we will need is a fresh Architect project. We can create one dir
 npm init @architect ./arc-scheduled-app
 cd arc-scheduled-app
 ```
-
 Now we can open up the `app.arc` file and add a scheduled function to the manifest.
 
-```md
+```bash
 # app.arc
 
 # your project namespace
-@app
+@app 
 arc-scheduled-app
 
 # http functions and routes
@@ -149,7 +148,6 @@ get /
 @scheduled
 daily rate(1 day)
 ```
-
 Architect looks for the function named `daily` in the `src/scheduled/daily` folder. So let's go ahead and write one.
 
 ```javascript
@@ -161,11 +159,11 @@ exports.handler = async function scheduled (event) {
 }
 ```
 
-When this function is deployed, it is registered to an AWS CloudWatch Event. The event will trigger this function to handle the event payload coming into it. It should be treated as something that happens in the background of your main application to handle work on a regular and periodic cycle.
+When this function is deployed, it is registered to an AWS CloudWatch Event. The event will trigger this function to handle the event payload coming into it. It should be treated as something that happens in the background of your main application to handle work on a regular and periodic cycle. 
 
-Let's take a look at the generated `sam.yaml` to see how the resource will be created.
+Let's take a look at the generated `sam.yaml` to see how the resource will be created. 
 
-From the terminal, run `arc deploy --dry-run` and take a look at `sam.yaml` in the project's root directory.
+From the terminal, run `arc deploy --dry-run` and take a look at `sam.yaml` in the project's root directory. 
 
 ```yaml
 "Daily": {
@@ -217,19 +215,20 @@ The `Events` property on the `Daily` function shows that this is a scheduled eve
 
 ## @queues example
 
-`@queus` are very similar to `@events` because they also allow for asynchronous message processing. `@queues` will provision an AWS SQS queue and register a lambda function to handle messages that are sent to the queue. There are notable differences between `@queues` and `@events`. While `@events` pushes messages to all of it's subscribers, `@queues` will poll for messages. Queues work on the first message in the queue before moving onto the next. Queues will also keep retrying until it is delivered for up to 4 days.
+`@queues` are very similar to `@events` because they also allow for asynchronous message processing. `@queues` will provision an AWS SQS queue and register a lambda function to handle messages that are sent to the queue. There are notable differences between `@queues` and `@events`. While `@events` pushes messages to all of it's subscribers, `@queues` will poll for messages. Queues work on the first message in the queue before moving onto the next. Queues will also keep retrying until it is delivered for up to 4 days. 
 
-Let's make an example message queue by starting with a fresh Architect project.
+Let's make an example message queue by starting with a fresh Architect project. 
 
 ```bash
 npm init @architect ./arc-queues-app
 cd arc-queues-app
 ```
 
-Open up the `app.arc` file and modify the manifest to include our `@queues` function as follows:
+Open up the `app.arc` file and modify the manifest to include our `@queues` function as follows: 
 
-```md
+```bash
 # app.arc
+
 @app
 arc-queues-app
 
@@ -239,12 +238,14 @@ get /
 @queues
 account-signup
 ```
-When you modify the `app.arc` file, you can run `arc init` from the project root to scaffold the function folders.
+
+When you modify the `app.arc` file, you can run `arc init` from the project root to scaffold the function folders. 
 
 The queue function uses SQS as an event source. You can use this pattern to move data between Lambda functions and using the queue as a temporary data store. To write a queue function, make a new file in `src/queues/`
 
 ```javascript
 // src/queues/account-signup/index.js
+
 exports.handler = async function queue (event) {
   event.Records.forEach(record => {
     const { body } = record;
@@ -254,10 +255,11 @@ exports.handler = async function queue (event) {
 }
 ```
 
-Now we can modify our `get-index` function to publish a message as follows:
+Now we can modify our `get-index` function to publish a message as follows: 
 
 ```javascript
 // src/http/get-index/index.js
+
 let arc = require('@architect/functions')
 
 exports.handler = async function http(req) {
@@ -270,16 +272,16 @@ exports.handler = async function http(req) {
 
 In order to use `@architect/functions` we need to install it inside the function folder.
 
-```bash
+```bash 
 cd src/http/get-index
 npm init -y
 npm install @architect/functions
 cd ../../..
 ```
 
-Run `npm start` from root of the project to start Sandbox. Navigate to http://localhost:3333 and take a look in the terminal for our output.
+Run `npm start` from root of the project to start Sandbox. Navigate to http://localhost:3333 and take a look in the terminal for our output. 
 
-You should see the `@queue` event object being logged in the console of Sandbox.
+You should see the `@queue` event object being logged in the console of Sandbox. 
 
 ```json
 @queue {
@@ -292,13 +294,13 @@ You should see the `@queue` event object being logged in the console of Sandbox.
 ```
 
 This event has `name` and `payload` keys which are reflected in the records when the queue is polled by the Lambda.
-You should also see the output from the `account-signup` function handler:
+You should also see the output from the `account-signup` function handler: 
 
 ```json
 {"body":null,"text":"yolo"}
 ```
 
-Let's follow how Architect implements `@queues` by default with CloudFormation. Run `arc deploy --dry-run` and open up `sam.yaml`. You should see that `AccountSignup` has an `Events` event source specified by Type of "SQS":
+Let's follow how Architect implements `@queues` by default with CloudFormation. Run `arc deploy --dry-run` and open up `sam.yaml`. You should see that `AccountSignup` has an `Events` event source specified by Type of "SQS": 
 
 ```yaml
 # sam.yaml
@@ -319,7 +321,7 @@ Let's follow how Architect implements `@queues` by default with CloudFormation. 
 
 Architect also creates an SQS Queue with CloudFormation. Notice below that the queue is set to FIFO, instead of standard. Which means this Lambda will try to ensure that it handles all messages in order as they come in batches.
 
-```yaml
+``` yaml
 "AccountSignupQueue": {
       "Type": "AWS::SQS::Queue",
       "Properties": {
@@ -330,4 +332,4 @@ Architect also creates an SQS Queue with CloudFormation. Notice below that the q
     }
 ```
 
-The `@architect/functions` library has `publish()` and `subscribe()` methods that wrap the JSON payload with a compatible Lambda function signature.
+The `@architect/functions` [`arc.events`](/en/reference/runtime-helper-reference/arc-events) library has `publish()` and `subscribe()` methods that wrap the JSON payload with a compatible Lambda function signature.

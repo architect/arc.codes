@@ -1,6 +1,6 @@
 ---
 title: init
-description: Bootstrapping a new Architect project with folder structures and .arc file
+description: Bootstrapping a new Architect project with folder structures and an app.arc file
 sections:
   - Overview
   - Usage
@@ -9,7 +9,7 @@ sections:
 
 ## Overview
 
-The `init` command will bootstrap new Architect projects and local folders. It uses the `@architect/create` module.
+The `init` command will bootstrap new Architect projects and local folders. It uses the [`@architect/create` module](https://github.com/architect/create).
 
 ## Usage
 
@@ -22,3 +22,19 @@ Edit the `app.arc` file to add functions and re-run `arc init` to generate local
 `[-s, --static, static]` - creates a new project with `@static` folder set to `public`
 `[-r, --runtime, runtime ]` - create a new project with a specified runtime, options are node, deno, python, or ruby
 `[-v, --verbose, verbose]` - outputs extra message during creation
+
+## Example
+
+- `npm init @architect` ......... create project named for current dir in current dir
+
+- `npm init @architect ./` ...... create project named for current dir in current dir
+
+- `npm init @architect foo` ..... create project named `foo` in current dir
+
+- `npm init @architect ./foo` ... create `./foo` dir and project named `foo` that dir
+
+- `npm init @architect ../foo` .. create `../foo` dir and project named `foo` that dir
+
+- `npm init @architect /foo` .... create `/foo` dir, creates project named `foo` that dir
+
+- `npm init @architect ../` ..... create project in .. for named for whatever .. is named

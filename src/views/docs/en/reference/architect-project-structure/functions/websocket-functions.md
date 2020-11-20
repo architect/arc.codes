@@ -1,6 +1,6 @@
 ---
 title: WebSocket functions
-description: 160 (or fewer) character description of this document!
+description: WebSockets provide a persistent connection between a client and a server.
 sections:
   - Overview
   - Getting started
@@ -158,6 +158,7 @@ Render the app HTML shell and embed the current WebSocket URL in a global `WS_UR
 
 ```javascript
 // src/http/get-index/index.js
+
 let getURL = require('./get-web-socket-url')
 
 /**

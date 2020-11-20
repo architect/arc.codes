@@ -1,6 +1,6 @@
 ---
 title: repl
-description: 160 (or fewer) character description of this document!
+description: A module that creates a REPL for your Architect projects.
 sections:
   - Overview
   - Usage
@@ -9,7 +9,7 @@ sections:
 
 ## Overview
 
-Architect comes with helpful terminal access to your data in the form of a `repl` feature that lets you perform methods on DynamoDB such as:
+[`@architect/repl`](https://github.com/architect/repl) comes with helpful terminal access to your data in the form of a `repl` feature that lets you perform methods on DynamoDB such as:
 
 - read
 - evaluate

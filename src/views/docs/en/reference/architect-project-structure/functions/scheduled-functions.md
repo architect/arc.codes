@@ -1,6 +1,6 @@
 ---
 title: Scheduled functions
-description: 160 (or fewer) character description of this document!
+description: Background tasks on a schedule
 sections:
   - Overview
   - Getting started

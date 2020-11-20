@@ -100,6 +100,22 @@ let reference = [
         ]
       }
     ]
+  },
+  {
+    'ARC pragmas': [
+      '@app',
+      '@aws',
+      '@domain',
+      '@events',
+      '@http',
+      '@indexes',
+      '@proxy',
+      '@queues',
+      '@scheduled',
+      '@static',
+      '@tables',
+      '@ws'
+    ]
   }
 ]
 

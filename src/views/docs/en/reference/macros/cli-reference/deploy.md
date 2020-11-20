@@ -9,7 +9,7 @@ sections:
 
 ## `Overview`
 
-`@architect/deploy` is a deployment module that deploys Architect applications to cloud infrastructure. `arc deploy` deploys code in `src` with CloudFormation and public by directly uploading files to S3.
+[`@architect/deploy`](https://github.com/architect/deploy) is a deployment module that deploys Architect applications to cloud infrastructure. `arc deploy` deploys code in `src` with CloudFormation and public by directly uploading files to S3.
 
 This module also deploys code found in `/src` to `staging`. If `ARC_DEPLOY=production` is set, the code in `/src` will be deployed to `production`. (A lot of other things happen under the hood, outlined below.)
 
@@ -37,6 +37,8 @@ Architects deploy process does a number of things during each deploy! In summary
 > Reminder: All `arc` NPM scripts require `profile` and `region` variables set, either as  environment variables or in `@aws` within your `app.arc` manifest. Learn more in the [Prerequisites guide](/quickstart).
 
 ## Usage
+
+> **Requirements:** You need to have the SAM command-line utility available on your $PATH. Check out [AWS' docs](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) for instructions on how to install this.
 
 - `arc deploy` deploys to a staging stack
 - `arc deploy dirty` overwrites static lambda with local source (fast!)

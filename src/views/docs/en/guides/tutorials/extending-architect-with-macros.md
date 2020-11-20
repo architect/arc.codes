@@ -72,6 +72,7 @@ region us-west-1
 
 ```javascript
 // src/macros/index.js
+
 let { toLogicalID } = require('@architect/utils')
 let validate = require('./validate')
 
@@ -188,6 +189,7 @@ module.exports = function storage(arc, cfn) {
 ```javascript
 // src/macros/validate.js
 // validates that the bucket name does not contain special characters
+
 module.exports = function validateStorage (storage) {
   for (let item of storage) {
     let valid = /^[a-zA-Z0-9_-]+$/g.test(item)

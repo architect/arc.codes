@@ -1,6 +1,6 @@
 ---
 title: arc.http
-description: 160 (or fewer) character description of this document!
+description: classic continuation-passing style middleware
 sections:
   - Overview
   - Getting started

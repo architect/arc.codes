@@ -1,6 +1,6 @@
 ---
 title: Architect project structure
-description: 160 (or fewer) character description of this document!
+description: The Architect manifest file is the core of your apps functionality.
 sections:
   - Overview
   - Creating new resources & files
@@ -58,6 +58,7 @@ Here we'll provision an extensive Architect project with the following app.arc f
 
 ```bash
 # This is going to be great!
+
 @app
 testapp
 
@@ -107,10 +108,16 @@ Running arc init creates the following code:
 │       └── get-things/
 └── app.arc
 ```
+
 If you add further pragmas, it is safe to run (and re-run) arc init to generate further code.
 
 ## Special files & folders
 
-ADD ME!
-<!-- `view` folder/ `shared` folder -->
+### `src/shared` and `src/views` directories
+
+Architect provides an easy way to abstract and reuse code in your functions. Most applications need to share logic, templates, or utilities. In order to do this, Architect uses a folder convention to copy the contents of `src/shared` and `src/views` into each functions `node_modules` directory. 
+
+You can read about these two folders and how they work here in the [Code sharing across functions tutorial](/en/guides/tutorials/code-sharing-across-functions)!
+
+
 

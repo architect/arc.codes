@@ -1,6 +1,6 @@
 ---
 title: CDN
-description: 160 (or fewer) character description of this document!
+description: Content delivery network (CDN) with AWS CloudFront
 sections:
   - Overview
   - Provision
@@ -14,7 +14,7 @@ Architect projects support the ability to add a content delivery network (CDN) w
 
 ## Provision
 
-Given the following `.arc` file:
+Given the following `app.arc` file:
 
 ```bash
 @app

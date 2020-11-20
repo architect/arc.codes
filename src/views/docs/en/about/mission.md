@@ -20,11 +20,11 @@ Architect defines a high level manifest file, in multiple open formats, and view
 
 ## Formats supported
 
-Architect supports a native text file format `app.arc` in addition to popular formats: `arc.json`, `arc.yaml` and `arc.toml` when teams prefer those dialects.
+Architect supports a native text file format `app.arc` in addition to popular formats: `arc.json`, `arc.yaml` and `arc.toml` when teams prefer those dialects. 
 
 The `app.arc` format follows a few simple rules:
 
-- Whitespace is significant
+- Whitespace is significant 
 - Comments start with `#`
 - Pragmas start with `@` and organize cloud resources and their configuration
 
@@ -82,7 +82,7 @@ likes
 
 Running `arc init` in the same directory as the `app.arc` file above generates the following function code:
 
-```bash
+```
 .
 ├── src
 │   ├── http
@@ -104,7 +104,7 @@ Running `arc init` in the same directory as the `app.arc` file above generates t
 │       ├── connect/
 │       ├── default/
 │       └── disconnect/
-│
+│   
 └── app.arc
 ```
 

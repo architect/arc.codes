@@ -1,6 +1,6 @@
 ---
 title: HTTP functions
-description: 160 (or fewer) character description of this document!
+description: HTTP Functions are the building blocks of the modern web app
 sections:
   - Overview
   - Getting started
@@ -166,12 +166,14 @@ Here's an example of an incoming `request` object, being handled by the HTTP Fun
   isBase64Encoded: false
 }
 ```
+
 ### Parsing bodies
 
 To use request.body you'll need to parse it first. Architect Functions provides a simple body parser helper; this helper takes a request object, and returns a parsed body object. All bodies are unparsed, base64-encoded strings. Parse it with `arc.http.helpers.bodyParser()`. Here's an example:
 
 ```js
 // Request is form URL-encoded string: 'greeting=howdy'
+
 let arc = require('@architect/functions')
 let parseBody = arc.http.helpers.bodyParser
 
@@ -207,6 +209,7 @@ Here's a simple example response for an API endpoint:
 
 ```js
 // Responding to a successful POST
+
 return {
   statusCode: 201,
   headers: {'Content-Type': 'application/json; charset=utf8'},

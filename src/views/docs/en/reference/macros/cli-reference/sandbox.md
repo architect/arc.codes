@@ -18,7 +18,7 @@ Starts a local web server and in-memory database for previewing code defined by 
 
 Sandbox can be called directly from the command line, `arc sandbox`, or a JavaScript API. This makes it a great environment to preview work and invoke functions during automated testing.
 
-Sandbox starts by parsing the `app.arc` file, hydrating function dependencies, starting a database, and if available, running startup scripts and loading environment variables.
+Sandbox starts by parsing the `app.arc` file, hydrating function dependencies, starting a database, and if available, running startup scripts and loading environment variables. 
 
 ```bash
 arc sandbox
@@ -42,19 +42,18 @@ arc sandbox -p 8888
 
 ### Environment Variables
 
-`process.env.NODE_ENV : "testing"` is set by default upon start up. You can also pass in your own from the command line before calling Sandbox.
+`process.env.NODE_ENV : "testing"` is set by default upon start up. You can also pass in your own from the command line before calling Sandbox. 
 
-For example if you want to connect Sandbox to your staging database, run the following from your terminal:
+For example if you want to connect Sandbox to your staging database, run the following from your terminal: 
 
 ```bash
 NODE_ENV=staging ARC_LOCAL=1 arc sandbox
 ```
-
 During service discovery, Architect will use your DynamoDB staging tables as a data source, while still using the local HTTP server to invoke your local Lambda functions.
 
 ### Quiet Mode
 
-Quiet mode will silence output in the terminal. Sandbox performs a boolean check on `process.env.QUIET`.
+Quiet mode will silence output in the terminal. Sandbox performs a boolean check on `process.env.QUIET`. 
 
 ```bash
 QUIET=1 arc sandbox
@@ -72,13 +71,13 @@ While Sandbox is running, it will watch:
 
 - `app.arc` file changes
 - `src/views` and `src/shared` file changes
-- contents of your `@static` folder, if fingerprinting is enabled.
+- contents of your `@static` folder, if fingerprinting is enabled. 
 
 ### Supported Architect Primitives
 
-Sandbox currently handles the following function primitives and services:
+Sandbox currently handles the following function primitives and services: 
 
-```bash
+```
 @http
 @static
 @events
@@ -141,9 +140,9 @@ Shuts down the sandbox, closing down all running servers and services. Returns a
 
 Sandbox can run scripts in a `scripts` folder in the root of the project. They can be named `sandbox-startup.js`,`sandbox-startup.py`, and `sandbox-startup.rb`, depending on your runtime. Startup scripts are useful for performing initial environment tasks such as populating a test database. The only requirement is to export an asynchronous function.
 
-Example:
+Example: 
 
-```javascript
+```js
 // scripts/sanbox-startup.js
 let data = require('@begin/data')
 // startUpScript is executed when Sandbox starts

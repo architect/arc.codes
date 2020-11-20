@@ -1,6 +1,6 @@
 ---
 title: arc.http.async
-description: 160 (or fewer) character description of this document!
+description: async/await style middleware
 sections:
   - Overview
   - Requests

@@ -50,6 +50,7 @@ The JS route returns a client-side ES Module:
 
 ```javascript
 // src/http/get-js/index.js
+
 let fs = require('fs')
 let read = file=> fs.readFileSync(`${__dirname}/${file}`).toString()
 let allow = ['index.mjs']

@@ -16,7 +16,9 @@ sections:
 
 ### Static assets
 
-Architect projects support text and binary assets such as images, styles, and scripts. These assets are available directly from the root of your app on the same domain as HTTP functions. They are available to you by provisioning your own S3 bucket with the `@static` pragma and sending requests to Amazon S3 using the REST API. **`@static` will define S3 buckets for hosting static assets, uploaded from the `public/` folder**. 
+Architect projects support text and binary assets such as images, styles, and scripts. These assets are available directly from the root of your app on the same domain as HTTP functions. They are available to you by provisioning your own S3 bucket with the `@static` pragma and sending requests to Amazon S3 using the REST API. 
+
+**`@static` will define S3 buckets for hosting static assets, uploaded from the `public/` folder**. 
 
 The `@static` pragma utilizes [**Amazon Simple Storage Service (Amazon S3)**](https://aws.amazon.com/s3/). Amazon S3 is an object storage service that offers industry-leading scalability, data availability, security, and performance. It is the original serverless primitive. 
 

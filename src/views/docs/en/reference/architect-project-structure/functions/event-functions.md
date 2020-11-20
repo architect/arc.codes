@@ -36,7 +36,8 @@ account-signup
 account-check-email
 ```
 
-**`@events` Syntax**
+### `@events` Syntax
+
 - Lowercase alphanumeric string
 - Maximum of 50 characters
 - Dashes are allowed; underscores are not allowed

@@ -1,6 +1,6 @@
 ---
 title: Detailed setup
-description: 160 (or fewer) character description of this document!
+description: Setting up and installing Architect.
 sections:
   - Prerequisites
   - AWS Setup & IAM credentials
@@ -45,7 +45,7 @@ Architect supports the following runtime versions when working locally:
 
 To use the same runtime across all functions in your project, add it to your `@aws` pragma like so:
 
-```bash
+```
 # Valid runtimes: `nodejs12.x`, `nodejs10.x`, `deno`, `python3.7`, `python3.6`, or `ruby2.5`
 @aws
 runtime python3.7
@@ -92,7 +92,7 @@ aws_access_key_id=xxx
 aws_secret_access_key=xxx
 ```
 
-You will also need to set a default profile and region with the environment variables
+You will also need to set a default profile and region with the environment variables 
 
 - `AWS_PROFILE`
 - `AWS_REGION`
@@ -115,7 +115,17 @@ $env:AWS_REGION='us-west-1'
 
 ## Configure AWS CLI
 
-ADD ME!
+The [AWS Command Line Interface](https://docs.aws.amazon.com/cli/) is the main interface for interacting with all parts of AWS using your computer's terminal. The AWS CLI provides a direct way to access all of the public APIs of AWS. 
+
+It will be important to have this set up on your machine to be able to use Architect. Below we will show you how to install and configure the AWS CLI correctly so that you may move on to installing Architect.
+
+There are two versions of the AWS CLI available for download. Version two is for production environments and is the most recent major version of the AWS CLI and supports all of the latest features. Version one is the original AWS CLI, has backwards compatibility, and is still supported by AWS.
+
+To check which version you have installed, run the `aws --version`. If not already installed, let's do that now.
+
+There are different ways to install the AWS CLI depending on the dev environment you are using. Use the instruction at the link below to correctly install the CLI for your preferred environment.
+
+[Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
 
 ## Install Architect
 
@@ -150,7 +160,7 @@ arc sandbox
 
 Run `arc init` to generate a basic project:
 
-```bash
+```
 /
 ├── src
 │   └── http
@@ -200,4 +210,4 @@ ADD ME!
 
 - [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
 - [Amazon Configuration and Credential Files](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html)
-- [Working with multiple AWS accounts](/guides/multiple-aws-accounts)
+- [Working with multiple AWS accounts](/en/guides/tutorials/multiple-aws-accounts)
