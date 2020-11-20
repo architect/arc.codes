@@ -22,6 +22,7 @@
   - [App testing](/guides/testing)
   - [Architect project format](/guides/project-manifest)
   - [Sharing code](/guides/share-code)
+  - [Custom file paths](/guides/custom-file-paths)
 - <b id=ref>Reference</b>
   - CLI commands
     - [arc deploy](/reference/cli/deploy)
