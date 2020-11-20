@@ -13,6 +13,11 @@ module.exports = {
     'mb-1',
     'text1'
   ],
+  h4: [
+    'mt3',
+    'mb-1',
+    'text0'
+  ],
   p: [
     'mb-1'
   ],
