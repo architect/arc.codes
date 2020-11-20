@@ -1,19 +1,26 @@
 module.exports = {
   h1: [
-    'mb2'
+    'mb2',
+    'text3'
   ],
   h2: [
     'mt3',
-    'mb-1'
+    'mb-1',
+    'text2'
+  ],
+  h3: [
+    'mt3',
+    'mb-1',
+    'text1'
   ],
   p: [
     'mb-1'
   ],
   ul: [
-    'mb0'
+    'mb1'
   ],
   li: [
-    'ml0'
+    'ml-1'
   ],
   blockquote: [
     'mb-1',

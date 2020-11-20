@@ -1,6 +1,3 @@
-import toc from '../../docs/table-of-contents.js'
-import listFromObject from '../helpers/list.js'
-
 export default function Sidebar(props={}) {
   return `
 <aside
@@ -20,13 +17,6 @@ export default function Sidebar(props={}) {
     bg-g0
   "
 >
-  ${ listFromObject(toc) }
-</aside>
-  `
-}
-
-/*
- // EXPECTED
 <ul class="pb4">
   <li>
     Guides
@@ -175,22 +165,22 @@ export default function Sidebar(props={}) {
             Architect manifest & config
             <ul>
               <li>
-                <a href="/docs/en/reference/architect-manifest-and-config/project-mainfest-and-config">
+                <a href="/docs/en/reference/architect-project-structure/architect-manifest-and-config/project-manifest-and-config">
                   Project manifest & config
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/architect-manifest-and-config/function-config-file">
+                <a href="/docs/en/reference/architect-project-structure/architect-manifest-and-config/function-config-file">
                   Function config file
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/architect-manifest-and-config/environment-file">
+                <a href="/docs/en/reference/architect-project-structure/architect-manifest-and-config/environment-file">
                   Environment file
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/architect-manifest-and-config/playground">
+                <a href="/docs/en/reference/architect-project-structure/architect-manifest-and-config/playground">
                   Playground
                 </a>
               </li>
@@ -200,12 +190,12 @@ export default function Sidebar(props={}) {
             Static assets
             <ul>
               <li>
-                <a href="/docs/en/reference/static-assets/static">
+                <a href="/docs/en/reference/architect-project-structure/static-assets/static">
                   Static
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/static-assets/cdn">
+                <a href="/docs/en/reference/architect-project-structure/static-assets/cdn">
                   CDN
                 </a>
               </li>
@@ -215,32 +205,32 @@ export default function Sidebar(props={}) {
             Functions
             <ul>
               <li>
-                <a href="/docs/en/reference/functions/http-functions">
+                <a href="/docs/en/reference/architect-project-structure/functions/http-functions">
                   HTTP functions
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/functions/database-functions">
+                <a href="/docs/en/reference/architect-project-structure/functions/database-functions">
                   Database functions
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/functions/scheduled-functions">
+                <a href="/docs/en/reference/architect-project-structure/functions/scheduled-functions">
                   Scheduled functions
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/functions/event-functions">
+                <a href="/docs/en/reference/architect-project-structure/functions/event-functions">
                   Event functions
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/functions/queue-functions">
+                <a href="/docs/en/reference/architect-project-structure/functions/queue-functions">
                   Queue functions
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/functions/websocket-functions">
+                <a href="/docs/en/reference/architect-project-structure/functions/websocket-functions">
                   WebSocket functions
                 </a>
               </li>
@@ -250,12 +240,12 @@ export default function Sidebar(props={}) {
             Databases
             <ul>
               <li>
-                <a href="/docs/en/reference/databases/indexes">
+                <a href="/docs/en/reference/architect-project-structure/databases/indexes">
                   Indexes
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/databases/tables">
+                <a href="/docs/en/reference/architect-project-structure/databases/tables">
                   Tables
                 </a>
               </li>
@@ -272,42 +262,42 @@ export default function Sidebar(props={}) {
             CLI reference
             <ul>
               <li>
-                <a href="/docs/en/reference/cli-reference/deploy">
+                <a href="/docs/en/reference/macros/cli-reference/deploy">
                   deploy
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/cli-reference/env">
+                <a href="/docs/en/reference/macros/cli-reference/env">
                   env
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/cli-reference/hydrate">
+                <a href="/docs/en/reference/macros/cli-reference/hydrate">
                   hydrate
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/cli-reference/init">
+                <a href="/docs/en/reference/macros/cli-reference/init">
                   init
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/cli-reference/logs">
+                <a href="/docs/en/reference/macros/cli-reference/logs">
                   logs
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/cli-reference/package">
+                <a href="/docs/en/reference/macros/cli-reference/package">
                   package
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/cli-reference/repl">
+                <a href="/docs/en/reference/macros/cli-reference/repl">
                   repl
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/cli-reference/sandbox">
+                <a href="/docs/en/reference/macros/cli-reference/sandbox">
                   sandbox
                 </a>
               </li>
@@ -317,52 +307,52 @@ export default function Sidebar(props={}) {
             Runtime helper reference
             <ul>
               <li>
-                <a href="/docs/en/reference/runtime-helper-reference/arc-events">
+                <a href="/docs/en/reference/macros/runtime-helper-reference/arc-events">
                   arc-events
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/runtime-helper-reference/arc-http">
+                <a href="/docs/en/reference/macros/runtime-helper-reference/arc-http">
                   arc-http
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/runtime-helper-reference/arc-http-async">
+                <a href="/docs/en/reference/macros/runtime-helper-reference/arc-http-async">
                   arc-http-async
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/runtime-helper-reference/arc-http-helpers">
+                <a href="/docs/en/reference/macros/runtime-helper-reference/arc-http-helpers">
                   arc-http-helpers
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/runtime-helper-reference/arc-http-proxy">
+                <a href="/docs/en/reference/macros/runtime-helper-reference/arc-http-proxy">
                   arc-http-proxy
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/runtime-helper-reference/arc-http-session">
+                <a href="/docs/en/reference/macros/runtime-helper-reference/arc-http-session">
                   arc-http-session
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/runtime-helper-reference/arc-queues">
+                <a href="/docs/en/reference/macros/runtime-helper-reference/arc-queues">
                   arc-queues
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/runtime-helper-reference/arc-static">
+                <a href="/docs/en/reference/macros/runtime-helper-reference/arc-static">
                   arc-static
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/runtime-helper-reference/arc-tables">
+                <a href="/docs/en/reference/macros/runtime-helper-reference/arc-tables">
                   arc-tables
                 </a>
               </li>
               <li>
-                <a href="/docs/en/reference/runtime-helper-reference/arc-ws">
+                <a href="/docs/en/reference/macros/runtime-helper-reference/arc-ws">
                   arc-ws
                 </a>
               </li>
@@ -403,4 +393,7 @@ export default function Sidebar(props={}) {
     </ul>
   </li>
 </ul>
-*/
+</aside>
+  `
+}
+

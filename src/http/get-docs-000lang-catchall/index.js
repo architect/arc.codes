@@ -9,6 +9,7 @@ const classMapping = require('./markdown-class-mappings')
 const readFile = util.promisify(fs.readFile)
 const Html = require('@architect/views/modules/document/html.js').default
 const toc = require('@architect/views/docs/table-of-contents')
+const highlight = require('./highlighter')
 
 exports.handler = async function http (req) {
   let { pathParameters } = req
@@ -42,20 +43,9 @@ exports.handler = async function http (req) {
 
 
   const md = Markdown({
-    highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return '<pre class="hljs mb0 mb1-lg"><code>' +
-               hljs.highlight(lang, str, true).value +
-               '</code></pre>'
-      }
-      catch (err) {
-        console.error(err)
-      }
-    }
-
-    return '<pre class="hljs mb0 mb1-lg"><code>' + md.utils.escapeHtml(str) + '</code></pre>'
-  }})
+    highlight: highlight
+      .bind(null, hljs, Markdown().utils.escapeHtml)
+  })
     .use(markdownClass, classMapping)
 
   const children = md.render(file)
