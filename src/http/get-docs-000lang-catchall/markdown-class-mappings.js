@@ -18,8 +18,14 @@ module.exports = {
   blockquote: [
     'mb-1',
     'p0',
+    'text-g8',
     'bg-g1',
-    'radius0'
+    'border-solid',
+    'border-t0',
+    'border-r0',
+    'border-b0',
+    'border-l4',
+    'border-g3'
   ],
   a: [
     'font-medium',

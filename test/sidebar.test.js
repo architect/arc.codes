@@ -15,7 +15,7 @@ test('render object to list', t => {
       'f'
     ]
   }
-  let expected = `
+ let expected = `
 <ul>
   <li>
     one

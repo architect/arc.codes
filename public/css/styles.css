@@ -211,6 +211,9 @@ body {
 .border-d0:disabled{border-color:var(--d0);}/* #797979 */
 .border-d1:disabled{border-color:var(--d1);}/* #636363 */
 
+.border-current {
+  border-color: currentColor;
+}
 
 /* RADIUS */
 .radius-none{border-radius:0;}

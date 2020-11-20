@@ -80,3 +80,6 @@ http://zenorocha.mit-license.org
   overflow: auto;
   border-radius: 0.3rem;
 }
+.docs blockquote > p {
+  margin: 0;
+}
