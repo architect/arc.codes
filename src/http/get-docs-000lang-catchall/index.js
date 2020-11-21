@@ -4,12 +4,15 @@ const util = require('util')
 const fs = require('fs')
 const Markdown = require('markdown-it')
 const markdownClass = require('@toycode/markdown-it-class')
-const hljs = require('highlight.js')
+const frontmatterParser = require('markdown-it-front-matter')
 const classMapping = require('./markdown-class-mappings')
+const hljs = require('highlight.js')
+const escapeHtml = Markdown().utils.escapeHtml
+const highlight = require('./highlighter').bind(null, hljs, escapeHtml)
 const readFile = util.promisify(fs.readFile)
 const Html = require('@architect/views/modules/document/html.js').default
 const toc = require('@architect/views/docs/table-of-contents')
-const highlight = require('./highlighter')
+const yaml = require('js-yaml') // REALLY???
 
 exports.handler = async function http (req) {
   let { pathParameters } = req
@@ -40,16 +43,15 @@ exports.handler = async function http (req) {
       body: err.message
     }
   }
-
-
-  const md = Markdown({
-    highlight: highlight
-      .bind(null, hljs, Markdown().utils.escapeHtml)
-  })
+  // Declare in outer scope for use later... sorry
+  let frontmatter = ''
+  const md = Markdown({ highlight })
     .use(markdownClass, classMapping)
-
+    .use(frontmatterParser, function(str) {
+      frontmatter = yaml.load(str)
+    })
   const children = md.render(file)
-  const title = capitalize(docName.replace(/-/g, ' '))
+  const { title, description, sections } = frontmatter
 
   return {
     statusCode: 200,
@@ -61,11 +63,9 @@ exports.handler = async function http (req) {
       lang,
       children,
       title,
+      description,
+      sections,
       toc
     })
   }
-}
-
-function capitalize(str='') {
-  return str.charAt(0).toUpperCase() + str.slice(1)
 }
