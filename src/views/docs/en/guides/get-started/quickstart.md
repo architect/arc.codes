@@ -1,4 +1,10 @@
-**Quickstart**
+---
+title: Quickstart
+description: Get started quickly with Architect
+sections:
+  - Quickstart
+  - That's it
+---
 
 1. Install Architect
 

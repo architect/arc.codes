@@ -7,13 +7,11 @@ sections:
   - Example
 ---
 
-## Project Layout
-
-Architect projects have either of these three versions of a manifest file in the root that sets up your infrastructure as code. 
+Architect projects have either of these three versions of a manifest file in the root that sets up your infrastructure as code.
 
 - `app.arc`
 - `arc.yaml`
-- `arc.json` 
+- `arc.json`
 
 This captures the infrastructure requirements beside the code it will run in your revision control. Architect favors *convention over configuration* and projects have the following significant folder structure:
 
@@ -28,7 +26,7 @@ This captures the infrastructure requirements beside the code it will run in you
 │   ├── queues ...... # Queue Lambda functions
 │   ├── scheduled ... # Scheduled Lambda functions
 │   ├── tables ...... # Table Trigger Lambda functions
-│   └── ws .......... # Web Socket Lambda functions      
+│   └── ws .......... # Web Socket Lambda functions
 └── app.arc
 ```
 
@@ -54,7 +52,7 @@ These sections are for global system level env configuration. The most important
 
 ### Lambda Function config
 
-These sections deal with Lambda functions and their event sources. By convention Architect promotes one event source per function. 
+These sections deal with Lambda functions and their event sources. By convention Architect promotes one event source per function.
 
 - [`@http`](/en/reference/arc-pragmas/@http) HTTP routes (API Gateway)
 - [`@events`](/en/reference/arc-pragmas/@events) Event pub/sub (SNS)
@@ -70,7 +68,7 @@ These sections deal with config of various persistence resources.
 - [`@tables`](/en/reference/arc-pragmas/@tables Database tables and trigger functions (DynamoDB)
 - [`@indexes`](/en/reference/arc-pragmas/@indexes) Table global secondary indexes (DynamoDB)
 
-> 👉🏽 `app.arc` comments out anything after hash symbol `#`. 
+> 👉🏽 `app.arc` comments out anything after hash symbol `#`.
 
 ## Example
 
@@ -104,7 +102,7 @@ Running `npx create` creates the following code:
 
 The generated code was also immediately deployed to the built-in `staging` environment. Subsequent edits to the local code are deployed by running `npx deploy`.
 
-Happy with staging? Ship a release to production by running `npx deploy production`. 
+Happy with staging? Ship a release to production by running `npx deploy production`.
 
 Time to celebrate! ✨
 

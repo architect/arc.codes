@@ -1,6 +1,6 @@
 ---
 title: Modeling & persisting data
-description: 160 (or fewer) character description of this document!
+description: Tutorial showing how to use DynamoDB with Architect to create a note application with user accounts
 sections:
   - Overview
   - TBD
@@ -30,7 +30,7 @@ In this tutorial you will build a simple note taking application, with multiple 
 
 ## Generating the Data Layer
 
-Let's first create a fresh Architect project and change directories into the project folder. 
+Let's first create a fresh Architect project and change directories into the project folder.
 
 ```bash
 mkdir arc-example-notes
@@ -67,7 +67,7 @@ notes
   noteID **String
 ```
 
-Running `arc init` will generate routes and tables to model our persistence needs. The `people` table defined above will have an `email` [partition key](https://aws.amazon.com/blogs/database/choosing-the-right-dynamodb-partition-key/), while the `notes` table will have an `email` partition key and a unique `noteID`. This is one way to model a "many-to-many" relationship in Dynamo. 
+Running `arc init` will generate routes and tables to model our persistence needs. The `people` table defined above will have an `email` [partition key](https://aws.amazon.com/blogs/database/choosing-the-right-dynamodb-partition-key/), while the `notes` table will have an `email` partition key and a unique `noteID`. This is one way to model a "many-to-many" relationship in Dynamo.
 
 So, at this point, `arc init` will create the following Dynamo tables:
 
@@ -98,45 +98,47 @@ module.exports = function layout(contents, showNav = true, isLoggedIn = true) {
   var nav = ''
 
   var navLinks = `
-		<a class="button subtle" href="${url('/login')}">Log in</a>
-		<a class="button" href="${url('/signup')}">Sign up</a>
-	`
+<a class="button subtle" href="${ url('/login') }">Log in</a>
+<a class="button" href="${ url('/signup') }">Sign up</a>
+  `
   if (isLoggedIn) {
     navLinks = `
-			<a class="button subtle" href="${url('/logout')}">Log out</a>
-		`
+<a class="button subtle" href="${ url('/logout') }">Log out</a>
+  `
   }
 
   if (showNav) {
     nav = `
-			<nav>
-				<a href="/">
-					<img class="logo" src="${static('/images/logo.svg')}"/>
-				</a>
-				<a href="https://arc.codes" target="_blank">Documentation</a>
-				${navLinks}
-			</nav>`
+<nav>
+  <a href="/">
+    <img class="logo" src="${ static('/images/logo.svg') }"/>
+  </a>
+  <a href="https://arc.codes" target="_blank">Documentation</a>
+  ${ navLinks }
+</nav>`
   }
 
-  return `<!DOCTYPE html>
-	<html>
-	<head>
-		<title>Architect demo app</title>
-		<link rel=stylesheet href="${static('/css/style.css')}">
-		<link rel="icon" type="image/png" sizes="16x16" href="${static('/images/architect-favicon-16.png')}">
-		<link rel="icon" type="image/png" sizes="32x32" href="${static('/images/architect-favicon-32.png')}">
-		<link rel="icon" type="image/png" sizes="64x64" href="${static('/images/architect-favicon-64.png')}">
-	</head>
-	<body>	
-		${nav}
-		<body>
-			${contents}
-		</body>
-	</html>`
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Architect demo app</title>
+  <link rel=stylesheet href="${ static('/css/style.css') }">
+  <link rel="icon" type="image/png" sizes="16x16" href="${ static('/images/architect-favicon-16.png') }">
+  <link rel="icon" type="image/png" sizes="32x32" href="${ static('/images/architect-favicon-32.png') }">
+  <link rel="icon" type="image/png" sizes="64x64" href="${ static('/images/architect-favicon-64.png') }">
+</head>
+<body>
+  ${ nav }
+  <body>
+    ${ contents }
+  </body>
+</html>
+  `
 }
 ```
 
-The layout module has a params of `contents`, plus two options: whether to show navigation, and whether we're logged in. It returns an HTML document as a string. String interpolation is truly the purest essence of web development. We add some basic CSS too. 
+The layout module has a params of `contents`, plus two options: whether to show navigation, and whether we're logged in. It returns an HTML document as a string. String interpolation is truly the purest essence of web development. We add some basic CSS too.
 
 Next, we require the layout module in the root of our application. This will show different contents based on whether someone is logged in or not:
 
@@ -156,19 +158,19 @@ exports.handler = async function http(request) {
   let isLoggedIn = !!state.person
 
   var loggedInPage = `
-    <section class="hero">
-      <h1>Welcome back <strong>${email}</strong>!</h1>	
-      <h2>You've logged in. That's so cool.</p>
-      <p>Check your <a href=${url('/notes')}>notes</a> or <a href=${url('/logout')}>logout</a></p>   
-    </hero>
+<section class="hero">
+  <h1>Welcome back <strong>${ email }</strong>!</h1>
+  <h2>You've logged in. That's so cool.</p>
+  <p>Check your <a href=${ url('/notes') }>notes</a> or <a href=${ url('/logout') }>logout</a></p>
+</section>
   `
 
   var notLoggedInPage = `
-    <section class="hero">
-      <h1>Welcome to the Architect demo app!</h1>	
-      <h2>It looks like it's your first time here. You should <a href="${url('/signup')}">sign up</a> now!</p>
-      <p>You can also try and visit <a href=${url('/notes')}>Notes</a> or <a href="${url('/login')}">Log in</a> but you'll need to sign up first.</a></p>   
-    </hero>
+<section class="hero">
+  <h1>Welcome to the Architect demo app!</h1>
+  <h2>It looks like it's your first time here. You should <a href="${ url('/signup') }">sign up</a> now!</p>
+  <p>You can also try and visit <a href=${ url('/notes') }>Notes</a> or <a href="${ url('/login') }">Log in</a> but you'll need to sign up first.</a></p>
+</section>
   `
   let contents = isLoggedIn ? loggedInPage : notLoggedInPage
 
@@ -207,35 +209,35 @@ exports.handler = async function http(req) {
   }
 
   var signupPage = `
-    <body class="signup-page dark">
-      <form class="signup" method="post" action=${url('/signup')}>
-      
-        <a href="/"><img class="logo" src="${static('/images/logo.svg')}"/></a>
-        <h2>Sign up</h2>
-        
-        <p>Enter an email and password to sign up</p>
-    
-        <div class="input-and-label">
-          <input name="email" required="required" type="email" autocomplete="off" value="" placeholder="Email address" autofocus/>
-          <label for="email">Email address</label>
-        </div>
-    
-        <div class="input-and-label">
-          <input name="password" required="required" type="password" autocomplete="off" placeholder="Password"/>
-          <label for="password">Password</label>
-        </div>
+<body class="signup-page dark">
+  <form class="signup" method="post" action=${ url('/signup') }>
 
-        <div class="input-and-label checkbox">
-          <input type="checkbox" required checked>
-          <label for=tsandcs>Agree to the terms of conditions</label> 
-        </div>
+    <a href="/"><img class="logo" src="${ static('/images/logo.svg') }"/></a>
+    <h2>Sign up</h2>
 
-        <button type="submit">Sign up</button>
-    
-      </form>
+    <p>Enter an email and password to sign up</p>
 
-      <a href="${url('/login')}">Log in</a>
-    </body>
+    <div class="input-and-label">
+      <input name="email" required="required" type="email" autocomplete="off" value="" placeholder="Email address" autofocus/>
+      <label for="email">Email address</label>
+    </div>
+
+    <div class="input-and-label">
+      <input name="password" required="required" type="password" autocomplete="off" placeholder="Password"/>
+      <label for="password">Password</label>
+    </div>
+
+    <div class="input-and-label checkbox">
+      <input type="checkbox" required checked>
+      <label for=tsandcs>Agree to the terms of conditions</label>
+    </div>
+
+    <button type="submit">Sign up</button>
+
+  </form>
+
+  <a href="${ url('/login') }">Log in</a>
+</body>
   `
 
   return {
@@ -286,7 +288,7 @@ module.exports = async function makePerson(email, suppliedPassword) {
   let hashedPassword = await bcrypt.hash(suppliedPassword, SALT_ROUNDS)
   let person = {email, password: hashedPassword}
   data.people.put(person)
-  log(`Created person ${email}`)
+  log(`Created person ${ email }`)
   return person
 }
 ```
@@ -315,9 +317,9 @@ The following API was generated from the `app.arc` file above:
 - `data.notes.update` - update a note
 - `data.notes.delete` - delete a note
 
-In addition to providing some extra safety, the generated code also saves on boilerplate! 
+In addition to providing some extra safety, the generated code also saves on boilerplate!
 
-All generated methods accept a params object as a first parameter, and will return a Promise. 
+All generated methods accept a params object as a first parameter, and will return a Promise.
 
 It is important to note this is a powerful client that allows you to read and write data indiscriminately. Security and access control to your Dynamo tables is determined by your application's business logic. This is why the middleware is used to wrap the route with `shared/require-login` first, to protect the route.
 
@@ -347,47 +349,71 @@ exports.handler = async function http(req) {
 
   var message = null
   if (state.attemptedEmail) {
-    message = `Could not log in as ${state.attemptedEmail}`
+    message = `Could not log in as ${ state.attemptedEmail }`
   }
 
   var loggedInPage = `
     <body>
       <h2>You're already logged in!</h2>
         <p>
-        <a href=${url('/notes')}>notes</a>
-        <a href=${url('/logout')}>logout</a>
+        <a href=${ url('/notes') }>notes</a>
+        <a href=${ url('/logout') }>logout</a>
       </p>
     </body>`
 
   var notLoggedInPage = `
     <body class="signup-page dark">
-      <form class="login" method="post" action=${url('/login')} >
-      
-        <a href="/"><img class="logo" src="${static('/images/logo.svg')}"/></a>
+      <form class="login" method="post" action=${ url('/login') } >
 
-        <h2>Please log in below!</h2>	
+        <a href="/"><img class="logo" src="${ static('/images/logo.svg') }"/></a>
 
-        <div class="flash-message ${message ? '' : 'no-messages'}">${message || ''}</div>
-    
-        <div class="input-and-label">
-          <input name="email" required="required" type="email" autocomplete="off" value="${state.attemptedEmail || ''}" placeholder="Email address" autofocus/>
-          <label for="email">Email address</label>
+        <h2>Please log in below!</h2>
+
+        <div class="flash-message ${ message ? '' : 'no-messages' }">
+          ${ message || '' }
         </div>
-    
+
         <div class="input-and-label">
-          <input name="password" required="required" type="password" autocomplete="off" placeholder="Password"/>
-          <label for="password">Password</label>
+          <input
+            name="email"
+            required="required"
+            type="email"
+            autocomplete="off"
+            value="${ state.attemptedEmail || '' }"
+            placeholder="Email address"
+            autofocus
+          />
+          <label for="email">
+            Email address
+          </label>
         </div>
-        
-        <button type="submit">Log In</button>
-    
+
+        <div class="input-and-label">
+          <input
+            name="password"
+            required="required"
+            type="password"
+            autocomplete="off"
+            placeholder="Password"
+          />
+          <label for="password">
+            Password
+          </label>
+        </div>
+
+        <button>
+          Log In
+        </button>
+
       </form>
 
-      <a href="${url('/signup')}">Sign up</a>
+      <a href="${ url('/signup') }">Sign up</a>
 
     </body>
   `
-  let content = state.person ? loggedInPage : notLoggedInPage
+  let content = state.person
+   ? loggedInPage
+   : notLoggedInPage
 
   return {
     type: HTML,
@@ -444,7 +470,7 @@ module.exports = async function authenticatePerson(email, suppliedPassword) {
       ':email': email
     }
   })
-  log(`Searching for person "${email}" matching user-supplied password. Found ${result.Count} results`)
+  log(`Searching for person "${ email }" matching user-supplied password. Found ${ result.Count } results`)
   if (result.Items.length) {
     let firstResult = result.Items[0]
     let person = firstResult
@@ -452,11 +478,11 @@ module.exports = async function authenticatePerson(email, suppliedPassword) {
     if (authorized) {
       // Remove the hashed password, as we don't want it in sessions (or anywhere else outside this module)
       delete person.password
-      log(`Successful login as ${email}`)
+      log(`Successful login as ${ email }`)
       return person
     }
   }
-  log(`Failed login attempt as ${email}`)
+  log(`Failed login attempt as ${ email }`)
   return null
 }
 ```
@@ -495,7 +521,7 @@ This wipes the current session and redirects back to `/`.
 
 ## Protecting Routes
 
-To ensure no bad actors start posting notes, we can lock down the other routes using Arc's [middleware](/en/guides/tutorials/cloud-function-middleware). 
+To ensure no bad actors start posting notes, we can lock down the other routes using Arc's [middleware](/en/guides/tutorials/cloud-function-middleware).
 
 ```bash
 touch src/shared/require-login.js
@@ -503,9 +529,9 @@ touch src/shared/require-login.js
 
 The `require-login.js` function will can be combined with a route by `arc.middleware`. `require-login.js` will check for `req.session.person`.
 
-If `req.session.person` doesn't exist, `require-login.js` will return a response that ends the request. 
+If `req.session.person` doesn't exist, `require-login.js` will return a response that ends the request.
 
-If `req.session.person` exists, execution is passed to the next function in the middleware chain. 
+If `req.session.person` exists, execution is passed to the next function in the middleware chain.
 
 Later in the guide we'll incorporate this into routes we want to protect.
 
@@ -529,7 +555,7 @@ module.exports = async function requireLogin(request) {
       location: url(`/login`)
     }
   }
-  console.log(`We're logged in as ${state.person.email}`)
+  console.log(`We're logged in as ${ state.person.email }`)
   // return nothing, so middleware processing continues
 }
 ```
@@ -538,7 +564,7 @@ module.exports = async function requireLogin(request) {
 
 ---
 
-## Showing and making notes 
+## Showing and making notes
 
 Let's make a page that shows existing notes, with a form to make new notes.
 
@@ -564,48 +590,68 @@ async function showProtectedPage(request) {
 
   var greeting = `You don't have any notes! Make some below`
   if (notes.length) {
-    greeting = `You have <strong>${notes.length}</strong> notes.`
+    greeting = `You have <strong>${ notes.length }</strong> notes.`
   }
 
   var existingNotes = ``
   notes.forEach(function(note) {
-    var noteURL = url(`/notes/${note.noteID}`)
+    var noteURL = url(`/notes/${ note.noteID }`)
     existingNotes += `
       <section class="card">
-        <a href="${noteURL}">        
+        <a href="${ noteURL }">
           <heading>
             ${note.title}
-          </heading>        
-          <p>${note.body}</p>
+          </heading>
+          <p>
+            ${ note.body }
+          </p>
         </a>
       </section>`
   })
 
   var contents = `
     <section>
-      <h2>Welcome to the Notes page <strong>${state.person.email}</strong>!</h2>
-      <p>${greeting}</p>
+      <h2>Welcome to the Notes page <strong>${ state.person.email }</strong>!</h2>
+      <p>${ greeting }</p>
 
       <section class="cards">
-
-        ${existingNotes}
+        ${ existingNotes }
       </section>
 
-      
-      <form action=${url('/notes')} method=post>
+
+      <form
+        action=${ url('/notes') }
+        method=post
+      >
         <h2>Make a note</h2>
         <div class="input-and-label">
-          <input name="title" required="required" type="text" autocomplete="off" value="" placeholder="Title" autofocus/>
+          <input
+            name="title"
+            required="required"
+            type="text"
+            autocomplete="off"
+            value=""
+            placeholder="Title"
+            autofocus
+          />
           <label for="email">Title</label>
         </div>
         <div class="input-and-label">
-          <textarea name="body" required="required" autocomplete="off" value="" placeholder="Body text"></textarea>
+          <textarea
+            name="body"
+            required="required"
+            autocomplete="off"
+            value=""
+            placeholder="Body text">
+          </textarea>
           <label for="body">Body</label>
         </div>
-        <button>Make a note</button>
+        <button>
+          Make a note
+        </button>
       </form>
     </section>
-    
+
   `
 
   return {
@@ -634,7 +680,7 @@ module.exports = async function getNotes(email) {
     }
   })
 
-  log(`Searching for notes for "${email}". Found ${result.Count} results`)
+  log(`Searching for notes for "${ email }". Found ${ result.Count } results`)
 
   var notes = result.Items
   return notes
@@ -664,7 +710,7 @@ async function makeNote(email, title, body) {
     body,
     noteID: hashids.encode(Date.now())
   }
-  log(`Making a note with ${JSON.stringify(note, null, 2)}`)
+  log(`Making a note with ${ JSON.stringify(note, null, 2) }`)
   // save the note
   let result = await data.notes.put(note)
   return result
@@ -711,7 +757,7 @@ Now as we add notes, we can see them in our UI!
 
 ---
 
-## Edit a specific note 
+## Edit a specific note
 
 Lets make a detail page to edit a specific note.
 
@@ -737,35 +783,50 @@ async function showNote(request) {
 
   let email = session.person && session.person.email
 
-  let note = await data.notes.get({noteID, email})
-  note.noteURL = url(`/notes/${noteID}`)
+  let note = await data.notes.get({ noteID, email })
+  note.noteURL = url(`/notes/${ noteID }`)
 
   let showNote = function(note) {
     return `
       <article>
         <h2>Edit note</h2>
-        <form action=${note.noteURL} method=post>
-            <input type=hidden name=noteID value=${noteID}>
+        <form
+          action=${ note.noteURL }
+          method=post
+        >
+            <input
+              type=hidden
+              name=noteID
+              value=${ noteID }
+            >
           <div class="input-and-label">
-            <input 
-            type=text 
-            name=title 
-            placeholder="Enter title" 
-            value="${note.title}"
-            required>
+            <input
+              type=text
+              name=title
+              placeholder="Enter title"
+              value="${ note.title }"
+              required
+            >
           </div>
           <div class="input-and-label">
-            <textarea 
-            class=form-control 
-            name=body 
-            placeholder="Enter text">${note.body}
+            <textarea
+              class=form-control
+              name=body
+              placeholder="Enter text"
+            >
+              ${ note.body }
             </textarea>
           </div>
           <button type=submit>Save changes</button>
         </form>
 
-        <form action="${note.noteURL}/delete" method=post>
-          <button class="danger" type=submit>Delete</button>
+        <form
+          action="${ note.noteURL }/delete"
+          method=post
+        >
+          <button class="danger">
+            Delete
+          </button>
         </form>
 
       </article>
@@ -803,7 +864,7 @@ let editNote = async function route(request) {
     // create the partition and sort keys
     note.email = session.person && session.person.email
     // save the updated note
-    log(`Saving ${JSON.stringify(note, null, 2)}`)
+    log(`Saving ${ JSON.stringify(note, null, 2) }`)
     let result = await data.notes.put(note)
     log(result)
   } catch (error) {
@@ -818,7 +879,7 @@ let editNote = async function route(request) {
 exports.handler = arc.middleware(requireLogin, editNote)
 ```
 
-This is cheating a little bit. We're directly overwriting the note record with `put`. A more complex example would probably use `update`. 
+This is cheating a little bit. We're directly overwriting the note record with `put`. A more complex example would probably use `update`.
 
 It can be helpful to inspect the data using the REPL. To do that, first install `@architect/data` into the root of your project:
 
@@ -828,7 +889,7 @@ npm i @architect/data
 
 Now running `npx repl` opens a REPL into your Dynamo schema running locally and in-memory. If you are running the app with `npx sandbox` in another tab, it connects to that database.
 
-Try starting the REPL and running: `data.notes.scan({}, console.log)` to see all the current notes. The REPL can attach itself to the `staging` and `production` databases also by setting the appropriate `NODE_ENV` environment variable flag. 
+Try starting the REPL and running: `data.notes.scan({}, console.log)` to see all the current notes. The REPL can attach itself to the `staging` and `production` databases also by setting the appropriate `NODE_ENV` environment variable flag.
 
 ---
 
@@ -850,7 +911,7 @@ let deleteNote = async function route(request) {
   let session = await arc.http.session.read(request)
   let email = session.person && session.person.email
   log(
-    `Deleting notes matching ${JSON.stringify(
+    `Deleting notes matching ${ JSON.stringify(
       {
         noteID,
         email
