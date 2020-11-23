@@ -4,7 +4,7 @@
 
 ## Instantly create powerful serverless JS, Python, and Ruby apps
 
-> Architect provides everything you need to build **fast, modern, massively scalable cloud apps** with **low code, clear and terse config, and zero ceremony**.
+> Architect provides everything you need to build **fast, modern, massively scalable cloud apps** with **low code, clear and terse config, zero ceremony, and no lock-in**.
 
 ---
 
@@ -13,11 +13,11 @@
 ## 1. Install Architect
 
 ```bash
-npm install -g @architect/architect
+npm install -g @architect/architect # omit -g to install to an existing project
 ```
 
 
-## 2. Run `mkdir your-app-name && arc init your-app-name && cd your-app-name` to generate a basic project:
+## 2. Run `[npx] arc init ./your-app-name` to generate a basic project:
 
 ```bash
 /
@@ -32,7 +32,7 @@ npm install -g @architect/architect
 ## 3. Check out your first `app.arc` file & HTTP function!
 
 ```arc
-# /project/path/app.arc
+# /path/your-app-name/app.arc
 @app
 your-app-name
 
@@ -83,16 +83,23 @@ def handler(request, context):
 
 </section>
 
-## That's it! Ready to ship?
+## 4. Preview your app
 
-Ensure you've [met the system prerequisites](/quickstart) and run: `arc deploy`.
+Run: **`[npx] arc sandbox`**, then visit `http://localhost:3333` to view your Lambda(s) running locally.
+
+
+## 5. Ship it!
+
+That's all you need to ship your first serverless app (to `staging`)!
+
+Ensure you've [met the system prerequisites](/quickstart), then run: **`arc deploy`**.
 
 Your new app will be online within seconds.
 
 
 ## Want to talk about what you just made?
 
-[Join the Architect community on Slack!](https://join.slack.com/t/architecture-as-text/shared_invite/MjE2MzU4Nzg0NTY1LTE1MDA2NzgyMzYtODE2NzRkOGRmYw)
+### [Join the Architect community on Slack!](https://join.slack.com/t/architecture-as-text/shared_invite/MjE2MzU4Nzg0NTY1LTE1MDA2NzgyMzYtODE2NzRkOGRmYw)
 
 ---
 ## Next: [Follow the quickstart](/quickstart)
