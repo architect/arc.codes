@@ -50,7 +50,7 @@ exports.handler = async function ws(event) {
 }
 ```
 
-By default, WebSocket functions are dependency free with a minimal, but very powerful, low level API. 
+By default, WebSocket functions are dependency free with a minimal, but very powerful, low level API.
 
 ## Implementing sessions
 
@@ -65,18 +65,25 @@ let getURL = require('./get-web-socket-url')
 exports.handler = async function http(req) {
   return {
     type: 'text/html; charset=utf8',
-    body: `<!doctype html>
+    body: `
+<!doctype html>
 <html>
-<body>
-<h1>Web sockets</h1>
-<main>Loading...</main>
-<input id=message type=text placeholder="Enter message" autofocus>
-<script>
-window.WS_URL = '${getURL()}'
-</script>
-<script type=module src=/index.mjs></script>
-</body>
-</html>`
+  <body>
+    <h1>Web sockets</h1>
+    <main>Loading...</main>
+    <input
+      id=message
+      type=text
+      placeholder="Enter message"
+      autofocus
+    >
+    <script>
+      window.WS_URL = '${ getURL() }'
+    </script>
+    <script type=module src=/index.mjs></script>
+  </body>
+</html>
+  `
   }
 }
 ```
@@ -123,7 +130,7 @@ ws.onerror = console.log
 // connect to the web socket
 function open() {
   let ts = new Date(Date.now()).toISOString()
-  main.innerHTML = `<p><b><code>${ts} - opened</code></b></p>`
+  main.innerHTML = `<p><b><code>${ ts } - opened</code></b></p>`
 }
 
 // report a closed web socket connection
@@ -134,7 +141,7 @@ function close() {
 // write a message into main
 function message(e) {
   let msg = JSON.parse(e.data)
-  main.innerHTML += `<p><code>${msg.text}</code></p>`
+  main.innerHTML += `<p><code>${ msg.text }</code></p>`
 }
 
 // sends messages to the lambda
@@ -142,7 +149,7 @@ msg.addEventListener('keyup', function(e) {
   if (e.key == 'Enter') {
     let text = e.target.value // get the text
     e.target.value = ''       // clear the text
-    ws.send(JSON.stringify({text}))
+    ws.send(JSON.stringify({ text }))
   }
 })
 ```
@@ -151,7 +158,7 @@ msg.addEventListener('keyup', function(e) {
 
 ## `ws-connect`
 
-The `ws-connect` Lambda is primarily intended to verify `event.header.Origin`. 
+The `ws-connect` Lambda is primarily intended to verify `event.header.Origin`.
 
 ## `ws-default`
 

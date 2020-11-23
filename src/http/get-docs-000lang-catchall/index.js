@@ -45,7 +45,7 @@ exports.handler = async function http (req) {
   }
   // Declare in outer scope for use later... sorry
   let frontmatter = ''
-  const md = Markdown({ highlight })
+  const md = Markdown({ highlight, linkify: true })
     .use(markdownClass, classMapping)
     .use(frontmatterParser, function(str) {
       frontmatter = yaml.load(str)
