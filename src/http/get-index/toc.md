@@ -26,13 +26,13 @@
 - <b id=ref>Reference</b>
   - CLI commands
     - [arc deploy](/reference/cli/deploy)
+    - [arc destroy](/reference/cli/destroy)
     - [arc env](/reference/cli/env)
     - [arc hydrate](/reference/cli/hydrate)
     - [arc init](/reference/cli/init)
     - [arc logs](/reference/cli/logs)
     - [arc package](/reference/cli/package)
     - [arc sandbox](/reference/cli/sandbox)
-    - [arc destroy](/reference/cli/destroy)
   - `app.arc` pragmas
     - [@app](/reference/arc/app)
     - [@aws](/reference/arc/aws)
@@ -43,9 +43,10 @@
     - [@queues](/reference/arc/queues)
     - [@scheduled](/reference/arc/scheduled)
     - [@static](/reference/arc/static)
+    <!-- TODO add me: - [@streams](/reference/arc/streams) -->
     - [@tables](/reference/arc/tables)
     - [@ws](/reference/arc/ws)
-  - `.arc-config` pragmas
+  - `config.arc` pragmas
     - [@aws](/reference/arc-config/aws)
     - [runtime](/reference/arc-config/runtime)
     - [memory](/reference/arc-config/memory)
@@ -53,10 +54,11 @@
     - [concurrency](/reference/arc-config/concurrency)
     - [layers](/reference/arc-config/layers)
     - [policies](/reference/arc-config/policies)
-  - `preferences.arc` pragmas
-    - [@testing](/reference/pref-arc/testing)
-    - [@staging](/reference/pref-arc/staging)
-    - [@production](/reference/pref-arc/production)
+  - Preferences
+    - [@create](/reference/preferences#create)
+    - [@env](/reference/preferences#env)
+    - [.env](/reference/preferences#.env)
+    - [@sandbox](/reference/preferences#sandbox)
   - Runtime utilities (`@architect/functions`)
     - [arc.events](/reference/functions/events)
     - [arc.http](/reference/functions/http)

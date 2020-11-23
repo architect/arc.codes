@@ -83,9 +83,7 @@ let alias = {
   '/reference/arc-config/concurrency': '/reference/arc-config/index.md',
   '/reference/arc-config/layers':      '/reference/arc-config/index.md',
   '/reference/arc-config/policies':    '/reference/arc-config/index.md',
-  '/reference/pref-arc/testing':        '/reference/pref-arc/index.md',
-  '/reference/pref-arc/staging':        '/reference/pref-arc/index.md',
-  '/reference/pref-arc/production':     '/reference/pref-arc/index.md',
+  '/reference/preferences':            '/reference/preferences/index.md',
 }
 
 let plugins = {
