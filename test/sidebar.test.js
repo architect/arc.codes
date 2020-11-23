@@ -1,6 +1,80 @@
 import test from 'tape'
 import listFromObject from '../src/views/modules/helpers/list.js'
 import strip from './helpers/strip.js'
+import slugify from '../src/views/modules/helpers/slugify.js'
+
+function Ul(state={}) {
+  let { children } = state
+  return `
+<ul>
+  ${ children }
+</ul>
+  `
+}
+
+function Li(state={}) {
+  let { child='', children='' } = state
+  return `
+<li>
+  ${ child }
+  ${ children }
+</li>
+  `
+}
+
+function Item(state={}) {
+  let { child='', children='', depth } = state
+  return Li({
+    children: `
+     ${ child
+          ? Heading({
+              children: Anchor({
+                children: child,
+                href: slugify(child)
+              }),
+              depth
+          })
+          : ''
+     }
+     ${ children }
+    `
+  })
+}
+
+function Heading(state={}) {
+  let { depth=0 } = state
+  return [ Heading3, Heading4 ][depth - 1](state)
+}
+function Heading3(state={}) {
+  let { children } = state
+  return `
+<h3>${ children }</h3>
+  `
+}
+
+function Heading4(state={}) {
+  let { children } = state
+  return `
+<h4>${ children }</h4>
+  `
+}
+
+function Anchor(state={}) {
+  let { children, href } = state
+  return `
+<a href=${href}>${ children }</a>
+  `
+}
+
+let map = {
+  anchor: Anchor,
+  list: Ul,
+  item: Li,
+  headings: [
+    Heading3,
+    Heading4
+  ]
+}
 
 test('render object to list', t => {
   let data = {
@@ -35,7 +109,7 @@ test('render object to list', t => {
   </li>
 </ul>
   `
-  let actual = listFromObject(data)
+  let actual = listFromObject(data, map)
 
   t.equal(strip(actual), strip(expected), 'Should render object to list', actual)
   t.end()
@@ -85,7 +159,7 @@ test('render nested object to list', t => {
   </li>
 </ul>
   `
-  let actual = listFromObject(data)
+  let actual = listFromObject(data, map)
 
   t.equal(strip(actual), strip(expected),'Should render object to list', actual)
   t.end()
@@ -148,292 +222,97 @@ test('render deeply nested object to list', t => {
   </li>
 </ul>
   `
-  let actual = listFromObject(data)
+  let actual = listFromObject(data, map)
 
   t.equal(strip(actual), strip(expected),'Should render object to list', actual)
   t.end()
 })
-/*
-function Section(props={}) {
-  let {
-    data={},
-    lang='en',
-  } = props
-  let section = Object.keys(data)[0]
-}
 
-function LabelledSection(props={}) {
-  let {
-    data={},
-    lang='en',
-    sections=[]
-  } = props
-  let section = Object.keys(data)[0]
-  let id = slugify(section)
-  let subsections = data[section]
-  let href = slugify(`#${section}`)
-  let items = subsections.map(data => {
-    return Subsection({
-      data,
-      lang,
-      sections
-    })
-  }).join('')
-  return Ul({
-    children: Li({
-      children: `${Anchor({
-        id,
-        children: section,
-        href
-      })}
-      ${ items }
-      `
-    })
-  })
-}
-
-function Subsection(props={}) {
-  let {
-    data={},
-    lang='en',
-    sections=[]
-  } = props
-  let section = Object.keys(data)[0]
-  sections.push(section)
-  let children = data[section]
-  let path = sections.join('/')
-  let items = children.map(doc => {
-    let href = slugify(`/${lang}/${path}/${doc}`)
-    return Li({
-      children: Anchor({
-        children: doc,
-        href
-      })
-    })
-  }).join('')
-  let list = Ul({
-    children: Li({
-      children: `${Anchor({
-        children: section,
-        href: `/${lang}/${slugify(path)}`
-      })}
-      ${Ul({
-        children: items
-      })}
-      `
-    })
-  })
-  return list
-}
-
-test('toc exists', t=> {
-  t.ok(toc)
-  t.end()
-})
-
-test('slugify', t=> {
-  let input = 'Contributor Guide'
-  let expected = 'contributor-guide'
-  let actual = slugify(input)
-  t.equals(expected, actual, 'slugifies')
-  t.end()
-})
-
-test('Render section', t=> {
-  let lang = 'jp'
+test('should use custom component map', t => {
   let data = {
-    guides: [
-      {
-        'Start': [
-          'one',
-          'two',
-          'three'
-        ]
-      }
+    'one': [
+      'a',
+      'b',
+      'c'
     ],
-    reference: [
-      {
-        'Architect project structure': [
-          {
-            'Things & stuff': [
-               'four',
-               'five',
-               'six'
-            ]
-          },
-          {
-            'More': [
-               'seven',
-               'eight',
-               'nine'
-            ]
-          }
-        ]
-      }
+    'two': [
+      'd',
+      'e',
+      'f'
     ]
   }
-  let expected = `
+ let expected = `
 <ul>
   <li>
-    guides
-    <ul>
-      <li>
-        Start
-        <ul>
-          <li>one</li>
-          <li>two</li>
-          <li>three</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    reference
-    <ul>
-      <li>
-        Architect project structure
-        <ul>
-          <li>
-            Things & stuff
-            <ul>
-              <li>
-                four
-              </li>
-              <li>
-                five
-              </li>
-              <li>
-                six
-              </li>
-            </ul>
-          </li>
-          <li>
-            More
-            <ul>
-              <li>seven</li>
-              <li>eight</li>
-              <li>nine</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-  `
-  let actual = Section({ lang, data })
-  t.equals(strip(actual), strip(expected), 'Section rendered correctly')
-  t.end()
-})
+    <h3>
+      <a href=one>
+        one
+      </a>
+    </h3>
 
-test('Render subsection', t=> {
-  let lang = 'en'
-  let data = {
-    'Get started': [
-      'One',
-      'Two',
-      'Three'
-    ]
-  }
-  let expected = `
-<ul>
-  <li>
-    <a href='/en/get-started'>
-      Get started
-    </a>
     <ul>
       <li>
-        <a href='/en/get-started/one'>
-          One
-        </a>
-      </li>
-      <li>
-        <a href='/en/get-started/two'>
-          Two
-        </a>
-      </li>
-      <li>
-        <a href='/en/get-started/three'>
-          Three
-        </a>
-      </li>
-    </ul>
-  </li>
-</ul>
-  `
-  let actual = Subsection({ lang, data })
-  t.equals(strip(actual), strip(expected), 'Subsection rendered correctly')
-  t.end()
-})
-
-test('Render labelled section', t=> {
-  let lang = 'en'
-  let data = {
-    'Architect project structure': [
-      {
-        'Architect manifest & config': [
-          'Project manifest & config',
-          'Function config file',
-        ]
-      },
-      {
-        'Static assets': [
-          'Static',
-          'CDN',
-        ]
-      }
-    ]
-  }
-
-  let expected = `
-<ul>
-  <li>
-    <a id='architect-project-structure' href='#architect-project-structure'>
-      Architect project structure
-    </a>
-    <ul>
-      <li>
-        <a href='/en/architect-manifest-and-config'>
-          Architect manifest & config
-        </a>
-        <ul>
-          <li>
-            <a href='/en/architect-manifest-and-config/project-manifest-and-config'>
-              Project manifest & config
-            </a>
-          </li>
-          <li>
-            <a href='/en/architect-manifest-and-config/function-config-file'>
-              Function config file
-            </a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <ul>
-      <li>
-       <a href='/en/architect-manifest-and-config/static-assets'>
-        Static assets
-       </a>
-       <ul>
-         <li>
-          <a href='/en/architect-manifest-and-config/static-assets/static'>
-            Static
+        <h3>
+          <a href=a>
+            a
           </a>
-         </li>
-         <li>
-          <a href='/en/architect-manifest-and-config/static-assets/cdn'>
-            CDN
+        </h3>
+      </li>
+      <li>
+        <h3>
+          <a href=b>
+            b
           </a>
-         </li>
-       </ul>
+        </h3>
+      </li>
+      <li>
+        <h3>
+          <a href=c>
+            c
+          </a>
+        </h3>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <h3>
+      <a href=two>
+        two
+      </a>
+    </h3>
+    <ul>
+      <li>
+        <h3>
+          <a href=d>
+            d
+          </a>
+        </h3>
+      </li>
+      <li>
+        <h3>
+          <a href=e>
+            e
+          </a>
+        </h3>
+      </li>
+      <li>
+        <h3>
+          <a href=f>
+            f
+          </a>
+        </h3>
       </li>
     </ul>
   </li>
 </ul>
   `
-  let actual = LabelledSection({ lang, data })
-  t.equals(strip(actual), strip(expected), `Labelled section rendered correctly`)
+  let actual = listFromObject(
+    data,
+    {
+      list: Ul,
+      item: Item
+    }
+  )
+  t.equal(strip(actual), strip(expected), 'Should render object to custom list', actual)
   t.end()
 })
-*/
