@@ -1,6 +1,6 @@
 # `arc env`
 
-Read and write environment variables. Sensitive configuration data, such as API keys, needs to happen _outside_ of the codebase in revision control and you can use this tool to ensure an entire team and the deployment targets are in sync.
+This CLI command creates, reads, and writes environment variables to the [`preferences.arc`](/reference/pref-arc/testing) file in the root of your project. Sensitive configuration data, such as API keys, needs to happen _outside_ of the codebase in revision control and you can use this tool to ensure an entire team and the deployment targets are in sync.
 
 ## Example Usage
 
@@ -14,7 +14,7 @@ Things to note
 
 > Currently `app.arc` uses AWS Systems Manager Parameter Store as a centralized backing storage mechanism for app environment variables. [Read more about AWS Systems Manager Parameter Store.](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-paramstore.html)
 
-## The `.arc-env` File
+## The `preferences.arc` File
 
 This file **should not** be committed into your project git repository.
 
@@ -25,7 +25,8 @@ This file **should not** be committed into your project git repository.
 This is an example file:
 
 ```arc
-# example .arc-env
+# example `preferences.arc`
+
 @testing
 GLOBAL asdfasdf
 

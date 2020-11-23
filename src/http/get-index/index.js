@@ -30,6 +30,7 @@ let alias = {
   '/guides/upgrade': '/guides/upgrade.md',
   '/guides/project-manifest': '/guides/project-manifest.md',
   '/guides/share-code': '/guides/share-code.md',
+  '/guides/custom-file-paths': '/guides/custom-file-paths.md',
 
   // Reference
   '/reference/cli/deploy':  '/reference/cli/deploy.md',
@@ -82,9 +83,7 @@ let alias = {
   '/reference/arc-config/concurrency': '/reference/arc-config/index.md',
   '/reference/arc-config/layers':      '/reference/arc-config/index.md',
   '/reference/arc-config/policies':    '/reference/arc-config/index.md',
-  '/reference/arc-env/testing':        '/reference/arc-env/index.md',
-  '/reference/arc-env/staging':        '/reference/arc-env/index.md',
-  '/reference/arc-env/production':     '/reference/arc-env/index.md',
+  '/reference/preferences':            '/reference/preferences/index.md',
 }
 
 let plugins = {

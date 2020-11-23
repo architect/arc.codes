@@ -1,5 +1,7 @@
-sam.json
-sam.yaml
 .arc-env
 .DS_Store
 node_modules/
+preferences.arc
+prefs.arc
+sam.json
+sam.yaml

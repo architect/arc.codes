@@ -27,10 +27,15 @@ cleanup rate(1 day)
 tweet rate(1 hour)
 ```
 
-Architect generates the following functions:
+By default, Architect uses a consistent, convention-based filesystem structure for your Lambda function code. However, if you'd like to define your own directory structure, you may do so by specifying properties of a given function using the following format:
 
-- `src/scheduled/cleanup`
-- `src/scheduled/tweet`
+```arc
+@scheduled
+cleanup rate(1 day) # uses: src/scheduled/cleanup/
+tweet
+  rate 1 hour
+  src src/functions/tweet/
+```
 
 ---
 
