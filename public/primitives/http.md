@@ -20,9 +20,24 @@ This page covers the following topics:
 
 ## <span id=provisioning>Provisioning HTTP functions</span>
 
-HTTP functions are defined under `@http` very plainly, with one route per line. A route in Architect is defined as: an HTTP verb and a path separated by a space (e.g. `get /foo/bar`).
+Each HTTP function is defined under `@http` and is expressed as a route, or a tuple of a verb and path:
 
-An example blogging app's Architect project manifest:
+```arc
+@http
+get /foo/bar
+```
+
+By default, Architect uses a consistent, convention-based filesystem structure for your Lambda function code. However, if you'd like to define your own directory structure, you may do so by specifying properties of a given route using the following format:
+
+```arc
+@http
+get /foo # uses: src/http/get-foo/
+/bar
+  method get
+  src src/functions/bar
+```
+
+Now let's take a look at a more fleshed out example. A blogging app's Architect project manifest might look something like:
 
 ```arc
 @app
@@ -91,8 +106,7 @@ To provision live infrastructure from your local project, running `arc deploy` w
 - `AWS::Lambda::Function`
 - `AWS::Serverless::Api`
 
-> Digging deeper: Architect does a lot of additional lifting to provision the many supporting resources needed to create a single HTTP function! <a href="/api/1/package?arc=%40app%0Atestapp%0A%40static%0A%40http%0Aget%20%2F%0A"
-  target="blank">Here's an example of a single HTTP function's CloudFormation.</a>
+> Digging deeper: Architect does a lot of additional lifting to provision the many supporting resources needed to create a single HTTP function! <a href="/api/1/package?arc=%40app%0Atestapp%0A%40static%0A%40http%0Aget%20%2F%0A" target="blank">Here's an example of a single HTTP function's CloudFormation.</a>
 
 ---
 
@@ -257,7 +271,7 @@ Because this can have very adverse effects on your application, we strongly sugg
 
 By default, all HTTP functions (as well as all other functions) generated with Architect have one generated <a href=https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege target=_blank>IAM role</a> with the least privilege possible to operate. This means HTTP functions can only access other resources defined in the same Architect project.
 
-Wider account access can be explicitly granted with custom resource policies, [defined in a `.arc-config` file](/reference/arc-config/policies) placed in the HTTP function directory.
+Wider account access can be explicitly granted with custom resource policies, [defined in a `config.arc` file](/reference/arc-config/policies) placed in the HTTP function directory.
 
 ---
 

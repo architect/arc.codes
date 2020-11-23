@@ -35,7 +35,7 @@ To use the same runtime across all functions in your project, add it to your `@a
 runtime python3.7
 ```
 
-> This setting can be overridden on a function-by-function basis with [`.arc-config`](/reference/arc-config/runtime).
+> This setting can be overridden on a function-by-function basis with [`config.arc`](/reference/arc-config/runtime).
 
 Architect also supports the following runtimes in live infra, but not while working locally (at present):
 - Go: `1.x`,

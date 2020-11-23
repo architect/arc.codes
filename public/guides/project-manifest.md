@@ -10,7 +10,7 @@ This project manifest defines the application primitives used to generate your i
 
 <a href=#manifest-format-overview><b>Manifest format overview</b></a>
 
-<a href=#yaml-json><b>Opt into `arc.yaml` or `arc.json` manifests</b></a>
+<a href=#yaml-json><b>Opt into `arc.yaml`, `arc.json`, `package.json`, and `arc.toml` manifests</b></a>
 
 ---
 
@@ -124,12 +124,14 @@ If you add further pragmas, it is safe to run (and re-run) `arc init` to generat
 
 ---
 
-## <span id=yaml-json>Opt into `arc.yaml` or `arc.json` manifests</span>
+## <span id=yaml-json>Opt into `arc.yaml`, `arc.json`, `package.json`, and `arc.toml` manifests</span>
 
-Developers that prefer JSON or YAML can opt into using either syntax in `arc.json` or `arc.yaml`, respectively (instead of `app.arc or .arc`).
+Developers that prefer JSON or YAML can opt into using either syntax in `arc.json`, embedded as a parameter in `package.json`, or `arc.yaml`, respectively (instead of `app.arc or .arc`).
 
 
-## JSON example
+## JSON examples
+
+### `arc.json`
 
 ```json
 {
@@ -143,13 +145,23 @@ Developers that prefer JSON or YAML can opt into using either syntax in `arc.jso
     "fingerprint": true
   },
   "http": [
-    {"get": "/"},
-    {"get": "/things"},
-    {"post": "/form"},
-    {"delete": "/api/:item"},
+    { "get": "/" },
+    { "get": "/things" },
+    { "post": "/form" },
+    {
+      "/api/:item": {
+        "method": "delete",
+        "src": "some/custom/path"
+      }
+    }
   ],
   "events": [
     "an-important-background-task"
+    {
+      "another-important-task": {
+        "src": "some/custom/path"
+      }
+    }
   ],
   "queues": [
     "our-event-bus"
@@ -175,6 +187,27 @@ Developers that prefer JSON or YAML can opt into using either syntax in `arc.jso
 }
 ```
 
+### `package.json`
+
+Add a `arc` or `architect` parameter to your existing `package.json` like so:
+
+```json
+{
+  "name": "my-package-file",
+  "description": "there are many like it, but this one is mine",
+  "version": "1.0.0",
+  "arc": {
+    "app": "testapp",
+    "description": "Example arc-to-json",
+    "aws": {
+      "region": "us-west-1",
+      "profile": "fooco"
+    },
+    ...
+  }
+}
+```
+
 
 ## YAML example
 
@@ -194,6 +227,7 @@ http:
 - get: /things
 - post: /form
 - delete: /api/:item
+    src custom/file/path
 events:
 - an-important-background-task
 queues:

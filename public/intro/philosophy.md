@@ -73,7 +73,7 @@ likes
   date *String
 ```
 
-Running `arc init` in the same directory as the `app.arc` file above generates the following function code:
+Running `arc create` in the same directory as the `app.arc` file above generates the following function code:
 
 ```bash
 /

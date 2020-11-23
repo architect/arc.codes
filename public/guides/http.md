@@ -15,7 +15,7 @@ get /protected
 post /login
 ```
 
-`npx create` generates the following directory structure:
+`npx arc create` generates the following directory structure:
 
 ```bash
 /

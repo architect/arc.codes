@@ -30,11 +30,28 @@ testapp
 get /
 ```
 
-Architect generates the following functions:
+By default, Architect uses (and requires) the following WebSocket functions:
 
-- `src/ws/connect` invoked when the WebSocket is connected
-- `src/ws/default` invoked whenever a message is sent
-- `src/ws/disconnect` invoked when disconnected
+- `$connect` - invoked when the WebSocket is connected
+- `$default` - invoked whenever a message is sent
+- `$disconnect` - invoked when disconnected
+
+To create them automatically when adding `@ws` to your app, run `npx arc create`. You can also add additional actions like so:
+
+```arc
+@ws
+a-custom-action
+```
+
+By default, Architect uses a consistent, convention-based filesystem structure for your Lambda function code. However, if you'd like to define your own directory structure, you may do so by specifying properties of a given function using the following format:
+
+```arc
+@ws
+a-custom-action # uses: src/ws/a-custom-action/
+publish-update
+  src src/functions/publish-update/
+```
+
 
 ## `connect`
 

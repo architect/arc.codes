@@ -24,7 +24,7 @@ npm install -g @architect/architect
 ├── src/
 │  └── http
 │     └── get-index
-│        ├── .arc-config
+│        ├── config.arc
 │        └── index.js
 └── app.arc
 ```

@@ -28,6 +28,16 @@ account-check-email
 
 *Event names are _lowercase alphanumeric_ and can contain _dashes_.* It is recommended to create a naming convention to group similar events and (ideally) keep them single purpose.
 
+By default, Architect uses a consistent, convention-based filesystem structure for your Lambda function code. However, if you'd like to define your own directory structure, you may do so by specifying properties of a given function using the following format:
+
+```arc
+@events
+account-signup # uses: src/events/account-signup/
+account-check-email
+  src src/functions/check-email/
+```
+
+
 ### Event Subscribers
 
 Running `arc init` with the `app.arc` file above will generate the following local source code:

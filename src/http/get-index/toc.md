@@ -33,7 +33,7 @@
     - [arc logs](/reference/cli/logs)
     - [arc package](/reference/cli/package)
     - [arc sandbox](/reference/cli/sandbox)
-  - `app.arc` pragmas
+  - Project manifest reference
     - [@app](/reference/arc/app)
     - [@aws](/reference/arc/aws)
     - [@events](/reference/arc/events)
@@ -46,7 +46,7 @@
     <!-- TODO add me: - [@streams](/reference/arc/streams) -->
     - [@tables](/reference/arc/tables)
     - [@ws](/reference/arc/ws)
-  - `config.arc` pragmas
+  - Function config reference
     - [@aws](/reference/arc-config/aws)
     - [runtime](/reference/arc-config/runtime)
     - [memory](/reference/arc-config/memory)
