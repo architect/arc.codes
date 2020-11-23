@@ -1,39 +1,35 @@
 # Custom file paths
 
-## Custom filesystem / Verbose arc format 
+By default, like many frameworks, Architect relies on "convention over configuration" – meaning you can expect certain things, like the placement of function handlers, to appear in default, deterministic locations.
 
-Initially, we went with "convention over configuration" with our Infra as Code file structure, but the feedback was clear. Many developers asked for a way to organize files themselves for more granular configurability. We call this the verbose arc format and it's available in various lambda pragmas.
+However, some projects and integrations necessitate more granular configurability. For these needs, you can express your project in a more verbose format that exposes additional settings, such as source directory.
 
-The great thing about completely configurable file paths is that it has a nice knock-on effect. You can use an existing repo with any existing sort of app and migrate it cleanly to serverless tech.
-
-Custom file paths is completely your choice to opt into. It is slightly more verbose Infra as Code, trading off convention for flexibility. This also enables transpiled code to work locally and without hacks.
+Use of custom file paths is completely opt-in on a Lambda by Lambda basis, trading off convention for flexibility. You can use it more easily and cleanly migrate existing repos to serverless tech, use frontend frameworks that have their own folder requirements, or to better enable local code transpilation.
 
 
-## Example
-
-This example shows the conventional way vs. the custom file path way.
+### Example
 
 ```arc
 @http
-# conventional way
-get /foo 
-# custom way
-/bar    
+# simple
+get /foo
+# verbose
+/bar
   method get
   src whatever/dir/you/want
 
 @events
-# conventional way
-an-event 
-# custom way       
-another-event   
+# simple
+an-event
+# verbose
+another-event
   src foo
 
 @scheduled
-# conventional way
+# simple
 a-schedule rate(1 day)
-# custom way
-another-schedule        
+# verbose
+another-schedule
   rate 1 day
   src something
 ```
