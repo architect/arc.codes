@@ -1,5 +1,6 @@
 ---
 title: Contributor guide
+category: about
 description: 160 (or fewer) character description of this document!
 ---
 
@@ -15,7 +16,7 @@ Lack of familiarity with this Code of Conduct is not an excuse for not adhering 
 
 ## Project Code Structure
 
-The Architect project distribution code is bundled in [`architect/architect`](https://github.com/architect/architect) which also serves as the [primary project issue tracker](https://github.com/architect/architect/issues). 
+The Architect project distribution code is bundled in [`architect/architect`](https://github.com/architect/architect) which also serves as the [primary project issue tracker](https://github.com/architect/architect/issues).
 
 The Architect project is composed of multiple core code repositories on GitHub:
 
@@ -41,7 +42,7 @@ Architect project documentation is in the following repos:
 
 - architect/arc.codes.next - new docs site in progress (version 6+)
 - architect/arc.codes - the primary documentation website (version 6)
-- architect/v5.arc.codes - version 5 docs site 
+- architect/v5.arc.codes - version 5 docs site
 
 ## Helping out
 

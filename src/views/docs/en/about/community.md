@@ -1,5 +1,6 @@
 ---
 title: Community
+category: About
 description: 160 (or fewer) character description of this document!
 ---
 

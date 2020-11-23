@@ -51,7 +51,7 @@ exports.handler = async function http (req) {
       frontmatter = yaml.load(str)
     })
   const children = md.render(file)
-  const { title, description, sections } = frontmatter
+  const { category, description, sections, title } = frontmatter
 
   return {
     statusCode: 200,
@@ -61,6 +61,7 @@ exports.handler = async function http (req) {
     },
     body: Html({
       lang,
+      category,
       children,
       title,
       description,
