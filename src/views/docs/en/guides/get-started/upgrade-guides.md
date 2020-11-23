@@ -1,5 +1,6 @@
 ---
 title: Upgrade guides
+category: Get started
 description: This document covers upgrading from previous versions of Architect
 sections:
   - Overview of Architect versions
@@ -512,7 +513,7 @@ Architect version 4 (Yeti) is here!
 Things we added:
 
 - `/public` for static assets
-- `@http` routes 
+- `@http` routes
 - complete docs overhaul
 - new simpler install package `npm i @architect/architect`
 - one repo [architect/architect](https://github.com/architect/architect)
@@ -632,13 +633,13 @@ let PolicyArn = 'arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecution
 let iam = new aws.IAM
 iam.attachRolePolicy({
   RoleName: 'arc-role'
-  PolicyArn, 
+  PolicyArn,
 }, console.log)
 ```
 
 ---
 
-## Architect Functions 
+## Architect Functions
 
 ### Overview
 

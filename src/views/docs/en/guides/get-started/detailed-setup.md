@@ -1,5 +1,6 @@
 ---
 title: Detailed setup
+category: Get started
 description: Setting up and installing Architect.
 sections:
   - Prerequisites
@@ -92,7 +93,7 @@ aws_access_key_id=xxx
 aws_secret_access_key=xxx
 ```
 
-You will also need to set a default profile and region with the environment variables 
+You will also need to set a default profile and region with the environment variables
 
 - `AWS_PROFILE`
 - `AWS_REGION`
@@ -115,7 +116,7 @@ $env:AWS_REGION='us-west-1'
 
 ## Configure AWS CLI
 
-The [AWS Command Line Interface](https://docs.aws.amazon.com/cli/) is the main interface for interacting with all parts of AWS using your computer's terminal. The AWS CLI provides a direct way to access all of the public APIs of AWS. 
+The [AWS Command Line Interface](https://docs.aws.amazon.com/cli/) is the main interface for interacting with all parts of AWS using your computer's terminal. The AWS CLI provides a direct way to access all of the public APIs of AWS.
 
 It will be important to have this set up on your machine to be able to use Architect. Below we will show you how to install and configure the AWS CLI correctly so that you may move on to installing Architect.
 

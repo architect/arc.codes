@@ -1,5 +1,6 @@
 ---
 title: Adding WebSockets to your app
+category: Tutorials
 description: Add real-time connections between clients with serverless functions.
 sections:
   - Overview

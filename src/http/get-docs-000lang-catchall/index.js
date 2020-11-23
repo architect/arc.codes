@@ -8,11 +8,12 @@ const frontmatterParser = require('markdown-it-front-matter')
 const classMapping = require('./markdown-class-mappings')
 const hljs = require('highlight.js')
 const escapeHtml = Markdown().utils.escapeHtml
-const highlight = require('./highlighter').bind(null, hljs, escapeHtml)
+const highlight = require('./highlighter')
+  .bind(null, hljs, escapeHtml)
 const readFile = util.promisify(fs.readFile)
 const Html = require('@architect/views/modules/document/html.js').default
 const toc = require('@architect/views/docs/table-of-contents')
-const yaml = require('js-yaml') // REALLY???
+const yaml = require('js-yaml')
 
 exports.handler = async function http (req) {
   let { pathParameters } = req

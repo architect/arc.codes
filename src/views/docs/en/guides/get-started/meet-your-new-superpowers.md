@@ -1,5 +1,6 @@
 ---
 title: Meet your new superpowers
+category: Get started
 description: Cloud superpowers
 sections:
   - Speed

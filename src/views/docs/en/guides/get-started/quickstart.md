@@ -1,5 +1,6 @@
 ---
 title: Quickstart
+category: Get started
 description: Get started quickly with Architect
 sections:
   - Quickstart

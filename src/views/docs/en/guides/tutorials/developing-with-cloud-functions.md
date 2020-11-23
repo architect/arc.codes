@@ -1,5 +1,6 @@
 ---
 title: Developing with cloud functions
+category: Tutorials
 description: 160 (or fewer) character description of this document!
 sections:
   - Overview
@@ -80,9 +81,9 @@ By default, HTTP functions are dependency free with a minimal, but very powerful
 - **`method`:** receives `string` - one of `GET`, `POST`, `PATCH`, `PUT` and `DELETE`
 - **`params`:** receives `Object` - any URL params, if defined in your function's path (i.e. `get /:foo/bar`)
 - **`query`:** receives `Object` - any query params, if present
-- **`headers`:** receives `Object` - contains all client request headers 
+- **`headers`:** receives `Object` - contains all client request headers
 
-Routes also get the AWS [`context`](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html) `Object` as a second argument, which can be used for performance optimization and other tricks, but most routes don't use it. 
+Routes also get the AWS [`context`](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html) `Object` as a second argument, which can be used for performance optimization and other tricks, but most routes don't use it.
 
 ### Return a response
 
@@ -158,15 +159,15 @@ In the example below we'll use some of the helpers from  `@architect/functions`:
 
 ### Create full-featured web applications composed of fast, tiny HTTP functions
 
-Here we'll start from a basic 'hello world' app example and then build a bigger app with signups and logins. 
+Here we'll start from a basic 'hello world' app example and then build a bigger app with signups and logins.
 
-We'll do this using **AWS Lambdas** (small functions that trigger when their URL is hit.) You can think of lambdas as the equivalent of 'routes' in traditional web apps. 
+We'll do this using **AWS Lambdas** (small functions that trigger when their URL is hit.) You can think of lambdas as the equivalent of 'routes' in traditional web apps.
 
 AWS Lambdas are accessed via API Gateway, but `app.arc` abstracts API Gateway and Lambda configuration and provisioning so that creating a lambda function is a smooth and seamless experience.
 
 ### Hello world
 
-Let's begin by provisioning a lambda function that will serve as the root of our app and give a simple `hello world` HTML response. 
+Let's begin by provisioning a lambda function that will serve as the root of our app and give a simple `hello world` HTML response.
 
 Given the following example `app.arc` file:
 
@@ -178,7 +179,7 @@ testapp
 get /
 ```
 
-When a user visits `/`, the following HTTP function in `src/http/get-index/index.js` will run: 
+When a user visits `/`, the following HTTP function in `src/http/get-index/index.js` will run:
 
 ```javascript
 exports.handler = async function http(request) {
@@ -207,7 +208,7 @@ const notFound = async function http(request) {
     return {
       status: 404,
       type: 'text/html; charset=utf8',
-      body: `<b>${request.path} not found</b>` 
+      body: `<b>${request.path} not found</b>`
     }
   }
 }
@@ -221,7 +222,7 @@ Then fall back to the regular home page:
 const showHomepage = async function http(request) {
   return {
     type: 'text/html; charset=utf8'
-    body: `<b>hello world</b>` 
+    body: `<b>hello world</b>`
   }
 }
 ```
@@ -351,7 +352,7 @@ exports.handler = async function http(req) {
 	</p>`
 
   var notLoggedInPage = `
-  	<h2>Logged out</h2>	
+  	<h2>Logged out</h2>
     <form action=${url('/login')} method=post>
       <label for=email>Email</label>
       <input type=text name=email>
@@ -391,7 +392,7 @@ exports.handler = async function http(request) {
 }
 ```
 
-If successful `session.isLoggedIn` will be `true` and we'll redirect to `/`, which, since we're logged in now, will show different content. 
+If successful `session.isLoggedIn` will be `true` and we'll redirect to `/`, which, since we're logged in now, will show different content.
 
 `/protected` utilizes middleware to ensure only logged in users can see it.
 

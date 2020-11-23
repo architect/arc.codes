@@ -1,5 +1,6 @@
 ---
 title: Project Layout
+category: Get started
 description: Explaining the layout of an Architect project
 sections:
   - Project Layout
