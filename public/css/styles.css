@@ -92,6 +92,7 @@ body {
 .text-a0.active{color:var(--a0);}/* #A4A4A4 */
 .text-a1:active{color:var(--a1);}/* #8E8E8E */
 .text-a1.active{color:var(--a1);}/* #8E8E8E */
+.text-a2.active{color:#006DEB;}/* FIX ME: HACK*/
 .text-d0:disabled{color:var(--d0);}/* #797979 */
 .text-d1:disabled{color:var(--d1);}/* #636363 */
 

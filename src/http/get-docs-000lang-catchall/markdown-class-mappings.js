@@ -1,19 +1,20 @@
 module.exports = {
   h1: [
     'mb2',
-    'text3'
+    'font-semibold',
+    'text2'
   ],
   h2: [
     'mt3',
     'mb-1',
     'font-semibold',
-    'text2'
+    'text1'
   ],
   h3: [
     'mt3',
     'mb-1',
     'font-semibold',
-    'text1'
+    'text0'
   ],
   h4: [
     'mt3',

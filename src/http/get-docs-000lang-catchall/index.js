@@ -23,6 +23,14 @@ exports.handler = async function http (req) {
   let parts = proxy.split('/')
   let docName = parts.pop()
   let doc = `${docName}.md`
+  let activePath = path.join(
+    'docs',
+    lang,
+    ...parts,
+    docName
+  )
+  // Add leading slash to match anchor href
+  let active = `/${ activePath }`
 
   let filePath = path.join(
     __dirname,
@@ -63,6 +71,7 @@ exports.handler = async function http (req) {
       'content-type': 'text/html; charset=utf8'
     },
     body: Html({
+      active,
       lang,
       category,
       children,

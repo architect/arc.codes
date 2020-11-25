@@ -71,6 +71,8 @@ ${Head(props)}
       <h1
         class="
           mb1
+          font-semibold
+          text2
         "
       >
         ${ title }

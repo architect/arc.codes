@@ -4,6 +4,9 @@
 html {
   scroll-behavior: smooth;
 }
+.underline-h:hover {
+  text-decoration: underline;
+}
 .two-column {
   /* Height: Header | Content */
   grid-template-rows: 3rem 1fr;
