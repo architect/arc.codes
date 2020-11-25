@@ -18,7 +18,7 @@ This captures the infrastructure requirements beside the code it will run in you
 
 ```bash
 .
-├── public
+├── public .......... # Static assets (js, css, svg, images, etc.)
 ├── src
 │   ├── shared ...... # code shared by ALL Lambda functions
 │   ├── views ....... # code shared by HTTP GET Lambda functions
