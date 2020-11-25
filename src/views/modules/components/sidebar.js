@@ -1,3 +1,63 @@
+import listFromObject from '../helpers/list.js'
+import slugify from '../helpers/slugify.js'
+import toc from '../../docs/table-of-contents.js'
+const map = {
+  list: function List(state={}) {
+    let { children } = state
+    return `
+<ul
+  class="
+    mb1
+    list-none
+  "
+>
+  ${ children }
+</ul>
+    `
+  },
+  item: function Item(state={}) {
+    let { child='', children=[], depth, path } = state
+    let isHeading = children.length
+    return `
+<li
+  class="
+    mb-1
+    ml-4
+  "
+>
+  ${
+    isHeading
+      ? Heading({ children: child, depth, path })
+      : Anchor({ children: child, depth, path })
+   }
+  ${ children }
+</li>
+    `
+  }
+}
+
+function Anchor(state={}) {
+  let { children, path } = state
+  let href = slugify(path.concat([ children ]).join('/'))
+  return `
+<a href="/${ href }">${ children }</a>
+  `
+}
+
+function Heading(state={}) {
+  let { children, depth, path } = state
+  let href = slugify(path.concat([ children ]).join('/'))
+  return `
+<h${depth + 2}
+  class="
+   mb-1
+  "
+>
+  ${ children }
+</h${depth + 2}>
+  `
+}
+
 export default function Sidebar(props={}) {
   return `
 <aside
@@ -17,6 +77,12 @@ export default function Sidebar(props={}) {
     bg-g0
   "
 >
+${ listFromObject({ data: toc, map, path: [ 'docs', 'en' ] }) }
+</aside>
+  `
+}
+
+/*
 <ul class="pb4">
   <li>
     Guides
@@ -393,7 +459,4 @@ export default function Sidebar(props={}) {
     </ul>
   </li>
 </ul>
-</aside>
-  `
-}
-
+  */

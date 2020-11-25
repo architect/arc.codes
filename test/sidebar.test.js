@@ -27,7 +27,7 @@ function Item(state={}) {
   return Li({
     children: `
      ${ child
-          ? Heading({
+          ? Heading3({
               children: Anchor({
                 children: child,
                 href: slugify(child)
@@ -43,8 +43,9 @@ function Item(state={}) {
 
 function Heading(state={}) {
   let { depth=0 } = state
-  return [ Heading3, Heading4 ][depth - 1](state)
+  return [ Heading3, Heading4 ][depth](state)
 }
+
 function Heading3(state={}) {
   let { children } = state
   return `
@@ -77,6 +78,10 @@ let map = {
 }
 
 test('render object to list', t => {
+  let map = {
+    list: Ul,
+    item: Li
+  }
   let data = {
     'one': [
       'a',
@@ -109,13 +114,17 @@ test('render object to list', t => {
   </li>
 </ul>
   `
-  let actual = listFromObject(data, map)
+  let actual = listFromObject({ data, map })
 
   t.equal(strip(actual), strip(expected), 'Should render object to list', actual)
   t.end()
 })
 
 test('render nested object to list', t => {
+  let map = {
+    list: Ul,
+    item: Li
+  }
   let data = {
     'label': [
       {
@@ -159,7 +168,7 @@ test('render nested object to list', t => {
   </li>
 </ul>
   `
-  let actual = listFromObject(data, map)
+  let actual = listFromObject({ data, map })
 
   t.equal(strip(actual), strip(expected),'Should render object to list', actual)
   t.end()
@@ -222,7 +231,7 @@ test('render deeply nested object to list', t => {
   </li>
 </ul>
   `
-  let actual = listFromObject(data, map)
+  let actual = listFromObject({ data, map })
 
   t.equal(strip(actual), strip(expected),'Should render object to list', actual)
   t.end()
@@ -249,7 +258,6 @@ test('should use custom component map', t => {
         one
       </a>
     </h3>
-
     <ul>
       <li>
         <h3>
@@ -306,13 +314,38 @@ test('should use custom component map', t => {
   </li>
 </ul>
   `
-  let actual = listFromObject(
+  let actual = listFromObject({
     data,
-    {
+    map: {
       list: Ul,
       item: Item
     }
-  )
+  })
   t.equal(strip(actual), strip(expected), 'Should render object to custom list', actual)
   t.end()
+})
+
+test('Should create correct href', t => {
+  t.plan(8)
+  let path = [ 'docs', 'en' ]
+  let map = {
+    item: function hrefTest({ child, depth, path }) {
+      let href = slugify(path.join('/'))
+      t.ok(href, href)
+    },
+    list: function list(params) {}
+  }
+  let data = {
+    'one & done': [
+      'a',
+      'b',
+      'c'
+    ],
+    'ok "maybe" one or two': [
+      'd',
+      'e',
+      'f'
+    ]
+  }
+  listFromObject({ data, map, path })
 })

@@ -1,4 +1,4 @@
-let guides = [
+let Guides = [
   {
     'Get started': [
       'Quickstart',
@@ -36,7 +36,7 @@ let guides = [
   }
 ]
 
-let reference = [
+let Reference = [
   {
     'Architect project structure': [
       {
@@ -119,7 +119,7 @@ let reference = [
   }
 ]
 
-let about = [
+let About = [
   'Mission',
   'Governance',
   'Community',
@@ -128,7 +128,7 @@ let about = [
 ]
 
 module.exports = {
-  guides,
-  reference,
-  about
+  Guides,
+  Reference,
+  About
 }

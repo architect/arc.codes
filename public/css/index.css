@@ -1,6 +1,9 @@
 :root {
   --sidebar: 17.666rem;
 }
+html {
+  scroll-behavior: smooth;
+}
 .two-column {
   /* Height: Header | Content */
   grid-template-rows: 3rem 1fr;
