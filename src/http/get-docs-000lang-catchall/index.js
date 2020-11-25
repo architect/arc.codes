@@ -10,6 +10,8 @@ const hljs = require('highlight.js')
 const escapeHtml = Markdown().utils.escapeHtml
 const highlight = require('./highlighter')
   .bind(null, hljs, escapeHtml)
+const arcGrammar = require('./arc-grammar')
+hljs.registerLanguage('arc', arcGrammar)
 const readFile = util.promisify(fs.readFile)
 const Html = require('@architect/views/modules/document/html.js').default
 const toc = require('@architect/views/docs/table-of-contents')

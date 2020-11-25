@@ -29,6 +29,7 @@ http://zenorocha.mit-license.org
   color: #8be9fd;
 }
 
+.hljs-built_in,
 .hljs-function .hljs-keyword {
   color: #ff79c6;
 }

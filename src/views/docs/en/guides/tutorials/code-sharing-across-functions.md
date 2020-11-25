@@ -41,7 +41,7 @@ npm init @architect ./arc-shared-views
 
 2.) Next we can modify the `app.arc` file in the root of the project with the following:
 
-```bash
+```arc
 # app.arc file
 
 @app
@@ -124,7 +124,7 @@ The `src/views` folder is a special location that allows you to include code for
 
 1.) Modify the `app.arc` file to match the following:
 
-```bash
+```arc
 @app
 arc-shared
 

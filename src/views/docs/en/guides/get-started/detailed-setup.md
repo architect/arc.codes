@@ -171,7 +171,7 @@ Run `arc init` to generate a basic project:
 
 Check out your first `app.arc` file & HTTP function!
 
-```bash
+```arc
 # /project/path/.arc
 
 @app

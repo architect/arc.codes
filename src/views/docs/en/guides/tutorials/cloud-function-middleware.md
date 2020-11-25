@@ -44,7 +44,7 @@ cd arc-async-middleware
 arc init
 ```
 2. Replace the `app.arc` file with the following:
-```md
+```arc
 # app.arc file
 @app
 arc-async
@@ -155,7 +155,7 @@ arc init
 ```
 2. Replace the `app.arc` file with the following:
 
-```bash
+```arc
 # app.arc file
 
 @app

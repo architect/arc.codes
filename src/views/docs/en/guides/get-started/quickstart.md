@@ -32,7 +32,7 @@ cd testapp
 
 4. Check out your first `app.arc` file & HTTP function!
 
-```bash
+```arc
 # /project/path/app.arc
 @app
 your-app-name

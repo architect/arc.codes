@@ -75,7 +75,7 @@ These sections deal with config of various persistence resources.
 
 Provision a project with the following `app.arc` file:
 
-```bash
+```arc
 # this is going to be great!
 @app
 testapp

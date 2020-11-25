@@ -26,11 +26,11 @@ There are many ways to build a single-page application. Larger applications can 
 
 ## Static and dynamic API endpoints coexisting at the same origin
 
-Architect provides two methods to proxy static assets through API Gateway. This means your single page application and API can share the same domain name, session support and database access *without CORS* and *without 3rd party proxies*. 
+Architect provides two methods to proxy static assets through API Gateway. This means your single page application and API can share the same domain name, session support and database access *without CORS* and *without 3rd party proxies*.
 
 For this guide we'll use the following `app.arc` file:
 
-```bash
+```arc
 @app
 spa
 
@@ -58,7 +58,7 @@ exports.handler = arc.proxy.public()
 
 Now all static assets in `./public` will be served from the root of your application.
 
-The `arc.proxy.public` function accepts an optional configuration param `spa` which will force loading `index.html` no matter what route is invoked (note however that routes defined in `app.arc` will take precedence). 
+The `arc.proxy.public` function accepts an optional configuration param `spa` which will force loading `index.html` no matter what route is invoked (note however that routes defined in `app.arc` will take precedence).
 
 ```javascript
 // src/http/get-index/index.js
@@ -68,7 +68,7 @@ let arc = require('@architect/functions')
 exports.handler = arc.proxy.public({spa:true})
 ```
 
-Set `{spa:false}`, or omit, if you want the proxy to return a `404` error when a directory or file does not exist. 
+Set `{spa:false}`, or omit, if you want the proxy to return a `404` error when a directory or file does not exist.
 
 > **Bonus:** when `404.html` is present that file will be returned
 
@@ -94,9 +94,9 @@ exports.handler = arc.proxy.public({
 
 The `arc.proxy.public` can be further augmented with per filetype transform plugins. Each key in `plugins` is a file extension for processing with an array of transform plugins to run anytime that filetype is matched.
 
-The first use case for this feature is to fix URLs. API Gateway creates ugly URLs by default appending `/staging` and `/production` to the application root. This pain goes away once you setup DNS but setting up static sites is much more complicated because most tools do not expect these paths. 
+The first use case for this feature is to fix URLs. API Gateway creates ugly URLs by default appending `/staging` and `/production` to the application root. This pain goes away once you setup DNS but setting up static sites is much more complicated because most tools do not expect these paths.
 
-This demonstrates using proxy plugins to transform all links so they are prefixed with the correct URL. 
+This demonstrates using proxy plugins to transform all links so they are prefixed with the correct URL.
 
 ```javascript
 // src/http/get-index/index.js
@@ -120,7 +120,7 @@ exports.handler = arc.proxy.public({
   }
 })
 ```
-While not necessary until DNS is set up it's super helpful. Transform plugins open the door to other useful capabilities for authoring dynamic single page apps. 
+While not necessary until DNS is set up it's super helpful. Transform plugins open the door to other useful capabilities for authoring dynamic single page apps.
 
 Architect supports the following transform plugins:
 
@@ -142,12 +142,12 @@ Architect supports the following transform plugins:
 
 - **release**
   - `@architect/proxy-plugin-html-min` minify HTML
-  - `@architect/proxy-plugin-css-min` minify CSS 
+  - `@architect/proxy-plugin-css-min` minify CSS
   - `@architect/proxy-plugin-mjs-min` minify JS
 
 ## Serverless Site Rendering
 
-Prerendering content is great for performance but sometimes you need complete control of the initial HTML payload. In these cases you can enable `ssr` by giving it a module or function to run whenever `index.html` is requested.  
+Prerendering content is great for performance but sometimes you need complete control of the initial HTML payload. In these cases you can enable `ssr` by giving it a module or function to run whenever `index.html` is requested.
 
 ```javascript
 // src/http/get-index/index.js
@@ -156,7 +156,7 @@ let arc = require('@architect/functions')
 let myRenderFun = require('@architect/views/my-render-fun')
 
 exports.handler = arc.proxy.public({
-  
+
   // inline ssr function into config
   async ssr(req) {
     let headers = {'content-type':'text/html'}
@@ -211,7 +211,7 @@ npm install react react-dom parcel-bundler @architect/sandbox
 
 Edit the `app.arc` file in the root of your project directory so it shows the following:
 
-```bash
+```arc
 @app
 my-spa
 

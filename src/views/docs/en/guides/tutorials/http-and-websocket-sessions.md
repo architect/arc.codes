@@ -32,7 +32,7 @@ All `@http` defined routes are session capable via `@architect/functions`
 - Requests are tagged to a session via a stateless, signed, encrypted, httpOnly cookie `_idx`
 - Session data expires after a week of inactivity
 
-This allows you to write fully stateful applications despite Lambda functions being completely stateless. 
+This allows you to write fully stateful applications despite Lambda functions being completely stateless.
 
 Read the session:
 
@@ -77,7 +77,7 @@ If you have stricter security requirements and do not want to expose any session
 
 You'll need to define a session table in your `app.arc` file with `_idx` partition key and `_ttl` attribute for token expiry:
 
-```bash
+```arc
 @app
 testapp
 
@@ -115,7 +115,7 @@ Ensure your app has a strong secret key:
 npx env production ARC_APP_SECRET something-much-better-than-this
 ```
 
-Environment variables are automatically synced with all your lambda functions. When you add new functions you will need to sync their env variables by running `npx env verify`. 
+Environment variables are automatically synced with all your lambda functions. When you add new functions you will need to sync their env variables by running `npx env verify`.
 
 ---
 
@@ -131,16 +131,16 @@ Environment variables are automatically synced with all your lambda functions. W
 
 ## Example
 
-1.) Create a fresh Architect project
+1. Create a fresh Architect project
 
 ```bash
 mkdir -p ./mysesh
 cd mysesh
 ```
 
-2.) Create a `app.arc` file
+2. Create a `app.arc` file
 
-```bash
+```arc
 @app
 bigsesh
 
@@ -156,7 +156,7 @@ And generate the boilerplate code by running:
 arc init
 ```
 
-3.) Add the `@architect/functions` runtime helper library to your functions. This gives the request object a method to read and write sessions.
+3. Add the `@architect/functions` runtime helper library to your functions. This gives the request object a method to read and write sessions.
 
 ```bash
 cd src/http/get-index
@@ -172,28 +172,29 @@ npm init -f
 npm i @architect/functions
 ```
 
-4.) Add `src/http/get-index/render.js` with plain vanilla HTML forms for adding and resetting the session
+4. Add `src/http/get-index/render.js` with plain vanilla HTML forms for adding and resetting the session
 
 ```javascript
-// this is perfectly acceptable and FAST server side rendering 
+// this is perfectly acceptable and FAST server side rendering
 
-module.exports = function render({count}) {
-  return `<!doctype html>
+module.exports = function render({ count }) {
+  return `
+<!doctype html>
 <html>
-<body>
-<form method=post action=/count>
-  <button>Count ${count}</button>
-</form>
-<form method=post action=/reset>
-  <button>Reset</button>
-</form>
-</body>
+  <body>
+    <form method=post action=/count>
+      <button>Count ${ count }</button>
+    </form>
+    <form method=post action=/reset>
+      <button>Reset</button>
+    </form>
+  </body>
 </html>
-    `
+  `
 }
 ```
 
-5.) Modify `src/http/get-index/index.js` to read the session if it exists and render the forms with the session state
+5. Modify `src/http/get-index/index.js` to read the session if it exists and render the forms with the session state
 
 ```javascript
 let arc = require('@architect/functions')
@@ -209,7 +210,7 @@ async function home(req) {
 exports.handler = arc.http.async(home)
 ```
 
-6.) Modify `src/http/post-count/index.js` to mutate the session and redirect home
+6. Modify `src/http/post-count/index.js` to mutate the session and redirect home
 
 
 ```javascript
@@ -228,7 +229,7 @@ exports.handler = arc.http.async(counter)
 
 > FYI: Per recommended security practice Architect applications use `httpOnly` cookies for storing session state; anyone can implement their own mechanism using Set-Cookie headers directly
 
-7.) Modify `src/http/post-reset/index.js` to clear the session state
+7. Modify `src/http/post-reset/index.js` to clear the session state
 
 ```javascript
 let arc = require('@architect/functions')
@@ -245,14 +246,14 @@ exports.handler = arc.http.async(reset)
 
 > For more information about `arc.http.async` helper, [check out the documentation](https://arc.codes/reference/functions/http/node/async)
 
-8.) Initialize a `package.json` in the root of your project, and install `@architect/sandbox` for a local development server
+8. Initialize a `package.json` in the root of your project, and install `@architect/sandbox` for a local development server
 
 ```bash
 npm init -f
 npm install @architect/sandbox
 ```
 
-9.) Add a start command to the scripts section in `package.json` found at the root of your project
+9. Add a start command to the scripts section in `package.json` found at the root of your project
 
 ```bash
 ...
@@ -262,7 +263,7 @@ npm install @architect/sandbox
 ...
 ```
 
-10.) Preview by starting the dev server
+10. Preview by starting the dev server
 
 ```bash
 npm start

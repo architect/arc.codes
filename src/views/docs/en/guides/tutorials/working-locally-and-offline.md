@@ -20,13 +20,13 @@ Architect targets two use cases:
 1.) **Previewing** - code runs locally and can be opened in a web browser
 2.) **Testing** - code runs headlessly in a terminal
 
-Follow the [quickstart](/en/guides/get-started/quickstart) to get everything wired up. `npx sandbox` kicks up a local web server and creates tables and indexes defined in your `app.arc` file for previewing work. 
+Follow the [quickstart](/en/guides/get-started/quickstart) to get everything wired up. `npx sandbox` kicks up a local web server and creates tables and indexes defined in your `app.arc` file for previewing work.
 
 If you want to write tests (and we very much think you should!) against the infra without deployment you'll need to set up the `sandbox` as a module.
 
 This guide will use the following example `app.arc` file:
 
-```bash
+```arc
 @app
 testapp
 
@@ -109,7 +109,7 @@ Check the tests by running `npm t`. (It's ok if things fail &mdash; that's exact
 
 ## HTTP testing
 
-In order to test HTTP routes we will need an HTTP client. Lets use [tiny-json-http](https://github.com/brianleroux/tiny-json-http), a small, dependency free module with a straightforward interface. 
+In order to test HTTP routes we will need an HTTP client. Lets use [tiny-json-http](https://github.com/brianleroux/tiny-json-http), a small, dependency free module with a straightforward interface.
 
 Install by running `npm i tiny-json-http --save-dev` and edit the HTTP test:
 
@@ -126,7 +126,7 @@ test('env', t=> {
 })
 
 // First we need to start the local http server
- 
+
 let close
 test('arc.sandbox.start', async t=> {
   t.plan(1)
@@ -172,7 +172,7 @@ let arc = require('@architect/architect')
 
 // First we need to start the local db server and grab a reference to the client
 
-let client 
+let client
 test('arc.sandbox.db.start', t=>{
   t.plan(1)
   client = arc.sandbox.db.start(xxx=> t.ok(true, 'started'))
@@ -187,7 +187,7 @@ test('db', t=> {
   db.listTables({}, function _list(err, result) {
     if (err) throw err
     t.ok(result, 'got result')
-    console.log(result) 
+    console.log(result)
   })
 })
 

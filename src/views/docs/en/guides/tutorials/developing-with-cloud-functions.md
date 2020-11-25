@@ -171,7 +171,7 @@ Let's begin by provisioning a lambda function that will serve as the root of our
 
 Given the following example `app.arc` file:
 
-```bash
+```arc
 @app
 testapp
 
@@ -308,7 +308,7 @@ Let's implement a proof-of-concept login flow. There's [a repo with the example 
 
 This example `app.arc` project brings together all the concepts for defining HTTP Lambdas:
 
-```bash
+```arc
 @app
 loginflow
 

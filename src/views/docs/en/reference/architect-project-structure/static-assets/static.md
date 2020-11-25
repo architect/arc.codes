@@ -14,9 +14,9 @@ sections:
 
 ## Overview
 
-Architect projects support text and binary assets such as images, styles, and scripts. These assets are available directly from the root of your app on the same domain as HTTP functions. They are available to you by provisioning your own S3 bucket with the `@static` pragma and sending requests to Amazon S3 using the REST API. 
+Architect projects support text and binary assets such as images, styles, and scripts. These assets are available directly from the root of your app on the same domain as HTTP functions. They are available to you by provisioning your own S3 bucket with the `@static` pragma and sending requests to Amazon S3 using the REST API.
 
-The `@static` pragma utilizes [**Amazon Simple Storage Service (Amazon S3)**](https://aws.amazon.com/s3/). Amazon S3 is an object storage service that offers industry-leading scalability, data availability, security, and performance. It is the original serverless primitive. 
+The `@static` pragma utilizes [**Amazon Simple Storage Service (Amazon S3)**](https://aws.amazon.com/s3/). Amazon S3 is an object storage service that offers industry-leading scalability, data availability, security, and performance. It is the original serverless primitive.
 
 Architect projects support a `public/` directory in the root of your project for static assets. The `public/` directory typically includes static assets such as images, styles, and scripts required in your front-end workflows. Anything in `public/` directory is available at `http://localhost:3333/_static/` when running in the sandbox. For `production` and `staging` environments, Architect can have `staging` and `production` S3 buckets for file syncing from the `public/` folder. They'll be available at `https://yourapi.com/_static` once deployed.
 
@@ -48,7 +48,7 @@ If you are behind `@cdn` you will want to enable file fingerprinting to ensure c
 
 To enable file fingerprinting, add `fingerprint true` to your `@static` pragma, e.g.:
 
-```bash
+```arc
 @static
 staging my-unique-bucket-staging
 production my-unique-bucket
