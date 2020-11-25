@@ -85,6 +85,11 @@ ${Head(props)}
   ${ stateTag }
   ${ scriptTags }
   ${ thirdparty }
+  <script>
+   (function(){
+    document.querySelector('a.active').scrollIntoView({ behavior: 'smooth', block:  'center' })
+   }())
+  </script>
 </body>
 </html>
 `
