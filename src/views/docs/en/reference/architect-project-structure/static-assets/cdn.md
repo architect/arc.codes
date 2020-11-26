@@ -16,7 +16,7 @@ Architect projects support the ability to add a content delivery network (CDN) w
 
 Given the following `app.arc` file:
 
-```bash
+```arc
 @app
 my-site
 
@@ -28,7 +28,7 @@ Running `arc deploy` will create a CloudFront distribution for the S3 bucket web
 
 Likewise, the following `app.arc`:
 
-```bash
+```arc
 @app
 my-site
 
@@ -53,7 +53,7 @@ Unfortunately when CF distributions are deployed via CloudFormation they are upd
 
 Enable fingerprinting in `app.arc`:
 
-```bash
+```arc
 @app
 my-site
 

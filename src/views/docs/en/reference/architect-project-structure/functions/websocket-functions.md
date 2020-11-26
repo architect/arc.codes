@@ -39,7 +39,7 @@ Your `app.arc` manifest file abstracts API Gateway configuration and provisionin
 
 This `app.arc` file defines both HTTP and WebSocket endpoints:
 
-```bash
+```arc
 @app
 testapp
 
@@ -94,11 +94,11 @@ Custom route are called after the route selection expression is evaluated agains
 
 If you want to invoke a specific integration based on message content, you can do so by creating a custom route.
 
-A custom route uses a route key and integration that you specify. When an incoming message contains a JSON property, and that property evaluates to a value that matches the route key value, API Gateway invokes the integration. 
+A custom route uses a route key and integration that you specify. When an incoming message contains a JSON property, and that property evaluates to a value that matches the route key value, API Gateway invokes the integration.
 
 Here is how to specify custom WebSocket route keys:
 
-```bash
+```arc
 @app
 testapp
 

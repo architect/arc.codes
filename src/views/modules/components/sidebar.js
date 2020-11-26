@@ -18,11 +18,14 @@ const map = {
   item: function Item(state={}) {
     let { child='', children=[], depth, path, active } = state
     let isHeading = children.length
+    let ml = depth > 1
+      ? 'ml-5'
+      : ''
     return `
 <li
   class="
     mb-1
-    ml-3
+    ${ ml }
   "
 >
   ${
@@ -58,13 +61,14 @@ function Heading3(state={}) {
   return `
 <h3
   class="
-   mb-1
+   mb-5
    font-semibold
    text1
   "
 >
   ${ children }
 </h3>
+<hr class="border-solid border1 border-p1 mb1">
   `
 }
 
@@ -74,7 +78,7 @@ function Heading4(state={}) {
   return `
 <h4
   class="
-   mb-1
+   mb0
    text0
    font-semibold
   "

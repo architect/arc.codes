@@ -2,8 +2,8 @@
 /* VARIABLES */
 :root {
   --p0:#2CDD93;/* Medium Aquamarine light */
-  --p1:#1F74D6;/* Bright Navy Blue light */
-  --p2:hsl(267, 50%, 55%);/* Royal Purple light */
+  --p1:#2B7D9A;/* Bright Navy Blue light */
+  --p2:#BBFFAA;/* brighter green */
   --p3:#E21893;/* Barbie Pink light */
   --p4:#FF6263;/* Bittersweet Orange light */
   --p5:hsl(267, 75%, 45%);/* Royal purple */
@@ -19,13 +19,14 @@
   --g9:#383838;/* #383838 */
   --g10:#222222;/* #222222 */
   --h0:#3EE09C;/* Medium Aquamarine */
-  --h1:#2a80e0;/* Bright Navy Blue */
+  --h1:#40B9E5;/* Bright Navy Blue */
   --h2:hsl(267, 90%, 55%);/* Royal Purple Hover */
   --h3:#DE1792;/* Barbie Pink */
   --h4:#FF4747;/* Bittersweet Orange */
   --h5:#FAE05D;/* Minion Yellow */
   --a0:#A4A4A4;/* #A4A4A4 */
   --a1:#8E8E8E;/* #8E8E8E */
+  --a2:#1D5266;/* #8E8E8E */
   --d0:#797979;/* #797979 */
   --d1:#636363;/* #636363 */
 }
@@ -92,7 +93,7 @@ body {
 .text-a0.active{color:var(--a0);}/* #A4A4A4 */
 .text-a1:active{color:var(--a1);}/* #8E8E8E */
 .text-a1.active{color:var(--a1);}/* #8E8E8E */
-.text-a2.active{color:#006DEB;}/* FIX ME: HACK*/
+.text-a2.active{color:var(--a2);}
 .text-d0:disabled{color:var(--d0);}/* #797979 */
 .text-d1:disabled{color:var(--d1);}/* #636363 */
 
@@ -151,7 +152,7 @@ body {
 .bg-d1:disabled{background-color:var(--d1);}
 
 
-  /* GRADIENT */.bg-image0{background-image:linear-gradient(0.4turn, #0100ca, #00e5ff, #f50057);}/* outrun */
+  /* GRADIENT */.bg-image0{background-image:linear-gradient(0.4turn, var(--p1), var(--p0));}
 
 
 /* BORDER */

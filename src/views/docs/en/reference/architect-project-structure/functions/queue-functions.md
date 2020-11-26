@@ -27,7 +27,7 @@ Queues are defined in the `app.arc` manifest file under the `@queues` pragma:
 
 This `app.arc` file defines two `@queues`:
 
-```bash
+```arc
 @app
 testapp
 
@@ -85,17 +85,17 @@ Additionally `AWS::SSM::Parameter` resources are created for every SQS Queue whi
 ### Deploy
 
 - `arc deploy` to deploy with CloudFormation to staging
-- `arc deploy dirty` to overwrite deployed staging lambda functions 
+- `arc deploy dirty` to overwrite deployed staging lambda functions
 - `arc deploy production` to run a full CloudFormation production deployment
 
 
---- 
+---
 
 ## Examples
 
 ### Publish
 
-All runtime Lambda functions share an IAM Role that allows them to publish events to any SQS Queue in the currently deployed CloudFormation stack. 
+All runtime Lambda functions share an IAM Role that allows them to publish events to any SQS Queue in the currently deployed CloudFormation stack.
 
 ### Publish an event payload to an SQS Queue URL
 

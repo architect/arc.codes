@@ -79,7 +79,7 @@ Running `npm start` builds the JS and starts a local web server on `http://local
 
 You can instruct Architect to ignore files from your `public/` directory with the `ignore` directive, like so:
 
-```bash
+```arc
 @static
 staging my-unique-bucket-staging
 production my-unique-bucket
@@ -112,7 +112,7 @@ This is an experimental feature. Serialize static assets directly into API Gatew
 
 Opt in:
 
-```bash
+```arc
 @app
 testapp
 

@@ -20,7 +20,7 @@ You can use environment variables to store secrets securely and adjust your func
 
 Creating a file .arc-env in the root of your project will allow you to load environment variables locally in the sandbox.
 
-```bash
+```arc
 @testing
 FOO 1
 

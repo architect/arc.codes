@@ -46,7 +46,7 @@ ${Head(props)}
         pb-1
         pl2
         sticky
-        static-lg
+        relative-lg
         flex
         justify-between
         items-center
@@ -58,6 +58,7 @@ ${Head(props)}
       "
     >
       ${Logo({ classes: 'h-logo' })}
+      <div class="hairline bg-image0 absolute right0 bottom0 left0"></div>
     </header>
     ${ Sidebar(props) }
     <main

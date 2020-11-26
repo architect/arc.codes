@@ -62,7 +62,7 @@ No sweat, right?
 
 ### Provisioning new HTTP Functions
 
-HTTP functions are defined under the `@http` pragma, with one route per line. A route in Architect is defined as: an HTTP verb (`get`, `post`, etc) and a path separated by a space (e.g. get /foo/bar). 
+HTTP functions are defined under the `@http` pragma, with one route per line. A route in Architect is defined as: an HTTP verb (`get`, `post`, etc) and a path separated by a space (e.g. get /foo/bar).
 
 To provision a new HTTP Function, in the root of your project, open your app's Architect project manifest file (`app.arc`):
 
@@ -76,7 +76,7 @@ To provision a new HTTP Function, in the root of your project, open your app's A
 
 Here's what a basic Architect project manifest looks like with the above two HTTP Functions specified:
 
-```bash
+```arc
 @app
 your-app-name
 

@@ -10,7 +10,7 @@ sections:
 
 ## Overview
 
-Scheduled functions are functions that are invoked at specified times and can be used in conjunction with event functions to send messages on a schedule. Architect uses [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) to create rules that self-trigger on an automated schedule using cron or rate expressions. All scheduled events use the UTC time zone, and the minimum precision for schedules is 1 minute. 
+Scheduled functions are functions that are invoked at specified times and can be used in conjunction with event functions to send messages on a schedule. Architect uses [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) to create rules that self-trigger on an automated schedule using cron or rate expressions. All scheduled events use the UTC time zone, and the minimum precision for schedules is 1 minute.
 
 **Sections**
 [Getting Started](#getting-started)
@@ -33,7 +33,7 @@ To get started with scheduled functions we must first add the `@scheduled` pragm
 
 This `app.arc` file defines some scheduled functions using both `cron` & `rate`:
 
-```bash
+```arc
 @app
 testapp
 
@@ -95,7 +95,7 @@ A `rate` expression is a lot less granular that a `cron` expression. `rate` expr
 
 **value**
 
-A positive number that sets the numerical length of your `rate` expression. 
+A positive number that sets the numerical length of your `rate` expression.
 
 **unit**
 
@@ -109,7 +109,7 @@ If the value is equal to 1, then the unit must be singular. Similarly, for value
 
 ## Examples
 
-```bash
+```arc
 @app
 testapp
 

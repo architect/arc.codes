@@ -14,7 +14,7 @@ Developers that prefer JSON or YAML can opt into using either syntax in arc.json
 
 ## app.arc example
 
-```bash
+```arc
 # This is going to be great!
 
 @app
@@ -55,7 +55,7 @@ accounts
 ```
 
 ## JSON example
- 
+
 ```bash
 {
   "app": "testapp",

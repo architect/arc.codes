@@ -27,7 +27,7 @@ Event functions are fast, lightweight, stateless, isolated, highly durable, and 
 
 Events are defined in the `app.arc` manifest file under the `@events` pragma:
 
-```bash
+```arc
 @app
 testapp
 
@@ -58,7 +58,7 @@ To provision a new event function, in the root of your project, open your app's 
 Here's what a basic Architect project manifest looks like with the above two event functions specified:
 Running `arc deploy` will setup the following AWS resources:
 
-```bash
+```arc
 @app
 your-app-name
 
@@ -78,7 +78,7 @@ Additionally `AWS::SSM::Parameter` resources are created for every SNS Topic whi
 
 > All runtime functions have the environment variable `AWS_CLOUDFORMATION` which is the currently deployed CloudFormation stack name; this combined w the runtime `aws-sdk` or `@architect/functions` can be used to lookup these values in SSM
 
---- 
+---
 
 ## Events
 
@@ -93,7 +93,7 @@ These are event handlers subscribed to the event name defined in `app.arc`.
 
 > Events are supported by `arc sandbox`
 
-All runtime Lambda functions share an IAM Role that allows them to publish events to any SNS Topic in the currently deployed CloudFormation stack. 
+All runtime Lambda functions share an IAM Role that allows them to publish events to any SNS Topic in the currently deployed CloudFormation stack.
 
 ### Event publishers
 
@@ -137,7 +137,7 @@ def handler(request, context):
 ## Deploy
 
 - `arc deploy` to deploy with CloudFormation to staging
-- `arc deploy dirty` to overwrite deployed staging lambda functions 
+- `arc deploy dirty` to overwrite deployed staging lambda functions
 - `arc deploy production` to run a full CloudFormation production deployment
 
 ---
