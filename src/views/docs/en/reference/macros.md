@@ -23,7 +23,7 @@ testapp
 my-custom-macro
 ```
 
-For this example the `.arc` manifest file above, the macro is in `src/macros/my-custom-macro.js`
+For this example the `app.arc` manifest file above, the macro is in `src/macros/my-custom-macro.js`
 
 > Note: Macros are a new feature, and only JavaScript macros are supported at this time; however, Python and Ruby are on the roadmap.
 
