@@ -51,7 +51,7 @@ function Anchor(state={}) {
     : ''
 
   return `
-<a href="${ href }" class="text-p1 text-h1 text-a2 no-underline underline-h font-medium ${ activeClass }" >${pointer} ${ children }</a>
+<a href="${ href }" class="text-p1 text-h1 text-a2 no-underline font-medium ${ activeClass }" >${pointer} ${ children }</a>
   `
 }
 
