@@ -34,8 +34,8 @@ get /
 
 From here you have two paths to mapping the DNS records:
 
-0. DNS with a third party provider (often the domain registrar) using `npx dns`
-1. DNS with Route53 fully automated `npx dns route53`
+1. DNS with a third party provider (often the domain registrar) using `npx dns`
+2. DNS with Route53 fully automated `npx dns route53`
 
 
 ## DNS with 3rd party provider
@@ -77,11 +77,8 @@ If something goes wrong you can destroy the generated resources and re-create.
 
 If you _really_ want to manually configure DNS you can follow these guides below:
 
-* [Route 53](#route-53)
-* [Cloudflare](#cloudflare)
-
-<a name="route-53"></a>
-
+- [Route 53](#route-53)
+- [Cloudflare](#cloudflare)
 
 ## Route 53
 

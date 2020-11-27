@@ -16,15 +16,15 @@ In this tutorial you will build a simple note taking application, with multiple 
 
 
 **Sections**
-[Generating the Data Layer](#generating-the-data-layer)
-[Implementing an Admin Interface](#implementing-an-admin-interface)
-[Implementing Signup](#implementing-signup)
-[Implementing Login](#implementing-login)
-[Implementing Logout](#implementing-logout)
-[Protecting Routes](#protecting-routes)
-[Showing and making notes](#showing-and-making-notes)
-[Edit a specific note](#edit-a-specific-note)
-[Delete a Note](#delete-a-note)
+- [Generating the Data Layer](#generating-the-data-layer)
+- [Implementing an Admin Interface](#implementing-an-admin-interface)
+- [Implementing Signup](#implementing-signup)
+- [Implementing Login](#implementing-login)
+- [Implementing Logout](#implementing-logout)
+- [Protecting Routes](#protecting-routes)
+- [Showing and making notes](#showing-and-making-notes)
+- [Edit a specific note](#edit-a-specific-note)
+- [Delete a Note](#delete-a-note)
 
 ---
 

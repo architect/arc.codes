@@ -57,13 +57,13 @@ Architect 4 (Yeti) introduced generic, dependency-free HTTP functions, enhanced 
 
 ### Topics
 
-[Architect 7 &rarr; 8](#architect-7-&rarr;-8)
-[Architect 6 &rarr; 7](#architect-6-&rarr;-7)
-[Architect 5 &rarr; 6](#architect-5-&rarr;-6)
-[Architect 5 LTS maintenance schedule](#architect-5-lts-maintenance-schedule)
-[Architect 4 &rarr; 5](#architect-4-&rarr;-5)
-[Architect Functions](#architect-functions)
-[Architect Data](#architect-data)
+- [Architect 7 &rarr; 8](#architect-7-&rarr;-8)
+- [Architect 6 &rarr; 7](#architect-6-&rarr;-7)
+- [Architect 5 &rarr; 6](#architect-5-&rarr;-6)
+- [Architect 5 LTS (maintenance schedule)](#architect-5-lts-maintenance-schedule)
+- [Architect 4 &rarr; 5](#architect-4-&rarr;-5)
+- [Architect Functions](#architect-functions)
+- [Architect Data](#architect-data)
 
 ---
 

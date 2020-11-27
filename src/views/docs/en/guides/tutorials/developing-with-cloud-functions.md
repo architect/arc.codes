@@ -23,7 +23,7 @@ Architect offers a powerful new approach to app development: **building applicat
 
 With Architect, your app deploys instantly, you pay only for what you use, and you can finally scale your app from a simple prototype to a massive success without ever having to change your cloud infra.
 
-### ✨Let's learn your new superpowers
+### ✨ Let's learn your new superpowers
 
 - **Deploy new code instantaneously** - a single function deploys globally in seconds, and a large app in minutes. This means orders of magnitude tighter iteration cycles and faster fixes, which in turn means far greater customer value.
 
@@ -51,30 +51,34 @@ Cloud function apps embody the dream we've been promised of the cloud for decade
 
 ### Statelessness between invocations
 
-Unlike servers, which can take seconds or minutes to spin up, cloud functions start in milliseconds, and can instantly fan out to massive scale.
-- This is possible because cloud functions are effectively stateless between each invocation
-- However, many of today's applications assume some statefulness between executions, so this may be a new consideration for your application architecture
+Unlike servers, which can take seconds or minutes to spin up, cloud functions start in milliseconds, and can instantly fan out to massive scale. This is possible because cloud functions are effectively stateless between each invocation.
+
+However, many of today's applications assume some statefulness between executions, so this may be a new consideration for your application architecture
 
 ### Statelessness can impact your choice of database
 
-Because cloud functions are effectively stateless, older socket-based data persistence systems (example: most SQL databases) can become overwhelmed by their need to open and close connections so frequently.
-- For this reason, cloud functions work best with persistence systems that utilize fast, non-socket-based methods of transaction (e.g. HTTP, API, etc.)
-- Examples include Architect Data / DynamoDB, Firebase, RethinkDB, FaunaDB, GraphQL, etc.
-- This is, of course, evolving! We understand there projects launching soon to enable cloud function-friendly accessing of socket-based databases like SQL, Postgres, MongoDB, etc.
+Because cloud functions are effectively stateless, older socket-based data persistence systems (example: most SQL databases) can become overwhelmed by their need to open and close connections so frequently. For this reason, cloud functions work best with persistence systems that utilize fast, non-socket-based methods of transaction (e.g. HTTP, API, etc.)
+
+Examples include: 
+- Architect Data
+- DynamoDB
+- Firebase
+- RethinkDB
+- FaunaDB
+- GraphQL
+- etc.
+
+This is, of course, evolving! We understand there projects launching soon to enable cloud function-friendly accessing of socket-based databases like SQL, Postgres, MongoDB, etc.
 
 ### Smaller cloud functions run faster
 
-Cloud functions start and run fastest when they're small and discrete.
-- For this reason Architect applications split your application up into individual, stateless functions, each its own directory in your repo
-- Of course, intra-project code sharing would be a requirement to keep things dry, so Architect applications share code via `src/shared/` and `src/views/` directories ([learn more here](/en/guides/tutorials/code-sharing-across-functions))
-- In practice, this looks a lot like a micro-services-based architecture, except now it has the advantage of being reflected in how your app runs in the cloud
-- This also has the added benefit of massively aiding debugging – no more grepping through your entire application's logs, just look at the cloud function in which you've got the bug!
+Cloud functions start and run fastest when they're small and discrete. For this reason Architect applications split your application up into individual, stateless functions, each its own directory in your repo. Of course, intra-project code sharing would be a requirement to keep things dry, so Architect applications share code via `src/shared/` and `src/views/` directories ([learn more here](/en/guides/tutorials/code-sharing-across-functions)). 
+
+In practice, this looks a lot like a micro-services-based architecture, except now it has the advantage of being reflected in how your app runs in the cloud. This also has the added benefit of massively aiding debugging – no more grepping through your entire application's logs, just look at the cloud function in which you've got the bug!
 
 ### Requests as Input
 
-By default, HTTP functions are dependency free with a minimal, but very powerful, low level API. Every HTTP function receives a plain JavaScript `Object` called `request` as a first parameter.
-
-`request` has the following keys:
+By default, HTTP functions are dependency free with a minimal, but very powerful, low level API. Every HTTP function receives a plain JavaScript `Object` called `request` as a first parameter. **`request` has the following keys:**
 
 - **`body`:** receives `Object` - request body, including an `Object` containing any `application/x-www-form-urlencoded` form variables
 - **`path`:** receives `string` - absolute path of the request
@@ -96,7 +100,7 @@ To send a response, HTTP functions return a plain JavaScript `Object` with the f
 - **`cookie`:** receives `string` - sets the `Set-Cookie` response header
 - **`cors`:** receives `boolean` - sets the various CORS headers
 
-`@architect/functions` (optionally) adds additional useful tools for working with HTTP, including middleware, sessions, and more.
+> `@architect/functions` (optionally) adds additional useful tools for working with HTTP, including middleware, sessions, and more.
 
 ### Code sharing
 

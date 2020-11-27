@@ -17,10 +17,10 @@ This section is about setting up your local development environment and a testin
 
 Architect targets two use cases:
 
-1.) **Previewing** - code runs locally and can be opened in a web browser
-2.) **Testing** - code runs headlessly in a terminal
+1. **Previewing** - code runs locally and can be opened in a web browser
+2. **Testing** - code runs headlessly in a terminal
 
-Follow the [quickstart](/en/guides/get-started/quickstart) to get everything wired up. `npx sandbox` kicks up a local web server and creates tables and indexes defined in your `app.arc` file for previewing work.
+Follow the [quickstart](/docs/en/guides/get-started/quickstart) to get everything wired up. `npx sandbox` kicks up a local web server and creates tables and indexes defined in your `app.arc` file for previewing work.
 
 If you want to write tests (and we very much think you should!) against the infra without deployment you'll need to set up the `sandbox` as a module.
 

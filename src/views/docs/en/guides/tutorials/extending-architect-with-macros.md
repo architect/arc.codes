@@ -25,7 +25,7 @@ If you want to just use this macro, [follow the install instructions on GitHub](
 
 ## Example - Provision public S3 buckets
 
-1.) We will start with a fresh project that we can create from the terminal.
+1. We will start with a fresh project that we can create from the terminal.
 
 ```bash
 mkdir arc-macro
@@ -33,14 +33,14 @@ cd arc-macro
 arc init
 ```
 
-2.) Now let's add a [utility library](https://github.com/architect/utils/blob/master/to-logical-id/index.js).
+2. Now let's add a [utility library](https://github.com/architect/utils/blob/master/to-logical-id/index.js).
 
 ```bash
 npm init -y
 npm install @architect/utils
 ```
 
-3.) Open up the `app.arc` file and modify it with the following: 
+3. Open up the `app.arc` file and modify it with the following: 
 
 ```bash
 ## app.arc
@@ -68,7 +68,7 @@ profile default
 region us-west-1
 ```
 
-4.) Create a `/src/macros` folder with two files in it, `index.js` and `validate.js`. Architect will look for macros to run in either `/src/macros/filename` or `node_modules/macro-module-name`
+4. Create a `/src/macros` folder with two files in it, `index.js` and `validate.js`. Architect will look for macros to run in either `/src/macros/filename` or `node_modules/macro-module-name`
 
 ```javascript
 // src/macros/index.js
@@ -202,7 +202,7 @@ module.exports = function validateStorage (storage) {
 
 That might seem like a lot at first, but Architect uses your app.arc file in a very similar way to generate CloudFormation on your behalf. When you want to get your hands dirty with direct CloudFormation templates, a Macro will be your best friend.
 
-5.) Dry run and final deploy
+5. Dry run and final deploy
 
 When using custom macros to alter CloudFormation, or even checking the output, you can deploy with `--dry-run` flag to see the resulting `sam.json`. When you're ready to deploy, run `arc deploy` and go take a look at all those lovely S3 buckets that were created on your behalf. 
 

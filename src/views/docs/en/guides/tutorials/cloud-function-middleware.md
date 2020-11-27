@@ -43,7 +43,9 @@ mkdir arc-async-middleware
 cd arc-async-middleware
 arc init
 ```
+
 2. Replace the `app.arc` file with the following:
+
 ```arc
 # app.arc file
 @app
@@ -53,11 +55,12 @@ arc-async
 get /
 get /dashboard
 ```
+
 3. Run `arc create` to generate the folder structure and some template code.
 
-5. You should now see two HTTP functions, `get-index` and `get-dashboard`.
+4. You should now see two HTTP functions, `get-index` and `get-dashboard`.
 
-4. In order to use the runtime helpers, we have to install `@architect/functions` and require it at the top of the file. Each HTTP function as a self contained unit, so any dependencies you need must be present within the function folder.
+5. In order to use the runtime helpers, we have to install `@architect/functions` and require it at the top of the file. Each HTTP function as a self contained unit, so any dependencies you need must be present within the function folder.
 
 ```bash
 cd src/http/get-dashboard
@@ -65,7 +68,7 @@ npm init -y
 npm install @architect/functions
 ```
 
-5. Let's go ahead and replace the contents of `src/http/get-dashboard/index.js` with the following:
+6. Let's go ahead and replace the contents of `src/http/get-dashboard/index.js` with the following:
 
 ```javascript
 // src/http/get-dashboard/index.js
@@ -153,6 +156,7 @@ mkdir arc-http-middleware
 cd arc-http-middleware
 arc init
 ```
+
 2. Replace the `app.arc` file with the following:
 
 ```arc
@@ -165,11 +169,12 @@ arc-http-middleware
 get /
 post /count
 ```
+
 3. Run `arc create` to generate the folder structure and some template code.
 
-5. You should now see two HTTP functions, `get-index` and `post-count`.
+4. You should now see two HTTP functions, `get-index` and `post-count`.
 
-4. In order to use the runtime helpers, we have to install `@architect/functions` and require it at the top of the file. Each HTTP function as a self contained unit, so any dependencies you need must be present within the function folder.
+5. In order to use the runtime helpers, we have to install `@architect/functions` and require it at the top of the file. Each HTTP function as a self contained unit, so any dependencies you need must be present within the function folder.
 
 ```bash
 cd src/http/get-index

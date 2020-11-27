@@ -18,7 +18,9 @@ Here's how it works, and can be extended:
 
 To view logs for a function and get instant access to clean, readable logs, isolated by function run: 
 
-`npx logs [production] path/to/function`. 
+```js
+npx logs production path/to/function 
+```
 
 For example, given the following `app.arc` file:
 
@@ -30,6 +32,14 @@ showlogs
 get /
 ```
 
-To view the production logs run `npx logs production src/http/get-index`.
+To view the production logs run 
 
-To clear the logs run `npx logs nuke`.
+```js
+npx logs production src/http/get-index
+```
+
+To clear the logs run 
+
+```js
+npx logs nuke
+```

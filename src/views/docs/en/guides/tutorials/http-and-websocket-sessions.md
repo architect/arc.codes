@@ -16,18 +16,18 @@ The first primitive to understand for building stateful interactions on the web 
 In this tutorial, we will go over several ways to store session state within your app. There is an example app at the end that we will build to display how sessions work within Architect.
 
 **Sections**
-[HTTP sessions](#http-sessions)
-[Database Sessions](#database-sessions)
-[WebSocket sessions](#websocket-sessions)
-[Strong Key](#strong-key)
-[Common Session Use Cases](#common-session-use-cases)
-[Example](#example)
+- [HTTP sessions](#http-sessions)
+- [Database Sessions](#database-sessions)
+- [WebSocket sessions](#websocket-sessions)
+- [Strong Key](#strong-key)
+- [Common Session Use Cases](#common-session-use-cases)
+- [Example](#example)
 
 ---
 
 ## HTTP sessions
 
-All `@http` defined routes are session capable via `@architect/functions`
+All `@http` defined routes are session capable via `@architect/functions`.
 
 - Requests are tagged to a session via a stateless, signed, encrypted, httpOnly cookie `_idx`
 - Session data expires after a week of inactivity

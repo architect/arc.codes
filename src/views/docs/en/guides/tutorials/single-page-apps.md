@@ -16,12 +16,12 @@ sections:
 There are many ways to build a single-page application. Larger applications can benefit from using a frontend library and bundler. Various libraries help us organize code, and the bundler helps us package it for optimal production delivery. In this tutorial, we will go over some common patterns you should use to build single-page-apps with Architect complete with an example SPA at the end.
 
 **Sections**
-[Static and dynamic API endpoints coexisting at the same origin](#static-and-dynamic-api-endpoints-coexisting-at-the-same-origin)
-[Proxy Public](#proxy-public)
-[Aliasing](#aliasing)
-[Proxy Plugins](#proxy-plugins)
-[Serverless Site Rendering](#serverless-site-rendering)
-[Example](#example)
+- [Static and dynamic API endpoints coexisting at the same origin](#static-and-dynamic-api-endpoints-coexisting-at-the-same-origin)
+- [Proxy Public](#proxy-public)
+- [Aliasing](#aliasing)
+- [Proxy Plugins](#proxy-plugins)
+- [Serverless Site Rendering](#serverless-site-rendering)
+- [Example](#example)
 
 
 ## Static and dynamic API endpoints coexisting at the same origin
@@ -120,6 +120,7 @@ exports.handler = arc.proxy.public({
   }
 })
 ```
+
 While not necessary until DNS is set up it's super helpful. Transform plugins open the door to other useful capabilities for authoring dynamic single page apps.
 
 Architect supports the following transform plugins:
@@ -196,7 +197,7 @@ There are many ways to build a single-page application. Larger applications can 
 
 In this guide, we'll be using the frontend library <a href=https://reactjs.org/ target=blank>React</a> with the <a href=https://parceljs.org/recipes.html target=blank>Parcel bundler</a>. React is probably the most popular framework and works with many bundlers, but we like Parcel because of its speed and simplicity.
 
-1.) Create a fresh Architect project
+1. Create a fresh Architect project
 
 Initialize an Architect project, change directories into the project folder, create a `package.json` file, and install NPM packages:
 
@@ -207,7 +208,7 @@ npm init -f
 npm install react react-dom parcel-bundler @architect/sandbox
 ```
 
-2.) Update the build folder configuration in `app.arc`
+2. Update the build folder configuration in `app.arc`
 
 Edit the `app.arc` file in the root of your project directory so it shows the following:
 
@@ -219,7 +220,7 @@ my-spa
 folder dist
 ```
 
-3.) Update the build script
+3. Update the build script
 
 Add the following start script to your `package.json` file:
 
@@ -229,7 +230,7 @@ Add the following start script to your `package.json` file:
 }
 ```
 
-4.) Update `public/index.html`
+4. Update `public/index.html`
 
 Replace the contents of your `index.html` file with the following:
 
@@ -243,7 +244,7 @@ Replace the contents of your `index.html` file with the following:
 </html>
 ```
 
-5.) Add `public/index.js`
+5. Add `public/index.js`
 
 Create an `index.js` file and add the following to it:
 
@@ -261,7 +262,7 @@ var mountNode = document.getElementById("app");
 ReactDOM.render(<HelloMessage name="Jane" />, mountNode);
 ```
 
-6.) Preview your app by starting the dev server
+6. Preview your app by starting the dev server
 
 ```bash
 npm start
