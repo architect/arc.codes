@@ -13,6 +13,9 @@ html {
 .hairline {
   height: 4px;
 }
+.max-width-content {
+  max-width: 60rem;
+}
 .two-column {
   /* Height: Header | Content */
   grid-template-rows: 3rem 1fr;

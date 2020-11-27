@@ -43,7 +43,7 @@ ${Head(props)}
       class="
         pt-1
         pr2
-        pb-1
+        pb0
         pl2
         sticky
         relative-lg
@@ -69,17 +69,24 @@ ${Head(props)}
         overflow-auto
       "
     >
-      <h1
+      <div
         class="
-          mb1
-          font-semibold
-          text2
+          max-width-content
+          m-auto
         "
       >
-        ${ title }
-      </h1>
-      <div class="pb4 docs">
-        ${ children }
+        <h1
+          class="
+            mb1
+            font-semibold
+            text2
+          "
+        >
+          ${ title }
+        </h1>
+        <div class="pb4 docs">
+          ${ children }
+        </div>
       </div>
     </main>
   </div>
