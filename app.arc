@@ -5,11 +5,11 @@ arc-codes
 region us-west-1
 profile openjsf
 bucket arc.codes-deploy
-apigateway rest
+apigateway http
 
 @cdn
 @static
 @http
-get /
 get /playground
 get /api/:version/package
+get /*

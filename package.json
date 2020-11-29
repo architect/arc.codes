@@ -5,7 +5,7 @@
   "scripts": {
     "deploy": "./scripts/deploy",
     "lint": "eslint . --fix",
-    "spellcheck": "cross-env npx spellchecker ./public/**/*.md --no-suggestions -q -d ./scripts/dictionary.js --plugins spell indefinite-article repeated-words syntax-mentions syntax-urls",
+    "spellcheck": "cross-env npx spellchecker './public/**/*.md' --no-suggestions -q -d ./scripts/dictionary.js --plugins spell indefinite-article repeated-words syntax-mentions syntax-urls",
     "start": "npx arc sandbox",
     "test": "npm run lint && npm run spellcheck"
   },
@@ -18,9 +18,8 @@
     "url": "https://github.com/arc-repos/arc.codes/issues"
   },
   "homepage": "https://github.com/arc-repos/arc.codes#readme",
-  "dependencies": {},
   "devDependencies": {
-    "@architect/architect": "^8.3.2",
+    "@architect/architect": "^8.3.4",
     "@architect/eslint-config": "^1.0.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.14.0",
