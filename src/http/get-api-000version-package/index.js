@@ -1,4 +1,4 @@
-let parse = require('@architect/parser')
+let _inventory = require('@architect/inventory')
 let pkg = require('@architect/package')
 
 /**
@@ -12,7 +12,10 @@ exports.handler = async function http (req) {
 
   try {
     statusCode = 200
-    body = JSON.stringify(pkg(parse(req.queryStringParameters.arc)))
+    let rawArc = req.queryStringParameters.arc
+    let inventory = await _inventory({ rawArc })
+    let cfn = pkg(inventory)
+    body = JSON.stringify(cfn)
   }
   catch (e) {
     statusCode = 500

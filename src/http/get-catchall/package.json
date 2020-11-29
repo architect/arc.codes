@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "@architect/functions": "^3.13.3",
+    "@architect/functions": "^3.13.8",
     "@architect/proxy-plugin-md": "^1.0.0",
-    "marked": "^0.7.0"
+    "marked": "^1.2.5"
   }
 }
