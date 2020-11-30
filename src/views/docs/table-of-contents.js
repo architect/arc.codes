@@ -25,6 +25,7 @@ let Guides = [
       'Adding WebSockets to your app',
       'Using dependencies in your functions',
       'Extending Architect with macros',
+      'Ejecting to CloudFormation'
     ]
   },
   {
