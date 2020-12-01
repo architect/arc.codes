@@ -22,6 +22,10 @@ html {
   /* Width: Sidebar | Content */
   grid-template-columns: 17.666rem 1fr;
 }
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
 .h-logo {
   height:1.5rem;
 }

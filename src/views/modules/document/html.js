@@ -1,8 +1,9 @@
 import Head from './head.js'
-// import Symbols from './symbols.mjs'
+import Symbols from './symbols.js'
 import Script from './script.js'
 import State from './state.js'
 import Logo from '../components/logo.js'
+import Icon from '../components/icon.js'
 import Sidebar from '../components/sidebar.js'
 
 export default function HTML (props={}) {
@@ -16,15 +17,16 @@ export default function HTML (props={}) {
   } = props
   let scriptTags = scripts &&
     Array.isArray(props.scripts)
-      ? scripts.map(src => Script({src}))
+      ? scripts.map(src => Script({ src }))
       : Script(scripts)
   let stateTag = state &&
       State(state) || ''
 
   return `
 <!DOCTYPE html>
-<html lang="${lang}" class="h-full">
-${Head(props)}
+<html lang="${ lang }" class="h-full">
+${ Head(props) }
+${ Symbols }
 <body
   class="
     h-full
@@ -48,8 +50,8 @@ ${Head(props)}
         sticky
         relative-lg
         flex
-        justify-between
         items-center
+        justify-between
         top0
         bg-g9
         col-start-1
@@ -57,7 +59,10 @@ ${Head(props)}
         text-g0
       "
     >
-      ${Logo({ classes: 'h-logo' })}
+      ${ Logo({ classes: 'h-logo' }) }
+      <button class="bg-unset text-g0 hidden-lg">
+        ${ Icon({ href: 'hamburger', classes: 'icon fill-current' }) }
+      </button>
       <div class="hairline bg-image0 absolute right0 bottom0 left0"></div>
     </header>
     ${ Sidebar(props) }
