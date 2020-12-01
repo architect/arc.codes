@@ -3,18 +3,19 @@
 
 Durable persistence of structured data is the foundation for all powerful web apps. Data needs to be instantaneous, consistent, secure, and transparently scale to meet demand.
 
-Architect `@tables` defines DynamoDB tables and `@indexes` define global secondary indexes to facilitate more advanced access patterns.
+Architect `@tables` defines [DynamoDB tables](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html#HowItWorks.CoreComponents.TablesItemsAttributes) and `@indexes` define [global secondary indexes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html#HowItWorks.CoreComponents.SecondaryIndexes) to facilitate more advanced access patterns.
 
-> Read the official [AWS docs on DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
+> If you've never used DynamoDB before, we recommend you familiarize yourself with the [DynamoDB Core Components](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
 
 ---
 
+- <a href=#define><b>📋 Define Tables</b></a>
+- <a href=#index><b>📇 Add Indexes</b></a>
 - <a href=#local><b>🚜 Work Locally</b></a>
 - <a href=#provision><b>🌾 Provision</b></a>
 - <a href=#encrypt><b>🔒 Encryption</b></a>
 - <a href=#sec><b>💰 IAM Permissions</b></a>
 - <a href=#deploy><b>⛵️ Deploy</b></a>
-- <a href=#repl><b>🔪 REPL</b></a>
 - <a href=#write><b>🔏 Write Data</b></a>
 - <a href=#read><b>📖 Read Data</b></a>
 - <a href=#stream><b>📚 Stream Data</b></a>
@@ -23,9 +24,9 @@ Architect `@tables` defines DynamoDB tables and `@indexes` define global seconda
 
 ---
 
-<h2 id=local>🚜 Work Locally</h2>
+<h2 id=define>📋 Define Tables</h2>
 
-Tables are defined in `app.arc` under `@tables` and `@indexes`:
+Tables are defined in `app.arc` under `@tables`:
 
 ```arc
 @app
@@ -42,17 +43,45 @@ cats
 secretDogs
   encrypt true
   accountId *String
+```
+
+*Table names are _lowercase alphanumeric_ and can contain _dashes_.* Each item within a table is uniquely identified by a [_primary key_](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html#HowItWorks.CoreComponents.PrimaryKey). The primary key can either be a simple, single-attribute _partition key_ or can be a _composite primary key_ composed of two attributes, a partition key and a _sort key_.
+
+The partition key is indented two spaces and must be of the type `*String` or `*Number`. The optional sort key is defined using `**String` or `**Number`.
+
+> **Protip:** table names can be anything but choose a consistent naming scheme within your app namespace; one useful scheme is plural nouns like: `accounts` or `email-invites`
+
+---
+
+<h2 id=index>📇 Add Indexes</h2>
+
+Indexes are defined in `app.arc` under `@indexes`:
+
+```arc
+@app
+testapp
+
+@tables
+accounts
+  accountID *String
 
 @indexes
 accounts
   email *String
 ```
 
-*Table names are _lowercase alphanumeric_ and can contain _dashes_.* The hash key is indented two spaces and must be of the type `*String` or `*Number`. The optional sort key is defined `**String` or `**Number`.
+For each index defined, arc will create a [_global secondary index_](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html#HowItWorks.CoreComponents.SecondaryIndexes) for you. Secondary indexes are a powerful way to expand your querying capabilities in DynamoDB.
 
-> **Protip:** table names can be anything but choose a consistent naming scheme within your app namespace; one useful scheme is plural nouns like: `accounts` or `email-invites`
+Just like the _base table_, you must define a primary key for the index. The attributes of the index's primary key do not have to include the attributes of the base table's primary key.
 
-Running `arc sandbox` will mount the current `app.arc` into a local in memory database on `http://localhost:5000`.
+> 💪 Take full advantage of the querying capabilities provided by indexes and learn about [Best Practices Using Secondary Indexes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-indexes.html)
+
+
+---
+
+<h2 id=local>🚜 Work Locally</h2>
+
+Running `arc sandbox` will mount the current `app.arc` into a local in-memory database on `http://localhost:5000`.
 
 ---
 
@@ -126,15 +155,17 @@ For `@tables` only the following IAM actions are allowed at runtime:
 
 ---
 
-<h2 id=repl>🔪 REPL</h2>
-
-- `arc repl` to connect to a local in memory sandbox
-- `arc repl staging` to connect to staging tables
-- `arc repl production` to connect to production tables
-
----
-
 <h2 id=write>🔏 Write Data</h2>
+
+Within any arc function handler you can interact with your tables and indexes
+using the `@architect/functions` runtime helper library's [`tables` operations](/reference/functions/tables).
+Given an `app.arc` as follows:
+
+```
+@tables
+cats
+  fluffId *Number
+```
 
 `put` with Node
 
@@ -175,6 +206,8 @@ cats.delete_item(Key=1)
 ---
 
 <h2 id=read>📖 Read Data</h2>
+
+> Check out the [`@architect/functions` `tables` reference](/reference/functions/tables) for details
 
 `scan` with Node
 
@@ -219,8 +252,7 @@ cats
   stream true
 ```
 
-> `arc init` creates `src/tables/cats` local code and
-> `arc deploy` to publishes to Lambda
+`arc init` creates `src/tables/cats` local code and `arc deploy` publishes to Lambda.
 
 <section class="code-examples">
 
@@ -248,6 +280,8 @@ def handler(event, context):
 ```
 
 </section>
+
+> Your stream handler function should handle errors gracefully. Otherwise, by default, DynamoDB will keep delivering the same failed record changes to your handler until it succeeds; for more information please see the [AWS docs on this topic](https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-errors)
 
 ---
 
