@@ -4,6 +4,7 @@ category: Tutorials
 description: 160 (or fewer) character description of this document!
 sections:
   - Overview
+  - Let's learn your new superpowers
   - Principles & best practices
   - Helpers for your functions
   - Tutorial example
@@ -23,7 +24,15 @@ Architect offers a powerful new approach to app development: **building applicat
 
 With Architect, your app deploys instantly, you pay only for what you use, and you can finally scale your app from a simple prototype to a massive success without ever having to change your cloud infra.
 
-### ✨ Let's learn your new superpowers
+  **Sections**
+- [Let's learn your new superpowers](#let's-learn-your-new-superpowers)
+- [Principles & best practices](#principles-&-best-practices)
+- [Helpers for your functions](#helpers-for-your-functions)
+- [Tutorial example](#tutorial-example)
+
+---
+
+## ✨ Let's learn your new superpowers
 
 - **Deploy new code instantaneously** - a single function deploys globally in seconds, and a large app in minutes. This means orders of magnitude tighter iteration cycles and faster fixes, which in turn means far greater customer value.
 
@@ -44,8 +53,6 @@ With Architect, your app deploys instantly, you pay only for what you use, and y
 - **Only pay for what you for what you use, and at affordable rates** - not having to keep servers running means not having to pay for servers sitting idle; and even when in heavy use, cloud functions are highly affordable
 
 Cloud function apps embody the dream we've been promised of the cloud for decades. With these new superpowers comes new considerations.
-
----
 
 ## Principles & best practices
 
@@ -187,13 +194,16 @@ When a user visits `/`, the following HTTP function in `src/http/get-index/index
 
 ```javascript
 exports.handler = async function http(request) {
+  
   return {
-    status: 201,
-    type: 'text/html; charset=utf8',
+    statusCode: 201,
+    headers: {'content-type': 'text/html; charset=utf8'},
     body: `
       <!doctype html>
       <html>
-        <body>hello world</body>
+        <body>
+          <p>hello world</p>
+        </body>
       </html>
    `
   }
