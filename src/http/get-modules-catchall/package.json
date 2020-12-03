@@ -1,16 +1,11 @@
 {
-  "name": "get-docs-000lang-catchall",
+  "name": "get-modules-catchall",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@toycode/markdown-it-class": "^1.2.4",
-    "esm": "^3.2.25",
-    "highlight.js": "^10.4.0",
-    "js-yaml": "^3.14.0",
-    "markdown-it": "^12.0.2",
-    "markdown-it-anchor": "^6.0.1",
-    "markdown-it-front-matter": "^0.2.3"
+    "@begin/data": "^1.2.3",
+    "rollup": "^2.34.0"
   },
   "devDependencies": {},
   "scripts": {

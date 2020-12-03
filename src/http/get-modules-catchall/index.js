@@ -12,7 +12,7 @@ const fatal = require('./responses/500')
  */
 exports.handler = async function http (req={}) {
   let { pathParameters={}, queryStringParameters={} } = req
-  let { module } = pathParameters
+  let { proxy: module } = pathParameters
   let debug = queryStringParameters.debug === 'true'
 
   try {

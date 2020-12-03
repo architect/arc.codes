@@ -12,6 +12,11 @@ module.exports = async function write ({ key, body }) {
   let filename = `${ file }-${ sha }.${ extension }`
   console.timeEnd('fingerprint')
 
+  console.log(
+   'FILE\n',
+    file
+  )
+
   // Cache it
   console.time('begin-data-cache')
   let bundle = {

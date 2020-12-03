@@ -3,13 +3,16 @@ const data = require('@begin/data')
 const path = require('./cache-path')
 
 module.exports = async function read({ module }) {
+  let parts = module.split('/')
+  let filename = parts[parts.length - 1]
   let key = module
 
   // Get the cache contents
   let cache = await data.get({ table: 'module-cache' })
 
   // Fingerprinted requests
-  let file = cache.length && cache.find(f => module === f.filename) || false
+  let file = cache.length &&
+    cache.find(f => filename === f.filename) || false
 
   // Non-fingerprinted requests
   let forward = cache.find(f => key === f.key)

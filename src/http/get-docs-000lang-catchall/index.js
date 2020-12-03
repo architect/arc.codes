@@ -4,6 +4,7 @@ const util = require('util')
 const fs = require('fs')
 const Markdown = require('markdown-it')
 const markdownClass = require('@toycode/markdown-it-class')
+const markdownAnchor = require('markdown-it-anchor')
 const frontmatterParser = require('markdown-it-front-matter')
 const classMapping = require('./markdown-class-mappings')
 const hljs = require('highlight.js')
@@ -58,6 +59,9 @@ exports.handler = async function http (req) {
   let frontmatter = ''
   const md = Markdown({ highlight, linkify: true })
     .use(markdownClass, classMapping)
+    .use(markdownAnchor, {
+      permalinkSymbol: ' '
+    })
     .use(frontmatterParser, function(str) {
       frontmatter = yaml.load(str)
     })
@@ -77,6 +81,7 @@ exports.handler = async function http (req) {
       children,
       title,
       description,
+      scripts: ['/modules/data/store.js'],
       sections,
       toc
     })

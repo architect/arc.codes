@@ -10,6 +10,10 @@ module.exports = async function bundle({ module }) {
   let bundled = await bundle.generate({ format: 'esm' })
   let body = bundled.output[0].code
   console.timeEnd('bundle')
+  console.log(
+   'KEY\n',
+    key
+  )
 
   return write({ key, body })
 }
