@@ -7,7 +7,6 @@ fingerprint true
 @http
 get /
 get /docs/:lang/*
-get /modules/*
 
 @tables
 data

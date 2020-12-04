@@ -1,5 +1,5 @@
 :root {
-  --sidebar: 17.666rem;
+  --sidebar: 22rem;
 }
 html {
   scroll-behavior: smooth;
@@ -31,7 +31,7 @@ html {
 }
 .left-sidebar {
   /* Hide Sidebar off screen in mobile */
-  left: calc((var(--sidebar) + 4rem /* Padding */) * -1);
+  left: calc(var(--sidebar) * -1);
 }
 .open,
 .transition-x {

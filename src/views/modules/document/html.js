@@ -60,13 +60,22 @@ ${ Symbols }
       "
     >
       ${ Logo({ classes: 'h-logo' }) }
-      <button class="bg-unset text-g0 hidden-lg">
+      <button
+        id="menu-button"
+        class="
+          bg-unset
+          text-g0
+          hidden-lg
+          cursor-pointer
+        "
+      >
         ${ Icon({ href: 'hamburger', classes: 'icon fill-current' }) }
       </button>
       <div class="hairline bg-image0 absolute right0 bottom0 left0"></div>
     </header>
     ${ Sidebar(props) }
     <main
+      id="main"
       class="
         h-full
         col-start-2
@@ -101,6 +110,15 @@ ${ Symbols }
   <script>
    (function(){
     document.querySelector('a.active').scrollIntoView({ behavior: 'smooth', block:  'center' })
+    let menuButton = document.getElementById('menu-button')
+    let sidebar = document.getElementById('sidebar')
+    let main = document.getElementById('main')
+    main.onclick = function hideSidebar() {
+      sidebar.classList.remove('open')
+    }
+    menuButton.onclick = function toggleSidebar() {
+      sidebar.classList.toggle('open')
+    }
    }())
   </script>
 </body>

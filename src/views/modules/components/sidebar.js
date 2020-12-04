@@ -118,7 +118,7 @@ export default function Sidebar(props={}) {
   let { active } = props
   return `
 <aside
-  slot=sidebar
+  id="sidebar"
   class="
     h-full
     fixed
