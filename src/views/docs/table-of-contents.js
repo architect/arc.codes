@@ -115,7 +115,8 @@ let Reference = [
       '@scheduled',
       '@static',
       '@tables',
-      '@ws'
+      '@ws',
+      '@macros'
     ]
   }
 ]

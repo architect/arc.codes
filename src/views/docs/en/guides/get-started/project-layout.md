@@ -8,13 +8,7 @@ sections:
   - Example
 ---
 
-Architect projects have either of these three versions of a manifest file in the root that sets up your infrastructure as code.
-
-- `app.arc`
-- `arc.yaml`
-- `arc.json`
-
-This captures the infrastructure requirements beside the code it will run in your revision control. Architect favors *convention over configuration* and projects have the following significant folder structure:
+Architect favors *convention over configuration* and projects have the following significant folder structure:
 
 ```bash
 .
@@ -37,9 +31,15 @@ This captures the infrastructure requirements beside the code it will run in you
 
 ## Manifest format overview
 
+Architect projects have either of these three versions of a manifest file in the root that sets up your infrastructure as code. This captures the infrastructure requirements beside the code it will run in your revision control. 
+
+- `app.arc`
+- `arc.yaml`
+- `arc.json`
+
 The app.arc manifest format is intentionally simple to author and straightforward to read.
 
-Resources are defined within pragmas and pragmas can be ordered arbitrarily. Comments are preceded by a #:
+Resources are defined within pragmas and pragmas can be ordered arbitrarily. Comments are preceded by a `#`.
 
 **The `app.arc` manifest can be broadly split into three sections:**
 
@@ -47,27 +47,27 @@ Resources are defined within pragmas and pragmas can be ordered arbitrarily. Com
 
 These sections are for global system level env configuration. The most important being the `@app` namespace which is used to prefix all generated resources.
 
-- [`@app`](/en/reference/arc-pragmas/@app) **[Required]** The application namespace
-- [`@domain`](/en/reference/arc-pragmas/@domain) Assign a domain name to your app (ACM, API Gateway, and Route 53)
-- [`@aws`](/en/reference/arc-pragmas/@aws) AWS config
+- [`@app`](/docs/en/reference/arc-pragmas/@app) **[Required]** The application namespace
+- [`@domain`](/docs/en/reference/arc-pragmas/@domain) Assign a domain name to your app (ACM, API Gateway, and Route 53)
+- [`@aws`](/docs/en/reference/arc-pragmas/@aws) AWS config
 
 ### Lambda Function config
 
 These sections deal with Lambda functions and their event sources. By convention Architect promotes one event source per function.
 
-- [`@http`](/en/reference/arc-pragmas/@http) HTTP routes (API Gateway)
-- [`@events`](/en/reference/arc-pragmas/@events) Event pub/sub (SNS)
-- [`@queues`](/en/reference/arc-pragmas/@queues)  queues and handlers for them (SQS)
-- [`@scheduled`](/en/reference/arc-pragmas/@scheduled) Invoke functions specified times (CloudWatch Events)
-- [`@ws`](/en/reference/arc-pragmas/@ws) Web Socket functions (API Gateway)
+- [`@http`](/docs/en/reference/arc-pragmas/@http) HTTP routes (API Gateway)
+- [`@events`](/docs/en/reference/arc-pragmas/@events) Event pub/sub (SNS)
+- [`@queues`](/docs/en/reference/arc-pragmas/@queues)  queues and handlers for them (SQS)
+- [`@scheduled`](/docs/en/reference/arc-pragmas/@scheduled) Invoke functions specified times (CloudWatch Events)
+- [`@ws`](/docs/en/reference/arc-pragmas/@ws) Web Socket functions (API Gateway)
 
 ### Persistence config
 
 These sections deal with config of various persistence resources.
 
-- [`@static`](/en/reference/arc-pragmas/@static) Buckets for hosting static assets (S3)
-- [`@tables`](/en/reference/arc-pragmas/@tables Database tables and trigger functions (DynamoDB)
-- [`@indexes`](/en/reference/arc-pragmas/@indexes) Table global secondary indexes (DynamoDB)
+- [`@static`](/docs/en/reference/arc-pragmas/@static) Buckets for hosting static assets (S3)
+- [`@tables`](/docs/en/reference/arc-pragmas/@tables) Database tables and trigger functions (DynamoDB)
+- [`@indexes`](/docs/en/reference/arc-pragmas/@indexes) Table global secondary indexes (DynamoDB)
 
 > 👉🏽 `app.arc` comments out anything after hash symbol `#`.
 

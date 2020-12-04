@@ -22,25 +22,25 @@ Architect projects support text and binary assets such as images, styles, and sc
 
 The `@static` pragma utilizes [**Amazon Simple Storage Service (Amazon S3)**](https://aws.amazon.com/s3/). Amazon S3 is an object storage service that offers industry-leading scalability, data availability, security, and performance. It is the original serverless primitive. 
 
-> 💡 Learn more about [Static assets](/en/reference/static-assets/static) here.
+> 💡 Learn more about [Static assets](/docs/en/reference/architect-project-structure/static-assets/static) here.
 
 ### CDNs
 
 Architect projects support the ability to add a content delivery network (CDN) with AWS CloudFront. **[Amazon CloudFront](https://aws.amazon.com/cloudfront/)** is a mature and powerful content delivery network that speeds up distribution of your static and dynamic web content, such as .html, .css, .js, and image files, to your users. CloudFront delivers your content through a worldwide network of data centers called edge locations. When a user requests content that you're serving with CloudFront, the user is routed to the edge location that provides the lowest latency (time delay), so that content is delivered with the best possible performance.
 
-> 💡 Learn more about [CDNs](/en/reference/static-assets/cdn) here.
+> 💡 Learn more about [CDNs](/docs/en/reference/architect-project-structure/static-assets/cdn) here.
 
 ## Database tables
 
 Architect comes built in with first-class, easy to use, **[DynamoDB](https://aws.amazon.com/dynamodb/)** support and the ability to add databases we call "tables". `@tables` defines DynamoDB database tables and trigger functions for them. 
 
-> 💡 Learn more about [Tables](/en/reference/databases/tables) here.
+> 💡 Learn more about [Tables](/docs/en/reference/architect-project-structure/databases/tables) here.
 
 ## Environment variables
 
 Read and write environment variables. Sensitive configuration data, such as API keys, needs to happen outside of the codebase in revision control and you can use this tool to ensure an entire team and the deployment targets are in sync.
 
-> 💡 Learn more about [.env](/en/reference/cli-reference/env) here.
+> 💡 Learn more about [.env](/docs/en/reference/macros/cli-reference/env) here.
 
 ## CI / CD
 
@@ -51,18 +51,19 @@ ADD ME!
 
 Subscribe a Lambda function to an SNS Topic and then asynchronously publish JSON payloads to it. [Amazon Simple Notification Service (SNS)](https://aws.amazon.com/sns/) is a publish-subscribe (pub/sub) system. Messages are immediately pushed to subscribers when they are sent by publishers. The `@events` pragma is super useful for running cloud functions in the background.
 
-> 💡 Learn more about [Event functions](/en/reference/functions/event-functions) here.
+> 💡 Learn more about [Event functions](/docs/en/reference/architect-project-structure/functions/event-functions) here.
 
 ## Scheduled Functions
 
 Scheduled Functions creates stateless functions that run on a schedule. You can create rules that self-trigger on an automated schedule in your app using `cron` or `rate` expressions. The `@scheduled` pragma utilizes Amazon [CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) to give Architect this scheduling functionality.
 
-> 💡 Learn more about [Scheduled Functions](/en/reference/functions/scheduled-functions) here.
+> 💡 Learn more about [Scheduled Functions](/docs/en/reference/architect-project-structure/functions/scheduled-functions) here.
 
 ## Queue functions
 
 Queue functions subscribe a Lambda function to an [SQS Queue](https://aws.amazon.com/sqs/) and then asynchronously publish JSON payloads to it. Amazon SQS automatically polls to receive messages. This programming model is identical to SNS but offers different service guarantees and configuration options. In particular, SNS will retry failed invocations twice whereas SQS will retry for 4 days (by default).
 
+> 💡 Learn more about [Queue Functions](/docs/en/reference/architect-project-structure/functions/queue-functions) here.
 
 ## Macros
 

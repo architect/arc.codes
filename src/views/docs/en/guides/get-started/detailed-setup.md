@@ -15,7 +15,7 @@ sections:
 
 ## Prerequisites
 
-**TL/DR**
+### TL/DR
 
 **To work locally**, all you need is:
 
@@ -46,13 +46,21 @@ Architect supports the following runtime versions when working locally:
 
 To use the same runtime across all functions in your project, add it to your `@aws` pragma like so:
 
-```
-# Valid runtimes: `nodejs12.x`, `nodejs10.x`, `deno`, `python3.7`, `python3.6`, or `ruby2.5`
+```arc
+# Valid runtimes: 
+
+# `nodejs12.x`
+# `nodejs10.x`
+# `deno`
+# `python3.7`
+# `python3.6`
+# `ruby2.5`
+
 @aws
 runtime python3.7
 ```
 
-This setting can be overridden on a function-by-function basis with [`.arc-config`](/en/reference/architect-manifest-and-config/function-config-file).
+This setting can be overridden on a function-by-function basis with [`.arc-config`](/docs/en/reference/architect-project-structure/architect-manifest-and-config/function-config-file).
 
 Architect also supports the following runtimes in live infra, but not while working locally (at present):
 - Go: `1.x`,
@@ -161,7 +169,7 @@ arc sandbox
 
 Run `arc init` to generate a basic project:
 
-```
+```bash
 /
 ├── src
 │   └── http

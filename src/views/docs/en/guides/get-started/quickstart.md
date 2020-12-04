@@ -59,6 +59,8 @@ Ensure you've [met the system prerequisites](/en/guides/get-started/detailed-set
 
 Your new app will be online within seconds.
 
+---
+
 **Want to join the community and learn more?**
 
 - [Join the Architect community on Slack!](https://join.slack.com/t/architecture-as-text/shared_invite/MjE2MzU4Nzg0NTY1LTE1MDA2NzgyMzYtODE2NzRkOGRmYw)
