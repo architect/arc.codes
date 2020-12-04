@@ -76,13 +76,13 @@ exports.handler = async function http (req) {
     },
     body: Html({
       active,
-      lang,
       category,
       children,
-      title,
       description,
-      scripts: ['/modules/data/store.js'],
+      lang,
       sections,
+      thirdparty: `<script type="module" src="/_static/index.js" crossorigin></script>`,
+      title,
       toc
     })
   }
