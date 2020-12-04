@@ -28,7 +28,7 @@ sections:
 
 This `app.arc` file defines some typical HTML routes:
 
-```bash
+```arc
 @app
 testapp
 

@@ -110,13 +110,14 @@ let Reference = [
       '@events',
       '@http',
       '@indexes',
+      '@macros',
       '@proxy',
       '@queues',
       '@scheduled',
       '@static',
       '@tables',
-      '@ws',
-      '@macros'
+      '@views',
+      '@ws'
     ]
   }
 ]
