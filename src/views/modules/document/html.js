@@ -5,6 +5,7 @@ import State from './state.js'
 import Logo from '../components/logo.js'
 import Icon from '../components/icon.js'
 import Sidebar from '../components/sidebar.js'
+import GithubLink from '../components/github-link.js'
 
 export default function HTML (props={}) {
   let {
@@ -60,17 +61,20 @@ ${ Symbols }
       "
     >
       ${ Logo({ classes: 'h-logo' }) }
-      <button
-        id="menu-button"
-        class="
-          bg-unset
-          text-g0
-          hidden-lg
-          cursor-pointer
-        "
-      >
-        ${ Icon({ href: 'hamburger', classes: 'icon fill-current' }) }
-      </button>
+      <div class="flex">
+        ${ GithubLink({ classes: 'mr0' }) }
+        <button
+          id="menu-button"
+          class="
+            bg-unset
+            text-g0
+            hidden-lg
+            cursor-pointer
+          "
+        >
+          ${ Icon({ href: 'hamburger', classes: 'icon fill-current' }) }
+        </button>
+      </div>
       <div class="hairline bg-image0 absolute right0 bottom0 left0"></div>
     </header>
     ${ Sidebar(props) }
