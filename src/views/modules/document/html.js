@@ -62,10 +62,11 @@ ${ Symbols }
     >
       ${ Logo({ classes: 'h-logo' }) }
       <div class="flex">
-        ${ GithubLink({ classes: 'mr0' }) }
+        ${ GithubLink() }
         <button
           id="menu-button"
           class="
+            ml0
             bg-unset
             text-g0
             hidden-lg
