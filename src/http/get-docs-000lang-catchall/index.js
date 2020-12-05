@@ -1,4 +1,6 @@
 require = require('esm')(module) // eslint-disable-line
+const arc = require('@architect/functions')
+const static = arc.static
 const path = require('path')
 const util = require('util')
 const fs = require('fs')
@@ -81,7 +83,7 @@ exports.handler = async function http (req) {
       description,
       lang,
       sections,
-      thirdparty: `<script type="module" src="/_static/index.js" crossorigin></script>`,
+      thirdparty: `<script type="module" src="${ static('index.js') }" crossorigin></script>`,
       title,
       toc
     })

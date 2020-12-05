@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@architect/functions": "^3.13.8",
     "@toycode/markdown-it-class": "^1.2.4",
     "esm": "^3.2.25",
     "highlight.js": "^10.4.0",
@@ -12,7 +13,6 @@
     "markdown-it-anchor": "^6.0.1",
     "markdown-it-front-matter": "^0.2.3"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
