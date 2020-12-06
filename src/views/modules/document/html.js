@@ -6,6 +6,7 @@ import Logo from '../components/logo.js'
 import Icon from '../components/icon.js'
 import Sidebar from '../components/sidebar.js'
 import GithubLink from '../components/github-link.js'
+import SlackLink from '../components/slack-link.js'
 
 export default function HTML (props={}) {
   let {
@@ -61,8 +62,14 @@ ${ Symbols }
       "
     >
       ${ Logo({ classes: 'h-logo' }) }
-      <div class="flex">
-        ${ GithubLink() }
+      <div
+        class="
+          flex
+          items-center
+        "
+      >
+        ${ SlackLink() }
+        ${ GithubLink({ classes: 'ml-2' }) }
         <button
           id="menu-button"
           class="
