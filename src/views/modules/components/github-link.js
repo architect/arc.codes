@@ -8,10 +8,12 @@ export default function GithubButton(state={}) {
   class="
   ${ classes }
    text-g0
+   text-h0
+   text-a2
    cursor-pointer
   "
 >
-  ${ Icon({ classes: 'icon fill-current', href: 'github' }) }
+  ${ Icon({ classes: 'icon fill-current transition-fill', href: 'github' }) }
 </a>
   `
 }

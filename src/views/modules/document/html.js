@@ -11,6 +11,7 @@ import SlackLink from '../components/slack-link.js'
 export default function HTML (props={}) {
   let {
     children=[],
+    editURL='',
     lang='en',
     scripts='',
     state={},
@@ -66,16 +67,33 @@ ${ Symbols }
         class="
           flex
           items-center
+          justify-between
         "
       >
         ${ SlackLink() }
-        ${ GithubLink({ classes: 'ml-2' }) }
+        <a
+          href="https://api.github.com/kristoferjoseph/starred/arc.codes"
+          class="
+            ml-2
+            bg-unset
+            text-g0
+            text-h0
+            text-a2
+            cursor-pointer
+          "
+          target="_blank"
+        >
+          ${ Icon({ href: 'star', classes: 'star-icon fill-current transiton-fill' }) }
+        </a>
+        ${ GithubLink({ classes: 'ml-1' }) }
         <button
           id="menu-button"
           class="
             ml0
             bg-unset
             text-g0
+            text-h0
+            text-a2
             hidden-lg
             cursor-pointer
           "
@@ -112,6 +130,9 @@ ${ Symbols }
         </h1>
         <div class="pb4 docs">
           ${ children }
+          <div class="flex justify-end mt4">
+            <a href="${editURL}" target="_blank" class="text1 text-p1 text-h1 text-a2 no-underline font-semibold">Edit this doc on Github →</a>
+          </div>
         </div>
       </div>
     </main>

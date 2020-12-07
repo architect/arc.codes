@@ -19,6 +19,8 @@ const readFile = util.promisify(fs.readFile)
 const Html = require('@architect/views/modules/document/html.js').default
 const toc = require('@architect/views/docs/table-of-contents')
 const yaml = require('js-yaml')
+const REPO = 'https://github.com/kristoferjoseph/arc.codes'
+const EDIT_DOCS = `edit/trunk/src/views/docs/`
 
 exports.handler = async function http (req) {
   let { pathParameters } = req
@@ -31,6 +33,13 @@ exports.handler = async function http (req) {
     lang,
     ...parts,
     docName
+  )
+  let editURL = path.join(
+    REPO,
+    EDIT_DOCS,
+    lang,
+    ...parts,
+    doc
   )
   // Add leading slash to match anchor href
   let active = `/${ activePath }`
@@ -81,6 +90,7 @@ exports.handler = async function http (req) {
       category,
       children,
       description,
+      editURL,
       lang,
       sections,
       thirdparty: `<script type="module" src="${ static('index.js') }" crossorigin></script>`,
