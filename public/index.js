@@ -23,13 +23,21 @@
       sidebar.classList.toggle('open')
     }
 
-    // Show percentage of page read
-    let bar = document.querySelector('.hairline')
-    bar.style.width = getScrollPercent(main)
-    main.onscroll = setReadPercent
+    // Show percentage of page read on desktop
+    let bar = document.querySelector('.indicator')
+    let isDesktop = window.innerWidth > 768
 
-    function setReadPercent() {
-      bar.style.width = `${getScrollPercent(main)}%`
+    if (isDesktop) {
+      // If we want this to work on mobile
+        // we need to add a second function
+        // for handling window.onscroll
+      let el = main
+      bar.style.width = getScrollPercent(el)
+      el.onscroll = setReadPercent.bind(null, el)
+    }
+
+    function setReadPercent(el) {
+      bar.style.width = `${getScrollPercent(el)}%`
     }
 
     function getScrollPercent(el) {

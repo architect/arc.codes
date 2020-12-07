@@ -10,7 +10,7 @@ html {
 .underline-h:hover {
   text-decoration: underline;
 }
-.hairline {
+.indicator {
   height: 4px;
 }
 .max-width-content {
