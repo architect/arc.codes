@@ -1,6 +1,6 @@
 ---
 title: Project manifest &amp; config
-description: 160 (or fewer) character description of this document!
+description: Opt into arc.yaml or arc.json manifests
 sections:
   - app.arc
   - JSON
@@ -10,7 +10,7 @@ sections:
 
 ## Opt into arc.yaml or arc.json manifests
 
-Developers that prefer JSON or YAML can opt into using either syntax in arc.json or arc.yaml, respectively (instead of .arc or app.arc).
+Developers that prefer JSON or YAML can opt into using either syntax in arc.json or arc.yaml, respectively (instead of app.arc).
 
 ## app.arc example
 
@@ -56,7 +56,7 @@ accounts
 
 ## JSON example
 
-```bash
+```json
 {
   "app": "testapp",
   "description": "Example arc-to-json",
@@ -102,7 +102,7 @@ accounts
 
 ## YAML example
 
-```bash
+```yaml
 ---
 # comments ooh ahh
 app: testapp
