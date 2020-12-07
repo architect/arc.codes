@@ -71,21 +71,7 @@ ${ Symbols }
         "
       >
         ${ SlackLink() }
-        <a
-          href="https://api.github.com/kristoferjoseph/starred/arc.codes"
-          class="
-            ml-2
-            bg-unset
-            text-g0
-            text-h0
-            text-a2
-            cursor-pointer
-          "
-          target="_blank"
-        >
-          ${ Icon({ href: 'star', classes: 'star-icon fill-current transiton-fill' }) }
-        </a>
-        ${ GithubLink({ classes: 'ml-1' }) }
+        ${ GithubLink({ classes: 'ml-2' }) }
         <button
           id="menu-button"
           class="
