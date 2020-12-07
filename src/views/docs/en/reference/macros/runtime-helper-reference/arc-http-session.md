@@ -13,8 +13,16 @@ sections:
 
 ## Overview
 
-ADD ME!
+All `@http` defined routes are session capable via `@architect/functions`
 
+- Requests are tagged to a session via a cookie that is: 
+  - stateless
+  - signed
+  - encrypted 
+  - httpOnly `_idx`
+- Session data expires after a week of inactivity
+
+This allows you to write fully stateful applications despite Lambda functions being completely stateless. 
 
 ## Database vs. JWE
 

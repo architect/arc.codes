@@ -14,11 +14,18 @@ sections:
 Background tasks are a common workload and perfect for serverless environments. They reinforce event-driven architecture and allow you to perform asynchronous work across a distributed system. These functions are well suited for processes that don't require an immediate response, or are too resource intensive for a single function.
 
 Architect has three main primitives of background functions:
-- [@events](/en/reference/functions/event-functions) - A pub/sub service that uses SNS.
-- [@scheduled](/en/reference/functions/scheduled-functions) - Cron functions that are invoked at a specific rate with CloudWatch Events.
-- [@queues](/en/reference/functions/queue-functions) - A distributed message queue that uses SQS.
+- [@events](/docs/en/reference/arc-pragmas/@events) - A pub/sub service that uses SNS.
+- [@scheduled](/docs/en/reference/arc-pragmas/@scheduled) - Cron functions that are invoked at a specific rate with CloudWatch Events.
+- [@queues](/docs/en/reference/arc-pragmas/@queues) - A distributed message queue that uses SQS.
 
 Each type of function enables a reliable way for Lambda functions to call one another while also remaining stateless. This allows your distributed system to process data before it has to be committed to a persistent store. Imagine background tasks as more memory for your main functions to do more work that it doesn't have to deal with right away.
+
+**Sections:**
+
+  - [Overview](#overview)
+  - [Events example](#events-example)
+  - [Scheduled example](#scheduled-example)
+  - [Queues example](#queues-example)
 
 ## @events example
 
@@ -33,7 +40,7 @@ cd arc-event-app
 ```
 2. Open up your `app.arc` file and add the `@event` pragma along with a POST route
 
-```bash
+```arc
 # app.arc
 
 @app
@@ -93,6 +100,7 @@ cd src/http/post-yolo/
 npm init -y
 npm install @architect/functions
 ```
+
 After the library is installed we can now use it for a clean method to interact with the SNS topic. The function accepts a JSON payload with two keys: `name` and `payload`.
 
 ``` javascript
@@ -124,6 +132,7 @@ npm start
 Navigate to http://localhost:3333 and click the "YOLO" button, watch your terminal for the output. You should see Sandbox output the `@event` object and log the output of your `yolo` event function.
 
 ## @scheduled example
+
 Another common background task is `@scheduled` functions. These functions are invoked on a schedule defined in the `app.arc` file. These functions are good for cleanup tasks or kicking off other kinds of health checks. Let's make a new project and add a `@scheduled` function.
 
 The first thing we will need is a fresh Architect project. We can create one directly from the terminal.
@@ -132,9 +141,10 @@ The first thing we will need is a fresh Architect project. We can create one dir
 npm init @architect ./arc-scheduled-app
 cd arc-scheduled-app
 ```
+
 Now we can open up the `app.arc` file and add a scheduled function to the manifest.
 
-```bash
+```arc
 # app.arc
 
 # your project namespace
@@ -149,6 +159,7 @@ get /
 @scheduled
 daily rate(1 day)
 ```
+
 Architect looks for the function named `daily` in the `src/scheduled/daily` folder. So let's go ahead and write one.
 
 ```javascript
@@ -227,7 +238,7 @@ cd arc-queues-app
 
 Open up the `app.arc` file and modify the manifest to include our `@queues` function as follows:
 
-```bash
+```arc
 # app.arc
 
 @app
@@ -333,4 +344,4 @@ Architect also creates an SQS Queue with CloudFormation. Notice below that the q
     }
 ```
 
-The `@architect/functions` [`arc.events`](/en/reference/runtime-helper-reference/arc-events) library has `publish()` and `subscribe()` methods that wrap the JSON payload with a compatible Lambda function signature.
+The `@architect/functions` [`arc.events`](/docs/en/reference/macros/runtime-helper-reference/arc-events) library has `publish()` and `subscribe()` methods that wrap the JSON payload with a compatible Lambda function signature.

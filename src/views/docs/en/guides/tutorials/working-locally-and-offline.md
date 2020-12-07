@@ -13,7 +13,15 @@ sections:
 
 This section is about setting up your local development environment and a testing suite within your Architect app.
 
-## Previewing vs. testing
+**Sections:**
+
+  - [Overview](#overview)
+  - [Previewing vs testing](#previewing-vs-testing)
+  - [Sandbox init scripts](#sandbox-init-scripts)
+  - [HTTP testing](#http-testing)
+  - [DB testing](#db-testing)
+
+## Previewing vs testing
 
 Architect targets two use cases:
 

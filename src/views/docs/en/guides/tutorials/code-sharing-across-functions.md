@@ -19,6 +19,13 @@ All the contents of `src/shared` gets copied to every function's `node_modules/@
 
 All the contents of `src/views` gets copied into each of your project's `@HTTP GET` function's `node_modules/@architect/views` directory.
 
+**Sections:**
+
+  - [Overview](#overview)
+  - [Principles & best practices](#principles-&-best-practices)
+  - [src/shared](#src/shared)
+  - [src/views](#src/views)
+
 ## Principles & best practices
 
 It is important to note that the entire contents of `src/shared` are copied recursively, we strongly suggest keeping the directory structure as flat as possible, and the payloads as small as possible to improve performance. We recommend that you keep the entire payload under 5MB to avoid cold start penalties. To learn more about cold starts [check this out](https://learn.begin.com/jargon#cold-start).

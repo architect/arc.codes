@@ -4,9 +4,10 @@ description: 160 (or fewer) character description of this document!
 sections:
   - Overview
   - Setup
-  - DNS with 3rd party provider
+  - DNS with third party provider
   - DNS with Route53
-  - TBD
+  - Starting over
+  - The manual way
 ---
 
 ## Overview
@@ -15,13 +16,23 @@ Give your Architect application a proper domain name
 
 DNS is how you assign a domain name to a deployed app. This guide lists ways to set up custom DNS with several popular DNS providers and we are always happy to accept contributions for steps to use additional providers.
 
+**Sections:**
+
+  - [Overview](#overview)
+  - [Setup](#setup)
+  - [DNS with 3rd party provider](#dns-with-third-party-provider)
+  - [DNS with Route53](#dns-with-route53)
+  - [Starting over](#starting-over)
+  - [The manual way](the-manual-way)
+ 
+
 ## Setup
 
 Setting up `app.arc` with a custom domain name
 
 `arc` has built-in first-class support for setting up DNS and assigning a domain. First add [`@domain`](/en/reference/arc-pragmas/@domain) to your `app.arc` file with a value of the domain name you wish to set up.
 
-```bash
+```arc
 @app
 testapp
 
@@ -38,7 +49,7 @@ From here you have two paths to mapping the DNS records:
 2. DNS with Route53 fully automated `npx dns route53`
 
 
-## DNS with 3rd party provider
+## DNS with third party provider
 
 When to do this: if you registered the domain with someone other than Amazon and do not want to move the name servers.
 
@@ -51,7 +62,9 @@ Run `npx dns` and follow the instructions. The process is:
 
 The certificate, CloudFront distributions and DNS records in general can take time to propagate. Be Zen! Running and re-running `npx dns` is safe.
 
-## DNS with Route53 (opt-in, but recommended!)
+## DNS with Route53 
+
+**Opt-in, but recommended!**
 
 When to do this: if you want to use Route53 to manage your DNS records.
 
@@ -73,14 +86,14 @@ If something goes wrong you can destroy the generated resources and re-create.
 > 🤷🏽‍♀️ DNS propagation can take time: have patience!
 
 
-## The Not-Hard-But-Not-Quite-As-Easy Way
+## The manual way
 
 If you _really_ want to manually configure DNS you can follow these guides below:
 
 - [Route 53](#route-53)
 - [Cloudflare](#cloudflare)
 
-## Route 53
+### Route 53
 
 Follow these instructions to manually configure Route 53 to serve your application from your domain. As a friendly reminder: the `arc` happy path for using Route 53 remains the [`@domain`](/en/reference/arc-pragmas/@domain) section (per the instructions above).
 
@@ -113,7 +126,7 @@ Follow these instructions to manually configure Route 53 to serve your applicati
 15. Create the `Record Set`
 16. Perhaps grab a cup of coffee or tea ☕️ – it can take a few minutes while AWS wires everything up!
 
-## Cloudflare
+### Cloudflare
 
 These instructions are adapted from the tutorial at [LEANX](https://www.leanx.eu/tutorials/set-up-amazons-api-gateway-custom-domain-with-cloudflare) and updated to our most recent experience deploying this documentation site to AWS, using `arc` and custom DNS via Cloudflare. Your mileage may vary.
 

@@ -79,7 +79,7 @@ This is, of course, evolving! We understand there projects launching soon to ena
 
 ### Smaller cloud functions run faster
 
-Cloud functions start and run fastest when they're small and discrete. For this reason Architect applications split your application up into individual, stateless functions, each its own directory in your repo. Of course, intra-project code sharing would be a requirement to keep things dry, so Architect applications share code via `src/shared/` and `src/views/` directories ([learn more here](/en/guides/tutorials/code-sharing-across-functions)). 
+Cloud functions start and run fastest when they're small and discrete. For this reason Architect applications split your application up into individual, stateless functions, each its own directory in your repo. Of course, intra-project code sharing would be a requirement to keep things dry, so Architect applications share code via `src/shared/` and `src/views/` directories ([learn more here](/docs/en/guides/tutorials/code-sharing-across-functions)). 
 
 In practice, this looks a lot like a micro-services-based architecture, except now it has the advantage of being reflected in how your app runs in the cloud. This also has the added benefit of massively aiding debugging – no more grepping through your entire application's logs, just look at the cloud function in which you've got the bug!
 
@@ -142,7 +142,7 @@ module.exports = async function http(req) {
 }
 ```
 
-> Read more about [sharing common code in Architect](/en/guides/tutorials/code-sharing-across-functions)
+> Read more about [sharing common code in Architect](/docs/en/guides/tutorials/code-sharing-across-functions)
 
 ---
 
@@ -159,22 +159,22 @@ let data = require('@architect/data')
 
 In the example below we'll use some of the helpers from  `@architect/functions`:
 
-- [`arc.http.session`](/en/reference/runtime-helper-reference/arc-http-session) - read the session using the request cookie, write the session returning a cookie string
-- [`arc.http.helpers.url`](/en/reference/runtime-helper-reference/arc-http-helpers#url) - transform `/` into the appropriate `staging` and `production` API Gateway paths
-- [`arc.http.helpers.static`](http://localhost:3333/en/reference/runtime-helper-reference/arc-static) - accepts a path part and returns path to `localhost:3333` or `staging` and `production` S3 buckets
-- `arc.http.helpers.verify` - verify a `csrf` token
+- [`arc.http.session`](/docs/en/reference/macros/runtime-helper-reference/arc-http-session) - read the session using the request cookie, write the session returning a cookie string
+- [`arc.http.helpers.url`](/docs/en/reference/macros/runtime-helper-reference/arc-http-helpers#url) - transform `/` into the appropriate `staging` and `production` API Gateway paths
+- [`arc.http.helpers.static`](/docs/en/reference/macros/runtime-helper-reference/arc-static) - accepts a path part and returns path to `localhost:3333` or `staging` and `production` S3 buckets
+- [`arc.http.helpers.verify`](/docs/en/reference/macros/runtime-helper-reference/arc-http-helpers) - verify a `csrf` token
 
 ---
 
-## Tutorial example
+## Hello world example
 
-### Create full-featured web applications composed of fast, tiny HTTP functions
+Here we'll start with a basic 'hello world' app example.
 
-Here we'll start from a basic 'hello world' app example and then build a bigger app with signups and logins.
-
-We'll do this using **AWS Lambdas** (small functions that trigger when their URL is hit.) You can think of lambdas as the equivalent of 'routes' in traditional web apps.
+We'll do this using **AWS Lambdas** (small functions that trigger when their URL is hit.) You can think of lambdas as the equivalent of 'routes' in traditional web apps. 
 
 AWS Lambdas are accessed via API Gateway, but `app.arc` abstracts API Gateway and Lambda configuration and provisioning so that creating a lambda function is a smooth and seamless experience.
+
+> In Architect, HTTP functions are the same thing as AWS Lambda functions.
 
 ### Hello world
 
@@ -212,7 +212,7 @@ exports.handler = async function http(request) {
 
 ### 404 handling
 
-404s are handled by `/src/http/get-index`. You can intercept the requests and show an error page:
+Now, let's set up 404 handling inside of our hello world app. 404s are handled by `/src/http/get-index`. You can intercept the requests and show an error page:
 
 ```javascript
 // Route handles 404s
@@ -304,6 +304,8 @@ exports.handler = async function http(req) {
 
 ### JSON API endpoint
 
+This is an example of an endpoint that contains JSON data.
+
 ```javascript
 // src/http/get-cats/index.js
 
@@ -316,7 +318,7 @@ exports.handler = async function http(req) {
 }
 ```
 
-## Example App
+## Example Login flow app
 
 Let's implement a proof-of-concept login flow. There's [a repo with the example below on GitHub](https://github.com/architect/arc-example-login-flow).
 
@@ -464,4 +466,6 @@ exports.handler = async function route(request) {
 
 ```
 
-And that's it! Remember you can find [the oauth guide here](https://learn.begin.com/basic/state/oauth)
+## Additional reading
+
+- [Oauth guide](https://learn.begin.com/basic/state/oauth)

@@ -5,12 +5,18 @@ sections:
   - Overview
   - CloudFormation
   - Deploy custom resources with determinism
-  - Walkthrough - Provision public S3 buckets
+  - Example - Provision public S3 buckets
 ---
 
 ## Overview
 
 Architect provides several primitives for your application which work out of the box. However, you can still access other AWS services with macros which modify the CloudFormation stack when your project is deployed. Any service that supports CloudFormation can be provisioned with a macro. Architect macros are JavaScript functions that are given a parsed `app.arc` file, a target CloudFormation template, and a stage. It returns a new CloudFormation template with your custom resources attached, which will then be deployed. This pattern allows for Architect to even extend itself! 
+
+**Sections:*
+  - [Overview](#overview)
+  - [CloudFormation](#cloudformation)
+  - [Deploy custom resources with determinism](#deploy-custom-resources-with-determination)
+  - [Example - Provision public S3 buckets](#example-provision-public-s3-buckets)
 
 ## CloudFormation
 
@@ -42,7 +48,7 @@ npm install @architect/utils
 
 3. Open up the `app.arc` file and modify it with the following: 
 
-```bash
+```arc
 ## app.arc
 
 # app namespace
@@ -200,7 +206,7 @@ module.exports = function validateStorage (storage) {
 }
 ```
 
-That might seem like a lot at first, but Architect uses your app.arc file in a very similar way to generate CloudFormation on your behalf. When you want to get your hands dirty with direct CloudFormation templates, a Macro will be your best friend.
+That might seem like a lot at first, but Architect uses your `app.arc` file in a very similar way to generate CloudFormation on your behalf. When you want to get your hands dirty with direct CloudFormation templates, a Macro will be your best friend.
 
 5. Dry run and final deploy
 

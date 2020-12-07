@@ -125,7 +125,7 @@ Environment variables are automatically synced with all your lambda functions. W
 - Error messages
 - Shopping carts
 
-> See [the sessions reference](/reference/http-session) for more details.
+> See [the sessions reference](/docs/en/reference/macros/runtime-helper-reference/arc-http-session) for more details.
 
 ---
 
@@ -244,7 +244,7 @@ async function reset(req) {
 exports.handler = arc.http.async(reset)
 ```
 
-> For more information about `arc.http.async` helper, [check out the documentation](https://arc.codes/reference/functions/http/node/async)
+> For more information about `arc.http.async` helper, [check out the documentation](/docs/en/reference/macros/runtime-helper-reference/arc-http-async)
 
 8. Initialize a `package.json` in the root of your project, and install `@architect/sandbox` for a local development server
 
@@ -255,7 +255,7 @@ npm install @architect/sandbox
 
 9. Add a start command to the scripts section in `package.json` found at the root of your project
 
-```bash
+```json
 ...
 "scripts": {
   "start": "sandbox"

@@ -21,7 +21,7 @@ As a general philosophy, Architect's core maintainers endeavor to minimize the f
 
 ### Architect 8 (El Chupacabra)
 
-Architect 8 (El Chupacabra) improves API Gateway `HTTP` APIs by adding [`@proxy`](/en/reference/arc-pragmas/@proxy) support for migrating old APIs, and `any` HTTP method support and `*` catchall syntax, while also improving the default greedy catchall behavior of `get /` to be literal to what's found in the Architect manifest.
+Architect 8 (El Chupacabra) improves API Gateway `HTTP` APIs by adding [`@proxy`](/docs/en/reference/arc-pragmas/@proxy) support for migrating old APIs, and `any` HTTP method support and `*` catchall syntax, while also improving the default greedy catchall behavior of `get /` to be literal to what's found in the Architect manifest.
 
 Although uncommon, certain Architect applications that use `get /` beyond handling `get` requests to `/` may be impacted by this change. [See more below](#architect-7-&rarr;-8).
 
@@ -264,7 +264,7 @@ When you're ready to upgrade your existing Architect 6 (`REST`) app to `HTTP`, h
 
 Add the following to your project manifest:
 
-```bash
+```arc
 # app.arc|.arc|arc.yaml|etc.
 
 @aws

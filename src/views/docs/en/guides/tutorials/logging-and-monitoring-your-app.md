@@ -24,7 +24,7 @@ npx logs production path/to/function
 
 For example, given the following `app.arc` file:
 
-```bash
+```arc
 @app
 showlogs
 

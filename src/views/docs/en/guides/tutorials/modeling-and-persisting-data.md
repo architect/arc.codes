@@ -3,7 +3,15 @@ title: Modeling & persisting data
 description: Tutorial showing how to use DynamoDB with Architect to create a note application with user accounts
 sections:
   - Overview
-  - TBD
+  - Generating the Data Layer
+  - Implementing an Admin Interface
+  - Implementing Signup
+  - Implementing Login
+  - Implementing Logout
+  - Protecting Routes
+  - Showing and making notes
+  - Edit a specific note
+  - Delete a Note
 ---
 
 ## Overview
@@ -80,7 +88,7 @@ So, at this point, `arc init` will create the following Dynamo tables:
 
 ## Implementing an Admin Interface
 
-Now let's create a basic interface for this notes app. First, let's create a basic shared layout in `src/shared`, which will make it available to all functions (more on [sharing code across functions here](/en/guides/tutorials/code-sharing-across-functions)):
+Now let's create a basic interface for this notes app. First, let's create a basic shared layout in `src/shared`, which will make it available to all functions (more on [sharing code across functions here](/docs/en/guides/tutorials/code-sharing-across-functions)):
 
 ```bash
 mkdir src/shared
@@ -521,7 +529,7 @@ This wipes the current session and redirects back to `/`.
 
 ## Protecting Routes
 
-To ensure no bad actors start posting notes, we can lock down the other routes using Arc's [middleware](/en/guides/tutorials/cloud-function-middleware).
+To ensure no bad actors start posting notes, we can lock down the other routes using Arc's middleware, [@architect/functions](https://github.com/architect/functions).
 
 ```bash
 touch src/shared/require-login.js
@@ -560,7 +568,7 @@ module.exports = async function requireLogin(request) {
 }
 ```
 
-> 🏄‍♀️ Read more about [middleware](/en/guides/tutorials/cloud-function-middleware) here.
+> 🏄‍♀️ Read more about [middleware](/docs/en/guides/tutorials/cloud-function-middleware) here.
 
 ---
 

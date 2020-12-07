@@ -11,6 +11,10 @@ sections:
 
 Each function in an Architect project is self-contained and has its own dependencies. Shared code can be located in `/src/shared` which will be copied into every function's `node_modules` folder during hydration and deployment. If you are working in Node, this means that each function will require a `package.json`. Architect will also respect other runtime dependency management such as a `requirements.txt` for Python and `gemfile` for Ruby.
 
+**Sections:**
+  - [Overview](#overview)
+  - [Updating dependencies](#updating-dependencies)
+  - [Hydrating dependencies](#hydrating-dependencies)
 
 ## Updating dependencies
 
@@ -21,9 +25,10 @@ mkdir arc-deps-app
 cd arc-deps-app
 touch app.arc
 ```
+
 Now we can write a `app.arc` file with two HTTP functions as follows:
 
-```bash
+```arc
 # app.arc file
 
 @app
@@ -96,4 +101,5 @@ npm install -D @architect/sandbox
     "start": "arc sandbox"
   }
 ```
+
 Run `npm start` in the terminal to start Sandbox, a local dev server. Notice that when Sandbox starts, it checks each function for a `package.json` and installs any dependencies if they are missing.

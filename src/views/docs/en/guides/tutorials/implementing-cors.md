@@ -3,18 +3,27 @@ title: Implementing CORS
 description: If your application reaches across domains to request resources, you'll need to use CORS
 sections:
   - Overview
-  - TBD
+  - Example
+  - Restricting Domains
+  - Conclusion
 ---
 
 ## Overview
 
 Cross-origin resource sharing (CORS) is a mechanism that that uses additional HTTP headers to tell browsers to give a web application running at one origin access resources from another domain outside the domain from which the first resource was served. A web page may freely embed cross-origin images, stylesheets, scripts, iframes, and videos.
 
+**Sections:**
+
+  - [Overview](#overview)
+  - [Example](#example)
+  - [Restricting Domains](#restricting-domains)
+  - [Conclusion](#conclusion)
+
 ## Example
 
 Let's first create an `app.arc` app with a very simple JSON API endpoint:
 
-```bash
+```arc
 @app
 testapp
 
@@ -87,7 +96,7 @@ exports.handler = async function http(req) {
 }
 ```
 
-It is possible to write a very elaborate `read` function. Give `sucrase` a try for transpiling jsx, tsx, and flow. `Babel` and `Rollup` work within AWS Lambda too. These tools can run within acceptable time, and content can be cached between warm executions making a very fast dynamic asset build chain.
+It is possible to write a very elaborate `read` function. Give [Sucrase](https://sucrase.io/) a try for transpiling jsx, tsx, and flow. [Babel](https://babeljs.io/) and [Rollup](https://rollupjs.org/guide/en/) work within AWS Lambda too. These tools can run within acceptable time, and content can be cached between warm executions making a very fast dynamic asset build chain.
 
 For this example, we'll start with the following client-side source:
 

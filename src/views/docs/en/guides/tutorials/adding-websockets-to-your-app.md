@@ -10,8 +10,18 @@ sections:
 
 ## Overview
 
-The `@ws` primitive creates a WebSocket endpoint and stateless handler functions: `connect`, `disconnect` and `default`.
+The [`@ws`](/docs/en/reference/arc-pragmas/@ws) primitive creates a WebSocket endpoint and stateless handler functions: 
 
+- **`connect`**: This handler function is used when a client first connects to your WebSocket API.
+- **`disconnect`**: This handler function is used when a client disconnects from your API. 
+- **`default`**: Used when the route selection expression produces a value that does not match any of the other route keys in your API routes. This can be used, for example, to implement a generic error handling mechanism.
+
+These handler functions allow you to hold a long lived state connection between two different endpoints.
+
+**Sections**
+  - [Overview](#overview)
+  - [Connecting to your WebSocket](#connecting-to-your-websocket)
+  - [Implementing sessions](#implementing-sessions)
 
 ## Connecting to your WebSocket
 
@@ -19,7 +29,7 @@ The `@ws` primitive creates a WebSocket endpoint and stateless handler functions
 
 Given the following example `app.arc` file:
 
-```bash
+```arc
 @app
 testapp
 
