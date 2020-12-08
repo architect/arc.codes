@@ -18,6 +18,7 @@
   --g8:#4D4D4D;/* #4D4D4D */
   --g9:#383838;/* #383838 */
   --g10:#222222;/* #222222 */
+  --g11:#FFF;   /* #FFF*/
   --h0:#3EE09C;/* Medium Aquamarine */
   --h1:#40B9E5;/* Bright Navy Blue */
   --h2:hsl(267, 90%, 55%);/* Royal Purple Hover */
@@ -83,6 +84,7 @@ body {
 .text-g8{color:var(--g8);}/* #4D4D4D */
 .text-g9{color:var(--g9);}/* #383838 */
 .text-g10{color:var(--g10);}/* #222222 */
+.text-g11{color:var(--g11);}/* #FFF */
 .text-h0:hover{color:var(--h0);}/* Medium Aquamarine */
 .text-h1:hover{color:var(--h1);}/* Bright Navy Blue */
 .text-h2:hover{color:var(--h2);}/* Royal Purple Hover */

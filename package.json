@@ -1,19 +1,31 @@
 {
-  "name": "arc-codes",
-  "version": "0.0.0",
-  "description": "Architect website",
+  "architect": {
+    "app": "arc-codes",
+    "aws": [
+      "region": "us-west-1",
+      "profile": "openjsf",
+      "bucket": "arc.codes-deploy",
+      "apigateway": "http"
+    ],
+    "static": { 
+      "folder": "public",
+      "fingerprint": true 
+    },
+    "http": [
+      ["get", "/"],
+      ["get", "/docs/:lang/*"]
+    ]
+  },
   "scripts": {
     "lint": "eslint src --ignore-pattern node_modules --fix",
-    "start": "npx sandbox",
+    "start": "sandbox",
     "test": "tape -r esm test/*.test.js test/**/*.js | tap-spec"
   },
-  "devDependencies": {
+  "dependencies": {
+    "@architect/architect": "latest",
     "esm": "^3.2.25",
     "slugify": "^1.4.6",
     "tap-spec": "^5.0.0",
     "tape": "^5.0.1"
-  },
-  "dependencies": {
-    "@architect/sandbox": "^3.3.0"
   }
 }

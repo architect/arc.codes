@@ -1,6 +1,6 @@
 ---
 title: Macros
-description: 160 (or fewer) character description of this document!
+description: character description of this document!
 sections:
   - Overview
   - Getting started

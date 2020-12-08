@@ -1,5 +1,5 @@
 ---
-title: Meet your new superpowers
+title: Superpowers and limits 
 category: Get started
 description: Cloud superpowers
 sections:

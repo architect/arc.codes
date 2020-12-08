@@ -1,134 +1,89 @@
-let Guides = [
-  {
-    'Get started': [
-      'Quickstart',
-      'Detailed setup',
-      'Project Layout',
-      'Going beyond "Hello World"',
-      'Meet your new superpowers',
-      'Upgrade guides',
-    ]
-  },
-  {
-    'Tutorials': [
-      'Developing with cloud functions',
-      'Working locally and offline',
-      'Code sharing across functions',
-      'Cloud function middleware',
-      'Single page apps',
-      'HTTP & WebSocket sessions',
-      'Modeling & persisting data',
-      'Background tasks',
-      'Implementing CORS',
-      'Logging & monitoring your app',
-      'Assigning a domain name to your app',
-      'Adding WebSockets to your app',
-      'Using dependencies in your functions',
-      'Extending Architect with macros',
-      'Ejecting to CloudFormation'
-    ]
-  },
-  {
-    'AWS': [
-      'Configuration',
-      'AWS credentials',
-      'Custom IAM roles',
-    ]
-  }
-]
-
-let Reference = [
-  {
-    'Architect project structure': [
-      {
-        'Architect manifest & config': [
-          'Project manifest & config',
-          'Function config file',
-          'Environment file',
-          'Playground',
-        ]
-      },
-      {
-        'Static assets': [
-          'Static',
-          'CDN',
-        ]
-      },
-      {
-        'Functions': [
-          'HTTP functions',
-          'Database functions',
-          'Scheduled functions',
-          'Event functions',
-          'Queue functions',
-          'WebSocket functions',
-        ]
-      },
-      {
-        'Databases': [
-          'Tables',
-          'Indexes',
-        ]
-      }
-    ]
-  },
-  {
-    'Macros': [
-      {
-        'CLI reference': [
-          'deploy',
-          'env',
-          'hydrate',
-          'init',
-          'logs',
-          'package',
-          'repl',
-          'sandbox',
-        ]
-      },
-      {
-        'Runtime helper reference': [
-          'arc-events',
-          'arc-http',
-          'arc-http-async',
-          'arc-http-helpers',
-          'arc-http-proxy',
-          'arc-http-session',
-          'arc-queues',
-          'arc-static',
-          'arc-tables',
-          'arc-ws',
-        ]
-      }
-    ]
-  },
-  {
-    'ARC pragmas': [
-      '@app',
-      '@aws',
-      '@domain',
-      '@events',
-      '@http',
-      '@indexes',
-      '@macros',
-      '@proxy',
-      '@queues',
-      '@scheduled',
-      '@static',
-      '@tables',
-      '@views',
-      '@ws'
-    ]
-  }
-]
-
 let About = [
   'Mission',
-  'Governance',
   'Community',
-  'Contributor guide',
-  'Help wanted',
+  'Playground', 
+  'Contribute'
 ]
+
+let Guides = [{
+  'Get started': [
+    'Quickstart',
+    'Superpowers and limits',
+    'Project layout',
+    'Detailed AWS setup',
+  ],
+  'Develop': [
+    'Local dev',
+    'Custom file paths',
+    'Sharing code',
+    'Dependency management',
+    'Deployment',
+    'Logging & monitoring',
+    'Migrating legacy apps',
+    'Upgrading',
+  ],
+  'Frontend': [
+    'Static assets',
+    'HTTP',
+    'CORS',
+    'Sessions',
+    'Middleware',
+    'Web sockets',
+  ],
+  'Backend': [
+    'Events',
+    'Queues',
+    'Scheduled',
+    'Database',
+  ],
+  'Extend': [
+    'Add a custom domain',
+    'Custom IAM roles',
+    'Customize generated CloudFormation',
+    'Eject to AWS SAM'
+  ]
+}]
+
+let Reference = [{
+  'CLI': [
+    'arc deploy',
+    'arc destroy',
+    'arc env',
+    'arc init',
+    'arc logs',
+    'arc package',
+    'arc sandbox',
+  ],
+  'app.arc': [
+    '@app',
+    '@aws',
+    '@events',
+    '@http',
+    '@indexes',
+    '@macros',
+    '@proxy',
+    '@queues',
+    '@scheduled',
+    '@shared',
+    '@static',
+    '@tables',
+    '@views',
+    '@ws'
+  ],
+  'config.arc':[
+    '@aws'
+  ],
+  'prefs.arc': [
+    '@create',
+    '@env',
+    '@sandbox'
+  ], 
+  'Runtime': [
+    'Node',
+    'Ruby',
+    'Python'
+  ]
+}]
 
 module.exports = {
   Guides,

@@ -1,5 +1,5 @@
 ---
-title: Code sharing across functions
+title: Sharing code across functions
 category: Tutorials
 description: Tutorial for sharing code between your cloud functions.
 sections:
