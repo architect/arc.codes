@@ -62,7 +62,17 @@ ${ Symbols }
         text-g0
       "
     >
-      ${ Logo({ classes: 'h-logo' }) }
+      <a
+        href="/"
+        class="
+          text-g0
+          text-h0
+          text-a2
+          cursor-pointer
+        "
+      >
+        ${ Logo({ classes: 'h-logo' }) }
+      </a>
       <div
         class="
           flex
