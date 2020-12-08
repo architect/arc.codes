@@ -1,16 +1,14 @@
 ---
 title: Community
 category: About
-description: 160 (or fewer) character description of this document!
+description: Architect is an open source project and we want YOUR help!
 ---
-
-## An open community
 
 Architect is an open source project hosted by the [OpenJS Foundation](https://openjsf.org) and it is totally ok to ask for help! Use the issue tracker to file bugs, request features, or even just to ask a question.
 
 - [Come chat with us in Slack](https://join.slack.com/t/architecture-as-text/shared_invite/MjE2MzU4Nzg0NTY1LTE1MDA2NzgyMzYtODE2NzRkOGRmYw)
-- [🌟 Star the project on GitHub](https://github.com/architect/architect)
-- [Learn(how to contribute)](/en/about/contributor-guide)
+- [🌟 `@architect/architect` on GitHub](https://github.com/architect/architect)
+- [Learn how to contribute](/docs/en/about/contribute)
 
 ---
 
@@ -27,9 +25,4 @@ We ask that you do your part in helping us ensure a safe, positive, inclusive, c
 The `app.arc` manifest takes inspiration from UNIX 'run command' files (like `.vimrc`, `.bashrc`, etc). Architect started out as `arc` which itself was an acronym for "Amazon run commands".
 
 The code was developed building [Begin](https://begin.com) and granted to [JS Foundation](https://js.foundation/) in July of 2017 under the `Apache-2.0` license.
-
-
-> [Check out the quickstart guide next!](/en/guides/get-started/quickstart)
-
-
 

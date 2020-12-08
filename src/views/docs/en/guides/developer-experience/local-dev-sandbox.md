@@ -1,6 +1,6 @@
 ---
-title: Local dev
-description: 160 (or fewer) character description of this document!
+title: Local development sandbox
+category: developer experience
 sections:
   - Overview
   - Previewing vs. testing

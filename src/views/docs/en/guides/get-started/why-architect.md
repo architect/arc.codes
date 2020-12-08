@@ -1,5 +1,5 @@
 ---
-title: Superpowers and limits 
+title: Why Architect?
 category: Get started
 description: Cloud superpowers
 sections:

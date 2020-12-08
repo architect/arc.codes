@@ -1,7 +1,6 @@
 ---
 title: Sharing code across functions
-category: Tutorials
-description: Tutorial for sharing code between your cloud functions.
+category: developer experience
 sections:
   - Overview
   - Principles & best practices

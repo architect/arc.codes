@@ -107,3 +107,99 @@ Happy with staging? Ship a release to production by running `npx deploy producti
 
 Time to celebrate! ✨
 
+
+## Infrastructure as code
+
+Architect is an [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_code) (IaC) framework. Architect defines a high level manifest file, in multiple open formats, and otherwise views cloud infrastructure as a build artifact.
+
+### Formats supported
+
+Architect supports a native text file format `app.arc` in addition to popular formats: `package.json`, `arc.json`, `arc.yaml` and `arc.toml`. Teams can choose the dialect that works best for them. 
+
+The `app.arc` format follows a few simple rules:
+
+- Whitespace is significant 
+- Comments start with `#`
+- Pragmas start with `@` and organize cloud resources and their configuration
+
+`app.arc` files define the following pragmas:
+
+- `@app` defines the application namespace
+- `@aws` defines AWS specific configuration
+- `@events` defines SNS event handlers
+- `@http` defines HTTP handlers for API Gateway
+- `@indexes` defines global secondary indexes on DynamoDB tables
+- `@macros` define macros to extend the generated CloudFormation
+- `@queues` defines SQS event handlers
+- `@scheduled` defines EventBridge functions that run on a schedule
+- `@static` defines S3 buckets for static assets
+- `@tables` defines DynamoDB database tables and trigger functions for them
+- `@ws` defines API Gateway WebSocket handlers
+
+An `app.arc` file example:
+
+```bash
+# this is going to be great!
+
+@app
+hello
+
+@static
+fingerprint true
+
+@ws
+action
+connect
+default
+disconnect
+
+@http
+get /
+get /likes
+post /likes
+
+@events
+hit-counter
+
+@scheduled
+daily-affirmation rate(1 day)
+
+@tables
+likes
+  likeID *String
+  stream true
+
+@indexes
+likes
+  date *String
+```
+
+Running `arc init` in the same directory as the `app.arc` file above generates the following function code:
+
+```
+.
+├── src
+│   ├── http
+│   │   ├── get-index/index.js
+│   │   ├── get-likes/index.js
+│   │   └── post-likes/index.js
+│   │
+│   ├── events
+│   │   └── hit-counter/
+│   │
+│   ├── scheduled
+│   │   └── daily-affirmation/
+│   │
+│   ├── tables
+│   │   └── likes/
+│   │
+│   └── ws
+│       ├── action/
+│       ├── connect/
+│       ├── default/
+│       └── disconnect/
+│   
+└── app.arc
+```
+
+The `app.arc` format is terse, easy to read, and quickly learnable to author. The expressions in a `app.arc` file unlock the formerly complex tasks of cloud infrastructure provisioning, deployment, and orchestration.

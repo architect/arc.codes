@@ -1,10 +1,8 @@
 ---
-title: Contribute
+title: Contributor guide
 category: about
 description: 160 (or fewer) character description of this document!
 ---
-
-## Contributor Guide
 
 Architect is an open source project and you can totally help out! Contributing doesn't just mean landing code. It can be reporting bugs, helping us triage bugs, suggesting new features, writing docs, sharing examples and plain kicking it in our community chat. These are all helpful contributions!
 

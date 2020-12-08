@@ -7,40 +7,39 @@ let About = [
 
 let Guides = [{
   'Get started': [
+    'Why Architect?',
     'Quickstart',
-    'Superpowers and limits',
     'Project layout',
     'Detailed AWS setup',
   ],
-  'Develop': [
-    'Local dev',
-    'Custom file paths',
-    'Sharing code',
+  'Developer experience': [
+    'Local dev sandbox', // preview, debug and test
+    'Share code', // src/shared and src/views
+    'Custom source paths',
     'Dependency management',
-    'Deployment',
-    'Logging & monitoring',
-    'Migrating legacy apps',
-    'Upgrading',
+    'Deploy',
+    'Log & monitor', // cloudwatch
+    'Migrate legacy code',// @proxy, arc.http.express
+    'Upgrade',
   ],
   'Frontend': [
-    'Static assets',
-    'HTTP',
-    'CORS',
+    'Static assets', // fingerprint, ignore, folder, link to cdn
+    'HTTP functions', // 
     'Sessions',
     'Middleware',
-    'Web sockets',
+    'WebSockets',
   ],
   'Backend': [
-    'Events',
-    'Queues',
-    'Scheduled',
-    'Database',
+    'Database tables & indexes',
+    'Database stream functions',
+    'Event functions',
+    'Queue functions',
+    'Scheduled functions',
   ],
   'Extend': [
+    'Custom CloudFormation',
     'Add a custom domain',
-    'Custom IAM roles',
-    'Customize generated CloudFormation',
-    'Eject to AWS SAM'
+    'Eject to SAM'
   ]
 }]
 
