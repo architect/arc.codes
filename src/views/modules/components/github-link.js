@@ -4,7 +4,7 @@ export default function GithubButton(state={}) {
   let { classes } = state
   return `
 <a
-  href="https://github.com/architect"
+  href="https://github.com/architect/architect"
   class="
   ${ classes }
    text-g0
