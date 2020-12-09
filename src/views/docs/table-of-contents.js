@@ -2,6 +2,7 @@ let About = [
   'Mission',
   'Community',
   'Contribute',
+  'Changelog',
   'Playground', 
 ]
 
@@ -13,14 +14,12 @@ let Guides = [{
     'Detailed AWS setup',
   ],
   'Developer experience': [
-    'Local dev sandbox', // preview, debug and test
-    'Share code', // src/shared and src/views
+    'Local development', // preview, debug and test
+    'Sharing code', // src/shared and src/views
     'Custom source paths',
     'Dependency management',
-    'Deploy',
-    'Log & monitor', // cloudwatch
-    'Migrate legacy code',// @proxy, arc.http.express
-    'Upgrade',
+    'Deployment',
+    'Logging & monitoring', // cloudwatch
   ],
   'Frontend': [
     'Static assets', // fingerprint, ignore, folder, link to cdn
@@ -37,6 +36,7 @@ let Guides = [{
     'Scheduled functions',
   ],
   'Extend': [
+    'Migrate legacy code',// @proxy, arc.http.express
     'Custom CloudFormation',
     'Add a custom domain',
     'Eject to SAM'
@@ -45,13 +45,13 @@ let Guides = [{
 
 let Reference = [{
   'CLI': [
-    'arc deploy',
-    'arc destroy',
-    'arc env',
-    'arc init',
-    'arc logs',
-    'arc package',
-    'arc sandbox',
+    'deploy',
+    'destroy',
+    'env',
+    'init',
+    'logs',
+    'package',
+    'sandbox',
   ],
   'app.arc': [
     '@app',

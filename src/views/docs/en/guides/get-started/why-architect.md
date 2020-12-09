@@ -4,15 +4,15 @@ category: Get started
 description: Why is Architect important to you?
 ---
 
-> Architect is the simplest and fastest way to build modern database backed web apps
+> Architect is the simplest and fastest way to build database backed web apps on AWS SAM
 
 Instantly create powerful serverless Lambdas written in JS, Python, and Ruby and connect to the massive AWS ecosystem through standard CloudFormation. Architect provides everything you need out of the box to build massively scalable apps with low code, clear and terse config, zero ceremony, and no lock-in. 
 
-- Best in class developer experience
+- The best developer experience
 - Secured to least privilege by default
 - Open source and open governance
 
-## Best in class developer experience
+## The best developer experience
 
 Architect is an opinionated developer experience (DX) for building database backed web apps with AWS. We know you want to focus on business logic instead of glue code. We know you want to only pay for services while in use, on demand, and otherwise _scale to zero_. We know you want to do less work about work so you can focus on doing more for your customers. That is why you chose to go serverless.
 

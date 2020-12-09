@@ -11,8 +11,8 @@ description: Setting up and installing Architect.
 1. [Node](https://nodejs.org) for Architect
 2. [Python](https://www.python.org) for the AWS CLI
 3. Any additional [supported runtimes](#supported-runtimes) you plan to use
-4. Install the [AWS CLI](#aws-cli)
-5. Setup your AWS [credentials file](#credentials)
+4. [AWS CLI](#aws-cli)
+5. [AWS credentials](#credentials)
 6. [Install Architect](#install-architect)
 
 ---
@@ -118,7 +118,7 @@ The following command uses npm, the package manager for Node, to install Archite
 npm i -g @architect/architect
 ```
 
-Or, if you prefer, you can install Architect into a local project:
+Or, if you prefer, you can install Architect locally into a project:
 
 ```bash
 npm init @architect ./testapp
