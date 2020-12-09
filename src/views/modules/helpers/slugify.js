@@ -1,7 +1,5 @@
-export default function slugify(str='') {
-  return str
-    .toLowerCase()
-    .replace(/&/g, 'and')
-    .replace(/"/g, '')
-    .replace(/\s/g, '-')
+import slugify from 'slugify'
+
+export default function slug(str='') {
+  return slugify(str, { lower: true })
 }

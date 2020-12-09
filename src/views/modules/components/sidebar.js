@@ -41,7 +41,11 @@ const map = {
 
 function Anchor(state={}) {
   let { children, path, active } = state
-  let href = `/${slugify(path.concat([ children ]).join('/'))}`
+  let uri = path
+    .concat([ children ])
+    .map(part => slugify(part))
+    .join('/')
+  let href = `/${uri}`
   let isActive = active === href
   let activeClass = isActive
     ? 'active'
