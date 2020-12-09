@@ -31,7 +31,7 @@ Architect favors *convention over configuration* and projects have the following
 
 ## Manifest format overview
 
-Architect projects have either of these three versions of a manifest file in the root that sets up your infrastructure as code. This captures the infrastructure requirements beside the code it will run in your revision control. 
+Architect projects have either of these three versions of a manifest file in the root that sets up your infrastructure as code. This captures the infrastructure requirements beside the code it will run in your revision control.
 
 - `app.arc`
 - `arc.yaml`
@@ -76,6 +76,7 @@ These sections deal with config of various persistence resources.
 Provision a project with the following `app.arc` file:
 
 ```arc
+
 # this is going to be great!
 @app
 testapp
@@ -111,7 +112,7 @@ Time to celebrate! ✨
 ----
 The `app.arc` format follows a few simple rules:
 
-- Whitespace is significant 
+- Whitespace is significant
 - Comments start with `#`
 - Pragmas start with `@` and organize cloud resources and their configuration
 
@@ -191,7 +192,7 @@ Running `arc init` in the same directory as the `app.arc` file above generates t
 │       ├── connect/
 │       ├── default/
 │       └── disconnect/
-│   
+│
 └── app.arc
 ```
 
