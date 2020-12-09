@@ -108,14 +108,7 @@ Happy with staging? Ship a release to production by running `npx deploy producti
 Time to celebrate! ✨
 
 
-## Infrastructure as code
-
-Architect is an [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_code) (IaC) framework. Architect defines a high level manifest file, in multiple open formats, and otherwise views cloud infrastructure as a build artifact.
-
-### Formats supported
-
-Architect supports a native text file format `app.arc` in addition to popular formats: `package.json`, `arc.json`, `arc.yaml` and `arc.toml`. Teams can choose the dialect that works best for them. 
-
+----
 The `app.arc` format follows a few simple rules:
 
 - Whitespace is significant 

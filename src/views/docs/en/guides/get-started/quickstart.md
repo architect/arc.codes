@@ -7,64 +7,57 @@ sections:
   - That's it
 ---
 
-1. Install Architect
+Open your terminal to install `arc` globally:
 
 ```bash
-npm install -g @architect/architect
+npm i -g @architect/architect
 ```
 
-2. Create a project folder
+Check the version:
+
+```bash
+arc version
+```
+
+> Protip: run `arc` with no arguments to get help
+
+## Work locally
+
+Create a new app:
 
 ```bash
 mkdir testapp
 cd testapp
+arc init
 ```
 
-3. Run `arc init` to generate a basic project:
+Kick up the local dev server:
 
+```bash
+arc sandbox
 ```
-/
-├── src
-│   └── http
-│       └── get-index/index.js
-└── app.arc
+> `Cmd / Ctrl + c` exits the sandbox
+
+## Deploy to AWS
+
+Deploy the `staging` stack:
+
+```bash
+arc deploy
 ```
+> Protip: create additional `staging` stacks with `--name`
 
-4. Check out your first `app.arc` file & HTTP function!
+Ship to a `production` stack:
 
-```arc
-# /project/path/app.arc
-@app
-your-app-name
-
-@http
-get /
-```
-
-```javascript
-// src/http/get-index/index.js
-
-exports.handler = async function http(request) {
-  return {
-    statusCode: 200,
-    headers: { 'Content-Type': 'text/html; charset=utf-8;' },
-    body: '<h1>Hello World! 🎉</h1>'
-  }
-}
+```bash
+arc deploy production
 ```
 
-## That's it! Ready to ship?
+Or eject to CloudFormation and deploy with the AWS SAM CLI:
 
-Ensure you've [met the system prerequisites](/en/guides/get-started/detailed-setup) and run: `arc deploy`.
+```
+arc package
+sam package --template-file sam.json --output-template-file out.yaml --s3-bucket mybukkit
+sam deploy --template-file out.yaml --stack-name MyStack --s3-bucket mybukkit --capabilities CAPABILITY_IAM
+```
 
-Your new app will be online within seconds.
-
----
-
-**Want to join the community and learn more?**
-
-- [Join the Architect community on Slack!](https://join.slack.com/t/architecture-as-text/shared_invite/MjE2MzU4Nzg0NTY1LTE1MDA2NzgyMzYtODE2NzRkOGRmYw)
-
-- Star [`@architect/architect`](https://github.com/architect/architect) on GitHub
-
-- [Follow the detailed setup](/en/guides/get-started/detailed-setup)

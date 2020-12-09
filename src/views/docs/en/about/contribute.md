@@ -22,7 +22,6 @@ The Architect project is composed of multiple core code repositories on GitHub:
 - [`architect/package`](https://github.com/architect/package) - a pure function that consumes `architect/parser` output and returns a CloudFormation document
 - [`architect/deploy`](https://github.com/architect/deploy) - a wrapper for the AWS CLI `package` and `deploy` commands
 - [`architect/sandbox`](https://github.com/architect/sandbox) - the local sandbox (mocks API Gateway, SNS, SQS, DynamoDB, and Lambda)
-- [`architect/repl`](https://github.com/architect/repl) - read/eval/print/loop with arcfile awareness (a sandbox for access DynamoDB)
 - [`architect/env`](https://github.com/architect/env) - read/write arcfile project environment variables with SSM
 - [`architect/hydrate`](https://github.com/architect/hydrate) - ensures function deps are synced (including src/shared and src/views)
 - [`architect/logs`](https://github.com/architect/logs) - read/write function CloudWatch logs

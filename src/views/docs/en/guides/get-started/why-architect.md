@@ -1,30 +1,39 @@
 ---
 title: Why Architect?
 category: Get started
-description: Cloud superpowers
-sections:
-  - Speed
-  - Security
-  - Developer experience
-  - Framework comparison
+description: Why is Architect important to you?
 ---
 
-## Speed
+> Architect is the simplest and fastest way to build modern database backed web apps
 
-Speed is of the utmost importance when building a web app. Less code is faster to write and deploy and Architect makes this possible in a myriad of ways beginning with Infra-as-Code. Determinism that comes as a result of infra as code deployments will speed up the development of your app as well as lower the amount of bugs and side effects.
+Instantly create powerful serverless Lambdas written in JS, Python, and Ruby and connect to the massive AWS ecosystem through standard CloudFormation. Architect provides everything you need out of the box to build massively scalable apps with low code, clear and terse config, zero ceremony, and no lock-in. 
 
-## Security
+- Best in class developer experience
+- Secured to least privilege by default
+- Open source and open governance
 
-With a separation of functions on the cloud, better isolation also equals better security posture and least privilege by default. This lowers your attack vector from nefarious characters.
+## Best in class developer experience
 
-## Developer experience
+Architect is an opinionated developer experience (DX) for building database backed web apps with AWS. We know you want to focus on business logic instead of glue code. We know you want to only pay for services while in use, on demand, and otherwise _scale to zero_. We know you want to do less work about work so you can focus on doing more for your customers. That is why you chose to go serverless.
 
-Architect aims to provide the fastest developer experience for serverless infrastructure. Extend your app with the entire AWS ecosystem of services and tools with just an `app.arc` file!
+But going serverless is fraught with vendor arcana and market noise. This is where Architect comes in. We remove all the noise and friction to building serverlessly. We prioritize speed with fast local dev, smart configurable defaults and flexible Infrastructure as Code. And then we get out of your way so you can focus on your code.
 
-Another upside is predictable costs and 100% utilization (scale to zero).
-Do less of everything because it's now patching instead of upgrading. You get faster debugging because errors become very shallow in isolation, especially with testing.
+#### Work locally
 
-## Framework comparison
+Devs need to work locally, to debug, test, and preview code before deploying it. Faster iterations means removing latency in feedback cycles. Architect devs iterate even faster with identical staging and prodiction deployment only seconds away. Other systems require you to figure out these environments and more often than not ad hoc implementations introduce bug vectors due to subtle incompatabilities. Architect treats local development, staging and production as first class concerns.
 
-ADD ME!
+#### Custom source paths
 
+Larger teams appreciate convention over configuration so we provide strong defaults. Every default can be opted out of and projects can be organized in whatever way makes the most sense for that project. Teams can remain confident they get the same infrastructure expected every time because ultimately Architect is all about Infrastructure as Code.
+
+#### Infrastructure as Code
+
+At its heart Architect is an [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_code) (IaC) framework. Architect defines a high level manifest file, in multiple open formats, and turns formerly complex cloud infrastructure provisioning into a build artifact. You define the cloud infrastructure your application code requires and check that manifest into version control so infra and code are always aligned and determinstic. Architect compiles manifest code into AWS CloudFormation and deploys it. Architect supports a native text file format `app.arc` in addition to popular formats: `package.json`, `arc.json`, `arc.yaml` and `arc.toml`. Teams can choose the dialect that works best for them. 
+
+## Secured to least privilege by default
+
+Architect apps are compiled into AWS SAM applications for deployment with CloudFormation. All resources defined in the manifest share one IAM Role with least priviledge access to only resources deined in the same file. You can modify the generated CloudFormation to change this behavior, lock things down further or to access AWS resources outside the scope of the current app.
+
+## Open source and open governance
+
+Architect is part of the OpenJS Foundation and is Apache 2.0 licensed. Architect as an open source project prioritizes regular release candance and backwards compatability at all costs. 

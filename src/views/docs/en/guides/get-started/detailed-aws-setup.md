@@ -2,45 +2,29 @@
 title: Detailed setup
 category: Get started
 description: Setting up and installing Architect.
-sections:
-  - Prerequisites
-  - AWS Setup & IAM credentials
-  - Configure AWS CLI
-  - Install Architect
-  - Example project
-  - Work locally
-  - Deploying
-  - Clean Up
 ---
 
-## Prerequisites
+> To work locally all you need is [Node](https://nodejs.org) and any additional [supported runtimes](#supported-runtimes) you plan to use. 
 
-### TL/DR
+## AWS setup
 
-**To work locally**, all you need is:
+1. [Node](https://nodejs.org) for Architect
+2. [Python](https://www.python.org) for the AWS CLI
+3. Any additional [supported runtimes](#supported-runtimes) you plan to use
+4. Install the [AWS CLI](#aws-cli)
+5. Setup your AWS [credentials file](#credentials)
+6. [Install Architect](#install-architect)
 
-- A supported [runtime](#runtimes)
+---
 
-**To deploy your project to AWS**, you'll need:
-
-- A supported [runtime](#runtimes)
-- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
-  - (Which requires [Python](https://www.python.org/downloads/))
-- AWS account with admin privileges
-- Your [credentials file](#local-credentials-file) set up at:
-  - \*nix: `~/.aws/credentials`
-  - Windows: `C:\Users\USER_NAME\.aws\credentials`
-
-
-### Runtimes
+## Supported runtimes
 
 Architect supports the following runtime versions when working locally:
 
-**Recommended**
-
-- Node: `12.x` & `10.x` using `npm`
-- Ruby: `2.5` using `bundle`
-- Python: `3.7` & `3.6` using `pip3`
+- Node `12.x` using `npm`
+- Deno `1.6.x`
+- Ruby `2.5` using `bundle`
+- Python `3.8` using `pip3`
 
 > Working locally with the Architect `sandbox` dev server requires target runtimes to be installed and available in $PATH. For example, if you are only targeting Node, then only Node needs to be installed locally. (Likewise for Ruby and Python.)
 
@@ -48,19 +32,16 @@ To use the same runtime across all functions in your project, add it to your `@a
 
 ```arc
 # Valid runtimes: 
-
-# `nodejs12.x`
-# `nodejs10.x`
-# `deno`
-# `python3.7`
-# `python3.6`
-# `ruby2.5`
+# - nodejs12.x
+# - deno
+# - python3.8
+# - ruby2.5
 
 @aws
-runtime python3.7
+runtime python3.8
 ```
 
-This setting can be overridden on a function-by-function basis with [`.arc-config`](/docs/en/reference/architect-project-structure/architect-manifest-and-config/function-config-file).
+> This setting can be overridden on a function-by-function basis with [`config.arc`](/docs/en/reference/config.arc/@aws).
 
 Architect also supports the following runtimes in live infra, but not while working locally (at present):
 - Go: `1.x`,
@@ -69,7 +50,13 @@ Architect also supports the following runtimes in live infra, but not while work
 
 ---
 
-## AWS Setup & IAM credentials
+## AWS CLI
+
+The [AWS Command Line Interface](https://docs.aws.amazon.com/cli/) is the main interface for interacting with all parts of AWS using your computer's terminal. Architect uses the AWS CLI to package and deploy CloudFormation. Follow this guide to [installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) for your preferred environment.
+
+---
+
+## Credentials
 
 You'll need an Amazon Web Services account and credentials set up on your development machine. If you haven't done it before, here's a useful guide for [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
 
@@ -122,26 +109,13 @@ $env:AWS_REGION='us-west-1'
 
 > If you prefer, you can also use: *Control Panel » System » Advanced System Settings » Environment Variables*.
 
-## Configure AWS CLI
-
-The [AWS Command Line Interface](https://docs.aws.amazon.com/cli/) is the main interface for interacting with all parts of AWS using your computer's terminal. The AWS CLI provides a direct way to access all of the public APIs of AWS.
-
-It will be important to have this set up on your machine to be able to use Architect. Below we will show you how to install and configure the AWS CLI correctly so that you may move on to installing Architect.
-
-There are two versions of the AWS CLI available for download. Version two is for production environments and is the most recent major version of the AWS CLI and supports all of the latest features. Version one is the original AWS CLI, has backwards compatibility, and is still supported by AWS.
-
-To check which version you have installed, run the `aws --version`. If not already installed, let's do that now.
-
-There are different ways to install the AWS CLI depending on the dev environment you are using. Use the instruction at the link below to correctly install the CLI for your preferred environment.
-
-[Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
 
 ## Install Architect
 
-The following command uses NPM, the package manager for JavaScript, to install Architect globally, a framework for building serverless applications. This will allow you to use Architect in any project directory on your computer.
+The following command uses npm, the package manager for Node, to install Architect globally. This will allow you to use Architect in any directory on your computer.
 
 ```bash
-npm install -g @architect/architect
+npm i -g @architect/architect
 ```
 
 Or, if you prefer, you can install Architect into a local project:
@@ -149,74 +123,3 @@ Or, if you prefer, you can install Architect into a local project:
 ```bash
 npm init @architect ./testapp
 ```
-
-## Example project
-
-Create a project folder
-
-```bash
-mkdir testapp
-cd testapp
-```
-Start the dev server
-
-```bash
-arc sandbox
-```
-> Cmd / Ctrl + c exits the sandbox
-
-## Work locally
-
-Run `arc init` to generate a basic project:
-
-```bash
-/
-├── src
-│   └── http
-│       └── get-index/index.js
-└── app.arc
-```
-
-Check out your first `app.arc` file & HTTP function!
-
-```arc
-# /project/path/.arc
-
-@app
-your-app-name
-
-@http
-get /
-```
-
-```javascript
-// src/http/get-index/index.js
-
-exports.handler = async function http(request) {
-  return {
-    statusCode: 200,
-    headers: { 'Content-Type': 'text/html; charset=utf-8;' },
-    body: '<h1>Hello World! 🎉</h1>'
-  }
-}
-```
-
-## Deploying
-
-Deploy your app
-
-```bash
-arc deploy
-```
-
-Congrats, you've successfully created a powerful, modern, serverless app! Nice work. 💖
-
-## Clean Up
-
-ADD ME!
-
-### Useful links:
-
-- [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
-- [Amazon Configuration and Credential Files](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html)
-- [Working with multiple AWS accounts](/en/guides/tutorials/multiple-aws-accounts)
