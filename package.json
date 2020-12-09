@@ -7,13 +7,19 @@
       "bucket": "arc.codes-deploy",
       "apigateway": "http"
     },
-    "static": { 
+    "static": {
       "folder": "public",
-      "fingerprint": true 
+      "fingerprint": true
     },
     "http": [
-      ["get", "/"],
-      ["get", "/docs/:lang/*"]
+      [
+        "get",
+        "/"
+      ],
+      [
+        "get",
+        "/docs/:lang/*"
+      ]
     ]
   },
   "scripts": {

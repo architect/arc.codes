@@ -1,7 +1,9 @@
 {
   "index.html": "index-b90b4171ae.html",
-  "index.js": "index-3fe844815c.js",
-  "css/index.css": "css/index-13af3e000a.css",
-  "css/styles.css": "css/styles-548a614f69.css",
+  "index.js": "index-ce2cee95fb.js",
+  "components/arc-tab-bar.js": "components/arc-tab-bar-015dc59b5f.js",
+  "components/arc-tab.js": "components/arc-tab-46bc84805e.js",
+  "css/index.css": "css/index-6c21d77646.css",
+  "css/styles.css": "css/styles-a4a6d6f8ad.css",
   "css/syntax.css": "css/syntax-605168cf6d.css"
 }

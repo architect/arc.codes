@@ -61,3 +61,4 @@ sam package --template-file sam.json --output-template-file out.yaml --s3-bucket
 sam deploy --template-file out.yaml --stack-name MyStack --s3-bucket mybukkit --capabilities CAPABILITY_IAM
 ```
 
+

@@ -10,7 +10,7 @@ html {
 .underline-h:hover {
   text-decoration: underline;
 }
-.hairline {
+.indicator {
   height: 4px;
 }
 .max-width-content {
@@ -25,6 +25,10 @@ html {
 .icon {
   width: 1.25rem;
   height: 1.25rem;
+}
+.star-icon {
+  width: 1rem;
+  height: 1rem;
 }
 .slack-icon {
   width: 2rem;
@@ -44,6 +48,9 @@ html {
 .open,
 .translate-x-sidebar {
   transform: translateX(var(--sidebar));
+}
+.transition-fill {
+  transition: fill 2s ease-out;
 }
 
 @media only screen and (min-width:48em) {

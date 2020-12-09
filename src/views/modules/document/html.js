@@ -11,6 +11,7 @@ import SlackLink from '../components/slack-link.js'
 export default function HTML (props={}) {
   let {
     children=[],
+    editURL='',
     lang='en',
     scripts='',
     state={},
@@ -61,11 +62,22 @@ ${ Symbols }
         text-g0
       "
     >
-      ${ Logo({ classes: 'h-logo' }) }
+      <a
+        href="/"
+        class="
+          text-g0
+          text-h0
+          text-a2
+          cursor-pointer
+        "
+      >
+        ${ Logo({ classes: 'h-logo' }) }
+      </a>
       <div
         class="
           flex
           items-center
+          justify-between
         "
       >
         ${ SlackLink() }
@@ -76,6 +88,8 @@ ${ Symbols }
             ml0
             bg-unset
             text-g0
+            text-h0
+            text-a2
             hidden-lg
             cursor-pointer
           "
@@ -83,7 +97,7 @@ ${ Symbols }
           ${ Icon({ href: 'hamburger', classes: 'icon fill-current' }) }
         </button>
       </div>
-      <div class="hairline bg-image0 absolute right0 bottom0 left0"></div>
+      <div class="indicator bg-image0 absolute right0 bottom0 left0"></div>
     </header>
     ${ Sidebar(props) }
     <main
@@ -112,6 +126,9 @@ ${ Symbols }
         </h1>
         <div class="pb4 docs">
           ${ children }
+          <div class="flex justify-end mt4">
+            <a href="${editURL}" target="_blank" class="text1 text-p1 text-h1 text-a2 no-underline font-semibold">Edit this doc on Github →</a>
+          </div>
         </div>
       </div>
     </main>
