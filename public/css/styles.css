@@ -360,9 +360,13 @@ body {
 
 
  /* POSITIONING */
+.trbl0,
 .top0{top:0;}
+.trbl0,
 .left0{left:0;}
+.trbl0,
 .right0{right:0;}
+.trbl0,
 .bottom0{bottom:0;}
 
 

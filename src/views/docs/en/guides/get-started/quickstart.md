@@ -32,6 +32,16 @@ cd testapp
 
 4. Check out your first `app.arc` file & HTTP function!
 
+<arc-tab-bar>
+
+<div slot="content">
+
+<arc-tab label=arc>
+
+<h5>arc</h5>
+
+<div slot=content>
+
 ```arc
 # /project/path/app.arc
 @app
@@ -40,6 +50,67 @@ your-app-name
 @http
 get /
 ```
+
+</div>
+
+</arc-tab>
+
+<arc-tab label=json>
+
+<h5>json</h5>
+
+<div slot=content>
+
+```json
+{
+  "app": "your-app",
+  "http": [
+    "get /"
+  ]
+}
+```
+
+</div>
+
+</arc-tab>
+
+<arc-tab label=yaml>
+
+<h5>yaml</h5>
+
+<div slot=content>
+
+```yaml
+---
+app: your-app-name
+http:
+- get: "/"
+```
+
+</div>
+
+</arc-tab>
+
+<arc-tab label=toml>
+
+<h5>toml</h5>
+
+<div slot=content>
+
+```toml
+app="your-app-name"
+http=[
+  ["get", "/"]
+]
+```
+
+</div>
+
+</arc-tab>
+
+</div>
+
+</arc-tab-bar>
 
 ```javascript
 // src/http/get-index/index.js

@@ -68,7 +68,12 @@ exports.handler = async function http (req) {
   }
   // Declare in outer scope for use later... sorry
   let frontmatter = ''
-  const md = Markdown({ highlight, linkify: true })
+  const md = Markdown({
+    highlight,
+    linkify: true,
+    html: true,
+    typography: true
+  })
     .use(markdownClass, classMapping)
     .use(markdownAnchor, {
       permalinkSymbol: ' '
@@ -93,7 +98,10 @@ exports.handler = async function http (req) {
       editURL,
       lang,
       sections,
-      thirdparty: `<script type="module" src="${ static('index.js') }" crossorigin></script>`,
+      thirdparty: `
+<script type="module" src="${ static('index.js') }" crossorigin></script>
+<script type="module" src="${ static('/components/arc-tab-bar.js') }" crossorigin></script>
+      `,
       title,
       toc
     })
