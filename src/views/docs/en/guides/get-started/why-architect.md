@@ -6,9 +6,9 @@ description: Why is Architect important to you?
 
 > Architect is the simplest and fastest way to build database backed web apps on AWS SAM
 
-Instantly create powerful serverless Lambdas written in JS, Python, and Ruby and connect to the massive AWS ecosystem through standard CloudFormation. Architect provides everything you need out of the box to build massively scalable apps with low code, clear and terse config, zero ceremony, and no lock-in. 
+Architect provides everything you need out of the box to build massively scalable apps with low code, clear and terse config, and zero ceremony. Instantly create powerful serverless Lambda functions written in JS, Python, and Ruby connected to the massive AWS ecosystem with standard CloudFormation. 
 
-- The best developer experience
+- The best developer experience with fast local dev, smart configurable defaults and flexible Infrastructure as Code
 - Secured to least privilege by default
 - Open source and open governance
 
@@ -24,7 +24,7 @@ Devs need to work locally, to debug, test, and preview code before deploying it.
 
 #### Custom source paths
 
-Larger teams appreciate convention over configuration so we provide strong defaults. Every default can be opted out of and projects can be organized in whatever way makes the most sense for that project. Teams can remain confident they get the same infrastructure expected every time because ultimately Architect is all about Infrastructure as Code.
+Architect provides default conventions for structuring code but every default can be opted out of and projects can be organized in whatever way makes the most sense for that project. Teams can remain confident they get the same infrastructure expected every time because ultimately Architect is all about Infrastructure as Code.
 
 #### Infrastructure as Code
 

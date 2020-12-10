@@ -1,11 +1,3 @@
-let About = [
-  'Mission',
-  'Community',
-  'Contribute',
-  'Changelog',
-  'Playground', 
-]
-
 let Guides = [{
   'Get started': [
     'Why Architect?',
@@ -21,6 +13,7 @@ let Guides = [{
     'Deployment',
     'Logging & monitoring', // cloudwatch
   ],
+  /*TODO
   'Frontend': [
     'Static assets', // fingerprint, ignore, folder, link to cdn
     'HTTP functions', // 
@@ -40,7 +33,7 @@ let Guides = [{
     'Custom CloudFormation',
     'Add a custom domain',
     'Eject to SAM'
-  ]
+  ]*/
 }]
 
 let Reference = [{
@@ -85,8 +78,17 @@ let Reference = [{
   ]
 }]
 
+let About = [
+  'Mission',
+  'Community',
+  'Contribute',
+  'Changelog',
+  'Playground', 
+]
+
 module.exports = {
   Guides,
   Reference,
   About
 }
+

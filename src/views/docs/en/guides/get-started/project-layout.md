@@ -1,59 +1,73 @@
 ---
-title: Project Layout
+title: Project layout
 category: Get started
-description: Explaining the layout of an Architect project
-sections:
-  - Project Layout
-  - Manifest format overview
-  - Example
+description: The layout and default structure of an Architect project
 ---
 
-Architect favors *convention over configuration* and projects have the following significant folder structure:
+Architect projects have the following significant folder structure by default:
 
 ```bash
 .
 ├── public .......... # Static assets (js, css, svg, images, etc.)
 ├── src
-│   ├── shared ...... # code shared by ALL Lambda functions
-│   ├── views ....... # code shared by HTTP GET Lambda functions
+│   ├── shared ...... # Code shared by all Lambda functions
+│   ├── views ....... # Code shared by HTTP GET Lambda functions
+│   ├── macros ...... # Modify the generated CloudFormation
 │   ├── http ........ # HTTP Lambda functions
 │   ├── events ...... # Event Lambda functions
 │   ├── queues ...... # Queue Lambda functions
 │   ├── scheduled ... # Scheduled Lambda functions
-│   ├── tables ...... # Table Trigger Lambda functions
-│   └── ws .......... # Web Socket Lambda functions
+│   ├── tables ...... # Table stream Lambda functions
+│   └── ws .......... # WebSocket Lambda functions
 └── app.arc
 ```
 
-> All folders are **OPTIONAL**. Architect ignores any other folders.
+> All folders are **OPTIONAL**. Architect ignores any additional folders. All source paths can be reconfigured to suite unique project needs.
 
 ---
 
 ## Manifest format overview
 
-Architect projects have either of these three versions of a manifest file in the root that sets up your infrastructure as code. This captures the infrastructure requirements beside the code it will run in your revision control.
+Architect projects have a manifest file in the root that sets up your Infrastructure as Code. This captures the infra requirements beside the code it will run in your revision control to ensure you get the same build every time. 
 
+Architect supports the following manifest file formats:
+
+- `.arc`
 - `app.arc`
 - `arc.yaml`
+- `arc.yml`
+- `package.json`
 - `arc.json`
+- `arc.toml`
 
-The app.arc manifest format is intentionally simple to author and straightforward to read.
+## More on `app.arc`
 
-Resources are defined within pragmas and pragmas can be ordered arbitrarily. Comments are preceded by a `#`.
+The `app.arc` format follows a few simple rules:
+
+- Whitespace is significant
+- Comments start with `#`
+- Pragmas start with `@` and define cloud resources
+- Pragmas can be ordered arbitrarily
 
 **The `app.arc` manifest can be broadly split into three sections:**
 
-### Global system config
+- Project configuratiopn
+- Lambda resource definition
+- Persistence resource definition
+
+### Project configuration
 
 These sections are for global system level env configuration. The most important being the `@app` namespace which is used to prefix all generated resources.
 
-- [`@app`](/docs/en/reference/arc-pragmas/@app) **[Required]** The application namespace
-- [`@domain`](/docs/en/reference/arc-pragmas/@domain) Assign a domain name to your app (ACM, API Gateway, and Route 53)
-- [`@aws`](/docs/en/reference/arc-pragmas/@aws) AWS config
+- [`@app`](/docs/en/reference/app.arc/@app) **[Required]** application namespace
+- [`@aws`](/docs/en/reference/app.arc/@aws) AWS specific configuration
+- [`@views`](/docs/en/reference/app.arc/@views) configure path to view source code
+- [`@shared`](/docs/en/reference/app.arc/@shared) configure path to shared source code
+- [`@macros`](/docs/en/reference/app.arc/@macros) modify generated CloudFormation
 
-### Lambda Function config
+### Lambda resource definition
 
-These sections deal with Lambda functions and their event sources. By convention Architect promotes one event source per function.
+These sections deal with Lambda functions and their event sources. Architect conventionally promotes one event source per function. Single responsibility functions are faster to deploy, easier to debug and secure to least privilege. 
 
 - [`@http`](/docs/en/reference/arc-pragmas/@http) HTTP routes (API Gateway)
 - [`@events`](/docs/en/reference/arc-pragmas/@events) Event pub/sub (SNS)
@@ -61,78 +75,19 @@ These sections deal with Lambda functions and their event sources. By convention
 - [`@scheduled`](/docs/en/reference/arc-pragmas/@scheduled) Invoke functions specified times (CloudWatch Events)
 - [`@ws`](/docs/en/reference/arc-pragmas/@ws) Web Socket functions (API Gateway)
 
-### Persistence config
+### Persistence resource definition
 
-These sections deal with config of various persistence resources.
+These pragmas represent persistence resources.
 
 - [`@static`](/docs/en/reference/arc-pragmas/@static) Buckets for hosting static assets (S3)
 - [`@tables`](/docs/en/reference/arc-pragmas/@tables) Database tables and trigger functions (DynamoDB)
 - [`@indexes`](/docs/en/reference/arc-pragmas/@indexes) Table global secondary indexes (DynamoDB)
 
-> 👉🏽 `app.arc` comments out anything after hash symbol `#`.
-
 ## Example
-
-Provision a project with the following `app.arc` file:
-
-```arc
-
-# this is going to be great!
-@app
-testapp
-
-@events
-hello
-
-@http
-get /
-get /posts # the posts go here
-```
-
-Running `npx create` creates the following code:
-
-```bash
-.
-├── src
-│   ├── events
-│   │   └── hello/
-│   └── http
-│       ├── get-index/index.js
-│       └── get-posts/index.js
-└── app.arc
-```
-
-The generated code was also immediately deployed to the built-in `staging` environment. Subsequent edits to the local code are deployed by running `npx deploy`.
-
-Happy with staging? Ship a release to production by running `npx deploy production`.
-
-Time to celebrate! ✨
-
-
-----
-The `app.arc` format follows a few simple rules:
-
-- Whitespace is significant
-- Comments start with `#`
-- Pragmas start with `@` and organize cloud resources and their configuration
-
-`app.arc` files define the following pragmas:
-
-- `@app` defines the application namespace
-- `@aws` defines AWS specific configuration
-- `@events` defines SNS event handlers
-- `@http` defines HTTP handlers for API Gateway
-- `@indexes` defines global secondary indexes on DynamoDB tables
-- `@macros` define macros to extend the generated CloudFormation
-- `@queues` defines SQS event handlers
-- `@scheduled` defines EventBridge functions that run on a schedule
-- `@static` defines S3 buckets for static assets
-- `@tables` defines DynamoDB database tables and trigger functions for them
-- `@ws` defines API Gateway WebSocket handlers
 
 An `app.arc` file example:
 
-```bash
+```arc
 # this is going to be great!
 
 @app

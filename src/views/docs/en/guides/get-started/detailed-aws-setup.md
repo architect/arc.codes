@@ -4,29 +4,29 @@ category: Get started
 description: Setting up and installing Architect.
 ---
 
-> To work locally all you need is [Node](https://nodejs.org) and any additional [supported runtimes](#supported-runtimes) you plan to use. 
+> To work locally install [Node](https://nodejs.org), any additional [supported runtimes](#supported-runtimes) you plan to use, and [Architect](#install-architect). 
 
-## AWS setup
+### To deploy apps onto AWS install the following:
 
 1. [Node](https://nodejs.org) for Architect
 2. [Python](https://www.python.org) for the AWS CLI
 3. Any additional [supported runtimes](#supported-runtimes) you plan to use
 4. [AWS CLI](#aws-cli)
 5. [AWS credentials](#credentials)
-6. [Install Architect](#install-architect)
+6. [Architect](#install-architect)
 
 ---
 
 ## Supported runtimes
 
-Architect supports the following runtime versions when working locally:
+Architect supports the following runtime versions:
 
 - Node `12.x` using `npm`
 - Deno `1.6.x`
 - Ruby `2.5` using `bundle`
 - Python `3.8` using `pip3`
 
-> Working locally with the Architect `sandbox` dev server requires target runtimes to be installed and available in $PATH. For example, if you are only targeting Node, then only Node needs to be installed locally. (Likewise for Ruby and Python.)
+> Working locally with the Architect `sandbox` requires target runtimes to be available in your `$PATH`.
 
 To use the same runtime across all functions in your project, add it to your `@aws` pragma like so:
 
