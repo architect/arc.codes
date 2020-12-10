@@ -26,11 +26,11 @@ Architect projects have the following significant folder structure by default:
 
 ---
 
-## Manifest format overview
+## Manifest file format overview
 
-Architect projects have a manifest file in the root that sets up your Infrastructure as Code. This captures the infra requirements beside the code it will run in your revision control to ensure you get the same build every time. 
+Architect projects have a manifest file in the root of the project that represents the Infrastructure as Code. This manifest file captures the infra requirements beside the code it will run in revision control to ensure every deployment is completely deterministic. 
 
-Architect supports the following manifest file formats:
+Architect supports the following manifest files:
 
 - `.arc`
 - `app.arc`
@@ -39,6 +39,8 @@ Architect supports the following manifest file formats:
 - `package.json`
 - `arc.json`
 - `arc.toml`
+
+> The maintainers are considering `arc.xml`; if this is something you want let us know!
 
 ## More on `app.arc`
 
@@ -79,7 +81,7 @@ These sections deal with Lambda functions and their event sources. Architect con
 
 These pragmas represent persistence resources.
 
-- [`@static`](/docs/en/reference/arc-pragmas/@static) Buckets for hosting static assets (S3)
+- [`@static`](/docs/en/reference/arc-pragmas/@static) Bucket for hosting static assets (S3)
 - [`@tables`](/docs/en/reference/arc-pragmas/@tables) Database tables and trigger functions (DynamoDB)
 - [`@indexes`](/docs/en/reference/arc-pragmas/@indexes) Table global secondary indexes (DynamoDB)
 
@@ -151,4 +153,4 @@ Running `arc init` in the same directory as the `app.arc` file above generates t
 └── app.arc
 ```
 
-The `app.arc` format is terse, easy to read, and quickly learnable to author. The expressions in a `app.arc` file unlock the formerly complex tasks of cloud infrastructure provisioning, deployment, and orchestration.
+The `app.arc` format is terse, easy to read, and quickly learnable to author. The expressions in an `app.arc` file unlock the formerly complex tasks of cloud infrastructure provisioning, deployment, and orchestration.

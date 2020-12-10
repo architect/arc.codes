@@ -1,38 +1,25 @@
 ---
-title: Local development sandbox
+title: Local development
 category: developer experience
-sections:
-  - Overview
-  - Previewing vs. testing
-  - Sandbox init scripts
-  - HTTP testing
-  - DB testing
 ---
 
-## Overview
+Fast local development creates tighter feedback loops which maximizes developer velocity. Architect treats local dev as a first class requirement so you can work faster previewing, debugging and testing code. 
 
-This section is about setting up your local development environment and a testing suite within your Architect app.
+## Preview 
 
-**Sections:**
+Follow the [quickstart](/docs/en/guides/get-started/quickstart) to get everything wired up. To preview a project running locally in a web browser: 
 
-  - [Overview](#overview)
-  - [Previewing vs testing](#previewing-vs-testing)
-  - [Sandbox init scripts](#sandbox-init-scripts)
-  - [HTTP testing](#http-testing)
-  - [DB testing](#db-testing)
+```bash
+cd myproject
+arc sandbox
+```
+>  `arc sandbox` kicks up a local web server with all the resources defined in your `app.arc` file 
 
-## Previewing vs testing
+### Debug
 
-Architect targets two use cases:
+### Test
 
-1. **Previewing** - code runs locally and can be opened in a web browser
-2. **Testing** - code runs headlessly in a terminal
-
-Follow the [quickstart](/docs/en/guides/get-started/quickstart) to get everything wired up. `npx sandbox` kicks up a local web server and creates tables and indexes defined in your `app.arc` file for previewing work.
-
-If you want to write tests (and we very much think you should!) against the infra without deployment you'll need to set up the `sandbox` as a module.
-
-This guide will use the following example `app.arc` file:
+This example uses the following `app.arc`:
 
 ```arc
 @app
@@ -58,6 +45,18 @@ ppl
   email *String
 ```
 ---
+
+#### Testing `@http` functions
+**Testing** - code runs headlessly in a terminal
+ set up the `sandbox` as a module.
+
+#### Testing `@events`, `@queues` and `@scheduled`
+#### Testing `@tables` 
+
+
+
+
+
 
 ## Sandbox init scripts
 

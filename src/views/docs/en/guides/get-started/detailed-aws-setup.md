@@ -4,9 +4,9 @@ category: Get started
 description: Setting up and installing Architect.
 ---
 
-> To work locally install [Node](https://nodejs.org), any additional [supported runtimes](#supported-runtimes) you plan to use, and [Architect](#install-architect). 
+> To work locally all you need is to install [Node](https://nodejs.org), any additional [supported runtimes](#supported-runtimes) you plan to use, and [Architect](#install-architect). 
 
-### To deploy apps onto AWS install the following:
+## AWS deployment requirements
 
 1. [Node](https://nodejs.org) for Architect
 2. [Python](https://www.python.org) for the AWS CLI
@@ -17,7 +17,7 @@ description: Setting up and installing Architect.
 
 ---
 
-## Supported runtimes
+### Supported runtimes
 
 Architect supports the following runtime versions:
 
@@ -28,11 +28,11 @@ Architect supports the following runtime versions:
 
 > Working locally with the Architect `sandbox` requires target runtimes to be available in your `$PATH`.
 
-To use the same runtime across all functions in your project, add it to your `@aws` pragma like so:
+To change the default runtime add it to the `app.arc` under the `@aws` pragma:
 
 ```arc
 # Valid runtimes: 
-# - nodejs12.x
+# - nodejs12.x (default)
 # - deno
 # - python3.8
 # - ruby2.5
@@ -43,20 +43,23 @@ runtime python3.8
 
 > This setting can be overridden on a function-by-function basis with [`config.arc`](/docs/en/reference/config.arc/@aws).
 
-Architect also supports the following runtimes in live infra, but not while working locally (at present):
+Architect supports the following standard AWS managed runtimes in live infra, but not while working locally (at present):
+
 - Go: `1.x`,
 - .NET: `2.1`
 - Java: `8`
 
+Architect can support _any custom runtime_ in live infra using either [Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) or [Lambda container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html).
+
 ---
 
-## AWS CLI
+### AWS CLI
 
 The [AWS Command Line Interface](https://docs.aws.amazon.com/cli/) is the main interface for interacting with all parts of AWS using your computer's terminal. Architect uses the AWS CLI to package and deploy CloudFormation. Follow this guide to [installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) for your preferred environment.
 
 ---
 
-## Credentials
+### Credentials
 
 You'll need an Amazon Web Services account and credentials set up on your development machine. If you haven't done it before, here's a useful guide for [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
 
@@ -110,7 +113,7 @@ $env:AWS_REGION='us-west-1'
 > If you prefer, you can also use: *Control Panel » System » Advanced System Settings » Environment Variables*.
 
 
-## Install Architect
+### Install Architect
 
 The following command uses npm, the package manager for Node, to install Architect globally. This will allow you to use Architect in any directory on your computer.
 
