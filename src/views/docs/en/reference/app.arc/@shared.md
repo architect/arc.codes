@@ -27,7 +27,7 @@ src path/to/code
 ```json
 {
   "app": "myapp",
-  "shared": { 
+  "shared": {
     "src": "path/to/code"
   }
 }
@@ -35,6 +35,7 @@ src path/to/code
 
 ```yaml
 app: myapp
-shared: 
+shared:
   - src: path/to/code
 ```
+
