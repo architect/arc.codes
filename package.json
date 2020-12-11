@@ -1,6 +1,6 @@
 {
   "architect": {
-    "app": "arc-codes",
+    "app": "v8-arc-codes",
     "aws": {
       "region": "us-west-1",
       "profile": "openjsf",
@@ -23,12 +23,13 @@
     ]
   },
   "scripts": {
+    "deploy": "npx arc deploy",
     "lint": "eslint src --ignore-pattern node_modules --fix",
     "start": "sandbox",
     "test": "tape -r esm test/*.test.js test/**/*.js | tap-spec"
   },
   "dependencies": {
-    "@architect/architect": "latest",
+    "@architect/architect": "8.3.7-RC.1",
     "esm": "^3.2.25",
     "slugify": "^1.4.6",
     "tap-spec": "^5.0.0",
