@@ -2,3 +2,6 @@
 .DS_Store
 node_modules
 /src/shared/static.json
+package-lock.json
+sam.json
+sam.yaml
