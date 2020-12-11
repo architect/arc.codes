@@ -9,17 +9,29 @@ sections:
 
 ## Overview
 
-With @proxy, any HTTP requests that miss an `@http` route are automatically forwarded to your existing site or API. 
+`@proxy` defines a url to forward requests to
 
 ## Syntax
 
-- Use the word `production` followed by a link to your desired API URL.
+- Stage value of either *staging* or *production*
+- URL to proxy to
 
 ## Example
 
-For example, say you have an existing API at `https://apiurl/v1`. With `@proxy`, you can run a parallel `v2` endpoint from a fresh Architect app like so:
+The following configuration file defines a `@proxy` for production that will handle requests for routes not defined in the `@http` section.
 
-```bash
+<arc-tab-bar>
+
+<arc-tab label="arc">
+
+  <h5>arc</h5>
+
+  <div slot="content">
+
+```arc
+@app
+myapp
+
 @http
 get /v2/*
 post /v2/*
@@ -27,5 +39,75 @@ post /v2/*
 @proxy
 production https://apiurl
 ```
+  </div>
+
+</arc-tab>
+
+<arc-tab label="json">
+
+  <h5>json</h5>
+
+  <div slot="content">
+
+```json
+{
+  "app": "myapp",
+  "http": [
+    ["get", "/v2/*"],
+    ["post", "/v2/*"]
+  ],
+  "proxy": {
+    "production": "https://apiurl"
+  }
+}
+```
+
+  </div>
+
+</arc-tab>
+
+<arc-tab label="toml">
+
+  <h5>toml</h5>
+
+  <div slot="content">
+
+```toml
+app="myapp"
+
+http=[
+  ["get", "/v2/*"],
+  ["post", "/v2/*"]
+]
+
+[proxy]
+production="https://apiurl"
+```
+
+  </div>
+
+</arc-tab>
+
+<arc-tab label="yaml">
+
+  <h5>yaml</h5>
+
+  <div slot="content">
+
+```yaml
+app: myapp
+http:
+- get: "/v2/*"
+- post: "/v2/*"
+
+proxy:
+  production: "https://apiurl"
+```
+
+  </div>
+
+</arc-tab>
+
+<arc-tab-bar>
 
 With the above Architect file, your new app will respond to all get and post requests to `/v2/*`, and forward along requests to `/v1` to your existing API.

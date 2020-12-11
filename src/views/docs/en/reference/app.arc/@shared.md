@@ -16,13 +16,31 @@ description: Configure src/shared code
 
 This `app.arc` file:
 
+<arc-tab-bar>
+
+<arc-tab label="arc">
+
+  <h5>arc</h5>
+
+  <div slot="content">
+
 ```arc
 @app
-testapp
+myapp
 
 @shared
 src path/to/code
 ```
+
+  </div>
+
+</arc-tab>
+
+<arc-tab label="json">
+
+  <h5>json</h5>
+
+  <div slot="content">
 
 ```json
 {
@@ -33,9 +51,41 @@ src path/to/code
 }
 ```
 
+  </div>
+
+</arc-tab>
+
+<arc-tab label="toml">
+
+  <h5>toml</h5>
+
+  <div slot="content">
+
+```toml
+app="myapp"
+
+[shared]
+src="path/to/code"
+```
+
+  </div>
+
+</arc-tab>
+
+<arc-tab label="yaml">
+
+  <h5>yaml</h5>
+
+  <div slot="content">
+
 ```yaml
 app: myapp
 shared:
   - src: path/to/code
 ```
 
+  </div>
+
+</arc-tab>
+
+</arc-tab-bar>
