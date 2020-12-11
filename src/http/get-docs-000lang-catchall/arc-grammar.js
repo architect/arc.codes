@@ -4,7 +4,7 @@ module.exports = function(hljs) {
      'false',
      'null'
     ].join(' ')
-    const BUILTIN = {
+    const PRAGMAS = {
       className: 'built_in',
       begin: '^@.*'
     }
@@ -48,9 +48,9 @@ module.exports = function(hljs) {
           begin: "'", end: "'"
         },
         hljs.COMMENT(
-          '^#.*'
+          '#.*'
         ),
-        BUILTIN
+        PRAGMAS
       ]
     }
 }
