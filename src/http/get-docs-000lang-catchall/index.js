@@ -99,8 +99,8 @@ exports.handler = async function http (req) {
       lang,
       sections,
       thirdparty: `
-<script type="module" src="${ static('index.js') }" crossorigin></script>
-<script type="module" src="${ static('/components/arc-tab-bar.js') }" crossorigin></script>
+<script type=module src=/index.js crossorigin></script>
+<script type=module src=/components/arc-tab-bar.js crossorigin></script>
       `,
       title,
       toc

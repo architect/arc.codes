@@ -10,7 +10,7 @@ class ArcTab extends HTMLElement {
 
   template() {
     return `
-<link rel="stylesheet" href="/_static/css/styles.css">
+<link rel="stylesheet" href="/css/styles.css">
 <div
   class="
     hidden

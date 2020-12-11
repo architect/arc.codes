@@ -15,7 +15,7 @@ class ArcTabBar extends HTMLElement {
 
   template() {
     return `
-<link rel="stylesheet" href="/_static/css/styles.css">
+<link rel="stylesheet" href="/css/styles.css">
 <div>
   <slot name=content></slot>
 </div>
