@@ -1,3 +1,5 @@
+import _static from '../helpers/_static.js'
+
 export default function Head (props={}) {
   let { category, description, title } = props
   let fullTitle = category && title
@@ -11,9 +13,9 @@ export default function Head (props={}) {
   <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
   <meta name="description" content="${descriptionContent}">
   <title>${fullTitle}</title>
-  <link rel="stylesheet" type="text/css" href="/_static/css/styles.css">
-  <link rel="stylesheet" type="text/css" href="/_static/css/index.css">
-  <link rel="stylesheet" type="text/css" href="/_static/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="${_static('/css/styles.css')}">
+  <link rel="stylesheet" type="text/css" href="${_static('/css/index.css')}">
+  <link rel="stylesheet" type="text/css" href="${_static('/css/syntax.css')}">
 </head>
 `
 }
