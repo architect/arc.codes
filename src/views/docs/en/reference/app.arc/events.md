@@ -1,6 +1,6 @@
 ---
 title: '@events'
-description: Pragma to declare your app namespace
+description: Pragma defines SNS topics
 sections:
   - Overview
   - Syntax
@@ -9,28 +9,65 @@ sections:
 
 ## Overview
 
- `@events` define SNS topics and Lambda handlers for them
+ `@events` defines SNS topics
 
 ## Syntax
-- Lowercase alphanumeric string
-- Maximum of 50 characters
-- Dashes are allowed; underscores are not allowed
-- Must begin with a letter
+
+- Name
+  - Lowercase alphanumeric string
+  - Maximum of 50 characters
+  - Dashes are allowed; underscores are not allowed
+  - Must begin with a letter
 
 ## Example
 
-This `app.arc` file defines two `@events`:
+These configuration examples show how to define events:
 
-```bash
+
+<h5>arc</h5>
+
+```arc
 @app
-testapp
+myapp
 
 @events
 hit-counter
 likes
 ```
 
-Which generates the corresponding code:
+<h5>json</h5>
+
+```json
+{
+  "app": "myapp",
+  "events": [
+    "hit-counter",
+    "likes"
+  ]
+}
+```
+
+<h5>toml</h5>
+
+```toml
+app="myapp"
+events=[
+  "hit-counter",
+  "likes"
+]
+```
+
+<h5>yaml</h5>
+
+```yaml
+---
+app: "myapp"
+events:
+- hit-counter
+- likes
+```
+
+Which generates the following scaffolding:
 
 ```bash
 /
