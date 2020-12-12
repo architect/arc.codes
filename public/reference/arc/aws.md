@@ -19,8 +19,6 @@
     - **`httpv1`** - `HTTP` API + Lambda payload format version 1.0
     - **`rest`** - `REST` API + original API Gateway payload format
 
-For more on working with AWS, please see: [Multiple AWS Accounts](/guides/multiple-aws-accounts).
-
 Alternatively, if you want a less granular approach, you can declare your preferred region and profile in your `.bashrc` ([more information here](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)).
 
 If you have AWS exports in your `.bashrc` and `@aws` specified in your `app.arc` project, the `@aws` section will win.
