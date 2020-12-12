@@ -1,6 +1,6 @@
 ---
 title: '@http'
-description: Pragma to declare your app namespace
+description: Pragma for defining http routes
 sections:
   - Overview
   - Syntax
@@ -9,28 +9,38 @@ sections:
 
 ## Overview
 
-`@http` section defines generic HTTP routes
+`@http` section defines HTTP routes
 
 ## Syntax
 
-- Each route begins with `get`, `post`, `put`, `patch` or `delete` followed by the desired path
-- Must have a `/` route defined
-- Additional routes must include a leading slash
-- Dashes and underscores are not allowed
-- Must begin with a letter
+Each route is defined by two parts: `verb` & `route`
+
+- Valid HTTP Verb
+  - `get`
+  - `post`
+  - `put`
+  - `patch`
+  - `delete`
+
+- Route
+  - Dashes and underscores are not allowed
+  - Must begin with a letter
+  - URL parameters are defined with a leading colon (`:`)
 
 ### Additional bits
 
 - Advised maximum of 100 characters
-- Optional Express-style URL parameters denoted with colons (`:`)
 
 ## Example
 
-This `app.arc` file defines some typical HTML routes:
+These configuration examples show how to define http routes:
+
+
+<h5>arc</h5>
 
 ```arc
 @app
-testapp
+myapp
 
 @http
 get /
@@ -40,7 +50,48 @@ get /contact
 post /contact
 ```
 
-The `app.arc` above generates the following functions:
+<h5>json</h5>
+
+```json
+{
+  "app": "myapp",
+  "http": [
+    ["get", "/"].
+    ["get", "/pages"],
+    ["get", "/pages/:dateID"],
+    ["get", "/contact"],
+    ["post", "/contact"]
+  ]
+}
+```
+
+<h5>toml</h5>
+
+```toml
+app="myapp"
+http=[
+  ["get", "/"],
+  ["get", "/pages"],
+  ["get", "/pages/:dateID"],
+  ["get", "/contact"],
+  ["post", "/contact"]
+]
+```
+
+<h5>yaml</h5>
+
+```yaml
+---
+app: myapp
+http:
+- get: "/"
+- get: "/pages"
+- get: "/pages/:dateID"
+- get: "/contact"
+- post: "/contact"
+```
+
+Which generates the following scaffolding:
 
 ```bash
 /
@@ -54,4 +105,4 @@ The `app.arc` above generates the following functions:
 └── package.json
 ```
 
-> Note: The route `/pages/:dateID` corresponding handler deliberately looks a bit weird with the triple `000`. This is so you can quickly differentiate URL params from URL parts.
+> Note: Handlers generated from routes with a URL parameters i.e. `/pages/:dateID`, substitue `:` for `000`. This is a deliberate convention to make ensure valid directory names.

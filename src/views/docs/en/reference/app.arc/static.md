@@ -10,16 +10,15 @@ sections:
 
 ## Overview
 
-`@static` is an S3 bucket for hosting static assets uploaded from `public/` folder
+`@static` pragma enables uploading of static assets to an `S3` bucket
 
 ## Syntax
 
 - No parameters are required
+- `folder` defines the folder to upload static assets from. Default is `public`
 - `fingerprint` enables static asset file fingerprinting (and long-lived caching headers)
-- `ignore` ignores files from `public/` folder
-- `serialize` will serialize smaller files into API Gateway upon deployment
-
-> Note: apps using `@http` can access static assets via `/_static` proxy; this is handy for keeping assets on the same-origin without ugly CORS hacks
+- `ignore` defines which assets to be ignored during upload
+- `serialize` will serialize files into an API Gateway response
 
 ## Example
 
@@ -129,8 +128,13 @@ static:
 
 ## Deployment
 
-Locally, if the folder `public/` exists, whenever you run `arc deploy` the contents are published to the `staging` stack. If you set `arc deploy production` the contents of `public/` are deployed to the production stack.
+`arc deploy --static` deploys static assets to `staging` from `public/` or configured folder.
+`arc deploy production --static` deploys static assets to `production` from `public/` or configured folder.
 
-To _only_ deploy static assets from `/public` (and not function sources from `/src`), you can provide any of `--static`, `static` or `-s` flags, i.e. `arc deploy static`.
+Static assets will also be uploaded during an `arc deploy` along with your function code.
 
-To _delete_ remote static assets on the S3 bucket that do not exist locally, provide the optional `--prune` or `--delete` flag, i.e. `arc deploy static --prune`.
+`arc deploy static --delete` deletes static assets from the S3 bucket that are not present in the configured static asset folder.
+
+`arc deploy static --prune` is an alias to delete.
+
+

@@ -9,19 +9,22 @@ sections:
 
 ## Overview
 
-`@scheduled` functions are functions invoked at specified times
+`@scheduled` pragma defines scheduled function routes
 
 ### Syntax
 
-- Lowercase alphanumeric string
-- Maximum of 20 characters
-- Dashes are allowed; underscores are not allowed
-- Must begin with a letter
-- Followed by a valid `rate` or `cron` expression ([more info here](https://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html))
+- name
+  - Lowercase alphanumeric string
+  - Maximum of 20 characters
+  - Dashes are allowed; underscores are not allowed
+  - Must begin with a letter
+
+- Interval
+  - A valid `rate` or `cron` expression ([more info here](https://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html))
 
 ### Example
 
-This `app.arc` file defines some scheduled functions:
+These configuration examples show how to define scheduled functions:
 
 <arc-tab-bar>
 
@@ -55,8 +58,7 @@ friyay-only cron(0 15 ? * FRI *)
   "app": "myapp",
   "scheduled": {
     "daily-update-buddy": "rate(1 day)",
-    "friyay-only": "cron(0 15 ? * FRI *)"
-  }
+    "friyay-only": "cron(0 15 ? * FRI *)" }
 }
 ```
 
@@ -102,7 +104,7 @@ scheduled:
 </arc-tab-bar>
 
 
-Which generates the following code:
+Which generates the following scaffolding:
 
 ```bash
 /

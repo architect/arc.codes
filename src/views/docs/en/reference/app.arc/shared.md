@@ -3,7 +3,7 @@ title: '@shared'
 description: Configure src/shared code
 ---
 
-`@shared` pragma allows you to configure the location of shared code to copy into functions for deployment
+`@shared` pragma configures the location of shared code.
 
 ### Syntax
 
@@ -14,7 +14,7 @@ description: Configure src/shared code
 
 ### Example
 
-This `app.arc` file:
+The following configuration examples define a different folder than the default `src/shared` directory.
 
 <arc-tab-bar>
 
