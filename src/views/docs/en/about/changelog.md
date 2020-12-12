@@ -1,5 +1,5 @@
 ---
-title: Upgrade guides
+title: Changelog
 category: Get started
 description: This document covers upgrading from previous versions of Architect
 sections:
@@ -12,8 +12,6 @@ sections:
   - Architect Functions
   - Architect Data
 ---
-
-## Overview of Architect versions
 
 This document covers upgrading from previous versions of Architect.
 
