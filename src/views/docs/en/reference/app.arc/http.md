@@ -13,16 +13,16 @@ sections:
 
 ## Syntax
 
-Each route is defined by two parts: `verb` & `route`
+Each route is made up of by two parts: `verb` & `path`
 
-- Valid HTTP Verb
+- HTTP Verb
   - `get`
   - `post`
   - `put`
   - `patch`
   - `delete`
 
-- Route
+- Path
   - Dashes and underscores are not allowed
   - Must begin with a letter
   - URL parameters are defined with a leading colon (`:`)
