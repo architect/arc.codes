@@ -9,8 +9,6 @@ sections:
 
 Architect apps have project level dependencies and function level dependencies. Project level dependencies are defined at the root of the project. However, Lambda functions are deployed individually and as such each one needs to have its own dependencies vendored before it is deployed. 
 
-Supported runtimes handle dependencies in different ways. 
-
 ## Node
 
 If there is a `package.json` in the Lambda function folder it will be used. If there is no `package.json` in the function folder Architect will statically analyze the code and transparently tree shake an optimal `node_modules` folder for that specific Lambda function. 

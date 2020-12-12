@@ -45,6 +45,8 @@ Likewise, `@views` runtime destinations:
   <tr><td>Python</td><td>`src/http/get-index/vendor/views`</td></tr>
 </table>
 
-> It is important to note that the entire contents of `src/shared` are copied recursively, we strongly suggest keeping the directory structure as flat as possible, and the payloads as small as possible to improve performance. We recommend that you keep the entire payload under 5MB to avoid cold start penalties. To learn more about cold starts [check this out](https://learn.begin.com/jargon#cold-start).
+> Tip: the entire contents of `src/shared` are copied so we strongly suggest keeping the directory structure as flat as possible, and the payloads as small as possible to ensure the best performance.
 
-Organize code in `@shared` in any way that makes sense for your project.
+## Dependencies
+
+`@shared` and `@views` support having their own dependencies defined by `package.json`, `requirements.txt` or `Gemfile`.
