@@ -1,0 +1,99 @@
+name: Node CI
+
+# Push tests pushes; PR tests merges
+on: [ push, pull_request ]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+
+  # Test the build
+  build:
+    # Setup
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [ 12.x, 14.x ]
+        os: [ ubuntu-latest ]
+
+    # Go
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Env
+        run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Git ref:    ${{ github.ref }}"
+          echo "GH actor:   ${{ github.actor }}"
+          echo "SHA:        ${{ github.sha }}"
+          VER=`node --version`; echo "Node ver:   $VER"
+          VER=`npm --version`; echo "npm ver:    $VER"
+
+      - name: Install
+        run: npm install
+
+      - name: Hydrate
+        run: npx arc hydrate
+        env:
+          CI: true
+
+      - name: Test
+        run: npm test
+        env:
+          CI: true
+
+      - name: Notify
+        uses: homoluctus/slatify@master
+        # Only fire alert once
+        if: github.ref == 'refs/heads/main' && failure() && matrix.node-version == '12.x' && matrix.os == 'ubuntu-latest'
+        with:
+          type: ${{ job.status }}
+          job_name: '*Build*'
+          url: ${{ secrets.SLACK_WEBHOOK }}
+          commit: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  # Assuming all that went fine (and it's master): deploy!
+  deploy:
+    # Setup
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    # Go
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install
+        run: npm i --production
+
+      - name: Deploy
+        run: npm run deploy
+        env:
+          CI: true
+          AWS_ACCESS_KEY_ID: ${{ secrets.V8_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.V8_AWS_SECRET_ACCESS_KEY }}
+
+      - name: Notify
+        uses: homoluctus/slatify@master
+        if: always()
+        with:
+          type: ${{ job.status }}
+          job_name: '*Deploy*'
+          url: ${{ secrets.SLACK_WEBHOOK }}
+          commit: true
+          token: ${{ secrets.GITHUB_TOKEN }}
