@@ -1,19 +1,13 @@
 ---
 title: '@proxy'
-description: Pragma to declare your app namespace
-sections:
-  - Overview
-  - Syntax
-  - Example
+description: 
 ---
 
-## Overview
-
-`@proxy` defines a url to forward requests to
+Defines a URL for API Gateway to forward all requests by default. Override with routes in `@http`.
 
 ## Syntax
 
-- Stage value of either *staging* or *production*
+- Stage value of either *testing*, *staging* or *production*
 - URL to proxy to
 
 ## Example
@@ -37,7 +31,9 @@ get /v2/*
 post /v2/*
 
 @proxy
-production https://apiurl
+testing http://localhost:4000
+staging https://qa.example.biz
+production https://example.biz
 ```
   </div>
 
@@ -57,7 +53,9 @@ production https://apiurl
     ["post", "/v2/*"]
   ],
   "proxy": {
-    "production": "https://apiurl"
+    "testing": "http://localhost:4000",
+    "staging": "https://qa.example.biz",
+    "production": "https://example.biz"
   }
 }
 ```
@@ -81,7 +79,9 @@ http=[
 ]
 
 [proxy]
-production="https://apiurl"
+testing="http://localhost:4000"
+staging="https://qa.example.biz"
+production="https://example.biz"
 ```
 
   </div>
@@ -101,7 +101,9 @@ http:
 - post: "/v2/*"
 
 proxy:
-  production: "https://apiurl"
+  testing: http://localhost:4000
+  staging: https://qa.example.biz
+  production: https://example.biz
 ```
 
   </div>

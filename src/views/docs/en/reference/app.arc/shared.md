@@ -3,7 +3,7 @@ title: '@shared'
 description: Configure src/shared code
 ---
 
-`@shared` pragma configures the location of shared code.
+Configure the location of shared code.
 
 ### Syntax
 

@@ -1,15 +1,9 @@
 ---
 title: '@indexes'
-description: Pragma to declare your app namespace
-sections:
-  - Overview
-  - Syntax
-  - Example
+description: 
 ---
 
-## Overview
-
-`@indexes` defines DynamoDB table indexes
+Defines DynamoDB table global secondary indexes.
 
 ## Syntax
 
@@ -42,5 +36,3 @@ accounts
 ### Recommended
 
 DynamoDB is a powerful database. There is a great deal more to learn to take full advantage of it. Dig into [Amazon's DynamoDB documentation](https://aws.amazon.com/documentation/dynamodb/) to build out your app's data layer.
-
----

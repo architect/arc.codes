@@ -2,22 +2,24 @@
 title: Logging &amp; monitoring
 ---
 
-Architect utilizes the cloud native logging solution [AWS CloudWatch](https://aws.amazon.com/cloudwatch/). 
+Architect logs to [AWS CloudWatch](https://aws.amazon.com/cloudwatch/). 
 
-Here's how it works, and can be extended:
+## Supported runtimes
 
-- Good old fashioned `console.log` will show up in [CloudWatch](https://aws.amazon.com/cloudwatch/)
-- CloudWatch events offers a ton of metrics about your serverless primitives especially [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html)
+- **Node** `console.log` or any logging library that writes to stdout or stderr
+- **Deno** `console.log` or any logging library that writes to stdout or stderr
+- **Ruby** `puts` or any logging library that writes to stdout or stderr
+- **Python** `print` or any logging library that writes to stdout or stderr
+
+### See also
+
+- CloudWatch captures many metrics from serverless primitives especially [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html)
 - [X-Ray](https://aws.amazon.com/xray/) offers deeper service call introspection capabilities
 - There are many third party tools to further extend your app with structured logs
 
-The CLI syntax to view logs for a Lambda function: 
+## Example
 
-```bash
-arc logs [production] path/to/function 
-```
-
-For example, given the following `app.arc` file:
+Given the following `app.arc` file:
 
 ```arc
 @app

@@ -1,15 +1,9 @@
 ---
 title: '@tables'
-description: Pragma to declare your app namespace
-sections:
-  - Overview
-  - Syntax
-  - Example
+description: 
 ---
 
-## Overview
-
-`@tables` defines DynamoDB database tables and trigger functions for them.
+Define DynamoDB tables with optional streaming Lambda functions.
 
 ## Syntax
 
@@ -141,7 +135,3 @@ tables:
 </arc-tab>
 
 </arc-tab-bar>
-
-### Resources
-
-- [Tables Primitive](/en/reference/databases/tables)

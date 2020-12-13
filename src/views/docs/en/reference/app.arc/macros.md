@@ -1,13 +1,7 @@
 ---
 title: Macros
 description: character description of this document!
-sections:
-  - Overview
-  - Getting started
-  - Examples
 ---
-
-## Overview
 
 Extend the functionality of your Architect app with standard CloudFormation. The `@macro` primitive allows developers to add any resources or modify existing ones extending Architect into the entire AWS ecosystem supported by CloudFormation.
 
@@ -24,8 +18,6 @@ my-custom-macro
 ```
 
 For this example the `app.arc` manifest file above, the macro is in `src/macros/my-custom-macro.js`
-
-> Note: Macros are a new feature, and only JavaScript macros are supported at this time; however, Python and Ruby are on the roadmap.
 
 ### Deploy
 

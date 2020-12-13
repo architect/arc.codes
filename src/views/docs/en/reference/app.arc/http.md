@@ -1,15 +1,9 @@
 ---
 title: '@http'
 description: Pragma for defining http routes
-sections:
-  - Overview
-  - Syntax
-  - Example
 ---
 
-## Overview
-
-`@http` defines HTTP routes
+Define HTTP routes in API Gateway with Lambda handler functions.
 
 ## Syntax
 

@@ -1,15 +1,9 @@
 ---
 title: '@scheduled'
-description: Pragma to declare your app namespace
-sections:
-  - Overview
-  - Syntax
-  - Example
+description: 
 ---
 
-## Overview
-
-`@scheduled` pragma defines scheduled function routes
+Define EventBridge schedule expressions with Lambda handler functions.
 
 ### Syntax
 

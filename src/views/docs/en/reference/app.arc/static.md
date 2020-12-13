@@ -1,24 +1,16 @@
 ---
 title: '@static'
-description: Pragma to declare your app namespace
-sections:
-  - Overview
-  - Syntax
-  - Example
-  - Deployment
+description: 
 ---
 
-## Overview
-
-`@static` pragma enables uploading of static assets to an `S3` bucket
+Configure the static asset S3 bucket.
 
 ## Syntax
 
-- No parameters are required
+- No parameters are required; `@static` is implied if `@http` is defined  
 - `folder` defines the folder to upload static assets from. Default is `public`
 - `fingerprint` enables static asset file fingerprinting (and long-lived caching headers)
 - `ignore` defines which assets to be ignored during upload
-- `serialize` will serialize files into an API Gateway response
 
 ## Example
 

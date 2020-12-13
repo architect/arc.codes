@@ -1,15 +1,9 @@
 ---
 title: '@events'
 description: Pragma defines SNS topics
-sections:
-  - Overview
-  - Syntax
-  - Example
 ---
 
-## Overview
-
- `@events` defines SNS topics
+ Define SNS topics with Lambda handler functions.
 
 ## Syntax
 

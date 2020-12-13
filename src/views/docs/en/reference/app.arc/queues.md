@@ -1,15 +1,9 @@
 ---
 title: '@queues'
-description: Pragma to declare your app namespace
-sections:
-  - Overview
-  - Syntax
-  - Example
+description: 
 ---
 
-## Overview
-
-`@queues` define SQS topics and Lambda handlers for them
+Define SQS topics with Lambda handler functions. 
 
 ### Syntax
 
@@ -110,5 +104,3 @@ Which generates the corresponding code:
 ├── app.arc
 └── package.json
 ```
-
----

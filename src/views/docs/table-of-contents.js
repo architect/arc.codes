@@ -7,9 +7,9 @@ let Guides = [{
   ],
   'Developer experience': [
     'Local development', // preview, debug and test
+    'Dependency management',
     'Sharing code', // src/shared and src/views
     'Custom source paths',
-    'Dependency management',
     'Deployment',
     'Logging & monitoring', // cloudwatch
   ],

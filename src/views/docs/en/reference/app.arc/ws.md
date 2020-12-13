@@ -1,16 +1,9 @@
 ---
 title: '@ws'
-description: Pragma to declare your app namespace
-sections:
-  - Overview
-  - Syntax
-  - Example
+description: 
 ---
 
-## Overview
-
-`@ws` section defines WebSocket handlers
-
+Define WebSocket endpoint and Lambda handler functions.
 
 ### Syntax
 

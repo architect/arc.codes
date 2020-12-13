@@ -1,15 +1,9 @@
 ---
 title: '@app'
 description: Pragma to declare your app namespace
-sections:
-  - Overview
-  - Syntax
-  - Example
 ---
 
-## Overview
-
-`@app` is where you declare your app namespace
+`@app` declares the application namespace
 
 ## Syntax
 
@@ -20,7 +14,7 @@ sections:
 
 ## Example
 
-For example, to create the app "foobaz":
+Create an app with the namespace "foobaz":
 
 ```bash
 @app

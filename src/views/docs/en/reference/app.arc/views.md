@@ -4,13 +4,11 @@ description: Pragma for sharing view code
 sections:
 ---
 
-`@views` specifies how to copy shared view code from `src/views/*` to your lambda functions.
+Configure the location of view code. Architect considers copies view code into HTTP GET handler Lambda functions.
 
-By default files found in the `src/views/` directory will be copied into `node_modules/@architect/views/` of every `GET` route.
-
-You can also specify to only copy view code to specific lambda functions by listing them directly below the `@views` pragma.
-
+You can also specify to only copy view code to specific lambda functions by listing them directly. 
 ## Syntax
+
 - Routes should be existing `@http` routes.
 - Route names follow the same requirements as `@http` routes. [see `@http`](@http)
 
