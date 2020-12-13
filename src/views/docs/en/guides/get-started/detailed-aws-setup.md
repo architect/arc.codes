@@ -4,7 +4,7 @@ category: Get started
 description: Setting up and installing Architect.
 ---
 
-> To work locally all you need is to install [Node](https://nodejs.org), any additional [supported runtimes](#supported-runtimes) you plan to use, and [Architect](#install-architect). 
+> To work locally all you need is [Node](https://nodejs.org), any additional [supported runtimes](#supported-runtimes) you plan to use, and the [Architect CLI](#install-architect). 
 
 ## AWS deployment requirements
 

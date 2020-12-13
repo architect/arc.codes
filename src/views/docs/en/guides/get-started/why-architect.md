@@ -4,15 +4,15 @@ category: Get started
 description: Why is Architect important to you?
 ---
 
-> Architect is the simplest and fastest way to build database backed web apps on AWS SAM
+> Architect is the simplest and fastest way to build database backed web apps with AWS SAM
 
-Architect provides everything you need out of the box to build massively scalable apps with low code, clear and terse config, and zero ceremony.
+Architect provides everything you need out of the box to build massively scalable serverless apps with low code, clear and terse config, and zero ceremony.
 
 ## The best developer experience
 
-Architect is an opinionated developer experience (DX) for building database backed web apps with AWS. We know you want to focus on business logic instead of glue code. We know you want to only pay for services while in use, on demand, and otherwise _scale to zero_. We know you want to do less work about work so you can focus on doing more for your customers. That is why you chose to go serverless.
+Going serverless is fraught with complex vendor arcana and market noise. This is where Architect comes in. We remove all the noise and friction to building serverlessly. We prioritize speed with fast local dev, smart configurable defaults and flexible Infrastructure as Code. And then we get out of your way so you can focus on your code.
 
-But going serverless is fraught with vendor arcana and market noise. This is where Architect comes in. We remove all the noise and friction to building serverlessly. We prioritize speed with fast local dev, smart configurable defaults and flexible Infrastructure as Code. And then we get out of your way so you can focus on your code.
+Architect is an opinionated developer experience (DX) for building database backed web apps with AWS. Focus on business logic instead of glue code and only pay for services while in use, on demand, and otherwise _scale to zero_. 
 
 ### Work locally
 

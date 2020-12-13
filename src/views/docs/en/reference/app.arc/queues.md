@@ -18,8 +18,6 @@ sections:
 - Dashes are allowed; underscores are not allowed
 - Must begin with a letter
 
-> ⚠️ Warning! This functionality is new with `@architect/workflows 3.3.0`. If you want to use `@queues` with apps **older than `3.3.0`** please follow this [upgrade guide](/en/guides/get-started/upgrade-guides).
-
 ### Example
 
 This `app.arc` file defines two `@queues`:
