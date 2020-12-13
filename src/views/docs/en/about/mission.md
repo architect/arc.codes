@@ -4,7 +4,7 @@ category: about
 description: 160 (or fewer) character description of this document!
 ---
 
-Architect is on a mission to free web apps dev from infrastructure complexity and vendor cruft. Our goal is to let you focus on the core business logic required to create value, ship only the code that matters, iterate faster and still enjoy unprecedented availability guarantees.
+Architect is on a mission to free web apps dev from infrastructure complexity and vendor cruft. Our goal is to let you focus on the core business logic required to create value, ship only the code that matters, iterate faster and enjoy unprecedented availability guarantees.
 
 ## Principles
 

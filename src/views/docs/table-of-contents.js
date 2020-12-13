@@ -43,7 +43,6 @@ let Reference = [{
     'env',
     'init',
     'logs',
-    'package',
     'sandbox',
   ],
   'app.arc': [
