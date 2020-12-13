@@ -19,7 +19,7 @@ let Guides = [{
     'HTTP functions', // 
     'Sessions',
     'Middleware',
-    'WebSockets',
+    'WebSockets functions',
   ],
   'Backend': [
     'Database tables & indexes',
