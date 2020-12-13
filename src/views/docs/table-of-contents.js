@@ -62,11 +62,18 @@ let Reference = [{
     '@ws'
   ],
   'config.arc':[
-    '@aws'
+    '@aws',
+    'runtime',
+    'memory',
+    'timeout',
+    'concurrency',
+    'layers',
+    'policies',
   ],
   'prefs.arc': [
     '@create',
     '@env',
+    '.env',
     '@sandbox'
   ], 
   'Runtime': [

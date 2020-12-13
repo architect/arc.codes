@@ -1,10 +1,6 @@
 ---
 title: hydrate
 description: Quickly install and update dependencies for all functions in the src directory.
-sections:
-  - Overview
-  - Usage
-  - Flags
 ---
 
 ## Overview

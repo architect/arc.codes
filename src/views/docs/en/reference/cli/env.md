@@ -3,7 +3,7 @@ title: arc env
 description: Read and write environment variables for Lambda functions.
 ---
 
-Read and write environment variables. This allows apps to utilize sensitive configuration data, such as API keys, outside of the codebase in revision control. You can use this tool to ensure an entire team, and the deployment targets are in sync.
+Read and write environment variables. This allows apps to centrally store sensitive configuration data, such as API keys, outside of the codebase in revision control. 
 
 ## Usage
 
