@@ -30,10 +30,42 @@ If you have AWS exports in your `.bashrc` and `@aws` specified in your `app.arc`
 
 For example, to deploy to the northern California AWS AZ with your AWS `work` profile's credentials, use:
 
-```bash
+<h5>arc</h5>
+
+```arc
 @aws
 region us-west-1
 profile work
+```
+
+<h5>json</h5>
+
+```json
+{
+  "architect": {
+    "aws": {
+      "region": "us-west-1",
+      "profile": "work"
+    }
+  }
+}
+```
+
+<h5>toml</h5>
+
+```toml
+[aws]
+region="us-west-1"
+profile="work"
+```
+
+<h5>yaml</h5>
+
+```yaml
+---
+aws:
+  region: us-west-1
+  profile: work
 ```
 
 <!-- ### Custom Runtimes with AWS Lambda Layers

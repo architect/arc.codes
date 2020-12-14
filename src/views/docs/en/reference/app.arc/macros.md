@@ -7,9 +7,11 @@ Extend the functionality of your Architect app with standard CloudFormation. The
 
 ## Getting started
 
-An example `app.arc` file with custom macro:
+These example configuration files declare a macro saved to `src/macros/my-custom-macro.js`
 
-```bash
+<h5>arc</h5>
+
+```arc
 @app
 testapp
 
@@ -17,11 +19,52 @@ testapp
 my-custom-macro
 ```
 
-For this example the `app.arc` manifest file above, the macro is in `src/macros/my-custom-macro.js`
+<h5>json</h5>
+
+```json
+{
+  "app": "testapp",
+  "macros": [
+    "my-custom-macro"
+  ]
+}
+```
+
+<h5>json</h5>
+
+```json
+{
+  "app": "testapp",
+  "macros": [
+    "my-custom-macro"
+  ]
+}
+```
+
+<h5>toml</h5>
+
+```toml
+app="testapp"
+
+macros=[
+ "my-custom-macro"
+]
+
+```
+
+<h5>yaml</h5>
+
+```yaml
+---
+app: testapp
+
+macros:
+- my-custom-macro
+```
 
 ### Deploy
 
-When running `arc deploy` Architect looks for macros to run in: 
+When running `arc deploy` Architect looks for macros to run in:
 
 - `src/macros/filename`
 - `node_modules/macro-module-name`
@@ -33,7 +76,7 @@ You deploy a macro by using this syntax:
 
 ## Examples
 
-Macros receive the parsed `app.arc` file so custom pragmas and config can be defined. The second argument is the current CloudFormation template. 
+Macros receive the parsed `app.arc` file so custom pragmas and config can be defined. The second argument is the current CloudFormation template.
 
 ```js
 /**

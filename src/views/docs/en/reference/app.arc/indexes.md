@@ -1,6 +1,6 @@
 ---
 title: '@indexes'
-description: 
+description:
 ---
 
 Defines DynamoDB table global secondary indexes.
@@ -17,7 +17,10 @@ Defines DynamoDB table global secondary indexes.
 
 The following `app.arc` file defines a DynamoDB table with two Global Secondary Indexes:
 
-```bash
+
+<h5>arc</h5>
+
+```arc
 @app
 testapp
 
@@ -32,6 +35,54 @@ accounts
 accounts
   created *String
 ```
+
+<h5>json</h5>
+
+```json
+{
+  "app": "testapp",
+  "tables": [
+    { "accounts": { "accountID": "*String" } }
+  ],
+  "indexes": [
+    { "accounts": { "email": "*String" } },
+    { "accounts": { "created": "*String" } }
+  ]
+}
+```
+
+<h5>toml</h5>
+
+```toml
+app="testapp"
+
+[[tables]]
+[tables.accounts]
+accountID="*String"
+
+indexes = [
+{ "accounts" = { "email" = "*String" } },
+{ "accounts" = { "created" = "*String" } }
+]
+```
+
+<h5>yaml</h5>
+
+```yaml
+---
+app: testapp
+
+tables:
+- accounts:
+    accountID: "*String"
+
+indexes:
+- accounts:
+  - email: "*String"
+- accounts:
+  - created: "*String"
+```
+
 
 ### Recommended
 

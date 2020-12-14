@@ -99,6 +99,6 @@ Which generates the following scaffolding:
 └── package.json
 ```
 
-> ⚠️  Handlers generated from routes with a URL parameters i.e. `/pages/:dateID`, substitute `:` for `000`.
+> ⚠️  Handlers generated from routes with URL parameters i.e. `/pages/:dateID`, substitute `:` for `000`.
 >
 > This is a deliberate convention to ensure valid directory names that correspond with your defined parameterized route.
