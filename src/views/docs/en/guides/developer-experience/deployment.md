@@ -24,7 +24,7 @@ arc deploy production
 
 ## Deploy a function directly to staging
 
-Rather than deploying the entire stack with CloudFormation you can quickly deploy code for one funnction to `staging` by supplying a path.
+Rather than deploying the entire stack with CloudFormation you can quickly deploy code for one function to `staging` by supplying a path.
 
 ```bash
 arc deploy path/to/code
