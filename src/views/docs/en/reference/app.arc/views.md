@@ -6,7 +6,7 @@ sections:
 
 Configure the location of view code. Architect considers copies view code into HTTP GET handler Lambda functions.
 
-You can also specify to only copy view code to specific lambda functions by listing them directly. 
+You can also specify to only copy view code to specific lambda functions by listing them directly.
 ## Syntax
 
 - Routes should be existing `@http` routes.
@@ -24,7 +24,7 @@ This `app.arc` file defines specific `@http` functions to copy `src/views/` to:
 
 ```arc
 @app
-testapp
+myapp
 
 @http
 get /
@@ -47,41 +47,17 @@ get /raccoons
 
 ```json
 {
-  "architect": {
-    "app": "testapp",
-    "http": [
-      [
-        "get",
-        "/"
-      ],
-      [
-        "get",
-        "/kittens"
-      ],
-      [
-        "get",
-        "/dogs"
-      ],
-      [
-        "get",
-        "/raccoons"
-      ]
-    ],
-    "views": [
-      [
-        "get",
-        "/kittens"
-      ],
-      [
-        "get",
-        "/raccoons"
-      ]
-    ]
-  },
-  "start": "npx sandbox",
-  "dependencies": {
-    "@architect/architect": "latest"
-  }
+  "app": "myapp",
+  "http": [
+    [ "get", "/" ],
+    [ "get", "/kittens" ],
+    [ "get", "/dogs" ],
+    [ "get", "/raccoons" ]
+  ],
+  "views": [
+    [ "get", "/kittens" ],
+    [ "get", "/raccoons" ]
+  ]
 }
 ```
 
@@ -96,36 +72,18 @@ get /raccoons
   <div slot=content>
 
 ```toml
-app="testapp"
+app="myapp"
 
 http=[
- [
-  "get",
-  "/"
- ]
-  [
-    "get",
-    "/kittens"
-  ],
-  [
-    "get",
-    "/dogs"
-  ],
-  [
-    "get",
-    "/raccoons"
-  ]
+  [ "get", "/" ],
+  [ "get", "/kittens" ],
+  [ "get", "/dogs" ],
+  [ "get", "/raccoons" ]
 ]
 
 views=[
-  [
-    "get",
-    "/kittens"
-  ],
-  [
-    "get",
-    "/raccoons"
-  ]
+  [ "get", "/kittens" ],
+  [ "get", "/raccoons" ]
 ]
 
 ```

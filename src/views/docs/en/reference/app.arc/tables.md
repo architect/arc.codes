@@ -1,6 +1,6 @@
 ---
 title: '@tables'
-description: 
+description:
 ---
 
 Define DynamoDB tables with optional streaming Lambda functions.
@@ -62,25 +62,19 @@ cats
 
 ```json
 {
-  "architect": {
-    "app": "testapp",
-    "tables": [
-      {
-        "people": {
-          "pplID": "*String",
-          "stream": true
-        },
-        "cats": {
-          "pplID": "*String",
-          "catID": "**String"
-        }
+  "app": "testapp",
+  "tables": [
+    {
+      "people": {
+        "pplID": "*String",
+        "stream": true
+      },
+      "cats": {
+        "pplID": "*String",
+        "catID": "**String"
       }
-    ]
-  },
-  "start": "npx sandbox",
-  "dependencies": {
-    "@architect/architect": "latest"
-  }
+    }
+  ]
 }
 ```
 </div>

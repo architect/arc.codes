@@ -1,6 +1,6 @@
 ---
 title: '@ws'
-description: 
+description:
 ---
 
 Define WebSocket endpoint and Lambda handler functions.
@@ -23,7 +23,7 @@ This `app.arc` file defines both HTTP and WebSocket endpoints:
 
 ```arc
 @app
-testapp
+myapp
 
 @http
 get /
@@ -46,12 +46,9 @@ get /
 ```json
 {
   "architect": {
-    "app": "testapp",
+    "app": "myapp",
     "http": [
-      [
-        "get",
-        "/"
-      ]
+      [ "get", "/" ]
     ],
     "ws": {}
   },
@@ -76,10 +73,7 @@ get /
 app="testapp"
 
 http=[
- [
-  "get",
-  "/"
- ]
+ [ "get", "/" ]
 ]
 
 "ws"

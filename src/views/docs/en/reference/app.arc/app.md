@@ -27,9 +27,7 @@ foobaz
 
 ```json
 {
-  "architect": {
-    "app": "foobaz"
-  }
+  "app": "foobaz"
 }
 ```
 

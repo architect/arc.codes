@@ -42,11 +42,9 @@ profile work
 
 ```json
 {
-  "architect": {
-    "aws": {
-      "region": "us-west-1",
-      "profile": "work"
-    }
+  "aws": {
+    "region": "us-west-1",
+    "profile": "work"
   }
 }
 ```

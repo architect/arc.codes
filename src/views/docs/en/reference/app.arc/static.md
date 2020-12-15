@@ -1,13 +1,13 @@
 ---
 title: '@static'
-description: 
+description:
 ---
 
 Configure the static asset S3 bucket.
 
 ## Syntax
 
-- No parameters are required; `@static` is implied if `@http` is defined  
+- No parameters are required; `@static` is implied if `@http` is defined
 - `folder` defines the folder to upload static assets from. Default is `public`
 - `fingerprint` enables static asset file fingerprinting (and long-lived caching headers)
 - `ignore` defines which assets to be ignored during upload
@@ -49,20 +49,14 @@ ignore
 
 ```json
 {
-  "architect": {
-    "app": "testapp",
-    "static": {
-      "fingerprint": true,
-      "ignore": [
-        ".tar.gz",
-        "tmp",
-        "user"
-      ]
-    }
-  },
-  "start": "npx sandbox",
-  "dependencies": {
-    "@architect/architect": "latest"
+  "app": "testapp",
+  "static": {
+    "fingerprint": true,
+    "ignore": [
+      ".tar.gz",
+      "tmp",
+      "user"
+    ]
   }
 }
 ```
