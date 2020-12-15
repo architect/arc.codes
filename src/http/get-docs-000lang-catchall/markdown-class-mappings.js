@@ -51,6 +51,28 @@ module.exports = {
   strong: [
     'font-semibold',
     'text-g9'
+  ],
+  table: [
+    'table-fixed',
+    'border-collapse',
+    'border-solid',
+    'border-g3',
+    'border1',
+    'w-full',
+    'mb1'
+  ],
+  th: [
+    'p1',
+    'border-solid',
+    'border1',
+    'border-g3',
+    'bg-g1'
+  ],
+  td: [
+    'p1',
+    'border-solid',
+    'border-g1',
+    'border1',
+    'bg-g0'
   ]
-
 }

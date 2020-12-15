@@ -41,6 +41,12 @@ html {
   /* Hide Sidebar off screen in mobile */
   left: calc(var(--sidebar) * -1);
 }
+.table-fixed {
+  table-layout: fixed;
+}
+.border-collapse {
+  border-collapse: collapse;
+}
 .open,
 .transition-x {
   transition: transform 100ms cubic-bezier(0.23, 1, 0.320, 1);
