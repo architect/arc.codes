@@ -20,6 +20,7 @@
   },
   "scripts": {
     "deploy": "npx arc deploy",
+    "spellcheck": "cross-env npx spellchecker './src/views/docs/en/**/*.md' --no-suggestions -q -d ./scripts/dictionary.js --plugins spell indefinite-article repeated-words syntax-mentions syntax-urls",
     "lint": "eslint src --ignore-pattern node_modules --fix",
     "start": "sandbox",
     "test": "tape -r esm test/*.test.js test/**/*.js | tap-spec"
@@ -28,6 +29,7 @@
     "@architect/architect": "8.3.7-RC.1",
     "esm": "^3.2.25",
     "slugify": "^1.4.6",
+    "spellchecker-cli": "^4.4.0",
     "tap-spec": "^5.0.0",
     "tape": "^5.0.1"
   }

@@ -3,7 +3,9 @@ title: Node
 description: Node runtime helpers
 ---
 
-Architect runtime helpers are optional but they do make working with CloudFormation provisioned resources much nicer. CloudFormation resources are generated and as such have names more friendly for machines than people. Resource discovery is baked into `@architect/functions` so program logic interacting named resources is always just as they are named in the current `app.arc` file.
+Architect runtime helpers are optional but they do make working with CloudFormation provisioned resources much nicer. CloudFormation resources are generated and as such have names more friendly for machines than people. Other frameworks leave resource discovery up to userland which leads to ad hoc implementations becoming a frequent bug vector. Architect treats runtime discovery as a first class concern. Amazon Resource Names (ARNs) are available to be discovered at runtime through SSM parameters. Things such as DynamoDB tables, SNS topics, SQS queues, API Gateway endpoints, and S3 static bucket ARNs are baked into `@architect/functions` so your runtime program logic interacts with resources using people friendly and readable names defined in the `app.arc` file.
+
+## Setup 
 
 Install the Architect runtime helpers for Node:
 
@@ -11,27 +13,22 @@ Install the Architect runtime helpers for Node:
 npm install @architect/functions
 ```
 
-## API
-
-> Node `@http` handlers have extra functionality for frontend use cases: static assets, middleware, and session support.
-
 Ensure `arc` is available to your Lambda function code:
 
 ```javascript
 let arc = require('@architect/functions')
 ```
 
-### Frontend
+## API
 
 - `arc.static` Get static asset path
 - `arc.http.async` Middleware
 - `arc.http.session` Sessions
-
-### Backend
-
 - `arc.tables` Generates a DynamoDB client for the current `app.arc`
 - `arc.events` Publish/subscribe helpers for SNS
 - `arc.queues` Publish/subscribe helpers for SQS
+
+---
 
 #### `arc.static`
 
