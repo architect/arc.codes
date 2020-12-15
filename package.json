@@ -15,6 +15,10 @@
       [
         "get",
         "/docs/:lang/*"
+      ],
+      [
+        "get",
+        "/api/:version/package"
       ]
     ]
   },
@@ -27,6 +31,8 @@
   },
   "dependencies": {
     "@architect/architect": "8.3.7-RC.1",
+    "@architect/inventory": "^1.2.0",
+    "@architect/package": "^6.0.1",
     "esm": "^3.2.25",
     "slugify": "^1.4.6",
     "spellchecker-cli": "^4.4.0",
