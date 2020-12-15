@@ -93,12 +93,31 @@ And adds these convenience aliases to cleanup function code:
 
 #### `arc.http.session`
 
-Sessions with 
+Read the current session in an `@http` request and write it back to a cookie
+
+```javascript
+async function handler (req) {
+  // read the session
+  let session = arc.http.session.read(req)
+  // save the session into a cookie string
+  let cookie = await arc.http.session.write({ count: 1 })
+  // write the cookie to the browser
+  return { 
+    statusCode: 200,
+    headers: { 'set-cookie': cookie },
+  }
+}
+```
 
 #### `arc.tables`
-Read and write to DynamoDB with 
-<div id="arc.events"></div>
-## SNS pub/sub with `arc.events`
+
+Create a DynamoDB client
+
+```javascript
+let tables = await arc.tables()
+```
+
+#### `arc.events`
 
 Subscribe to an SNS topic
 
@@ -118,6 +137,31 @@ Publish to an SNS topic
 let arc = require('@architect/functions')
 
 await arc.events.publish({
+  name: 'hit-counter',
+  payload: {hits: 1},
+})
+```
+
+#### `arc.queues`
+
+Subscribe to an SQS topic
+
+```javascript
+let arc = require('@architect/functions')
+
+exports.handler = arc.queues.subscribe(handler)
+
+async function handler (event) {
+  console.log(event)
+}
+```
+
+Publish to an SNS topic
+
+```javascript
+let arc = require('@architect/functions')
+
+await arc.queues.publish({
   name: 'hit-counter',
   payload: {hits: 1},
 })
