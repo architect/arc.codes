@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <title>Architect Playground</title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <link rel="stylesheet" type="text/css" href="/css/index.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+</head>
+<body
+  class="
+    h-full
+    font-sans
+    overflow-hidden-lg
+  "
+>
+  <div
+    class="
+      h-full-lg
+      grid-lg
+      two-column
+    "
+  >
+    <header
+      class="
+        pt-1
+        pr2
+        pb0
+        pl2
+        sticky
+        relative-lg
+        flex
+        items-center
+        justify-between
+        top0
+        bg-g9
+        col-start-1
+        col-end-3
+        text-g0
+      "
+    >
+      <div
+        class="
+          flex
+          items-center
+          font-semibold
+          text1
+        "
+      >
+        <a href="/">
+          <div
+            class="
+              h-logo
+              mr-2
+              text-g0
+            "
+          >
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="m23.7.44c-13.03 0-23.63 10.6-23.63 23.63s10.6 23.63 23.63 23.63 23.63-10.6 23.63-23.63-10.61-23.63-23.63-23.63zm16.22 34.63c-3.68 5.41-9.71 8.62-16.23 8.62-6.49 0-12.52-3.2-16.2-8.57l16.2-15.78zm3.4-11c0 2.52-.48 4.99-1.44 7.34l-16.17-15.68c-1.11-1.11-2.92-1.12-4.02-.02l-16.16 15.75c-.97-2.37-1.46-4.85-1.46-7.39 0-10.82 8.81-19.63 19.63-19.63s19.62 8.8 19.62 19.63z" fill-rule="evenodd"/></svg>
+          </div>
+        </a>
+        Playground
+      </div>
+      <form>
+        <input id="pkg-input" class="hidden">
+        <button id="pkg-share">
+          Share
+        </button>
+      </form>
+    </header>
+    <aside
+      id="sidebar"
+      class="
+        h-full
+        static-lg
+        overflow-auto
+        sidebar-w
+        transition-x
+        col-start-1
+        col-end-2
+        row-start-2
+      "
+    >
+      <form
+        id="pkg-form"
+        action="/api/1/package"
+        class="
+          flex
+          flex-col
+          h-full
+        "
+      >
+        <textarea
+          id="pkg-input"
+          name="arc"
+          class="
+            flex-grow
+            w-full
+            p0
+            text-g9
+            bg-g0
+            resize-vertical
+            resize-none-lg
+          "
+        >
+@app
+myapp
+
+@http
+get /
+        </textarea>
+        <button
+          id="pkg-submit"
+          class="
+            pt1
+            pb1
+            text-g0
+            text0
+            bg-g9
+            font-bold
+            cursor-pointer
+          "
+        >
+          Submit
+        </button>
+      </form>
+    </aside>
+    <main
+      id="main"
+      class="
+        h-full
+        col-start-2
+        p3
+        overflow-auto
+      "
+    >
+    <pre><code id="preview"></code></pre>
+    </main>
+  </div>
+  <script type=module src=/playground.js crossorigin></script>
+</body>
+</html>
+

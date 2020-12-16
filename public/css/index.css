@@ -47,6 +47,9 @@ html {
 .border-collapse {
   border-collapse: collapse;
 }
+.resize-vertical {
+  resize: vertical;
+}
 .open,
 .transition-x {
   transition: transform 100ms cubic-bezier(0.23, 1, 0.320, 1);
@@ -67,5 +70,8 @@ html {
   .open,
   .translate-x-sidebar {
     transform: translateX(0);
+  }
+  .resize-none-lg {
+    resize: none;
   }
 }
