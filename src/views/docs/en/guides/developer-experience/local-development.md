@@ -3,7 +3,7 @@ title: Local development
 category: developer experience
 ---
 
-Architect treats local dev as a first class requirement so you can work faster previewing and testing code. Fast local development creates a tighter feedback loop maximizing developer velocity. 
+Fast local development creates a tighter feedback loop maximizing developer velocity. 
 
 ## Preview 
 

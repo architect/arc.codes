@@ -37,6 +37,12 @@ let Guides = [{
 }]
 
 let Reference = [{
+  'Runtime': [
+    'Node',
+    'Deno',
+    'Ruby',
+    'Python'
+  ],
   'CLI': [
     'deploy',
     'destroy',
@@ -75,12 +81,6 @@ let Reference = [{
     '@env',
     '.env',
     '@sandbox'
-  ],
-  'Runtime': [
-    'Node',
-    'Deno',
-    'Ruby',
-    'Python'
   ]
 }]
 

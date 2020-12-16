@@ -3,7 +3,9 @@ title: Node
 description: Node runtime helpers
 ---
 
-Architect runtime helpers are optional but they do make working with CloudFormation provisioned resources much nicer. CloudFormation resources are generated and as such have names more friendly for machines than people. Other frameworks leave resource discovery up to userland which leads to ad hoc implementations becoming a frequent bug vector. Architect treats runtime discovery as a first class concern. Amazon Resource Names (ARNs) are available to be discovered at runtime through SSM parameters. Things such as DynamoDB tables, SNS topics, SQS queues, API Gateway endpoints, and S3 static bucket ARNs are baked into `@architect/functions` so your runtime program logic interacts with resources using people friendly and readable names defined in the `app.arc` file.
+Architect runtime helpers are optional but they do make working with CloudFormation provisioned resources nicer. CloudFormation resources are generated with names more friendly for machines than people. Other frameworks leave resource discovery up to end users which leads to ad hoc implementations becoming a frequent bug vector. Architect treats runtime discovery as a first class concern. 
+
+> Amazon Resource Names (ARNs) are available at runtime to all Lambda functions defined in the same `app.arc`. Things such as DynamoDB tables, SNS topics, SQS queues, API Gateway endpoints, and S3 static bucket ARNs are baked into `@architect/functions` so your runtime program logic interacts with resources using people friendly and readable names defined in the `app.arc` file.
 
 ## Setup 
 
@@ -139,7 +141,7 @@ For the example above the generated API is:
 - `data.notes.delete`
 - `data.notes.update`
 
-> Tip: these methods are just wrappers for [`AWS.DynamoDB.DocumentClient`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html with `TableName` prepopulated 
+> The generated client is facade for <code>AWS.DynamoDB.DocumentClient</code> with `TableName` parameter prepopulated. <a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html" target=blank>See the official DynamoDB documentation for all available parameters.</a>
 
 The generated data layer also allows direct access to DynamoDB through a few methods:
 

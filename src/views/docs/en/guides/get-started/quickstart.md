@@ -4,7 +4,7 @@ category: Get started
 description: Get started quickly with Architect
 ---
 
-> Architect is the simplest and fastest way to build database backed web apps with AWS SAM. Architect provides everything you need out of the box to build massively scalable serverless apps with low code, clear and terse config, and zero ceremony.
+> Architect is the simplest and fastest way to build database backed web apps with AWS SAM
 
 Open your terminal to install `arc` globally:
 

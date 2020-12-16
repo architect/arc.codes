@@ -13,12 +13,12 @@ Architect projects have the following significant folder structure by default:
 │   ├── shared ...... # Code shared by all Lambda functions
 │   ├── views ....... # Code shared by HTTP GET Lambda functions
 │   ├── macros ...... # Modify the generated CloudFormation
-│   ├── http ........ # HTTP Lambda functions
-│   ├── events ...... # Event Lambda functions
-│   ├── queues ...... # Queue Lambda functions
-│   ├── scheduled ... # Scheduled Lambda functions
-│   ├── tables ...... # Table stream Lambda functions
-│   └── ws .......... # WebSocket Lambda functions
+│   ├── http ........ # @http Lambda functions
+│   ├── events ...... # @event Lambda functions
+│   ├── queues ...... # @queue Lambda functions
+│   ├── scheduled ... # @scheduled Lambda functions
+│   ├── tables ...... # @table stream Lambda functions
+│   └── ws .......... # @ws Lambda functions
 └── app.arc
 ```
 
@@ -61,29 +61,29 @@ The `app.arc` format follows a few simple rules:
 
 These sections are for global system level env configuration. The most important being the `@app` namespace which is used to prefix all generated resources.
 
-- [`@app`](/docs/en/reference/app.arc/@app) **[Required]** application namespace
-- [`@aws`](/docs/en/reference/app.arc/@aws) AWS specific configuration
-- [`@views`](/docs/en/reference/app.arc/@views) configure path to view source code
-- [`@shared`](/docs/en/reference/app.arc/@shared) configure path to shared source code
-- [`@macros`](/docs/en/reference/app.arc/@macros) modify generated CloudFormation
+- [`@app`](/docs/en/reference/app.arc/app) **[Required]** application namespace
+- [`@aws`](/docs/en/reference/app.arc/aws) AWS specific configuration
+- [`@views`](/docs/en/reference/app.arc/views) configure path to view source code
+- [`@shared`](/docs/en/reference/app.arc/shared) configure path to shared source code
+- [`@macros`](/docs/en/reference/app.arc/macros) modify generated CloudFormation
 
 ### Lambda resource definition
 
 These sections deal with Lambda functions and their event sources. Architect conventionally promotes one event source per function. Single responsibility functions are faster to deploy, easier to debug and secure to least privilege. 
 
-- [`@http`](/docs/en/reference/arc-pragmas/@http) HTTP routes (API Gateway)
-- [`@events`](/docs/en/reference/arc-pragmas/@events) Event pub/sub (SNS)
-- [`@queues`](/docs/en/reference/arc-pragmas/@queues)  queues and handlers for them (SQS)
-- [`@scheduled`](/docs/en/reference/arc-pragmas/@scheduled) Invoke functions specified times (CloudWatch Events)
-- [`@ws`](/docs/en/reference/arc-pragmas/@ws) Web Socket functions (API Gateway)
+- [`@http`](/docs/en/reference/app.arc/http) HTTP routes (API Gateway)
+- [`@events`](/docs/en/reference/app.arc/events) Event pub/sub (SNS)
+- [`@queues`](/docs/en/reference/app.arc/queues)  queues and handlers for them (SQS)
+- [`@scheduled`](/docs/en/reference/app.arc/scheduled) Invoke functions specified times (CloudWatch Events)
+- [`@ws`](/docs/en/reference/app.arc/@ws) Web Socket functions (API Gateway)
 
 ### Persistence resource definition
 
 These pragmas represent persistence resources.
 
-- [`@static`](/docs/en/reference/arc-pragmas/@static) Bucket for hosting static assets (S3)
-- [`@tables`](/docs/en/reference/arc-pragmas/@tables) Database tables and trigger functions (DynamoDB)
-- [`@indexes`](/docs/en/reference/arc-pragmas/@indexes) Table global secondary indexes (DynamoDB)
+- [`@static`](/docs/en/reference/app.arc@static) Bucket for hosting static assets (S3)
+- [`@tables`](/docs/en/reference/app.arc/tables) Database tables and trigger functions (DynamoDB)
+- [`@indexes`](/docs/en/reference/app.arc/indexes) Table global secondary indexes (DynamoDB)
 
 ## Example
 
