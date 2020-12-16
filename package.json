@@ -19,7 +19,8 @@
       [
         "get",
         "/api/:version/package"
-      ]
+      ],
+      ["any", "/*"]
     ]
   },
   "scripts": {

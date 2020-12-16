@@ -21,16 +21,14 @@ let arc = require('@architect/functions')
 
 ## API
 
-- `arc.static` Get a `@static` asset path 
-- `arc.http.async` Middleware for `@http`
-- `arc.http.session` Sessions for `@http` 
-- `arc.tables` Generates a DynamoDB client for `@tables`
-- `arc.events` Publish/subscribe helpers for SNS `@events`
-- `arc.queues` Publish/subscribe helpers for SQS `@queues`
+- [`arc.static`](#arc.static) Get a `@static` asset path 
+- [`arc.http.async`](#arc.http.async) Middleware for `@http`
+- [`arc.http.session`](#arc.http.session) Sessions for `@http` 
+- [`arc.tables`](#arc.tables) Generates a DynamoDB client for `@tables`
+- [`arc.events`](#arc.events) Publish/subscribe helpers for SNS `@events`
+- [`arc.queues`](#arc.queues) Publish/subscribe helpers for SQS `@queues`
 
----
-
-#### `arc.static`
+### `arc.static`
 
 Get a static asset path:
 
@@ -38,7 +36,7 @@ Get a static asset path:
 let css = arc.static('/index.css')
 ```
 
-#### `arc.http.async`
+### `arc.http.async`
 
 Middleware with `async` functions is defined on `arc.http.async` with middleware functions as parameters. The returned function adheres to the expected AWS Lambda function signature. A function can exit the middleware queue early by returning an HTTP response.
 
@@ -60,42 +58,38 @@ async function handler(request) {
 }
 ```
 
-##### Request
+#### Request
 
-The incoming request object is the standard API Gateway request with a few enhancements:
+The incoming request object is [the standard API Gateway request](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html) with a few enhancements:
 
-- `request.body` is automatically parsed
-- adds `request.session` 
-- adds `request.method`, `req.params` and `req.query` aliases
+- `body` is automatically parsed
+- `session` automatically parsed from the request cookie
 
-##### Response
+#### Response
 
 Architect honors the standard API Gateway response payload parameters:
 
+- `statusCode`
 - `headers`
 - `body`
-- `statusCode`
 - `isBase64Encoded`
 
-And adds cleaner convenience params:
-
-- `code` alias for `statusCode`
-- `status` also an alias for `statusCode`
-- `session` write a value to the session
-- `type` sets the `Content-Type` header
-
-And additional aliases for common `Content-Type` headers:
+And adds the following clean convenience params:
 
 - `cacheControl` sets the `Cache-Control` header
+- `css` sets the `Content-Type` header to `text/css; charset=utf8`
+- `code` alias for `statusCode`
 - `cors` sets the `Access-Control-Allow-Origin` header to `*`
 - `html` sets the `Content-Type` header to `text/html; charset=utf8`
-- `json` sets the `Content-Type` header to `text/html; charset=utf8`
-- `css` sets the `Content-Type` header to `text/css; charset=utf8`
 - `js` sets the `Content-Type` header to `text/javascript; charset=utf8`
+- `json` sets the `Content-Type` header to `text/html; charset=utf8`
+- `session` write a value to the session
+- `status` also an alias for `statusCode`
 - `text` sets the `Content-Type` header to `text/plain; charset=utf8`
+- `type` sets the `Content-Type` header
 - `xml` sets the `Content-Type` header to `text/xml; charset=utf8`
 
-#### `arc.http.session`
+### `arc.http.session`
 
 Read the current session in an `@http` request and write it back to a cookie
 
@@ -113,7 +107,7 @@ async function handler (req) {
 }
 ```
 
-#### `arc.tables`
+### `arc.tables`
 
 Create a DynamoDB client for `@tables`.
 
@@ -153,7 +147,7 @@ The generated data layer also allows direct access to DynamoDB through a few met
 - `data._doc` returns an instance of [`AWS.DynamoDB.DocumentClient`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
 - `data._name` helper function that returns a `@table` resource name when you need to go lower level
 
-#### `arc.events`
+### `arc.events`
 
 Subscribe to an SNS topic
 
@@ -178,7 +172,7 @@ await arc.events.publish({
 })
 ```
 
-#### `arc.queues`
+### `arc.queues`
 
 Subscribe to an SQS topic
 

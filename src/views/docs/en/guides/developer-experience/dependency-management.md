@@ -28,9 +28,7 @@ let foo = require('@architect/shared/foo')
 Recommended additional reading for working with the Node runtime:
 
 - Use `@shared` and `@views` to [share code](/docs/en/guides/developer-experience/sharing-code) between functions
-- Use [`@architect/functions`](/docs/en/runtime/reference/node) to make working with Node a bit nicer
-
-> Node has a fast native module system with excellent debugging properties out of the box. Recreating the module system at runtime with a bundler or transpiler is not recommended because it will have very poor debugging semantics. Line numbers will be obfuscated and stack traces will not be useful. (Source maps are experimental in Node and not enabled in Lambda by default.) Sometimes performance is cited to do this but coldstart is not an issue for single responsibility functions which Architect encourages; an optimal `node_modules` will be tree shaken at deployment. Code transforms might still might be neccessary for projects that elect to use non-standard syntax that transpiles down to Node runtime JavaScript. [For the transpiler use case provide custom source paths](/docs/en/guides/developer-experience/custom-source-paths) but, once again, please be aware this is trading off developer velocity to recover from bugs for syntax sugar.
+- Use [`@architect/functions`](/docs/en/reference/runtime/node) to make working with Node a bit nicer
 
 ## Ruby
 

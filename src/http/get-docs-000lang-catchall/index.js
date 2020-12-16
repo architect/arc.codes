@@ -21,6 +21,7 @@ const toc = require('@architect/views/docs/table-of-contents')
 const yaml = require('js-yaml')
 const REPO = 'https://github.com/architect/arc.codes'
 const EDIT_DOCS = `edit/main/src/views/docs/`
+const cache = {} // cheap warm cache
 
 exports.handler = async function http (req) {
   let { pathParameters } = req
@@ -56,7 +57,9 @@ exports.handler = async function http (req) {
   )
   let file
   try {
-    file = await readFile(filePath, 'utf8')
+    if (!cache[filePath])
+      cache[filePath] = await readFile(filePath, 'utf8')
+    file = cache[filePath]
   }
   catch(err) {
     // TODO: Load next doc in section
