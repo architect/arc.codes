@@ -46,14 +46,14 @@ Architect supports the following manifest files:
 
 The `app.arc` format follows a few simple rules:
 
-- Whitespace is significant
-- Comments start with `#`
-- Pragmas start with `@` and define cloud resources
-- Pragmas can be ordered arbitrarily
+- whitespace is significant
+- comments start with `#`
+- a pragma starts with `@`
+- pragmas can be ordered arbitrarily
 
 **The `app.arc` manifest can be broadly split into three sections:**
 
-- Project configuratiopn
+- Project configuration
 - Lambda resource definition
 - Persistence resource definition
 

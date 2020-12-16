@@ -20,7 +20,10 @@
         "get",
         "/api/:version/package"
       ],
-      ["any", "/*"]
+      [
+        "any",
+        "/*"
+      ]
     ]
   },
   "scripts": {
@@ -35,6 +38,7 @@
     "@architect/asap": "^3.13.8",
     "@architect/inventory": "^1.2.0",
     "@architect/package": "^6.0.1",
+    "eslint": "^7.15.0",
     "esm": "^3.2.25",
     "slugify": "^1.4.6",
     "spellchecker-cli": "^4.4.0",

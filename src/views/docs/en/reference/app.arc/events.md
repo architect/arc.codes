@@ -1,6 +1,5 @@
 ---
 title: '@events'
-description: Pragma defines SNS topics
 ---
 
  Define SNS topics with Lambda handler functions.

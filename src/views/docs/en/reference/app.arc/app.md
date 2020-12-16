@@ -1,6 +1,5 @@
 ---
 title: '@app'
-description: Pragma to declare your app namespace
 ---
 
 `@app` declares the application namespace

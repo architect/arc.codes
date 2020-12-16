@@ -3,11 +3,11 @@ title: '@env'
 description: Sandbox environment variables
 ---
 
-> Architect preferences (`preferences.arc`, or `prefs.arc`) defines settings for local Architect workflows. This file is intended to be added to `.gitignore`.
+> Architect preferences (`preferences.arc`, or `prefs.arc`) defines settings for local workflows. This file is intended to be added to `.gitignore`.
 
-Configure environment variables for `arc sandbox` at runtime. Achitect's three built-in environments are supported: `testing`, `staging`, and `production`.
+Configure environment variables for `testing` with `arc sandbox` and deployed `staging` and `production` environments.
 
-Sync environment variables to your project by using the [`arc env` CLI command](/reference/cli/env). (If you don't already have a preferences file, the CLI command will generate a `preferences.arc` file for you.)
+Sync environment variables to your project by using the [`arc env` CLI command](/reference/cli/env). If the preferences file does not exist Architect will generate `preferences.arc` file.
 
 > Note: any time you run `arc env`, your unsynced local environment variables will be overwritten.
 

@@ -1,6 +1,5 @@
 ---
 title: '@aws'
-description: Pragma to declare your app namespace
 ---
 
 Define AWS specific configuration.

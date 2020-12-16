@@ -16,7 +16,7 @@ let Guides = [{
   /*TODO
   'Frontend': [
     'Static assets', // fingerprint, ignore, folder, link to cdn
-    'HTTP functions', // 
+    'HTTP functions', //
     'Sessions',
     'Middleware',
     'WebSockets functions',
@@ -75,7 +75,7 @@ let Reference = [{
     '@env',
     '.env',
     '@sandbox'
-  ], 
+  ],
   'Runtime': [
     'Node',
     'Deno',
@@ -89,7 +89,7 @@ let About = [
   'Community',
   'Contribute',
   'Changelog',
-  'Playground', 
+  'Playground',
 ]
 
 module.exports = {

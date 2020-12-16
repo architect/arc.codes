@@ -27,7 +27,7 @@ cd myapp
 arc init
 ```
 
-### Create a new app with Architect vendored
+### Create a Node app with Architect installed locally
 
 ```bash
 npm init @architect myapp

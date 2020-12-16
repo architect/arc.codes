@@ -1,6 +1,5 @@
 ---
 title: '@http'
-description: Pragma for defining http routes
 ---
 
 Define HTTP routes in API Gateway with Lambda handler functions.
@@ -27,7 +26,7 @@ Each route is made up of by two parts: `verb` & `path`
 
 ## Example
 
-These configuration examples show how to define http routes:
+These configuration examples show how to define `@http` routes:
 
 
 <h5>arc</h5>

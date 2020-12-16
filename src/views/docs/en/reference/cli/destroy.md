@@ -1,6 +1,5 @@
 ---
 title: arc destroy
-description: Destroy coresponding CloudFormation stack
 ---
 
 Remove the CloudFormation stack and all related assets for the current project from AWS completely.

@@ -19,7 +19,7 @@ Architect provides two optional middleware helpers for cutting down on boilerpla
 
 Both middleware helpers conveniently attach user sessions to the incoming `request` object (if applicable), and decode and parse the `request` body (again, if applicable).
 
-HTTP functions are executed in a stateless and short lived environment. It is unreliable to chain http functions together without a data store, message bus, or client session in-between because any errors will fail silently by default. You should plan your function to not be dependent on the output from previous functions. By catching the request object and safely passing it around in middleware functions, you can more easily trace errors and choose when to fan out the work.
+`@http` functions are executed in a stateless and short lived environment. It is unreliable to chain `@http` functions together without a data store, message bus, or client session in-between because any errors will fail silently by default. You should plan your function to not be dependent on the output from previous functions. By catching the request object and safely passing it around in middleware functions, you can more easily trace errors and choose when to fan out the work.
 
 **Sections:**
 
@@ -238,7 +238,7 @@ npm install @architect/sandbox
 arc sandbox
 ```
 
-8. You should now see a page served at http://localhost:3333 that updates with the number of clicks.
+8. You should now see a page served at `http://localhost:3333` that updates with the number of clicks.
 
 ## Things to note about `arc.http`:
 
@@ -288,6 +288,6 @@ app.get('/cool', (req, res)=> res.send('very cool'))
 exports.handler = arc.http.express(app)
 ```
 
-5. Start Sandbox, the local dev server with `npm start` and check out the results by navigating to http://localhost:3333
+5. Start Sandbox, the local dev server with `npm start` and check out the results by navigating to `http://localhost:3333`
 
 Each time a visitor reaches the root of your app, it will take the request and it behave the same way as a full express server.

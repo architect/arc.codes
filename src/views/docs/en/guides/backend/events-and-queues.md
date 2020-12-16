@@ -15,7 +15,7 @@ Background tasks are a common workload and perfect for serverless environments. 
 
 Architect has three main primitives of background functions:
 - [@events](/docs/en/reference/arc-pragmas/@events) - A pub/sub service that uses SNS.
-- [@scheduled](/docs/en/reference/arc-pragmas/@scheduled) - Cron functions that are invoked at a specific rate with CloudWatch Events.
+- [@scheduled](/docs/en/reference/arc-pragmas/@scheduled) - CRON functions that are invoked at a specific rate with CloudWatch Events.
 - [@queues](/docs/en/reference/arc-pragmas/@queues) - A distributed message queue that uses SQS.
 
 Each type of function enables a reliable way for Lambda functions to call one another while also remaining stateless. This allows your distributed system to process data before it has to be committed to a persistent store. Imagine background tasks as more memory for your main functions to do more work that it doesn't have to deal with right away.
@@ -129,7 +129,7 @@ Test it locally by running `npm start` in your terminal from the project root. A
 cd ../../..
 npm start
 ```
-Navigate to http://localhost:3333 and click the "YOLO" button, watch your terminal for the output. You should see Sandbox output the `@event` object and log the output of your `yolo` event function.
+Navigate to `http://localhost:3333` and click the "YOLO" button, watch your terminal for the output. You should see Sandbox output the `@event` object and log the output of your `yolo` event function.
 
 ## @scheduled example
 
@@ -222,7 +222,7 @@ From the terminal, run `arc deploy --dry-run` and take a look at `sam.yaml` in t
     },
 ```
 
-The `Events` property on the `Daily` function shows that this is a scheduled event with a rate of being invoked once a day. The rate expression starts when the rule is created at the time of deployment. If you need more fine grained control over the timing, then you'll have to write a Cron expression. For more information about schedule rules, follow the [AWS documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html).
+The `Events` property on the `Daily` function shows that this is a scheduled event with a rate of being invoked once a day. The rate expression starts when the rule is created at the time of deployment. If you need more fine grained control over the timing, then you'll have to write a CRON expression. For more information about schedule rules, follow the [AWS documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html).
 
 
 ## @queues example
@@ -291,7 +291,7 @@ npm install @architect/functions
 cd ../../..
 ```
 
-Run `npm start` from root of the project to start Sandbox. Navigate to http://localhost:3333 and take a look in the terminal for our output.
+Run `npm start` from root of the project to start Sandbox. Navigate to `http://localhost:3333` and take a look in the terminal for our output.
 
 You should see the `@queue` event object being logged in the console of Sandbox.
 

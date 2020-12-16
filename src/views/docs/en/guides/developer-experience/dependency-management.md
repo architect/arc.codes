@@ -32,7 +32,7 @@ Recommended additional reading for working with the Node runtime:
 
 ## Ruby
 
-Architect uses `Gemfile` and `Gemfile.lock` with `bundle` to ensure Lambda function dependencies are determinstic. Code must be relative to the root of Lambda function directory.
+Architect uses `Gemfile` and `Gemfile.lock` with `bundle` to ensure Lambda function dependencies are deterministic. Code must be relative to the root of Lambda function directory.
 
 ```ruby
 require 'architect/functions' # is ok if it is vendored in the Lambda folder
@@ -52,7 +52,7 @@ bundle add architect-functions
 
 ## Python
 
-Architect uses `requirements.txt` with `pip3` to ensure Lambda function dependencies are determinstic. Code must be relative to the root of Lambda function directory.
+Architect uses `requirements.txt` with `pip3` to ensure Lambda function dependencies are deterministic. Code must be relative to the root of Lambda function directory.
 
 ```python
 import arc # is ok if it is vendored in the Lambda folder

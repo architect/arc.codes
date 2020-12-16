@@ -115,7 +115,7 @@ $env:AWS_REGION='us-west-1'
 
 ### Install Architect
 
-The following command uses npm, the package manager for Node, to install Architect globally. This will allow you to use Architect in any directory on your computer.
+The following command uses `npm`, the package manager for Node, to install Architect globally. This will allow you to use Architect in any directory on your computer.
 
 ```bash
 npm i -g @architect/architect

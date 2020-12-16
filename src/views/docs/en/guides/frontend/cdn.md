@@ -10,7 +10,7 @@ sections:
 
 ## Overview
 
-Architect projects support the ability to add a content delivery network (CDN) with AWS CloudFront. Amazon CloudFront is a mature and powerful content delivery network that speeds up distribution of your static and dynamic web content, such as .html, .css, .js, and image files, to your users. CloudFront delivers your content through a worldwide network of data centers called edge locations. When a user requests content that you're serving with CloudFront, the user is routed to the edge location that provides the lowest latency (time delay), so that content is delivered with the best possible performance.
+Architect projects support the ability to add a content delivery network (CDN) with AWS CloudFront. Amazon CloudFront is a mature and powerful content delivery network that speeds up distribution of your static and dynamic web content, such as `.html`, `.css`, `.js`, and image files, to your users. CloudFront delivers your content through a worldwide network of data centers called edge locations. When a user requests content that you're serving with CloudFront, the user is routed to the edge location that provides the lowest latency (time delay), so that content is delivered with the best possible performance.
 
 ## Provision
 

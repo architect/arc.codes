@@ -8,7 +8,7 @@ sections:
   - src/views
 ---
 
-Architect makes it easy to share code across many Lambda functions. Apps most commonly need to share business logic and view templates so Architect provides `@shared` and `@views` capability. Architect copies the contents of `src/shared` into all Lambdas and `src/views` into Lambda functions wired to respond to `@http` GET requests. This ensures your code is vendored into the function whenever the sandbox is started or the code is deployed.
+Architect makes it easy to share code across many Lambda functions. Apps most commonly need to share business logic and view templates so Architect provides `@shared` and `@views` capability. Architect copies the contents of `src/shared` into all Lambdas and `src/views` into Lambda functions wired to respond to `@http` GET requests. 
 
 Example `app.arc`
 

@@ -1,6 +1,6 @@
 ---
 title: '@views'
-description: Pragma for sharing view code
+description: Share view code across `@http` functions
 sections:
 ---
 

@@ -8,13 +8,13 @@ async function catchall (req) {
   if (index) {
     return {
       statusCode: 303,
-      headers: { 
-        location: '/docs/en/guides/get-started/quickstart' 
+      headers: {
+        location: '/docs/en/guides/get-started/quickstart'
       }
     }
   }
   else {
     // otherwise proxy s3
-    return asap.handler(req) 
+    return asap.handler(req)
   }
 }
