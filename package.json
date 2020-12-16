@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@architect/architect": "8.3.7-RC.1",
+    "@architect/asap": "^3.13.8",
     "esm": "^3.2.25",
     "slugify": "^1.4.6",
     "spellchecker-cli": "^4.4.0",

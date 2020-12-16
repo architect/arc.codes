@@ -13,7 +13,7 @@ description: Setting up and installing Architect.
 3. Any additional [supported runtimes](#supported-runtimes) you plan to use
 4. [AWS CLI](#aws-cli)
 5. [AWS credentials](#credentials)
-6. [Architect](#install-architect)
+6. [Architect CLI](#install-architect)
 
 ---
 

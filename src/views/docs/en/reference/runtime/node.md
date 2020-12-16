@@ -21,12 +21,12 @@ let arc = require('@architect/functions')
 
 ## API
 
-- `arc.static` Get static asset path
-- `arc.http.async` Middleware
-- `arc.http.session` Sessions
-- `arc.tables` Generates a DynamoDB client for the current `app.arc`
-- `arc.events` Publish/subscribe helpers for SNS
-- `arc.queues` Publish/subscribe helpers for SQS
+- `arc.static` Get a `@static` asset path 
+- `arc.http.async` Middleware for `@http`
+- `arc.http.session` Sessions for `@http` 
+- `arc.tables` Generates a DynamoDB client for `@tables`
+- `arc.events` Publish/subscribe helpers for SNS `@events`
+- `arc.queues` Publish/subscribe helpers for SQS `@queues`
 
 ---
 
@@ -64,32 +64,36 @@ async function handler(request) {
 
 The incoming request object is the standard API Gateway request with a few enhancements:
 
-- body is automatically parsed
-- `session` is available
--
+- `request.body` is automatically parsed
+- adds `request.session` 
+- adds `request.method`, `req.params` and `req.query` aliases
 
 ##### Response
 
 Architect honors the standard API Gateway response payload parameters:
 
-- headers
-- body
-- statusCode
-- isBase64Encoded
+- `headers`
+- `body`
+- `statusCode`
+- `isBase64Encoded`
 
-And adds these convenience aliases to cleanup function code:
+And adds cleaner convenience params:
 
-- cors
-- code
-- type
-- status
-- cacheControl
-- html
-- json
-- css
-- js
-- text
-- xml
+- `code` alias for `statusCode`
+- `status` also an alias for `statusCode`
+- `session` write a value to the session
+- `type` sets the `Content-Type` header
+
+And additional aliases for common `Content-Type` headers:
+
+- `cacheControl` sets the `Cache-Control` header
+- `cors` sets the `Access-Control-Allow-Origin` header to `*`
+- `html` sets the `Content-Type` header to `text/html; charset=utf8`
+- `json` sets the `Content-Type` header to `text/html; charset=utf8`
+- `css` sets the `Content-Type` header to `text/css; charset=utf8`
+- `js` sets the `Content-Type` header to `text/javascript; charset=utf8`
+- `text` sets the `Content-Type` header to `text/plain; charset=utf8`
+- `xml` sets the `Content-Type` header to `text/xml; charset=utf8`
 
 #### `arc.http.session`
 
@@ -111,11 +115,43 @@ async function handler (req) {
 
 #### `arc.tables`
 
-Create a DynamoDB client
+Create a DynamoDB client for `@tables`.
+
+Given the following `app.arc` file:
+
+```arc
+@app
+testapp
+
+@tables
+notes
+  personID *String
+  noteID **String
+```
+
+Generate a data access layer:
 
 ```javascript
-let tables = await arc.tables()
+let arc = require('@architect/functions')
+let data = await arc.tables()
 ```
+
+For the example above the generated API is:
+
+- `data.notes.get`
+- `data.notes.query`
+- `data.notes.scan`
+- `data.notes.put`
+- `data.notes.delete`
+- `data.notes.update`
+
+> Tip: these methods are just wrappers for [`AWS.DynamoDB.DocumentClient`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html with `TableName` prepopulated 
+
+The generated data layer also allows direct access to DynamoDB through a few methods:
+
+- `data._db` which returns an instance of [`AWS.DynamoDB`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
+- `data._doc` returns an instance of [`AWS.DynamoDB.DocumentClient`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
+- `data._name` helper function that returns a `@table` resource name when you need to go lower level
 
 #### `arc.events`
 
