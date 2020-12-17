@@ -1,4 +1,5 @@
 let redirects = {
+  // tmp until marketing landing page work done
   "/": "/docs/en/guides/get-started/quickstart",
 
   // Intro
@@ -51,28 +52,26 @@ let redirects = {
   "/reference/arc/tables": "/docs/en/reference/app.arc/tables",
   "/reference/arc/ws": "/docs/en/reference/app.arc/ws",
 
-  /*
-  "/reference/arc-config/aws",
-  "/reference/arc-config/runtime",
-  "/reference/arc-config/memory",
-  "/reference/arc-config/timeout",
-  "/reference/arc-config/concurrency",
-  "/reference/arc-config/layers",
-  "/reference/arc-config/policies",
-  "/reference/preferences#create",
-  "/reference/preferences#env",
-  "/reference/preferences#.env",
-  "/reference/preferences#sandbox",
-  "/reference/functions/events",
-  "/reference/functions/http",
-  "/reference/functions/http/node/async",
-  "/reference/functions/queues",
-  "/reference/functions/static",
-  "/reference/functions/tables",
-  "/reference/functions/ws",
-  "/reference/arc/aws"
-  "/playground",
-  */
+  "/reference/arc-config/aws": "/docs/en/reference/config.arc/aws",
+  "/reference/arc-config/runtime": "/docs/en/reference/config.arc/runtime",
+  "/reference/arc-config/memory": "/docs/en/reference/config.arc/memory",
+  "/reference/arc-config/timeout": "/docs/en/reference/config.arc/timeout",
+  "/reference/arc-config/concurrency": "/docs/en/reference/config.arc/concurrency",
+  "/reference/arc-config/layers": "/docs/en/reference/config.arc/layers",
+  "/reference/arc-config/policies": "/docs/en/reference/config.arc/policies",
+
+  "/reference/preferences#create": "/docs/en/reference/prefs.arc/create",
+  "/reference/preferences#env": "/docs/en/reference/prefs.arc/env",
+  "/reference/preferences#.env": "/docs/en/reference/prefs.arc/.env",
+  "/reference/preferences#sandbox": "/docs/en/reference/prefs.arc/sandbox",
+
+  "/reference/functions/events": "/docs/en/reference/runtime/node",
+  "/reference/functions/http": "/docs/en/reference/runtime/node",
+  "/reference/functions/http/node/async": "/docs/en/reference/runtime/node",
+  "/reference/functions/queues": "/docs/en/reference/runtime/node",
+  "/reference/functions/static": "/docs/en/reference/runtime/node",
+  "/reference/functions/tables": "/docs/en/reference/runtime/node",
+  "/reference/functions/ws": "/docs/en/reference/runtime/node",
 }
 
 module.exports = async function redirect(req) {
