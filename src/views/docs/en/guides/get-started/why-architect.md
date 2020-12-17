@@ -4,7 +4,7 @@ category: Get started
 description: Why is Architect important to you?
 ---
 
-> Architect provides everything you need out of the box to build massively scalable serverless apps with low code, clear and terse config, and zero ceremony
+> Architect provides everything you need to build massively scalable serverless apps with low code, clear and terse config, and zero ceremony
 
 ## The best developer experience
 
