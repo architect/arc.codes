@@ -18,7 +18,7 @@
       ],
       [
         "get",
-        "/api/:version/package"
+        "/api/package"
       ],
       [
         "any",
