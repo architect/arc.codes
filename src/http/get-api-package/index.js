@@ -1,6 +1,7 @@
 const inventory = require('@architect/inventory')
 const pkg = require('@architect/package')
 
+// serialize ?arc=base64arcfile into cloudformation
 exports.handler = async function http(req) {
   
   let statusCode = 200
