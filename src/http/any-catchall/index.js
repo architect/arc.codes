@@ -1,6 +1,14 @@
 let { http } = require('@architect/functions')
-let redirect = require('./redirect')
-let alias = { '/playground': '/playground.html' }
 
-// redirect to new urls; otherwise render static assets in ./public
-exports.handler = http.async(redirect, http.proxy.public({spa: false, alias }))
+// middleware to preserve old urls
+let redirect = require('./redirect')
+
+// middleware proxy s3 assets
+let asap = http.proxy.public({
+  spa: false, 
+  alias: { 
+    '/playground': '/playground.html' 
+  }
+})
+
+exports.handler = http.async(redirect, asap)
