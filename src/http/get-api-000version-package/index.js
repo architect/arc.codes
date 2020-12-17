@@ -7,8 +7,8 @@ exports.handler = async function http(req) {
   let body
 
   try {
-    let raw = Buffer.from(req.queryStringParameters.arc, 'base64').toString()
-    body = JSON.stringify(pkg(await inventory({ raw })))
+    let rawArc = Buffer.from(req.queryStringParameters.arc, 'base64').toString()
+    body = JSON.stringify(pkg(await inventory({ rawArc })))
   } catch (e) {
     statusCode = 500
     body = JSON.stringify({
