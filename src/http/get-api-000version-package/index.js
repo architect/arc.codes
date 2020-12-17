@@ -7,6 +7,9 @@ exports.handler = async function http(req) {
   let body
 
   try {
+
+    console.log(req)
+
     let rawArc = Buffer.from(req.queryStringParameters.arc, 'base64').toString()
     body = JSON.stringify(pkg(await inventory({ rawArc })))
   } catch (e) {
