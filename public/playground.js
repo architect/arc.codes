@@ -39,7 +39,7 @@ async function getPreview() {
   console.log('GET PREVIEW')
   const input = document.getElementById('pkg-input')
   const arc = input.value
-  const url = `/api/1/package?arc=${encodeURIComponent(arc)}`
+  const url = `/api/1/package?arc=${btoa(encodeURIComponent(arc))}`
   try {
     let cfn = JSON.stringify(await (await fetch(url)).json(), null, 2)
     update(cfn)
