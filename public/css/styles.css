@@ -150,6 +150,8 @@ body {
 .bg-a0.active{background-color:var(--a0);}
 .bg-a1:active{background-color:var(--a1);}
 .bg-a1.active{background-color:var(--a1);}
+.bg-a2:active{background-color:var(--a2);}
+.bg-a2.active{background-color:var(--a2);}
 .bg-d0:disabled{background-color:var(--d0);}
 .bg-d1:disabled{background-color:var(--d1);}
 
