@@ -101,6 +101,5 @@ Which generates the corresponding code:
 ├── queues
 │   ├── convert-image/
 │   └── publish-log/
-├── app.arc
-└── package.json
+└── app.arc
 ```
