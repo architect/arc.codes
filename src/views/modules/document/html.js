@@ -83,6 +83,7 @@ ${ Symbols }
         ${ SlackLink() }
         ${ GithubLink({ classes: 'ml-2' }) }
         <button
+          aria-label="Menu"
           id="menu-button"
           class="
             ml0

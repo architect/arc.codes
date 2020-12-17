@@ -4,6 +4,7 @@ export default function GithubButton(state={}) {
   let { classes } = state
   return `
 <a
+  aria-label="Architect on GitHub"
   href="https://github.com/architect/architect"
   class="
   ${ classes }
