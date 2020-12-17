@@ -1,3 +1,4 @@
+// redirect v6 arc urls to v8
 let redirects = {
   // tmp until marketing landing page work done
   "/": "/docs/en/guides/get-started/quickstart",
