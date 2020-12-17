@@ -28,6 +28,10 @@ exports.handler = async function http (req) {
   let { lang, proxy } = pathParameters
   let parts = proxy.split('/')
   let docName = parts.pop()
+  
+  if (docName === 'playground') 
+    return { statusCode: 303, headers: { location: '/playground' }}
+
   let doc = `${docName}.md`
   let activePath = path.join(
     'docs',

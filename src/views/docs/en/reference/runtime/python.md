@@ -24,7 +24,7 @@ def handler(event, context):
 
 ### `arc`
 
-`arc.reflect` returns a dict of the the current AWS resources.
+`arc.reflect` returns a dict of the current AWS resources.
 
 Example output:
 

@@ -27,7 +27,7 @@ end
 
 ### `Arc`
 
-*`Arc.reflect`* returns a hash of the the current AWS resources.
+*`Arc.reflect`* returns a hash of the current AWS resources.
 
 Example output:
 
@@ -72,5 +72,5 @@ Example output:
 
 ### `Arc::Tables`
 
-- `name(table)` return the physicalID for the given table name
+- `name(table)` return the CloudFormation name for the given table name
 
