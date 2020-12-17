@@ -29,12 +29,13 @@
   "scripts": {
     "deploy": "npx arc deploy",
     "spellcheck": "cross-env npx spellchecker './src/views/docs/en/**/*.md' --no-suggestions -q -d ./scripts/dictionary.js --plugins spell indefinite-article repeated-words syntax-mentions syntax-urls",
-    "lint": "eslint src --ignore-pattern node_modules --fix",
+    "lint": "eslint src/http --fix",
     "start": "sandbox",
-    "test": "tape -r esm test/*.test.js test/**/*.js | tap-spec"
+    "test": "tape -r esm test/*-test.js test/**/*.js | tap-spec"
   },
   "dependencies": {
     "@architect/architect": "^8.4.0-RC.0",
+    "@architect/eslint-config": "^1.0.0",
     "@architect/functions": "^3.13.8",
     "@architect/inventory": "^1.2.0",
     "@architect/package": "^6.0.1",
@@ -50,5 +51,8 @@
     "spellchecker-cli": "^4.4.0",
     "tap-spec": "^5.0.0",
     "tape": "^5.0.1"
+  },
+  "eslintConfig": {
+    "extends": "@architect/eslint-config"
   }
 }

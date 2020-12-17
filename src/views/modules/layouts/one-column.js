@@ -1,4 +1,4 @@
-export default function OneColumn(props={}) {
+export default function OneColumn (props = {}) {
   return `
   `
 }

@@ -1,4 +1,4 @@
-let Guides = [{
+let Guides = [ {
   'Get started': [
     'Why Architect?',
     'Quickstart',
@@ -13,7 +13,7 @@ let Guides = [{
     'Deployment',
     'Logging & monitoring', // cloudwatch
   ],
-  /*TODO
+  /* TODO
   'Frontend': [
     'Static assets', // fingerprint, ignore, folder, link to cdn
     'HTTP functions', //
@@ -34,9 +34,9 @@ let Guides = [{
     'Add a custom domain',
     'Eject to SAM'
   ]*/
-}]
+} ]
 
-let Reference = [{
+let Reference = [ {
   'Runtime': [
     'Node',
     'Deno',
@@ -67,7 +67,7 @@ let Reference = [{
     '@views',
     '@ws'
   ],
-  'config.arc':[
+  'config.arc': [
     '@aws',
     'runtime',
     'memory',
@@ -82,7 +82,7 @@ let Reference = [{
     '.env',
     '@sandbox'
   ]
-}]
+} ]
 
 let About = [
   'Mission',
