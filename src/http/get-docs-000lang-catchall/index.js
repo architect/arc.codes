@@ -19,7 +19,6 @@ const readFile = util.promisify(fs.readFile)
 const Html = require('@architect/views/modules/document/html.js').default
 const toc = require('@architect/views/docs/table-of-contents')
 const yaml = require('js-yaml')
-const REPO = 'https://github.com/architect/arc.codes'
 const EDIT_DOCS = `edit/main/src/views/docs/`
 const cache = {} // cheap warm cache
 
@@ -39,8 +38,8 @@ exports.handler = async function http (req) {
     ...parts,
     docName
   )
-  let editURL = path.join(
-    REPO,
+  let editURL = 'https://github.com/architect/arc.codes/'
+  editURL += path.join(
     EDIT_DOCS,
     lang,
     ...parts,
