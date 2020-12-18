@@ -20,7 +20,6 @@ Architect `@tables` defines DynamoDB tables and `@indexes` define global seconda
 [Encryption](#encryption)
 [IAM Permissions](#iam-permissions)
 [Deploy](#deploy)
-[REPL](#repl)
 [Write Data](#write-data)
 [Read Data](#read-data)
 [Stream Data](#stream-data)
@@ -151,14 +150,6 @@ For `@tables` only the following IAM actions are allowed at runtime:
 
 - `arc deploy` to deploy with CloudFormation to staging
 - `arc deploy production` to run a full CloudFormation production deployment
-
----
-
-## REPL
-
-- `arc repl` to connect to a local in memory sandbox
-- `arc repl staging` to connect to staging tables
-- `arc repl production` to connect to production tables
 
 ---
 
