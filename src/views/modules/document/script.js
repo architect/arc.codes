@@ -4,5 +4,5 @@ export default function Script (props) {
   return src ? `
 <script src=${src} type="module" crossorigin=""></script>
   `
-  : ''
+    : ''
 }

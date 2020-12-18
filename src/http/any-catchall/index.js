@@ -5,9 +5,9 @@ let redirect = require('./redirect')
 
 // middleware proxy s3 assets
 let asap = http.proxy.public({
-  spa: false, 
-  alias: { 
-    '/playground': '/playground.html' 
+  spa: false,
+  alias: {
+    '/playground': '/playground.html'
   }
 })
 

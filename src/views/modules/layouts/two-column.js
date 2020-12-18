@@ -1,6 +1,6 @@
 import Sidebar from '../ui/sidebar.js'
 
-export default function TwoColumn(props={}) {
+export default function TwoColumn (props = {}) {
   let { children } = props
 
   return `
@@ -36,7 +36,7 @@ export default function TwoColumn(props={}) {
       overflow-auto
     "
   >
-    ${ children }
+    ${children}
 </div>
   `
 }

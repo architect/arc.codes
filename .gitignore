@@ -1,7 +1,7 @@
 .arc-env
 .DS_Store
+**/static.json
 node_modules
-/src/shared/static.json
 package-lock.json
 sam.json
 sam.yaml

@@ -2,7 +2,7 @@ import listFromObject from '../helpers/list.js'
 import slugify from '../helpers/slugify.js'
 import toc from '../../docs/table-of-contents.js'
 const map = {
-  list: function List(state={}) {
+  list: function List (state = {}) {
     let { children } = state
     return `
 <ul
@@ -11,12 +11,12 @@ const map = {
     list-none
   "
 >
-  ${ children }
+  ${children}
 </ul>
     `
   },
-  item: function Item(state={}) {
-    let { child='', children=[], depth, path, active } = state
+  item: function Item (state = {}) {
+    let { child = '', children = [], depth, path, active } = state
     let isHeading = children.length
     let ml = depth > 1
       ? 'ml-5'
@@ -25,21 +25,21 @@ const map = {
 <li
   class="
     mb-1
-    ${ ml }
+    ${ml}
   "
 >
   ${
-    isHeading
-      ? Heading({ children: child, depth, path, active })
-      : Anchor({ children: child, depth, path, active })
-   }
-  ${ children }
+  isHeading
+    ? Heading({ children: child, depth, path, active })
+    : Anchor({ children: child, depth, path, active })
+}
+  ${children}
 </li>
     `
   }
 }
 
-function Anchor(state={}) {
+function Anchor (state = {}) {
   let { children, path, active } = state
   let uri = path
     .concat([ children ])
@@ -55,11 +55,11 @@ function Anchor(state={}) {
     : ''
 
   return `
-<a href="${ href }" class="w-full inline-block text-p1 text-h1 text-a2 no-underline font-medium ${ activeClass }" >${pointer} ${ children }</a>
+<a href="${href}" class="w-full inline-block text-p1 text-h1 text-a2 no-underline font-medium ${activeClass}" >${pointer} ${children}</a>
   `
 }
 
-function Heading3(state={}) {
+function Heading3 (state = {}) {
   let { children, depth, path } = state
   let href = slugify(path.concat([ children ]).join('/'))
   return `
@@ -70,13 +70,13 @@ function Heading3(state={}) {
    text1
   "
 >
-  ${ children }
+  ${children}
 </h3>
 <hr class="border-solid border1 border-p1 mb1">
   `
 }
 
-function Heading4(state={}) {
+function Heading4 (state = {}) {
   let { children, depth, path } = state
   let href = slugify(path.concat([ children ]).join('/'))
   return `
@@ -87,12 +87,12 @@ function Heading4(state={}) {
    font-semibold
   "
 >
-  ${ children }
+  ${children}
 </h4>
   `
 }
 
-function Heading5(state={}) {
+function Heading5 (state = {}) {
   let { children, depth, path } = state
   let href = slugify(path.concat([ children ]).join('/'))
   return `
@@ -103,12 +103,12 @@ function Heading5(state={}) {
    font-medium
   "
 >
-  ${ children }
+  ${children}
 </h5>
   `
 }
 
-function Heading(state={}) {
+function Heading (state = {}) {
   let { depth } = state
   const headings = [
     Heading3,
@@ -118,7 +118,7 @@ function Heading(state={}) {
   return headings[depth - 1](state)
 }
 
-export default function Sidebar(props={}) {
+export default function Sidebar (props = {}) {
   let { active } = props
   return `
 <aside
@@ -141,7 +141,7 @@ export default function Sidebar(props={}) {
     bg-g0
   "
 >
-  ${ listFromObject({ data: toc, map, path: [ 'docs', 'en' ], active }) }
+  ${listFromObject({ data: toc, map, path: [ 'docs', 'en' ], active })}
 </aside>
   `
 }

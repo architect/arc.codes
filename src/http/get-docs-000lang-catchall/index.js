@@ -1,6 +1,4 @@
 require = require('esm')(module) // eslint-disable-line
-const arc = require('@architect/functions')
-const static = arc.static
 const path = require('path')
 const util = require('util')
 const fs = require('fs')
@@ -10,7 +8,7 @@ const markdownAnchor = require('markdown-it-anchor')
 const frontmatterParser = require('markdown-it-front-matter')
 const classMapping = require('./markdown-class-mappings')
 const hljs = require('highlight.js')
-const escapeHtml = Markdown().utils.escapeHtml
+const { escapeHtml } = Markdown().utils
 const highlight = require('./highlighter')
   .bind(null, hljs, escapeHtml)
 const arcGrammar = require('./arc-grammar')
@@ -28,9 +26,9 @@ exports.handler = async function http (req) {
   let { lang, proxy } = pathParameters
   let parts = proxy.split('/')
   let docName = parts.pop()
-  
-  if (docName === 'playground') 
-    return { statusCode: 303, headers: { location: '/playground' }}
+
+  if (docName === 'playground')
+    return { statusCode: 303, headers: { location: '/playground' } }
 
   let doc = `${docName}.md`
   let activePath = path.join(
@@ -47,7 +45,7 @@ exports.handler = async function http (req) {
     doc
   )
   // Add leading slash to match anchor href
-  let active = `/${ activePath }`
+  let active = `/${activePath}`
 
   let filePath = path.join(
     __dirname,
@@ -65,7 +63,7 @@ exports.handler = async function http (req) {
       cache[filePath] = await readFile(filePath, 'utf8')
     file = cache[filePath]
   }
-  catch(err) {
+  catch (err) {
     // TODO: Load next doc in section
     console.error(err)
     return {
@@ -85,7 +83,7 @@ exports.handler = async function http (req) {
     .use(markdownAnchor, {
       permalinkSymbol: ' '
     })
-    .use(frontmatterParser, function(str) {
+    .use(frontmatterParser, function (str) {
       frontmatter = yaml.load(str)
     })
   const children = md.render(file)
