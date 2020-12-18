@@ -13,14 +13,14 @@ let Guides = [ {
     'Deployment',
     'Logging & monitoring', // cloudwatch
   ],
-  /* TODO
   'Frontend': [
     'Static assets', // fingerprint, ignore, folder, link to cdn
-    'HTTP functions', //
-    'Sessions',
-    'Middleware',
-    'WebSockets functions',
+    //TODO 'HTTP functions', //
+    //TODO 'Sessions',
+    //TODO 'Middleware',
+    //TODO 'WebSockets functions',
   ],
+  /* TODO
   'Backend': [
     'Database tables & indexes',
     'Database stream functions',
