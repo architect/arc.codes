@@ -63,6 +63,7 @@ ${Symbols}
       "
     >
       <a
+        aria-label="OpenJS Architect"
         href="/"
         class="
           text-g0
