@@ -125,7 +125,108 @@ likes
   date *String
 ```
 
-Running `arc init` in the same directory as the `app.arc` file above generates the following function code:
+`arc.json` or `package.json` under the `arc` or `architect` key:
+
+```json
+{
+  "app": "hello",
+  "static": { 
+    "fingerprint": true 
+  },
+  "ws": [
+    "action",
+    "connect",
+    "default",
+    "disconnect"
+  ],
+  "http": [
+    ["get", "/"],
+    ["get", "/likes"],
+    ["post", "/likes"]
+  ],
+  "events": [
+    "hit-counter"
+  ],
+  "scheduled": {
+    "daily-affirmation": "rate(1 day)"
+  },
+  "tables": {
+    "likes": {
+      "likeID": "*String",
+      "stream": true
+    }
+  },
+  "indexes": {
+    "likes": {
+      "date": "*String"
+    }
+  }
+}
+```
+
+Or, if you prefer, `arc.yaml` or `arc.yml`:
+
+```yaml
+app: "hello"
+static: 
+  fingerprint: true 
+ws: 
+  - action
+  - connect
+  - default
+  - disconnect
+http:
+  - get: "/"
+  - get: "/likes"
+  - post: "/likes"
+events:
+  - hit-counter
+scheduled:
+  - daily-affirmation: "rate(1 day)"
+tables:
+  - likes: {likeID: "*String", stream: true}
+indexes:
+  - likes: {date: "*String"}
+```
+
+Or even `arc.toml`:
+
+```toml
+app="hello"
+
+[static]
+fingerprint=true
+
+ws=[
+  "action",
+  "connect",
+  "default",
+  "disconnect"
+]
+
+http=[
+  ["get", "/"],
+  ["get", "/likes"],
+  ["post", "/likes"],
+]
+
+events=["hit-counter"]
+
+[scheduled]
+daily-affirmation=["rate(1 day)"]
+
+[[tables]]
+
+[tables.likes]
+likeiD="*String"
+stream=true
+
+[[indexes]]
+[indexes.likes]
+date="*String"
+```
+
+Running `arc init` in the same directory as the file above generates the following Lambda function code:
 
 ```
 .
