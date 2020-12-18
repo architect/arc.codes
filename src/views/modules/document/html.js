@@ -8,28 +8,28 @@ import Sidebar from '../components/sidebar.js'
 import GithubLink from '../components/github-link.js'
 import SlackLink from '../components/slack-link.js'
 
-export default function HTML (props={}) {
+export default function HTML (props = {}) {
   let {
-    children=[],
-    editURL='',
-    lang='en',
-    scripts='',
-    state={},
-    thirdparty='',
-    title=''
+    children = [],
+    editURL = '',
+    lang = 'en',
+    scripts = '',
+    state = {},
+    thirdparty = '',
+    title = ''
   } = props
   let scriptTags = scripts &&
     Array.isArray(props.scripts)
-      ? scripts.map(src => Script({ src }))
-      : Script(scripts)
+    ? scripts.map(src => Script({ src }))
+    : Script(scripts)
   let stateTag = state &&
       State(state) || ''
 
   return `
 <!DOCTYPE html>
-<html lang="${ lang }" class="h-full">
-${ Head(props) }
-${ Symbols }
+<html lang="${lang}" class="h-full">
+${Head(props)}
+${Symbols}
 <body
   class="
     h-full
@@ -71,7 +71,7 @@ ${ Symbols }
           cursor-pointer
         "
       >
-        ${ Logo({ classes: 'h-logo' }) }
+        ${Logo({ classes: 'h-logo' })}
       </a>
       <div
         class="
@@ -80,8 +80,8 @@ ${ Symbols }
           justify-between
         "
       >
-        ${ SlackLink() }
-        ${ GithubLink({ classes: 'ml-2' }) }
+        ${SlackLink()}
+        ${GithubLink({ classes: 'ml-2' })}
         <button
           aria-label="Menu"
           id="menu-button"
@@ -95,12 +95,12 @@ ${ Symbols }
             cursor-pointer
           "
         >
-          ${ Icon({ href: 'hamburger', classes: 'icon fill-current' }) }
+          ${Icon({ href: 'hamburger', classes: 'icon fill-current' })}
         </button>
       </div>
       <div class="indicator bg-image0 absolute right0 bottom0 left0"></div>
     </header>
-    ${ Sidebar(props) }
+    ${Sidebar(props)}
     <main
       id="main"
       class="
@@ -123,10 +123,10 @@ ${ Symbols }
             text2
           "
         >
-          ${ title }
+          ${title}
         </h1>
         <div class="pb4 docs">
-          ${ children }
+          ${children}
           <div class="flex justify-end mt4">
             <a href="${editURL}" target="_blank" class="text1 text-p1 text-h1 text-a2 no-underline font-semibold">Edit this doc on Github →</a>
           </div>
@@ -134,9 +134,9 @@ ${ Symbols }
       </div>
     </main>
   </div>
-  ${ stateTag }
-  ${ scriptTags }
-  ${ thirdparty }
+  ${stateTag}
+  ${scriptTags}
+  ${thirdparty}
 </body>
 </html>
 `

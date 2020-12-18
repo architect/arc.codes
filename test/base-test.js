@@ -1,6 +1,6 @@
 const test = require('tape')
 
-test('base', t=> {
+test('base', t => {
   t.ok(true)
   t.end()
 })

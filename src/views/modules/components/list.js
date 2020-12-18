@@ -1,8 +1,8 @@
-export default function List(props={}) {
+export default function List (props = {}) {
   let { children, classes } = props
   return `
 <ul class=${classes}>
-  ${ children }
+  ${children}
 </ul>
   `
 }

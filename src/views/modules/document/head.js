@@ -1,4 +1,4 @@
-export default function Head (props={}) {
+export default function Head (props = {}) {
   let { category, description, title } = props
   let fullTitle = category && title
     ? `${category} > ${title} - Architect documentation`

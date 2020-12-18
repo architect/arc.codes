@@ -1,8 +1,8 @@
-export default function Logo(props={}) {
+export default function Logo (props = {}) {
   let { classes } = props
   return `
 <div
-  class="fill-current ${ classes }"
+  class="fill-current ${classes}"
 >
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 267.07 50.23">
   <g>

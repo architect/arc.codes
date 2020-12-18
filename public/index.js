@@ -46,7 +46,7 @@
       let scrollHeight = 'scrollHeight'
       let currentTop = el[scrollTop] || body[scrollTop]
       let currentHeight = (el[scrollHeight] || body[scrollHeight]) - body.clientHeight
-      return Math.floor((currentTop / currentHeight) * 100);
+      return Math.floor((currentTop / currentHeight) * 100)
     }
 
 
