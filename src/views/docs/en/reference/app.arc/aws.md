@@ -29,7 +29,15 @@ If you have AWS exports in your `.bashrc` and `@aws` specified in your `app.arc`
 
 For example, to deploy to the northern California AWS AZ with your AWS `work` profile's credentials, use:
 
+<arc-viewer default-tab=arc>
+
+<div slot=contents class=bg-g4>
+
+<arc-tab label=arc>
+
 <h5>arc</h5>
+
+<div slot=content>
 
 ```arc
 @aws
@@ -37,7 +45,15 @@ region us-west-1
 profile work
 ```
 
+</div>
+
+</arc-tab>
+
+<arc-tab label=json>
+
 <h5>json</h5>
+
+<div slot=content>
 
 ```json
 {
@@ -48,7 +64,15 @@ profile work
 }
 ```
 
+</div>
+
+</arc-tab>
+
+<arc-tab label=toml>
+
 <h5>toml</h5>
+
+<div slot=content>
 
 ```toml
 [aws]
@@ -56,7 +80,15 @@ region="us-west-1"
 profile="work"
 ```
 
+</div>
+
+</arc-tab>
+
+<arc-tab label=yaml>
+
 <h5>yaml</h5>
+
+<div slot=content>
 
 ```yaml
 ---
@@ -64,6 +96,15 @@ aws:
   region: us-west-1
   profile: work
 ```
+
+</div>
+
+</arc-tab>
+
+</div>
+
+</arc-viewer>
+
 
 <!-- ### Custom Runtimes with AWS Lambda Layers
 If you want to use a custom runtime with Lambda Layers you need to set `runtime` to `provided` and set the following key:

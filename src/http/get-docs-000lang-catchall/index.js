@@ -104,7 +104,8 @@ exports.handler = async function http (req) {
       sections,
       thirdparty: `
 <script type=module src=/index.js crossorigin></script>
-<script type=module src=/components/arc-tab-bar.js crossorigin></script>
+<script type=module src=/components/arc-viewer.js crossorigin></script>
+<script type=module src=/components/arc-tab.js crossorigin></script>
       `,
       title,
       toc

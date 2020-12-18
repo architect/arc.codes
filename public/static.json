@@ -1,10 +1,12 @@
 {
+  "arc.codes.png": "arc.codes-dffa3a9996.png",
   "index.js": "index-9687ad7aae.js",
   "playground.html": "playground-289f0fdda7.html",
-  "playground.js": "playground-bd633f9618.js",
+  "playground.js": "playground-f7ed4b7710.js",
   "components/arc-tab-bar.js": "components/arc-tab-bar-c2f30dbca6.js",
-  "components/arc-tab.js": "components/arc-tab-f6bfbaf431.js",
+  "components/arc-tab.js": "components/arc-tab-aa093ad1f1.js",
+  "components/arc-viewer.js": "components/arc-viewer-60e6d308c9.js",
   "css/index.css": "css/index-8e10a21ce7.css",
-  "css/styles.css": "css/styles-b44134d8c8.css",
+  "css/styles.css": "css/styles-9dc95bf7f9.css",
   "css/syntax.css": "css/syntax-605168cf6d.css"
 }

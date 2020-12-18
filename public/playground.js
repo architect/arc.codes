@@ -1,4 +1,5 @@
 (function() {
+
   let btn = document.getElementById('pkg-submit')
   btn.remove()
 
@@ -36,7 +37,6 @@ function copyShare(e) {
 }
 
 async function getPreview() {
-  console.log('GET PREVIEW')
   const input = document.getElementById('pkg-input')
   const arc = input.value
   const url = `/api/package?arc=${btoa(arc)}`

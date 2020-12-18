@@ -25,6 +25,7 @@
   --h3:#DE1792;/* Barbie Pink */
   --h4:#FF4747;/* Bittersweet Orange */
   --h5:#FAE05D;/* Minion Yellow */
+  --h6:#CFCFCF;/* #CFCFCF */
   --a0:#A4A4A4;/* #A4A4A4 */
   --a1:#8E8E8E;/* #8E8E8E */
   --a2:#1D5266;/* #8E8E8E */
@@ -146,6 +147,7 @@ body {
 .bg-h3:hover{background-color:var(--h3);}
 .bg-h4:hover{background-color:var(--h4);}
 .bg-h5:hover{background-color:var(--h5);}
+.bg-h6:hover{background-color:var(--h6);}
 .bg-a0:active{background-color:var(--a0);}
 .bg-a0.active{background-color:var(--a0);}
 .bg-a1:active{background-color:var(--a1);}
