@@ -24,11 +24,13 @@ let arc = require('@architect/functions')
 ## API
 
 - [`arc.static`](#arc.static) Get a `@static` asset path 
-- [`arc.http.async`](#arc.http.async) Middleware for `@http`
-- [`arc.http.session`](#arc.http.session) Sessions for `@http` 
+- [`arc.http.async`](#arc.http.async) Middleware for `@http` functions
+- [`arc.http.express`](#arc.http.express) Express support for `@http` functions
+- [`arc.http.proxy`](#arc.http.proxy) Middleware for `@static` assets
+- [`arc.http.session`](#arc.http.session) Sessions for `@http` functions
 - [`arc.tables`](#arc.tables) Generates a DynamoDB client for `@tables`
-- [`arc.events`](#arc.events) Publish/subscribe helpers for SNS `@events`
-- [`arc.queues`](#arc.queues) Publish/subscribe helpers for SQS `@queues`
+- [`arc.events`](#arc.events) Publish/subscribe helpers for SNS `@events` functions
+- [`arc.queues`](#arc.queues) Publish/subscribe helpers for SQS `@queues` functions
 
 ### `arc.static`
 
@@ -91,9 +93,42 @@ And adds the following clean convenience params:
 - `type` sets the `Content-Type` header
 - `xml` sets the `Content-Type` header to `text/xml; charset=utf8`
 
+### `arc.http.express`
+
+ExpressJS migration helper.
+
+```javascript
+let arc = require('@architect/functions')
+let express = require('express')
+
+let app = express()
+
+app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/cool', (req, res)=> res.send('very cool'))
+
+exports.handler = arc.http.express(app)
+```
+
+### `arc.http.proxy`
+
+Middleware for serving `@static` folder assets.
+
+```javascript
+let arc = require('@architect/functions')
+
+let asap = arc.http.proxy({
+  spa: false,
+  alias: {
+    '/playground': '/playground.html'
+  }
+})
+
+exports.handler = arc.http.async(asap)
+```
+
 ### `arc.http.session`
 
-Read the current session in an `@http` request and write it back to a cookie
+Read the current session in an `@http` request and write it back to a cookie.
 
 ```javascript
 async function handler (req) {
