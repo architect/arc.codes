@@ -1,4 +1,4 @@
-import Sidebar from '../ui/sidebar.js'
+import Sidebar from '../components/sidebar.js'
 
 export default function TwoColumn (props = {}) {
   let { children } = props

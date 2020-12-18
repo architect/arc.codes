@@ -60,8 +60,7 @@ function Anchor (state = {}) {
 }
 
 function Heading3 (state = {}) {
-  let { children, depth, path } = state
-  let href = slugify(path.concat([ children ]).join('/'))
+  let { children } = state
   return `
 <h3
   class="
@@ -77,8 +76,7 @@ function Heading3 (state = {}) {
 }
 
 function Heading4 (state = {}) {
-  let { children, depth, path } = state
-  let href = slugify(path.concat([ children ]).join('/'))
+  let { children } = state
   return `
 <h4
   class="
@@ -93,8 +91,7 @@ function Heading4 (state = {}) {
 }
 
 function Heading5 (state = {}) {
-  let { children, depth, path } = state
-  let href = slugify(path.concat([ children ]).join('/'))
+  let { children } = state
   return `
 <h5
   class="
