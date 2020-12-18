@@ -5,7 +5,7 @@ description: Architect projects support text and binary static assets such as im
 
 Architect projects support text and binary static assets such as images, styles, and scripts. By default `@static` assets live in the `/public` folder locally and an S3 bucket once deployed.
 
-## `@static` configuration options
+## `@static` configuration
 
 - `folder public` configures the deployment folder (default is `public`)
 - `fingerprint true` enables asset fingerprinting (default is `false`)
@@ -13,7 +13,16 @@ Architect projects support text and binary static assets such as images, styles,
 
 > Tip: `@static` assets are available at `/_static` which makes them **same-origin**
 
+### `folder`
+
+```arc
+@static
+folder dist
+```
+
 ### `fingerprint`
+
+Fingerprinting adds a unique SHA to a file name based on the file content before uploading to S3. The file can then be cached effectively forever. Whenever the contents of the file changes so does the SHA invalidating the cache. 
 
 Enable fingerprinting:
 
@@ -22,14 +31,7 @@ Enable fingerprinting:
 fingerprint true
 ```
 
-## `folder`
-
-```arc
-@static
-folder dist
-```
-
-## `ignore`
+### `ignore`
 
 Ignore zip and tar files in the `@static` folder:
 
@@ -46,7 +48,7 @@ Ignore is greedy. For example if you ignore "foo", all filenames containing "foo
 
 ### Referencing fingerprinted file paths at runtime
 
-To get the correct path for generated files at runtime use `arc.static`.
+To get the path for generated files at runtime use `arc.static`.
 
 ```javascript
 // src/http/get-index/index.js
