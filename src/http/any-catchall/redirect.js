@@ -25,7 +25,7 @@ let redirects = {
   '/primitives/macros': '/docs/en/reference/app.arc/macros',
 
   // Guides
-  '/guides/upgrade': '/docs/en/about/changelog',
+  '/guides/upgrade': '/docs/en/about/upgrade',
   '/guides/testing': '/docs/en/guides/developer-experience/local-development',
   '/guides/project-manifest': '/docs/en/guides/get-started/project-layout',
   '/guides/share-code': '/docs/en/guides/developer-experience/sharing-code',

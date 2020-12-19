@@ -4,6 +4,9 @@ title: Implementing CORS
 
 Cross-origin resource sharing (CORS) is a mechanism that that uses additional HTTP headers to tell browsers to give a web application running at one origin access resources from another domain outside the domain from which the first resource was served. A web page may freely embed cross-origin images, stylesheets, scripts, iframes, and videos.
 
+With CORS implemented, you can now make full use of your `app.arc` application within your existing static sites or client-side applications.
+
+This is a great way to ease into using cloud functions, or adding backend functionality to an otherwise static site.
 
 ```javascript
 // /public/index.mjs
@@ -23,18 +26,17 @@ The API route `src/http/get-api` is CORS enabled with one flag:
 
 ```javascript
 // src/http/get-api/index.js
+let arc = require('@architect/functions')
 
-exports.handler = async function http(req) {
+exports.handler = arc.http.async(handler)
+
+async function handler (req) {
   return {
     cors: true,
-    type: 'application/json',
-    body: JSON.stringify({msg: 'hello world'})
+    json: { msg: 'hello world' }
   }
 }
 ```
-
-> 🌟 Source for this example at [architect/arc-example-cors](https://github.com/architect/arc-example-cors)
-
 
 ## Restricting Domains
 
@@ -61,13 +63,4 @@ exports.handler = async function http(req) {
   }
 }
 ```
-
-
-## Conclusion
-
-With CORS implemented, you can now make full use of your `app.arc` application within your existing static sites or client-side applications.
-
-This is a great way to ease into using cloud functions, or adding backend functionality to an otherwise static site.
-
----
 
