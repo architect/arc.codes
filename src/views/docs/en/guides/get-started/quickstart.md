@@ -4,7 +4,7 @@ category: Get started
 description: Get started quickly with Architect
 ---
 
-> Architect is the quickest way to build serverless database backed web apps on AWS
+> Architect is the quickest way to build serverless web apps on AWS
 
 Open your terminal to install `arc` globally:
 
@@ -59,5 +59,3 @@ arc package
 sam package --template-file sam.json --output-template-file out.yaml --s3-bucket mybukkit
 sam deploy --template-file out.yaml --stack-name MyStack --s3-bucket mybukkit --capabilities CAPABILITY_IAM
 ```
-
-

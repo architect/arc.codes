@@ -95,7 +95,7 @@ And adds the following clean convenience params:
 
 ### `arc.http.express`
 
-ExpressJS migration helper.
+[Express](https://expressjs.com) migration helper.
 
 ```javascript
 let arc = require('@architect/functions')
