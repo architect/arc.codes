@@ -6,7 +6,7 @@ description: Get started quickly with Architect
 
 > Architect is the quickest way to build serverless web apps on AWS
 
-Open your terminal to install `arc` globally:
+Open your terminal to install `arc`:
 
 ```bash
 npm i -g @architect/architect
@@ -39,14 +39,14 @@ arc sandbox
 
 ## Deploy to AWS
 
-Deploy the `staging` stack:
+Deploy to a `staging` stack:
 
 ```bash
 arc deploy
 ```
 > Protip: create additional `staging` stacks with `--name`
 
-Ship to a `production` stack:
+Ship a `production` stack:
 
 ```bash
 arc deploy production
@@ -55,7 +55,7 @@ arc deploy production
 Or eject to CloudFormation and deploy with the AWS SAM CLI:
 
 ```
-arc package
+arc deploy --dry-run
 sam package --template-file sam.json --output-template-file out.yaml --s3-bucket mybukkit
 sam deploy --template-file out.yaml --stack-name MyStack --s3-bucket mybukkit --capabilities CAPABILITY_IAM
 ```
