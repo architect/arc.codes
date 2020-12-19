@@ -4,6 +4,7 @@ export default function StarLink (state = {}) {
   let { classes } = state
   return `
 <a
+  rel="noreferrer"
   href="https://github.com/architect"
   class="
   ${classes}
