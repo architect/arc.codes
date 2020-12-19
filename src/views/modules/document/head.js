@@ -11,6 +11,9 @@ export default function Head (props = {}) {
   <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
   <meta name="description" content="${descriptionContent}">
   <title>${fullTitle}</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://s3-us-west-2.amazonaws.com/arc.codes/architect-favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://s3-us-west-2.amazonaws.com/arc.codes/architect-favicon-16.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="https://s3-us-west-2.amazonaws.com/arc.codes/architect-favicon-64.png">
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
   <link rel="stylesheet" type="text/css" href="/css/index.css">
   <link rel="stylesheet" type="text/css" href="/css/syntax.css">

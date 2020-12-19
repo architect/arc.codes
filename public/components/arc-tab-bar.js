@@ -1,4 +1,4 @@
-import ArcTab from './arc-tab.js'
+//import ArcTab from './arc-tab.js'
 
 class ArcTabBar extends HTMLElement {
   constructor() {
