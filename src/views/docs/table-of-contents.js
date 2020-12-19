@@ -15,10 +15,10 @@ let Guides = [ {
   ],
   'Frontend': [
     'Static assets', // fingerprint, ignore, folder, link to cdn
-    //TODO 'HTTP functions', //inc cors
-    //TODO 'Sessions',
-    //TODO 'Middleware',
-    //TODO 'WebSockets functions',
+    // TODO 'HTTP functions', //inc cors
+    // TODO 'Sessions',
+    // TODO 'Middleware',
+    // TODO 'WebSockets functions',
   ],
   /* TODO
   'Backend': [
@@ -34,7 +34,7 @@ let Guides = [ {
     'Add a custom domain',
     'Eject to SAM'
   ]*/
-}]
+} ]
 
 let Reference = [ {
   'Runtime': [
