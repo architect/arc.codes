@@ -27,7 +27,7 @@
     ]
   },
   "scripts": {
-    "deploy": "npx arc deploy",
+    "deploy": "./scripts/deploy",
     "spellcheck": "cross-env npx spellchecker './src/views/docs/en/**/*.md' --no-suggestions -q -d ./scripts/dictionary.js --plugins spell indefinite-article repeated-words syntax-mentions syntax-urls",
     "lint": "eslint src --fix",
     "start": "sandbox",
