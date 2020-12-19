@@ -27,13 +27,13 @@ let Guides = [ {
     'Event functions',
     'Queue functions',
     'Scheduled functions',
-  ],
+  ],*/
   'Extend': [
-    'Migrate legacy code',// @proxy, arc.http.express
+    //TODO'Migrate legacy code',// @proxy, arc.http.express
     'Custom CloudFormation',
-    'Add a custom domain',
-    'Eject to SAM'
-  ]*/
+    //TODO'Add a custom domain',
+    //TODO'Ejecting '
+  ]
 } ]
 
 let Reference = [ {
