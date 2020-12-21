@@ -36,7 +36,7 @@
     "test": "tape -r esm test/*-test.js test/**/*.js | tap-spec"
   },
   "dependencies": {
-    "@architect/architect": "^8.4.0-RC.0",
+    "@architect/architect": "^8.4.2",
     "@architect/eslint-config": "^1.0.0",
     "@architect/functions": "^3.13.8",
     "@architect/inventory": "^1.2.0",
