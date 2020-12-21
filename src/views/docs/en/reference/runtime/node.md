@@ -86,7 +86,7 @@ And adds the following clean convenience params:
 - `cors` sets the `Access-Control-Allow-Origin` header to `*`
 - `html` sets the `Content-Type` header to `text/html; charset=utf8`
 - `js` sets the `Content-Type` header to `text/javascript; charset=utf8`
-- `json` sets the `Content-Type` header to `text/html; charset=utf8`
+- `json` sets the `Content-Type` header to `application/json`
 - `session` write a value to the session
 - `status` also an alias for `statusCode`
 - `text` sets the `Content-Type` header to `text/plain; charset=utf8`
