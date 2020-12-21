@@ -73,4 +73,4 @@ exports.handler = async function http () {
 }
 ```
 
-> Tip: `arc.http.proxy` will automatically redirect to fingerprinted file paths
+> Tip: `arc.static` will automatically redirect to fingerprinted file paths
