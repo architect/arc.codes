@@ -34,8 +34,9 @@ html {
   width: 2rem;
   height: 2rem;
 }
-.h-logo {
-  height:1.5rem;
+.logo {
+  width: 8rem;
+  height: 1.5rem;
 }
 .left-sidebar {
   /* Hide Sidebar off screen in mobile */

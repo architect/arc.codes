@@ -72,7 +72,7 @@ ${Symbols}
           cursor-pointer
         "
       >
-        ${Logo({ classes: 'h-logo' })}
+        ${Logo({ classes: 'logo' })}
       </a>
       <div
         class="
