@@ -2,17 +2,20 @@ class ArcViewer extends HTMLElement {
   constructor() {
     super()
     this.labels = []
+    this.tabs
     this.clickHandler = this.clickHandler.bind(this)
     this.updateTabs = this.updateTabs.bind(this)
     this.defaultTab = this.getAttribute('default-tab')
-    this.updateTabs(this.defaultTab)
     this.template = this.template.bind(this)
     const template = document.createElement('template')
     template.innerHTML = this.template()
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template.content.cloneNode(true))
     this.content = this.querySelector('[slot=contents]')
+    this.createTabBar = this.createTabBar.bind(this)
     this.initTabs = this.initTabs.bind(this)
+
+    this.initTabs(this.defaultTab)
   }
 
   template() {
@@ -34,10 +37,10 @@ class ArcViewer extends HTMLElement {
   }
 
   connectedCallback() {
-    this.initTabs()
+    this.createTabBar()
   }
 
-  initTabs() {
+  createTabBar() {
     let fragment = new DocumentFragment()
     this.labels.forEach(l => {
       let btn = document.createElement('button')
@@ -67,13 +70,21 @@ class ArcViewer extends HTMLElement {
     this.shadowRoot.prepend(fragment)
   }
 
+  initTabs(str='') {
+    this.tabs = this.getElementsByTagName('arc-tab')
+    for( let tab of this.tabs ) {
+      let label = tab.getAttribute('label')
+      if (str === label) {
+        tab.setAttribute('active', '')
+      }
+      this.labels.push(label)
+    }
+  }
 
   updateTabs(str='') {
-    let tabs = this.getElementsByTagName('arc-tab')
-    for( let tab of tabs ) {
-      let label = tab.getAttribute('label')
+    for( let tab of this.tabs ) {
+      let label = tab.label
       tab.active = str === label
-      this.labels.push(label)
     }
   }
 }

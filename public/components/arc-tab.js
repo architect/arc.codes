@@ -32,7 +32,7 @@ class ArcTab extends HTMLElement {
   }
 
   set label(value) {
-    this.setAttribute('label')
+    this.setAttribute('label', value)
   }
 
   get label() {
