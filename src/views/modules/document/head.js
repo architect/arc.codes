@@ -19,7 +19,7 @@ export default function Head (props = {}) {
   <meta property="og:title" content="OpenJS Architect documentation">
   <meta property="og:description" content="Architect is the quickest way to build serverless web apps on AWS">
 
-  <meta property="og:image" content="">
+  <meta property="og:image" content="https://arc.codes/arc.codes.png">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
