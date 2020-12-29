@@ -1,6 +1,6 @@
 ---
 title: '@proxy'
-description: 
+description: Define a forwarding URL
 ---
 
 Defines a URL for API Gateway to forward all requests by default. Override with routes in `@http`.
@@ -14,13 +14,12 @@ Defines a URL for API Gateway to forward all requests by default. Override with 
 
 The following configuration file defines a `@proxy` for production that will handle requests for routes not defined in the `@http` section.
 
-<arc-tab-bar>
+<arc-viewer default-tab=arc>
+<div slot=contents class=bg-g4>
 
-<arc-tab label="arc">
-
-  <h5>arc</h5>
-
-  <div slot="content">
+<arc-tab label=arc>
+<h5>arc</h5>
+<div slot=content>
 
 ```arc
 @app
@@ -35,15 +34,12 @@ testing http://localhost:4000
 staging https://qa.example.biz
 production https://example.biz
 ```
-  </div>
-
+</div>
 </arc-tab>
 
-<arc-tab label="json">
-
-  <h5>json</h5>
-
-  <div slot="content">
+<arc-tab label=json>
+<h5>json</h5>
+<div slot=content>
 
 ```json
 {
@@ -59,16 +55,12 @@ production https://example.biz
   }
 }
 ```
-
-  </div>
-
+</div>
 </arc-tab>
 
-<arc-tab label="toml">
-
-  <h5>toml</h5>
-
-  <div slot="content">
+<arc-tab label=toml>
+<h5>toml</h5>
+<div slot=content>
 
 ```toml
 app="myapp"
@@ -83,16 +75,12 @@ testing="http://localhost:4000"
 staging="https://qa.example.biz"
 production="https://example.biz"
 ```
-
-  </div>
-
+</div>
 </arc-tab>
 
-<arc-tab label="yaml">
-
-  <h5>yaml</h5>
-
-  <div slot="content">
+<arc-tab label=yaml>
+<h5>yaml</h5>
+<div slot=content>
 
 ```yaml
 app: myapp
@@ -105,11 +93,10 @@ proxy:
   staging: https://qa.example.biz
   production: https://example.biz
 ```
-
-  </div>
-
+</div>
 </arc-tab>
 
-<arc-tab-bar>
+</div>
+<arc-viewer>
 
 With the above Architect file, your new app will respond to all get and post requests to `/v2/*`, and forward along requests to `/v1` to your existing API.

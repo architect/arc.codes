@@ -1,7 +1,6 @@
 ---
 title: '@views'
 description: Share view code across `@http` functions
-sections:
 ---
 
 Configure the location of view code. Architect considers copies view code into HTTP GET handler Lambda functions.
@@ -16,11 +15,12 @@ You can also specify to only copy view code to specific lambda functions by list
 
 This `app.arc` file defines specific `@http` functions to copy `src/views/` to:
 
-<arc-tab-bar>
+<arc-viewer default-tab=arc>
+<div slot=contents class=bg-g4>
 
 <arc-tab label=arc>
-
 <h5>arc</h5>
+<div slot=content>
 
 ```arc
 @app
@@ -36,14 +36,12 @@ get /raccoons
 get /kittens
 get /raccoons
 ```
-
+</div>
 </arc-tab>
 
 <arc-tab label=json>
-
-  <h5>json</h5>
-
-  <div slot=content>
+<h5>json</h5>
+<div slot=content>
 
 ```json
 {
@@ -60,16 +58,12 @@ get /raccoons
   ]
 }
 ```
-
-  </div>
-
+</div>
 </arc-tab>
 
 <arc-tab label=toml>
-
-  <h5>toml</h5>
-
-  <div slot=content>
+<h5>toml</h5>
+<div slot=content>
 
 ```toml
 app="myapp"
@@ -87,16 +81,12 @@ views=[
 ]
 
 ```
-
-  </div>
-
+</div>
 </arc-tab>
 
 <arc-tab label=yaml>
-
-  <h5>yaml</h5>
-
-  <div slot=content>
+<h5>yaml</h5>
+<div slot=content>
 
 ```yml
 ---
@@ -112,8 +102,8 @@ views:
 - get: "kittens"
 - get: "raccoons"
 ```
+</div>
+</arc-tab>
 
-  </div>
-
-<arc-tab>
-</arc-tab-bar>
+</div>
+</arc-viewer>

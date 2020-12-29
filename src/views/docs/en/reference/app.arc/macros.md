@@ -1,6 +1,6 @@
 ---
-title: Macros
-description: character description of this document!
+title: '@macro'
+description: Extend Architect app functionality
 ---
 
 Extend the functionality of your Architect app with standard CloudFormation. The `@macro` primitive allows developers to add any resources or modify existing ones extending Architect into the entire AWS ecosystem supported by CloudFormation.
@@ -9,7 +9,12 @@ Extend the functionality of your Architect app with standard CloudFormation. The
 
 These example configuration files declare a macro saved to `src/macros/my-custom-macro.js`
 
+<arc-viewer default-tab=arc>
+<div slot=contents class=bg-g4>
+
+<arc-tab label=arc>
 <h5>arc</h5>
+<div slot=content>
 
 ```arc
 @app
@@ -18,8 +23,12 @@ testapp
 @macros
 my-custom-macro
 ```
+</div>
+</arc-tab>
 
+<arc-tab label=json>
 <h5>json</h5>
+<div slot=content>
 
 ```json
 {
@@ -29,19 +38,12 @@ my-custom-macro
   ]
 }
 ```
+</div>
+</arc-tab>
 
-<h5>json</h5>
-
-```json
-{
-  "app": "testapp",
-  "macros": [
-    "my-custom-macro"
-  ]
-}
-```
-
+<arc-tab label=toml>
 <h5>toml</h5>
+<div slot=content>
 
 ```toml
 app="testapp"
@@ -51,8 +53,12 @@ macros=[
 ]
 
 ```
+</div>
+</arc-tab>
 
+<arc-tab label=yaml>
 <h5>yaml</h5>
+<div slot=content>
 
 ```yaml
 ---
@@ -61,6 +67,11 @@ app: testapp
 macros:
 - my-custom-macro
 ```
+</div>
+</arc-tab>
+
+</div>
+</arc-viewer>
 
 ### Deploy
 

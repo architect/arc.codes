@@ -1,6 +1,6 @@
 ---
 title: '@scheduled'
-description: 
+description: Define EventBridge schedule expressions
 ---
 
 Define EventBridge schedule expressions with Lambda handler functions.
@@ -20,13 +20,12 @@ Define EventBridge schedule expressions with Lambda handler functions.
 
 These configuration examples show how to define scheduled functions:
 
-<arc-tab-bar>
+<arc-viewer default-tab=arc>
+<div slot=contents class=bg-g4>
 
-<arc-tab label="arc">
-
-  <h5>arc</h5>
-
-  <div slot="content">
+<arc-tab label=arc>
+<h5>arc</h5>
+<div slot=content>
 
 ```arc
 @app
@@ -36,16 +35,12 @@ myapp
 daily-update-buddy rate(1 day)
 friyay-only cron(0 15 ? * FRI *)
 ```
-
-  </div>
-
+</div>
 </arc-tab>
 
-<arc-tab label="json">
-
-  <h5>json</h5>
-
-  <div slot="content">
+<arc-tab label=json>
+<h5>json</h5>
+<div slot=content>
 
 ```json
 {
@@ -55,17 +50,12 @@ friyay-only cron(0 15 ? * FRI *)
     "friyay-only": "cron(0 15 ? * FRI *)" }
 }
 ```
-
-  </div>
-
+</div>
 </arc-tab>
 
-<arc-tab label="toml">
-
-  <h5>toml</h5>
-
-  <div slot="content">
-
+<arc-tab label=toml>
+<h5>toml</h5>
+<div slot=content>
 ```toml
 app="myapp"
 
@@ -73,16 +63,12 @@ app="myapp"
 daily-update-buddy="rate(1 day)"
 friyay-only="cron(0 15 ? * FRI *)"
 ```
-
-  </div>
-
+</div>
 </arc-tab>
 
-<arc-tab label="yaml">
-
-  <h5>yaml</h5>
-
-  <div slot="content">
+<arc-tab label=yaml>
+<h5>yaml</h5>
+<div slot=content>
 
 ```yaml
 app: myapp
@@ -90,12 +76,11 @@ scheduled:
   - daily-update-buddy: rate(1 day)
   - friyay-only: cron(0 15 ? * FRI *)
 ```
-
-  </div>
-
+</div>
 </arc-tab>
 
-</arc-tab-bar>
+</div>
+</arc-viewer>
 
 
 Which generates the following scaffolding:

@@ -1,5 +1,6 @@
 ---
 title: '@aws'
+description: Define AWS specific configuration.
 ---
 
 Define AWS specific configuration.

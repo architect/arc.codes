@@ -1,6 +1,6 @@
 ---
 title: '@tables'
-description:
+description: Define DynamoDB tables
 ---
 
 Define DynamoDB tables with optional streaming Lambda functions.
@@ -27,12 +27,11 @@ Define DynamoDB tables with optional streaming Lambda functions.
 
 This `app.arc` file defines two database tables:
 
-<arc-tab-bar>
+<arc-viewer default-tab=arc>
+<div slot=contents class=bg-g4>
 
 <arc-tab label=arc>
-
 <h5>arc</h5>
-
 <div slot=content>
 
 ```arc
@@ -49,15 +48,10 @@ cats
   catID **String
 ```
 </div>
-
 </arc-tab>
 
 <arc-tab label=json>
-
-<h5>
-  json
-</h5>
-
+<h5>json</h5>
 <div slot=content>
 
 ```json
@@ -78,15 +72,10 @@ cats
 }
 ```
 </div>
-
 </arc-tab>
 
 <arc-tab label=toml>
-
-<h5>
-  toml
-</h5>
-
+<h5>toml</h5>
 <div slot=content>
 
 ```toml
@@ -101,15 +90,10 @@ pplID="*String"
 catID="**String"
 ```
 </div>
-
 </arc-tab>
 
 <arc-tab label=yaml>
-
-<h5>
-  yaml
-</h5>
-
+<h5>yaml</h5>
 <div slot=content>
 
 ```yaml
@@ -125,7 +109,7 @@ tables:
     catID: "**String"
 ```
 </div>
-
 </arc-tab>
 
-</arc-tab-bar>
+</div>
+</arc-viewer>

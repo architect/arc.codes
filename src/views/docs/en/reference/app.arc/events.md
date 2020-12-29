@@ -16,8 +16,12 @@ title: '@events'
 
 These configuration examples show how to define events:
 
+<arc-viewer default-tab=arc>
+<div slot=contents class=bg-g4>
 
+<arc-tab label=arc>
 <h5>arc</h5>
+<div slot=content>
 
 ```arc
 @app
@@ -27,8 +31,12 @@ myapp
 hit-counter
 likes
 ```
+</div>
+</arc-tab>
 
+<arc-tab label=json>
 <h5>json</h5>
+<div slot=content>
 
 ```json
 {
@@ -39,8 +47,12 @@ likes
   ]
 }
 ```
+</div>
+</arc-tab>
 
+<arc-tab label=toml>
 <h5>toml</h5>
+<div slot=content>
 
 ```toml
 app="myapp"
@@ -49,8 +61,12 @@ events=[
   "likes"
 ]
 ```
+</div>
+</arc-tab>
 
+<arc-tab label=yaml>
 <h5>yaml</h5>
+<div slot=content>
 
 ```yaml
 ---
@@ -59,6 +75,11 @@ events:
 - hit-counter
 - likes
 ```
+</div>
+</arc-tab>
+
+</div>
+</arc-viewer>
 
 Which generates the following scaffolding:
 

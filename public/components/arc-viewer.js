@@ -14,8 +14,8 @@ class ArcViewer extends HTMLElement {
     this.content = this.querySelector('[slot=contents]')
     this.createTabBar = this.createTabBar.bind(this)
     this.initTabs = this.initTabs.bind(this)
-
     this.initTabs(this.defaultTab)
+    this.createTabBar()
   }
 
   template() {
@@ -37,7 +37,6 @@ class ArcViewer extends HTMLElement {
   }
 
   connectedCallback() {
-    this.createTabBar()
   }
 
   createTabBar() {

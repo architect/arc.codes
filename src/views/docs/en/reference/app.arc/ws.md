@@ -1,6 +1,6 @@
 ---
 title: '@ws'
-description:
+description: Defin WebSocket endpoints
 ---
 
 Define WebSocket endpoint and Lambda handler functions.
@@ -13,13 +13,12 @@ No other config required
 
 This `app.arc` file defines both HTTP and WebSocket endpoints:
 
-<arc-tab-bar>
+<arc-viewer default-tab=arc>
+<div slot=contents class=bg-g4>
 
 <arc-tab label=arc>
-
-  <h5>arc</h5>
-
-  <div slot=content>
+<h5>arc</h5>
+<div slot=content>
 
 ```arc
 @app
@@ -32,16 +31,12 @@ get /
 # no other config required
 
 ```
-
-  </div>
-
-<arc-tab>
+</div>
+</arc-tab>
 
 <arc-tab label=json>
-
-  <h5>json</h5>
-
-  <div slot=content>
+<h5>json</h5>
+<div slot=content>
 
 ```json
 {
@@ -58,16 +53,12 @@ get /
   }
 }
 ```
-
-  </div>
-
-<arc-tab>
+</div>
+</arc-tab>
 
 <arc-tab label=toml>
-
-  <h5>toml</h5>
-
-  <div slot=content>
+<h5>toml</h5>
+<div slot=content>
 
 ```toml
 app="testapp"
@@ -79,18 +70,12 @@ http=[
 "ws"
 # no other config required
 ```
-
-  </div>
-
-<arc-tab>
-
-<arc-tab>
+</div>
+</arc-tab>
 
 <arc-tab label=yaml>
-
-  <h5>yaml</h5>
-
-  <div slot=content>
+<h5>yaml</h5>
+<div slot=content>
 
 ```yml
 ---
@@ -102,12 +87,11 @@ http:
 ws: ~
 # no other config required
 ```
+</div>
+</arc-tab>
 
-  </div>
-
-<arc-tab>
-
-<arc-tab-bar>
+</div>
+<arc-viewer>
 
 Running `arc create` generates the following functions:
 
