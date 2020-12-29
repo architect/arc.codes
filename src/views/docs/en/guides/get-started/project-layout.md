@@ -22,7 +22,7 @@ Architect projects have the following significant folder structure by default:
 └── app.arc
 ```
 
-> All folders are **OPTIONAL**. Architect ignores any additional folders. All source paths can be reconfigured to suite unique project needs.
+> All folders are **OPTIONAL**. Architect ignores any additional folders. All source paths can be reconfigured to suit unique project needs.
 
 ---
 
