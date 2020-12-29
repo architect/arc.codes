@@ -133,7 +133,7 @@ Read the current session in an `@http` request and write it back to a cookie.
 ```javascript
 async function handler (req) {
   // read the session
-  let session = arc.http.session.read(req)
+  let session = await arc.http.session.read(req)
   // save the session into a cookie string
   let cookie = await arc.http.session.write({ count: 1 })
   // write the cookie to the browser
