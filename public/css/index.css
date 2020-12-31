@@ -36,6 +36,9 @@ html {
 }
 .logo {
   width: 8rem;
+}
+.logo,
+.h-logo {
   height: 1.5rem;
 }
 .left-sidebar {
