@@ -1,5 +1,6 @@
 ---
 title: Python
+description: Python runtime support
 ---
 
 [Python runtime support for Architect provisioned AWS Lambda functions.](https://github.com/architect/functions-python)

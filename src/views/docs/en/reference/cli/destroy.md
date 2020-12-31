@@ -1,5 +1,6 @@
 ---
 title: arc destroy
+description: CLI destory command for removing CloudFormation stack
 ---
 
 Remove the CloudFormation stack and all related assets for the current project from AWS completely.

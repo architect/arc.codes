@@ -1,5 +1,6 @@
 ---
 title: Ruby
+description: Ruby runtime support
 ---
 
 [Helpers for working with the Architect generated runtime resources.](https://github.com/architect/functions-ruby)
@@ -9,7 +10,7 @@ title: Ruby
 ```bash
 cd path/to/lambda
 bundle init
-bundle install --path vendor/bundle 
+bundle install --path vendor/bundle
 bundle add architect-functions
 ```
 
@@ -64,7 +65,7 @@ Example output:
 
 ### `Arc::Queues`
 
-- `publish({name, payload})` to an SQS Queue 
+- `publish({name, payload})` to an SQS Queue
 
 ### `Arc::WS`
 
