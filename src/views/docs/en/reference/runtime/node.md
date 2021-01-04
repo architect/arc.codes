@@ -176,13 +176,13 @@ For the example above the generated API is:
 - `data.notes.delete`
 - `data.notes.update`
 
-> The generated client is facade for <code>AWS.DynamoDB.DocumentClient</code> with `TableName` parameter prepopulated. <a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html" target=blank>See the official DynamoDB documentation for all available parameters.</a>
+> The generated client is facade for <code>AWS.DynamoDB.DocumentClient</code>. The `delete` and `get` methods take a single parameter that is passed on to the `params.Key` attribute in the corresponding <code>DocumentClient</code> method. The `put` method takes a single parameter that is passed on as the `params.Item` attribute in the <code>DocumentClient.put</code> method. The `query`, `scan`, and `update` methods simply pass the `params` argument with the `TableName` parameter prepopulated. <a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html" target=blank>See the official DynamoDB documentation for all available parameters.</a>
 
 The generated data layer also allows direct access to DynamoDB through a few methods:
 
 - `data._db` which returns an instance of [`AWS.DynamoDB`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
 - `data._doc` returns an instance of [`AWS.DynamoDB.DocumentClient`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
-- `data._name` helper function that returns a `@table` resource name when you need to go lower level
+- `data._name` helper function that returns a `@table` resource name when you need to go lower level. For example use `data._name("my-table")` to get the name of the "my-table" `@table` resource.
 
 ### `arc.events`
 
