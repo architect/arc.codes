@@ -1,8 +1,10 @@
 ---
 title: Logging &amp; monitoring
+category: Developer experience
+description: How to use log output in your Architect project
 ---
 
-Architect logs to [AWS CloudWatch](https://aws.amazon.com/cloudwatch/). 
+Architect logs to [AWS CloudWatch](https://aws.amazon.com/cloudwatch/).
 
 ## Supported runtimes
 

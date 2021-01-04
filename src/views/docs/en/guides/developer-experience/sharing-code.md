@@ -1,6 +1,7 @@
 ---
 title: Sharing code
-category: developer experience
+category: Developer experience
+description: How to share code within your Architect project
 sections:
   - Overview
   - Principles & best practices
@@ -8,7 +9,7 @@ sections:
   - src/views
 ---
 
-Architect makes it easy to share code across many Lambda functions. Apps most commonly need to share business logic and view templates so Architect provides `@shared` and `@views` capability. Architect copies the contents of `src/shared` into all Lambdas and `src/views` into Lambda functions wired to respond to `@http` GET requests. 
+Architect makes it easy to share code across many Lambda functions. Apps most commonly need to share business logic and view templates so Architect provides `@shared` and `@views` capability. Architect copies the contents of `src/shared` into all Lambdas and `src/views` into Lambda functions wired to respond to `@http` GET requests.
 
 Example `app.arc`
 

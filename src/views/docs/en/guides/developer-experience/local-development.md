@@ -1,19 +1,20 @@
 ---
 title: Local development
-category: developer experience
+category: Developer experience
+description: How to develop locally with Architect sandbox
 ---
 
-Fast local development creates a tighter feedback loop maximizing developer velocity. 
+Fast local development creates a tighter feedback loop maximizing developer velocity.
 
-## Preview 
+## Preview
 
-Follow the [quickstart](/docs/en/guides/get-started/quickstart) to get everything wired up. To preview a project running locally in a web browser: 
+Follow the [quickstart](/docs/en/guides/get-started/quickstart) to get everything wired up. To preview a project running locally in a web browser:
 
 ```bash
 cd myproject
 arc sandbox
 ```
->  `arc sandbox` kicks up a local web server with all the resources defined in your `app.arc` file 
+>  `arc sandbox` kicks up a local web server with all the resources defined in your `app.arc` file
 ## Testing
 
 Checkout [a complete example project for working locally](https://github.com/architect-examples/arc-example-working-locally).
@@ -66,11 +67,11 @@ test('@events', async t=> {
   // mock pingID
   let pingID = 'testing-ping'
   // send a ping event
-  await arc.events.publish({ 
+  await arc.events.publish({
     name: 'ping',
     payload: { pingID }
   })
-  // see if testing-ping is in the db 
+  // see if testing-ping is in the db
   let data = await arc.tables()
   let { hits } = await data.pings.get({ pingID })
   t.ok(hits, 'pong!')
@@ -84,7 +85,7 @@ test('teardown', async t=>{
 
 ```
 
-### Testing `@tables` 
+### Testing `@tables`
 
 Using `@architect/functions` to interact with DynamoDB `@tables` defined locally.
 

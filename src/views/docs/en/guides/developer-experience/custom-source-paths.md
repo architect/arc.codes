@@ -1,9 +1,9 @@
 ---
 title: Custom source paths
-category: developer experience
+category: Developer experience
 ---
 
-Define resources in a more verbose format to configure custom Lambda source directories. Custom source paths are completely opt-in on a Lambda by Lambda basis; this is trading off default conventions for flexibility at the price of slightly more `app.arc` verbosity. 
+Define resources in a more verbose format to configure custom Lambda source directories. Custom source paths are completely opt-in on a Lambda by Lambda basis; this is trading off default conventions for flexibility at the price of slightly more `app.arc` verbosity.
 
 ### Use cases
 

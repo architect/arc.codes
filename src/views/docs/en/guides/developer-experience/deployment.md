@@ -1,5 +1,7 @@
 ---
 title: Deployment
+category: Developer experience
+description: How to deploy your Architect app
 ---
 
 Architect makes deploying AWS CloudFormation completely painless.
