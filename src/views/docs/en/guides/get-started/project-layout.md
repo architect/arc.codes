@@ -28,7 +28,7 @@ Architect projects have the following significant folder structure by default:
 
 ## Manifest file format overview
 
-Architect projects have a manifest file in the root of the project that represents the Infrastructure as Code. This manifest file captures the infra requirements beside the code it will run in revision control to ensure every deployment is completely deterministic. 
+Architect projects have a manifest file in the root of the project that represents the Infrastructure as Code. This manifest file captures the infra requirements beside the code it will run in revision control to ensure every deployment is completely deterministic.
 
 Architect supports the following manifest files:
 
@@ -69,7 +69,7 @@ These sections are for global system level env configuration. The most important
 
 ### Lambda resource definition
 
-These sections deal with Lambda functions and their event sources. Architect conventionally promotes one event source per function. Single responsibility functions are faster to deploy, easier to debug and secure to least privilege. 
+These sections deal with Lambda functions and their event sources. Architect conventionally promotes one event source per function. Single responsibility functions are faster to deploy, easier to debug and secure to least privilege.
 
 - [`@http`](/docs/en/reference/app.arc/http) HTTP routes (API Gateway)
 - [`@events`](/docs/en/reference/app.arc/events) Event pub/sub (SNS)
@@ -87,7 +87,11 @@ These pragmas represent persistence resources.
 
 ## Example
 
-An `app.arc` file example:
+<arc-viewer default-tab=arc>
+<div slot=contents class=bg-g4>
+<arc-tab label=arc>
+<h5>arc</h5>
+<div slot=content>
 
 ```arc
 # this is going to be great!
@@ -124,14 +128,18 @@ likes
 likes
   date *String
 ```
+</div>
+</arc-tab>
 
-`arc.json` or `package.json` under the `arc` or `architect` key:
+<arc-tab label=json>
+<h5>json</h5>
+<div slot="content">
 
 ```json
 {
   "app": "hello",
-  "static": { 
-    "fingerprint": true 
+  "static": {
+    "fingerprint": true
   },
   "ws": [
     "action",
@@ -163,14 +171,19 @@ likes
   }
 }
 ```
+</div>
+</arc-tab>
 
-Or, if you prefer, `arc.yaml` or `arc.yml`:
+
+<arc-tab label=yaml>
+<h5>yaml</h5>
+<div slot="content">
 
 ```yaml
 app: "hello"
-static: 
-  fingerprint: true 
-ws: 
+static:
+  fingerprint: true
+ws:
   - action
   - connect
   - default
@@ -188,8 +201,12 @@ tables:
 indexes:
   - likes: {date: "*String"}
 ```
+</div>
+</arc-tab>
 
-Or even `arc.toml`:
+<arc-tab label=toml>
+<h5>toml</h5>
+<div slot=content>
 
 ```toml
 app="hello"
@@ -225,6 +242,11 @@ stream=true
 [indexes.likes]
 date="*String"
 ```
+</div>
+</arc-tab>
+
+</div>
+</arc-viewer>
 
 Running `arc init` in the same directory as the file above generates the following Lambda function code:
 
