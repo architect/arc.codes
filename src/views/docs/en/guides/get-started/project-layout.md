@@ -81,7 +81,7 @@ These sections deal with Lambda functions and their event sources. Architect con
 
 These pragmas represent persistence resources.
 
-- [`@static`](/docs/en/reference/app.arc@static) Bucket for hosting static assets (S3)
+- [`@static`](/docs/en/reference/app.arc/static) Bucket for hosting static assets (S3)
 - [`@tables`](/docs/en/reference/app.arc/tables) Database tables and trigger functions (DynamoDB)
 - [`@indexes`](/docs/en/reference/app.arc/indexes) Table global secondary indexes (DynamoDB)
 
