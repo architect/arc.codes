@@ -75,13 +75,13 @@ These sections deal with Lambda functions and their event sources. Architect con
 - [`@events`](/docs/en/reference/app.arc/events) Event pub/sub (SNS)
 - [`@queues`](/docs/en/reference/app.arc/queues)  queues and handlers for them (SQS)
 - [`@scheduled`](/docs/en/reference/app.arc/scheduled) Invoke functions specified times (CloudWatch Events)
-- [`@ws`](/docs/en/reference/app.arc/@ws) Web Socket functions (API Gateway)
+- [`@ws`](/docs/en/reference/app.arc/ws) Web Socket functions (API Gateway)
 
 ### Persistence resource definition
 
 These pragmas represent persistence resources.
 
-- [`@static`](/docs/en/reference/app.arc@static) Bucket for hosting static assets (S3)
+- [`@static`](/docs/en/reference/app.arc/static) Bucket for hosting static assets (S3)
 - [`@tables`](/docs/en/reference/app.arc/tables) Database tables and trigger functions (DynamoDB)
 - [`@indexes`](/docs/en/reference/app.arc/indexes) Table global secondary indexes (DynamoDB)
 
