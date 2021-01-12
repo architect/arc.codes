@@ -3,7 +3,7 @@ title: '@macro'
 description: Extend Architect app functionality
 ---
 
-Extend the functionality of your Architect app with standard CloudFormation. The `@macro` primitive allows developers to add any resources or modify existing ones extending Architect into the entire AWS ecosystem supported by CloudFormation.
+Extend the functionality of your Architect app with standard CloudFormation. The `@macro` primitive allows developers to add any resources or modify existing ones extending Architect into the entire AWS ecosystem supported by CloudFormation. Macros also allow you to look for custom directives and add pre deploy steps. You can find some examples in our [github](https://github.com/architect/?q=macro-&type=source).
 
 ## Getting started
 
@@ -94,6 +94,7 @@ Macros receive the parsed `app.arc` file so custom pragmas and config can be def
  * @param {object} arc - the parsed app.arc file currently executing
  * @param {object} cloudformation - the current AWS::Serverless CloudFormation template
  * @param {object} stage - the application stage (one of `staging` or `production`)
+ * @returns {object|Promise} must return a CloudFormation object or a promise for a CloudFormation object
  **/
 module.exports = function myCustomMacro(arc, cloudformation, stage) {
   // modify cloudformation.Resources here
