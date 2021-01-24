@@ -13,7 +13,7 @@ export default function Head (props = {}) {
   <meta name="description" content="${descriptionContent}">
   <title>${fullTitle}</title>
 
-<!-- Google / Search Engine Tags -->
+  <!-- Google / Search Engine Tags -->
   <meta itemprop="name" content="Architect">
   <meta itemprop="description" content="Architect is the quickest way to build serverless web apps on AWS.">
   <meta itemprop="image" content="https://arc.codes/arc.codes.png">
@@ -33,7 +33,13 @@ export default function Head (props = {}) {
   <!-- TODO: Update image -->
   <meta name="twitter:image" content="https://arc.codes/arc.codes.png">
 
-  <!-- Meta Tags end-->
+  <!-- OG Begin -->
+  <link rel="icon" type="image/png" sizes="32x32" href="https://s3-us-west-2.amazonaws.com/arc.codes/architect-favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://s3-us-west-2.amazonaws.com/arc.codes/architect-favicon-16.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="https://s3-us-west-2.amazonaws.com/arc.codes/architect-favicon-64.png">
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <link rel="stylesheet" type="text/css" href="/css/index.css">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
 </head>
 `
 }
