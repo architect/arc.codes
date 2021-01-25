@@ -80,7 +80,8 @@ let Reference = [ {
     '@create',
     '@env',
     '.env',
-    '@sandbox'
+    '@sandbox',
+    '@sandbox-startup'
   ]
 } ]
 
