@@ -3,9 +3,9 @@ title: '@sandbox'
 description: Sandbox environment variables
 ---
 
-> Architect preferences (`preferences.arc`, or `prefs.arc`) defines settings for local Architect workflows. This file is intended to be added to `.gitignore`.
+> Architect preferences (`preferences.arc`, or `prefs.arc`) defines settings for local Architect workflows.
 
-Define `arc sandbox` preferences.
+Define [`arc sandbox`](../cli/sandbox) preferences. If you are not using a [`.env` file](.env) then any environment variables set using the [`arc env` CLI](../cli/env) will be stored in the preferences file. In this scenario it is best _not_ to revision the preferences file in source control.
 
 ### `env` - Boolean
 
@@ -25,16 +25,4 @@ Advanced option that uses live AWS infrastructure where deployed, specifically: 
 ```arc
 @sandbox
 useAWS true
-```
-
-### `startup`
-
-Execute arbitrary commands or scripts on Sandbox startup.
-
-```arc
-@sandbox
-startup
-  echo 'Hi there!'
-  npm run test
-  node some/arbitrary/script.js
 ```
