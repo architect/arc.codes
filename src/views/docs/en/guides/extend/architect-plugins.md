@@ -51,7 +51,7 @@ Plugin authors should create a module that exports an object with properties of 
 module.exports = {
   package: async function extendCloudFormation (arc, sam, stage='staging', inventory) {
   },
-  pluginFunctions: async function (arc, inventory) {
+  pluginFunctions: function (arc, inventory) {
   },
   sandbox: {
     start: async function (arc, inventory, builtInSandboxServices) {
@@ -122,10 +122,10 @@ You should return an array of objects, each object representing a new Lambda bei
 let path = require('path')
 
 module.exports = {
-  pluginFunctions: async function (inventory) {
-    if (!inventory.inv._project.arc.rules) return []
+  pluginFunctions: function (arc, inventory) {
+    if (!arc.rules) return [] // if plugin author didnt define @rules lambdas, return empty array signifying no new lambdas to add
     const cwd = inventory.inv._project.src
-    return inventory.inv._project.arc.rules.map((rule) => {
+    return arc.rules.map((rule) => {
       let rulesSrc = path.join(cwd, 'src', 'rules', rule[0])
       return {
         src: rulesSrc,
