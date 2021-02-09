@@ -199,7 +199,7 @@ For common Architect Plugin use cases, Architect provides a few helper functions
 
 ### `createLambdaJSON`
 
-> `createLambdaJSON(arc, inventory, pathToPluginCloudFunction)`
+> `createLambdaJSON(inventory, pathToPluginCloudFunction)`
 
 Available in the [`@architect/package`](https://npmjs.com/package/@architect/package) module, this method can be leveraged inside a plugin's [`package`](#package) method in order to easily and consistently define CloudFormation JSON representing Lambdas created by the plugin.
 
@@ -209,7 +209,6 @@ Leveraging this helper method gives the plugin function support for [arc's per-f
 
 |Argument|Description|
 |---|---|
-|`arc`|Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project|
 |`inventory`|An [Architect inventory object][inv] representing the current Architect project|
 |`pathToPluginCloudFunction`|a string representing the path where code for the Lambda exists locally|
 
