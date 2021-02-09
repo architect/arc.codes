@@ -239,7 +239,7 @@ module.exports = {
 
 ### `invokeLambda`
 
-> `invokeLambda(pathToPluginCloudFunction, payload, callback)`
+> `invokeLambda(inventory, pathToPluginCloudFunction, payload, callback)`
 
 Available in the [`@architect/sandbox`](https://npmjs.com/package/@architect/sandbox) module, this method can be leveraged inside a plugin's [`sandbox.start`](#sandbox.start) method in order to easily invoke project Lambdas locally within an [`arc sandbox`][sandbox] local development runtime context.
 
@@ -247,6 +247,7 @@ Available in the [`@architect/sandbox`](https://npmjs.com/package/@architect/san
 
 |Argument|Description|
 |---|---|
+|`inventory`|An [Architect inventory object][inv] representing the current Architect project|
 |`pathToPluginCloudFunction`|a string representing the path where code for the Lambda exists locally|
 |`payload`|JSON payload to deliver to the function|
 |`callback`|function with signature `function(error, result)` that is invoked with either the error or the result from the local function invocation|
@@ -299,7 +300,7 @@ module.exports = {
               return JSON.parse(i)
             }
           } ])
-          invokeLambda(response.rule, response.payload, function (err, result) {
+          invokeLambda(inventory, response.rule, response.payload, function (err, result) {
             if (err) console.error(`Error invoking lambda ${response.rule}!`, err)
             else console.log(`${response.rule} invocation result:`, result)
           })
