@@ -3,19 +3,27 @@ title: '@indexes'
 description: Define DynamoDB table global secondary indexes.
 ---
 
-Defines DynamoDB table global secondary indexes.
+Defines [Global Secondary Indexes][gsi] for your project's [DynamoDB][ddb] tables. `@indexes` should only ever be paired with [`@tables`][tables].
+
+## Recommended
+
+[DynamoDB][ddb] is a powerful database, though different from both SQL and NoSQL databases. It is highly recommended to dig into Amazon's resources to familiarize yourself with it:
+
+- [DynamoDB Core Components (start here!)][core]
+- [Global Secondary Indexes in DynamoDB][gsi]
+- [Amazon's full DynamoDB documentation][ddb]
 
 ## Syntax
 
-- `@indexes` is a feature subset of `@tables`; as such, the names of your declared indexes must match those of your `@tables`
-- Otherwise, the basic syntax for defining `@indexes` is the same as `@tables`:
+- `@indexes` is a feature subset of [`@tables`][tables]; as such, the names of your declared indexes must match those of your [`@tables`][tables]
+- Otherwise, the basic syntax for defining `@indexes` is the same as [`@tables`][tables]:
   - Partition key, defined by a `*`, is required
   - Sort key, defined by `**`, is optional
   - Currently only `*String`, `**String`, `*Number` and `**Number` are supported
 
 ## Example
 
-The following `app.arc` file defines a DynamoDB table with two Global Secondary Indexes:
+The following `app.arc` file defines a [DynamoDB][ddb] table with two [Global Secondary Indexes][gsi]:
 
 
 <arc-viewer default-tab=arc>
@@ -104,7 +112,7 @@ indexes:
 </div>
 </arc-viewer>
 
-
-### Recommended
-
-DynamoDB is a powerful database. There is a great deal more to learn to take full advantage of it. Dig into [Amazon's DynamoDB documentation](https://aws.amazon.com/documentation/dynamodb/) to build out your app's data layer.
+[tables]: tables
+[core]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html
+[ddb]: https://aws.amazon.com/documentation/dynamodb/
+[gsi]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html
