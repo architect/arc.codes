@@ -17,7 +17,7 @@ Architect projects work locally and offline. It emulates most app resources defi
 ## Usage
 
 ```
-arc sandbox [--port|--verbose|--disable-symlinks]
+arc sandbox [--port|--verbose|--disable-symlinks|--no-hydrate]
 ```
 
 ### Flags
@@ -25,6 +25,7 @@ arc sandbox [--port|--verbose|--disable-symlinks]
 - `-p`, `--port`, `port` Manually specify HTTP port (default `3333`)
 - `-v`, `--verbose`, `verbose` Enable verbose logging
 - `--disable-symlinks` Disable symlinking `src/shared` and copy instead
+- `--no-hydrate` Disables hydration
 
 ### Environment variables
 

@@ -26,3 +26,12 @@ Advanced option that uses live AWS infrastructure where deployed, specifically: 
 @sandbox
 useAWS true
 ```
+
+### `no-hydrate` - Boolean
+
+Disables hydration
+
+```arc
+@sandbox
+no-hydrate true
+```
