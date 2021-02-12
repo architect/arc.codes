@@ -6,13 +6,14 @@ sections:
   - Purchase/Transfer domain
   - Get AWS Certificate
   - Map domain names
+  - Conclusion
 ---
 
 ## Overview
 
 Follow these instructions to manually configure Route 53 to serve your application from your domain. Per the [Start here](/docs/en/guides/domains/start-here) section, you should have already deployed your arc app to `staging` and `production` and saved the `URLs` for later steps below.
 
-> ⛳️ Tip: These instructions will serve your app's `production` environment; if you'd also like a friendly URL for your `staging` environment (i.e. staging.example.com), follow steps 10-15 below a second time, swapping `production` values for `staging` values.
+> ⛳️ Tip: These instructions will serve your app's `production` environment; if you'd also like a friendly URL for your `staging` environment (i.e. staging.example.com), follow the exact steps below a second time, swapping `production` values for `staging` values.
 
 ## Step 1: Purchase/Transfer domain
 
@@ -39,7 +40,7 @@ Now that you have your domain, let's request a SSL certificates from AWS Certifi
 
 ## Map domain names
 
-Sign into AWS API Gateway. Follow these intrructions for adding both `production` domain and `staging` domain.
+Sign into AWS API Gateway. Follow these instructions for adding both `production` domain and `staging` domain.
 
 - Click on **Custom Domain Names**
 - Create a **Custom Domain Name** for `production`
@@ -66,4 +67,9 @@ Sign into AWS API Gateway. Follow these intrructions for adding both `production
   - Pick a `region`.
   - Copy and paste the alias value from Begin into the `Choose Distribution` input. It should be a Cloudfront link like this: `d1poav0i4gjqri.cloudfront.net`
   - Click `Create record`.
-- Perhaps grab a cup of coffee or tea ☕️ – it can take a few minutes while AWS wires everything up!
+
+## Conclusion
+
+Now we're done! You can check to see if your domains are online with this [DNS Checker tool](https://dnschecker.org/).
+
+Keep in mind that it takes a few hours for DNS to propagate fully, so be patient. Perhaps grab a cup of coffee or tea ☕️ – it can take a few minutes while AWS wires everything up!
