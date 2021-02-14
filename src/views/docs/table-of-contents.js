@@ -12,6 +12,7 @@ let Guides = [ {
     'Custom source paths',
     'Deployment',
     'Logging & monitoring', // cloudwatch
+    'Using TypeScript',
   ],
   'Frontend': [
     'Static assets', // fingerprint, ignore, folder, link to cdn
