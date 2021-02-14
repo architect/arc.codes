@@ -64,7 +64,7 @@ Sign into AWS API Gateway. Follow these instructions for adding both `production
 
 ### Head back to One.com and click into the domain in question.
 
-In the final step, you'll add the final `CNAME` and `ALIAS` records to your One.com. This points your domain at your Begin app.
+In the final step, you'll add the final `CNAME` and `ALIAS` records to your One.com. This points your domain at your arc app.
 
 When you provide the `CNAME` record:
 

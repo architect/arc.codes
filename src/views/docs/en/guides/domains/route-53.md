@@ -62,10 +62,9 @@ Sign into AWS API Gateway. Follow these instructions for adding both `production
   - Change `Record type` to `A`.
   - Make sure `Routing policy` is set to `Simple routing`.
   - Make sure `Record type` is set to `Routes traffic to an Ipv4 address and some AWS resources`.
-  - In the `Value/Route traffic to` sections:
-  - Set to `Alias to Cloudfront distribution`.
+  - In the `Value/Route traffic to` sections: Set to `Alias to Cloudfront distribution`.
   - Pick a `region`.
-  - Copy and paste the alias value from Begin into the `Choose Distribution` input. It should be a Cloudfront link like this: `d1poav0i4gjqri.cloudfront.net`
+  - Copy and paste the alias value from API Gateway into the `Choose Distribution` input. It should be a Cloudfront link like this: `d1poav0i4gjqri.cloudfront.net`
   - Click `Create record`.
 
 ## Conclusion
