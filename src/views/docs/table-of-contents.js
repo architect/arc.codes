@@ -16,7 +16,7 @@ let Guides = [ {
   ],
   'Frontend': [
     'Static assets', // fingerprint, ignore, folder, link to cdn
-    // TODO 'HTTP functions', //inc cors
+    'HTTP functions', //inc cors
     // TODO 'Sessions',
     // TODO 'Middleware',
     // TODO 'WebSockets functions',
@@ -99,4 +99,3 @@ module.exports = {
   Reference,
   About
 }
-

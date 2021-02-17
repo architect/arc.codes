@@ -14,9 +14,9 @@ sections:
 
 ### Create full-featured web applications composed of fast, tiny HTTP functions
 
-HTTP Functions are the building blocks of the modern web app. They are actually AWS Lambdas which are small functions that trigger when their endpoint is hit. You can think of lambdas as the equivalent of 'routes' in traditional web apps. AWS Lambdas are accessed via API Gateway, but Architect (`app.arc`) abstracts API Gateway and Lambda configuration + provisioning to give us **HTTP Functions**. HTTP Functions are fast, lightweight, stateless, isolated, highly durable, and require no configuration.
+HTTP Functions are the building blocks of the modern web app. They are actually AWS Lambdas which are small functions that trigger when their endpoint is hit. You can think of lambdas as the equivalent of 'routes' in traditional web apps. AWS Lambdas are accessed via API Gateway, but Architect (`app.arc`) abstracts API Gateway and Lambda configuration + provisioning to give us **HTTP Functions**.
 
-Each `@http` function defined in your Architect project manifest(app.arc), results in the creation of a corresponding HTTP route and AWS Lambda function (wired to that HTTP route in [API Gateway](https://aws.amazon.com/api-gateway/)). You can think of HTTP Function as its own tiny app with a single responsibility: handling all business logic related to its corresponding HTTP route.
+Each `@http` function defined in your Architect project manifest(app.arc), results in the creation of a corresponding HTTP route and AWS Lambda function (wired to that HTTP route in [API Gateway](https://aws.amazon.com/api-gateway/)).
 
 HTTP Functions do not require dependencies, and feature a minimal but powerful low-level API that can be optionally extended (and further simplified) with our runtime library (@architect/functions).
 
@@ -113,13 +113,9 @@ The greedy root also means you can run large amounts of your application's logic
 
 It's possible to build dynamic paths using Express-style URL parameters, like: `get /shop/:product`
 
-URL parameters are passed to your route via the `req.pathParameters` object. [Learn more about HTTP requests here](#requests).
-
-<!-- TODO: Come up with better example. -->
+URL parameters are passed to your route via the `req.pathParameters` object.
 
 That's all there is to it! Now let's take a closer look at the capabilities of HTTP Functions, and how they work.
-
-> Learn more about [Architect project structure](/en/guides/get-started/project-layout) and layout here, and learn how to change your functions' [runtimes here](/en/reference/architect-manifest-and-config/function-config-file).
 
 ## Requests
 
@@ -239,7 +235,51 @@ By default, all HTTP functions (as well as all other functions) generated with A
 
 Wider account access can be explicitly granted with custom resource policies, [defined in a .arc-config file](/en/reference/architect-manifest-and-config/function-config-file) placed in the HTTP function directory.
 
+
 ## Examples
 
-ADD ME!
+<arc-viewer default-tab=arc>
+<div slot=contents class=bg-g4>
+<arc-tab label=JavaScript>
+<h5>JavaScript</h5>
+<div slot=content>
 
+```javascript
+exports.handler = async function http(req) {
+  return {
+    statusCode: 200,
+    headers: { 'content-type': 'text/html; charset=utf-8' },
+    body: `<h1>Hello world from Node!</h1>`
+  }
+}
+```
+</div>
+</arc-tab>
+
+<arc-tab label=Ruby>
+<h5>Ruby</h5>
+<div slot="content">
+
+```ruby
+def handler(request, context)
+  html = '<b>Hello world from Ruby!</b>'
+  {statusCode: 200, headers: {'content-type': 'text/html; charset=utf-8;'}, body: html}
+end
+```
+</div>
+</arc-tab>
+
+<arc-tab label=Python>
+<h5>Python</h5>
+<div slot=content>
+
+```python
+def handler(request, context):
+  body = 'Hello world from Python!'
+  return {'statusCode': 200, 'headers': {'content-type': 'text/html; charset=utf-8;'}, 'body': body}
+```
+</div>
+</arc-tab>
+
+</div>
+</arc-viewer>
