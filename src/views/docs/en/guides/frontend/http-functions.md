@@ -16,37 +16,15 @@ sections:
 
 HTTP Functions are the building blocks of the modern web app. They are actually AWS Lambdas which are small functions that trigger when their endpoint is hit. You can think of lambdas as the equivalent of 'routes' in traditional web apps. AWS Lambdas are accessed via API Gateway, but Architect (`app.arc`) abstracts API Gateway and Lambda configuration + provisioning to give us **HTTP Functions**. HTTP Functions are fast, lightweight, stateless, isolated, highly durable, and require no configuration.
 
-Each `@http` function defined in your Architect project manifest(app.arc), results in the creation of a corresponding HTTP route and AWS Lambda function (wired to that HTTP route in [API Gateway](https://aws.amazon.com/api-gateway/)). You can think of HTTP Function as its own tiny app with a single responsibility: handling all business logic related to its corresponding HTTP route.
+Each `@http` function defined in your Architect project manifest(app.arc), results in the creation of a corresponding HTTP route and AWS Lambda function (wired to that HTTP route in [API Gateway](https://aws.amazon.com/api-gateway/)). You can think of an HTTP Function as its own tiny app with a single responsibility: handling all business logic related to its corresponding HTTP route.
 
 HTTP Functions do not require dependencies, and feature a minimal but powerful low-level API that can be optionally extended (and further simplified) with our runtime library (@architect/functions).
 
 Within your project, each HTTP Function can contain and utilize an arbitrary quantity of modules, packages, shared code, and other files – so long as the total uncompressed size of that HTTP Function's folder is ≤5MB; this helps keep your HTTP Functions (and thus your app) super fast.
 
-### HTTP handler API
+---
 
-The HTTP handler API follows a simple [request](#requests) / [response](#responses) pattern. Let's look at an example of a basic HTTP Function:
-
-```js
-// src/http/get-index/index.js
-let body = `
-<!doctype html>
-<html lang=en>
-  <body>
-    <h1>Hello world!</h1>
-  </body>
-</html>
-`
-
-exports.handler = async function http(request) {
-  return {
-    headers: {'Content-Type': 'text/html; charset=utf8'},
-    body
-  }
-}
-```
-No sweat, right?
-
-
+Read the sections below to learn more about utilizing HTTP functions:
 
 **Sections:**
 - [Provisioning an HTTP Function](#getting-started)
@@ -62,16 +40,16 @@ No sweat, right?
 
 ### Provisioning new HTTP Functions
 
-HTTP functions are defined under the `@http` pragma, with one route per line. A route in Architect is defined as: an HTTP verb (`get`, `post`, etc) and a path separated by a space (e.g. get /foo/bar).
+HTTP functions are defined under the `@http` pragma, with one route per line. A route in Architect is defined as: an HTTP verb (`get`, `post`, etc) and a path separated by a space (e.g. `get /foo/bar`).
 
 To provision a new HTTP Function, in the root of your project, open your app's Architect project manifest file (`app.arc`):
 
 1. Find your project's `@http` pragma
     - If you don't already have one, just add @http
-2. On a new line, enter the route (an HTTP method followed by a path) you wish to create
-    - For example: get /foo, or put /bar
+2. On a new line, enter the route (an HTTP method followed by a path) you wish to create.
+    - For example: `get /foo`, or `post /bar`
 3. Start the local dev environment to generate some boilerplate HTTP Function handlers: `arc init`
-    - New function handlers will now appear in `src/http/` (e.g. `src/http/get-foo` & `src/http/put-bar`)
+    - New function handlers will now appear in `src/http/` (e.g. `src/http/get-foo` & `src/http/post-bar`)
 4. Commit and push your changes to your repo
 
 Here's what a basic Architect project manifest looks like with the above two HTTP Functions specified:
@@ -82,8 +60,9 @@ your-app-name
 
 @http
 get /foo
-put /bar
+post /bar
 ```
+
 After specifying new HTTP Functions in your Architect project manifest and pushing your changes to your repo, new infrastructure is provisioned to make the route(s) publicly available. By default, HTTP functions are also dependency-free.
 
 ### The basics
@@ -104,7 +83,7 @@ Importantly and uniquely, you can also use URL parameters to build dynamic paths
 
 By default, your app's root is greedy – which means that unless specified, all paths and HTTP methods will invoke it. Any HTTP Functions you define manually will be prioritized over the root. For example:
 
-- With only `get /`specified: submitting a `POST` request to `/foo` will invoke `src/http/get-index`
+- With only `get /` specified: submitting a `POST` request to `/foo` will invoke `src/http/get-index`
 - With both `get /` and `post /foo` specified: submitting the same request will invoke `src/http/post-foo`
 
 The greedy root also means you can run large amounts of your application's logic from a single `get /` HTTP Function. However, we don't advise it! One of the key advantages to building with cloud functions is their inherent isolation: many smaller functions means greater ease in debugging and faster deploys.
@@ -119,7 +98,7 @@ URL parameters are passed to your route via the `req.pathParameters` object. [Le
 
 That's all there is to it! Now let's take a closer look at the capabilities of HTTP Functions, and how they work.
 
-> Learn more about [Architect project structure](/en/guides/get-started/project-layout) and layout here, and learn how to change your functions' [runtimes here](/en/reference/architect-manifest-and-config/function-config-file).
+> Learn more about [Architect project structure](/docs/en/guides/get-started/project-layout) and layout here, and learn how to change your functions' [runtimes here](/docs/en/reference/config.arc/runtime).
 
 ## Requests
 
@@ -130,7 +109,7 @@ The `handler` function invoked by a client request receives a `request` object c
 - `path` - String
   - The absolute path of the request
 - `pathParameters` - null or Object
-  - Any URL params, if defined in your HTTP Function's path (e.g. foo in GET /:foo/bar)
+  - Any URL params, if defined in your HTTP Function's path (e.g. `foo` in `GET /:foo/bar`)
 - `queryStringParameters` - null or Object
   - Any query params if present in the client request
 - `headers` - Object
@@ -237,9 +216,32 @@ return {
 
 By default, all HTTP functions (as well as all other functions) generated with Architect have one generated [IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) with the least privilege possible to operate. This means HTTP functions can only access other resources defined in the same Architect project.
 
-Wider account access can be explicitly granted with custom resource policies, [defined in a .arc-config file](/en/reference/architect-manifest-and-config/function-config-file) placed in the HTTP function directory.
+<!-- Wider account access can be explicitly granted with custom resource policies, [defined in a .arc-config file](/en/reference/architect-manifest-and-config/function-config-file) placed in the HTTP function directory. -->
 
 ## Examples
 
-ADD ME!
+### HTTP handler API
+
+The HTTP handler API follows a simple [request](#requests) / [response](#responses) pattern. Let's look at an example of a basic HTTP Function:
+
+```js
+// src/http/get-index/index.js
+let body = `
+<!doctype html>
+<html lang=en>
+  <body>
+    <h1>Hello world!</h1>
+  </body>
+</html>
+`
+
+exports.handler = async function http(request) {
+  return {
+    statusCode: 201,
+    headers: {'Content-Type': 'text/html; charset=utf8'},
+    body
+  }
+}
+```
+No sweat, right?
 
