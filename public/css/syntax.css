@@ -63,6 +63,7 @@
   border-radius: .2rem;
   padding: 0 .5rem;
   display: inline-block;
+  line-height: 1.3rem;
 }
 
 .docs li code {
@@ -71,4 +72,5 @@
   border-radius: .2rem;
   padding: 0 .5rem;
   display: inline-block;
+  line-height: 1.3rem;
 }
