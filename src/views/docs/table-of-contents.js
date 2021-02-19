@@ -30,10 +30,10 @@ let Guides = [ {
     'Scheduled functions',
   ],*/
   'Extend': [
-    //TODO'Migrate legacy code',// @proxy, arc.http.express
+    // TODO'Migrate legacy code',// @proxy, arc.http.express
     'Custom CloudFormation',
-    //TODO'Add a custom domain',
-    //TODO'Ejecting '
+    // TODO'Add a custom domain',
+    // TODO'Ejecting '
   ]
 } ]
 
