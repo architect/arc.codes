@@ -25,7 +25,7 @@ Given the following `app.arc` file:
 
 ```arc
 @app
-showlogs
+example-app
 
 @http
 get /
