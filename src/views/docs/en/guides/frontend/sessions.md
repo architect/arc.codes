@@ -1,10 +1,14 @@
 ---
-title: HTTP & WebSocket sessions
-description: 160 (or fewer) character description of this document!
+title: Sessions
+description: Several ways to store session state within your app!
 sections:
   - Overview
   - HTTP sessions
+  - Database Sessions
   - WebSocket sessions
+  - Strong Key
+  - Common Session Use Cases
+  - Examples
 ---
 
 ## Overview

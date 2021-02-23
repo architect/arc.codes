@@ -57,3 +57,20 @@
   margin: 0;
 }
 
+.docs p code {
+  color: #bbffaa;
+  background-color: #282a36;
+  border-radius: .2rem;
+  padding: 0 .5rem;
+  display: inline-block;
+  line-height: 1.3rem;
+}
+
+.docs li code {
+  color: #bbffaa;
+  background-color: #282a36;
+  border-radius: .2rem;
+  padding: 0 .5rem;
+  display: inline-block;
+  line-height: 1.3rem;
+}
