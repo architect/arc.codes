@@ -10,6 +10,17 @@ sections:
   - Examples
 ---
 
+## **Sections:**
+- [Overview](#overview)
+- [Getting started](#getting-started)
+- [Requests](#requests)
+- [Responses](#responses)
+- [Anti-caching headers](#anti-caching-headers)
+- [Security](#security)
+- [Examples](#examples)
+
+---
+
 ## Overview
 
 ### Create full-featured web applications composed of fast, tiny HTTP functions
@@ -22,17 +33,7 @@ HTTP Functions do not require dependencies, and feature a minimal but powerful l
 
 Within your project, each HTTP Function can contain and utilize an arbitrary quantity of modules, packages, shared code, and other files – so long as the total uncompressed size of that HTTP Function's folder is ≤5MB; this helps keep your HTTP Functions (and thus your app) super fast.
 
----
-
 Read the sections below to learn more about utilizing HTTP functions:
-
-**Sections:**
-- [Provisioning an HTTP Function](#getting-started)
-- [Requests](#requests)
-- [Responses](#responses)
-- [Anti-caching headers](#anti-caching-headers)
-- [Security](#security)
-- [Examples](#examples)
 
 ---
 

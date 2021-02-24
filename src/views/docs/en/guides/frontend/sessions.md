@@ -7,34 +7,46 @@ sections:
   - Database Sessions
   - WebSocket sessions
   - Strong Key
-  - Common Session Use Cases
   - Examples
+---
+
+## **Sections**
+
+- [Overview](#overview)
+- [HTTP sessions](#http-sessions)
+- [Database Sessions](#database-sessions)
+- [Strong Key](#strong-key)
+- [Common Session Use Cases](#common-session-use-cases)
+- [Example](#example)
+<!-- - [WebSocket sessions](#websocket-sessions) -->
+
 ---
 
 ## Overview
 
-Developing database backed stateful web applications used to require a web server, a database server, a whole supporting cast of software and frameworks and all the near-constant maintenance those things required. Now anyone with a text editor can handle POST requests directly with a Lambda function and API Gateway.
+Developing stateful web applications backed by a database used to require a web server, a database server, and a whole supporting cast of software & frameworks. All of these things used to require constant maintenance, which was a bit tedious. Now, anyone with a text editor can handle `POST` requests directly with a Lambda function and API Gateway.
 
-The first primitive to understand for building stateful interactions on the web is session state. HTTP is a stateless protocol which is a fancy way of saying every HTTP request is like a completely clean slate. If we want to remember things between HTTP requests you need a session.
+The first primitive to understand for building stateful interactions on the web is "session state." HTTP is a stateless protocol which is a fancy way of saying every HTTP request is like a spotless slate. If we want to remember things between HTTP requests, you need a session.
 
-In this tutorial, we will go over several ways to store session state within your app. There is an example app at the end that we will build to display how sessions work within Architect.
+In this tutorial, we will go over several ways to store session state within your app. You will find an example app at the end that we will build to display how sessions work within Architect.
 
-**Sections**
-- [HTTP sessions](#http-sessions)
-- [Database Sessions](#database-sessions)
-- [WebSocket sessions](#websocket-sessions)
-- [Strong Key](#strong-key)
-- [Common Session Use Cases](#common-session-use-cases)
-- [Example](#example)
+### Common Session Use Cases
+
+- Authentication
+- Error messages
+- Shopping carts
+
+<!-- TODO Add this section: See [the sessions reference](/docs/en/reference/macros/runtime-helper-reference/arc-http-session) for more details. -->
 
 ---
 
+
 ## HTTP sessions
 
-All `@http` defined routes are session capable via `@architect/functions`.
+All `@http` defined routes are session capable via `@architect/functions`. There are two things you must know about session state:
 
-- Requests are tagged to a session via a stateless, signed, encrypted, httpOnly cookie `_idx`
-- Session data expires after a week of inactivity
+1. Requests are tagged to a session via a stateless, signed, encrypted, httpOnly cookie `_idx`
+2. Session data expires after a week of inactivity
 
 This allows you to write fully stateful applications despite Lambda functions being completely stateless.
 
@@ -105,11 +117,11 @@ This will sync all production lambdas to use the DynamoDB table while testing an
 
 ---
 
-## WebSocket sessions
+<!-- ## WebSocket sessions
 
 ADD ME!
 
----
+--- -->
 
 ## Strong Key
 
@@ -123,16 +135,6 @@ Environment variables are automatically synced with all your lambda functions. W
 
 ---
 
-## Common Session Use Cases
-
-- Authentication
-- Error messages
-- Shopping carts
-
-> See [the sessions reference](/docs/en/reference/macros/runtime-helper-reference/arc-http-session) for more details.
-
----
-
 ## Example
 
 1. Create a fresh Architect project
@@ -142,7 +144,7 @@ mkdir -p ./mysesh
 cd mysesh
 ```
 
-2. Create a `app.arc` file
+2. Run `arc init` to create an `app.arc` file. Then add following below:
 
 ```arc
 @app
@@ -154,7 +156,7 @@ post /count
 post /reset
 ```
 
-And generate the boilerplate code by running:
+And generate the boilerplate code by running `arc init` again:
 
 ```bash
 arc init
@@ -248,9 +250,9 @@ async function reset(req) {
 exports.handler = arc.http.async(reset)
 ```
 
-> For more information about `arc.http.async` helper, [check out the documentation](/docs/en/reference/macros/runtime-helper-reference/arc-http-async)
+<!-- > For more information about `arc.http.async` helper, [check out the documentation](/docs/en/reference/macros/runtime-helper-reference/arc-http-async) -->
 
-8. Initialize a `package.json` in the root of your project, and install `@architect/sandbox` for a local development server
+8. Navigate to the root of your project and install `@architect/sandbox` for a local development server.
 
 ```bash
 npm init -f
@@ -272,3 +274,5 @@ npm install @architect/sandbox
 ```bash
 npm start
 ```
+
+Watch the count rise as you click the button. Your app now has stateful sessions!

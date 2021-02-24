@@ -10,6 +10,15 @@ sections:
   - Example
 ---
 
+## **Sections:**
+
+  - [Overview](#overview)
+  - [arc.http.async](#arc.http.async)
+  - [arc.http](#arc.http)
+  - [arc.http.express](#arc.http.express)
+  - [Example](#example)
+
+
 ## Overview
 
 Architect provides two optional middleware helpers for cutting down on boilerplate HTTP operations by using the [`@architect/functions`](https://github.com/architect/functions) library.
@@ -20,14 +29,6 @@ Architect provides two optional middleware helpers for cutting down on boilerpla
 Both middleware helpers conveniently attach user sessions to the incoming `request` object (if applicable), and decode and parse the `request` body (again, if applicable).
 
 `@http` functions are executed in a stateless and short lived environment. It is unreliable to chain `@http` functions together without a data store, message bus, or client session in-between because any errors will fail silently by default. You should plan your function to not be dependent on the output from previous functions. By catching the request object and safely passing it around in middleware functions, you can more easily trace errors and choose when to fan out the work.
-
-**Sections:**
-
-  - [Overview](#overview)
-  - [arc.http.async](#arc.http.async)
-  - [arc.http](#arc.http)
-  - [arc.http.express](#arc.http.express)
-  - [Example](#example)
 
 ## `arc.http.async`
 

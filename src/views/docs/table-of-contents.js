@@ -18,7 +18,7 @@ let Guides = [ {
     'Static assets', // fingerprint, ignore, folder, link to cdn
     'HTTP functions', //inc cors
     'Sessions',
-    // TODO 'Middleware',
+    'Middleware',
     // TODO 'WebSockets functions',
   ],
   /* TODO
