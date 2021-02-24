@@ -21,13 +21,11 @@ let Guides = [ {
     // TODO 'WebSockets functions',
   ],
   'Domains': [
-    'Start here',
     'Route 53',
-    // 'Cloudflare',
     'Dreamhost',
-    'Godaddy',
-    'One',
-    'Namecheap'
+    //'Godaddy',
+    //'One',
+    //'Namecheap'
   ],
   /* TODO
   'Backend': [
