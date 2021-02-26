@@ -20,7 +20,7 @@ export default function HTML (props = {}) {
   } = props
   let scriptTags = scripts &&
     Array.isArray(props.scripts)
-    ? scripts.map(src => Script({ src }))
+    ? scripts.map(src => Script({ src })).join('')
     : Script(scripts)
   let stateTag = state &&
       State(state) || ''

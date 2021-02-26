@@ -1,12 +1,10 @@
 /* ----- THEME ----- */
 /* VARIABLES */
 :root {
-  --p0:#2CDD93;/* Medium Aquamarine light */
-  --p1:#2B7D9A;/* Bright Navy Blue light */
-  --p2:#BBFFAA;/* brighter green */
+  --p0:#2CDD93;/* clover green */
+  --p1:#2B7D9A;/* blue green */
+  --p2:#BBFFAA;/* key lime */
   --p3:#E21893;/* Barbie Pink light */
-  --p4:#FF6263;/* Bittersweet Orange light */
-  --p5:hsl(267, 75%, 45%);/* Royal purple */
   --g0:#FBFBFB;/* #FBFBFB */
   --g1:#E5E5E5;/* #E5E5E5 */
   --g2:#CFCFCF;/* #CFCFCF */
@@ -19,12 +17,6 @@
   --g9:#383838;/* #383838 */
   --g10:#222222;/* #222222 */
   --g11:#FFF;   /* #FFF*/
-  --h0:#3EE09C;/* Medium Aquamarine */
-  --h1:#40B9E5;/* Bright Navy Blue */
-  --h2:hsl(267, 90%, 55%);/* Royal Purple Hover */
-  --h3:#DE1792;/* Barbie Pink */
-  --h4:#FF4747;/* Bittersweet Orange */
-  --h5:#FAE05D;/* Minion Yellow */
   --h6:#CFCFCF;/* #CFCFCF */
   --a0:#A4A4A4;/* #A4A4A4 */
   --a1:#8E8E8E;/* #8E8E8E */
