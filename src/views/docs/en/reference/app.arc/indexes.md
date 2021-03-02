@@ -16,10 +16,11 @@ Defines [Global Secondary Indexes][gsi] for your project's [DynamoDB][ddb] table
 ## Syntax
 
 - `@indexes` is a feature subset of [`@tables`][tables]; as such, the names of your declared indexes must match those of your [`@tables`][tables]
-- Otherwise, the basic syntax for defining `@indexes` is the same as [`@tables`][tables]:
+- Otherwise, the basic syntax for defining `@indexes` primary keys is the same as [`@tables`][tables]:
   - Partition key, defined by a `*`, is required
   - Sort key, defined by `**`, is optional
   - Currently only `*String`, `**String`, `*Number` and `**Number` are supported
+- An optional `name` property can be provided to explicitly name the index. This is helpful when [querying the index with the AWS SDK as you know what to pass to the `IndexName` query parameter](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#query-property)
 
 ## Example
 
@@ -43,9 +44,11 @@ accounts
 @indexes
 accounts
   email *String
+  name byEmail
 
 accounts
   created *String
+  name byDate
 ```
 </div>
 </arc-tab>
@@ -61,8 +64,8 @@ accounts
     { "accounts": { "accountID": "*String" } }
   ],
   "indexes": [
-    { "accounts": { "email": "*String" } },
-    { "accounts": { "created": "*String" } }
+    { "accounts": { "email": "*String", "name": "byEmail" } },
+    { "accounts": { "created": "*String", "name": "byDate" } }
   ]
 }
 ```
@@ -81,8 +84,8 @@ app="testapp"
 accountID="*String"
 
 indexes = [
-{ "accounts" = { "email" = "*String" } },
-{ "accounts" = { "created" = "*String" } }
+{ "accounts" = { "email" = "*String", "name" = "byEmail" } },
+{ "accounts" = { "created" = "*String", "name" = "byDate" } }
 ]
 ```
 </div>
@@ -103,8 +106,10 @@ tables:
 indexes:
 - accounts:
   - email: "*String"
+  - name: "byEmail"
 - accounts:
   - created: "*String"
+  - name: "byDate"
 ```
 </div>
 </arc-tab>
