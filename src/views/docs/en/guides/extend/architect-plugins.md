@@ -37,7 +37,7 @@ myapp
 myplugin
 ```
 
-> In the example above running `arc deploy` will look for `./src/plugins/myplugin` and then `./node_modules/myplugin`
+> In the example above running any `arc` commands will look for `./src/plugins/myplugin` and then `./node_modules/myplugin`
 
 ## Interface
 
@@ -70,7 +70,7 @@ A deep dive into the [`package`](#package), [`pluginFunctions`](#pluginFunctions
 
 This method encapsulates [Architect's existing @macro functionality][macros]: extending Architect's generated CloudFormation `sam.json` with your own custom extensions.
 
-**As a plugin author, if you intend for your plugin to create custom Lambdas**, you would be expected to leverage the plugin author helper method [`createLambdaJSON` described below](#createLambdaJSON) to painlessly create CloudFormation-compatible JSON representing your new cloud functions. You must also implement the [`pluginFunctions`](#pluginFunctions) plugin interface method.
+**As a plugin author, if you intend for your plugin to create custom Lambdas**, you would be expected to leverage the plugin author helper method [`createLambdaJSON` described below](#createLambdaJSON) to painlessly create CloudFormation-compatible JSON representing your new cloud functions. You must also implement the [`pluginFunctions`](#pluginFunctions) plugin interface method to inform Architect of new Lambdas you are creating.
 
 #### Arguments
 
@@ -113,7 +113,7 @@ You should return an array of objects, each object representing a new Lambda bei
 }
 ```
 
-- `src`: a string containing a fully qualified absolute path to the source code location for the Lambda function.
+- `src`: a string containing a fully qualified absolute path to the source code location for the Lambda function. Relative to the arc project root, this property _must_ point to a location under the project's `src/` directory.
 - `body`: a string containing template code for the Lambda function handler
 
 #### Example `pluginFunctions` Implementation
@@ -214,7 +214,7 @@ Leveraging this helper method gives the plugin function support for [arc's per-f
 
 #### Returns
 
-A tuple (array of two objects) containing a string representing an AWS-friendly Lambda resource name (based on the path to the function code), and a JSON object that can be assigned to a CloudFormation `sam.json`'s `Resources` section. This would define a Lambda that Architect would create during a [`deploy`][deploy].
+A tuple (array of two objects) containing a string representing an AWS-friendly Lambda resource name (which is based on the path to the function code), and a JSON object that can be assigned to a CloudFormation `sam.json`'s `Resources` section. This would define a Lambda that Architect would create during a [`deploy`][deploy].
 
 #### Example Usage of `createLambdaJSON`
 
