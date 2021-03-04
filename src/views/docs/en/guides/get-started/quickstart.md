@@ -6,10 +6,10 @@ description: Get started quickly with Architect
 
 > Architect is the quickest way to build serverless web apps on AWS
 
-Open your terminal to install `arc`:
+Open your terminal to install `arc` and the AWS SDK:
 
 ```bash
-npm i -g @architect/architect
+npm i -g @architect/architect aws-sdk
 ```
 
 Check the version:
