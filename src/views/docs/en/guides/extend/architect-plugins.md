@@ -319,7 +319,7 @@ The above plugin's `sandbox.start` method listens for the "I" keyboard keypress,
 
 ## Example Plugins
 
-- [plugin-iot-rules](https://github.com/copperinc/macro-iot-rules/tree/plugins): a plugin adding AWS IoT Topic event Lambdas
+- [plugin-iot-rules](https://www.npmjs.com/package/@copper/plugin-iot-rules): a plugin adding AWS IoT Topic event Lambdas
 
 [inv]: https://github.com/architect/inventory
 [macros]: custom-cloudformation
