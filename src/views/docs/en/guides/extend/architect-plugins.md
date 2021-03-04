@@ -3,6 +3,8 @@ title: Architect Plugins
 description: How to extend Architect using lifecycle hooks
 ---
 
+> ⚠️ NOTE: Plugin supports exist only in architect version 8.5.0-RC.2 and above.
+
 Using [`@macros`][macros] allows you to augment the Architect-generated CloudFormation before deployment. However, augmenting CloudFormation may not be sufficient for certain extensions. For example, if you want to extend Architect with:
 
 - Your own custom Lambda integrations (e.g. Kinesis Stream or Lex conversation bot) and want Architect to create, hydrate and be able to retrieve the logs for these functions
