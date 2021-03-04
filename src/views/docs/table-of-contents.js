@@ -21,6 +21,14 @@ let Guides = [ {
     // TODO 'Middleware',
     // TODO 'WebSockets functions',
   ],
+  'Domains': [
+    'Route53',
+    'Route53 & CloudFront'
+    //'Dreamhost',
+    //'Godaddy',
+    //'One',
+    //'Namecheap'
+  ],
   /* TODO
   'Backend': [
     'Database tables & indexes',
