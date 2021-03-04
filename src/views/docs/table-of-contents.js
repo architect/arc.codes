@@ -21,8 +21,9 @@ let Guides = [ {
     // TODO 'WebSockets functions',
   ],
   'Domains': [
-    'Route 53',
-    'Dreamhost',
+    'Route53',
+    'Route53 & CloudFront'
+    //'Dreamhost',
     //'Godaddy',
     //'One',
     //'Namecheap'
