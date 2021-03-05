@@ -51,14 +51,14 @@ Plugin authors should create a module that exports an object with properties of 
   */
 
 module.exports = {
-  package: async function extendCloudFormation (arc, sam, stage='staging', inventory) {
+  package: async function extendCloudFormation ({ arc, cloudformation, stage='staging', inventory }) {
   },
-  pluginFunctions: function (arc, inventory) {
+  pluginFunctions: function ({ arc, inventory }) {
   },
   sandbox: {
-    start: async function (arc, inventory, builtInSandboxServices) {
+    start: async function ({ arc, inventory, services }) {
     },
-    end: async function (arc, inventory, builtInSandboxServices) {
+    end: async function ({ arc, inventory, services }) {
     }
   }
 }
@@ -68,7 +68,7 @@ A deep dive into the [`package`](#package), [`pluginFunctions`](#pluginFunctions
 
 ### `package`
 
-> `package(arc, sam, stage, inventory)`
+> `package({ arc, sam, stage, inventory })`
 
 This method encapsulates [Architect's existing @macro functionality][macros]: extending Architect's generated CloudFormation `sam.json` with your own custom extensions.
 
@@ -76,20 +76,22 @@ This method encapsulates [Architect's existing @macro functionality][macros]: ex
 
 #### Arguments
 
+All arguments arrive as a bag of options with the following properties:
+
 |Argument|Description|
 |---|---|
 |`arc`|Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project|
-|`sam`|The [CloudFormation JSON template][cfn-ref] making up the Architect project|
+|`cloudformation`|The [CloudFormation JSON template][cfn-ref] making up the Architect project|
 |`stage`|The name of the environment; usually one of `staging` or `production`|
 |`inventory`|An [Architect inventory object][inv] representing the current Architect project|
 
 #### Returns
 
-You _must_ return the `sam` argument after modifying it with your own extensions.
+You _must_ return the `cloudformation` argument after modifying it with your own extensions.
 
 ### `pluginFunctions`
 
-> `pluginFunctions(arc, inventory)`
+> `pluginFunctions({ arc, inventory })`
 
 The plugin author must implement this method if the plugin defines new Lambda functions. This method is used by Architect to allow your custom plugin Lambdas to hook into Architect's capabilities and lifecycle, such as:
 
@@ -98,6 +100,8 @@ The plugin author must implement this method if the plugin defines new Lambda fu
 - providing hints to [`arc logs`][logs] as to where to find CloudWatch execution logs for your custom plugin Lambdas
 
 #### Arguments
+
+All arguments arrive as a bag of options with the following properties:
 
 |Argument|Description|
 |---|---|
@@ -124,7 +128,7 @@ You should return an array of objects, each object representing a new Lambda bei
 let path = require('path')
 
 module.exports = {
-  pluginFunctions: function (arc, inventory) {
+  pluginFunctions: function ({ arc, inventory }) {
     if (!arc.rules) return [] // if plugin author didnt define @rules lambdas, return empty array signifying no new lambdas to add
     const cwd = inventory.inv._project.src
     return arc.rules.map((rule) => {
@@ -156,9 +160,9 @@ rule-two
 
 ### `sandbox.start`
 
-> `start(arc, inventory, builtInSandboxServices, callback)`
+> `start({ arc, inventory, services }, callback)`
 
-The plugin author must implement this method if the plugin wants to hook into the startup routine for [`sandbox`][sandbox]. This would allow plugin authors to emulate the cloud services their plugin provides in order to provide a local development experience for consumers of their plugin. It would also allow to modify behaviour of [`sandbox`][sandbox]'s built-in local development services for [`@http`][http], [`@events`][events], [`@queues`][queues] and [`@tables`][tables] via the `builtInSandboxServices` argument.
+The plugin author must implement this method if the plugin wants to hook into the startup routine for [`sandbox`][sandbox]. This would allow plugin authors to emulate the cloud services their plugin provides in order to provide a local development experience for consumers of their plugin. It would also allow to modify behaviour of [`sandbox`][sandbox]'s built-in local development services for [`@http`][http], [`@events`][events], [`@queues`][queues] and [`@tables`][tables] via the `services` argument.
 
 This method can either be `async` or not; if the plugin author implements it as `async`, then the final `callback` argument may be ignored. Otherwise, the `callback` argument should be invoked once the plugin's sandbox service is ready.
 
@@ -166,11 +170,13 @@ A helper method [`invokeLambda` (described below)](#invokeLambda) is provided by
 
 #### Arguments
 
+All arguments arrive as a bag of options with the following properties:
+
 |Argument|Description|
 |---|---|
 |`arc`|Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project|
 |`inventory`|An [Architect inventory object][inv] representing the current Architect project|
-|`builtInSandboxServices`|[`sandbox`][sandbox] runs [local in-memory servers to mock out http, events, queues and database functionality](https://github.com/architect/sandbox/blob/master/src/sandbox/index.js#L19-L24); if you need to modify these services, use this argument|
+|`services`|[`sandbox`][sandbox] runs [local in-memory servers to mock out http, events, queues and database functionality](https://github.com/architect/sandbox/blob/master/src/sandbox/index.js#L19-L24); if you need to modify these services, use this argument|
 |`callback`|Can be ignored if the method implementation is an `async function`; otherwise, `callback` must be invoked once the plugin's local development `sandbox` service is ready|
 
 #### Example `start` Implementation
@@ -179,7 +185,7 @@ An example is [provided below that leverages the `invokeLambda` helper method](#
 
 ### `sandbox.end`
 
-> `end(arc, inventory, builtInSandboxServices, callback)`
+> `end({ arc, inventory, services }, callback)`
 
 If the plugin author implements the [`sandbox.start`](#sandbox.start) method, then they must also implement the `sandbox.end` method. This method gives the plugin the opportunity to gracefully shut down any services powering local development support of the plugin.
 
@@ -187,11 +193,13 @@ This method can either be `async` or not; if the plugin author implements it as 
 
 #### Arguments
 
+All arguments arrive as a bag of options with the following properties:
+
 |Argument|Description|
 |---|---|
 |`arc`|Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project|
 |`inventory`|An [Architect inventory object][inv] representing the current Architect project|
-|`builtInSandboxServices`|[`sandbox`][sandbox] runs [local in-memory servers to mock out http, events, queues and database functionality](https://github.com/architect/sandbox/blob/master/src/sandbox/index.js#L19-L24); if you need to modify these services, use this argument|
+|`services`|[`sandbox`][sandbox] runs [local in-memory servers to mock out http, events, queues and database functionality](https://github.com/architect/sandbox/blob/master/src/sandbox/index.js#L19-L24); if you need to modify these services, use this argument|
 |`callback`|Can be ignored if the method implementation is an `async function`; otherwise, `callback` must be invoked once the plugin's local development `sandbox` service has been shut down|
 
 
@@ -201,7 +209,7 @@ For common Architect Plugin use cases, Architect provides a few helper functions
 
 ### `createLambdaJSON`
 
-> `createLambdaJSON(inventory, pathToPluginCloudFunction)`
+> `createLambdaJSON({ inventory, src })`
 
 Available in the [`@architect/package`](https://npmjs.com/package/@architect/package) module, this method can be leveraged inside a plugin's [`package`](#package) method in order to easily and consistently define CloudFormation JSON representing Lambdas created by the plugin.
 
@@ -209,10 +217,12 @@ Leveraging this helper method gives the plugin function support for [arc's per-f
 
 #### Arguments
 
+All arguments arrive as a bag of options with the following properties:
+
 |Argument|Description|
 |---|---|
 |`inventory`|An [Architect inventory object][inv] representing the current Architect project|
-|`pathToPluginCloudFunction`|a string representing the path where code for the Lambda exists locally|
+|`src`|A string representing the path where code for the Lambda exists locally|
 
 #### Returns
 
@@ -225,12 +235,12 @@ let createLambdaJSON = require('@architect/package/createLambdaJSON')
 let path = require('path')
 
 module.exports = {
-  package: async function IoTRulesLambdas (arc, cfn, stage = 'staging', inventory) {
+  package: async function IoTRulesLambdas ({ arc, cloudformation, stage = 'staging', inventory }) {
     if (arc.rules) {
       const cwd = inventory.inv._project.src
       arc.rules.forEach(rule => {
         let code = path.join(cwd, 'src', 'rules', rule[0])
-        let [functionName, functionDefn] = createLambdaJSON(inventory, code)
+        let [functionName, functionDefn] = createLambdaJSON({ inventory, src: code })
         cfn.Resources[functionName] = functionDefn
       })
     }
@@ -241,18 +251,20 @@ module.exports = {
 
 ### `invokeLambda`
 
-> `invokeLambda(inventory, pathToPluginCloudFunction, payload, callback)`
+> `invokeLambda({ inventory, src, payload }, callback)`
 
 Available in the [`@architect/sandbox`](https://npmjs.com/package/@architect/sandbox) module, this method can be leveraged inside a plugin's [`sandbox.start`](#sandbox.start) method in order to easily invoke project Lambdas locally within an [`arc sandbox`][sandbox] local development runtime context.
 
 #### Arguments
 
+All arguments arrive as a bag of options with the following properties:
+
 |Argument|Description|
 |---|---|
 |`inventory`|An [Architect inventory object][inv] representing the current Architect project|
-|`pathToPluginCloudFunction`|a string representing the path where code for the Lambda exists locally|
+|`src`|A string representing the path where code for the Lambda exists locally|
 |`payload`|JSON payload to deliver to the function|
-|`callback`|function with signature `function(error, result)` that is invoked with either the error or the result from the local function invocation|
+|`callback`|Function with signature `function(error, result)` that is invoked with either the error or the result from the local function invocation|
 
 #### Example Usage of `invokeLambda`
 
@@ -261,7 +273,7 @@ let path = require('path')
 let prompt = require('prompt')
 
 module.exports = {
-  pluginFunctions: async function (arc, inventory) {
+  pluginFunctions: async function ({ arc, inventory }) {
     if (!arc.rules) return []
     const cwd = inventory.inv._project.src
     return arc.rules.map((rule) => {
@@ -275,8 +287,8 @@ module.exports = {
     })
   },
   sandbox: {
-    start: function IoTRulesServiceStart (arc, inventory, builtInSandboxServices, callback) {
-      let rules = module.exports.pluginFunctions(arc, inventory).map(rule => rule.src)
+    start: function IoTRulesServiceStart ({ arc, inventory, services }, callback) {
+      let rules = module.exports.pluginFunctions({ arc, inventory }).map(rule => rule.src)
       process.stdin.on('keypress', async function IoTRulesKeyListener (input, key) {
         if (input === 'I') {
           const response = await prompt([ {
@@ -302,7 +314,7 @@ module.exports = {
               return JSON.parse(i)
             }
           } ])
-          invokeLambda(inventory, response.rule, response.payload, function (err, result) {
+          invokeLambda({ inventory, src: response.rule, payload: response.payload }, function (err, result) {
             if (err) console.error(`Error invoking lambda ${response.rule}!`, err)
             else console.log(`${response.rule} invocation result:`, result)
           })
