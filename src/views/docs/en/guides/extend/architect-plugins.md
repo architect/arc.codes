@@ -241,10 +241,10 @@ module.exports = {
       arc.rules.forEach(rule => {
         let code = path.join(cwd, 'src', 'rules', rule[0])
         let [functionName, functionDefn] = createLambdaJSON({ inventory, src: code })
-        cfn.Resources[functionName] = functionDefn
+        cloudformation.Resources[functionName] = functionDefn
       })
     }
-    return cfn
+    return cloudformation
   }
 }
 ```
