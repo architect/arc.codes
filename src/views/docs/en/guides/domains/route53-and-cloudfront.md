@@ -31,6 +31,7 @@ Generate a CloudFront distribution with the certificate from step 1.
 - Set `Viewer Protocol Policy` to `Redirect HTTP to HTTPS`
 - Set `Allowed HTTP Methods` to `GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE`
 - Set `Compress Objects Automatically` to `Yes`
+- Enter the domain alias in `Alternate Domain Names` (which you will configure in step 3)
 - Set `SSL Certificate` to `Custom SSL Certificate` and select the cert from step 1
 - Click `Create Distribution`
 
