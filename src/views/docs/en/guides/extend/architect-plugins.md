@@ -68,7 +68,7 @@ A deep dive into the [`package`](#package), [`pluginFunctions`](#pluginFunctions
 
 ### `package`
 
-> `package({ arc, sam, stage, inventory })`
+> `package({ arc, cloudformation, stage, inventory })`
 
 This method encapsulates [Architect's existing @macro functionality][macros]: extending Architect's generated CloudFormation `sam.json` with your own custom extensions.
 
