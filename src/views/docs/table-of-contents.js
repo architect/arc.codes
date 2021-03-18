@@ -22,8 +22,8 @@ let Guides = [ {
   ],
   'Domains': [
     'Route53',
-    'Route53 & CloudFront'
-    //'Dreamhost',
+    'Route53 & CloudFront',
+    'Dreamhost',
     //'Godaddy',
     //'One',
     //'Namecheap'
