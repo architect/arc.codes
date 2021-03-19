@@ -1,87 +1,59 @@
 ---
-title: One.com
-description: Setting up a domain name with One.com
-sections:
-  - Overview
-  - Get SSL Certificates
-  - Map domain names
-  - Conclusion
+title: One
+description: Setting up a domain name with One
 ---
 
-## Overview
+## Prerequisites 
 
-Follow these instructions to manually configure One to serve your application from your domain. Per the [Start here](/docs/en/guides/domains/start-here) section, you should have already deployed your arc app to `staging` and `production` and saved the `URLs` for later steps below.
+- Sign up for a domain on [One](https://www.one.com/en/domain)
+- Deploy an app with Architect and make note of the `staging` and `production` URLs
+- Ensure the app is deployed to `us-east-1`
+- Ensure the `@app` name is uniquely named after the domain.
 
-This article assumes that you have already:
+## Step 1: setup SSL certificates with AWS Certificate Manager
 
-- signed up for One.com
-- purchased the domain of your choice
+In this step we will request a certificate from Amazon for our domain.
 
-## Get SSL Certificates
+- Open up AWS Certificate Manager in the AWS Console in `us-east-1` (region is required!)
+- Click `Request a certificate` and then `Request a public certificate`
+- Ensure `example.com` and `*.example.com` for sub domains to work
+- Choose `DNS validation` and click `Next`
+- Add any tags and confirm the request
+- Open up One account dashboard and click `DNS settings` for the particular domain you want to use.
+- Open the `DNS records` tab.
+- Click the `CNAME` tab in the `Create new record` box
+- Create CNAME records of both issued certificates
+- Wait until they change from `pending` to `success`
 
-In this step, you'll need to add two `CNAME` values to your One DNS to verify your ownership of the domain and generate your SSL certificates for HTTPS. Now that you have your domain, let's request a SSL certificates from AWS Certificate Manager.
+## Step 2: setup CloudFront
 
-- Click the `Get started` button in the Provision certificates section. 
-- Click `Request a public certificate`.
-- **Pro-tip:** set up both `example.com` and `staging.example.com` for use with subdomains.
+Generate a CloudFront distribution with the certificate from step 1.
 
-### Verify your ownership of the domain(s).
+- Sign into AWS CloudFront in the AWS Console
+- Click `Create Distribution` and then click `Get Started`
+- Open API Gateway and make note of the `Invoke URL`.
+- Enter the URL from API Gateway in `Origin Domain Name` 
+- Set `Origin Protocol Policy` to `Match Viewer`
+- Add the `Alternate Domain Names (CNAMEs)` that you will be using. ex. `example.com`.
+- Set `Viewer Protocol Policy` to `Redirect HTTP to HTTPS`
+- Set `Allowed HTTP Methods` to `GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE`
+- Set `Compress Objects Automatically` to `Yes`
+- Set `SSL Certificate` to `Custom SSL Certificate` and select the cert from step 1
+- Click `Create Distribution`
+- Repeat for `staging` domain.
 
-In this step, you'll need to add two `CNAME` values to your One.com DNS in order to verify your ownership of the domain and generate your SSL certificates for HTTPS.
+## Step 3: configure the domain Alias in One 
 
-Head back to the One.com console and navigate to the `DNS records` page for your specific domain. During the SSL verification step, the first part of the name gets entered as your `CNAME` subdomain, and the value is inputted as the value. For instance, when you're provided the following `CNAME` entry:
+Add `A` and `CNAME` records to DNS.
 
-- **Name:** `_2f9b34277e4b159e0beaa859e8802a93.www.example.com`
-- **Value:** `_58cb94c5d71976edd03e8303fc1a126b.acm-validations.aws.`
-
-You'll add a CNAME subdomain of 
-
-- `_2f9b34277e4b159e0beaa859e8802a93` within your One.com `Hostname` zone.
-
-Then, set its `Is an alias of` to 
-- `_58cb94c5d71976edd03e8303fc1a126b.acm-validations.aws`
-
-> ⚠️ Leave the trailing period off!
-
-Due to the eventually consistent nature of DNS-based verification, it may take a few minutes for your changes to get picked up. Check back after a few minutes, and your values should be green, and you should be able to complete the next and final step.
-
-> If for some reason after more than a few minutes your domains haven't verified, make sure that you've correctly entered the settings into your DNS.
-
-## Map domain names
-
-Sign into AWS API Gateway. Follow these instructions for adding both `production` domain and `staging` domain.
-
-- Click on **Custom Domain Names**
-- Create a **Custom Domain Name** for `production`
-- Fill in the form:
-  - Enter the exact FQDN you intend to use (i.e. `arc.codes` or `www.foo.com`) in the **Domain Name** field
-  - Select the **ACM Certificate** you just verified
-  - Click `Create domain name`
-  - Enter `/` in the **Path** field
-  - Select your app's `production` API name in the **Destination** menu
-  - Select the `production` value in the **Stage** menu
-- Copy the value of the generated **Distribution Domain Name** to your clipboard
-
-### Head back to One.com and click into the domain in question.
-
-In the final step, you'll add the final `CNAME` and `ALIAS` records to your One.com. This points your domain at your arc app.
-
-When you provide the `CNAME` record:
-
-- Switch to `CNAME` record setting.
-- **Hostname:** `staging`
-- **Is an alias of:** `pi1f6fddqd0dje.cloudfront.net`
-
-
-When you provide the `A` record:
-
-- Switch to `A` record setting.
-- **Hostname:** input `@` symbol
-- Find out the IP address of the given cloudfront URL (`http://pi1f6fddqd0dje.cloudfront.net`) using a tool like [24x7.com](https://www.site24x7.com/find-ip-address-of-web-site.html)
-- Lastly in the **Will point to:** section, add the IP address.
+- Open up One account dashboard and click `DNS settings` for the particular domain you want to use.
+- Open the `DNS records` tab.
+- Click the `A` tab in the `Create new record` box
+- Use record type `A` for the root domain. 
+    - Leave `Hostname` input empty and add the IP address of the Cloudfront domain that was created in step 2 to the `Will point to` input.
+- Use record type `CNAME` for the `staging` domain. 
+    - Add the word `staging` to the `Hostname` input and add the Cloudfront domain that was created in step 2 to the `Is an alias of` input.
 
 ## Conclusion
 
-Now we're done! You can check to see if your domains are online with this [DNS Checker tool](https://dnschecker.org/).
-
-Keep in mind that it takes a few hours for DNS to propagate fully, so be patient. Perhaps grab a cup of coffee or tea ☕️ – it can take a few minutes while AWS wires everything up!
+Now we're done! You can check to see if your domains are online with the DNS checker tool [DNS Checker tool](https://dnschecker.org/).

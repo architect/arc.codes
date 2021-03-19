@@ -25,9 +25,9 @@ let Guides = [ {
     'Route53',
     'Route53 & CloudFront',
     'Dreamhost',
-    //'Godaddy',
-    //'One',
-    //'Namecheap'
+    'Godaddy',
+    'One',
+    'Namecheap'
   ],
   /* TODO
   'Backend': [

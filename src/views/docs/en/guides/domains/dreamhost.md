@@ -9,6 +9,7 @@ description: Setting up a domain name with Dreamhost
 - Make sure your domain is set to `DNS Only` in the Dreamhost console.
 - Deploy an app with Architect and make note of the `staging` and `production` URLs
 - Make sure your app is deployed to `us-east-1`
+- Ensure the `@app` name is uniquely named after the domain.
 
 ## Step 1: setup SSL certificates with AWS Certificate Manager
 
@@ -30,6 +31,7 @@ Generate a CloudFront distribution with the certificate from step 1.
 
 - Sign into AWS CloudFront in the AWS Console
 - Click `Create Distribution` and then click `Get Started`
+- Open API Gateway and make note of the Invoke URL.
 - Enter the URL from API Gateway in `Origin Domain Name` 
 - Set `Origin Protocol Policy` to `Match Viewer`
 - Add the `Alternate Domain Names (CNAMEs)` that you will be using. ex. `example.com`.
