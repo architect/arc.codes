@@ -20,9 +20,6 @@ This `app.arc` file defines both HTTP and WebSocket endpoints:
 @app
 myapp
 
-@http
-get /
-
 @ws
 
 ```
@@ -37,10 +34,7 @@ get /
 ```json
 {
   "architect": {
-    "app": "myapp",
-    "http": [
-      [ "get", "/" ]
-    ],
+    "app": "myapp"
     "ws": {}
   },
   "start": "npx sandbox",
@@ -60,10 +54,6 @@ get /
 ```toml
 app="testapp"
 
-http=[
- [ "get", "/" ]
-]
-
 "ws"
 ```
 
@@ -77,9 +67,6 @@ http=[
 ```yml
 ---
 app: testapp
-
-http:
-- get: "/"
 
 ws: ~
 ```
@@ -101,3 +88,28 @@ Running `arc create` generates the following functions:
 ├── app.arc
 └── package.json
 ```
+
+Each function responds to websocket events from a client.
+
+In the functions payload there is a connectionId that uniquely identifies a client. This connectionId can be used to send messages to the correct client.
+
+### Functions
+
+Each function created by the @ws pragma handles a different event from a websocket client.
+
+* Connect - This function is invoked when a websocket client connects to the application
+* Default - This function is invoked when a websocket client sends a message to the application
+* Disconnect - This function is invoked when a websocket client disconnects from your application
+
+#### Function Payload
+
+|Argument|Description|
+|---|---|
+|`req`|The websocket request payload|
+|`req.requestContext.connectionId`|An id that uniquely identifies a client|
+
+#### Send Messages
+
+To send websocket messages to the client you can use the architect/functions ws.send method.
+
+Docs: [node](/docs/en/reference/runtime/node#arc.ws) - [ruby](/docs/en/reference/runtime/ruby#arc.ws) - [python](/docs/en/reference/runtime/python#arc.ws)
