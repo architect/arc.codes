@@ -94,12 +94,10 @@ Running `arc create` generates the following functions:
 
 ```bash
 /
-|-src
-| |-http
-| | '-get-index/
-| '-ws
-|   |-connect/
-|   |-default/
-|   '-disconnect/
-'-app.arc
+├── ws
+│   ├── connect
+│   ├── default
+│   ├── disconnect
+├── app.arc
+└── package.json
 ```
