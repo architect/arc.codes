@@ -40,7 +40,7 @@ let Guides = [ {
   'Extend': [
     // TODO'Migrate legacy code',// @proxy, arc.http.express
     'Custom CloudFormation',
-    'Architect Plugins',
+    'Plugins',
     // TODO'Add a custom domain',
     // TODO'Ejecting '
   ]
