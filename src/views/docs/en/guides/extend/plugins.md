@@ -1,9 +1,9 @@
 ---
-title: Architect Plugins
+title: Plugins (beta)
 description: How to extend Architect using lifecycle hooks
 ---
 
-> ⚠️ NOTE: Plugin supports exist only in architect version 8.5.0-RC.3 and above.
+> ⚠️ NOTE: Plugin support was added in version 8.5.0, is currently in beta and the interface is subject to change
 
 Using [`@macros`][macros] allows you to augment the Architect-generated CloudFormation before deployment. However, augmenting CloudFormation may not be sufficient for certain extensions. For example, if you want to extend Architect with:
 

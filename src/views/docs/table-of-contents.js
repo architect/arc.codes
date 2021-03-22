@@ -23,11 +23,11 @@ let Guides = [ {
   ],
   'Domains': [
     'Route53',
-    'Route53 & CloudFront'
-    //'Dreamhost',
-    //'Godaddy',
-    //'One',
-    //'Namecheap'
+    'Route53 & CloudFront',
+    'Dreamhost',
+    'Godaddy',
+    'One',
+    'Namecheap'
   ],
   /* TODO
   'Backend': [
@@ -40,7 +40,7 @@ let Guides = [ {
   'Extend': [
     // TODO'Migrate legacy code',// @proxy, arc.http.express
     'Custom CloudFormation',
-    'Architect Plugins',
+    'Plugins',
     // TODO'Add a custom domain',
     // TODO'Ejecting '
   ]
