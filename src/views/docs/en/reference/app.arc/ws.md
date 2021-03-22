@@ -5,10 +5,6 @@ description: Defin WebSocket endpoints
 
 Define WebSocket endpoint and Lambda handler functions.
 
-### Syntax
-
-No other config required
-
 ### Example
 
 This `app.arc` file defines both HTTP and WebSocket endpoints:
@@ -28,9 +24,9 @@ myapp
 get /
 
 @ws
-# no other config required
 
 ```
+
 </div>
 </arc-tab>
 
@@ -53,6 +49,7 @@ get /
   }
 }
 ```
+
 </div>
 </arc-tab>
 
@@ -68,8 +65,8 @@ http=[
 ]
 
 "ws"
-# no other config required
 ```
+
 </div>
 </arc-tab>
 
@@ -85,13 +82,13 @@ http:
 - get: "/"
 
 ws: ~
-# no other config required
 ```
+
 </div>
 </arc-tab>
 
 </div>
-<arc-viewer>
+</arc-viewer>
 
 Running `arc create` generates the following functions:
 
