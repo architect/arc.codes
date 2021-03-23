@@ -97,7 +97,7 @@ In the [payload delivered to the function](#function-payload) there is a `connec
 
 The functions created by the `@ws` pragma handle events from a WebSocket client.
 
-* Connect - This function is invoked when a websocket client connects to the application
+* Connect - This function is invoked when a WebSocket client connects to the application
 * Default - This function is invoked when a websocket client sends a message to the application
 * Disconnect - This function is invoked when a websocket client disconnects from your application
 
