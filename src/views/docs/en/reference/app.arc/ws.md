@@ -105,7 +105,7 @@ The functions created by the `@ws` pragma handle events from a WebSocket client.
 
 |Argument|Description|
 |---|---|
-|`req`|The websocket request payload|
+|`req`|The WebSocket request payload|
 |`req.requestContext.connectionId`|An id that uniquely identifies a client|
 
 #### Send Messages
