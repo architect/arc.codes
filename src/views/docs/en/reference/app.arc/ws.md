@@ -89,7 +89,7 @@ Running `arc create` generates the following functions:
 └── package.json
 ```
 
-Each function responds to websocket events from a client.
+Each function responds to WebSocket events from a client.
 
 In the [payload delivered to the function](#function-payload) there is a `connectionId` that uniquely identifies a client. This `connectionId` can be used to send messages to the correct client.
 
