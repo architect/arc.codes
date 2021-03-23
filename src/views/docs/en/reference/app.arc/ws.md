@@ -95,7 +95,7 @@ In the [payload delivered to the function](#function-payload) there is a `connec
 
 ### Functions
 
-The functions created by the @ws pragma handle events from a websocket client.
+The functions created by the `@ws` pragma handle events from a WebSocket client.
 
 * Connect - This function is invoked when a websocket client connects to the application
 * Default - This function is invoked when a websocket client sends a message to the application
