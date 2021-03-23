@@ -91,7 +91,7 @@ Running `arc create` generates the following functions:
 
 Each function responds to websocket events from a client.
 
-In the functions payload there is a connectionId that uniquely identifies a client. This connectionId can be used to send messages to the correct client.
+In the [payload delivered to the function](#function-payload) there is a `connectionId` that uniquely identifies a client. This `connectionId` can be used to send messages to the correct client.
 
 ### Functions
 
