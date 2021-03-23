@@ -31,6 +31,7 @@ let arc = require('@architect/functions')
 - [`arc.tables`](#arc.tables) Generates a DynamoDB client for `@tables`
 - [`arc.events`](#arc.events) Publish/subscribe helpers for SNS `@events` functions
 - [`arc.queues`](#arc.queues) Publish/subscribe helpers for SQS `@queues` functions
+- [`arc.ws`](#arc.ws) Websocket helpers for `@ws` functions
 
 ### `arc.static`
 
@@ -231,5 +232,18 @@ let arc = require('@architect/functions')
 await arc.queues.publish({
   name: 'hit-counter',
   payload: {hits: 1},
+})
+```
+
+### `arc.ws`
+
+Send a message over websockets
+
+```javascript
+let arc = require('@architect/functions')
+
+await arc.ws.send({
+  id: connectionId,
+  payload: { message: 'hai 🐶' }
 })
 ```

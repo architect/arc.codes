@@ -95,7 +95,7 @@ In the functions payload there is a connectionId that uniquely identifies a clie
 
 ### Functions
 
-Each function created by the @ws pragma handles a different event from a websocket client.
+The functions created by the @ws pragma handle events from a websocket client.
 
 * Connect - This function is invoked when a websocket client connects to the application
 * Default - This function is invoked when a websocket client sends a message to the application
