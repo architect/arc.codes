@@ -31,7 +31,7 @@ let arc = require('@architect/functions')
 - [`arc.tables`](#arc.tables) Generates a DynamoDB client for `@tables`
 - [`arc.events`](#arc.events) Publish/subscribe helpers for SNS `@events` functions
 - [`arc.queues`](#arc.queues) Publish/subscribe helpers for SQS `@queues` functions
-- [`arc.ws`](#arc.ws) Websocket helpers for `@ws` functions
+- [`arc.ws`](#arc.ws) WebSocket helpers for `@ws` functions
 
 ### `arc.static`
 
