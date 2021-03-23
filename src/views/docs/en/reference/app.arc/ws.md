@@ -99,7 +99,7 @@ The functions created by the `@ws` pragma handle events from a WebSocket client.
 
 * Connect - This function is invoked when a WebSocket client connects to the application
 * Default - This function is invoked when a WebSocket client sends a message to the application
-* Disconnect - This function is invoked when a websocket client disconnects from your application
+* Disconnect - This function is invoked when a WebSocket client disconnects from your application
 
 #### Function Payload
 
