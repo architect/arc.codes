@@ -237,7 +237,7 @@ await arc.queues.publish({
 
 ### `arc.ws`
 
-Send a message over websockets
+Send a message over WebSockets.
 
 ```javascript
 let arc = require('@architect/functions')
