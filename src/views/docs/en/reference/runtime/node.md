@@ -3,15 +3,15 @@ title: Node
 description: Node runtime helpers
 ---
 
-Architect runtime helpers are optional but they do make working with CloudFormation provisioned resources nicer. CloudFormation resources are generated with names more friendly for machines than people. Other frameworks leave resource discovery up to end users which leads to ad hoc implementations becoming a frequent bug vector. Architect treats runtime discovery as a first class concern. 
+Architect runtime helpers are optional but they do make working with CloudFormation provisioned resources nicer. CloudFormation resources are generated with names more friendly for machines than people. Other frameworks leave resource discovery up to end users which leads to ad hoc implementations becoming a frequent bug vector. Architect treats runtime discovery as a first class concern.
 
 > Amazon Resource Names (ARNs) are available at runtime to all Lambda functions defined in the same `app.arc`. Things such as DynamoDB tables, SNS topics, SQS queues, API Gateway endpoints, and S3 static bucket ARNs are baked into `@architect/functions` so your runtime program logic interacts with resources using people friendly and readable names defined in the `app.arc` file.
 
-## Setup 
+## Setup
 
 Install the Architect runtime helpers for Node:
 
-```bash 
+```bash
 npm install @architect/functions
 ```
 
@@ -23,7 +23,7 @@ let arc = require('@architect/functions')
 
 ## API
 
-- [`arc.static`](#arc.static) Get a `@static` asset path 
+- [`arc.static`](#arc.static) Get a `@static` asset path
 - [`arc.http.async`](#arc.http.async) Middleware for `@http` functions
 - [`arc.http.express`](#arc.http.express) Express support for `@http` functions
 - [`arc.http.proxy`](#arc.http.proxy) Middleware for `@static` assets
@@ -32,6 +32,8 @@ let arc = require('@architect/functions')
 - [`arc.events`](#arc.events) Publish/subscribe helpers for SNS `@events` functions
 - [`arc.queues`](#arc.queues) Publish/subscribe helpers for SQS `@queues` functions
 - [`arc.ws`](#arc.ws) WebSocket helpers for `@ws` functions
+- [`arc.services`](#arc.services) Architect service map, exposing all services making up the application
+- [`arc._loadServices`](#arc._loadServices) Architect service map hydration method
 
 ### `arc.static`
 
@@ -138,7 +140,7 @@ async function handler (req) {
   // save the session into a cookie string
   let cookie = await arc.http.session.write({ count: 1 })
   // write the cookie to the browser
-  return { 
+  return {
     statusCode: 200,
     headers: { 'set-cookie': cookie },
   }
@@ -245,5 +247,60 @@ let arc = require('@architect/functions')
 await arc.ws.send({
   id: connectionId,
   payload: { message: 'hai 🐶' }
+})
+```
+
+### `arc.services`
+
+An object representing the service map of infrastructure and services making up the Architect application. This object is lazily-loaded and thus initially will be falsy. To force a hydration of this object, you can use the [`arc._loadServices`](#arc._loadServices) method, described below.
+
+`arc.services`, when hydrated, would resemble something like the following (depending on the makeup of the Architect application):
+
+```javascript
+{
+  imagebucket: { // a plugin named 'imagebucket' exposing some service discovery variables
+    accessKey: 'someAccessKey',
+    name: 'arc-plugin-s3-image-bucket-example-image-buket',
+    secretKey: 'someSecretKey'
+  },
+  static: { // built-in @static service discovery variables
+    bucket: 'arcplugins3imagebucketexamplestaging-staticbucket-g8rsuk82ancj',
+    fingerprint: 'false'
+  }
+}
+```
+
+### `arc._loadServices`
+
+Method for hydrating the [`arc.services`](#arc.services) service map. This method is lazily invoked by `@architect/functions` for built-in infrastructure support like `@tables`, `@events` and `@queues`. For use with third party Architect plugins, this method should be invoked manually from within your Lambda functions:
+
+```javascript
+let arc = require('@architect/functions')
+let form = require('./form') // helper that creates a form element we can render for users to upload their assets to an S3 bucket
+let aws = require('aws-sdk')
+
+exports.handler = arc.http.async(async function getIndex (req) {
+  if (!arc.services) await arc._loadServices() // service discovery is done on-demand, so always check that the `services` map is populated!
+  const { bucketName, accessKey, secretKey } = arc.services.imagebucket // assuming our app uses a plugin named 'imagebucket'
+  const region = process.env.AWS_REGION
+  const upload = form({ bucketName, accessKey, secretKey, region })
+  const s3 = new aws.S3
+  const images = await s3.listObjects({ Bucket: bucketName, Prefix: 'thumb/' }).promise()
+  const imgTags = images.Contents.map(i => i.Key.replace('thumb/', '/img/')).map(i => `<img src="${i}" />`).join('\n')
+  return {
+    headers: {
+      'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
+      'content-type': 'text/html; charset=utf8'
+    },
+    body: `<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <h1>Hi! Upload something directly from the browser to the S3 bucket:</h1>
+    ${upload}
+    <h1>And here are all the previously uploaded images:</h1>
+    ${imgTags}
+  </body>
+</html>`
+  }
 })
 ```
