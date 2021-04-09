@@ -212,7 +212,7 @@ await arc.events.publish({
 
 ### `arc.queues`
 
-Subscribe to an SQS topic
+Subscribe to an SQS queue
 
 ```javascript
 let arc = require('@architect/functions')
@@ -224,7 +224,7 @@ async function handler (event) {
 }
 ```
 
-Publish to an SNS topic
+Publish to an SQS queue
 
 ```javascript
 let arc = require('@architect/functions')
