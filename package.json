@@ -1,6 +1,6 @@
 {
   "name": "@architect/arc.codes",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "architect": {
     "app": "v8-arc-codes",
     "aws": {
