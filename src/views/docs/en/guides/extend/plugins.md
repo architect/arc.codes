@@ -167,7 +167,7 @@ This method is used by Architect in two situations:
 1. When running in a local development context via [`sandbox`][sandbox], `sandbox` will invoke the `variables` method in order to compile all runtime variables required by Architect application plugins and provide them to [`@architect/functions`][functions].
 2. When running in a remotely-deployed context on AWS, [`deploy`][deploy] will invoke the `variables` method in order to compile an [AWS SSM Parameter][ssm] per variable exported by the method before each deploy. Then, post-`deploy` at runtime, [`@architect/functions`][functions] will query the [AWS SSM Parameter Store][ssm] to retrieve these variables at runtime.
 
-Therefore the `variables` plugin method is only necessary to implement if you would like your plugin to provide runtime data within Lambdas via the [`@architect/functions`][functions] library. The exported variables would be available on the `services` object provided by [`@architect/functions`][functions], namespaced under the plugin name. For more information on how to query the service discovery mechanism using [`@architect/functions`][functions], check out the [`services` documentation][services].
+Therefore the `variables` plugin method is only necessary to implement if you would like your plugin to provide runtime data within Lambdas via the [`@architect/functions`][functions] library. The exported variables would be available via the [`services` function][services] provided by [`@architect/functions`][functions] (namespaced under the plugin name). For more information on how to query the service discovery mechanism using [`@architect/functions`][functions] at runtime, check out the [`@architect/functions` `services` documentation][services].
 
 #### Arguments
 
@@ -207,7 +207,7 @@ module.exports = {
 
 Note that when running locally, we provide some dummy set of credentials that the plugin could hard-code and check for when implementing the plugin [`sandbox.start`](#sandbox.start) method. Otherwise, when running in a pre-`deploy` context, we return CloudFormation JSON pointing to credentials the plugin could add to CloudFormation Resources when implementing the plugin [`package`](#package) method.
 
-The variables are namespaced on the [`@architect/functions`' `services`][services] object under a property equalling the plugin name; check out the [`services`][services] documentation for more details.
+The variables are namespaced on the [`@architect/functions`' `services()`][services] returned object under a property equalling the plugin name; check out the [`services`][services] documentation for more details.
 
 #### Example Service Discovery Usage With `@architect/functions`
 
@@ -219,8 +219,8 @@ let form = require('./form') // helper that creates a form element we can render
 let aws = require('aws-sdk')
 
 exports.handler = arc.http.async(async function getIndex (req) {
-  if (!arc.services) await arc._loadServices() // service discovery is done on-demand, so always check that the `services` map is populated!
-  const { bucketName, accessKey, secretKey } = arc.services.imagebucket // assuming the plugin name is called 'imagebucket'
+  const services = await arc.services()
+  const { bucketName, accessKey, secretKey } = services.imagebucket // plugin variables are namespaced under the plugin name; here we assume the plugin name is called 'imagebucket'
   const region = process.env.AWS_REGION
   const upload = form({ bucketName, accessKey, secretKey, region })
   const s3 = new aws.S3
