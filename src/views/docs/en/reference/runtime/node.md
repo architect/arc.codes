@@ -32,8 +32,7 @@ let arc = require('@architect/functions')
 - [`arc.events`](#arc.events) Publish/subscribe helpers for SNS `@events` functions
 - [`arc.queues`](#arc.queues) Publish/subscribe helpers for SQS `@queues` functions
 - [`arc.ws`](#arc.ws) WebSocket helpers for `@ws` functions
-- [`arc.services`](#arc.services) Architect service map, exposing all services making up the application
-- [`arc._loadServices`](#arc._loadServices) Architect service map hydration method
+- [`arc.services`](#arc.services) Retrieves the Architect service map, exposing metadata for all services making up the application
 
 ### `arc.static`
 
@@ -252,11 +251,16 @@ await arc.ws.send({
 
 ### `arc.services`
 
-An object representing the service map of infrastructure and services making up the Architect application. This object is lazily-loaded and thus initially will be falsy. To force a hydration of this object, you can use the [`arc._loadServices`](#arc._loadServices) method, described below.
+A function that retrieves the service map: an object mapping plugin or out-of-the-box Architect infrastructure data making up the Architect application. This object is lazily-loaded and cached and thus the first call may incur a delay as the service map is populated (use of [`arc.events`](#arc.events), [`arc.queues`](#arc.queues) and [`arc.tables`](#arc.tables) transparently uses this method in the background).
 
-`arc.services`, when hydrated, would resemble something like the following (depending on the makeup of the Architect application):
+`arc.services` returns a service map object, with keys equaling any out-of-the-box Architect infrastructure types or plugins used by the Architect application. An example service map for an application composed of `@static`, `@events` and an `imagebucket` plugin would have the following structure:
 
 ```javascript
+let arc = require('@architect/functions')
+
+let services = await arc.services()
+console.log(services)
+/* logs out:
 {
   imagebucket: { // a plugin named 'imagebucket' exposing some service discovery variables
     accessKey: 'someAccessKey',
@@ -266,41 +270,10 @@ An object representing the service map of infrastructure and services making up 
   static: { // built-in @static service discovery variables
     bucket: 'arcplugins3imagebucketexamplestaging-staticbucket-g8rsuk82ancj',
     fingerprint: 'false'
+  },
+  events: { // built-in @events service discovery variables
+    myevent: 'https://some-sns-url.amazon.us-east-2.com'
   }
 }
-```
-
-### `arc._loadServices`
-
-Method for hydrating the [`arc.services`](#arc.services) service map. This method is lazily invoked by `@architect/functions` for built-in infrastructure support like `@tables`, `@events` and `@queues`. For use with third party Architect plugins, this method should be invoked manually from within your Lambda functions:
-
-```javascript
-let arc = require('@architect/functions')
-let form = require('./form') // helper that creates a form element we can render for users to upload their assets to an S3 bucket
-let aws = require('aws-sdk')
-
-exports.handler = arc.http.async(async function getIndex (req) {
-  if (!arc.services) await arc._loadServices() // service discovery is done on-demand, so always check that the `services` map is populated!
-  const { bucketName, accessKey, secretKey } = arc.services.imagebucket // assuming our app uses a plugin named 'imagebucket'
-  const region = process.env.AWS_REGION
-  const upload = form({ bucketName, accessKey, secretKey, region })
-  const s3 = new aws.S3
-  const images = await s3.listObjects({ Bucket: bucketName, Prefix: 'thumb/' }).promise()
-  const imgTags = images.Contents.map(i => i.Key.replace('thumb/', '/img/')).map(i => `<img src="${i}" />`).join('\n')
-  return {
-    headers: {
-      'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
-      'content-type': 'text/html; charset=utf8'
-    },
-    body: `<!DOCTYPE html>
-<html lang="en">
-  <body>
-    <h1>Hi! Upload something directly from the browser to the S3 bucket:</h1>
-    ${upload}
-    <h1>And here are all the previously uploaded images:</h1>
-    ${imgTags}
-  </body>
-</html>`
-  }
-})
+*/
 ```
