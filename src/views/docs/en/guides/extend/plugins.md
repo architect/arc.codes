@@ -3,11 +3,11 @@ title: Plugins (beta)
 description: How to extend Architect using lifecycle hooks
 ---
 
-> ⚠️ NOTE: Plugin support was added in version 8.5.0, is currently in beta and the interface is subject to change
+> ⚠️ NOTE: Plugin support was added in version 8.5.0, is currently in beta, the interface is subject to change and only supports node.js
 
 Using [`@macros`][macros] allows you to augment the Architect-generated CloudFormation before deployment. However, augmenting CloudFormation may not be sufficient for certain extensions. For example, if you want to extend Architect with:
 
-- Your own custom Lambda integrations (e.g. Kinesis Stream or Lex conversation bot) and want Architect to create, hydrate and be able to retrieve the logs for these functions
+- Your own custom Lambda integrations (e.g. Kinesis Stream or Lex conversation bot) and want Architect to [`create`][create], [`hydrate`][hydrate] and be able to retrieve the [`logs`][logs] for these functions
 - A better local development experience for your extension by hooking into the Architect [`sandbox`][sandbox]
 
 Architect `@plugins` solves these use cases by providing a variety of [interfaces](#interface) that plugin authors may implement to hook into various Architect capabilities.
@@ -127,7 +127,7 @@ let path = require('path')
 
 module.exports = {
   pluginFunctions: function ({ arc, inventory }) {
-    if (!arc.rules) return [] // if plugin author didnt define @rules lambdas, return empty array signifying no new lambdas to add
+    if (!arc.rules) return [] // if plugin consumer didnt define @rules lambdas, return empty array signifying no new lambdas to add
     const cwd = inventory.inv._project.src
     return arc.rules.map((rule) => {
       let rulesSrc = path.join(cwd, 'src', 'rules', rule[0])
@@ -160,12 +160,12 @@ rule-two
 
 > `variables({ arc, cloudformation, stage, inventory })`
 
-The plugin author should implement this method if the plugin would like to provide any manner of data to Lambda functions at runtime. For context, Architect provides a suite of runtime helpers in the form of its [`@architect/functions`][functions] library. This library leverages functionality provided by [`deploy`][deploy] and [`sandbox`][sandbox] to expose runtime variables enabling [service discovery][discovery] - the automatic configuration, search and discovery of infrastructure and services making up your application. The `variables` plugin method enables plugin authors to hook into the Architect service discovery mechanism.
+The plugin author should implement this method if the plugin would like to provide any manner of data to Lambda functions at runtime. Architect provides a suite of runtime helpers via the [`@architect/functions`][functions] library. This library leverages functionality provided by [`deploy`][deploy] and [`sandbox`][sandbox] to expose runtime variables enabling [service discovery][discovery] - the automatic configuration, search and discovery of infrastructure and services making up your application. The `variables` plugin method enables plugin authors to hook into the Architect service discovery mechanism.
 
 This method is used by Architect in two situations:
 
 1. When running in a local development context via [`sandbox`][sandbox], `sandbox` will invoke the `variables` method in order to compile all runtime variables required by Architect application plugins and provide them to [`@architect/functions`][functions].
-2. When running in a remotely-deployed context on AWS, [`deploy`][deploy] will invoke the `variables` method in order to compile an [AWS SSM Parameter][ssm] per variable exported by the method before each deploy. Then, post-`deploy` at runtime, [`@architect/functions`][functions] will query the [AWS SSM Parameter Store][ssm] to retrieve these variables at runtime.
+2. When running in a remotely-deployed context on AWS, [`deploy`][deploy] will invoke the `variables` method in order to compile an [AWS SSM Parameter][ssm] per variable exported by the method before each deploy. Later, at runtime, [`@architect/functions`][functions] will query the [AWS SSM Parameter Store][ssm] to retrieve these variables at runtime.
 
 Therefore the `variables` plugin method is only necessary to implement if you would like your plugin to provide runtime data within Lambdas via the [`@architect/functions`][functions] library. The exported variables would be available via the [`services` function][services] provided by [`@architect/functions`][functions] (namespaced under the plugin name). For more information on how to query the service discovery mechanism using [`@architect/functions`][functions] at runtime, check out the [`@architect/functions` `services` documentation][services].
 
@@ -205,7 +205,7 @@ module.exports = {
 }
 ```
 
-Note that when running locally, we provide some dummy set of credentials that the plugin could hard-code and check for when implementing the plugin [`sandbox.start`](#sandbox.start) method. Otherwise, when running in a pre-`deploy` context, we return CloudFormation JSON pointing to credentials the plugin could add to CloudFormation Resources when implementing the plugin [`package`](#package) method.
+Note that when running locally in [`sandbox`][sandbox], we provide some dummy set of credentials that the plugin could hard-code and check for when implementing the plugin [`sandbox.start`](#sandbox.start) method. Otherwise, when running in a pre-`deploy` context, we return CloudFormation JSON pointing to credentials the plugin could add to CloudFormation Resources when implementing the plugin [`package`](#package) method.
 
 The variables are namespaced on the [`@architect/functions`' `services()`][services] returned object under a property equalling the plugin name; check out the [`services`][services] documentation for more details.
 
@@ -225,7 +225,7 @@ exports.handler = arc.http.async(async function getIndex (req) {
   const upload = form({ bucketName, accessKey, secretKey, region })
   const s3 = new aws.S3
   const images = await s3.listObjects({ Bucket: bucketName, Prefix: 'thumb/' }).promise()
-  const imgTags = images.Contents.map(i => i.Key.replace('thumb/', '/img/')).map(i => `<img src="${i}" />`).join('\n')
+  const imgTags = images.Contents.map(i => i.Key).map(i => `<img src="${i}" />`).join('\n')
   return {
     headers: {
       'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
@@ -262,7 +262,7 @@ All arguments arrive as a bag of options with the following properties:
 |---|---|
 |`arc`|Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project|
 |`inventory`|An [Architect inventory object][inv] representing the current Architect project|
-|`services`|[`sandbox`][sandbox] runs [local in-memory servers to mock out http, events, queues and database functionality](https://github.com/architect/sandbox/blob/master/src/sandbox/index.js#L19-L24); if you need to modify these services, use this argument|
+|`services`|An object containing `http`, `events` and `tables` properties that represent local servers that [`sandbox`][sandbox] manages to provide a local development experience. A plugin author may want to modify the behaviour of these pre-existing services in order for their plugin to provide a better local development experience. `http` is an instance of the npm package [`router`][router] and mocks API Gateway and Lambda. `events` is a node.js HTTP server that mocks SNS and SQS by listening for JSON payloads and marshaling them to the relevant Lambda functions (see its [listener module](https://github.com/architect/sandbox/blob/master/src/events/_listener.js) for more details). `tables` is an instance of the npm package [`dynalite`][dynalite] and mocks DynamoDB.|
 |`callback`|Can be ignored if the method implementation is an `async function`; otherwise, `callback` must be invoked once the plugin's local development `sandbox` service is ready|
 
 #### Example `start` Implementation
@@ -441,3 +441,5 @@ The above plugin's `sandbox.start` method listens for the "I" keyboard keypress,
 [cfn-ref]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-reference.html
 [discovery]: https://en.wikipedia.org/wiki/Service_discovery
 [ssm]: https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html
+[router]: https://www.npmjs.com/package/router
+[dynalite]: https://www.npmjs.com/package/dynalite
