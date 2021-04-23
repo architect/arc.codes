@@ -19,13 +19,13 @@ Architect `@plugins` solves these use cases by providing a variety of [interface
 1. [Installation](#installation)
 2. [Interface](#interface)
     1. [`package`](#package)
-    2. [`pluginFunctions`](#pluginfunctions)
+    2. [`functions`](#functions)
     3. [`variables`](#variables)
     4. [`sandbox.start`](#sandbox.start)
     5. [`sandbox.end`](#sandbox.end)
 3. [Helper Methods for Plugin Authors](#helper-methods-for-plugin-authors)
-    1. [`createLambdaJSON`](#createlambdajson)
-    2. [`invokeLambda`](#invokelambda)
+    1. [`createFunction`](#createfunction)
+    2. [`invokeFunction`](#invokefunction)
 4. [Example Plugins](#example-plugins)
 
 ## Installation
@@ -40,7 +40,7 @@ myapp
 myplugin
 ```
 
-> In the example above running any `arc` commands will look for `./src/plugins/myplugin` and then `./node_modules/myplugin`
+In the example above running any `arc` commands will look for `./src/plugins/myplugin`, `./src/plugins/myplugin.js`, `./node_modules/myplugin` and finally `./node_modules/@myplugin`. The `myplugin` entry in this example is assumed to be the _plugin name_.
 
 ## Interface
 
@@ -52,25 +52,26 @@ Plugin authors should create a module that exports an object with properties of 
   */
 
 module.exports = {
-  package: async function extendCloudFormation ({ arc, cloudformation, stage='staging', inventory }) {},
-  pluginFunctions: function ({ arc, inventory }) {},
+  package: async function extendCloudFormation ({ arc, cloudformation, stage='staging', inventory, createFunction }) {},
+  functions: function ({ arc, inventory }) {}, // also aliased to `pluginFunctions`
   variables: function ({ arc, stage, inventory }) {},
   sandbox: {
-    start: async function ({ arc, inventory, services }) {},
+    start: async function ({ arc, inventory, invokeFunction, services }) {},
     end: async function ({ arc, inventory, services }) {}
   }
 }
 ```
 
-A deep dive into the [`package`](#package), [`pluginFunctions`](#pluginFunctions), [`variables`](#variables), [`sandbox.start`](#sandbox.start) and [`sandbox.end`](#sandbox.end) methods follows.
+A deep dive into the [`package`](#package), [`functions`](#functions), [`variables`](#variables), [`sandbox.start`](#sandbox.start) and [`sandbox.end`](#sandbox.end) methods follows.
 
 ### `package`
 
-> `package({ arc, cloudformation, stage, inventory })`
+> `package({ arc, cloudformation, stage, inventory, createFunction })`
 
-This method encapsulates [Architect's existing @macro functionality][macros]: extending Architect's generated CloudFormation `sam.json` with your own custom extensions.
+This method encapsulates [Architect's existing @macro functionality][macros]: extending Architect's generated CloudFormation `sam.json` with your own custom extensions. The additional capability provided by `@plugins` over `@macros` is that `@plugins` provide a convenient way for your extension to define its own ephemeral cloud functions (AWS Lambdas). Plugin authors wanting to manage cloud functions in their plugins would:
 
-**As a plugin author, if you intend for your plugin to create custom Lambdas**, you would be expected to leverage the plugin author helper method [`createLambdaJSON` described below](#createLambdaJSON) to painlessly create CloudFormation-compatible JSON representing your new cloud functions. You must also implement the [`pluginFunctions`](#pluginFunctions) plugin interface method to inform Architect of new Lambdas you are creating.
+1. Leverage the convenience method [`createFunction`](#createfunction), which is injected as a parameter into `package`, to create CloudFormation JSON defining the AWS Lambda resources you want to manage within your plugin, and
+2. Implement the [`functions`](#functions) plugin interface method to inform Architect of new Lambdas you are creating.
 
 #### Arguments
 
@@ -82,20 +83,22 @@ All arguments arrive as a bag of options with the following properties:
 |`cloudformation`|The [CloudFormation JSON template][cfn-ref] making up the Architect project|
 |`stage`|The name of the environment; usually one of `staging` or `production`|
 |`inventory`|An [Architect inventory object][inv] representing the current Architect project|
+|`createFunction`|A helper method for creating CloudFormation Resource JSON defining any cloud functions (AWS Lambdas) your plugin manages. Please see the [`createFunction`](#createfunction) section for details on this method.|
 
 #### Returns
 
 You _must_ return the `cloudformation` argument after modifying it with your own extensions.
 
-### `pluginFunctions`
+### `functions`
 
+> `functions({ arc, inventory })`
 > `pluginFunctions({ arc, inventory })`
 
-The plugin author must implement this method if the plugin defines new Lambda functions. This method is used by Architect to allow your custom plugin Lambdas to hook into Architect's capabilities and lifecycle, such as:
+The plugin author must implement this method if the plugin defines new Lambda functions. This method is used by Architect to allow your custom plugin Lambdas to hook into Architect's capabilities and lifecycle in a variety of ways:
 
 - instructing [`arc create`][create] to create new files and directories in the project for your custom plugin Lambdas
-- instructing [`arc hydrate`][hydrate] to hydrate dependencies in the project for your custom plugin Lambdas
-- providing hints to [`arc logs`][logs] as to where to find CloudWatch execution logs for your custom plugin Lambdas
+- instructing [`arc hydrate`][hydrate] to hydrate dependencies of your custom plugin Lambdas
+- instructing [`arc logs`][logs] as to where CloudWatch execution logs for your custom plugin Lambdas are located
 
 #### Arguments
 
@@ -108,7 +111,7 @@ All arguments arrive as a bag of options with the following properties:
 
 #### Returns
 
-You should return an array of objects, each object representing a new Lambda being defined by the plugin. Each object should have the following format:
+`functions` should return an array of objects, each object representing a new Lambda being defined by the plugin. Each object should have the following format:
 
 ```javascript
 {
@@ -117,20 +120,22 @@ You should return an array of objects, each object representing a new Lambda bei
 }
 ```
 
-- `src`: a string containing a fully qualified absolute path to the source code location for the Lambda function. Relative to the arc project root, this property _must_ point to a location under the project's `src/` directory.
+- `src`: a string containing the fully qualified absolute path to the source code location for the Lambda function. This path _must_ point to a location under the project's `src/` directory. See the example section below on how to assemble such a path using the base project source directory available via the `inventory` parameter.
 - `body`: a string containing template code for the Lambda function handler
 
-#### Example `pluginFunctions` Implementation
+#### Example `functions` Implementation
+
+The following example implementation is for a plugin that allows consumers to define `@rules` Lambdas in their `app.arc` manifest:
 
 ```javascript
 let path = require('path')
 
 module.exports = {
-  pluginFunctions: function ({ arc, inventory }) {
-    if (!arc.rules) return [] // if plugin consumer didnt define @rules lambdas, return empty array signifying no new lambdas to add
-    const cwd = inventory.inv._project.src
-    return arc.rules.map((rule) => {
-      let rulesSrc = path.join(cwd, 'src', 'rules', rule[0])
+  functions: function ({ arc, inventory }) {
+    if (!arc.rules) return [] // if plugin consumer didnt define any @rules, return empty array signifying no new lambdas to add
+    const cwd = inventory.inv._project.src // base project source directory
+    return arc.rules.map((rule) => { // for each @rules
+      let rulesSrc = path.join(cwd, 'src', 'rules', rule[0]) // each @rules Lambda will exist under src/rules/<rule-name>
       return {
         src: rulesSrc,
         body: `exports.handler = async function (event) {
@@ -142,7 +147,7 @@ module.exports = {
 }
 ```
 
-The above would instruct Architect to look for functions under `src/rules/<function>` inside the project directory hierarchy. With the above `pluginFunctions` method and given `app.arc` contents like so:
+The above instructs Architect's various capabilities to interact with cloud functions under the `src/rules/<function>` directory inside the project hierarchy. With the above `functions` method and given `app.arc` contents like so:
 
 ```
 @rules
@@ -152,7 +157,7 @@ rule-two
 
 ... running:
 
-- [`arc create`][create] would create the folders `src/rules/rule-one` and `src/rules/rule-two`, with `index.js` files in each containing the contents of the `body` returned by `pluginFunctions`
+- [`arc create`][create] would create the folders `src/rules/rule-one` and `src/rules/rule-two`, with `index.js` files in each containing the contents of the `body` returned by `functions`
 - [`arc hydrate`][hydrate] would hydrate the above two folders
 - [`arc logs src/rules/rule-one`][logs] would pull in any deployed-to-staging execution logs for the `rule-one` function
 
@@ -160,14 +165,16 @@ rule-two
 
 > `variables({ arc, cloudformation, stage, inventory })`
 
-The plugin author should implement this method if the plugin would like to provide any manner of data to Lambda functions at runtime. Architect provides a suite of runtime helpers via the [`@architect/functions`][functions] library. This library leverages functionality provided by [`deploy`][deploy] and [`sandbox`][sandbox] to expose runtime variables enabling [service discovery][discovery] - the automatic configuration, search and discovery of infrastructure and services making up your application. The `variables` plugin method enables plugin authors to hook into the Architect service discovery mechanism.
+The plugin author should implement this method if the plugin would like to provide any manner of data to Lambda functions at runtime. For example, perhaps you would like to expose the physical ID of some AWS resource (i.e. ARN) to your runtime code so that you can interact withit using the AWS SDK.
+
+Architect provides a suite of runtime helpers via the [`@architect/functions`][functions] library. This library leverages functionality provided by [`deploy`][deploy] and [`sandbox`][sandbox] to expose runtime variables enabling [service discovery][discovery] - the automatic configuration, search and discovery of infrastructure and services making up your application. The `variables` plugin method enables plugin authors to hook into the Architect service discovery mechanism.
 
 This method is used by Architect in two situations:
 
 1. When running in a local development context via [`sandbox`][sandbox], `sandbox` will invoke the `variables` method in order to compile all runtime variables required by Architect application plugins and provide them to [`@architect/functions`][functions].
-2. When running in a remotely-deployed context on AWS, [`deploy`][deploy] will invoke the `variables` method in order to compile an [AWS SSM Parameter][ssm] per variable exported by the method before each deploy. Later, at runtime, [`@architect/functions`][functions] will query the [AWS SSM Parameter Store][ssm] to retrieve these variables at runtime.
+2. When running [`arc deploy`][deploy], it will invoke the `variables` method in order to compile an [AWS SSM Parameter][ssm] per variable exported by the method. Later, when running in a remotely-deployed runtime context on AWS Lambda, [`@architect/functions`][functions] will query the [AWS SSM Parameter Store][ssm] to retrieve these variables at runtime.
 
-Therefore the `variables` plugin method is only necessary to implement if you would like your plugin to provide runtime data within Lambdas via the [`@architect/functions`][functions] library. The exported variables would be available via the [`services` function][services] provided by [`@architect/functions`][functions] (namespaced under the plugin name). For more information on how to query the service discovery mechanism using [`@architect/functions`][functions] at runtime, check out the [`@architect/functions` `services` documentation][services].
+The `variables` plugin method is only necessary to implement if you would like your plugin to provide runtime data within Lambdas via the [`@architect/functions`][functions] library. The exported variables would be available via the [`services` function][services] provided by [`@architect/functions`][functions] (namespaced under the plugin name). For more information on how to query the service discovery mechanism using [`@architect/functions`][functions] at runtime, check out the [`@architect/functions` `services` documentation][services].
 
 #### Arguments
 
@@ -188,7 +195,7 @@ This method should always return an object. Each property on the object represen
 
 #### Example `variables` Implementation
 
-For example, a `variables` return value for a plugin creating a new S3 Bucket may export variables related to the location of and credentials for the bucket:
+The following example `variables` implementation demonstrates a plugin that creates a new S3 Bucket. It may be desirable to provide variables related to the location of and credentials for the bucket:
 
 ```javascript
 module.exports = {
@@ -205,7 +212,7 @@ module.exports = {
 }
 ```
 
-Note that when running locally in [`sandbox`][sandbox], we provide some dummy set of credentials that the plugin could hard-code and check for when implementing the plugin [`sandbox.start`](#sandbox.start) method. Otherwise, when running in a pre-`deploy` context, we return CloudFormation JSON pointing to credentials the plugin could add to CloudFormation Resources when implementing the plugin [`package`](#package) method.
+Note that when running locally in [`sandbox`][sandbox], we provide some dummy set of credentials that the plugin hard-codes (and could check for when implementing the plugin [`sandbox.start`](#sandbox.start) method). Otherwise, when running in a pre-`deploy` context, we return CloudFormation JSON pointing to credentials the plugin added via the plugin's implemented [`package`](#package) method.
 
 The variables are namespaced on the [`@architect/functions`' `services()`][services] returned object under a property equalling the plugin name; check out the [`services`][services] documentation for more details.
 
@@ -220,7 +227,7 @@ let aws = require('aws-sdk')
 
 exports.handler = arc.http.async(async function getIndex (req) {
   const services = await arc.services()
-  const { bucketName, accessKey, secretKey } = services.imagebucket // plugin variables are namespaced under the plugin name; here we assume the plugin name is called 'imagebucket'
+  const { bucketName, accessKey, secretKey } = services.imagebucket // plugin variables are namespaced under the plugin name; here we assume the plugin name is called 'imagebucket' and is present in the app's app.arc file as 'imagebucket' under the @plugins section
   const region = process.env.AWS_REGION
   const upload = form({ bucketName, accessKey, secretKey, region })
   const s3 = new aws.S3
@@ -246,13 +253,11 @@ exports.handler = arc.http.async(async function getIndex (req) {
 
 ### `sandbox.start`
 
-> `start({ arc, inventory, services }, callback)`
+> `start({ arc, inventory, invokeFunction, services }, callback)`
 
-The plugin author must implement this method if the plugin wants to hook into the startup routine for [`sandbox`][sandbox]. This would allow plugin authors to emulate the cloud services their plugin provides in order to provide a local development experience for consumers of their plugin. It would also allow to modify behaviour of [`sandbox`][sandbox]'s built-in local development services for [`@http`][http], [`@events`][events], [`@queues`][queues] and [`@tables`][tables] via the `services` argument.
+The plugin author must implement this method if the plugin wants to hook into the startup routine for [`sandbox`][sandbox]. This would allow plugin authors to emulate the cloud services their plugin provides in order to provide a local development experience for consumers of their plugin. It also allows to modify behaviour of [`sandbox`][sandbox]'s built-in local development services for [`@http`][http], [`@events`][events], [`@queues`][queues] and [`@tables`][tables] via the `services` argument. Finally, a helper method [`invokeFunction` (described in more detail below)](#invokefunction) is provided as an argument in order to allow plugin authors to invoke specific Lambdas from their plugin sandbox service code.
 
 This method can either be `async` or not; if the plugin author implements it as `async`, then the final `callback` argument may be ignored. Otherwise, the `callback` argument should be invoked once the plugin's sandbox service is ready.
-
-A helper method [`invokeLambda` (described below)](#invokeLambda) is provided by the [`@architect/sandbox`](https://npmjs.com/package/@architect/sandbox) package in order to allow plugin authors to invoke specific Lambdas from their plugin sandbox service code.
 
 #### Arguments
 
@@ -262,12 +267,13 @@ All arguments arrive as a bag of options with the following properties:
 |---|---|
 |`arc`|Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project|
 |`inventory`|An [Architect inventory object][inv] representing the current Architect project|
+|`invokeFunction`|A helper method that can be used for invoking any cloud functions (AWS Lambdas) your plugin manages during runtime in a local development context inside [`sandbox`][sandbox]. Please see the [`invokeFunction`](#invokefunction) section for details on this method.|
 |`services`|An object containing `http`, `events` and `tables` properties that represent local servers that [`sandbox`][sandbox] manages to provide a local development experience. A plugin author may want to modify the behaviour of these pre-existing services in order for their plugin to provide a better local development experience. `http` is an instance of the npm package [`router`][router] and mocks API Gateway and Lambda. `events` is a node.js HTTP server that mocks SNS and SQS by listening for JSON payloads and marshaling them to the relevant Lambda functions (see its [listener module](https://github.com/architect/sandbox/blob/master/src/events/_listener.js) for more details). `tables` is an instance of the npm package [`dynalite`][dynalite] and mocks DynamoDB.|
 |`callback`|Can be ignored if the method implementation is an `async function`; otherwise, `callback` must be invoked once the plugin's local development `sandbox` service is ready|
 
 #### Example `start` Implementation
 
-An example is [provided below that leverages the `invokeLambda` helper method](#invokeLambda).
+An example is [provided below that leverages the `invokeFunction` helper method](#invokefunction).
 
 ### `sandbox.end`
 
@@ -291,15 +297,13 @@ All arguments arrive as a bag of options with the following properties:
 
 ## Helper Methods for Plugin Authors
 
-For common Architect Plugin use cases, Architect provides a few helper functions available in core Architect packages to make life easier for plugin authors.
+For common Architect Plugin use cases, Architect provides a few helper functions available as parameters injected as arguments into plugin methods to make life easier for plugin authors.
 
-### `createLambdaJSON`
+### `createFunction`
 
-> `createLambdaJSON({ inventory, src })`
+> `createFunction({ inventory, src })`
 
-Available in the [`@architect/package`](https://npmjs.com/package/@architect/package) module (in version 6.2.0 and later), this method can be leveraged inside a plugin's [`package`](#package) method in order to easily and consistently define CloudFormation JSON representing Lambdas created by the plugin.
-
-Leveraging this helper method gives the plugin function support for [arc's per-function runtime configuration via the `config.arc` file](https://arc.codes/docs/en/reference/config.arc/aws) transparently.
+This method should be leveraged inside a plugin's [`package`](#package) method in order to more easily define CloudFormation JSON representing Lambdas created by the plugin. Use of this method for defining Lambdas is an Architect best practice as certain specific conventions that Architect relies on can be maintained. While the AWS Lambda logical ID is generally not a concern for developers using Architect, Architect relies on a logical ID naming convention to e.g. retrieve execution logs of a deployed Lambda via [`arc logs`][logs]. This helper method helps enforce such conventions. Leveraging this helper method also gives the plugin function transparent support for [arc's per-function runtime configuration via the `config.arc` file](https://arc.codes/docs/en/reference/config.arc/aws); as the plugin author you do not need to worry about parsing each individual `config.arc` file and retrieving and setting its configuration options (such as assigned RAM, concurrency maximums, and timeout limits).
 
 #### Arguments
 
@@ -308,7 +312,7 @@ All arguments arrive as a bag of options with the following properties:
 |Argument|Description|
 |---|---|
 |`inventory`|An [Architect inventory object][inv] representing the current Architect project|
-|`src`|A string representing the path where code for the Lambda exists locally|
+|`src`|A string representing the fully qualified absolute path to where code for the Lambda exists locally|
 
 #### Returns
 
@@ -317,19 +321,18 @@ A tuple (array of two objects) containing:
 1. A string representing an AWS-friendly Lambda resource name (which is based on the path to the function code), and
 2. A JSON object that can be assigned to a CloudFormation `sam.json`'s `Resources` section. This would define a Lambda that Architect would create during a [`deploy`][deploy]
 
-#### Example Usage of `createLambdaJSON`
+#### Example Usage of `createFunction`
 
 ```javascript
-let createLambdaJSON = require('@architect/package/createLambdaJSON')
 let path = require('path')
 
 module.exports = {
-  package: async function IoTRulesLambdas ({ arc, cloudformation, stage = 'staging', inventory }) {
+  package: async function IoTRulesLambdas ({ arc, cloudformation, createFunction, stage = 'staging', inventory }) {
     if (arc.rules) {
       const cwd = inventory.inv._project.src
       arc.rules.forEach(rule => {
         let code = path.join(cwd, 'src', 'rules', rule[0])
-        let [functionName, functionDefn] = createLambdaJSON({ inventory, src: code })
+        let [functionName, functionDefn] = createFunction({ inventory, src: code })
         cloudformation.Resources[functionName] = functionDefn
       })
     }
@@ -338,11 +341,11 @@ module.exports = {
 }
 ```
 
-### `invokeLambda`
+### `invokeFunction`
 
-> `invokeLambda({ inventory, src, payload }, callback)`
+> `invokeFunction({ src, payload }, callback)`
 
-Available in the [`@architect/sandbox`](https://npmjs.com/package/@architect/sandbox) module (in version 3.4.0 and later), this method can be leveraged inside a plugin's [`sandbox.start`](#sandbox.start) method in order to easily invoke project Lambdas locally within an [`arc sandbox`][sandbox] local development runtime context.
+This method should be leveraged inside a plugin's [`sandbox.start`](#sandbox.start) method in order to easily invoke project Lambdas locally within an [`arc sandbox`][sandbox] local development runtime context. For example, if your plugin manages Lambdas related to some AWS service, it may be nice to provide a local development experience for consumers of your plugin. To provide a great local experience, consumers of your plugin will want to exercise your plugin-generated Lambdas when running locally. Using the combination of the [`sandbox.start`](#sandbox.start) and `invokeFunction` methods, plugin authors can implement a local development experience for plugin consumers.
 
 #### Arguments
 
@@ -350,20 +353,20 @@ All arguments arrive as a bag of options with the following properties:
 
 |Argument|Description|
 |---|---|
-|`inventory`|An [Architect inventory object][inv] representing the current Architect project|
-|`src`|A string representing the path where code for the Lambda exists locally|
+|`src`|A string representing the fully qualified absolute path to where code for the Lambda exists locally|
 |`payload`|JSON payload to deliver to the function|
 |`callback`|Function with signature `function(error, result)` that is invoked with either the error or the result from the local function invocation|
 
 #### Example Usage of `invokeLambda`
 
+The below plugin's `sandbox.start` method listens for the "I" keyboard keypress, prompts the user which of the plugin's Lambdas the user wants to invoke and what payload to deliver to the user, before using `invokeFunction` to invoke the Lambda code with the specified payload.
+
 ```javascript
-let invokeLambda = require('@architect/sandbox/invokeLambda')
 let path = require('path')
 let prompt = require('prompt')
 
 module.exports = {
-  pluginFunctions: async function ({ arc, inventory }) {
+  functions: async function ({ arc, inventory }) {
     if (!arc.rules) return []
     const cwd = inventory.inv._project.src
     return arc.rules.map((rule) => {
@@ -377,8 +380,8 @@ module.exports = {
     })
   },
   sandbox: {
-    start: function IoTRulesServiceStart ({ arc, inventory, services }, callback) {
-      let rules = module.exports.pluginFunctions({ arc, inventory }).map(rule => rule.src)
+    start: function IoTRulesServiceStart ({ arc, inventory, invokeFunction, services }, callback) {
+      let rules = module.exports.functions({ arc, inventory }).map(rule => rule.src)
       process.stdin.on('keypress', async function IoTRulesKeyListener (input, key) {
         if (input === 'I') {
           const response = await prompt([ {
@@ -404,7 +407,7 @@ module.exports = {
               return JSON.parse(i)
             }
           } ])
-          invokeLambda({ inventory, src: response.rule, payload: response.payload }, function (err, result) {
+          invokeFunction({ src: response.rule, payload: response.payload }, function (err, result) {
             if (err) console.error(`Error invoking lambda ${response.rule}!`, err)
             else console.log(`${response.rule} invocation result:`, result)
           })
@@ -416,8 +419,6 @@ module.exports = {
   }
 }
 ```
-
-The above plugin's `sandbox.start` method listens for the "I" keyboard keypress, prompts the user asking which of the plugin's Lambdas the user wants to invoke and what payload to deliver to the user, before using `invokeLambda` to invoke the Lambda code with the specified payload.
 
 ## Example Plugins
 
