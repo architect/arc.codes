@@ -3,9 +3,10 @@ title: '@views'
 description: Share view code across `@http` functions
 ---
 
-Configure the location of view code. Architect considers copies view code into HTTP GET handler Lambda functions.
+Configure the location of view code.
+Architect copies view code to all HTTP GET handler functions by default.
+You can also specify only the routes you want views copied to with the `@views` pragma.
 
-You can also specify to only copy view code to specific lambda functions by listing them directly.
 ## Syntax
 
 - Routes should be existing `@http` routes.
