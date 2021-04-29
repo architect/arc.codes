@@ -41,7 +41,7 @@
     "@architect/functions": "^3.13.8",
     "@architect/inventory": "^1.2.0",
     "@architect/package": "^6.0.1",
-    "@architect/sandbox": "^3.3.8",
+    "@architect/sandbox": "^3.4.2",
     "@toycode/markdown-it-class": "^1.2.4",
     "eslint": "^7.15.0",
     "esm": "^3.2.25",
