@@ -251,6 +251,8 @@ await arc.ws.send({
 
 ### `arc.services`
 
+> NOTE: this API requires `@architect/functions` version 3.14.0 or newer.
+
 A function that retrieves the service map: an object mapping plugin or out-of-the-box Architect infrastructure data making up the Architect application. This object is lazily-loaded and cached and thus the first call may incur a delay as the service map is populated (use of [`arc.events`](#arc.events), [`arc.queues`](#arc.queues) and [`arc.tables`](#arc.tables) transparently uses this method in the background).
 
 `arc.services` returns a service map object, with keys equaling any out-of-the-box Architect infrastructure types or plugins used by the Architect application. An example service map for an application composed of `@static`, `@events` and an `imagebucket` plugin would have the following structure:
