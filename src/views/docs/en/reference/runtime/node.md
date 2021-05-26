@@ -184,7 +184,7 @@ The generated data layer also allows direct access to DynamoDB through a few met
 
 - `data._db` which returns an instance of [`AWS.DynamoDB`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
 - `data._doc` returns an instance of [`AWS.DynamoDB.DocumentClient`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
-- `data._name` helper function that returns a `@table` resource name when you need to go lower level. For example use `data._name("my-table")` to get the name of the "my-table" `@table` resource.
+- `data.name` helper function that returns a `@table` resource name when you need to go lower level. For example use `data.name("my-table")` to get the name of the "my-table" `@table` resource. (Previously called `data._name` which is now deprecated.)
 
 ### `arc.events`
 
