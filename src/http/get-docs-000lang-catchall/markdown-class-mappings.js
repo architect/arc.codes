@@ -79,6 +79,7 @@ module.exports = {
     'border-solid',
     'border-g1',
     'border1',
-    'bg-g0'
+    'bg-g0',
+    'break-all'
   ]
 }
