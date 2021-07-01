@@ -10,7 +10,7 @@ You can also specify only the routes you want views copied to with the `@views` 
 ## Syntax
 
 - Routes should be existing `@http` routes.
-- Route names follow the same requirements as `@http` routes. [see `@http`](@http)
+- Route names follow the same requirements as `@http` routes. [see `@http`](http)
 
 ## Example
 
