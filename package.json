@@ -14,18 +14,9 @@
       "fingerprint": true
     },
     "http": [
-      [
-        "get",
-        "/docs/:lang/*"
-      ],
-      [
-        "get",
-        "/api/package"
-      ],
-      [
-        "any",
-        "/*"
-      ]
+      [ "get", "/docs/:lang/*" ],
+      [ "get", "/api/package" ],
+      [ "any", "/*" ]
     ]
   },
   "scripts": {
@@ -36,24 +27,24 @@
     "test": "tape -r esm test/*-test.js test/**/*.js | tap-spec"
   },
   "dependencies": {
-    "@architect/architect": "^8.4.2",
+    "@architect/architect": "^8.7.4",
     "@architect/eslint-config": "^1.0.0",
-    "@architect/functions": "^3.13.8",
-    "@architect/inventory": "^1.2.0",
-    "@architect/package": "^6.0.1",
-    "@architect/sandbox": "^3.4.2",
+    "@architect/functions": "^3.14.2",
+    "@architect/inventory": "^2.0.3",
+    "@architect/package": "^7.0.0",
+    "@architect/sandbox": "^4.0.0",
     "@toycode/markdown-it-class": "^1.2.4",
-    "eslint": "^7.15.0",
+    "eslint": "^7.31.0",
     "esm": "^3.2.25",
-    "highlight.js": "^10.4.1",
-    "js-yaml": "^3.14.1",
-    "markdown-it": "^12.0.3",
-    "markdown-it-anchor": "^6.0.1",
+    "highlight.js": "^11.1.0",
+    "js-yaml": "^4.1.0",
+    "markdown-it": "^12.1.0",
+    "markdown-it-anchor": "^8.1.2",
     "markdown-it-front-matter": "^0.2.3",
-    "slugify": "^1.4.6",
-    "spellchecker-cli": "^4.4.0",
+    "slugify": "^1.6.0",
+    "spellchecker-cli": "^4.8.0",
     "tap-spec": "^5.0.0",
-    "tape": "^5.0.1"
+    "tape": "^5.2.2"
   },
   "eslintConfig": {
     "extends": "@architect/eslint-config"
