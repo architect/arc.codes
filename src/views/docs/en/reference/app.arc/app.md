@@ -1,6 +1,6 @@
 ---
 title: '@app'
-description: Define the application namespace.
+description: Define the application namespace
 ---
 
 `@app` declares the application namespace

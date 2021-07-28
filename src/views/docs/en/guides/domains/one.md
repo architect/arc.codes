@@ -3,7 +3,7 @@ title: One
 description: Setting up a domain name with One
 ---
 
-## Prerequisites 
+## Prerequisites
 
 - Sign up for a domain on [One](https://www.one.com/en/domain)
 - Deploy an app with Architect and make note of the `staging` and `production` URLs
@@ -32,7 +32,7 @@ Generate a CloudFront distribution with the certificate from step 1.
 - Sign into AWS CloudFront in the AWS Console
 - Click `Create Distribution` and then click `Get Started`
 - Open API Gateway and make note of the `Invoke URL`.
-- Enter the URL from API Gateway in `Origin Domain Name` 
+- Enter the URL from API Gateway in `Origin Domain Name`
 - Set `Origin Protocol Policy` to `Match Viewer`
 - Add the `Alternate Domain Names (CNAMEs)` that you will be using. ex. `example.com`.
 - Set `Viewer Protocol Policy` to `Redirect HTTP to HTTPS`
@@ -42,17 +42,17 @@ Generate a CloudFront distribution with the certificate from step 1.
 - Click `Create Distribution`
 - Repeat for `staging` domain.
 
-## Step 3: configure the domain Alias in One 
+## Step 3: configure the domain Alias in One
 
 Add `A` and `CNAME` records to DNS.
 
 - Open up One account dashboard and click `DNS settings` for the particular domain you want to use.
 - Open the `DNS records` tab.
 - Click the `A` tab in the `Create new record` box
-- Use record type `A` for the root domain. 
-    - Leave `Hostname` input empty and add the IP address of the Cloudfront domain that was created in step 2 to the `Will point to` input.
-- Use record type `CNAME` for the `staging` domain. 
-    - Add the word `staging` to the `Hostname` input and add the Cloudfront domain that was created in step 2 to the `Is an alias of` input.
+- Use record type `A` for the root domain.
+    - Leave `Hostname` input empty and add the IP address of the CloudFront domain that was created in step 2 to the `Will point to` input.
+- Use record type `CNAME` for the `staging` domain.
+    - Add the word `staging` to the `Hostname` input and add the CloudFront domain that was created in step 2 to the `Is an alias of` input.
 
 ## Conclusion
 

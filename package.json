@@ -14,18 +14,9 @@
       "fingerprint": true
     },
     "http": [
-      [
-        "get",
-        "/docs/:lang/*"
-      ],
-      [
-        "get",
-        "/api/package"
-      ],
-      [
-        "any",
-        "/*"
-      ]
+      [ "get", "/docs/:lang/*" ],
+      [ "get", "/api/package" ],
+      [ "any", "/*" ]
     ]
   },
   "scripts": {

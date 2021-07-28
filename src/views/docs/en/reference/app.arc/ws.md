@@ -1,6 +1,6 @@
 ---
 title: '@ws'
-description: Defin WebSocket endpoints
+description: Define WebSocket endpoints
 ---
 
 Define WebSocket endpoint and Lambda handler functions.

@@ -17,7 +17,7 @@ Architect `@macros` are implemented as a standard Node module with the following
   * @returns {object} Modified CloudFormation template
   */
 module.exports = async function mymacro (arc, sam, stage='staging') {
-  // modify sam cloudformation here 
+  // modify sam cloudformation here
   console.log({ arc, sam, stage })
   return sam
 }

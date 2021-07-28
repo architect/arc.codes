@@ -35,6 +35,7 @@ myapp
 daily-update-buddy rate(1 day)
 friyay-only cron(0 15 ? * FRI *)
 ```
+
 </div>
 </arc-tab>
 
@@ -50,12 +51,14 @@ friyay-only cron(0 15 ? * FRI *)
     "friyay-only": "cron(0 15 ? * FRI *)" }
 }
 ```
+
 </div>
 </arc-tab>
 
 <arc-tab label=toml>
 <h5>toml</h5>
 <div slot=content>
+
 ```toml
 app="myapp"
 
@@ -63,6 +66,7 @@ app="myapp"
 daily-update-buddy="rate(1 day)"
 friyay-only="cron(0 15 ? * FRI *)"
 ```
+
 </div>
 </arc-tab>
 
@@ -76,6 +80,7 @@ scheduled:
   - daily-update-buddy: rate(1 day)
   - friyay-only: cron(0 15 ? * FRI *)
 ```
+
 </div>
 </arc-tab>
 

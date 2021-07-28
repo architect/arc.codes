@@ -45,7 +45,7 @@ Define a `stream true` property under a table definition to have Architect creat
 
 Define a `encrypt` property under a table definition to enable [encryption at rest][encryption] for your DynamoDB table. If `encrypt` is a boolean (i.e. `encrypt true`), then AWS will manage the encryption key. If a non-boolean is provided to `encrypt` (i.e. `encrypt hithere`), then the parameter is assumed to be an [AWS Key Management Service][kms] custom [master key ID](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id).
 
-> Note: use of a custom master key will apply additional AWS KMS-related charges
+> Note: use of a custom master key will apply additional AWS KMS related charges
 
 ### Time To Live
 

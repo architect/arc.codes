@@ -3,7 +3,7 @@ title: Godaddy
 description: Setting up a domain name with Godaddy
 ---
 
-## Prerequisites 
+## Prerequisites
 
 - Sign up for a domain on [Godaddy](https://www.Godaddy.com/)
 - Deploy an app with Architect and make note of the `staging` and `production` URLs
@@ -31,7 +31,7 @@ Generate a CloudFront distribution with the certificate from step 1.
 - Sign into AWS CloudFront in the AWS Console
 - Click `Create Distribution` and then click `Get Started`
 - Open API Gateway and make note of the `Invoke URL`.
-- Enter the URL from API Gateway in `Origin Domain Name` 
+- Enter the URL from API Gateway in `Origin Domain Name`
 - Set `Origin Protocol Policy` to `Match Viewer`
 - Add the `Alternate Domain Names (CNAMEs)` that you will be using. ex. `example.com`.
 - Set `Viewer Protocol Policy` to `Redirect HTTP to HTTPS`
@@ -41,16 +41,16 @@ Generate a CloudFront distribution with the certificate from step 1.
 - Click `Create Distribution`
 - Repeat for `staging` domain.
 
-## Step 3: configure the domain Alias in Godaddy 
+## Step 3: configure the domain Alias in Godaddy
 
 Add `A` and `CNAME` records to DNS.
 
 - Open up Godaddy account dashboard and find the `DNS` settings for the particular domain you want to use.
 - Click `ADD`.
-- Use record type `A` for the root domain. 
-    - Leave `Host` input empty and add the IP address of the Cloudfront domain that was created in step 2 to the `Points to` input.
-- Use record type `CNAME` for the `staging` domain. 
-    - Add the word `staging` to the `Host` input and add the Cloudfront domain that was created in step 2 to the `Points to` input.
+- Use record type `A` for the root domain.
+    - Leave `Host` input empty and add the IP address of the CloudFront domain that was created in step 2 to the `Points to` input.
+- Use record type `CNAME` for the `staging` domain.
+    - Add the word `staging` to the `Host` input and add the CloudFront domain that was created in step 2 to the `Points to` input.
 
 ## Conclusion
 
