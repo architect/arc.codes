@@ -1,9 +1,10 @@
 ---
-title: Changelog
+title: Upgrade guide
 category: Get started
 description: This document covers upgrading from previous versions of Architect
 sections:
   - Overview of Architect versions
+  - Architect 8 &rarr; 9
   - Architect 7 &rarr; 8
   - Architect 6 &rarr; 7
   - Architect 5 &rarr; 6
@@ -16,6 +17,13 @@ sections:
 This document covers upgrading from previous versions of Architect.
 
 As a general philosophy, Architect's core maintainers endeavor to minimize the frequency and impact of breaking changes wherever possible; in many cases, major releases may have no impact on existing applications.
+
+### Architect 9 (La Chupacabra)
+
+Architect 9 (La Chupacabra) is primarily a maintenance release, dropping support for the now end-of-life Node.js 10.x, and removing support for Architect 5 (and lower).
+
+[See below for potential impacts to upgrading](#architect-8-&rarr;-9).
+
 
 ### Architect 8 (El Chupacabra)
 
@@ -55,13 +63,44 @@ Architect 4 (Yeti) introduced generic, dependency-free HTTP functions, enhanced 
 
 ### Topics
 
+- [Architect 8 &rarr; 9](#architect-8-&rarr;-9)
 - [Architect 7 &rarr; 8](#architect-7-&rarr;-8)
 - [Architect 6 &rarr; 7](#architect-6-&rarr;-7)
 - [Architect 5 &rarr; 6](#architect-5-&rarr;-6)
-- [Architect 5 LTS (maintenance schedule)](#architect-5-lts-maintenance-schedule)
 - [Architect 4 &rarr; 5](#architect-4-&rarr;-5)
 - [Architect Functions](#architect-functions)
 - [Architect Data](#architect-data)
+
+---
+
+## Architect 8 &rarr; 9
+
+Architect 9 (La Chupacabra) is a maintenance release, primarily aimed at removing support for the now end-of-life Node.js 10.x. With this release, after two years since the release of Architect 6, Architect 5 is no longer supported.
+
+Additionally, Architect's default runtime is now `nodejs14.x` – if your existing functions do not specify a runtime, they will be automatically and seamlessly upgraded from `nodejs10.x` or `nodejs12.x` to `nodejs14.x`.
+
+
+### Breaking changes
+
+- Removed support for Node.js 10.x (now EOL, and no longer available to created in AWS Lambda)
+- `arc destroy`
+  - `--app` must now be used to destroy apps, while `--name` may only be used to destroy stacks
+  - Removed support for deprecated `--nuke` flag
+- `arc hydrate`
+  - Usage remains the same, but its module API has removed support for `hydrate()` in favor of explicit `hydrate.install|update|shared()` methods
+
+
+### Compatibility with `@architect/functions`
+
+Architect 9 is fully compatible with `@architect/functions`. However, `@architect/functions` v4, released alongside Architect 9, has some breaking changes:
+
+- Removed support for Node.js 10.x (now EOL, and no longer available to created in AWS Lambda)
+- `arc.http.proxy` is now `@architect/asap`, and has been removed from `@architect/functions` v4
+- `arc.http.proxy` calls can now be sent as-is to ASAP
+  - For more details, please see the [@architect/functions changelog](https://github.com/architect/functions/blob/master/_changelog.md#200-2021-07-25) and [@architect/asap changelog](https://github.com/architect/asap/blob/master/_changelog.md#400-2021-07-25)
+- Removed support for handling requests from Architect 5 (and lower) APIs
+  - Responding to requests has not changed, however!
+  - Old response semantics from Architect 5 (and lower) will continue to be supported, so you'll always have a clear, clean upgrade path from older Architect projects to newer APIs
 
 ---
 
@@ -723,4 +762,3 @@ exports.handler = async () => {
   return {body}
 }
 ```
-
