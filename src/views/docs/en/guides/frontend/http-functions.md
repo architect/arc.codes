@@ -237,9 +237,8 @@ return {
 
 By default, all HTTP functions (as well as all other functions) generated with Architect have one generated [IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) with the least privilege possible to operate. This means HTTP functions can only access other resources defined in the same Architect project.
 
-Wider account access can be explicitly granted with custom resource policies, [defined in a .arc-config file](/en/reference/architect-manifest-and-config/function-config-file) placed in the HTTP function directory.
+Wider account access can be explicitly granted with custom resource policies, [defined in a `config.arc` file](/en/reference/architect-manifest-and-config/function-config-file) placed in the HTTP function directory.
 
 ## Examples
 
 ADD ME!
-

@@ -188,7 +188,7 @@ All arguments arrive as a bag of options with the following properties:
 
 This method should always return an object. Each property on the object represents a variable name, and the value for each property contains the variable value.
 
-> 🏌️‍♀️ Protip: When this method is invoked in a pre-`deploy` context, acceptable values for the variables include CloudFormation JSON. This is essential to expose CloudFormation-managed infrastructure; see the example below.
+> 🏌️‍♀️ Protip: When this method is invoked in a pre-deploy context, acceptable values for the variables include CloudFormation JSON. This is essential to expose CloudFormation-managed infrastructure; see the example below.
 
 #### Example `variables` implementation
 
@@ -209,12 +209,13 @@ module.exports = {
 }
 ```
 
-The above example returns three variables that would be provided at runtime: `bucketName`, `accessKey` and `secretKey`. Depending on whether the plugin executes in a local development environment context via [`sandbox`][sandbox] or in a pre-`deploy` context via [`deploy`][deploy], the contents of these credentials would differ:
+The above example returns three variables that would be provided at runtime: `bucketName`, `accessKey` and `secretKey`. Depending on whether the plugin executes in a local development environment context via [`sandbox`][sandbox] or in a pre-deploy context via [`deploy`][deploy], the contents of these credentials would differ:
 
 - The `secretKey` and `accessKey` variables would contain hard-coded values when running locally in [`sandbox`][sandbox] (both would have a value of `S3RVER`). These hard-coded values could be used by the plugin author when implementing the [`sandbox.start`](#sandbox.start) method to provide a seamless local development experience.
-- The `secretKey` and `accessKey` variables are CloudFormation JSON referencing a set of credentials called `MyS3BucketCreds` when running in a pre-`deploy` context. These dynamic values reference pre-existing CloudFormation Resources which would be implemented by the author in the plugin's [`package`](#package) method.
+- The `secretKey` and `accessKey` variables are CloudFormation JSON referencing a set of credentials called `MyS3BucketCreds` when running in a pre-deploy context. These dynamic values reference pre-existing CloudFormation Resources which would be implemented by the author in the plugin's [`package`](#package) method.
 
-The variables are namespaced on the [`@architect/functions`' `services()`][services] returned object under a property equalling the plugin name; check out the [`services`][services] documentation for more details.
+The variables are namespaced on the [`@architect/functions` `services()`][services] object under a property matching the plugin name; check out the [`services`][services] documentation for more details.
+
 
 #### Example service discovery usage with `@architect/functions`
 
@@ -255,7 +256,7 @@ exports.handler = arc.http.async(async function getIndex (req) {
 
 > `start({ arc, inventory, invokeFunction, services }, callback)`
 
-The plugin author must implement this method if the plugin wants to hook into the startup routine for [`sandbox`][sandbox]. This would allow plugin authors to emulate the cloud services their plugin provides in order to provide a local development experience for consumers of their plugin. It also allows modifying the behaviour of [`sandbox`][sandbox]'s built-in local development services for [`@http`][http], [`@events`][events], [`@queues`][queues] and [`@tables`][tables] via the `services` argument. Finally, a helper method [`invokeFunction` (described in more detail below)](#invokefunction) is provided as an argument in order to allow plugin authors to invoke specific Lambdas from their plugin sandbox service code.
+The plugin author must implement this method if the plugin wants to hook into the startup routine for [`sandbox`][sandbox]. This would allow plugin authors to emulate the cloud services their plugin provides in order to provide a local development experience for consumers of their plugin. It also allows modifying the behavior of [`sandbox`][sandbox]'s built-in local development services for [`@http`][http], [`@events`][events], [`@queues`][queues] and [`@tables`][tables] via the `services` argument. Finally, a helper method [`invokeFunction` (described in more detail below)](#invokefunction) is provided as an argument in order to allow plugin authors to invoke specific Lambdas from their plugin sandbox service code.
 
 This method can either be `async` or not; if the plugin author implements it as `async`, then the final `callback` argument may be ignored. Otherwise, the `callback` argument should be invoked once the plugin's sandbox service is ready.
 
@@ -268,7 +269,7 @@ All arguments arrive as a bag of options with the following properties:
 |`arc`|Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project|
 |`inventory`|An [Architect inventory object][inv] representing the current Architect project|
 |`invokeFunction`|A helper method that can be used for invoking any cloud functions (AWS Lambdas) your plugin manages during runtime in a local development context inside [`sandbox`][sandbox]. Please see the [`invokeFunction`](#invokefunction) section for details on this method.|
-|`services`|An object containing `http`, `events` and `tables` properties that represent local servers that [`sandbox`][sandbox] manages to provide a local development experience. A plugin author may want to modify the behaviour of these pre-existing services in order for their plugin to provide a better local development experience. `http` is an instance of the npm package [`router`][router] and mocks API Gateway and Lambda. `events` is a Node.js HTTP server that mocks SNS and SQS by listening for JSON payloads and marshaling them to the relevant Lambda functions (see its [listener module](https://github.com/architect/sandbox/blob/master/src/events/_listener.js) for more details). `tables` is an instance of the npm package [`dynalite`][dynalite] and mocks DynamoDB.|
+|`services`|An object containing `http`, `events` and `tables` properties that represent local servers that [`sandbox`][sandbox] manages to provide a local development experience. A plugin author may want to modify the behavior of these pre-existing services in order for their plugin to provide a better local development experience. `http` is an instance of the npm package [`router`][router] and mocks API Gateway and Lambda. `events` is a Node.js HTTP server that mocks SNS and SQS by listening for JSON payloads and marshaling them to the relevant Lambda functions (see its [listener module](https://github.com/architect/sandbox/blob/master/src/events/_listener.js) for more details). `tables` is an instance of the npm package [`dynalite`][dynalite] and mocks DynamoDB.|
 |`callback`|Can be ignored if the method implementation is an `async function`; otherwise, `callback` must be invoked once the plugin's local development `sandbox` service is ready|
 
 #### Example `start` implementation
@@ -291,7 +292,7 @@ All arguments arrive as a bag of options with the following properties:
 |---|---|
 |`arc`|Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project|
 |`inventory`|An [Architect inventory object][inv] representing the current Architect project|
-|`services`|[`sandbox`][sandbox] runs [local in-memory servers to mock out http, events, queues and database functionality](https://github.com/architect/sandbox/blob/master/src/sandbox/index.js#L19-L24); if you need to modify these services, use this argument|
+|`services`|[`sandbox`][sandbox] runs [local in-memory servers to mock out HTTP, events, queues and database functionality](https://github.com/architect/sandbox/blob/master/src/sandbox/index.js#L19-L24); if you need to modify these services, use this argument|
 |`callback`|Can be ignored if the method implementation is an `async function`; otherwise, `callback` must be invoked once the plugin's local development `sandbox` service has been shut down|
 
 

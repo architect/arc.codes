@@ -3,7 +3,7 @@ title: '@macro'
 description: Extend Architect app functionality
 ---
 
-Extend the functionality of your Architect app with standard CloudFormation. The `@macro` primitive allows developers to add any resources or modify existing ones extending Architect into the entire AWS ecosystem supported by CloudFormation. Macros also allow you to look for custom directives and add pre deploy steps. You can find some examples in our [github](https://github.com/architect/?q=macro-&type=source).
+Extend the functionality of your Architect app with standard CloudFormation. The `@macro` primitive allows developers to add any resources or modify existing ones extending Architect into the entire AWS ecosystem supported by CloudFormation. Macros also allow you to look for custom directives and add pre-deploy steps. You can find some examples in our [GitHub](https://github.com/architect/?q=macro-&type=source).
 
 ## Getting started
 

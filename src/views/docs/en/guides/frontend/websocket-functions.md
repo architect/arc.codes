@@ -13,7 +13,7 @@ sections:
 
 WebSockets provide a persistent connection between a client and a server. When we need persistent real-time data, we create a web socket server and then a connecting client for the two endpoints to exchange messages back-and-forth.
 
-We accomplish this by using [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-overview.html), which assembles client connections for HTTP functions. WebSockets can now be an event source for Lambda. In other words, you can now add WebSockets to your application without running, maintaining, and operating servers/containers/VMs.
+We accomplish this by using [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-overview.html), which assembles client connections for HTTP functions. WebSockets can now be an event source for Lambda. In other words, you can now add WebSockets to your application without running, maintaining, and operating servers / containers / VMs.
 
 Architect provides endpoints pre-configured with Lambda handler functions deployed and ready to iterate, complete with local development and isolated staging and production environments.
 
@@ -245,7 +245,3 @@ exports.handler = async function connected(event) {
   return {statusCode: 200}
 }
 ```
-
-
-
-

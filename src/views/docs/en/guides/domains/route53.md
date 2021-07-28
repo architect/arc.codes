@@ -4,7 +4,7 @@ description: Setting up a domain name with Route 53
 ---
 
 
-## Prerequisites 
+## Prerequisites
 
 - [Register](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html) or [transfer](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-transfer-to-route-53.html) a domain with Route53
 - Deploy an app with Architect and make note of the `staging` and `production` URLs
@@ -27,7 +27,7 @@ Generate a domain with the certificate from Step 1.
 
 - Sign into AWS API Gateway in the AWS Console
 - Navigate to `Custom domain names` and click `Create`
-- Enter the domain name (eg. `staging.example.com` for the `staging` app or `example.com` for the `production` app)
+- Enter the domain name (e.g. `staging.example.com` for the `staging` app or `example.com` for the `production` app)
 - Select the certificate created in Step 1
 - Click `Create domain name`
 - Make note of the generated `API Gateway domain name` in `Endpoint configuration`

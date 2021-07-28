@@ -92,10 +92,10 @@ Additionally, Architect's default runtime is now `nodejs14.x` – if your existi
 
 ### Compatibility with `@architect/functions`
 
-Architect 9 is fully compatible with `@architect/functions`. However, `@architect/functions` v4, released alongside Architect 9, has some breaking changes:
+Architect 9 is fully compatible with `@architect/functions`. However, `@architect/functions` 4.0, released alongside Architect 9, has some breaking changes:
 
 - Removed support for Node.js 10.x (now EOL, and no longer available to created in AWS Lambda)
-- `arc.http.proxy` is now `@architect/asap`, and has been removed from `@architect/functions` v4
+- `arc.http.proxy` is now `@architect/asap`, and has been removed from `@architect/functions` 4.0
 - `arc.http.proxy` calls can now be sent as-is to ASAP
   - For more details, please see the [@architect/functions changelog](https://github.com/architect/functions/blob/master/_changelog.md#200-2021-07-25) and [@architect/asap changelog](https://github.com/architect/asap/blob/master/_changelog.md#400-2021-07-25)
 - Removed support for handling requests from Architect 5 (and lower) APIs

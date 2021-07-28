@@ -81,7 +81,7 @@ Cron expressions allow us to give our functions granular settings. `crons` have 
 
 - The L wildcard in the Day-of-month or Day-of-week fields specifies the last day of the month or week.
 
-- The W wildcard in the Day-of-month field specifies a weekday. In the Day-of-month field, 3W specifies the weekday closest to the third day of the month.
+- The W wildcard in the Day-of-month field specifies a weekday. In the Day-of-month field, `3W` specifies the weekday closest to the third day of the month.
 
 - The # wildcard in the Day-of-week field specifies a particular instance of the specified day of the week within a month. For example, 3#2 would be the second Tuesday of the month: the 3 refers to Tuesday because it is the third day of each week, and the 2 refers to the second day of that type within the month.
 
