@@ -1,6 +1,6 @@
 ---
-title: Node
-description: Node runtime helpers
+title: Node.js
+description: Node.js runtime helpers
 ---
 
 Architect runtime helpers are optional but they do make working with CloudFormation provisioned resources nicer. CloudFormation resources are generated with names more friendly for machines than people. Other frameworks leave resource discovery up to end users which leads to ad hoc implementations becoming a frequent bug vector. Architect treats runtime discovery as a first class concern.
@@ -9,7 +9,7 @@ Architect runtime helpers are optional but they do make working with CloudFormat
 
 ## Setup
 
-Install the Architect runtime helpers for Node:
+Install the Architect runtime helpers for Node.js:
 
 ```bash
 npm install @architect/functions
