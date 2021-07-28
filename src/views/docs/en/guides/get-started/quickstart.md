@@ -51,6 +51,7 @@ Ship a `production` stack:
 ```bash
 arc deploy production
 ```
+> Be safe! Set the `ARC_APP_SECRET` environment variable in production to secure your HTTP sessions; more information in the [`env` CLI reference](../../reference/cli/env)
 
 Or eject to CloudFormation and deploy with the AWS SAM CLI:
 

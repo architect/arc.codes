@@ -146,6 +146,11 @@ async function handler (req) {
 }
 ```
 
+Please note that session variable encoding and decoding relies on the
+`ARC_APP_SECRET` [environment variable](../cli/env) being set to something
+secret and not easily guessable. If you use this method, please be sure to [set
+the `ARC_APP_SECRET` environment variable](../cli/env)!
+
 ### `arc.tables`
 
 Create a DynamoDB client for `@tables`.
