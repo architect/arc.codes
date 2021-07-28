@@ -38,11 +38,11 @@ let Guides = [ {
     'Scheduled functions',
   ],*/
   'Extend': [
-    // TODO'Migrate legacy code',// @proxy, arc.http.express
+    // TODO 'Migrate legacy code', // @proxy, arc.http.express
     'Custom CloudFormation',
     'Plugins',
-    // TODO'Add a custom domain',
-    // TODO'Ejecting '
+    // TODO 'Add a custom domain',
+    // TODO 'Ejecting',
   ]
 } ]
 
@@ -99,7 +99,7 @@ let About = [
   'Mission',
   'Community',
   'Contribute',
-  'Upgrade',
+  'Upgrade guide',
   'Playground',
 ]
 
@@ -108,4 +108,3 @@ module.exports = {
   Reference,
   About
 }
-
