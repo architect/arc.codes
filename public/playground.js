@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
   let btn = document.getElementById('pkg-submit')
   btn.remove()
@@ -23,7 +23,7 @@
 }())
 
 
-function copyShare(e) {
+function copyShare (e) {
   e.preventDefault()
   let shareBtn = e.target
   let input = document.getElementById('pkg-input')
@@ -31,12 +31,12 @@ function copyShare(e) {
   let shareUrl = `${window.location}?arc=${encodeURIComponent(arc)}`
   navigator.clipboard.writeText(shareUrl)
   shareBtn.innerHTML = 'Copied to clipboard'
-  setTimeout(function resetButton() {
+  setTimeout(function resetButton () {
     shareBtn.innerHTML = 'Share'
   }, 2000)
 }
 
-async function getPreview() {
+async function getPreview () {
   const input = document.getElementById('pkg-input')
   const arc = input.value
   const url = `/api/package?arc=${btoa(arc)}`
@@ -44,17 +44,17 @@ async function getPreview() {
     let cfn = JSON.stringify(await (await fetch(url)).json(), null, 2)
     update(cfn)
   }
-  catch(e) {
+  catch (e) {
     console.error(e)
   }
 }
 
-function submit(e) {
+function submit (e) {
   e.preventDefault()
   getPreview()
 }
 
-function update(cfn) {
+function update (cfn) {
   const preview = document.getElementById('preview')
   preview.innerHTML = cfn
 }
