@@ -20,7 +20,7 @@ As a general philosophy, Architect's core maintainers endeavor to minimize the f
 
 ### Architect 9 (La Chupacabra)
 
-Architect 9 (La Chupacabra) is primarily a maintenance release, dropping support for the now end-of-life Node.js 10.x, and removing support for Architect 5 (and lower).
+Architect 9 (La Chupacabra) is primarily a maintenance release, dropping support for Node.js 10.x (now end-of-life) and Node.js 12.x,  and removing support for Architect 5 (and lower).
 
 [See below for potential impacts to upgrading](#architect-8-&rarr;-9).
 
@@ -75,14 +75,14 @@ Architect 4 (Yeti) introduced generic, dependency-free HTTP functions, enhanced 
 
 ## Architect 8 &rarr; 9
 
-Architect 9 (La Chupacabra) is a maintenance release, primarily aimed at removing support for the now end-of-life Node.js 10.x. With this release, after two years since the release of Architect 6, Architect 5 is no longer supported.
+Architect 9 (La Chupacabra) is a maintenance release, primarily aimed at removing support for Node.js 10.x (now end-of-life) and Node.js 12.x. With this release, after two years since the release of Architect 6, Architect 5 is no longer supported.
 
 Additionally, Architect's default runtime is now `nodejs14.x` – if your existing functions do not specify a runtime, they will be automatically and seamlessly upgraded from `nodejs10.x` or `nodejs12.x` to `nodejs14.x`.
 
 
 ### Breaking changes
 
-- Removed support for Node.js 10.x (now EOL, and no longer available to created in AWS Lambda)
+- Removed support for Node.js 10.x (now EOL, and no longer available to created in AWS Lambda) and Node.js 12.x
 - `arc destroy`
   - `--app` must now be used to destroy apps, while `--name` may only be used to destroy stacks
   - Removed support for deprecated `--nuke` flag
@@ -94,7 +94,7 @@ Additionally, Architect's default runtime is now `nodejs14.x` – if your existi
 
 Architect 9 is fully compatible with `@architect/functions`. However, `@architect/functions` 4.0, released alongside Architect 9, has some breaking changes:
 
-- Removed support for Node.js 10.x (now EOL, and no longer available to created in AWS Lambda)
+- Removed support for Node.js 10.x (now EOL, and no longer available to created in AWS Lambda); Node.js 12.x will continue to be supported until it is EOL in AWS Lambda
 - `arc.http.proxy` is now `@architect/asap`, and has been removed from `@architect/functions` 4.0
 - `arc.http.proxy` calls can now be sent as-is to ASAP
   - For more details, please see the [@architect/functions changelog](https://github.com/architect/functions/blob/master/_changelog.md#200-2021-07-25) and [@architect/asap changelog](https://github.com/architect/asap/blob/master/_changelog.md#400-2021-07-25)
