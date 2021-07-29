@@ -14,9 +14,18 @@
       "fingerprint": true
     },
     "http": [
-      [ "get", "/docs/:lang/*" ],
-      [ "get", "/api/package" ],
-      [ "any", "/*" ]
+      [
+        "get",
+        "/docs/:lang/*"
+      ],
+      [
+        "get",
+        "/api/package"
+      ],
+      [
+        "any",
+        "/*"
+      ]
     ]
   },
   "scripts": {
@@ -24,7 +33,7 @@
     "spellcheck": "cross-env npx spellchecker './src/views/docs/en/**/*.md' --no-suggestions -q -d ./scripts/dictionary.js --plugins spell indefinite-article repeated-words syntax-mentions syntax-urls",
     "lint": "eslint src --fix",
     "start": "sandbox",
-    "test": "tape -r esm test/*-test.js test/**/*.js | tap-spec"
+    "test": "npm run spellcheck && npm run lint && tape -r esm 'test/**/*.js' | tap-spec"
   },
   "dependencies": {
     "@architect/architect": "^8.7.4",
