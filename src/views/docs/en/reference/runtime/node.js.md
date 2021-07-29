@@ -3,9 +3,20 @@ title: Node.js
 description: Node.js runtime helpers
 ---
 
-Architect runtime helpers are optional but they do make working with CloudFormation provisioned resources nicer. CloudFormation resources are generated with names more friendly for machines than people. Other frameworks leave resource discovery up to end users which leads to ad hoc implementations becoming a frequent bug vector. Architect treats runtime discovery as a first class concern.
+Architect runtime helpers are optional, and designed to make it significantly easier to work with AWS CloudFormation provisioned resources and related assets.
+
+CloudFormation resources are generated with names more friendly for machines than people. Other frameworks leave resource discovery up to end users, which leads to ad hoc implementations becoming a frequent bug vector. Architect treats runtime discovery as a first class concern.
 
 > Amazon Resource Names (ARNs) are available at runtime to all Lambda functions defined in the same Architect project manifest. Things such as DynamoDB tables, SNS topics, SQS queues, API Gateway endpoints, and S3 static bucket ARNs are baked into `@architect/functions` so your runtime program logic interacts with resources using readable, people-friendly names defined in your Architect project manifest.
+
+Architect has two primary runtime helpers for Node.js:
+
+- [`@architect/functions`](#%40architect%2Ffunctions) - General purpose runtime helpers for various Architect resources, such as `@http`, `@tables`, etc.
+- [`@architect/asap`](#%40architect%2Fasap) - Helper designed solely for delivering static assets via `@http` endpoints
+
+---
+
+# `@architect/functions`
 
 ## Setup
 
@@ -20,6 +31,7 @@ Ensure `arc` is available to your Lambda function code:
 ```javascript
 let arc = require('@architect/functions')
 ```
+
 
 ## API
 
@@ -328,7 +340,7 @@ These operations are automatically handled for you when using `arc.http[.async]`
 ```javascript
 let arc = require('@architect/functions')
 
-module.exports = async function handler (req) {
+exports.handler = async function handler (req) {
   // read the session
   let session = await arc.http.session.read(req)
 
@@ -560,4 +572,71 @@ await arc.ws.send({
   id: connectionId,
   payload: { message: 'hai 🐶' }
 })
+```
+
+---
+
+# `@architect/asap`
+
+## Setup
+
+Install the Architect static asset proxy (ASAP) for Node.js:
+
+```bash
+npm install @architect/asap
+```
+
+
+### API
+
+ASAP takes an optional configuration object with the following properties and returns an `async` Lambda handler:
+
+- `alias` - **object**
+  - Map of paths or files to alias to different paths
+  - Example: `{ '/an-asset.jpg': '/a-different-filename.jpg' }`
+- `assets` - **object**
+  - Map of fingerprinted static assets; defaults to using the Arc-generated `static.json`
+  - Example: `{ 'some-file.gif': 'some-file-a1b2c3.gif' }`
+- `bucket` - **object** containing the following properties:
+  - `staging` - **string** (required)
+    - Staging environment bucket name
+  - `production` - **string** (required)
+    - Production environment bucket name
+  - `folder` - **string** (optional)
+    - Folder path to treat as the root of all requests
+- `cacheControl` - **string**
+  - Sets the cache-control header, overriding ASAP's default, content-aware cache-control header
+- `headers` - **object**
+  - Set response headers
+  - Example: `{ 'some-header': 'ok=true' }`
+- `passthru` - **boolean** (defaults to `false`)
+  - Return null if asset is not found (defaults to false)
+- `spa` - **boolean** (defaults to `false`)
+  - Enable single page app mode, all page requests deliver `/index.html`
+
+
+##### Examples
+
+```javascript
+// basic usage
+let asap = require('@architect/asap')
+let params = { cacheControl: 'max-age=0' }
+exports.handler = asap(params)
+```
+
+```javascript
+// asap as arc.http.async middleware
+let arc = require('@architect/functions')
+let asap = require('@architect/asap')()
+
+exports.handler = arc.http.async(render, asap)
+
+async function render (req) {
+  // If user is logged in, show them a custom logged in page
+  if (req.path === '/' && req.session.account) {
+    return { html: `<body>Hello ${req.session.account.name}!</body>` }
+  }
+  // Otherwise, load the logged out static page
+  return
+}
 ```
