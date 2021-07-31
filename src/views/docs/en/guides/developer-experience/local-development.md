@@ -8,7 +8,7 @@ Fast local development creates a tighter feedback loop maximizing developer velo
 
 ## Running locally
 
-> To set up Architect locally follow the [quickstart guide](/docs/en/guides/get-started/quickstart).
+> ℹ️ To set up Architect locally follow the [quickstart guide](/docs/en/guides/get-started/quickstart).
 
 Preview a project running locally in a web browser:
 
@@ -23,13 +23,13 @@ Checkout [a complete example project for working locally](https://github.com/arc
 
 ## Creating a new resource
 
-Adding a new resource ([@http](/docs/en/reference/app.arc/http) endpoint, [@events](/docs/en/reference/app.arc/events), [@scheduled](/docs/en/reference/app.arc/scheduled), etc.) to an existing project is as simple as adding an entry to the [Architect manifest](/docs/en/guides/get-started/project-layout#manifest-file-format-overview).
+Adding a new resource (HTTP route, event, scheduled task, etc.) to an existing project is as simple as adding an entry to the [Architect manifest](/docs/en/guides/get-started/project-layout#manifest-file-format-overview).
 
-> 👉 Note: this example will use Node.js conventions but the process is similar for the [Ruby](/docs/en/reference/runtime/ruby) (bundler) and [Python](/docs/en/reference/runtime/python) (pip) runtimes.
+> 👉 Note: this example uses Node.js conventions but the process is similar for the [Ruby](/docs/en/reference/runtime/ruby) (bundler) and [Python](/docs/en/reference/runtime/python) (pip) runtimes.
 
 ### Update Architect's configuration
 
-Add an entry under the `@events` pragma (if it doesn't exist, add it on a new line) for a new "hit counter" event:
+Add an entry for a new "hit counter" event under the [`@events` pragma](/docs/en/reference/app.arc/events) (if it doesn't exist, go ahead and add it):
 
 ```arc
 # app.arc
@@ -48,7 +48,18 @@ Architect's CLI [`init` command](/docs/en/reference/cli/init) can be used to cre
 arc init
 ```
 
-> 👀 Notice the CLI found an existing Architect manifest and new project files were created in `./src/events/hit-counter/` for the added event.
+> 👀 Notice the CLI found an existing Architect manifest and new project files were created for the added event.
+
+The following structure was added:
+
+```
+.
+├── src
+│   └── events
+│       └── hit-counter/index.js
+│
+└── app.arc
+```
 
 ### Add dependencies
 
