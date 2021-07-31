@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@architect/architect": "^9.0.0",
+    "@architect/asap": "^4.0.0",
     "@architect/eslint-config": "^1.0.0",
     "@architect/functions": "^4.0.0",
     "@architect/inventory": "^2.0.4",
