@@ -4,7 +4,7 @@ category: Developer experience
 description: How to develop locally with Architect sandbox
 ---
 
-Fast local development creates a tighter feedback loop maximizing developer velocity. Architect provides utilities to provision resources, run locally, and debug applications.
+Fast local development creates a tighter feedback loop maximizing developer velocity. Architect provides utilities to run applications locally, provision new resources, and debug.
 
 ## Running locally
 
@@ -17,7 +17,7 @@ cd myproject
 arc sandbox
 ```
 
->  [`arc sandbox`](/docs/en/reference/cli/sandbox) spins up a local web server with all the resources defined in your `app.arc` file, emulating a suite of AWS features.
+>  [`arc sandbox`](/docs/en/reference/cli/sandbox) spins up a local web server with all the resources defined in manifest, emulating a suite of AWS features.
 
 Checkout [a complete example project for working locally](https://github.com/architect-examples/arc-example-working-locally).
 
@@ -29,7 +29,7 @@ Adding a new resource (HTTP route, event, scheduled task, etc.) to an existing p
 
 ### Update Architect's configuration
 
-Add an entry for a new "hit counter" event under the [`@events` pragma](/docs/en/reference/app.arc/events) (if it doesn't exist, go ahead and add it):
+Add an entry for a new "hit counter" event under the [`@events` pragma](/docs/en/reference/app.arc/events) (if "@events" configuration doesn't exist, go ahead and add it):
 
 ```arc
 # app.arc
@@ -63,7 +63,7 @@ The following structure was added:
 
 ### Add dependencies
 
-The new event may require some dependencies. For this Node.js example @architect/functions {LINK} will be helpful to handle the event subscription. Ensure this requirement is met:
+The new event may require some dependencies. For this Node.js example, [@architect/functions](https://github.com/architect/functions) will be helpful to handle the event subscription. Ensure this requirement is met:
 
 1. In the generated `./src/events/hit-counter` directory create a `package.json` file with an empty `dependencies` entry:
 
@@ -95,4 +95,4 @@ With an Architect project running locally, there are several ways to develop and
 
 Developers can run a front-end application from the same Architect project to communicate with the back-end or use a client to interface with HTTP functions.
 
-Of course, the best way to catch bugs is by [testing your Architect project](/docs/en/guides/developer-experience/testing).
+Of course, the best way to catch bugs is by [testing an Architect project](/docs/en/guides/developer-experience/testing).
