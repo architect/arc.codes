@@ -6,7 +6,8 @@ let Guides = [ {
     'Detailed AWS setup',
   ],
   'Developer experience': [
-    'Local development', // preview, debug and test
+    'Local development', // preview, create resource, and debug
+    'Testing',
     'Dependency management',
     'Sharing code', // src/shared and src/views
     'Custom source paths',

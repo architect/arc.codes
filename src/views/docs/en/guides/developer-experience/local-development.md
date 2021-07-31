@@ -4,112 +4,84 @@ category: Developer experience
 description: How to develop locally with Architect sandbox
 ---
 
-Fast local development creates a tighter feedback loop maximizing developer velocity.
+Fast local development creates a tighter feedback loop maximizing developer velocity. Architect provides utilities to provision resources, run locally, and debug applications.
 
-## Preview
+## Running locally
 
-Follow the [quickstart](/docs/en/guides/get-started/quickstart) to get everything wired up. To preview a project running locally in a web browser:
+> To set up Architect locally follow the [quickstart guide](/docs/en/guides/get-started/quickstart).
 
-```bash
+Preview a project running locally in a web browser:
+
+```console
 cd myproject
 arc sandbox
 ```
->  `arc sandbox` kicks up a local web server with all the resources defined in your `app.arc` file
-## Testing
+
+>  [`arc sandbox`](/docs/en/reference/cli/sandbox) spins up a local web server with all the resources defined in your `app.arc` file, emulating a suite of AWS features.
 
 Checkout [a complete example project for working locally](https://github.com/architect-examples/arc-example-working-locally).
 
-### Testing `@http` functions
+## Creating a new resource
 
-Use `@architect/sandbox` as a module to test `@http` functions with Node:
+Adding a new resource ([@http](/docs/en/reference/app.arc/http) endpoint, [@events](/docs/en/reference/app.arc/events), [@scheduled](/docs/en/reference/app.arc/scheduled), etc.) to an existing project is as simple as adding an entry to the [Architect manifest](/docs/en/guides/get-started/project-layout#manifest-file-format-overview).
 
-```javascript
-const test = require('tape')
-const tiny = require('tiny-json-http')
-const sandbox = require('@architect/sandbox')
+> 👉 Note: this example will use Node.js conventions but the process is similar for the [Ruby](/docs/en/reference/runtime/ruby) (bundler) and [Python](/docs/en/reference/runtime/python) (pip) runtimes.
 
-test('setup', async t=> {
-  t.plan(1)
-  await sandbox.start()
-  t.ok(true, 'sandbox started on http://localhost:3333')
-})
+### Update Architect's configuration
 
-test('get /', async t=> {
-  t.plan(1)
-  let result = await tiny.get({ url: 'http://localhost:3333' })
-  t.ok(result, 'got 200 response')
-})
+Add an entry under the `@events` pragma (if it doesn't exist, add it on a new line) for a new "hit counter" event:
 
-test('teardown', async t=> {
-  t.plan(1)
-  await sandbox.end()
-  t.ok(true, 'sandbox ended')
-})
+```arc
+# app.arc
+@app
+my-app
+
+@events
+hit-counter
 ```
 
-### Testing `@events` and `@queues`
+### Scaffold with `arc init`
 
-Use `@architect/functions` to publish locally to `@events` or `@queues` for testing.
+Architect's CLI [`init` command](/docs/en/reference/cli/init) can be used to create some scaffolding for the new event. From the project root:
 
-```javascript
-const test = require('tape')
-const arc = require('@architect/functions')
-const sandbox = require('@architect/sandbox')
-
-test('setup', async t=>{
-  t.plan(1)
-  await sandbox.start()
-  t.ok(true, 'started')
-})
-
-test('@events', async t=> {
-  t.plan(1)
-  // mock pingID
-  let pingID = 'testing-ping'
-  // send a ping event
-  await arc.events.publish({
-    name: 'ping',
-    payload: { pingID }
-  })
-  // see if testing-ping is in the db
-  let data = await arc.tables()
-  let { hits } = await data.pings.get({ pingID })
-  t.ok(hits, 'pong!')
-})
-
-test('teardown', async t=>{
-  t.plan(1)
-  await sandbox.end()
-  t.ok(true, 'closed')
-})
-
+```console
+arc init
 ```
 
-### Testing `@tables`
+> 👀 Notice the CLI found an existing Architect manifest and new project files were created in `./src/events/hit-counter/` for the added event.
 
-Using `@architect/functions` to interact with DynamoDB `@tables` defined locally.
+### Add dependencies
 
-```javascript
-const test = require('tape')
-const arc = require('@architect/functions')
-const sandbox = require('@architect/sandbox')
+The new event may require some dependencies. For this Node.js example @architect/functions {LINK} will be helpful to handle the event subscription. Ensure this requirement is met:
 
-test('setup', async t=>{
-  t.plan(1)
-  await sandbox.start()
-  t.ok(true, 'started')
-})
+1. In the generated `./src/events/hit-counter` directory create a `package.json` file with an empty `dependencies` entry:
 
-test('db', t=> {
-  t.plan(1)
-  let data = await arc.tables()
-  let cats = await data.cats.scan({})
-  t.ok(Array.isArray(cats.Items), 'bag o cats')
-})
-
-test('teardown', async t=>{
-  t.plan(1)
-  await sandbox.end()
-  t.ok(true, 'closed')
-})
+```json
+// package.json
+{
+  "dependencies": {}
+}
 ```
+
+2. Install dependencies
+
+```console
+cd src/events/hit-counter
+npm i @architect/functions
+```
+
+3. From the project root start the sandbox
+
+```console
+arc sandbox
+```
+
+Architect will hydrate [shared code](/docs/en/guides/developer-experience/sharing-code) and run the updated Architect project.
+
+## Debugging
+
+With an Architect project running locally, there are several ways to develop and debug an application.
+
+Developers can run a front-end application from the same Architect project to communicate with the back-end or use a client to interface with HTTP functions.
+
+Of course, the best way to catch bugs is by [testing your Architect project](/docs/en/guides/developer-experience/testing).
