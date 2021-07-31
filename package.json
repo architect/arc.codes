@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@architect/architect": "^9.0.0",
+    "@architect/asap": "^4.0.0",
     "@architect/eslint-config": "^1.0.0",
     "@architect/functions": "^4.0.0",
     "@architect/inventory": "^2.0.4",
@@ -53,7 +54,8 @@
     "slugify": "^1.6.0",
     "spellchecker-cli": "^4.8.0",
     "tap-spec": "^5.0.0",
-    "tape": "^5.3.0"
+    "tape": "^5.3.0",
+    "tiny-json-http": "^7.3.0"
   },
   "eslintConfig": {
     "extends": "@architect/eslint-config"
