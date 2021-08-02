@@ -4,13 +4,13 @@ category: Developer experience
 description: How to develop locally with Architect sandbox
 ---
 
-Fast local development creates a tighter feedback loop maximizing developer velocity. Architect provides utilities to run applications locally, provision new resources, and debug.
+Fast local development creates a tighter feedback loop, maximizing developer velocity. Architect provides utilities to run projects locally, provision new resources, and debug your application.
 
 ## Running locally
 
-> ℹ️ To set up Architect locally follow the [quickstart guide](/docs/en/guides/get-started/quickstart).
+> 🏁 To set up Architect locally follow the [quickstart guide](/docs/en/guides/get-started/quickstart).
 
-Preview a project running locally in a web browser:
+Preview a project running locally in a web browser by starting Architect's Sandbox:
 
 ```console
 cd myproject
@@ -23,13 +23,15 @@ Checkout [a complete example project for working locally](https://github.com/arc
 
 ## Creating a new resource
 
-Adding a new resource (HTTP route, event, scheduled task, etc.) to an existing project is as simple as adding an entry to the [Architect manifest](/docs/en/guides/get-started/project-layout#manifest-file-format-overview).
+You can create a new resource (HTTP route, event, scheduled task, etc.) to an existing project by simply adding a line to the [Architect manifest file](/docs/en/guides/get-started/project-layout#manifest-file-format-overview). The following example will provision a new "hit counter" event.
 
 > 👉 Note: this example uses Node.js conventions but the process is similar for the [Ruby](/docs/en/reference/runtime/ruby) (bundler) and [Python](/docs/en/reference/runtime/python) (pip) runtimes.
 
 ### Update Architect's configuration
 
-Add an entry for a new "hit counter" event under the [`@events` pragma](/docs/en/reference/app.arc/events) (if "@events" configuration doesn't exist, go ahead and add it):
+To create a new event, add an entry to your manifest's [`@events` pragma](/docs/en/reference/app.arc/events).
+
+Sample `app.arc` file with a new `hit-counter` event:
 
 ```arc
 # app.arc
@@ -40,32 +42,36 @@ my-app
 hit-counter
 ```
 
-### Scaffold with `arc init`
+> 💡 If the pragma does not already exist, add "@events" on a new line.
 
-Architect's CLI [`init` command](/docs/en/reference/cli/init) can be used to create some scaffolding for the new event. From the project root:
+### Scaffold the new resource with `arc init`
+
+The Architect CLI [`init` command](/docs/en/reference/cli/init) can be used to create scaffolding for the new event. From the project root:
 
 ```console
 arc init
 ```
 
-> 👀 Notice the CLI found an existing Architect manifest and new project files were created for the added event.
+> 👀 Notice that `arc` finds your updated Architect manifest and creates new project files for the hit-counter event. `arc init` can be run as needed while developing your application.
 
-The following structure was added:
-
+The following structure was added your project:
+<!-- unsure if this diagram is necessary -->
 ```
 .
 ├── src
 │   └── events
-│       └── hit-counter/index.js
+│       └── hit-counter
+│           ├── index.js
+│           └── config.arc
 │
 └── app.arc
 ```
 
-### Add dependencies
+### Add dependencies (optional)
 
-The new event may require some dependencies. For this Node.js example, [@architect/functions](https://github.com/architect/functions) will be helpful to handle the event subscription. Ensure this requirement is met:
+Your new event may require some dependencies. For this example, [@architect/functions](https://github.com/architect/functions) will be helpful to handle the event subscription. Dependencies can be installed directly to the `hit-counter` directory:
 
-1. In the generated `./src/events/hit-counter` directory create a `package.json` file with an empty `dependencies` entry:
+1. Inside `./src/events/hit-counter` create a `package.json` file with an empty `dependencies` entry:
 
 ```json
 // package.json
@@ -74,25 +80,27 @@ The new event may require some dependencies. For this Node.js example, [@archite
 }
 ```
 
-2. Install dependencies
+2. Install dependencies with `npm`:
 
 ```console
 cd src/events/hit-counter
-npm i @architect/functions
+npm install @architect/functions
 ```
 
-3. From the project root start the sandbox
+3. From the project root start up the sandbox if it is not already running:
 
 ```console
 arc sandbox
 ```
 
-Architect will hydrate [shared code](/docs/en/guides/developer-experience/sharing-code) and run the updated Architect project.
+Architect will hydrate your [shared code](/docs/en/guides/developer-experience/sharing-code) and run the updated Architect project.
+
+> 📖 Read more about [dependency management](/docs/en/guides/developer-experience/dependency-management).
 
 ## Debugging
 
-With an Architect project running locally, there are several ways to develop and debug an application.
+With an Architect project running locally, there are several ways to work on your application.
 
-Developers can run a front-end application from the same Architect project to communicate with the back-end or use a client to interface with HTTP functions.
+You can run a front-end application from the same Architect project to communicate with the back-end or use a client to interface with HTTP functions.
 
-Of course, the best way to catch bugs is by [testing an Architect project](/docs/en/guides/developer-experience/testing).
+Of course, the best way to catch bugs is by [testing your Architect project](/docs/en/guides/developer-experience/testing).

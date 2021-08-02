@@ -4,9 +4,7 @@ category: Developer experience
 description: How to test with Architect
 ---
 
-## Testing
-
-### Testing `@http` functions
+### `@http` functions
 
 Use `@architect/sandbox` as a module to test `@http` functions with Node:
 
@@ -34,7 +32,7 @@ test('teardown', async t=> {
 })
 ```
 
-### Testing `@events` and `@queues`
+### `@events` and `@queues`
 
 Use `@architect/functions` to publish locally to `@events` or `@queues` for testing.
 
@@ -72,7 +70,7 @@ test('teardown', async t=>{
 
 ```
 
-### Testing `@tables`
+### `@tables`
 
 Using `@architect/functions` to interact with DynamoDB `@tables` defined locally.
 
