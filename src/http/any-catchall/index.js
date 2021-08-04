@@ -5,11 +5,11 @@ let asap = require('@architect/asap')
 let redirect = require('./redirect')
 
 // middleware proxy s3 assets
-let static = asap({
+let staticProxy = asap({
   spa: false,
   alias: {
     '/playground': '/playground.html'
   }
 })
 
-exports.handler = http.async(redirect, static)
+exports.handler = http.async(redirect, staticProxy)

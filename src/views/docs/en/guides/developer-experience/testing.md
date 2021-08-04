@@ -16,7 +16,7 @@ const sandbox = require('@architect/sandbox')
 test('setup', async t=> {
   t.plan(1)
   await sandbox.start()
-  t.ok(true, 'sandbox started on http://localhost:3333')
+  t.pass('sandbox started on http://localhost:3333')
 })
 
 test('get /', async t=> {
@@ -28,7 +28,7 @@ test('get /', async t=> {
 test('teardown', async t=> {
   t.plan(1)
   await sandbox.end()
-  t.ok(true, 'sandbox ended')
+  t.pass('sandbox ended')
 })
 ```
 
@@ -44,7 +44,7 @@ const sandbox = require('@architect/sandbox')
 test('setup', async t=>{
   t.plan(1)
   await sandbox.start()
-  t.ok(true, 'started')
+  t.pass('started')
 })
 
 test('@events', async t=> {
@@ -65,7 +65,7 @@ test('@events', async t=> {
 test('teardown', async t=>{
   t.plan(1)
   await sandbox.end()
-  t.ok(true, 'closed')
+  t.pass('closed')
 })
 
 ```
@@ -82,7 +82,7 @@ const sandbox = require('@architect/sandbox')
 test('setup', async t=>{
   t.plan(1)
   await sandbox.start()
-  t.ok(true, 'started')
+  t.pass('started')
 })
 
 test('db', t=> {
@@ -95,6 +95,6 @@ test('db', t=> {
 test('teardown', async t=>{
   t.plan(1)
   await sandbox.end()
-  t.ok(true, 'closed')
+  t.pass('closed')
 })
 ```
