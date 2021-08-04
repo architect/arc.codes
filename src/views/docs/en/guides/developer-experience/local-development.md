@@ -87,13 +87,13 @@ cd src/events/hit-counter
 npm install @architect/functions
 ```
 
-3. From the project root start up the sandbox if it is not already running:
+3. From the project root start up the [sandbox](../../reference/cli/sandbox) if it is not already running:
 
 ```console
 arc sandbox
 ```
 
-Architect will hydrate your [shared code](/docs/en/guides/developer-experience/sharing-code) and run the updated Architect project.
+[`arc sandbox`](../../reference/cli/sandbox) will automatically [hydrate - that is, install needed dependencies](../../reference/cli/hydrate) - for every function making up your Architect project.
 
 > 📖 Read more about [dependency management](/docs/en/guides/developer-experience/dependency-management).
 
@@ -103,4 +103,4 @@ With an Architect project running locally, there are several ways to work on you
 
 You can run a front-end application from the same Architect project to communicate with the back-end or use a client to interface with HTTP functions.
 
-Of course, the best way to catch bugs is by [testing your Architect project](/docs/en/guides/developer-experience/testing).
+Of course, the best way to catch bugs is by [testing your Architect project](testing).

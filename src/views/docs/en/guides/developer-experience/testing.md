@@ -1,12 +1,12 @@
 ---
 title: Testing
 category: Developer experience
-description: How to test with Architect
+description: How to test your Architect project
 ---
 
 ### `@http` functions
 
-Use `@architect/sandbox` as a module to test `@http` functions with Node:
+Use `@architect/sandbox` as a module to test [`@http`](../../reference/app.arc/http) functions with Node:
 
 ```javascript
 const test = require('tape')
@@ -34,7 +34,7 @@ test('teardown', async t=> {
 
 ### `@events` and `@queues`
 
-Use `@architect/functions` to publish locally to `@events` or `@queues` for testing.
+Use [`@architect/functions`](../../reference/runtime/node.js) to publish locally to [`@events`](../../reference/app.arc/events) or [`@queues`](../../reference/app.arc/queues) for testing.
 
 ```javascript
 const test = require('tape')
@@ -72,7 +72,7 @@ test('teardown', async t=>{
 
 ### `@tables`
 
-Using `@architect/functions` to interact with DynamoDB `@tables` defined locally.
+Using `@architect/functions` to interact with DynamoDB [`@tables`](../../reference/app.arc/tables) defined locally.
 
 ```javascript
 const test = require('tape')
