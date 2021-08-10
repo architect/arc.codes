@@ -7,7 +7,7 @@ description: Sandbox environment variables
 
 Define [`arc sandbox`](../cli/sandbox) preferences. If you are not using a [`.env` file](.env) then any environment variables set using the [`arc env` CLI](../cli/env) will be stored in the preferences file. In this scenario it is best _not_ to revision the preferences file in source control.
 
-### `env` - Boolean
+### `env` - String
 
 Advanced option: set the `ARC_ENV` + `NODE_ENV` stage to `staging` or `production` and use the env vars for that stage (see the `@env` pragma above); if not specified, defaults to `testing`. This setting may introduce unexpected side effects, so only use it if you have a specific technical reason.
 
