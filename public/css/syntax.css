@@ -1,59 +1,15 @@
-/* Hemisu Dark */
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: #282a36;
-}
-
-.hljs-comment,
-.hljs-meta {
-  color: #777777;
-}
-
-.hljs-params,
-.hljs-number,
-.hljs-built_in {
-  color: #9fd3e6;
-}
-
-.hljs-string,
-.hljs-regexp {
-  color: #b1d631;
-}
-
-.hljs-keyword,
-.hljs-title,
-.hljs-constant,
-.hljs-tag,
-.hljs-attr {
-  color: #bbffaa;
-}
-
-.hljs-selector-tag,
-.hljs-literal,
-.hljs-section,
-.hljs-link {
-  color: #ece1c8;
-}
-
-.docs pre code {
-  color: #eeeeee;
-  font-family: Menlo, Monaco, Consolas, monospace;
-}
-
-.hljs,
-.hljs-string .hljs-subst,
-.hljs-tag .hljs-name {
-  color: #eeeeee;
-}
-/* Code blocks */
-.docs pre {
-  padding: 1rem;
-  overflow: auto;
-  border-radius: 0.3rem;
-}
 .docs blockquote > p {
   margin: 0;
 }
 
+/* Code blocks */
+.docs pre {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  overflow: auto;
+  border-radius: 0.3rem;
+}
+.docs pre code {
+  color: #eeeeee;
+  font-family: Menlo, Monaco, Consolas, monospace;
+}

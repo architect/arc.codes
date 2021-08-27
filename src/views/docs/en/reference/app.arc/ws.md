@@ -64,7 +64,7 @@ app="testapp"
 <h5>yaml</h5>
 <div slot=content>
 
-```yml
+```yaml
 ---
 app: testapp
 

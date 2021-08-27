@@ -7,12 +7,7 @@ const markdownClass = require('@toycode/markdown-it-class')
 const markdownAnchor = require('markdown-it-anchor')
 const frontmatterParser = require('markdown-it-front-matter')
 const classMapping = require('./markdown-class-mappings')
-const hljs = require('highlight.js')
-const { escapeHtml } = Markdown().utils
-const highlight = require('./highlighter')
-  .bind(null, hljs, escapeHtml)
-const arcGrammar = require('./arc-grammar')
-hljs.registerLanguage('arc', arcGrammar)
+const highlighter = require('./highlighter')
 const readFile = util.promisify(fs.readFile)
 const Html = require('@architect/views/modules/document/html.js').default
 const toc = require('@architect/views/docs/table-of-contents')
@@ -71,12 +66,12 @@ exports.handler = async function http (req) {
     }
   }
   // Declare in outer scope for use later... sorry
-  let frontmatter = ''
-  const md = Markdown({
-    highlight,
+  let frontmatter = {}
+  const markdown = new Markdown({
     linkify: true,
     html: true,
-    typography: true
+    typographer: true,
+    highlight: await highlighter.forMarkdown()
   })
     .use(markdownClass, classMapping)
     .use(markdownAnchor, {
@@ -85,7 +80,7 @@ exports.handler = async function http (req) {
     .use(frontmatterParser, function (str) {
       frontmatter = yaml.load(str)
     })
-  const children = md.render(file)
+  const children = markdown.render(file)
   const { category, description, sections, title } = frontmatter
 
   return {

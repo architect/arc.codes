@@ -89,7 +89,7 @@ You deploy a macro by using this syntax:
 
 Macros receive the parsed `app.arc` file so custom pragmas and config can be defined. The second argument is the current CloudFormation template.
 
-```js
+```javascript
 /**
  * @param {object} arc - the parsed app.arc file currently executing
  * @param {object} cloudformation - the current AWS::Serverless CloudFormation template
