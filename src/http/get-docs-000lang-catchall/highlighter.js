@@ -27,7 +27,7 @@ module.exports.forMarkdown = async function () {
       return highlighter.codeToHtml(code, lang)
     }
     catch (error) {
-      console.log(lang)
+      console.log(`Highlighter unsupported language: ${lang}`)
       return ''
     }
   }
