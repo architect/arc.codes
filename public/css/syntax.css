@@ -2,6 +2,20 @@
   margin: 0;
 }
 
+:root {
+  --shiki-color-text: #EEEEEE;
+  --shiki-color-background: #333333;
+  --shiki-token-constant: #660000;
+  --shiki-token-string: #770000;
+  --shiki-token-comment: #880000;
+  --shiki-token-keyword: #990000;
+  --shiki-token-parameter: #AA0000;
+  --shiki-token-function: #BB0000;
+  --shiki-token-string-expression: #CC0000;
+  --shiki-token-punctuation: #DD0000;
+  --shiki-token-link: #EE0000;
+}
+
 /* Code blocks */
 .docs pre {
   padding: 1rem;

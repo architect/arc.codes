@@ -4,7 +4,7 @@ const arcGrammar = require('./arc.tmGrammar.json')
 
 module.exports.forMarkdown = async function () {
   const highlighter = await shiki.getHighlighter({
-    theme: 'dracula-soft',
+    theme: 'css-variables',
     langs: [
       'bash',
       'javascript',
