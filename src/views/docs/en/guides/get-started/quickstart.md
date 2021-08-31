@@ -55,7 +55,7 @@ arc deploy production
 
 Or eject to CloudFormation and deploy with the AWS SAM CLI:
 
-```
+```bash
 arc deploy --dry-run
 sam package --template-file sam.json --output-template-file out.yaml --s3-bucket mybukkit
 sam deploy --template-file out.yaml --stack-name MyStack --s3-bucket mybukkit --capabilities CAPABILITY_IAM
