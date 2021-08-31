@@ -1,6 +1,7 @@
 import listFromObject from '../helpers/list.js'
 import slugify from '../helpers/slugify.js'
 import toc from '../../docs/table-of-contents.js'
+
 const map = {
   list: function List (state = {}) {
     let { children } = state

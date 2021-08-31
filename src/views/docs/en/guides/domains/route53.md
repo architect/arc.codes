@@ -1,8 +1,7 @@
 ---
-title: Route 53
-description: Setting up a domain name with Route 53
+title: Route53
+description: Setting up a domain name with Route53
 ---
-
 
 ## Prerequisites
 

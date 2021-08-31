@@ -1,9 +1,9 @@
 ---
-title: Route 53
-description: Setting up a domain name with Route 53
+title: Route53 & CloudFront
+description: Setting up a domain name with Route53 and CloudFront
 ---
 
-## Prerequisites 
+## Prerequisites
 
 - [Register](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html) or [transfer](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-transfer-to-route-53.html) a domain with Route53
 - Deploy an app with Architect and make note of the `staging` and `production` URLs
@@ -26,7 +26,7 @@ Generate a CloudFront distribution with the certificate from step 1.
 
 - Sign into AWS CloudFront in the AWS Console
 - Click `Create Distribution` and then click `Get Started`
-- Enter the URL from API Gateway in `Origin Domain Name` 
+- Enter the URL from API Gateway in `Origin Domain Name`
 - Set `Origin Protocol Policy` to `Match Viewer`
 - Set `Viewer Protocol Policy` to `Redirect HTTP to HTTPS`
 - Set `Allowed HTTP Methods` to `GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE`

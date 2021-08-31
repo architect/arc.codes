@@ -67,16 +67,28 @@ exports.handler = async function http (req) {
     console.error(err)
     return {
       statusCode: 404,
+      // TODO: send a friendly error page with message
       body: err.message
     }
   }
-  // Declare in outer scope for use later... sorry
-  let frontmatter = ''
+
+  /**
+   * @typedef {Object} FrontMatterResult
+   * @property {string} [title] - Document title
+   * @property {string} [category] - document sidebar category
+   * @property {string} [group] - wip
+   * @property {string} [description] - document description for SEO
+   * @property {string[]} [sections] - set of document sections
+   */
+  /**
+   * @type {FrontMatterResult}
+   */
+  let frontmatter = {}
   const md = Markdown({
     highlight,
     linkify: true,
     html: true,
-    typography: true
+    typographer: true
   })
     .use(markdownClass, classMapping)
     .use(markdownAnchor, {
@@ -86,7 +98,7 @@ exports.handler = async function http (req) {
       frontmatter = yaml.load(str)
     })
   const children = md.render(file)
-  const { category, description, sections, title } = frontmatter
+  const { category, description, group, sections, title } = frontmatter
 
   return {
     statusCode: 200,
@@ -100,6 +112,7 @@ exports.handler = async function http (req) {
       children,
       description,
       editURL,
+      group,
       lang,
       sections,
       scripts: [
