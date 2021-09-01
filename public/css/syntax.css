@@ -6,11 +6,11 @@
 :root {
   --shiki-color-text: #eee;
   --shiki-color-background: #282a36;
-  --shiki-token-constant: #9fd3e6;
+  --shiki-token-constant: #eee;
   --shiki-token-string: #b1d631;
-  --shiki-token-comment: #777;
-  --shiki-token-keyword: #bbffaa;
-  --shiki-token-parameter: #9fd3e6;
+  --shiki-token-comment: #999;
+  --shiki-token-keyword: #9fd3e6;
+  --shiki-token-parameter: #eee;
   --shiki-token-function: #bbffaa;
   --shiki-token-string-expression: #b1d631;
   --shiki-token-punctuation: #eee;
