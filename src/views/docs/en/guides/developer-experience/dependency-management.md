@@ -29,7 +29,7 @@ let foo = require('@architect/shared/foo')
 Recommended additional reading for working with the Node runtime:
 
 - Use `@shared` and `@views` to [share code](/docs/en/guides/developer-experience/sharing-code) between functions
-- Use [`@architect/functions`](/docs/en/reference/runtime/node) to make working with Node a bit nicer
+- Use [`@architect/functions`](/docs/en/reference/runtime/node.js) to make working with Node a bit nicer
 
 ## Ruby
 

@@ -440,8 +440,8 @@ module.exports = {
 [hydrate]: ../../reference/cli/hydrate
 [logs]: ../../reference/cli/logs
 [deploy]: ../../reference/cli/deploy
-[functions]: ../../reference/runtime/node
-[services]: ../../reference/runtime/node#arc.services
+[functions]: ../../reference/runtime/node.js
+[services]: ../../reference/runtime/node.js#arc.services
 [cfn-ref]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-reference.html
 [discovery]: https://en.wikipedia.org/wiki/Service_discovery
 [ssm]: https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html
