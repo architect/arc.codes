@@ -151,7 +151,7 @@ module.exports = {
 
 The above instructs Architect's various capabilities to interact with cloud functions under the `src/rules/<function>` directory inside the project hierarchy. With the above `functions` method and given `app.arc` contents like so:
 
-```
+```arc
 @rules
 rule-one
 rule-two

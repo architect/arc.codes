@@ -738,7 +738,7 @@ If you built your `@architect/data` calls with `async/await`, `@architect/functi
 ### Example of `@architect/data` &rarr; `@architect/functions` `tables()`
 
 #### `@architect/data` before:
-```js
+```javascript
 // src/http/get-index/index.js
 
 let data = require('@architect/data')
@@ -751,7 +751,7 @@ exports.handler = async () => {
 
 
 #### `@architect/functions` `tables()` after:
-```js
+```javascript
 // src/http/get-index/index.js
 
 let {tables} = require('@architect/functions')

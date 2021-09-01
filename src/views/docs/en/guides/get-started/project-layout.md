@@ -250,7 +250,7 @@ date="*String"
 
 Running `arc init` in the same directory as the file above generates the following Lambda function code:
 
-```
+```bash
 .
 ├── src
 │   ├── http

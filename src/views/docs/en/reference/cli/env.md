@@ -21,13 +21,13 @@ used to encode HTTP sessions if you use the [`@architect/functions` runtime help
 
 ### Display environment variables for the current `app.arc`
 
-```
+```bash
 arc env
 ```
 
 ### Save an environment variable to the staging environment
 
-```
+```bash
 arc env staging FOO myvalue
 ```
 
@@ -35,7 +35,7 @@ arc env staging FOO myvalue
 
 ### Remove an environment variable
 
-```
+```bash
 arc env remove staging FOO
 ```
 
