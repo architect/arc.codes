@@ -58,7 +58,7 @@ exports.handler = async function http (req) {
     file = cache[filePath]
   }
   catch (err) {
-    // TODO: Load "index" landing or load next
+    // TODO: Load category "index" landing or load next in section
     console.error(err)
     return {
       statusCode: 404,
@@ -96,7 +96,6 @@ exports.handler = async function http (req) {
       children,
       description,
       editURL,
-      group,
       lang,
       sections,
       scripts: [
