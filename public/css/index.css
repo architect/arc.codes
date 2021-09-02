@@ -66,6 +66,25 @@ html {
   transition: fill 2s ease-out;
 }
 
+label.sidebar-group-title {
+  display: block;
+}
+label.sidebar-group-title + ul {
+  height: 0;
+  overflow: hidden;
+}
+input.sidebar-group-control[type="checkbox"] {
+  visibility: hidden;
+  position: absolute;
+  left: -9999px;
+}
+input.sidebar-group-control[type="checkbox"]:checked + label.sidebar-group-title{
+  font-style: italic;
+}
+input.sidebar-group-control[type="checkbox"]:checked ~ ul {
+  height: 100%;
+}
+
 @media only screen and (min-width:48em) {
   .open,
   .transition-x {

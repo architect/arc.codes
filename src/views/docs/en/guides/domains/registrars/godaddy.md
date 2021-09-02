@@ -1,7 +1,6 @@
 ---
 title: GoDaddy
 category: Domains
-group: Providers
 description: Setting up a domain name with GoDaddy
 ---
 

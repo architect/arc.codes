@@ -23,12 +23,16 @@ let Guides = [ {
   ],
   'Domains': [
     'Overview',
-    'Route53',
-    'Route53 & CloudFront',
-    'Dreamhost',
-    'GoDaddy',
-    'Namecheap',
-    'One'
+    {
+      'Registrars': [
+        'Route53',
+        'Route53 & CloudFront',
+        'Dreamhost',
+        'GoDaddy',
+        'Namecheap',
+        'One'
+      ]
+    }
   ],
   /* TODO
   'Backend': [

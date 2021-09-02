@@ -63,7 +63,7 @@ exports.handler = async function http (req) {
     file = cache[filePath]
   }
   catch (err) {
-    // TODO: Load next doc in section
+    // TODO: Load "index" landing or load next
     console.error(err)
     return {
       statusCode: 404,
@@ -72,17 +72,6 @@ exports.handler = async function http (req) {
     }
   }
 
-  /**
-   * @typedef {Object} FrontMatterResult
-   * @property {string} [title] - Document title
-   * @property {string} [category] - document sidebar category
-   * @property {string} [group] - wip
-   * @property {string} [description] - document description for SEO
-   * @property {string[]} [sections] - set of document sections
-   */
-  /**
-   * @type {FrontMatterResult}
-   */
   let frontmatter = {}
   const md = Markdown({
     highlight,

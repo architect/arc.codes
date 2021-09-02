@@ -1,6 +1,5 @@
 import listFromObject from '../helpers/list.js'
 import slugify from '../helpers/slugify.js'
-import toc from '../../docs/table-of-contents.js'
 
 const map = {
   list: function List (state = {}) {
@@ -31,8 +30,8 @@ const map = {
 >
   ${
   isHeading
-    ? Heading({ children: child, depth, path, active })
-    : Anchor({ children: child, depth, path, active })
+    ? Heading({ name: child, depth, path, active })
+    : Anchor({ name: child, depth, path, active })
 }
   ${children}
 </li>
@@ -41,9 +40,9 @@ const map = {
 }
 
 function Anchor (state = {}) {
-  let { children, path, active } = state
+  let { name, path, active } = state
   let uri = path
-    .concat([ children ])
+    .concat([ name ])
     .map(part => slugify(part))
     .join('/')
   let href = `/${uri}`
@@ -51,33 +50,33 @@ function Anchor (state = {}) {
   let activeClass = isActive
     ? 'active'
     : ''
-  let pointer = isActive
-    ? '→'
-    : ''
+  let text = isActive
+    ? `→ ${name}`
+    : name
 
   return `
-<a href="${href}" class="w-full inline-block text-p1 text-h1 text-a2 no-underline font-medium ${activeClass}" >${pointer} ${children}</a>
+<a href="${href}" class="w-full inline-block text-p1 text-h1 text-a2 no-underline font-medium ${activeClass}" >${text}</a>
   `
 }
 
 function Heading3 (state = {}) {
-  let { children } = state
+  let { name } = state
   return `
 <h3
   class="
    mb-5
-   font-semibold
    text1
+   font-semibold
   "
 >
-  ${children}
+  ${name}
 </h3>
 <hr class="border-solid border1 border-p1 mb1">
   `
 }
 
 function Heading4 (state = {}) {
-  let { children } = state
+  let { name } = state
   return `
 <h4
   class="
@@ -86,23 +85,41 @@ function Heading4 (state = {}) {
    font-semibold
   "
 >
-  ${children}
+  ${name}
 </h4>
   `
 }
 
-function Heading5 (state = {}) {
-  let { children } = state
+function Group (state = {}) {
+  let { name, depth, active } = state
+  let slug = slugify(name)
+  let groupIsActive = active
+    .replace('/docs/en', '')
+    .split('/')
+    .indexOf(slug) === depth
+  let checked = groupIsActive ? 'checked' : ''
+
   return `
-<h5
+<input
+  type="checkbox"
+  id="group-${slug}"
+  class="sidebar-group-control"
+  hidden
+  aria-hidden="true"
+  ${checked}
+>
+<label
+  for="group-${slug}"
   class="
+   sidebar-group-title
+   cursor-pointer
    mb-1
    text0
    font-medium
   "
 >
-  ${children}
-</h5>
+  ${name}
+</label>
   `
 }
 
@@ -111,13 +128,13 @@ function Heading (state = {}) {
   const headings = [
     Heading3,
     Heading4,
-    Heading5
+    Group
   ]
   return headings[depth - 1](state)
 }
 
 export default function Sidebar (props = {}) {
-  let { active } = props
+  let { active, toc } = props
   return `
 <aside
   id="sidebar"
