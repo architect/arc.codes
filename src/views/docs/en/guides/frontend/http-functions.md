@@ -26,7 +26,7 @@ Within your project, each HTTP Function can contain and utilize an arbitrary qua
 
 The HTTP handler API follows a simple [request](#requests) / [response](#responses) pattern. Let's look at an example of a basic HTTP Function:
 
-```js
+```javascript
 // src/http/get-index/index.js
 let body = `
 <!doctype html>
@@ -145,7 +145,7 @@ The `handler` function invoked by a client request receives a `request` object c
 
 Here's an example of an incoming `request` object, being handled by the HTTP Function `GET /salutations/:greeting`:
 
-```js
+```javascript
 // Client requested https://begin.com/hello-world?testing=123
 {
   httpMethod: 'GET',
@@ -171,7 +171,7 @@ Here's an example of an incoming `request` object, being handled by the HTTP Fun
 
 To use request.body you'll need to parse it first. Architect Functions provides a simple body parser helper; this helper takes a request object, and returns a parsed body object. All bodies are unparsed, base64-encoded strings. Parse it with `arc.http.helpers.bodyParser()`. Here's an example:
 
-```js
+```javascript
 // Request is form URL-encoded string: 'greeting=howdy'
 
 let arc = require('@architect/functions')
@@ -207,7 +207,7 @@ Responses are returned by your `handler` function in an object, and use the foll
 
 Here's a simple example response for an API endpoint:
 
-```js
+```javascript
 // Responding to a successful POST
 
 return {
@@ -223,7 +223,7 @@ Many remote networks rely on overly aggressive reverse-proxy caches to conserve 
 
 Because of the highly adverse effects network-level caching can on your application, we strongly suggest that most HTTP Function responses include anti-caching headers – especially when returning `HTML` and `JSON` responses. For example:
 
-```js
+```javascript
 return {
   headers: {
     'content-type': 'text/html; charset=utf8',

@@ -1,59 +1,34 @@
-/* Hemisu Dark */
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: #282a36;
-}
-
-.hljs-comment,
-.hljs-meta {
-  color: #777777;
-}
-
-.hljs-params,
-.hljs-number,
-.hljs-built_in {
-  color: #9fd3e6;
-}
-
-.hljs-string,
-.hljs-regexp {
-  color: #b1d631;
-}
-
-.hljs-keyword,
-.hljs-title,
-.hljs-constant,
-.hljs-tag,
-.hljs-attr {
-  color: #bbffaa;
-}
-
-.hljs-selector-tag,
-.hljs-literal,
-.hljs-section,
-.hljs-link {
-  color: #ece1c8;
-}
-
-.docs pre code {
-  color: #eeeeee;
-  font-family: Menlo, Monaco, Consolas, monospace;
-}
-
-.hljs,
-.hljs-string .hljs-subst,
-.hljs-tag .hljs-name {
-  color: #eeeeee;
-}
-/* Code blocks */
-.docs pre {
-  padding: 1rem;
-  overflow: auto;
-  border-radius: 0.3rem;
-}
 .docs blockquote > p {
   margin: 0;
 }
 
+/* Hemisu-ish vim theme */
+:root {
+  --shiki-color-text: #eee;
+  --shiki-color-background: #282a36;
+  --shiki-token-constant: #eee;
+  --shiki-token-string: #b1d631;
+  --shiki-token-comment: #999;
+  --shiki-token-keyword: #9fd3e6;
+  --shiki-token-parameter: #eee;
+  --shiki-token-function: #bbffaa;
+  --shiki-token-string-expression: #b1d631;
+  --shiki-token-punctuation: #eee;
+  --shiki-token-link: #ece1c8;
+}
+
+/* Code blocks */
+.docs pre.shiki {
+  /* https://github.com/shikijs/shiki/issues/214 */
+  background-color: var(--shiki-color-background) !important;
+}
+.docs pre {
+  padding: 1rem;
+  margin-bottom: 1.33rem;
+  overflow: auto;
+  border-radius: 0.3rem;
+}
+.docs pre code {
+  color: #eeeeee;
+  font-family: Menlo, Monaco, Consolas, monospace;
+}
