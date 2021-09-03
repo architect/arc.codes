@@ -120,6 +120,7 @@ function Group (state = {}) {
    mb-1
    text0
    font-medium
+   sidebar-group-title
   "
 >
   ${name}

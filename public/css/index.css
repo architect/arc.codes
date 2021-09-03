@@ -66,22 +66,23 @@ html {
   transition: fill 2s ease-out;
 }
 
-label[for^="group-"]{
+/* Sidebar group toggling */
+label.sidebar-group-title {
   color: var(--p1);
 }
-label[for^="group-"]:before {
+label.sidebar-group-title:before {
   font-size: .8rem;
   color: var(--g6);
   content: "\25B6";
 }
-input[type="checkbox"][name^="group-"]:checked + label[for^="group-"]:before {
+input.sidebar-group-control:checked + label.sidebar-group-title:before {
   content: "\25BC";
 }
-label[for^="group-"] + ul {
+label.sidebar-group-title + ul {
   height: 0;
   overflow: hidden;
 }
-input[type="checkbox"][name^="group-"]:checked ~ ul {
+input.sidebar-group-control:checked ~ ul {
   height: 100%;
 }
 
