@@ -103,7 +103,11 @@ function Group (state = {}) {
 <input
   type="checkbox"
   id="group-${slug}"
-  class="sidebar-group-control"
+  name="group-${slug}"
+  class="
+   hidden
+   sidebar-group-control
+  "
   hidden
   aria-hidden="true"
   ${checked}
@@ -111,7 +115,7 @@ function Group (state = {}) {
 <label
   for="group-${slug}"
   class="
-   sidebar-group-title
+   block
    cursor-pointer
    mb-1
    text0

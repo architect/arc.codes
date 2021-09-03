@@ -66,22 +66,22 @@ html {
   transition: fill 2s ease-out;
 }
 
-label.sidebar-group-title {
-  display: block;
+label[for^="group-"]{
+  color: var(--p1);
 }
-label.sidebar-group-title + ul {
+label[for^="group-"]:before {
+  font-size: .8rem;
+  color: var(--g6);
+  content: "\25B6";
+}
+input[type="checkbox"][name^="group-"]:checked + label[for^="group-"]:before {
+  content: "\25BC";
+}
+label[for^="group-"] + ul {
   height: 0;
   overflow: hidden;
 }
-input.sidebar-group-control[type="checkbox"] {
-  visibility: hidden;
-  position: absolute;
-  left: -9999px;
-}
-input.sidebar-group-control[type="checkbox"]:checked + label.sidebar-group-title{
-  font-style: italic;
-}
-input.sidebar-group-control[type="checkbox"]:checked ~ ul {
+input[type="checkbox"][name^="group-"]:checked ~ ul {
   height: 100%;
 }
 
