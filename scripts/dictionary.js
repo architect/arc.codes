@@ -309,6 +309,7 @@ let dictionary = [
   'WebSocket',
   'WebSockets',
   'whitespace',
+  'XHR',
   'xml',
   'XSS',
   'YAML',

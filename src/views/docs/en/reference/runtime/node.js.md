@@ -209,7 +209,7 @@ Define `arc.http` middleware by passing one or more functions as parameters. A f
 
 ##### Examples
 
-An example of adding an authorization middleware function for JSON api requests made via XHR.
+An example of adding an authorization middleware function for JSON API requests made via XHR.
 
 ```javascript
 // single function
