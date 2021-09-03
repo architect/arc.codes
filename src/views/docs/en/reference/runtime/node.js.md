@@ -209,6 +209,8 @@ Define `arc.http` middleware by passing one or more functions as parameters. A f
 
 ##### Examples
 
+An example of adding an authorization middleware function for JSON api requests made via XHR.
+
 ```javascript
 // single function
 let arc = require('@architect/functions')
@@ -230,7 +232,7 @@ exports.handler = arc.http(auth, handler)
 
 function auth(req, res, next) {
   if (!request.session.accountID) {
-    res({ status: 403 })
+    res({ status: 401 })
   }
   else next()
 }
@@ -241,7 +243,6 @@ function handler(req, res) {
   })
 }
 ```
-
 ---
 
 ### `arc.http.async`
