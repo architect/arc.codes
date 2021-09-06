@@ -142,7 +142,7 @@ Navigate to `http://localhost:3333/dashboard?user=nic_cage` and you should see t
 - Tracking user interactions (kick off a `@event` to save something to the database without blocking the request)
 - Adding additional information to requests
 
-------------
+---
 
 ## `arc.http`
 

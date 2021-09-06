@@ -79,13 +79,13 @@ This method can be implemented as an `async` function or not.
 
 All arguments arrive as a bag of options with the following properties:
 
-|Argument|Description|
-|---|---|
-|`arc`|Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project|
-|`cloudformation`|The [CloudFormation JSON template][cfn-ref] making up the Architect project|
-|`stage`|The name of the environment; usually one of `staging` or `production`|
-|`inventory`|An [Architect inventory object][inv] representing the current Architect project|
-|`createFunction`|A helper method for creating CloudFormation Resource JSON defining any cloud functions (AWS Lambdas) your plugin manages. Please see the [`createFunction`](#createfunction) section for details on this method.|
+| Argument | Description |
+| --- | --- |
+| `arc` | Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project |
+| `cloudformation` | The [CloudFormation JSON template][cfn-ref] making up the Architect project |
+| `stage` | The name of the environment; usually one of `staging` or `production` |
+| `inventory` | An [Architect inventory object][inv] representing the current Architect project |
+| `createFunction` | A helper method for creating CloudFormation Resource JSON defining any cloud functions (AWS Lambdas) your plugin manages. Please see the [`createFunction`](#createfunction) section for details on this method. |
 
 #### Returns
 
@@ -106,10 +106,10 @@ The plugin author must implement this method if the plugin defines new Lambda fu
 
 All arguments arrive as a bag of options with the following properties:
 
-|Argument|Description|
-|---|---|
-|`arc`|Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project|
-|`inventory`|An [Architect inventory object][inv] representing the current Architect project|
+| Argument | Description |
+| --- | --- |
+| `arc` | Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project |
+| `inventory` | An [Architect inventory object][inv] representing the current Architect project |
 
 #### Returns
 
@@ -177,12 +177,12 @@ The `variables` plugin method is only necessary to implement if you would like y
 
 All arguments arrive as a bag of options with the following properties:
 
-|Argument|Description|
-|---|---|
-|`arc`|Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project|
-|`cloudformation`|The [CloudFormation JSON template][cfn-ref] making up the Architect project|
-|`stage`|The name of the environment; usually one of `testing`, `staging` or `production`; `testing` is provided when running in a [`sandbox`][sandbox] context whereas `staging` and `production` are provided at Architect CLI runtime when either `arc deploy staging` or `arc deploy production` are invoked, respectively|
-|`inventory`|An [Architect inventory object][inv] representing the current Architect project|
+| Argument | Description |
+| --- | --- |
+| `arc` | Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project |
+| `cloudformation` | The [CloudFormation JSON template][cfn-ref] making up the Architect project |
+| `stage` |The name of the environment; usually one of `testing`, `staging` or `production`; `testing` is provided when running in a [`sandbox`][sandbox] context whereas `staging` and `production` are provided at Architect CLI runtime when either `arc deploy staging` or `arc deploy production` are invoked, respectively |
+| `inventory` | An [Architect inventory object][inv] representing the current Architect project |
 
 #### Returns
 
@@ -264,13 +264,13 @@ This method can either be `async` or not; if the plugin author implements it as 
 
 All arguments arrive as a bag of options with the following properties:
 
-|Argument|Description|
-|---|---|
-|`arc`|Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project|
-|`inventory`|An [Architect inventory object][inv] representing the current Architect project|
-|`invokeFunction`|A helper method that can be used for invoking any cloud functions (AWS Lambdas) your plugin manages during runtime in a local development context inside [`sandbox`][sandbox]. Please see the [`invokeFunction`](#invokefunction) section for details on this method.|
-|`services`|An object containing `http`, `events` and `tables` properties that represent local servers that [`sandbox`][sandbox] manages to provide a local development experience. A plugin author may want to modify the behavior of these pre-existing services in order for their plugin to provide a better local development experience. `http` is an instance of the npm package [`router`][router] and mocks API Gateway and Lambda. `events` is a Node.js HTTP server that mocks SNS and SQS by listening for JSON payloads and marshaling them to the relevant Lambda functions (see its [listener module](https://github.com/architect/sandbox/blob/master/src/events/_listener.js) for more details). `tables` is an instance of the npm package [`dynalite`][dynalite] and mocks DynamoDB.|
-|`callback`|Can be ignored if the method implementation is an `async function`; otherwise, `callback` must be invoked once the plugin's local development `sandbox` service is ready|
+| Argument | Description |
+| --- | --- |
+| `arc` | Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project |
+| `inventory` | An [Architect inventory object][inv] representing the current Architect project |
+| `invokeFunction` | A helper method that can be used for invoking any cloud functions (AWS Lambdas) your plugin manages during runtime in a local development context inside [`sandbox`][sandbox]. Please see the [`invokeFunction`](#invokefunction) section for details on this method. |
+| `services` | An object containing `http`, `events` and `tables` properties that represent local servers that [`sandbox`][sandbox] manages to provide a local development experience. A plugin author may want to modify the behavior of these pre-existing services in order for their plugin to provide a better local development experience. `http` is an instance of the npm package [`router`][router] and mocks API Gateway and Lambda. `events` is a Node.js HTTP server that mocks SNS and SQS by listening for JSON payloads and marshaling them to the relevant Lambda functions (see its [listener module](https://github.com/architect/sandbox/blob/master/src/events/_listener.js) for more details). `tables` is an instance of the npm package [`dynalite`][dynalite] and mocks DynamoDB. |
+| `callback` | Can be ignored if the method implementation is an `async function`; otherwise, `callback` must be invoked once the plugin's local development `sandbox` service is ready |
 
 #### Example `start` implementation
 
@@ -288,12 +288,12 @@ This method can either be `async` or not; if the plugin author implements it as 
 
 All arguments arrive as a bag of options with the following properties:
 
-|Argument|Description|
-|---|---|
-|`arc`|Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project|
-|`inventory`|An [Architect inventory object][inv] representing the current Architect project|
-|`services`|[`sandbox`][sandbox] runs [local in-memory servers to mock out HTTP, events, queues and database functionality](https://github.com/architect/sandbox/blob/master/src/sandbox/index.js#L19-L24); if you need to modify these services, use this argument|
-|`callback`|Can be ignored if the method implementation is an `async function`; otherwise, `callback` must be invoked once the plugin's local development `sandbox` service has been shut down|
+| Argument | Description |
+| --- | --- |
+| `arc` | Object representing the [parsed Architect project manifest](https://github.com/architect/parser) file for the current project |
+| `inventory` | An [Architect inventory object][inv] representing the current Architect project |
+| `services` | [`sandbox`][sandbox] runs [local in-memory servers to mock out HTTP, events, queues and database functionality](https://github.com/architect/sandbox/blob/master/src/sandbox/index.js#L19-L24); if you need to modify these services, use this argument |
+| `callback` | Can be ignored if the method implementation is an `async function`; otherwise, `callback` must be invoked once the plugin's local development `sandbox` service has been shut down |
 
 
 ## Helper methods for plugin authors
@@ -312,10 +312,10 @@ While the AWS Lambda logical ID is generally not a concern for developers using 
 
 All arguments arrive as a bag of options with the following properties:
 
-|Argument|Description|
-|---|---|
-|`inventory`|An [Architect inventory object][inv] representing the current Architect project|
-|`src`|A string representing the fully qualified absolute path to where code for the Lambda exists locally|
+| Argument | Description |
+| --- | --- |
+| `inventory` | An [Architect inventory object][inv] representing the current Architect project |
+| `src` | A string representing the fully qualified absolute path to where code for the Lambda exists locally |
 
 #### Returns
 
@@ -354,11 +354,11 @@ This method should be leveraged inside a plugin's [`sandbox.start`](#sandbox.sta
 
 All arguments arrive as a bag of options with the following properties:
 
-|Argument|Description|
-|---|---|
-|`src`|A string representing the fully qualified absolute path to where code for the Lambda exists locally|
-|`payload`|JSON payload to deliver to the function|
-|`callback`|Function with signature `function(error, result)` that is invoked with either the error or the result from the local function invocation|
+| Argument | Description |
+| --- | --- |
+| `src` | A string representing the fully qualified absolute path to where code for the Lambda exists locally |
+| `payload` | JSON payload to deliver to the function |
+| `callback` | Function with signature `function(error, result)` that is invoked with either the error or the result from the local function invocation |
 
 #### Example usage of `invokeLambda`
 
