@@ -53,7 +53,6 @@ module.exports = {
     'text-g9'
   ],
   table: [
-    'table-fixed',
     'w-full',
     'mb1',
     'border-collapse',
@@ -80,6 +79,5 @@ module.exports = {
     'border-g1',
     'border1',
     'bg-g0',
-    'break-all'
   ]
 }
