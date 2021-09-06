@@ -427,6 +427,7 @@ module.exports = {
 
 - [plugin-iot-rules](https://www.npmjs.com/package/@copper/plugin-iot-rules): adds AWS IoT Topic event Lambdas
 - [plugin-parcel](https://www.npmjs.com/package/@copper/plugin-parcel): compiles project Lambda code with the Parcel bundler both during local development via [`sandbox`][sandbox] and before [`deploy`s][deploy]
+- [arc-plugin-esbuild](https://www.npmjs.com/package/arc-plugin-esbuild): compiles project Lambda code with the esbuild bundler watching during local development via [`sandbox`][sandbox] and before [`deploy`s][deploy]
 - [arc-plugin-s3-image-bucket](https://www.npmjs.com/package/arc-plugin-s3-image-bucket): manages an S3 bucket purpose-built for allowing direct-from-user image uploads, includes support for customizable Lambda triggers based on bucket events
 
 [inv]: https://github.com/architect/inventory

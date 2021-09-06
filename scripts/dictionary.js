@@ -116,6 +116,7 @@ let dictionary = [
   'envs',
   'EOL',
   'errback',
+  'esbuild',
   'eslint',
   'esmodules',
   'EventBridge',
