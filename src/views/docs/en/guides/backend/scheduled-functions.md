@@ -59,7 +59,7 @@ Which generates the following code:
 Cron expressions allow us to give our functions granular settings. `crons` have six required fields, which are separated by white space.
 
 | Field        | Values          | Wildcards     |
-|--------------|-----------------|---------------|
+| ------------ | --------------- | ------------- |
 | Minutes      | 0-59            | , - * /       |
 | Hours        | 0-23            | , - * /       |
 | Day-of-month | 1-31            | , - * ? / L W |

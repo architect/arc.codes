@@ -31,18 +31,18 @@ post /like
 No matter where `@shared` source is configured it gets copied to every Lambda. The destination is slightly different depending on runtime:
 
 | Runtime | `@shared` destination |
-| :------ | :-------------------- |
-| Node    | `src/http/get-index/node_modules/@architect/shared` |
-| Ruby    | `src/http/get-index/vendor/shared` |
-| Python  | `src/http/get-index/vendor/shared` |
+| --- | --- |
+| Node | `src/http/get-index/node_modules/@architect/shared` |
+| Ruby | `src/http/get-index/vendor/shared` |
+| Python | `src/http/get-index/vendor/shared` |
 
 Likewise, `@views` runtime destinations:
 
 | Runtime | `@views` destination |
-| :------ | :-------------------- |
-| Node    | `src/http/get-index/node_modules/@architect/views` |
-| Ruby    | `src/http/get-index/vendor/views` |
-| Python  | `src/http/get-index/vendor/views` |
+| --- | --- |
+| Node | `src/http/get-index/node_modules/@architect/views` |
+| Ruby | `src/http/get-index/vendor/views` |
+| Python | `src/http/get-index/vendor/views` |
 
 > Tip: the entire contents of `src/shared` are copied so we strongly suggest keeping the directory structure as flat as possible, and the payloads as small as possible to ensure the best performance.
 
