@@ -1,4 +1,4 @@
-export default function listFromObject ({ data = {}, map = {}, path = [], active }) {
+export default function listFromObject ({ data = {}, map = {}, path = [], active = null }) {
   let depth = 0
   let { list, item } = map
   let children = itemsFromObject({ data, list, item, depth, path, active })
@@ -17,7 +17,8 @@ function itemsFromObject ({ data = {}, list, item, depth, path, active }) {
           ${listFromArray({ children, list, item, depth, path: path.concat([ child ]), active })}
         `,
       depth,
-      path
+      path,
+      active,
     })
   }).join('')
 }

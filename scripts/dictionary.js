@@ -125,7 +125,7 @@ let dictionary = [
   'FQDN',
   'frontend',
   'globals',
-  'Godaddy',
+  'GoDaddy',
   'hardcode',
   'hardcoding',
   'hashids',

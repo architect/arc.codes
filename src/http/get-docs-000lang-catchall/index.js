@@ -58,14 +58,15 @@ exports.handler = async function http (req) {
     file = cache[filePath]
   }
   catch (err) {
-    // TODO: Load next doc in section
+    // TODO: Load category "index" landing or load next in section
     console.error(err)
     return {
       statusCode: 404,
+      // TODO: send a friendly error page with message
       body: err.message
     }
   }
-  // Declare in outer scope for use later... sorry
+
   let frontmatter = {}
   const markdown = new Markdown({
     linkify: true,

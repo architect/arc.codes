@@ -1,11 +1,12 @@
 ---
-title: Godaddy
-description: Setting up a domain name with Godaddy
+title: GoDaddy
+category: Domains
+description: Setting up a domain name with GoDaddy
 ---
 
 ## Prerequisites
 
-- Sign up for a domain on [Godaddy](https://www.Godaddy.com/)
+- Sign up for a domain on [GoDaddy](https://www.godaddy.com/)
 - Deploy an app with Architect and make note of the `staging` and `production` URLs
 - Ensure the app is deployed to `us-east-1`
 - Ensure the `@app` name is uniquely named after the domain.
@@ -19,7 +20,7 @@ In this step we will request a certificate from Amazon for our domain.
 - Ensure `example.com` and `*.example.com` for sub domains to work
 - Choose `DNS validation` and click `Next`
 - Add any tags and confirm the request
-- Open up Godaddy account dashboard and find the `DNS` settings for the particular domain you want to use.
+- Open up GoDaddy account dashboard and find the `DNS` settings for the particular domain you want to use.
 - Click `ADD` and select `CNAME`
 - Create CNAME records of both issued certificates
 - Wait until they change from `pending` to `success`
@@ -41,11 +42,11 @@ Generate a CloudFront distribution with the certificate from step 1.
 - Click `Create Distribution`
 - Repeat for `staging` domain.
 
-## Step 3: configure the domain Alias in Godaddy
+## Step 3: configure the domain Alias in GoDaddy
 
 Add `A` and `CNAME` records to DNS.
 
-- Open up Godaddy account dashboard and find the `DNS` settings for the particular domain you want to use.
+- Open up GoDaddy account dashboard and find the `DNS` settings for the particular domain you want to use.
 - Click `ADD`.
 - Use record type `A` for the root domain.
     - Leave `Host` input empty and add the IP address of the CloudFront domain that was created in step 2 to the `Points to` input.

@@ -1,9 +1,9 @@
 ---
-title: Route 53
-description: Setting up a domain name with Route 53
+title: Route53
+description: Setting up a domain name with Route53
 ---
 
-## Prerequisites 
+## Prerequisites
 
 - [Register](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html) or [transfer](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-transfer-to-route-53.html) a domain with Route53
 - Deploy an app with Architect and make note of the `staging` and `production` URLs
@@ -20,20 +20,18 @@ In this step we will request a certificate from Amazon for our domain.
 - Expand the domain and click `Create record in Route53` button
 - Verify CNAME record created in Route53 console Hosted zone
 
-## Step 2: setup CloudFront
+## Step 2: setup custom domain with AWS API Gateway
 
-Generate a CloudFront distribution with the certificate from step 1.
+Generate a domain with the certificate from Step 1.
 
-- Sign into AWS CloudFront in the AWS Console
-- Click `Create Distribution` and then click `Get Started`
-- Enter the URL from API Gateway in `Origin Domain Name` 
-- Set `Origin Protocol Policy` to `Match Viewer`
-- Set `Viewer Protocol Policy` to `Redirect HTTP to HTTPS`
-- Set `Allowed HTTP Methods` to `GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE`
-- Set `Compress Objects Automatically` to `Yes`
-- Enter the domain alias in `Alternate Domain Names` (which you will configure in step 3)
-- Set `SSL Certificate` to `Custom SSL Certificate` and select the cert from step 1
-- Click `Create Distribution`
+- Sign into AWS API Gateway in the AWS Console
+- Navigate to `Custom domain names` and click `Create`
+- Enter the domain name (e.g. `staging.example.com` for the `staging` app or `example.com` for the `production` app)
+- Select the certificate created in Step 1
+- Click `Create domain name`
+- Make note of the generated `API Gateway domain name` in `Endpoint configuration`
+- Click on the tab `API mappings` and `Configure API mappings`
+- For `API` select the API and for `Stage` select `$default` and click `Save`
 
 ## Step 3: configure the domain Alias in AWS Route53
 
@@ -42,9 +40,9 @@ Generate a CloudFront distribution with the certificate from step 1.
 - Click `Create record`
 - Enter the `Record name`
 - Record type is `A` and toggle `Alias` checkbox on
-- Select `Alias to CloudFront`
+- Select `Alias to API Gateway`
 - Select the region
-- Select the CloudFront distribution domain (should be the same value as the domain generated in Step 2)
+- Select the API (should be the same value as the domain generated in Step 2)
 - Click `Create records`
 
 ## Conclusion
