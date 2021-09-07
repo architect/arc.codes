@@ -81,6 +81,7 @@ input.sidebar-group-control:checked + label.sidebar-group-title:before {
 label.sidebar-group-title + ul {
   height: 0;
   overflow: hidden;
+  padding-left: .7rem;
 }
 input.sidebar-group-control:checked ~ ul {
   height: 100%;
