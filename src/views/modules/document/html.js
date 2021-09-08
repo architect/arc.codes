@@ -6,7 +6,7 @@ import Logo from '../components/logo.js'
 import Icon from '../components/icon.js'
 import Sidebar from '../components/sidebar.js'
 import GithubLink from '../components/github-link.js'
-import SlackLink from '../components/slack-link.js'
+import DiscordLink from '../components/discord-link.js'
 
 export default function HTML (props = {}) {
   let {
@@ -81,8 +81,8 @@ ${Symbols}
           justify-between
         "
       >
-        ${SlackLink()}
-        ${GithubLink({ classes: 'ml-2' })}
+        ${DiscordLink()}
+        ${GithubLink({ classes: 'ml0' })}
         <button
           aria-label="Menu"
           id="menu-button"
