@@ -1,107 +1,138 @@
 {
-  "name": "Architect (.arc)",
+  "name": "Architect",
   "scopeName": "source.arc",
+  "firstLineMatch": "^@[a-zA-Z0-9!$%^&*(){}\\[\\]<>\\-_\\+=\\|\\\\:;,\\.\\?/~]+",
   "patterns": [
-    {"include": "#comments"},
-    {"include": "#values"},
-    {"include": "#sections"},
-    {"include": "#scalars"},
-    {"include": "#vectors"}
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#booleans"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "comment": "pragmas",
+      "name": "entity.name.section.arc",
+      "match": "^@[a-zA-Z0-9!$%^&*(){}\\[\\]<>\\-_\\+=\\|\\\\:;,\\.\\?/~]+"
+    },
+    {
+      "comment": "map properties (only); map (and vector) names cannot be detected",
+      "begin": "(^[\\t ]{2})(?!#)(\\S+)(?!\\s*#)(?=([\\t ]\\S+))",
+      "beginCaptures": {
+        "0": {
+          "name": "variable.other.arc"
+        }
+      },
+      "end": "(?=$|#)",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    }
   ],
   "repository": {
     "comments": {
       "patterns": [
         {
-          "name": "comment.arc",
-          "match": "#.*$",
-          "captures": {
-            "0": {"name": "comment.line.arc"}
-          }
+          "name": "comment.line.arc",
+          "match": "#.*$"
         }
       ]
     },
-    "values": {
+    "booleans": {
       "patterns": [
         {
-          "name": "value.true.arc",
-          "begin": "(true)",
-          "end": "(\\s|$)",
-          "captures": {
-            "0": {"name": "constant.language.boolean.true.arc"}
-          }
+          "name": "constant.language.boolean.true.arc",
+          "match": "(?<=\\s|^|\\G)(true)(?=\\s|#|$)"
         },
         {
-          "name": "value.false.arc",
-          "begin": "(false)",
-          "end": "(\\s|$)",
-          "captures": {
-            "0": {"name": "constant.language.boolean.false.arc"}
-          }
+          "name": "constant.language.boolean.false.arc",
+          "match": "(?<=\\s|^|\\G)(false)(?=\\s|#|$)"
         }
       ]
     },
-    "sections": {
+    "numbers": {
       "patterns": [
         {
-          "name": "section.arc",
-          "match": "^@[a-zA-Z0-9!$%^&*(){}\\[\\]<>\\-_\\+=\\|\\\\:;\"',\\.\\?/`~]+",
-          "captures": {
-            "0": {"name": "entity.name.section.arc"},
-            "1": {"name": "punctuation.at-sign.arc"}
-          }
+          "name": "constant.numeric.decimal.arc",
+          "match": "(?<=\\s|^|\\G)((\\d*[.])?\\d+)(?=\\s|#|$)"
         }
       ]
     },
-    "scalars": {
+    "strings": {
       "patterns": [
         {
-          "name": "scalar.decimal.arc",
-          "begin": "^(\\d|\\.)+",
-          "end": ".",
-          "captures": {
-            "0": {"name": "constant.numeric.decimal.arc"}
-          }
+          "name": "string.quoted.double.arc",
+          "begin": "(?<=\\s|^|\\G)(\")",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.double.arc"
+            }
+          },
+          "end": "(\")",
+          "endCaptures": {
+            "0": {
+              "name": "string.quoted.double.arc"
+            }
+          },
+          "patterns": [
+            {
+              "name": "string.quoted.double.arc",
+              "match": "(\\\\\")"
+            }
+          ]
         },
         {
-          "name": "scalar.string.arc",
-          "begin": "^[a-zA-Z0-9!$%^&*(){}\\[\\]<>\\-_\\+=\\|\\\\:;\"',\\.\\?/`~]+(?=(\\s+#|\\s+$))",
-          "end": "(?=( #|$))",
-          "captures": {
-            "0": {"name": "string.unquoted.arc"}
-          }
-        }
-      ]
-    },
-    "vectors": {
-      "patterns": [
-        {
-          "name": "vector.property.arc",
-          "begin": "^\\s{0,2}?[a-zA-Z0-9!$%^&*(){}\\[\\]<>\\-_\\+=\\|\\\\:;\"',\\.\\?/`~]+(?=\\s)",
-          "end": "(?<=\\s)",
-          "captures": {
-            "0": {"name": "variable.other.arc"}
-          }
+          "name": "string.quoted.single.arc",
+          "begin": "(?<=\\s|^|\\G)(')",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.single.arc"
+            }
+          },
+          "end": "(')",
+          "endCaptures": {
+            "0": {
+              "name": "string.quoted.single.arc"
+            }
+          },
+          "patterns": [
+            {
+              "name": "string.quoted.single.arc",
+              "match": "(\\\\')"
+            }
+          ]
         },
         {
-          "name": "vector.value.arc",
-          "begin": "(?<=\\s)[a-zA-Z0-9!$%^&*(){}\\[\\]<>\\-_\\+=\\|\\\\:;\"',\\.\\?/`~]+",
-          "end": "(?<=\\s)",
-          "//match": "(?<=\\s).*$",
-          "captures": {
-            "0": {"name": "string.unquoted.arc"}
-          }
-        }
-      ]
-    },
-    "disabled": {
-      "patterns": [
+          "name": "string.quoted.backtick.arc",
+          "begin": "(?<=\\s|^|\\G)(`)",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.backtick.arc"
+            }
+          },
+          "end": "(`)",
+          "endCaptures": {
+            "0": {
+              "name": "string.quoted.backtick.arc"
+            }
+          },
+          "patterns": [
+            {
+              "name": "string.quoted.backtick.arc",
+              "match": "(\\\\`)"
+            }
+          ]
+        },
         {
-          "comment": "put disabled stuff here",
-          "name": "whatever.arc",
-          "match": "^foo",
-          "captures": {
-            "0": {"name": "meta.whatever.arc"}
-          }
+          "name": "string.unquoted.arc",
+          "match": "(?<=\\s|^|\\G)([a-zA-Z0-9!$%^&*(){}\\[\\]<>\\-_\\+=\\|\\\\:;,\\.\\?/~]+)(?=\\s|#|$)"
         }
       ]
     }
