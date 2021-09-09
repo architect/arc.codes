@@ -1,6 +1,6 @@
 export default function Anchor (props = {}) {
-  let { children, href = '#' } = props
+  let { children, classes = '', href = '#' } = props
   return `
-<a href=${href}>${children}</a>
+<a href="${href}" class="${classes}">${children}</a>
   `
 }

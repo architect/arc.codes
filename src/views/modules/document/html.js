@@ -5,6 +5,7 @@ import State from './state.js'
 import Logo from '../components/logo.js'
 import Icon from '../components/icon.js'
 import Sidebar from '../components/sidebar.js'
+import GroupIndex from '../components/group-index'
 import GithubLink from '../components/github-link.js'
 import SlackLink from '../components/slack-link.js'
 
@@ -127,10 +128,13 @@ ${Symbols}
           ${title}
         </h1>
         <div class="pb4 docs">
+          ${GroupIndex(props)}
           ${children}
-          <div class="flex justify-end mt4">
-            <a href="${editURL}" target="_blank" rel="noreferrer" class="text1 text-p1 text-h1 text-a2 no-underline font-semibold">Edit this doc on Github →</a>
-          </div>
+          ${editURL && `
+            <div class="flex justify-end mt4">
+              <a href="${editURL}" target="_blank" rel="noreferrer" class="text1 text-p1 text-h1 text-a2 no-underline font-semibold">Edit this doc on Github →</a>
+            </div>
+          `}
         </div>
       </div>
     </main>
