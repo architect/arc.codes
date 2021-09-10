@@ -64,5 +64,6 @@
   },
   "eslintConfig": {
     "extends": "@architect/eslint-config"
-  }
+  },
+  "eslintIgnore": ["**/shiki/**/*.js"]
 }
