@@ -1,0 +1,17 @@
+#!/bin/bash
+# move Shiki dist to main doc catch all to reduce footprint
+mkdir src/http/get-docs-000lang-catchall/shiki
+mkdir src/http/get-docs-000lang-catchall/shiki/dist
+mkdir src/http/get-docs-000lang-catchall/shiki/languages
+cp node_modules/shiki/dist/index.js src/http/get-docs-000lang-catchall/shiki/dist/index.js
+cp node_modules/shiki/languages/shellscript.tmLanguage.json \
+   node_modules/shiki/languages/ruby.tmLanguage.json \
+   node_modules/shiki/languages/javascript.tmLanguage.json \
+   node_modules/shiki/languages/json.tmLanguage.json \
+   node_modules/shiki/languages/toml.tmLanguage.json \
+   node_modules/shiki/languages/yaml.tmLanguage.json \
+   node_modules/shiki/languages/python.tmLanguage.json \
+   node_modules/shiki/languages/powershell.tmLanguage.json \
+   src/http/get-docs-000lang-catchall/shiki/languages/
+# move specific Arc syntax highlighter grammar for Shiki
+cp node_modules/@architect/syntaxes/arc-textmate.json src/http/get-docs-000lang-catchall/arc.tmGrammar.json
