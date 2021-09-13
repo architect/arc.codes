@@ -46,13 +46,12 @@
     "@architect/sandbox": "^4.0.1",
     "@architect/syntaxes": "github:architect/syntaxes",
     "@toycode/markdown-it-class": "^1.2.4",
-    "browserify": "^17.0.0",
     "eslint": "^7.31.0",
     "esm": "^3.2.25",
     "js-yaml": "^4.1.0",
+    "markdown-it": "^12.1.0",
     "markdown-it-anchor": "^8.1.2",
     "markdown-it-front-matter": "^0.2.3",
-    "markdown-it": "^12.1.0",
     "onigasm": "^2.2.5",
     "shiki": "^0.9.10",
     "slugify": "^1.6.0",
@@ -65,5 +64,7 @@
   "eslintConfig": {
     "extends": "@architect/eslint-config"
   },
-  "eslintIgnore": ["**/shiki/**/*.js"]
+  "eslintIgnore": [
+    "**/shiki/**/*.js"
+  ]
 }
