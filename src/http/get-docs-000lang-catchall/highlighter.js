@@ -1,9 +1,9 @@
 const path = require('path')
 const shiki = require('./shiki/dist')
-const arcGrammar = require('./arc.tmGrammar.json')
+const arcGrammar = require('./arc-textmate.json')
 
 module.exports.forMarkdown = async function () {
-  const theme = await shiki.loadTheme(path.join(__dirname, './atom-one-dark.json'))
+  const theme = await shiki.loadTheme(path.join(__dirname, './themes/atom-one-dark.json'))
   const highlighter = await shiki.getHighlighter({
     theme,
     langs: [
