@@ -2,26 +2,6 @@
   margin: 0;
 }
 
-/* Hemisu-ish vim theme */
-:root {
-  --shiki-color-text: #eee;
-  --shiki-color-background: #282a36;
-  --shiki-token-constant: #eee;
-  --shiki-token-string: #b1d631;
-  --shiki-token-comment: #999;
-  --shiki-token-keyword: #9fd3e6;
-  --shiki-token-parameter: #eee;
-  --shiki-token-function: #bbffaa;
-  --shiki-token-string-expression: #b1d631;
-  --shiki-token-punctuation: #eee;
-  --shiki-token-link: #ece1c8;
-}
-
-/* Code blocks */
-.docs pre.shiki {
-  /* https://github.com/shikijs/shiki/issues/214 */
-  background-color: var(--shiki-color-background) !important;
-}
 .docs pre {
   padding: 1rem;
   margin-bottom: 1.33rem;

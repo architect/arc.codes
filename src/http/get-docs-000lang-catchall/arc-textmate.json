@@ -1,0 +1,152 @@
+{
+  "name": "Architect",
+  "scopeName": "source.arc",
+  "firstLineMatch": "^@[a-zA-Z0-9!$%^&*(){}\\[\\]<>\\-_\\+=\\|\\\\:;,\\.\\?/~]+",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#booleans"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "comment": "pragmas",
+      "name": "entity.name.function.arc",
+      "match": "^@[a-zA-Z0-9!$%^&*(){}\\[\\]<>\\-_\\+=\\|\\\\:;,\\.\\?/~]+"
+    },
+    {
+      "comment": "map properties & implied vector values; map / vector names cannot be detected",
+      "begin": "(^[\\t ]{2})(?!#)([^#\\s]+)(?!\\s*#)(?=(([\\t ]+)\\S+))",
+      "beginCaptures": {
+        "0": {
+          "name": "variable.other.arc"
+        }
+      },
+      "end": "(?=$|#)",
+      "patterns": [
+        {
+          "include": "$self"
+        }
+      ]
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.arc",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "booleans": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.true.arc",
+          "match": "(?<=\\s|^|\\G)(true)(?=\\s|#|$)"
+        },
+        {
+          "name": "constant.language.boolean.false.arc",
+          "match": "(?<=\\s|^|\\G)(false)(?=\\s|#|$)"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.decimal.arc",
+          "match": "(?<=\\s|^|\\G)((\\d*[.])?\\d+)(?=\\s|#|$)"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.arc",
+          "begin": "(?<=\\s|^|\\G)(\")",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.double.arc"
+            }
+          },
+          "end": "(\")(?=\\s|#|$)",
+          "endCaptures": {
+            "0": {
+              "name": "string.quoted.double.arc"
+            }
+          },
+          "patterns": [
+            {
+              "name": "string.quoted.double.arc",
+              "match": "(\\\\\")"
+            },
+            {
+              "name": "invalid.illegal.arc",
+              "match": "\""
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.arc",
+          "begin": "(?<=\\s|^|\\G)(')",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.single.arc"
+            }
+          },
+          "end": "(')(?=\\s|#|$)",
+          "endCaptures": {
+            "0": {
+              "name": "string.quoted.single.arc"
+            }
+          },
+          "patterns": [
+            {
+              "name": "string.quoted.single.arc",
+              "match": "(\\\\')"
+            },
+            {
+              "name": "invalid.illegal.arc",
+              "match": "'"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.backtick.arc",
+          "begin": "(?<=\\s|^|\\G)(`)",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.backtick.arc"
+            }
+          },
+          "end": "(`)(?=\\s|#|$)",
+          "endCaptures": {
+            "0": {
+              "name": "string.quoted.backtick.arc"
+            }
+          },
+          "patterns": [
+            {
+              "name": "string.quoted.backtick.arc",
+              "match": "(\\\\`)"
+            },
+            {
+              "name": "invalid.illegal.arc",
+              "match": "`"
+            }
+          ]
+        },
+        {
+          "name": "string.unquoted.arc",
+          "match": "(?<=\\s|^|\\G)([a-zA-Z0-9!$%^&*(){}\\[\\]<>\\-_\\+=\\|\\\\:;\"',\\.\\?/`~]+)(?=\\s|#|$)"
+        }
+      ]
+    }
+  }
+}
