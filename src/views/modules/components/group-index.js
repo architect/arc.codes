@@ -13,11 +13,12 @@ export default function GroupIndex (props = {}) {
       const anchor = Anchor({
         children: page,
         classes: 'font-medium text-p1 text-h1',
-        href: [active, slugify(page)].join('/')
+        href: [ active, slugify(page) ].join('/')
       })
       const item = Item({ children: anchor })
       return item
-    } else {
+    }
+    else {
       // ? TODO: handle nested groups
     }
   }).join('')

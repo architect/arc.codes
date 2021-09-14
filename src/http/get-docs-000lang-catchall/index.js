@@ -8,10 +8,10 @@ const markdownAnchor = require('markdown-it-anchor')
 const frontmatterParser = require('markdown-it-front-matter')
 const classMapping = require('./markdown-class-mappings')
 const highlighter = require('./highlighter')
+const createGroupIndex = require('./group-index')
 const readFile = util.promisify(fs.readFile)
 const Html = require('@architect/views/modules/document/html.js').default
 const toc = require('@architect/views/docs/table-of-contents')
-const slugify = require('@architect/views/modules/helpers/slugify').default
 const yaml = require('js-yaml')
 const EDIT_DOCS = `edit/main/src/views/docs/`
 const cache = {} // cheap warm cache
@@ -21,6 +21,16 @@ exports.handler = async function http (req) {
   let { lang, proxy } = pathParameters
   let parts = proxy.replace(/\/$/, '').split('/')
   let docName = parts.pop()
+
+  const headers = {
+    'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
+    'content-type': 'text/html; charset=utf8'
+  }
+  const scripts = [
+    '/index.js',
+    '/components/arc-viewer.js',
+    '/components/arc-tab.js'
+  ]
 
   if (docName === 'playground')
     return { statusCode: 303, headers: { location: '/playground' } }
@@ -59,54 +69,23 @@ exports.handler = async function http (req) {
     file = cache[filePath]
   }
   catch (err) {
-    // TODO: pass this to a (tested) util with `pathParameters` object
-    const slugs = [...parts, docName]
-    const mainSlug = slugs.shift()
-    const tocSlugsMap = Object.fromEntries(Object.keys(toc).map(t => [slugify(t), t]))
-    const mainTitle = tocSlugsMap[mainSlug]
-    const mainGroup = toc[mainTitle]
-    let groupTitle
-    let groupPages
+    const pathParts = [ ...parts, docName ]
+    const groupIndex = createGroupIndex(pathParts, toc)
 
-    if (mainGroup) {
-      slugs.forEach((slug) => {
-        let groupSlugs = {} // maintain slug lookup
-        // ! this smells:
-        const subGroup = (groupPages ? groupPages : mainGroup).find((group) => {
-          groupSlugs = {} // reset lookup
-          Object.keys(group).forEach(g => groupSlugs[slugify(g)] = g)
-          return group[groupSlugs[slug]]
-        })
-
-        groupTitle = groupSlugs[slug]
-        groupPages = subGroup[groupTitle]
-      })
-    }
-
-    // ? TODO: create `children` from category "index.md" content if it exists
-
-    if (groupPages) {
+    if (groupIndex) {
       return {
         statusCode: 200,
-        headers: {
-          'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
-          'content-type': 'text/html; charset=utf8'
-        },
+        headers,
         body: Html({
-          title: groupTitle,
-          category: mainTitle,
-          groupPages,
+          ...groupIndex,
           active,
           lang,
-          scripts: [
-            '/index.js',
-            '/components/arc-viewer.js',
-            '/components/arc-tab.js'
-          ],
+          scripts,
           toc
         })
       }
-    } else {
+    }
+    else {
       console.error(err)
 
       return {
@@ -136,10 +115,7 @@ exports.handler = async function http (req) {
 
   return {
     statusCode: 200,
-    headers: {
-      'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
-      'content-type': 'text/html; charset=utf8'
-    },
+    headers,
     body: Html({
       active,
       category,
@@ -148,11 +124,7 @@ exports.handler = async function http (req) {
       editURL,
       lang,
       sections,
-      scripts: [
-        '/index.js',
-        '/components/arc-viewer.js',
-        '/components/arc-tab.js'
-      ],
+      scripts,
       title,
       toc
     })
