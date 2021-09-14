@@ -27,6 +27,8 @@
   margin-bottom: 1.33rem;
   overflow: auto;
   border-radius: 0.3rem;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 .docs pre code {
   color: #eeeeee;
