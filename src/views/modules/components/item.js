@@ -1,7 +1,7 @@
 export default function Item (state = {}) {
-  let { children, classes } = state
+  let { children, classes = '' } = state
   return `
-<li class=${classes}>
+<li class="${classes}">
   ${children}
 </li>
   `
