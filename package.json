@@ -44,7 +44,7 @@
     "@architect/inventory": "^2.0.4",
     "@architect/package": "^7.0.1",
     "@architect/sandbox": "^4.0.1",
-    "@architect/syntaxes": "github:architect/syntaxes",
+    "@architect/syntaxes": "github:architect/syntaxes#v1.0.1",
     "@toycode/markdown-it-class": "^1.2.4",
     "eslint": "^7.31.0",
     "esm": "^3.2.25",

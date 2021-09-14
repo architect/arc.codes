@@ -21,8 +21,8 @@
       "match": "^@[a-zA-Z0-9!$%^&*(){}\\[\\]<>\\-_\\+=\\|\\\\:;,\\.\\?/~]+"
     },
     {
-      "comment": "map properties (only); map (and vector) names cannot be detected",
-      "begin": "(^[\\t ]{2})(?!#)(\\S+)(?!\\s*#)(?=([\\t ]\\S+))",
+      "comment": "map properties & implied vector values; map / vector names cannot be detected",
+      "begin": "(^[\\t ]{2})(?!#)([^#\\s]+)(?!\\s*#)(?=(([\\t ]+)\\S+))",
       "beginCaptures": {
         "0": {
           "name": "variable.other.arc"
@@ -75,7 +75,7 @@
               "name": "string.quoted.double.arc"
             }
           },
-          "end": "(\")",
+          "end": "(\")(?=\\s|#|$)",
           "endCaptures": {
             "0": {
               "name": "string.quoted.double.arc"
@@ -85,6 +85,10 @@
             {
               "name": "string.quoted.double.arc",
               "match": "(\\\\\")"
+            },
+            {
+              "name": "invalid.illegal.arc",
+              "match": "\""
             }
           ]
         },
@@ -96,7 +100,7 @@
               "name": "string.quoted.single.arc"
             }
           },
-          "end": "(')",
+          "end": "(')(?=\\s|#|$)",
           "endCaptures": {
             "0": {
               "name": "string.quoted.single.arc"
@@ -106,6 +110,10 @@
             {
               "name": "string.quoted.single.arc",
               "match": "(\\\\')"
+            },
+            {
+              "name": "invalid.illegal.arc",
+              "match": "'"
             }
           ]
         },
@@ -117,7 +125,7 @@
               "name": "string.quoted.backtick.arc"
             }
           },
-          "end": "(`)",
+          "end": "(`)(?=\\s|#|$)",
           "endCaptures": {
             "0": {
               "name": "string.quoted.backtick.arc"
@@ -127,12 +135,16 @@
             {
               "name": "string.quoted.backtick.arc",
               "match": "(\\\\`)"
+            },
+            {
+              "name": "invalid.illegal.arc",
+              "match": "`"
             }
           ]
         },
         {
           "name": "string.unquoted.arc",
-          "match": "(?<=\\s|^|\\G)([a-zA-Z0-9!$%^&*(){}\\[\\]<>\\-_\\+=\\|\\\\:;,\\.\\?/~]+)(?=\\s|#|$)"
+          "match": "(?<=\\s|^|\\G)([a-zA-Z0-9!$%^&*(){}\\[\\]<>\\-_\\+=\\|\\\\:;\"',\\.\\?/`~]+)(?=\\s|#|$)"
         }
       ]
     }
