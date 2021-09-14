@@ -21,6 +21,8 @@
 .docs pre.shiki {
   /* https://github.com/shikijs/shiki/issues/214 */
   background-color: var(--shiki-color-background) !important;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 .docs pre {
   padding: 1rem;
