@@ -18,9 +18,7 @@ const map = {
   item: function Item (state = {}) {
     let { child = '', children = [], depth, path, active } = state
     let isHeading = children.length
-    let ml = depth > 1
-      ? 'ml-5'
-      : ''
+    let ml = depth > 1 ? 'ml-5' : ''
     return `
 <li
   class="
@@ -30,29 +28,25 @@ const map = {
 >
   ${
   isHeading
-    ? Heading({ name: child, depth, path, active })
+    ? Heading({ name: child, depth, path, active, children })
     : Anchor({ name: child, depth, path, active })
 }
-  ${children}
+  ${depth >= 3 ? '' : children}
 </li>
     `
-  }
+  },
 }
 
 function Anchor (state = {}) {
   let { name, path, active } = state
   let uri = path
     .concat([ name ])
-    .map(part => slugify(part))
+    .map((part) => slugify(part))
     .join('/')
   let href = `/${uri}`
   let isActive = active === href
-  let activeClass = isActive
-    ? 'active'
-    : ''
-  let text = isActive
-    ? `→ ${name}`
-    : name
+  let activeClass = isActive ? 'active' : ''
+  let text = isActive ? `→ ${name}` : name
 
   return `
 <a href="${href}" class="w-full inline-block text-p1 text-h1 text-a2 no-underline font-medium ${activeClass}" >${text}</a>
@@ -91,50 +85,32 @@ function Heading4 (state = {}) {
 }
 
 function Group (state = {}) {
-  let { name, depth, active } = state
+  let { name, depth, active, children } = state
   let slug = slugify(name)
-  let groupIsActive = active
-    .replace('/docs/en', '')
-    .split('/')
-    .indexOf(slug) === depth
-  let checked = groupIsActive ? 'checked' : ''
+  let groupIsActive =
+    active.replace('/docs/en', '').split('/').indexOf(slug) === depth
 
   return `
-<input
-  type="checkbox"
-  id="group-${slug}"
-  name="group-${slug}"
+<details
   class="
-   hidden
-   sidebar-group-control
+    block
+    cursor-pointer
+    mb-1
+    text0
+    font-medium
+    sidebar-group-title
   "
-  hidden
-  aria-hidden="true"
-  ${checked}
+  ${groupIsActive ? 'open' : ''}
 >
-<label
-  for="group-${slug}"
-  class="
-   block
-   cursor-pointer
-   mb-1
-   text0
-   font-medium
-   sidebar-group-title
-  "
->
-  ${name}
-</label>
+  <summary class="mb0">${name}</summary>
+  <div class="pl0">${children}</div>
+</details>
   `
 }
 
 function Heading (state = {}) {
   let { depth } = state
-  const headings = [
-    Heading3,
-    Heading4,
-    Group
-  ]
+  const headings = [ Heading3, Heading4, Group ]
   return headings[depth - 1](state)
 }
 
