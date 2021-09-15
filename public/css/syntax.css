@@ -12,5 +12,17 @@
 }
 .docs pre code {
   color: #eeeeee;
+}
+.docs :not(pre) > code {
+  background-color: var(--g2);
+  padding: 0.3rem;
+  margin: 0;
+  display: inline;
+  overflow-wrap: break-word;
+  min-width: auto;
+  border: 1px solid var(--g3);
+  border-radius: 0.3rem;
+}
+.docs pre code, .docs :not(pre) > code  {
   font-family: Menlo, Monaco, Consolas, monospace;
 }
