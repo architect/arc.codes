@@ -44,9 +44,9 @@ All done!
 Setting up a custom domain for each registrar will be a bit different. To manually configure DNS, you can follow these guides below:
 
 <!-- - [Cloudflare](/docs/en/guides/domains/cloudflare) -->
-- [Route53](/docs/en/guides/domains/route53)
-- [Route53 & CloudFront](/docs/en/guides/domains/route53-and-cloudfront)
-- [Dreamhost](/docs/en/guides/domains/dreamhost)
-- [GoDaddy](/docs/en/guides/domains/godaddy)
-- [Namecheap](/docs/en/guides/domains/namecheap)
-- [One](/docs/en/guides/domains/one)
+- [Route53](/docs/en/guides/domains/registrars/route53)
+- [Route53 & CloudFront](/docs/en/guides/domains/registrars/route53-and-cloudfront)
+- [Dreamhost](/docs/en/guides/domains/registrars/dreamhost)
+- [GoDaddy](/docs/en/guides/domains/registrars/godaddy)
+- [Namecheap](/docs/en/guides/domains/registrars/namecheap)
+- [One](/docs/en/guides/domains/registrars/one)
