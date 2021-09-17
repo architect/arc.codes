@@ -34,9 +34,11 @@
     "spellcheck": "cross-env npx spellchecker './src/views/docs/en/**/*.md' --no-suggestions -q -d ./scripts/dictionary.js --plugins spell indefinite-article repeated-words syntax-mentions syntax-urls",
     "lint": "eslint src --fix",
     "start": "sandbox",
-    "test:unit:frontend": "tape -r esm 'test/frontend/**/*.js' | tap-spec",
-    "test:unit:backend": "tape 'test/backend/**/*.js' | tap-spec",
-    "test": "npm run spellcheck && npm run lint && npm run test:unit:frontend && npm run test:unit:backend"
+    "test:unit:frontend": "tape -r esm 'test/frontend/**/*.js' | tap-min",
+    "test:unit:backend": "tape 'test/backend/**/*.js' | tap-min",
+    "test": "npm run spellcheck && npm run lint && npm run test:unit:frontend && npm run test:unit:backend",
+    "tape": "tape -r esm 'test/**/*.js' | tap-min",
+    "test:all": "npm run spellcheck && npm run lint && npm run tape"
   },
   "dependencies": {
     "@architect/architect": "^9.1.0",
@@ -58,7 +60,7 @@
     "shiki": "^0.9.10",
     "slugify": "^1.6.0",
     "spellchecker-cli": "^4.8.0",
-    "tap-spec": "^5.0.0",
+    "tap-min": "^2.0.0",
     "tape": "^5.3.0",
     "tiny-json-http": "^7.3.0",
     "vscode-textmate": "^5.4.0"
