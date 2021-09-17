@@ -101,11 +101,39 @@ ${Symbols}
       </div>
       <div class="indicator bg-image0 absolute right0 bottom0 left0"></div>
     </header>
+    <div
+      class="
+        pt-1
+        pr2
+        pb0
+        pl2
+        sticky
+        relative-lg
+        items-center
+        justify-between
+        top0
+        bg-g1
+        row-start-2
+        col-start-1
+        col-end-3
+        text-g8
+        text-center
+      "
+    >
+      We're moving the community chat, join us on
+      <a href="https://discord.gg/y5A2eTsCRX"
+        class="font-medium text-p1 text-h1"
+        target="_blank" rel="noopener noreferrer"
+      >
+        Discord
+      </a>
+    </div>
     ${Sidebar(props)}
     <main
       id="main"
       class="
         h-full
+        row-start-3
         col-start-2
         p3
         overflow-auto

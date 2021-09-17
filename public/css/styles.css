@@ -467,6 +467,7 @@ body {
 .col-span-2{grid-column: span 2 / span 2;}
 .col-start-2{grid-column-start: 2;}
 .row-start-2{grid-row-start: 2;}
+.row-start-3{grid-row-start: 3;}
 .col-end-2{grid-column-end: 2;}
 .row-end-2{grid-row-end: 2;}
 .row-2{grid-template-rows: repeat(2, minmax(0, 1fr));}

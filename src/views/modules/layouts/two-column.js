@@ -31,6 +31,7 @@ export default function TwoColumn (props = {}) {
   ${Sidebar(props)}
   <main
     class="
+      row-start-3
       col-start-2
       p3
       overflow-auto
