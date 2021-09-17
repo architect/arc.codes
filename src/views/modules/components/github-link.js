@@ -1,6 +1,6 @@
 import Icon from './icon.js'
 
-export default function GithubButton (state = {}) {
+export default function GithubLink (state = {}) {
   let { classes } = state
   return `
 <a
