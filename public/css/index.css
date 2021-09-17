@@ -18,7 +18,7 @@ html {
 }
 .two-column {
   /* Height: Header | Content */
-  grid-template-rows: 3rem 1fr;
+  grid-template-rows: 3rem 3rem 1fr;
   /* Width: Sidebar | Content */
   grid-template-columns: 17.666rem 1fr;
 }
