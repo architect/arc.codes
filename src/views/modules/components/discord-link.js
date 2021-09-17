@@ -6,7 +6,7 @@ export default function DiscordLink (state = {}) {
 <a
   rel="noreferrer"
   aria-label="Architect on Discord"
-  href="https://discord.com"
+  href="https://discord.gg/y5A2eTsCRX"
   class="
   ${classes}
    text-g0
