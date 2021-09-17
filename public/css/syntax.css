@@ -2,33 +2,28 @@
   margin: 0;
 }
 
-/* Hemisu-ish vim theme */
-:root {
-  --shiki-color-text: #eee;
-  --shiki-color-background: #282a36;
-  --shiki-token-constant: #eee;
-  --shiki-token-string: #b1d631;
-  --shiki-token-comment: #999;
-  --shiki-token-keyword: #9fd3e6;
-  --shiki-token-parameter: #eee;
-  --shiki-token-function: #bbffaa;
-  --shiki-token-string-expression: #b1d631;
-  --shiki-token-punctuation: #eee;
-  --shiki-token-link: #ece1c8;
-}
-
-/* Code blocks */
-.docs pre.shiki {
-  /* https://github.com/shikijs/shiki/issues/214 */
-  background-color: var(--shiki-color-background) !important;
-}
 .docs pre {
   padding: 1rem;
   margin-bottom: 1.33rem;
   overflow: auto;
   border-radius: 0.3rem;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
-.docs pre code {
-  color: #eeeeee;
+.docs pre {
+  /* fallback when Shiki encounters unknown syntax */
+  color: var(--g2);
+  background-color: var(--g9);
+}
+.docs :not(pre) > code {
+  background-color: var(--g1);
+  padding: 0.1rem 0.2rem;
+  margin: 0;
+  display: inline;
+  overflow-wrap: break-word;
+  min-width: auto;
+  border-radius: 0.25rem;
+}
+.docs pre code, .docs :not(pre) > code  {
   font-family: Menlo, Monaco, Consolas, monospace;
 }

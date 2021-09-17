@@ -75,16 +75,10 @@ label.sidebar-group-title:before {
   color: var(--g6);
   content: "\25B6";
 }
-input.sidebar-group-control:checked + label.sidebar-group-title:before {
-  content: "\25BC";
-}
 label.sidebar-group-title + ul {
   height: 0;
   overflow: hidden;
   padding-left: .7rem;
-}
-input.sidebar-group-control:checked ~ ul {
-  height: 100%;
 }
 
 @media only screen and (min-width:48em) {

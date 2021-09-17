@@ -1,10 +1,11 @@
-const shiki = require('shiki')
-// from @ryanblock https://github.com/ryanblock/architect-vscode-grammar-extension/blob/master/syntaxes/arc.tmGrammar.json
-const arcGrammar = require('./arc.tmGrammar.json')
+const path = require('path')
+const shiki = require('./shiki/dist')
+const arcGrammar = require('./arc-textmate.json')
 
 module.exports.forMarkdown = async function () {
+  const theme = await shiki.loadTheme(path.join(__dirname, './themes/atom-one-dark.json'))
   const highlighter = await shiki.getHighlighter({
-    theme: 'css-variables',
+    theme,
     langs: [
       'bash',
       'javascript',
@@ -17,7 +18,7 @@ module.exports.forMarkdown = async function () {
       {
         id: 'arc',
         scopeName: 'source.arc',
-        grammar: arcGrammar // the type is mismatched but still functions
+        grammar: arcGrammar
       }
     ],
   })
