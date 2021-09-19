@@ -27,6 +27,7 @@
   --bkg-color: #FFF;/* #FFF */
 }
 
+
 :root[data-theme="dark"] {
   --p0:#6EE8B5;/* #6EE8B5 */
   --p1:#46A9CB;/* #46A9CB */
@@ -52,6 +53,12 @@
   --d1:#636363;/* #636363 */
   --text-color: #EEE;/* #EEE */
   --bkg-color: #121212;/* #121212 */
+}
+
+
+[data-theme='light'] .moon-icon,
+[data-theme='dark'] .sun-icon {
+    display: block !important;
 }
 
 

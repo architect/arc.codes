@@ -7,6 +7,7 @@ import Icon from '../components/icon.js'
 import Sidebar from '../components/sidebar.js'
 import GithubLink from '../components/github-link.js'
 import DiscordLink from '../components/discord-link.js'
+import ThemeButton from '../components/theme-button.js'
 
 export default function HTML (props = {}) {
   let {
@@ -83,6 +84,7 @@ ${Symbols}
       >
         ${DiscordLink()}
         ${GithubLink({ classes: 'ml0' })}
+        ${ThemeButton({ classes: 'ml0' })}
         <button
           aria-label="Menu"
           id="menu-button"
