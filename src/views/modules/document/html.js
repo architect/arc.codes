@@ -122,7 +122,7 @@ ${Symbols}
         text-center
       "
     >
-      We're moving the community chat, join us on
+      We've moved the community chat, join us on
       <a href="https://discord.gg/y5A2eTsCRX"
         class="font-medium text-p1 text-h1"
         target="_blank" rel="noopener noreferrer"
