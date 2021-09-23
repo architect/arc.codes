@@ -47,7 +47,11 @@ export default function Head (props = {}) {
 <link rel="icon" type="image/png" sizes="64x64" href="https://s3-us-west-2.amazonaws.com/arc.codes/architect-favicon-64.png">
 <link rel="stylesheet" type="text/css" href="/css/styles.css">
 <link rel="stylesheet" type="text/css" href="/css/index.css">
+<link rel="stylesheet" type="text/css" href="/css/docsearch.css">
 <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+
+<!-- Algolia -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css" />
 </head>
 `
 }

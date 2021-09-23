@@ -5,6 +5,7 @@ import State from './state.js'
 import Logo from '../components/logo.js'
 import Icon from '../components/icon.js'
 import Sidebar from '../components/sidebar.js'
+import Search from '../components/search.js'
 import GithubLink from '../components/github-link.js'
 import DiscordLink from '../components/discord-link.js'
 import ThemeButton from '../components/theme-button.js'
@@ -82,6 +83,7 @@ ${Symbols}
           justify-between
         "
       >
+        ${Search({ classes: 'mt-5 mr1' })}
         ${DiscordLink()}
         ${GithubLink({ classes: 'ml0' })}
         ${ThemeButton({ classes: 'ml0' })}
