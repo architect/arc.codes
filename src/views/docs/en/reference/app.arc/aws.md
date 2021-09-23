@@ -14,7 +14,7 @@ Define AWS specific configuration.
     - Can also be specified in `AWS_PROFILE` environment variable
     - Required to deploy to AWS
   - `runtime`: Lambda runtime, can be one of:
-    - `nodejs12.x`, `nodejs10.x`, `deno`, `python3.8`, `python3.7`, `python3.6`, `go1.x`, `ruby2.7`, `ruby2.5`, `dotnetcore3.1`, `dotnetcore2.1`, `java11`, `java8`
+    - `nodejs14.x`, `nodejs12.x`, `deno`, `python3.8`, `python3.7`, `python3.6`, `go1.x`, `ruby2.7`, `ruby2.5`, `dotnetcore3.1`, `dotnetcore2.1`, `java11`, `java8`
   - **`bucket`**: bucket (in same region) for CloudFormation deployment artifacts
     - If not specified, a secure deployment bucket will be auto-created for your app
   - `apigateway`: API Gateway API type, can be one of:

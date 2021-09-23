@@ -183,7 +183,7 @@ From the terminal, run `arc deploy --dry-run` and take a look at `sam.yaml` in t
       "Properties": {
         "Handler": "index.handler",
         "CodeUri": "./src/scheduled/daily",
-        "Runtime": "nodejs12.x",
+        "Runtime": "nodejs14.x",
         "MemorySize": 1152,
         "Timeout": 5,
         "Environment": {
