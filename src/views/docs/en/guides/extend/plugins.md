@@ -4,7 +4,7 @@ category: Extend
 description: How to extend Architect using lifecycle hooks
 ---
 
-> ⚠️ NOTE: Plugin support was added in version 8.6.0, is currently in beta, the interface is subject to change and only supports Node.js
+> ⚠️  NOTE: Plugin support was added in version 8.6.0, is currently in beta, the interface is subject to change and only supports Node.js
 
 Using [`@macros`][macros] allows you to augment the Architect-generated CloudFormation before deployment. However, augmenting CloudFormation may not be sufficient for certain extensions. For example, if you want to extend Architect with:
 
@@ -189,7 +189,7 @@ All arguments arrive as a bag of options with the following properties:
 
 This method should always return an object. Each property on the object represents a variable name, and the value for each property contains the variable value.
 
-> 🏌️‍♀️ Protip: When this method is invoked in a pre-deploy context, acceptable values for the variables include CloudFormation JSON. This is essential to expose CloudFormation-managed infrastructure; see the example below.
+> 🏌️‍♀️  Protip: When this method is invoked in a pre-deploy context, acceptable values for the variables include CloudFormation JSON. This is essential to expose CloudFormation-managed infrastructure; see the example below.
 
 #### Example `variables` implementation
 

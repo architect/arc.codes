@@ -568,7 +568,7 @@ module.exports = async function requireLogin(request) {
 }
 ```
 
-> 🏄‍♀️ Read more about [middleware](/docs/en/guides/tutorials/cloud-function-middleware) here.
+> 🏄‍♀️  Read more about [middleware](/docs/en/guides/tutorials/cloud-function-middleware) here.
 
 ---
 
@@ -940,5 +940,5 @@ let deleteNote = async function route(request) {
 exports.handler = arc.middleware(requireLogin, deleteNote)
 ```
 
-> 🎩 Tip: `data._db` and `data._doc` return instances of `DynamoDB` and `DynamoDB.DocumentClient` for directly accessing your data; use `data._name` to resolve the table names with the app name and environment prefix.
+> 🎩  Tip: `data._db` and `data._doc` return instances of `DynamoDB` and `DynamoDB.DocumentClient` for directly accessing your data; use `data._name` to resolve the table names with the app name and environment prefix.
 
