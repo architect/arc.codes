@@ -179,4 +179,4 @@ The `ws-default` Lambda will be the main event bus for web socket events. The `e
 
 The `ws-disconnect` Lambda is used to cleanup any records of `event.requestContext.connectionId`.
 
-> 🔭 Find [the example repo on GitHub](https://github.com/architect/arc-example-ws).
+> 🔭  Find [the example repo on GitHub](https://github.com/architect/arc-example-ws).

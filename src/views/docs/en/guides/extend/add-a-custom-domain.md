@@ -84,7 +84,7 @@ If something goes wrong you can destroy the generated resources and re-create.
 - `npx dns nuke` destroys the certificate and CloudFront domain distributions
 - `ARC_NUKE=route53 npx dns nuke` destroys the certificate, CloudFront domain distributions, the Hosted Zone, certificate validation CNAME and Alias records
 
-> 🤷🏽‍♀️ DNS propagation can take time: have patience!
+> 🤷🏽‍♀️  DNS propagation can take time: have patience!
 
 
 ## The manual way
@@ -98,7 +98,7 @@ If you _really_ want to manually configure DNS you can follow these guides below
 
 Follow these instructions to manually configure Route 53 to serve your application from your domain. As a friendly reminder: the `arc` happy path for using Route 53 remains the [`@domain`](/en/reference/arc-pragmas/@domain) section (per the instructions above).
 
-> ⛳️ Tip: These instructions will serve your app's production environment; if you'd also like a friendly URL for your staging environment (i.e. `staging.foo.com`), follow steps 10-15 below a second time, swapping `production` values for `staging` values.
+> ⛳️  Tip: These instructions will serve your app's production environment; if you'd also like a friendly URL for your staging environment (i.e. `staging.foo.com`), follow steps 10-15 below a second time, swapping `production` values for `staging` values.
 
 1. Sign into the AWS Console, head to the Route 53 service, and click on **Hosted Zones**
 2. Create a **Hosted Zone**

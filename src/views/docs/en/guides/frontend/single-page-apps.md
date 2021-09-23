@@ -43,7 +43,7 @@ staging spa-stage-bukkit
 production spa-prod-bukkit
 ```
 
-> 👉🏽 Note: S3 buckets are global to all of AWS so you may need to try a few different names!
+> 👉🏽  Note: S3 buckets are global to all of AWS so you may need to try a few different names!
 
 ## Proxy Public
 
