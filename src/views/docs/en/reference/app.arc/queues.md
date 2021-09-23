@@ -1,5 +1,6 @@
 ---
 title: '@queues'
+category: app.arc
 description: Define SQS topics
 ---
 

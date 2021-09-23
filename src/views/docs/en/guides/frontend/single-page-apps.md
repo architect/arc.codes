@@ -1,5 +1,6 @@
 ---
 title: Single page apps
+category: Frontend
 description: Static and dynamic API endpoints coexisting at the same origin
 sections:
   - Overview

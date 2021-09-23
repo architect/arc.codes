@@ -1,5 +1,6 @@
 ---
 title: '@aws policies'
+category: config.arc
 description: Lambda function `policies`
 ---
 

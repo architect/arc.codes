@@ -1,5 +1,6 @@
 ---
 title: '@views'
+category: app.arc
 description: Share view code across `@http` functions
 ---
 

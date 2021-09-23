@@ -1,5 +1,6 @@
 ---
 title: Plugins (beta)
+category: Extend
 description: How to extend Architect using lifecycle hooks
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: arc init
+category: CLI
 description: Scaffold new resources found in the app.arc file
 ---
 

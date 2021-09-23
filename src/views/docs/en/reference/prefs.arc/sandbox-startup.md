@@ -1,5 +1,6 @@
 ---
 title: '@sandbox-startup'
+category: prefs.arc
 description: Sandbox scripts
 ---
 

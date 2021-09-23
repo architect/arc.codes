@@ -1,5 +1,6 @@
 ---
 title: '@tables'
+category: app.arc
 description: Define DynamoDB tables
 ---
 

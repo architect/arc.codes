@@ -1,5 +1,6 @@
 ---
 title: arc destroy
+category: CLI
 description: CLI destroy command for removing Architect application
 ---
 

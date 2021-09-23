@@ -1,6 +1,6 @@
 ---
 title: Contributor guide
-category: about
+category: About
 description: How to contribute to Architect.
 ---
 

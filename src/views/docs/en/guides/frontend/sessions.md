@@ -1,5 +1,6 @@
 ---
 title: HTTP & WebSocket sessions
+category: Frontend
 description: 160 (or fewer) character description of this document!
 sections:
   - Overview

@@ -1,5 +1,6 @@
 ---
 title: Static assets
+category: Frontend
 description: Architect projects support text and binary static assets such as images, styles, and scripts.
 ---
 
@@ -22,7 +23,7 @@ folder dist
 
 ### `fingerprint`
 
-Fingerprinting adds a unique SHA to a file name based on the file content before uploading to S3. The file can then be cached effectively forever. Whenever the contents of the file changes so does the SHA invalidating the cache. 
+Fingerprinting adds a unique SHA to a file name based on the file content before uploading to S3. The file can then be cached effectively forever. Whenever the contents of the file changes so does the SHA invalidating the cache.
 
 Enable fingerprinting:
 

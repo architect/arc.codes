@@ -1,5 +1,6 @@
 ---
 title: '@aws timeout'
+category: config.arc
 description: Lambda function configuration
 ---
 

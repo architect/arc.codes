@@ -1,5 +1,6 @@
 ---
 title: '@static'
+category: app.arc
 description: Define S3 bucket
 ---
 

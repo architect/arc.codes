@@ -1,5 +1,6 @@
 ---
 title: Ruby
+category: Runtime
 description: Ruby runtime support
 ---
 

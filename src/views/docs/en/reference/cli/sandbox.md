@@ -1,5 +1,6 @@
 ---
 title: arc sandbox
+category: CLI
 description: Local development sandbox.
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: arc logs
+category: CLI
 description: Read or clears Lambda function logs.
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: '@app'
+category: app.arc
 description: Define the application namespace
 ---
 

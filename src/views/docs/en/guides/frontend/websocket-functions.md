@@ -1,5 +1,6 @@
 ---
 title: WebSocket functions
+category: Frontend
 description: WebSockets provide a persistent connection between a client and a server.
 sections:
   - Overview

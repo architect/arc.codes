@@ -1,5 +1,6 @@
 ---
 title: Dreamhost
+category: Domain Registrars
 description: Setting up a domain name with Dreamhost
 ---
 

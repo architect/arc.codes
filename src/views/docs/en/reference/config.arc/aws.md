@@ -1,5 +1,6 @@
 ---
 title: '@aws'
+category: config.arc
 description: Lambda function configuration
 ---
 

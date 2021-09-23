@@ -1,6 +1,6 @@
 ---
 title: Adding WebSockets to your app
-category: Tutorials
+category: Frontend
 description: Add real-time connections between clients with serverless functions.
 sections:
   - Overview
@@ -10,10 +10,10 @@ sections:
 
 ## Overview
 
-The [`@ws`](/docs/en/reference/arc-pragmas/@ws) primitive creates a WebSocket endpoint and stateless handler functions: 
+The [`@ws`](/docs/en/reference/arc-pragmas/@ws) primitive creates a WebSocket endpoint and stateless handler functions:
 
 - **`connect`**: This handler function is used when a client first connects to your WebSocket API.
-- **`disconnect`**: This handler function is used when a client disconnects from your API. 
+- **`disconnect`**: This handler function is used when a client disconnects from your API.
 - **`default`**: Used when the route selection expression produces a value that does not match any of the other route keys in your API routes. This can be used, for example, to implement a generic error handling mechanism.
 
 These handler functions allow you to hold a long lived state connection between two different endpoints.

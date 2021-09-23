@@ -1,5 +1,6 @@
 ---
 title: '@sandbox'
+category: prefs.arc
 description: Sandbox environment variables
 ---
 

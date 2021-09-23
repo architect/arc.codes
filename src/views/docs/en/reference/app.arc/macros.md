@@ -1,5 +1,6 @@
 ---
 title: '@macro'
+category: app.arc
 description: Extend Architect app functionality
 ---
 
