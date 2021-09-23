@@ -1241,12 +1241,5 @@ body {
 .select-auto-lg{user-select:auto;}
 
 
-/* TAB */
-.arc--tab-btn {
-  background: var(--g1);
-  color: var(--text-color);
-}
-
-
 }
 
