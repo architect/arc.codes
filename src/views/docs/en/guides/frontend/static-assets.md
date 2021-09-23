@@ -4,7 +4,7 @@ category: Frontend
 description: Architect projects support text and binary static assets such as images, styles, and scripts.
 ---
 
-Architect projects support text and binary static assets such as images, styles, and scripts. By default `@static` assets live in the `/public` folder locally and an S3 bucket once deployed.
+Architect projects support text and binary static assets such as images, styles, and scripts. By default `@static` assets live locally in the `/public` folder at the root of your project and in an S3 bucket once deployed.
 
 ## `@static` configuration
 
