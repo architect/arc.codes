@@ -98,7 +98,7 @@ static:
 </div>
 </arc-viewer>
 
-> 🔖 The [Frontend Static assets guide](/docs/en/guides/frontend/static-assets) has more information on how to use static assets in your Architect project.
+> 📜  The [Frontend Static assets guide](/docs/en/guides/frontend/static-assets) has more information on how to use static assets in your Architect project.
 
 ## Deployment
 

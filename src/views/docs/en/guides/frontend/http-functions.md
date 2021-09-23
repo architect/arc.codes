@@ -99,7 +99,7 @@ All HTTP Functions begin with `/`, and can include letters, numbers, and slashes
 
 Importantly and uniquely, you can also use URL parameters to build dynamic paths – more on that below.
 
-> ✨ Tip: It's possible to have multiple HTTP methods respond from the same path. For example: `get /contact-us` and `post /contact-us` is totally valid, as you'd expect.
+> ✨  Tip: It's possible to have multiple HTTP methods respond from the same path. For example: `get /contact-us` and `post /contact-us` is totally valid, as you'd expect.
 
 ### Greedy root
 
