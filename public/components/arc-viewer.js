@@ -53,9 +53,11 @@ class ArcViewer extends HTMLElement {
         'pr0',
         'pb-2',
         'pl0',
+        'bg-g1',
         'bg-h6',
         'bg-a0',
         'text-1',
+        'text-g10',
         'text-center',
         'font-semibold',
         'cursor-pointer'
