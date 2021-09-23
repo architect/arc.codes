@@ -43,7 +43,7 @@ Here's how you would add a custom role to your Lambda with a `.arc-config` file.
 // src/http/get-orders/.arc-config
 
 @aws
-runtime nodejs12.x
+runtime nodejs14.x
 memory 512mb
 concurrency 1
 policies arn:aws:iam::aws:policy/AmazonDynamoDBReadOnlyAccess

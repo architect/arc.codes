@@ -4,7 +4,7 @@ category: Get started
 description: Setting up and installing Architect.
 ---
 
-> To work locally all you need is [Node](https://nodejs.org), any additional [supported runtimes](#supported-runtimes) you plan to use, and the [Architect CLI](#install-architect). 
+> To work locally all you need is [Node](https://nodejs.org), any additional [supported runtimes](#supported-runtimes) you plan to use, and the [Architect CLI](#install-architect).
 
 ## AWS deployment requirements
 
@@ -31,8 +31,8 @@ Architect supports the following runtime versions:
 To change the default runtime add it to the `app.arc` under the `@aws` pragma:
 
 ```arc
-# Valid runtimes: 
-# - nodejs12.x (default)
+# Valid runtimes:
+# - nodejs14.x (default)
 # - deno
 # - python3.8
 # - ruby2.5

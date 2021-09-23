@@ -6,7 +6,7 @@ description: Lambda function configuration
 
 Configure individual Lambda function properties (e.g. `src/http/get-index/config.arc`).
 
-- `runtime` - Officially supported: one of `nodejs12.x` (default), `deno`, `python3.7`, `python3.6`, or `ruby.5`, etc.
+- `runtime` - Officially supported: one of `nodejs14.x` (default), `deno`, `python3.7`, `python3.6`, or `ruby.5`, etc.
   - Also configurable, but not officially supported by Architect: `java8`, `go1.x`, `dotnetcore2.1`
 - `memory` - number, between `128`MB and `3008`MB in 64 MB increments
   - Memory size also directly correlates with CPU speed; higher memory levels are available in more capable Lambda clusters
