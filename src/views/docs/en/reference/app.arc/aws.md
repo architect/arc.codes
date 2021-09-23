@@ -1,5 +1,6 @@
 ---
 title: '@aws'
+category: app.arc
 description: Define AWS specific configuration.
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: '@aws runtime'
+category: config.arc
 description: Lambda function configuration
 ---
 

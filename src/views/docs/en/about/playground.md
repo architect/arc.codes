@@ -1,6 +1,6 @@
 ---
 title: Playground
-category: about
+category: About
 description: Architect's infrastructure as code playground.
 ---
 

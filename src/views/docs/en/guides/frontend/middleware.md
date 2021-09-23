@@ -1,6 +1,6 @@
 ---
 title: Cloud function middleware
-category: Tutorials
+category: Frontend
 description: Short Tutorial showing both async/await and callback-style runtime helpers to modify request objects.
 sections:
   - Overview

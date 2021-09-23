@@ -1,5 +1,6 @@
 ---
 title: One
+category: Domain Registrars
 description: Setting up a domain name with One
 ---
 

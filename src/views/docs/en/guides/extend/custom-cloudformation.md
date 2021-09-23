@@ -1,5 +1,6 @@
 ---
 title: Custom CloudFormation
+category: Extend
 description: How to use Architect Macros to define or modify resources with CloudFormation
 ---
 

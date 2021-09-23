@@ -1,6 +1,6 @@
 ---
 title: Upgrade guide
-category: Get started
+category: About
 description: This document covers upgrading from previous versions of Architect
 sections:
   - Overview of Architect versions

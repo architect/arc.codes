@@ -1,5 +1,6 @@
 ---
 title: '@aws memory'
+category: config.arc
 description: Lambda function configuration
 ---
 

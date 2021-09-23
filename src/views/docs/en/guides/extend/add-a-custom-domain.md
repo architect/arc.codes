@@ -1,5 +1,6 @@
 ---
 title: Assigning a domain name to your app
+category: Extend
 description: 160 (or fewer) character description of this document!
 sections:
   - Overview
@@ -24,7 +25,7 @@ DNS is how you assign a domain name to a deployed app. This guide lists ways to 
   - [DNS with Route53](#dns-with-route53)
   - [Starting over](#starting-over)
   - [The manual way](the-manual-way)
- 
+
 
 ## Setup
 
@@ -62,7 +63,7 @@ Run `npx dns` and follow the instructions. The process is:
 
 The certificate, CloudFront distributions and DNS records in general can take time to propagate. Be Zen! Running and re-running `npx dns` is safe.
 
-## DNS with Route53 
+## DNS with Route53
 
 **Opt-in, but recommended!**
 

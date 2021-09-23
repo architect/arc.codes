@@ -1,6 +1,6 @@
 ---
 title: Ejecting to CloudFormation
-category: Tutorials
+category: Extend
 description: Ejecting to CloudFormation
 sections:
   - Overview
@@ -9,7 +9,7 @@ sections:
 
 ## Overview
 
-Need to install @architect/architect 
+Need to install @architect/architect
 
 And then in the project directory run arc package
 

@@ -1,5 +1,6 @@
 ---
 title: HTTP functions
+category: Frontend
 description: HTTP Functions are the building blocks of the modern web app
 sections:
   - Overview

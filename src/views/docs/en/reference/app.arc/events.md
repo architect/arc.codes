@@ -1,5 +1,6 @@
 ---
 title: '@events'
+category: app.arc
 ---
 
  Define SNS topics with Lambda handler functions.

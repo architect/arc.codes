@@ -1,5 +1,6 @@
 ---
 title: CDN
+category: Frontend
 description: Content delivery network (CDN) with AWS CloudFront
 sections:
   - Overview

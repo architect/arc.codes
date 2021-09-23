@@ -1,5 +1,6 @@
 ---
 title: Route53
+category: Domain Registrars
 description: Setting up a domain name with Route53
 ---
 

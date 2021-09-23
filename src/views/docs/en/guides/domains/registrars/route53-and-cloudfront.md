@@ -1,5 +1,6 @@
 ---
 title: Route53 & CloudFront
+category: Domain Registrars
 description: Setting up a domain name with Route53 and CloudFront
 ---
 

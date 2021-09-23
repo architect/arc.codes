@@ -1,5 +1,6 @@
 ---
 title: Implementing CORS
+category: Frontend
 ---
 
 Cross-origin resource sharing (CORS) is a mechanism that that uses additional HTTP headers to tell browsers to give a web application running at one origin access resources from another domain outside the domain from which the first resource was served. A web page may freely embed cross-origin images, stylesheets, scripts, iframes, and videos.
@@ -40,7 +41,7 @@ async function handler (req) {
 
 ## Restricting Domains
 
-You can restrict domains within your Lambda function code. 
+You can restrict domains within your Lambda function code.
 
 Continuing from the `/api` endpoint, your API might operate differently based on the request's domain of origin:
 

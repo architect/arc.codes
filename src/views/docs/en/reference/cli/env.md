@@ -1,5 +1,6 @@
 ---
 title: arc env
+category: CLI
 description: Read and write environment variables for Lambda functions.
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: '@aws concurrency'
+category: config.arc
 description: Lambda function configuration
 ---
 

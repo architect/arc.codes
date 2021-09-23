@@ -1,6 +1,6 @@
 ---
 title: Mission
-category: about
+category: About
 description: Architect's Mission
 ---
 

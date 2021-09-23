@@ -124,6 +124,7 @@ let dictionary = [
   'filetype',
   'FQDN',
   'frontend',
+  'Frontend',
   'globals',
   'GoDaddy',
   'hardcode',

@@ -1,5 +1,6 @@
 ---
 title: '@proxy'
+category: app.arc
 description: Define a forwarding URL
 ---
 

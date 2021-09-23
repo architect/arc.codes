@@ -1,5 +1,6 @@
 ---
 title: '@create'
+category: prefs.arc
 description: Sandbox environment variables
 ---
 
@@ -9,7 +10,7 @@ Preferences for resource creation with `arc init`.
 
 ## `autocreate`
 
-By adding the `@create` pragma to your preferences file and specifying `autocreate true`, you can enable `arc sandbox`, `arc deploy`, and other workflows to automatically run `arc init` to create boilerplate Lambda handlers and static assets if they do not exist. 
+By adding the `@create` pragma to your preferences file and specifying `autocreate true`, you can enable `arc sandbox`, `arc deploy`, and other workflows to automatically run `arc init` to create boilerplate Lambda handlers and static assets if they do not exist.
 
 ```arc
 @create

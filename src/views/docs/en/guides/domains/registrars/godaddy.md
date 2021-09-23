@@ -1,6 +1,6 @@
 ---
 title: GoDaddy
-category: Domains
+category: Domain Registrars
 description: Setting up a domain name with GoDaddy
 ---
 

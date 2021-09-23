@@ -1,5 +1,6 @@
 ---
 title: '@http'
+category: app.arc
 description: Define HTTP routes
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: '@indexes'
+category: app.arc
 description: Define DynamoDB table global secondary indexes.
 ---
 

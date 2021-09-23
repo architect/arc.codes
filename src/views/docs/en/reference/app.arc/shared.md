@@ -1,5 +1,6 @@
 ---
 title: '@shared'
+category: app.arc
 description: Configure src/shared code
 ---
 

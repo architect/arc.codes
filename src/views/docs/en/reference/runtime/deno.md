@@ -1,5 +1,6 @@
 ---
 title: Deno
+category: Runtime
 description: Deno runtime support
 ---
 

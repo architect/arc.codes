@@ -1,5 +1,6 @@
 ---
 title: '@aws layers'
+category: config.arc
 description: Lambda function configuration
 ---
 
@@ -25,4 +26,4 @@ layers
   arn:aws:lambda:us-east-1:145266761615:layer:pandoc:1
 ```
 
-> Tip: find [awesome layers](https://github.com/mthenw/awesome-layers) 
+> Tip: find [awesome layers](https://github.com/mthenw/awesome-layers)

@@ -1,5 +1,6 @@
 ---
 title: arc deploy
+category: CLI
 description: Architect deploy is a module to deploy SAM and CloudFormation templates to an AWS account
 sections:
   - Overview
@@ -18,7 +19,7 @@ arc deploy [production|static|direct]
 ## Flags
 
 - `[--no-hydrate]` Do not automatically run `npm`, `bundle` or `pip`
-- `[dirty, --dirty, -d]` Overwrite staging Lambda with local source. A faster way to deploy and test small changes to individual functions without redeploying an entire stack. 
+- `[dirty, --dirty, -d]` Overwrite staging Lambda with local source. A faster way to deploy and test small changes to individual functions without redeploying an entire stack.
 - `[--dry-run]` Creates a CloudFormation template but does not deploy it. A dry-run allows you to check the CloudFormation and SAM output before deploying the actual stack.
 - `[production, --production, -p]` Deploys a CloudFormation stack to a production stack.
 - `[prune, --prune]` Remove assets not present in the local static folder.
