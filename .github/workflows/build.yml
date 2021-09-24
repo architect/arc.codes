@@ -57,9 +57,8 @@ jobs:
         if: always()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: "build"
-          description: "Build and test"
-          color: 0x0000ff
+          title: "build and test"
+          color: 0x383838
           username: GitHub Actions
 
   # Assuming all that went fine (and it's main): deploy!
@@ -94,7 +93,6 @@ jobs:
         if: always()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: "deploy"
-          description: "DeployBuild and test"
-          color: 0x0000ff
+          title: "deploy build"
+          color: 0x383838
           username: GitHub Actions
