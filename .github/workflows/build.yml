@@ -51,17 +51,17 @@ jobs:
           CI: true
 
       - name: Notify
-        uses: homoluctus/slatify@master
+        uses: sarisia/actions-status-discord@v1
         # Only fire alert once
         if: github.ref == 'refs/heads/main' && failure() && matrix.node-version == '14.x' && matrix.os == 'ubuntu-latest'
         with:
-          type: ${{ job.status }}
-          job_name: '*Build*'
-          url: ${{ secrets.SLACK_WEBHOOK }}
-          commit: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: "build"
+          description: "Build and test"
+          color: 0x0000ff
+          username: GitHub Actions
 
-  # Assuming all that went fine (and it's master): deploy!
+  # Assuming all that went fine (and it's main): deploy!
   deploy:
     # Setup
     needs: build
@@ -92,8 +92,8 @@ jobs:
         uses: homoluctus/slatify@master
         if: always()
         with:
-          type: ${{ job.status }}
-          job_name: '*Deploy*'
-          url: ${{ secrets.SLACK_WEBHOOK }}
-          commit: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: "deploy"
+          description: "DeployBuild and test"
+          color: 0x0000ff
+          username: GitHub Actions
