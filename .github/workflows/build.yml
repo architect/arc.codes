@@ -89,7 +89,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.V8_AWS_SECRET_ACCESS_KEY }}
 
       - name: Notify
-        uses: homoluctus/slatify@master
+        uses: sarisia/actions-status-discord@v1
         if: always()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
