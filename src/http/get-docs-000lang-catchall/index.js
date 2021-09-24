@@ -10,6 +10,7 @@ const classMapping = require('./markdown-class-mappings')
 const highlighter = require('./highlighter')
 const readFile = util.promisify(fs.readFile)
 const Html = require('@architect/views/modules/document/html.js').default
+const algolia = require('@architect/views/modules/components/algolia.js').default
 const toc = require('@architect/views/docs/table-of-contents')
 const yaml = require('js-yaml')
 const EDIT_DOCS = `edit/main/src/views/docs/`
@@ -103,6 +104,7 @@ exports.handler = async function http (req) {
         '/components/arc-viewer.js',
         '/components/arc-tab.js'
       ],
+      thirdparty: algolia,
       title,
       toc
     })
