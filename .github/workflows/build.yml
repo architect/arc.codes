@@ -53,7 +53,8 @@ jobs:
       - name: Notify
         uses: sarisia/actions-status-discord@v1
         # Only fire alert once
-        if: github.ref == 'refs/heads/main' && failure() && matrix.node-version == '14.x' && matrix.os == 'ubuntu-latest'
+        # if: github.ref == 'refs/heads/main' && failure() && matrix.node-version == '14.x' && matrix.os == 'ubuntu-latest'
+        if: always()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           title: "build"
