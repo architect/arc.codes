@@ -83,7 +83,7 @@ ${Symbols}
           justify-between
         "
       >
-        ${Search({ classes: 'mr0' })}
+        ${Search({ classes: 'hidden inline-block-lg mr0' })}
         ${DiscordLink()}
         ${GithubLink({ classes: 'ml0' })}
         ${ThemeButton({ classes: 'ml0' })}
