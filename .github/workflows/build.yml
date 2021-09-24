@@ -58,7 +58,7 @@ jobs:
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           title: "build and test"
-          color: 0x383838
+          color: 0x222222
           username: GitHub Actions
 
   # Assuming all that went fine (and it's main): deploy!
@@ -94,5 +94,5 @@ jobs:
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           title: "deploy build"
-          color: 0x383838
+          color: 0x222222
           username: GitHub Actions
