@@ -2,13 +2,16 @@ export default function Search (state = {}) {
   let { classes = '' } = state
   return `
 <input
-  type="text"
-  placeholder="Search docs..."
+  type="search"
+  placeholder="Search..."
   id="docsearch"
   class="
     ${classes}
     radius2
-    p-3
+    pt-3
+    pb-3
+    pl2
+    outline-none
   "
 />
 `
