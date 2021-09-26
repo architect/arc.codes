@@ -21,7 +21,7 @@ description: Setting up and installing Architect.
 
 Architect supports the following runtime versions:
 
-- Node `12.x` using `npm`
+- Node.js `14.x` using `npm`
 - Deno `1.6.x`
 - Ruby `2.5` using `bundle`
 - Python `3.8` using `pip3`
