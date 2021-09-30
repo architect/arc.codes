@@ -14,6 +14,7 @@ Configure individual Lambda function properties (e.g. `src/http/get-index/config
 - `concurrency` - number, `0` to AWS account maximum (if not present, concurrency is unthrottled)
 - `layers` - Up to 5 Lambda layer ARNs; **must be in the same region as deployed**
 - `policies` - configure [AWS SAM policy templates](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html)
+- `architecture` - configure CPU architecture; one of `x86_64` or `arm64` (defaults to `x86_64` if not specified)
 
 > Note: any function configurations made globally in your project manifest will be overridden by individual functions. For example, if your `app.arc` includes `memory 128`, and `src/http/get-index/config.arc` includes `memory 3008`, all functions except `get /` will be configured with 128MB of memory, while `get /` will override that global with 3008MB.
 
@@ -27,6 +28,7 @@ timeout 3
 concurrency 1
 layers {ARN}
 policies {ARN}
+architecture arm64
 ```
 
 To use multiple layers or policies:

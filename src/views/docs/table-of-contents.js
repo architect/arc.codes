@@ -90,6 +90,7 @@ let Reference = [ {
     'concurrency',
     'layers',
     'policies',
+    'architecture',
   ],
   'prefs.arc': [
     '@create',
