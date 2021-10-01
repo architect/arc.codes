@@ -1,5 +1,5 @@
 import test from 'tape'
-import slugify from '../src/views/modules/helpers/slugify.js'
+import slugify from '../../src/views/modules/helpers/slugify.js'
 
 test('slugify', t=> {
   let input = 'Architect manifest & config'

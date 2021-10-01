@@ -1,7 +1,7 @@
 import test from 'tape'
-import listFromObject from '../src/views/modules/helpers/list.js'
+import listFromObject from '../../src/views/modules/helpers/list.js'
 import strip from './helpers/strip.js'
-import slugify from '../src/views/modules/helpers/slugify.js'
+import slugify from '../../src/views/modules/helpers/slugify.js'
 
 function Ul(state={}) {
   let { children } = state
