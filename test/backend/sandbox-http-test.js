@@ -8,7 +8,7 @@ test('sandbox HTTP request', async t => {
   t.plan(4)
 
   await sandbox.start({ quiet: true })
-  t.ok(true, `sandbox started on ${host}`)
+  t.pass(`sandbox started on ${host}`)
 
   let quickstart = await tiny.get({ url: `${host}/docs/en/guides/get-started/quickstart` })
   t.ok(quickstart.body, 'got quickstart document')
@@ -17,5 +17,5 @@ test('sandbox HTTP request', async t => {
   t.ok(playground.body, 'got static playground document')
 
   await sandbox.end()
-  t.ok(true, 'sandbox ended')
+  t.pass('sandbox ended')
 })
