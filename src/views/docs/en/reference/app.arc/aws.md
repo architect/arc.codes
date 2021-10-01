@@ -8,20 +8,23 @@ Define AWS specific configuration.
 
 ## Syntax
 - Accepts values for the following keys:
-  - **`region`**: [AWS region ID](https://docs.aws.amazon.com/general/latest/gr/rande.html) of the region you'll deploy this project to
+  - `region`: [AWS region ID](https://docs.aws.amazon.com/general/latest/gr/rande.html) of the region you'll deploy this project to
     - If not specified, defaults to `us-west-2`
-  - **`profile`**: name of the profile you prefer to use with this project, as defined in your local [AWS profile](/quickstart)
+  - `profile`: name of the profile you prefer to use with this project, as defined in your local [AWS profile](/quickstart)
     - Can also be specified in `AWS_PROFILE` environment variable
     - Required to deploy to AWS
   - `runtime`: Lambda runtime, can be one of:
     - `nodejs14.x`, `nodejs12.x`, `deno`, `python3.8`, `python3.7`, `python3.6`, `go1.x`, `ruby2.7`, `ruby2.5`, `dotnetcore3.1`, `dotnetcore2.1`, `java11`, `java8`
-  - **`bucket`**: bucket (in same region) for CloudFormation deployment artifacts
+  - `bucket`: bucket (in same region) for CloudFormation deployment artifacts
     - If not specified, a secure deployment bucket will be auto-created for your app
   - `apigateway`: API Gateway API type, can be one of:
-    - **`http` (default)** - `HTTP` API + Lambda payload format version 2.0
+    - `http` (default) - `HTTP` API + Lambda payload format version 2.0
       - `httpv2` – aliased to `http`
-    - **`httpv1`** - `HTTP` API + Lambda payload format version 1.0
-    - **`rest`** - `REST` API + original API Gateway payload format
+    - `httpv1` - `HTTP` API + Lambda payload format version 1.0
+    - `rest` - `REST` API + original API Gateway payload format
+  - `architecture` Lambda [CPU Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) of your functions. (Added in Architect 9.1)
+    - `x86_64` - (default) 64-bit x86 architecture, for x86-based processors
+    - `arm64` - 64-bit ARM architecture, for the AWS Graviton2 processor. This only works if your region supports it. **Warning** the architect sandbox doesn't not yet have support for ARM architectures so be wary of packages with binary modules.
 
 Alternatively, if you want a less granular approach, you can declare your preferred region and profile in your `.bashrc` ([more information here](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)).
 
