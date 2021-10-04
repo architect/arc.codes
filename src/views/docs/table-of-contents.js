@@ -55,21 +55,7 @@ let Guides = [
 ]
 
 let Reference = [ {
-  'Runtime': [
-    'Node.js',
-    'Deno',
-    'Ruby',
-    'Python'
-  ],
-  'CLI': [
-    'deploy',
-    'destroy',
-    'env',
-    'init',
-    'logs',
-    'sandbox',
-  ],
-  'app.arc': [
+  'Project manifest': [
     '@app',
     '@aws',
     '@events',
@@ -85,23 +71,43 @@ let Reference = [ {
     '@views',
     '@ws'
   ],
-  'config.arc': [
-    '@aws',
-    'runtime',
-    'memory',
-    'timeout',
-    'concurrency',
-    'layers',
-    'policies',
-    'architecture',
+  'Configuration': [
+    {
+      'Function config': [
+        '@aws',
+        'runtime',
+        'memory',
+        'timeout',
+        'concurrency',
+        'layers',
+        'policies',
+        'architecture',
+      ]
+    },
+    {
+      'Local Preferences': [
+        '@create',
+        '@env',
+        '.env',
+        '@sandbox',
+        '@sandbox-startup'
+      ]
+    }
   ],
-  'prefs.arc': [
-    '@create',
-    '@env',
-    '.env',
-    '@sandbox',
-    '@sandbox-startup'
-  ]
+  'CLI': [
+    'deploy',
+    'destroy',
+    'env',
+    'init',
+    'logs',
+    'sandbox',
+  ],
+  'Runtime helpers': [
+    'Node.js',
+    'Deno',
+    'Ruby',
+    'Python'
+  ],
 } ]
 
 let About = [

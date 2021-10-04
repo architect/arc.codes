@@ -12,8 +12,6 @@
 
 This docs site is its own Architect project 🎉 so it can be run locally with `arc sandbox`
 
-Use `npm run seed-dependencies` to move Shiki/dist (+ select languages) and the Arc syntax highlighting grammar to the docs catchall function. This drastically reduces that function's size on disk.
-
 ## Table of Contents & Sidebar
 
 The Sidebar is dynamically built from `table-of-contents.js` and the current state.
@@ -44,6 +42,8 @@ The frontmatter attributes are technically optional but highly encouraged as the
 Providing explicit languages to the highlighter (see `highlighter.js`) increases Shiki's performance.
 
 To slim down Shiki's footprint, we bundle the dependency directly to the docs catchall function with only the grammars for languages we intend to highlight. This can be done automatically with the `seed-dependencies` script.
+
+Use `npm run seed-dependencies` to move Shiki/dist (+ select languages) and the Arc syntax highlighting grammar to the docs catchall function. This drastically reduces that function's size on disk.
 
 ## Todo
 
