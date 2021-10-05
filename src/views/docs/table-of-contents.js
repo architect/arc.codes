@@ -109,8 +109,13 @@ let About = [
   'Playground',
 ]
 
+let Examples = [
+  'Examples'
+]
+
 module.exports = {
   Guides,
   Reference,
-  About
+  About,
+  Examples
 }
