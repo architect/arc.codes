@@ -1,6 +1,6 @@
 ---
 title: Examples
-category: Examples
+category: Guides
 description: Examples of Architect projects from the organization and the community
 ---
 
@@ -13,7 +13,7 @@ Architect is a flexible framework for dynamic applications. The following exampl
 
 ## Working with data
 
-- [Best Practices for Modeling Relational Data in DynamoDB](https://github.com/konsumer/arc-example) 
+- [Best Practices for Modeling Relational Data in DynamoDB](https://github.com/konsumer/arc-example)
 	- Created by community member [konsumer](https://github.com/konsumer)
 	- This is a complete example app, with a focus on [the original AWS article](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-relational-modeling.html)
 

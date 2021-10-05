@@ -160,6 +160,7 @@ let dictionary = [
   'keypress',
   'Kinesis',
   'KMS',
+  'konsumer',
   'LEANX',
   'learnable',
   'learnings',

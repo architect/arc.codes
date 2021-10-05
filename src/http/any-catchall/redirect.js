@@ -3,6 +3,8 @@ let redirects = {
   // tmp until marketing landing page work done
   '/': '/docs/en/guides/get-started/quickstart',
 
+  '/examples': '/docs/en/guides/examples',
+
   // Intro
   '/intro/philosophy': '/docs/en/guides/get-started/why-architect',
   '/intro/limits': '/docs/en/guides/get-started/detailed-aws-setup',
