@@ -36,9 +36,9 @@
     "start": "sandbox",
     "test:unit:frontend": "tape -r esm 'test/frontend/**/*.js' | tap-min",
     "test:unit:backend": "tape 'test/backend/**/*.js' | tap-min",
-    "test": "npm run spellcheck && npm run lint && npm run test:unit:frontend && npm run test:unit:backend",
+    "test:all": "npm run spellcheck && npm run lint && npm run tape",
     "tape": "tape -r esm 'test/**/*.js' | tap-min",
-    "test:all": "npm run spellcheck && npm run lint && npm run tape"
+    "test": "npm run spellcheck && npm run lint && npm run test:unit:frontend && npm run test:unit:backend"
   },
   "dependencies": {
     "@architect/architect": "^9.1.0",
