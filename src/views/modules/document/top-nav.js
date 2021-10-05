@@ -4,7 +4,6 @@ import Search from '../components/search.js'
 import GithubLink from '../components/github-link.js'
 import DiscordLink from '../components/discord-link.js'
 import ThemeButton from '../components/theme-button.js'
-import Banner from '../components/banner.js'
 
 export default function TopNav () {
   return `
@@ -71,7 +70,5 @@ export default function TopNav () {
   </div>
   <div class="indicator bg-image0 absolute right0 bottom0 left0"></div>
 </header>
-
-${Banner()}
   `
 }
