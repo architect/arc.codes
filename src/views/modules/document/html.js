@@ -1,4 +1,5 @@
 import Head from './head.js'
+import Banner from '../components/banner.js'
 import Symbols from './symbols.js'
 import Script from './script.js'
 import TopNav from './top-nav.js'
@@ -42,6 +43,7 @@ ${Symbols}
     "
   >
     ${TopNav()}
+    ${Banner({ enabled: false })}
     ${Sidebar(props)}
     <main
       id="main"

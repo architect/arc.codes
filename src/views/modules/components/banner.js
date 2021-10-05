@@ -1,5 +1,3 @@
-// enabling the banner will require general CSS layout changes
-
 export default function Banner (state = {}) {
   const { enabled } = state
 
