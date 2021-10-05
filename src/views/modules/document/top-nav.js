@@ -4,10 +4,11 @@ import Search from '../components/search.js'
 import GithubLink from '../components/github-link.js'
 import DiscordLink from '../components/discord-link.js'
 import ThemeButton from '../components/theme-button.js'
+import Banner from '../components/banner.js'
 
 export default function TopNav () {
   return `
-  <header
+<header
   class="
     pt-1-lg
     pr2-lg
@@ -70,36 +71,7 @@ export default function TopNav () {
   </div>
   <div class="indicator bg-image0 absolute right0 bottom0 left0"></div>
 </header>
-<div
-  class="
-    pt-1-lg
-    pr2-lg
-    pb0-lg
-    pl2-lg
-    pt-2
-    pr-2
-    pb-1
-    pl-2
-    flex
-    items-center
-    justify-center
-    text-center
-    top0
-    bg-g1
-    col-start-1
-    col-end-3
-    text-g8
-  "
->
-  <span>
-    Community chat has moved to
-    <a href="https://discord.gg/y5A2eTsCRX"
-      class="font-medium text-p1 text-h1"
-      target="_blank" rel="noopener noreferrer"
-    >
-      Discord
-    </a>
-  </span>
-</div>
-`
+
+${Banner()}
+  `
 }

@@ -19,4 +19,4 @@ var docsearchParams = {
 
 docsearch(docsearchParams);
 </script>
-`
+  `
