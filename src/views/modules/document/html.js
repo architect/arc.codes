@@ -47,8 +47,6 @@ ${Symbols}
       id="main"
       class="
         h-full
-        row-start-3
-        col-start-2
         p3
         overflow-auto
       "

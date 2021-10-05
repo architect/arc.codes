@@ -131,9 +131,6 @@ export default function Sidebar (props = {}) {
     overflow-auto
     sidebar-w
     transition-x
-    col-start-1
-    col-end-2
-    row-start-3
     bg-g0
   "
 >
