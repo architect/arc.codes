@@ -14,6 +14,7 @@ const classMapping = require('./markdown-class-mappings')
 const highlighter = require('./highlighter')
 const toc = require('@architect/views/docs/table-of-contents')
 const Html = require('@architect/views/modules/document/html.js').default
+const NotFound = require('@architect/views/modules/components/not-found.js').default
 const algolia = require('@architect/views/modules/components/algolia.js').default
 
 const cache = {} // cheap warm cache
@@ -59,13 +60,23 @@ async function handler (req) {
       cache[filePath] = await readFile(filePath, 'utf8')
     file = cache[filePath]
   }
-  catch (err) {
-    // TODO: Load category "index" landing or load next in section
-    console.error(err)
+  catch (error) {
+    // TODO: Load category "index" landing if available
+    console.error(error)
     return {
       statusCode: 404,
-      // TODO: send a friendly error page with message
-      body: err.message
+      headers: {
+        'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
+        'content-type': 'text/html; charset=utf8'
+      },
+      body: Html({
+        active,
+        children: NotFound({ term: docName, error }),
+        lang,
+        state: { notFoundTerm: docName },
+        thirdparty: algolia,
+        toc
+      })
     }
   }
 
