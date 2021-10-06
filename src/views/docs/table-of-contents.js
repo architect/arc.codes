@@ -7,20 +7,16 @@ let Guides = [
       'Detailed AWS setup',
     ],
     'Developer experience': [
-      'Local development', // preview, debug and test
+      'Local development',
       'Dependency management',
-      'Sharing code', // src/shared and src/views
+      'Sharing code',
       'Custom source paths',
       'Deployment',
-      'Logging & monitoring', // cloudwatch
+      'Logging & monitoring',
       'Using TypeScript',
     ],
     'Frontend': [
-      'Static assets', // fingerprint, ignore, folder, link to cdn
-      // TODO 'HTTP functions', //inc cors
-      // TODO 'Sessions',
-      // TODO 'Middleware',
-      // TODO 'WebSockets functions',
+      'Static assets',
     ],
     'Domains': [
       'Overview',
@@ -35,20 +31,9 @@ let Guides = [
         ]
       }
     ],
-    /* TODO
-    'Backend': [
-      'Database tables & indexes',
-      'Database stream functions',
-      'Event functions',
-      'Queue functions',
-      'Scheduled functions',
-    ],*/
     'Extend': [
-      // TODO 'Migrate legacy code', // @proxy, arc.http.express
       'Custom CloudFormation',
       'Plugins',
-      // TODO 'Add a custom domain',
-      // TODO 'Ejecting',
     ]
   },
   'Examples'
@@ -85,7 +70,7 @@ let Reference = [ {
       ]
     },
     {
-      'Local Preferences': [
+      'Local preferences': [
         '@create',
         '@env',
         '.env',

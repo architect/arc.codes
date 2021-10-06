@@ -1,22 +1,24 @@
-require = require('esm')(module) // eslint-disable-line
+// eslint-disable-next-line
+require = require('esm')(module)
+
 const path = require('path')
-const util = require('util')
-const fs = require('fs')
+const { readFile } = require('fs/promises')
+const { http } = require('@architect/functions')
+const redirect = require('@architect/shared/redirect')
 const Markdown = require('markdown-it')
 const markdownClass = require('@toycode/markdown-it-class')
 const markdownAnchor = require('markdown-it-anchor')
 const frontmatterParser = require('markdown-it-front-matter')
+const yaml = require('js-yaml')
 const classMapping = require('./markdown-class-mappings')
 const highlighter = require('./highlighter')
-const readFile = util.promisify(fs.readFile)
+const toc = require('@architect/views/docs/table-of-contents')
 const Html = require('@architect/views/modules/document/html.js').default
 const algolia = require('@architect/views/modules/components/algolia.js').default
-const toc = require('@architect/views/docs/table-of-contents')
-const yaml = require('js-yaml')
-const EDIT_DOCS = `edit/main/src/views/docs/`
+
 const cache = {} // cheap warm cache
 
-exports.handler = async function http (req) {
+async function handler (req) {
   let { pathParameters } = req
   let { lang, proxy } = pathParameters
   let parts = proxy.split('/')
@@ -32,9 +34,8 @@ exports.handler = async function http (req) {
     ...parts,
     docName
   )
-  let editURL = 'https://github.com/architect/arc.codes/'
+  let editURL = 'https://github.com/architect/arc.codes/edit/main/src/views/docs/'
   editURL += path.join(
-    EDIT_DOCS,
     lang,
     ...parts,
     doc
@@ -110,3 +111,5 @@ exports.handler = async function http (req) {
     })
   }
 }
+
+exports.handler = http.async(redirect, handler)

@@ -1,11 +1,9 @@
-let { http } = require('@architect/functions')
-let asap = require('@architect/asap')
-
-// middleware to preserve old urls
-let redirect = require('./redirect')
+const { http } = require('@architect/functions')
+const asap = require('@architect/asap')
+const redirect = require('@architect/shared/redirect') // middleware to preserve old urls
 
 // middleware proxy s3 assets
-let staticProxy = asap({
+const staticProxy = asap({
   spa: false,
   alias: {
     '/playground': '/playground.html'
