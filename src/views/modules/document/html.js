@@ -1,10 +1,11 @@
-import Head from './head.js'
 import Banner from '../components/banner.js'
-import Symbols from './symbols.js'
+import EditLink from '../components/edit-link.js'
+import Head from './head.js'
 import Script from './script.js'
-import TopNav from './top-nav.js'
-import State from './state.js'
 import Sidebar from '../components/sidebar.js'
+import State from './state.js'
+import Symbols from './symbols.js'
+import TopNav from './top-nav.js'
 
 export default function HTML (props = {}) {
   let {
@@ -20,8 +21,7 @@ export default function HTML (props = {}) {
     Array.isArray(props.scripts)
     ? scripts.map(src => Script({ src })).join('')
     : Script(scripts)
-  let stateTag = state &&
-      State(state) || ''
+  let stateTag = state && State(state) || ''
 
   return `
 <!DOCTYPE html>
@@ -70,9 +70,7 @@ ${Symbols}
         </h1>
         <div class="pb4 docs">
           ${children}
-          <div class="flex justify-end mt4">
-            <a href="${editURL}" target="_blank" rel="noreferrer" class="text1 text-p1 text-h1 text-a2 no-underline font-semibold">Edit this doc on Github →</a>
-          </div>
+          ${EditLink({ editURL })}
         </div>
       </div>
     </main>
