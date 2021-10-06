@@ -4,7 +4,8 @@ require = require('esm')(module)
 const path = require('path')
 const { readFile } = require('fs/promises')
 const { http } = require('@architect/functions')
-const redirect = require('@architect/shared/redirect')
+const redirectMiddleware = require('@architect/shared/redirect-map')
+const notFoundResponse = require('@architect/shared/not-found-response')
 const Markdown = require('markdown-it')
 const markdownClass = require('@toycode/markdown-it-class')
 const markdownAnchor = require('markdown-it-anchor')
@@ -64,11 +65,7 @@ async function handler (req) {
     // TODO: Load category "index" landing if available
     console.error(error)
     return {
-      statusCode: 404,
-      headers: {
-        'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
-        'content-type': 'text/html; charset=utf8'
-      },
+      ...notFoundResponse,
       body: Html({
         active,
         children: NotFound({ term: docName, error }),
@@ -123,4 +120,4 @@ async function handler (req) {
   }
 }
 
-exports.handler = http.async(redirect, handler)
+exports.handler = http.async(redirectMiddleware, handler)

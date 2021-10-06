@@ -126,7 +126,6 @@ const redirects = {
   '/docs/en/reference/runtime/python': '/docs/en/reference/runtime-helpers/python',
 }
 
-// eslint-disable-next-line
 module.exports = async function redirect (req) {
   const isGet = req.requestContext.http.method.toLowerCase() === 'get'
   const isPath = Object.keys(redirects).includes(req.requestContext.http.path)
