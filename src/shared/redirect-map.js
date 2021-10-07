@@ -67,22 +67,22 @@ const redirects = {
 
   // Reference > Configuration > Function config
   // round 1: Q1 2021
-  '/reference/arc-config/aws': '/docs/en/reference/configuration/function-config/aws',
-  '/reference/arc-config/runtime': '/docs/en/reference/configuration/function-config/runtime',
-  '/reference/arc-config/memory': '/docs/en/reference/configuration/function-config/memory',
-  '/reference/arc-config/timeout': '/docs/en/reference/configuration/function-config/timeout',
-  '/reference/arc-config/concurrency': '/docs/en/reference/configuration/function-config/concurrency',
-  '/reference/arc-config/layers': '/docs/en/reference/configuration/function-config/layers',
-  '/reference/arc-config/policies': '/docs/en/reference/configuration/function-config/policies',
+  '/reference/arc-config/aws': '/docs/en/reference/configuration/function-config',
+  '/reference/arc-config/runtime': '/docs/en/reference/configuration/function-config#runtime',
+  '/reference/arc-config/memory': '/docs/en/reference/configuration/function-config#memory',
+  '/reference/arc-config/timeout': '/docs/en/reference/configuration/function-config#timeout',
+  '/reference/arc-config/concurrency': '/docs/en/reference/configuration/function-config#concurrency',
+  '/reference/arc-config/layers': '/docs/en/reference/configuration/function-config#layers',
+  '/reference/arc-config/policies': '/docs/en/reference/configuration/function-config#policies',
   // round 2: Q4 2021
-  '/docs/en/reference/config.arc/aws': '/docs/en/reference/configuration/function-config/aws',
-  '/docs/en/reference/config.arc/runtime': '/docs/en/reference/configuration/function-config/runtime',
-  '/docs/en/reference/config.arc/memory': '/docs/en/reference/configuration/function-config/memory',
-  '/docs/en/reference/config.arc/timeout': '/docs/en/reference/configuration/function-config/timeout',
-  '/docs/en/reference/config.arc/concurrency': '/docs/en/reference/configuration/function-config/concurrency',
-  '/docs/en/reference/config.arc/layers': '/docs/en/reference/configuration/function-config/layers',
-  '/docs/en/reference/config.arc/policies': '/docs/en/reference/configuration/function-config/policies',
-  '/docs/en/reference/config.arc/architecture': '/docs/en/reference/configuration/function-config/architecture',
+  '/docs/en/reference/config.arc/aws': '/docs/en/reference/configuration/function-config',
+  '/docs/en/reference/config.arc/runtime': '/docs/en/reference/configuration/function-config#runtime',
+  '/docs/en/reference/config.arc/memory': '/docs/en/reference/configuration/function-config#memory',
+  '/docs/en/reference/config.arc/timeout': '/docs/en/reference/configuration/function-config#timeout',
+  '/docs/en/reference/config.arc/concurrency': '/docs/en/reference/configuration/function-config#concurrency',
+  '/docs/en/reference/config.arc/layers': '/docs/en/reference/configuration/function-config#layers',
+  '/docs/en/reference/config.arc/policies': '/docs/en/reference/configuration/function-config#policies',
+  '/docs/en/reference/config.arc/architecture': '/docs/en/reference/configuration/function-config#architecture',
 
   // Reference > Configuration > Local preferences
   // round 1: Q1 2021
