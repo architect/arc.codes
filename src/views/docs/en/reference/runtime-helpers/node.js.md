@@ -17,9 +17,9 @@ Architect has two primary runtime helpers for Node.js:
 
 ---
 
-# `@architect/functions`
+## `@architect/functions`
 
-## Setup
+### Setup
 
 Install the Architect runtime helpers for Node.js:
 
@@ -34,7 +34,7 @@ let arc = require('@architect/functions')
 ```
 
 
-## API
+### API
 
 - [`arc.events`](#arc.events) Publish / subscribe helpers for `@events` functions
 - [`arc.http`](#arc.http) Middleware and request/response normalization for `@http` functions using callbacks
@@ -246,7 +246,7 @@ function handler(req, res) {
 ```
 ---
 
-### `arc.http.async`
+#### `arc.http.async`
 
 
 #### API
@@ -298,7 +298,7 @@ async function handler(req) {
 
 ---
 
-### `arc.http.express`
+#### `arc.http.express`
 
 [Express](https://expressjs.com) migration helper.
 
@@ -318,7 +318,7 @@ exports.handler = arc.http.express(app)
 
 ---
 
-### `arc.http.session`
+#### `arc.http.session`
 
 `arc.http.session` provides methods for reading the current session in an `@http` request, and writing it back to a cookie.
 
@@ -578,16 +578,15 @@ await arc.ws.send({
 
 ---
 
-# `@architect/asap`
+## `@architect/asap`
 
-## Setup
+### Setup
 
 Install the Architect static asset proxy (ASAP) for Node.js:
 
 ```bash
 npm install @architect/asap
 ```
-
 
 ### API
 
