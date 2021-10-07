@@ -1,22 +1,18 @@
 (function (){
+  let activeLink = document.querySelector('a.active')
+  let main = document.getElementById('main')
+  let menuButton = document.getElementById('menu-button')
+  let sidebar = document.getElementById('sidebar')
+  let themeButton = document.getElementById('theme-button')
+
   // Scroll active sidebar link into view
-  document
-    .querySelector('a.active')
-    .scrollIntoView({
+  if (activeLink)
+    activeLink.scrollIntoView({
       behavior: 'smooth',
       block:  'center'
     })
 
   // Toggle sidebar on mobile
-  let menuButton = document
-    .getElementById('menu-button')
-  let themeButton = document
-    .getElementById('theme-button')
-  let sidebar = document
-    .getElementById('sidebar')
-  let main = document
-    .getElementById('main')
-
   main.onclick = function hideSidebar () {
     sidebar.classList.remove('open')
   }
@@ -62,6 +58,4 @@
     let currentHeight = (el[scrollHeight] || body[scrollHeight]) - body.clientHeight
     return Math.floor((currentTop / currentHeight) * 100)
   }
-
-
 }())

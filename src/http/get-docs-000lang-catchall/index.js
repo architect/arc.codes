@@ -70,6 +70,7 @@ async function handler (req) {
         active,
         children: NotFound({ term: docName, error }),
         lang,
+        scripts: [ '/index.js' ],
         state: { notFoundTerm: docName },
         thirdparty: algolia,
         toc

@@ -25,6 +25,7 @@ async function notFound (req) {
     body: Html({
       active: term,
       children: NotFound({ term }),
+      scripts: [ '/index.js' ],
       thirdparty: algolia,
       toc
     })
