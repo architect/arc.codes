@@ -64,7 +64,7 @@ jobs:
   deploy:
     # Setup
     needs: build
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
 
     # Go
@@ -80,8 +80,17 @@ jobs:
       - name: Install
         run: npm i --production
 
-      - name: Deploy
-        run: npm run deploy
+      - name: Staging Deploy
+        if: github.ref == 'refs/heads/main'
+        run: npx arc deploy --staging
+        env:
+          CI: true
+          AWS_ACCESS_KEY_ID: ${{ secrets.V8_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.V8_AWS_SECRET_ACCESS_KEY }}
+
+      - name: Production Deploy
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: npx arc deploy --production
         env:
           CI: true
           AWS_ACCESS_KEY_ID: ${{ secrets.V8_AWS_ACCESS_KEY_ID }}
