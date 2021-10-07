@@ -28,7 +28,7 @@ Configure individual Lambda function properties (e.g. `src/http/get-index/config
 
 > Note: any function configurations made globally in your project manifest will be overridden by individual functions. For example, if your `app.arc` includes `memory 128`, and `src/http/get-index/config.arc` includes `memory 3008`, all functions except `get /` will be configured with 128MB of memory, while `get /` will override that global with 3008MB.
 
-## Example
+### Example
 
 ```arc
 @aws
@@ -44,7 +44,7 @@ architecture arm64
 Read more about the [Lambda limits](https://docs.aws.amazon.com/lambda/latest/dg/limits.html) and [resource model](https://docs.aws.amazon.com/lambda/latest/dg/resource-model.html).
 
 
-# `runtime`
+## `runtime`
 
 Configure Lambda function `runtime`:
 
@@ -59,44 +59,44 @@ Also configurable but not supported by Architect Sandbox:
 - `go1.x`
 - `dotnetcore2.1`
 
-## Example
+### Example
 
 ```arc
 @aws
 runtime deno
 ```
 
-# `memory`
+## `memory`
 
 Configure Lambda function `memory` between `128` MB to `10240` MB, in `1` MB increments.
 
-## Example
+### Example
 
 ```arc
 @aws
 memory 1024
 ```
 
-# `timeout`
+## `timeout`
 
 Configure Lambda function `timeout` in seconds to a max of `900`. (`15` minutes.)
 
 The default timeout (if no value supplied) is `5`. (`5` seconds.)
 
-## Example
+### Example
 
 ```arc
 @aws
 timeout 30
 ```
 
-# `concurrency`
+## `concurrency`
 
 Configure Lambda function concurrency. If not present concurrency is unthrottled.
 
-## Examples
+#### Examples
 
-### Limit execution to one invocation at a time
+Limit execution to one invocation at a time
 
 ```arc
 @aws
@@ -105,20 +105,20 @@ concurrency 1
 
 > Tip: `@events` functions with `concurrency 1` create a queue-like primitive
 
-### Disable invocation by setting concurrency to zero
+Disable invocation by setting concurrency to zero
 
 ```arc
 @aws
 concurrency 0
 ```
 
-# `layers`
+## `layers`
 
 Configure Lambda function `layers` with max 5 Lambda Layer ARNs.
 
 > Warning: Lambda Layers must be in the same region as they are deployed
 
-## Examples
+### Examples
 
 Add one layer:
 
@@ -138,7 +138,7 @@ layers
 
 > Tip: find [awesome layers](https://github.com/mthenw/awesome-layers)
 
-# `policies`
+## `policies`
 
 Configure custom Lambda function `policies`, enabling granular and specific privileges and access controls.
 
@@ -149,7 +149,7 @@ Configuring one or more policies will completely remove all of Architect's defau
 > Note: `architect-default-policies` is an internal Architect framework setting based on the least-privilege permissions specific to your project. It is not a managed / public IAM policy, and will not be found in your AWS console.
 
 
-## Examples
+### Examples
 
 Lambda only has a single set of permissions (as defined by the AWS-managed `S3CrudPolicy` policy):
 
@@ -175,18 +175,18 @@ policies S3CrudPolicy architect-default-policies
 
 ---
 
-## Additional resources
+### Additional resources
 
 - [AWS IAM policy ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns)
 - [Community-maintained list of AWS-managed policies](https://github.com/z0ph/MAMIP/tree/master/policies)
 
-# `architecture`
+## `architecture`
 
 Configure Lambda function [CPU `architecture`](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) to be one of `x86_64` or `arm64`. This setting defaults to `x86_64` if not specified. `arm64` only works if your region supports it.
 
-**Warning** the architect sandbox doesn't not yet have support for ARM architectures so be wary of packages with binary modules.
+> **Warning** the architect sandbox doesn't not yet have support for ARM architectures so be wary of packages with binary modules.
 
-## Example
+### Example
 
 ```arc
 @aws

@@ -16,11 +16,11 @@ sections:
 - [`@sandbox`](#%40sandbox) - Define Sandbox preferences
 - [`@sandbox-startup`](#%40sandbox-startup) - Hook into Sandbox's startup
 
-# `@create`
+## `@create`
 
 Preferences for resource creation with `arc init`.
 
-## `autocreate`
+### `autocreate`
 
 By adding the `@create` pragma to your preferences file and specifying `autocreate true`, you can enable `arc sandbox`, `arc deploy`, and other workflows to automatically run `arc init` to create boilerplate Lambda handlers and static assets if they do not exist.
 
@@ -29,7 +29,7 @@ By adding the `@create` pragma to your preferences file and specifying `autocrea
 autocreate true
 ```
 
-## `templates`
+### `templates`
 
 Define custom boilerplate Lambda handlers on a per-pragma basis with `templates`:
 
@@ -42,7 +42,7 @@ templates
 
 In the above example, new `@http` functions will use your `path/to/template/http.js` template instead of the Architect default, while creating new `@events` functions will use the `path/to/template/events.py`. This will work for either `autocreate true` or the `arc init` command.
 
-# `@env`
+## `@env`
 
 Configure environment variables for `testing` with `arc sandbox` and deployed `staging` and `production` environments.
 
@@ -50,7 +50,7 @@ Sync environment variables to your project by using the [`arc env` CLI command](
 
 > Note: any time you run `arc env`, your unsynced local environment variables will be overwritten.
 
-## Example
+### Example
 
 ```arc
 @env
@@ -65,20 +65,20 @@ production
   A_PRODUCTION_ENV_VAR something-for-production
 ```
 
-## `.env`
+### `.env` file support
 
 Architect sandbox supports loading environment variables from a `.env` file. The `.env` will override your `preferences.arc` or `prefs.arc` and environment variables it defines will be loaded for whichever environment the sandbox is running (`testing`, `staging`, or `production`).
 
 (NB: Recall that key/value pairs in `.env` files are separated by the `=` symbol)
 
-## Example `.env` file
+### Example `.env` file
 
 ```shell
 A_TESTING_ENV_VAR=something-for-testing
 ANOTHER_VAR=only-for-testing
 ```
 
-# `@sandbox`
+## `@sandbox`
 
 Define [`arc sandbox`](../cli/sandbox) preferences. If you are not using a [`.env` file](.env) then any environment variables set using the [`arc env` CLI](../cli/env) will be stored in the preferences file. In this scenario it is best _not_ to revision the preferences file in source control.
 
@@ -111,7 +111,7 @@ Disables hydration
 no-hydrate true
 ```
 
-# `@sandbox-startup`
+## `@sandbox-startup`
 
 Hook up CLI commands into [`arc sandbox`](../cli/sandbox) startup. Helpful for repetitive tasks like seeding a database or starting up additional services for local development. Each command should be a separate unindented line under the `@sandbox-startup` pragma.
 
