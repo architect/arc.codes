@@ -57,27 +57,8 @@ let Reference = [ {
     '@ws'
   ],
   'Configuration': [
-    {
-      'Function config': [
-        '@aws',
-        'runtime',
-        'memory',
-        'timeout',
-        'concurrency',
-        'layers',
-        'policies',
-        'architecture',
-      ]
-    },
-    {
-      'Local preferences': [
-        '@create',
-        '@env',
-        '.env',
-        '@sandbox',
-        '@sandbox-startup'
-      ]
-    }
+    'Function config',
+    'Local preferences',
   ],
   'CLI': [
     'deploy',
