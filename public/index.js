@@ -1,3 +1,4 @@
+/* eslint-env browser */
 (function (){
   let activeLink = document.querySelector('a.active')
   let main = document.getElementById('main')
@@ -13,13 +14,8 @@
     })
 
   // Toggle sidebar on mobile
-  main.onclick = function hideSidebar () {
-    sidebar.classList.remove('open')
-  }
-
-  menuButton.onclick = function toggleSidebar () {
-    sidebar.classList.toggle('open')
-  }
+  main.onclick = () => sidebar.classList.remove('open')
+  menuButton.onclick = () => sidebar.classList.toggle('open')
 
   /* Light/Dark Mode */
   // Get the user's theme preference from local storage, otherwise check OS default
@@ -33,18 +29,11 @@
     localStorage.setItem('theme', targetTheme)
   }
 
-  // Show percentage of page read on desktop
-  let bar = document.querySelector('.indicator')
-  let isDesktop = window.innerWidth > 768
-
-  if (isDesktop) {
-    // If we want this to work on mobile
-    // we need to add a second function
-    // for handling window.onscroll
-    let el = main
-    bar.style.width = getScrollPercent(el)
-    el.onscroll = setReadPercent.bind(null, el)
   }
+
+  let bar = document.querySelector('.indicator')
+  bar.style.width = getScrollPercent(main)
+  main.onscroll = setReadPercent.bind(null, main)
 
   function setReadPercent (el) {
     bar.style.width = `${getScrollPercent(el)}%`
