@@ -32,6 +32,7 @@
 
   // Copy-Paste function for code blocks
   const buttonClassList = [
+    'icon',
     'invisible',
     'visible-lg',
     'absolute',
@@ -44,7 +45,6 @@
     'text-a2',
     'bg-unset',
     'fill-current',
-    'icon'
   ]
   const svgCopy = '<svg><use xlink:href="#copy"></use></svg>'
   const svgCheck = '<svg><use xlink:href="#check"></use></svg>'

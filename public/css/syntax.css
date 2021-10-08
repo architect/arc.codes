@@ -26,6 +26,9 @@
   height: 1rem;
   color: white;
 }
+.docs pre button.icon svg {
+  pointer-events: none;
+}
 
 /* inline code, not highlighted blocks */
 .docs :not(pre) > code {
