@@ -68,7 +68,7 @@ export default function TopNav () {
       ${Icon({ href: 'hamburger', classes: 'icon fill-current' })}
     </button>
   </div>
-  <div class="indicator bg-image0 absolute right0 bottom0 left0"></div>
+  <div class="indicator invisible visible-lg bg-image0 absolute right0 bottom0 left0"></div>
 </header>
   `
 }
