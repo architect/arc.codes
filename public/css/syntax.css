@@ -2,6 +2,12 @@
   margin: 0;
 }
 
+/* all code font family */
+.docs pre code, .docs :not(pre) > code  {
+  font-family: Menlo, Monaco, Consolas, monospace;
+}
+
+/* highlighted/Shiki code blocks */
 .docs pre {
   padding: 1rem;
   margin-bottom: 1.33rem;
@@ -9,12 +15,18 @@
   border-radius: 0.3rem;
   white-space: pre-wrap;
   word-break: break-word;
-}
-.docs pre {
   /* fallback when Shiki encounters unknown syntax */
   color: var(--g2);
   background-color: var(--g9);
 }
+
+/* code copy button */
+.docs pre button.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* inline code, not highlighted blocks */
 .docs :not(pre) > code {
   background-color: var(--g1);
   padding: 0.1rem 0.2rem;
@@ -23,7 +35,4 @@
   overflow-wrap: break-word;
   min-width: auto;
   border-radius: 0.25rem;
-}
-.docs pre code, .docs :not(pre) > code  {
-  font-family: Menlo, Monaco, Consolas, monospace;
 }
