@@ -40,7 +40,6 @@
     'mt-2',
     'mr-2',
     'cursor-pointer',
-    'text-g0',
     'text-h0',
     'text-a2',
     'bg-unset',
