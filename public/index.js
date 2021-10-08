@@ -1,10 +1,11 @@
 /* eslint-env browser */
 (function (){
-  let activeLink = document.querySelector('a.active')
-  let main = document.getElementById('main')
-  let menuButton = document.getElementById('menu-button')
-  let sidebar = document.getElementById('sidebar')
-  let themeButton = document.getElementById('theme-button')
+  const activeLink = document.querySelector('a.active')
+  const main = document.getElementById('main')
+  const menuButton = document.getElementById('menu-button')
+  const sidebar = document.getElementById('sidebar')
+  const themeButton = document.getElementById('theme-button')
+  const codeBlocks = document.querySelectorAll('pre.shiki')
 
   // Scroll active sidebar link into view
   if (activeLink)
@@ -29,6 +30,47 @@
     localStorage.setItem('theme', targetTheme)
   }
 
+  // Copy-Paste function for code blocks
+  const buttonClassList = [
+    'invisible',
+    'visible-lg',
+    'absolute',
+    'top0',
+    'right0',
+    'mt-2',
+    'mr-2',
+    'cursor-pointer',
+    'text-g0',
+    'text-h0',
+    'text-a2',
+    'bg-unset',
+    'fill-current',
+    'icon'
+  ]
+  const svgCopy = '<svg><use xlink:href="#copy"></use></svg>'
+  const svgCheck = '<svg><use xlink:href="#check"></use></svg>'
+  for (const codeBlock of codeBlocks) {
+    codeBlock.classList.add('relative')
+    // create copy button
+    const button = document.createElement('button')
+    button.className = buttonClassList.join(' ')
+    button.innerHTML = svgCopy
+
+    button.onclick = (evt) => {
+      const target = evt.target
+      const parent = target.closest('pre')
+      const codeText = parent.querySelector('code').textContent.trim()
+
+      navigator.clipboard.writeText(codeText).then(
+        () => {
+          target.innerHTML = svgCheck
+          setTimeout(() => target.innerHTML = svgCopy, 2000)
+        },
+        () => target.innerHTML = 'Error copying!'
+      )
+    }
+
+    codeBlock.appendChild(button)
   }
 
   let bar = document.querySelector('.indicator')
