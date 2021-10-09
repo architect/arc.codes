@@ -1,6 +1,9 @@
 .docs blockquote > p {
   margin: 0;
 }
+.docs blockquote > p code {
+  background-color: var(--g2);
+}
 
 /* all code font family */
 .docs pre code, .docs :not(pre) > code  {
