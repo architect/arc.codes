@@ -41,7 +41,7 @@ To change the default runtime add it to the `app.arc` under the `@aws` pragma:
 runtime python3.8
 ```
 
-> This setting can be overridden on a function-by-function basis with [`config.arc`](/docs/en/reference/config.arc/@aws).
+> This setting can be overridden on a function-by-function basis with [`config.arc`](/docs/en/reference/configuration/function-config).
 
 Architect supports the following standard AWS managed runtimes in live infra, but not while working locally (at present):
 

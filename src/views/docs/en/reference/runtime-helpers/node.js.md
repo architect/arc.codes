@@ -561,7 +561,7 @@ let data = await arc.tables()
 
 ### `arc.ws`
 
-Send a message via WebSocket ([`@ws`](/docs/en/reference/app.arc/ws)). An object containing two properties is required:
+Send a message via WebSocket ([`@ws`](/docs/en/reference/project-manifest/ws)). An object containing two properties is required:
 - **`id`** (string) - API Gateway `connectionId` of the client you'd like to send the message to
 - **`payload`** (object or array) - payload to be sent (as JSON)
 
