@@ -49,5 +49,5 @@ arc destroy --app my-app --force --name Dev
 ```
 
 [deploy]: deploy
-[tables]: ../app.arc/tables
-[static]: ../app.arc/static
+[tables]: ../project-manifest/tables
+[static]: ../project-manifest/static

@@ -307,7 +307,7 @@ For common Architect Plugin use cases, Architect provides a few helper functions
 
 This method should be leveraged inside a plugin's [`package`](#package) method in order to more easily define CloudFormation JSON representing Lambdas created by the plugin. Use of this method for defining Lambdas is an Architect best practice as certain specific conventions that Architect relies on can be maintained.
 
-While the AWS Lambda logical ID is generally not a concern for developers using Architect, Architect relies on a logical ID naming convention to e.g. retrieve execution logs of a deployed Lambda via [`arc logs`][logs]. This helper method helps enforce such conventions. Leveraging this method also gives the plugin-generated Lambdas transparent support for [Architect's per-function runtime configuration via the `config.arc` file](https://arc.codes/docs/en/reference/config.arc/aws).
+While the AWS Lambda logical ID is generally not a concern for developers using Architect, Architect relies on a logical ID naming convention to e.g. retrieve execution logs of a deployed Lambda via [`arc logs`][logs]. This helper method helps enforce such conventions. Leveraging this method also gives the plugin-generated Lambdas transparent support for [Architect's per-function runtime configuration via the `config.arc` file][config-arc].
 
 #### Arguments
 
@@ -433,17 +433,18 @@ module.exports = {
 
 [inv]: https://github.com/architect/inventory
 [macros]: custom-cloudformation
-[http]: ../../reference/app.arc/http
-[events]: ../../reference/app.arc/events
-[queues]: ../../reference/app.arc/queues
-[tables]: ../../reference/app.arc/tables
+[config-arc]: ../../reference/configuration/function-config
+[http]: ../../reference/project-manifest/http
+[events]: ../../reference/project-manifest/events
+[queues]: ../../reference/project-manifest/queues
+[tables]: ../../reference/project-manifest/tables
 [sandbox]: ../../reference/cli/sandbox
 [create]: ../../reference/cli/init
 [hydrate]: ../../reference/cli/hydrate
 [logs]: ../../reference/cli/logs
 [deploy]: ../../reference/cli/deploy
-[functions]: ../../reference/runtime/node.js
-[services]: ../../reference/runtime/node.js#arc.services
+[functions]: ../../reference/runtime-helpers/node.js
+[services]: ../../reference/runtime-helpers/node.js#arc.services
 [cfn-ref]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-reference.html
 [discovery]: https://en.wikipedia.org/wiki/Service_discovery
 [ssm]: https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html

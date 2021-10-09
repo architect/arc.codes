@@ -19,15 +19,15 @@ const redirects = {
 
   // Primitives
   // round 1: Q1 2021
-  '/primitives/http': '/docs/en/reference/app.arc/http',
-  '/primitives/ws': '/docs/en/reference/app.arc/ws',
-  '/primitives/static': '/docs/en/reference/app.arc/static',
-  '/primitives/cdn': '/docs/en/reference/app.arc/static',
-  '/primitives/scheduled': '/docs/en/reference/app.arc/scheduled',
-  '/primitives/events': '/docs/en/reference/app.arc/events',
-  '/primitives/queues': '/docs/en/reference/app.arc/queues',
-  '/primitives/tables': '/docs/en/reference/app.arc/tables',
-  '/primitives/macros': '/docs/en/reference/app.arc/macros',
+  '/primitives/http': '/docs/en/reference/project-manifest/http',
+  '/primitives/ws': '/docs/en/reference/project-manifest/ws',
+  '/primitives/static': '/docs/en/reference/project-manifest/static',
+  '/primitives/cdn': '/docs/en/reference/project-manifest/static',
+  '/primitives/scheduled': '/docs/en/reference/project-manifest/scheduled',
+  '/primitives/events': '/docs/en/reference/project-manifest/events',
+  '/primitives/queues': '/docs/en/reference/project-manifest/queues',
+  '/primitives/tables': '/docs/en/reference/project-manifest/tables',
+  '/primitives/macros': '/docs/en/reference/project-manifest/macros',
 
   // Guides
   // round 1: Q1 2021

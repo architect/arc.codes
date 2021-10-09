@@ -61,29 +61,29 @@ The `app.arc` format follows a few simple rules:
 
 These sections are for global system level env configuration. The most important being the `@app` namespace which is used to prefix all generated resources.
 
-- [`@app`](/docs/en/reference/app.arc/app) **[Required]** application namespace
-- [`@aws`](/docs/en/reference/app.arc/aws) AWS specific configuration
-- [`@views`](/docs/en/reference/app.arc/views) configure path to view source code
-- [`@shared`](/docs/en/reference/app.arc/shared) configure path to shared source code
-- [`@macros`](/docs/en/reference/app.arc/macros) modify generated CloudFormation
+- [`@app`](../../reference/project-manifest/app) **[Required]** application namespace
+- [`@aws`](../../reference/project-manifest/aws) AWS specific configuration
+- [`@views`](../../reference/project-manifest/views) configure path to view source code
+- [`@shared`](../../reference/project-manifest/shared) configure path to shared source code
+- [`@macros`](../../reference/project-manifest/macros) modify generated CloudFormation
 
 ### Lambda resource definition
 
 These sections deal with Lambda functions and their event sources. Architect conventionally promotes one event source per function. Single responsibility functions are faster to deploy, easier to debug and secure to least privilege.
 
-- [`@http`](/docs/en/reference/app.arc/http) HTTP routes (API Gateway)
-- [`@events`](/docs/en/reference/app.arc/events) Event pub/sub (SNS)
-- [`@queues`](/docs/en/reference/app.arc/queues)  queues and handlers for them (SQS)
-- [`@scheduled`](/docs/en/reference/app.arc/scheduled) Invoke functions specified times (CloudWatch Events)
-- [`@ws`](/docs/en/reference/app.arc/ws) Web Socket functions (API Gateway)
+- [`@http`](../../reference/project-manifest/http) HTTP routes (API Gateway)
+- [`@events`](../../reference/project-manifest/events) Event pub/sub (SNS)
+- [`@queues`](../../reference/project-manifest/queues)  queues and handlers for them (SQS)
+- [`@scheduled`](../../reference/project-manifest/scheduled) Invoke functions specified times (CloudWatch Events)
+- [`@ws`](../../reference/project-manifest/ws) Web Socket functions (API Gateway)
 
 ### Persistence resource definition
 
 These pragmas represent persistence resources.
 
-- [`@static`](/docs/en/reference/app.arc/static) Bucket for hosting static assets (S3)
-- [`@tables`](/docs/en/reference/app.arc/tables) Database tables and trigger functions (DynamoDB)
-- [`@indexes`](/docs/en/reference/app.arc/indexes) Table global secondary indexes (DynamoDB)
+- [`@static`](../../reference/project-manifest/static) Bucket for hosting static assets (S3)
+- [`@tables`](../../reference/project-manifest/tables) Database tables and trigger functions (DynamoDB)
+- [`@indexes`](../../reference/project-manifest/indexes) Table global secondary indexes (DynamoDB)
 
 ## Example
 
