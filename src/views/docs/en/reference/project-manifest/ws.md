@@ -113,4 +113,4 @@ The functions created by the `@ws` pragma handle events from a WebSocket client.
 
 To publish a message to a WebSocket client you can use arc's runtime library `@architect/functions`' `ws.send` method. You can call this method from any of your application's functions.
 
-Docs: [node](/docs/en/reference/runtime-helpers/node.js#arc.ws) - [ruby](/docs/en/reference/runtime-helpers/ruby#arc.ws) - [python](/docs/en/reference/runtime-helpers/python#arc.ws)
+Docs: [Node.js](/docs/en/reference/runtime-helpers/node.js#arc.ws) - [Ruby](/docs/en/reference/runtime-helpers/ruby#arc.ws) - [Python](/docs/en/reference/runtime-helpers/python#arc.ws)

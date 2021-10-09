@@ -34,7 +34,7 @@ module.exports = {
   blockquote: [
     'mb-1',
     'p0',
-    'text-g8',
+    'text-g9',
     'bg-g1',
     'border-solid',
     'border-t0',
