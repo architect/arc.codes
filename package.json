@@ -41,7 +41,7 @@
   "dependencies": {
     "@architect/architect": "^9.1.0",
     "@architect/asap": "^4.0.0",
-    "@architect/eslint-config": "^2.0.1-RC.1",
+    "@architect/eslint-config": "^2.0.1",
     "@architect/functions": "^4.0.0",
     "@architect/inventory": "^2.0.4",
     "@architect/package": "^7.0.1",
