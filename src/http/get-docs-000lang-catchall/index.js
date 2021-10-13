@@ -86,9 +86,7 @@ async function handler (req) {
     highlight: await highlighter.forMarkdown()
   })
     .use(markdownClass, classMapping)
-    .use(markdownAnchor, {
-      permalinkSymbol: ' '
-    })
+    .use(markdownAnchor)
     .use(frontmatterParser, function (str) {
       frontmatter = yaml.load(str)
     })
