@@ -27,6 +27,7 @@ export default function TopNav () {
     col-start-1
     col-end-3
     text-g0
+    z1
   "
 >
   <a
