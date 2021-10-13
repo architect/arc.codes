@@ -1,33 +1,6 @@
 {
   "name": "@architect/arc.codes",
   "version": "3.6.2",
-  "architect": {
-    "app": "v8-arc-codes",
-    "aws": {
-      "region": "us-west-1",
-      "profile": "openjsf",
-      "bucket": "arc.codes-deploy",
-      "apigateway": "http"
-    },
-    "static": {
-      "folder": "public",
-      "fingerprint": true
-    },
-    "http": [
-      [
-        "get",
-        "/docs/:lang/*"
-      ],
-      [
-        "get",
-        "/api/package"
-      ],
-      [
-        "any",
-        "/*"
-      ]
-    ]
-  },
   "scripts": {
     "hydrate-shiki": "./scripts/hydrate-shiki-deps",
     "deploy": "./scripts/deploy",
