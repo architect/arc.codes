@@ -1,6 +1,6 @@
 {
   "name": "@architect/arc.codes",
-  "version": "3.6.2",
+  "version": "3.6.3",
   "scripts": {
     "hydrate-shiki": "./scripts/hydrate-shiki-deps",
     "deploy": "./scripts/deploy",
