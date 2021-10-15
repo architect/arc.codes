@@ -1,7 +1,8 @@
 // related docsearch config
 // https://github.com/algolia/docsearch-configs/blob/master/configs/arc.json
 
-export default `
+export default function Algolia (lang) {
+  return `
 <script src="https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.js"></script>
 <script>
 var docsearchParams = {
@@ -14,9 +15,11 @@ var docsearchParams = {
   // matching your search input
   inputSelector: '#docsearch',
   // Set debug to true to inspect the dropdown
-  debug: false
+  debug: false,
+  algoliaOptions: { 'facetFilters': ['lang:${lang}'] }
 }
 
 docsearch(docsearchParams);
 </script>
-  `
+`
+}

@@ -72,7 +72,7 @@ async function handler (req) {
         lang,
         scripts: [ '/index.js' ],
         state: { notFoundTerm: docName },
-        thirdparty: algolia,
+        thirdparty: algolia(lang),
         toc
       })
     }
@@ -112,7 +112,7 @@ async function handler (req) {
         '/components/arc-viewer.js',
         '/components/arc-tab.js'
       ],
-      thirdparty: algolia,
+      thirdparty: algolia(lang),
       title,
       toc
     })
