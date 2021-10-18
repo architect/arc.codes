@@ -16,7 +16,7 @@ var docsearchParams = {
   inputSelector: '#docsearch',
   // Set debug to true to inspect the dropdown
   debug: false,
-  algoliaOptions: { 'facetFilters': ['lang:${lang}'] }
+  // algoliaOptions: { 'facetFilters': ['lang:${lang}'] }
 }
 
 docsearch(docsearchParams);
