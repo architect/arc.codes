@@ -4,7 +4,7 @@
   "scripts": {
     "hydrate-shiki": "./scripts/hydrate-shiki-deps",
     "deploy": "./scripts/deploy",
-    "spellcheck": "cross-env npx spellchecker --config ./scripts/spellcheckerrc.json",
+    "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
     "lint": "eslint src --fix",
     "start": "sandbox",
     "test:unit:frontend": "tape -r esm 'test/frontend/**/*.js' | tap-spec",
@@ -20,6 +20,7 @@
     "@architect/package": "^7.1.1",
     "@architect/sandbox": "^4.1.1",
     "@architect/syntaxes": "github:architect/syntaxes#v1.0.1",
+    "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
     "@toycode/markdown-it-class": "^1.2.4",
     "eslint": "^8.0.0",
     "esm": "^3.2.25",

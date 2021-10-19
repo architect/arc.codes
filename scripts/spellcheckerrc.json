@@ -2,7 +2,10 @@
   "files": ["./src/views/docs/en/**/*.md"],
   "quiet": true,
   "noSuggestions": true,
-  "dictionaries": ["./scripts/dictionary.txt"],
+  "dictionaries": [
+    "./scripts/dictionary.txt",
+    "./node_modules/@architect/spellcheck-dictionary/dictionary.txt"
+  ],
   "plugins": [
     "spell",
     "indefinite-article",
