@@ -43,6 +43,7 @@ let dictionary = [
   'cd',
   'CDN',
   'CDNs',
+  'centric',
   'changelog',
   'Changelog',
   'cheatsheet',
