@@ -4,7 +4,7 @@ category: Architect
 description: Building applications with Architect
 sections:
   - "Excellent developer experience"
-  - "Cloud function-centric development"
+  - "Cloud function centric development"
   - "Local, offline development" # note: possible to work online with real infra
   - "Code sharing across functions"
   - "Automated dependency management"
