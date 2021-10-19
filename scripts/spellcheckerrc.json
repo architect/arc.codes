@@ -1,0 +1,20 @@
+{
+  "files": ["./src/views/docs/en/**/*.md"],
+  "quiet": true,
+  "noSuggestions": true,
+  "dictionaries": ["./scripts/dictionary.js"],
+  "plugins": [
+    "spell",
+    "indefinite-article",
+    "repeated-words",
+    "syntax-mentions",
+    "syntax-urls",
+    "frontmatter"
+  ],
+  "frontmatterKeys": [
+    "title",
+    "category",
+    "description",
+    "sections"
+  ]
+}
