@@ -1,4 +1,5 @@
 let dictionary = [
+  '.env',
   '.vimrc',
   '`build`ing',
   'ACM',
@@ -167,6 +168,8 @@ let dictionary = [
   'Lex',
   'lifecycle',
   'linter',
+  'localhost',
+  'localhost:3333',
   'LTS',
   'macOS',
   'Microservices',
