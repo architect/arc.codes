@@ -4,7 +4,7 @@
   "scripts": {
     "hydrate-shiki": "./scripts/hydrate-shiki-deps",
     "deploy": "./scripts/deploy",
-    "spellcheck": "cross-env npx spellchecker './src/views/docs/en/**/*.md' --no-suggestions -q -d ./scripts/dictionary.js --plugins spell indefinite-article repeated-words syntax-mentions syntax-urls frontmatter --frontmatter-keys title category description",
+    "spellcheck": "cross-env npx spellchecker --config ./scripts/spellcheckerrc.json",
     "lint": "eslint src --fix",
     "start": "sandbox",
     "test:unit:frontend": "tape -r esm 'test/frontend/**/*.js' | tap-spec",

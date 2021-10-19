@@ -1,6 +1,7 @@
 let dictionary = [
   '.env',
   '.vimrc',
+  '&rarr',
   '`build`ing',
   'ACM',
   'Alexa',
