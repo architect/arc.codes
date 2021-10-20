@@ -1,5 +1,5 @@
 export default function Head (props = {}) {
-  let { category, description, title } = props
+  let { category, description, lang = 'en', title } = props
   let descriptionContent = description || 'Architect documentation'
   let fullTitle = ''
   if (category && title)
@@ -52,6 +52,7 @@ export default function Head (props = {}) {
 
 <!-- Algolia -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css" />
+<meta name="docsearch:language" content="${lang}" />
 </head>
 `
 }
