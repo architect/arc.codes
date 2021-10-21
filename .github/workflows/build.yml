@@ -85,16 +85,16 @@ jobs:
         run: npx arc deploy --staging
         env:
           CI: true
-          AWS_ACCESS_KEY_ID: ${{ secrets.V8_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.V8_AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Production Deploy
         if: startsWith(github.ref, 'refs/tags/v')
         run: npx arc deploy --production
         env:
           CI: true
-          AWS_ACCESS_KEY_ID: ${{ secrets.V8_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.V8_AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Notify
         uses: sarisia/actions-status-discord@v1
