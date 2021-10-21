@@ -8,7 +8,7 @@ Define HTTP routes in API Gateway with Lambda handler functions.
 
 ## Syntax
 
-Each route is made up of by two parts: `verb` & `path`
+Each route is made of two parts: `verb` & `path`
 
 - HTTP Verb
   - `get`
