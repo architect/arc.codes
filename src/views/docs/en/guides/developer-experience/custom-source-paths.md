@@ -13,6 +13,13 @@ Define resources in a more verbose format to configure custom Lambda source dire
 
 ## Example
 
+<arc-viewer default-tab=arc>
+<div slot=contents class=bg-g4>
+
+<arc-tab label=arc>
+<h5>arc</h5>
+<div slot=content>
+
 ```arc
 @http
 # simple
@@ -29,7 +36,7 @@ an-event
 
 # verbose
 another-event
-  src foo
+  src whatever/dir/you/want
 
 @scheduled
 # simple
@@ -38,7 +45,106 @@ a-schedule rate(1 day)
 # verbose
 another-schedule
   rate 1 day
-  src something
+  src whatever/dir/you/want
 ```
+</div>
+</arc-tab>
 
+<arc-tab label=json>
+<h5>json</h5>
+<div slot=content>
 
+```json
+{
+  "http": [
+    ["get", "/foo"],
+    {
+      "/bar": {
+        "method": "get",
+        "src": "whatever/dir/you/want"
+      }
+    }
+  ],
+  "events": [
+    "an-event",
+    {
+      "another-event": {
+        "src": "whatever/dir/you/want"
+      }
+    }
+  ],
+  "scheduled": [
+    ["a-schedule", "rate(1 day)"],
+    {
+      "another-schedule": {
+        "rate": [
+          1,
+          "day"
+        ],
+        "src": "whatever/dir/you/want"
+      }
+    }
+  ]
+}
+```
+</div>
+</arc-tab>
+
+<arc-tab label=yaml>
+<h5>yaml</h5>
+<div slot=content>
+
+```yaml
+---
+http:
+# simple
+- [ "get", "/foo" ]
+
+# verbose
+- "/bar":
+  method: "get"
+  src: "whatever/dir/you/want"
+
+events:
+# simple
+- "an-event"
+
+# verbose
+- "another-event":
+  src: "whatever/dir/you/want"
+
+scheduled:
+# simple
+- [ "a-schedule", "rate(1, day)" ]
+
+# verbose
+- "another-schedule":
+  rate: [1, "day"]
+  src: "whatever/dir/you/want"
+```
+</div>
+</arc-tab>
+
+<arc-tab label=toml>
+<h5>toml</h5>
+<div slot=content>
+
+```toml
+# TOML doesn't allow mixed types in an array
+# "simple" entries are omitted
+
+[http."/bar"]
+method = "get"
+src = "whatever/dir/you/want"
+
+[events."another-event"]
+src = "whatever/dir/you/want"
+
+[scheduled."another-schedule"]
+src = "whatever/dir/you/want"
+```
+</div>
+</arc-tab>
+
+</div>
+</arc-viewer>

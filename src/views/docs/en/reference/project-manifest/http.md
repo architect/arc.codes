@@ -52,7 +52,7 @@ get /pages
 get /pages/:dateID
 get /contact
 post /contact
-# verbose custom settings:
+# verbose custom source
 /weather
   method get
   src custom/source
@@ -68,14 +68,39 @@ post /contact
 {
   "app": "myapp",
   "http": [
-    ["get", "/"].
+    ["get", "/"],
     ["get", "/pages"],
     ["get", "/pages/:dateID"],
     ["get", "/contact"],
     ["post", "/contact"],
-    ["get", "/weather", "custom/source"]
+    {
+      "/weather": {
+        "method": "get",
+        "src": "custom/source",
+      }
+    },
   ]
 }
+```
+</div>
+</arc-tab>
+
+<arc-tab label=yaml>
+<h5>yaml</h5>
+<div slot=content>
+
+```yaml
+app: myapp
+http:
+- get: "/"
+- get: "/pages"
+- get: "/pages/:dateID"
+- get: "/contact"
+- post: "/contact"
+# verbose custom source
+- "/weather":
+    method: get
+    src: "custom/source"
 ```
 </div>
 </arc-tab>
@@ -91,29 +116,14 @@ http=[
   ["get", "/pages"],
   ["get", "/pages/:dateID"],
   ["get", "/contact"],
-  ["post", "/contact"],
-  ["get", "/weather", "custom/source"]
+  ["post", "/contact"]
 ]
-```
-</div>
-</arc-tab>
 
-<arc-tab label=yaml>
-<h5>yaml</h5>
-<div slot=content>
-
-```yaml
----
-app: myapp
-http:
-- get: "/"
-- get: "/pages"
-- get: "/pages/:dateID"
-- get: "/contact"
-- post: "/contact"
-- /weather:
-    method: get
-    src: custom/source
+# TOML doesn't allow mixed types in an array.
+# Theoretically a "table" entry would look like:
+[http."/weather"]
+method = "get"
+src = "custom/source"
 ```
 </div>
 </arc-tab>
@@ -126,7 +136,7 @@ Which utilizes the following project directory structure:
 ```bash
 /
 ├── custom
-│   └── weather/
+│   └── source/
 ├── src
 │   └── http
 │       ├── get-index/
