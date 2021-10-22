@@ -5,6 +5,19 @@ const redirects = {
 
   '/examples': '/docs/en/guides/examples',
 
+  // Canonical pragma paths
+  '/@app': '/docs/en/reference/project-manifest/app',
+  '/@aws': '/docs/en/reference/project-manifest/aws',
+  '/@events': '/docs/en/reference/project-manifest/events',
+  '/@http': '/docs/en/reference/project-manifest/http',
+  '/@indexes': '/docs/en/reference/project-manifest/indexes',
+  '/@proxy': '/docs/en/reference/project-manifest/proxy',
+  '/@queues': '/docs/en/reference/project-manifest/queues',
+  '/@scheduled': '/docs/en/reference/project-manifest/scheduled',
+  '/@static': '/docs/en/reference/project-manifest/static',
+  '/@tables': '/docs/en/reference/project-manifest/tables',
+  '/@ws': '/docs/en/reference/project-manifest/ws',
+
   // Intro
   // round 1: Q1 2021
   '/intro/philosophy': '/docs/en/guides/get-started/why-architect',
@@ -127,14 +140,15 @@ const redirects = {
 }
 
 module.exports = async function redirect (req) {
+  const path = req.requestContext.http.path
   const isGet = req.requestContext.http.method.toLowerCase() === 'get'
-  const isPath = Object.keys(redirects).includes(req.requestContext.http.path)
+  const isPath = Object.keys(redirects).includes(path)
 
   if (isGet && isPath) {
     return {
       statusCode: 301,
       headers: {
-        location: redirects[req.requestContext.http.path]
+        location: redirects[path]
       }
     }
   }
