@@ -11,11 +11,16 @@ const redirects = {
   '/@events': '/docs/en/reference/project-manifest/events',
   '/@http': '/docs/en/reference/project-manifest/http',
   '/@indexes': '/docs/en/reference/project-manifest/indexes',
+  '/@macros': '/docs/en/reference/project-manifest/macros',
+  '/@plugins': '/docs/en/reference/project-manifest/plugins',
   '/@proxy': '/docs/en/reference/project-manifest/proxy',
   '/@queues': '/docs/en/reference/project-manifest/queues',
   '/@scheduled': '/docs/en/reference/project-manifest/scheduled',
+  '/@shared': '/docs/en/reference/project-manifest/shared',
   '/@static': '/docs/en/reference/project-manifest/static',
+  '/@streams': '/docs/en/reference/project-manifest/tables', // TODO: update with new streams doc
   '/@tables': '/docs/en/reference/project-manifest/tables',
+  '/@views': '/docs/en/reference/project-manifest/views',
   '/@ws': '/docs/en/reference/project-manifest/ws',
 
   // Intro
