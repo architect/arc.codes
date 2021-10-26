@@ -76,6 +76,7 @@ friyay-only="cron(0 15 ? * FRI *)"
 <div slot=content>
 
 ```yaml
+---
 app: myapp
 scheduled:
   - daily-update-buddy: rate(1 day)

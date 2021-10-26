@@ -67,6 +67,7 @@ src="path/to/code"
 <div slot=content>
 
 ```yaml
+---
 app: myapp
 shared:
   - src: path/to/code

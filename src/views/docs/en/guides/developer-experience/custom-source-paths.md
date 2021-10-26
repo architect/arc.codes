@@ -95,6 +95,7 @@ another-schedule
 <div slot=content>
 
 ```yaml
+---
 app: my-arc-app
 
 http:

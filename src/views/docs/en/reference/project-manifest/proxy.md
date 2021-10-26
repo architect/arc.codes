@@ -84,6 +84,7 @@ production="https://example.biz"
 <div slot=content>
 
 ```yaml
+---
 app: myapp
 http:
 - get: "/v2/*"

@@ -90,6 +90,7 @@ post /contact
 <div slot=content>
 
 ```yaml
+---
 app: myapp
 http:
 - get: "/"
@@ -120,7 +121,8 @@ http=[
 ]
 
 # TOML doesn't allow mixed types in an array.
-# Theoretically a "table" entry would look like:
+# Theoretically a "table" entry with a custom source would look like:
+[[http]]
 [http."/weather"]
 method = "get"
 src = "custom/source"

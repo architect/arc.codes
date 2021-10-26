@@ -71,6 +71,7 @@ queues=[
 <div slot=content>
 
 ```yaml
+---
 app: myapp
 queues:
 - convert-image
