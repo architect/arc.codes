@@ -21,31 +21,32 @@ Define resources in a more verbose format to configure custom Lambda source dire
 <div slot=content>
 
 ```arc
+@app
+my-arc-app
+
 @http
 # simple
 get /foo
-
 # verbose
 /bar
   method get
-  src whatever/dir/you/want
+  src whatever/http/dir/you/want
 
 @events
 # simple
 an-event
-
 # verbose
 another-event
-  src whatever/dir/you/want
+  src whatever/events/dir/you/want
 
 @scheduled
 # simple
 a-schedule rate(1 day)
-
 # verbose
 another-schedule
   rate 1 day
-  src whatever/dir/you/want
+  src whatever/scheduled/dir/you/want
+
 ```
 </div>
 </arc-tab>
@@ -56,12 +57,13 @@ another-schedule
 
 ```json
 {
+  "app": "my-arc-app",
   "http": [
     ["get", "/foo"],
     {
       "/bar": {
         "method": "get",
-        "src": "whatever/dir/you/want"
+        "src": "whatever/http/dir/you/want"
       }
     }
   ],
@@ -69,23 +71,21 @@ another-schedule
     "an-event",
     {
       "another-event": {
-        "src": "whatever/dir/you/want"
+        "src": "whatever/events/dir/you/want"
       }
     }
   ],
-  "scheduled": [
-    ["a-schedule", "rate(1 day)"],
-    {
-      "another-schedule": {
-        "rate": [
-          1,
-          "day"
-        ],
-        "src": "whatever/dir/you/want"
-      }
+  "scheduled": {
+    "a-schedule": {
+      "rate": [1, "day"]
+    },
+    "another-schedule": {
+      "rate": [1, "day"],
+      "src": "whatever/schedueld/dir/you/want"
     }
-  ]
+  }
 }
+
 ```
 </div>
 </arc-tab>
@@ -95,32 +95,32 @@ another-schedule
 <div slot=content>
 
 ```yaml
----
+app: my-arc-app
+
 http:
 # simple
-- [ "get", "/foo" ]
-
+- get: "/foo"
 # verbose
 - "/bar":
-  method: "get"
-  src: "whatever/dir/you/want"
+    method: "get"
+    src: "whatever/http/dir/you/want"
 
 events:
 # simple
 - "an-event"
-
 # verbose
 - "another-event":
-  src: "whatever/dir/you/want"
+    src: "whatever/events/dir/you/want"
 
 scheduled:
 # simple
-- [ "a-schedule", "rate(1, day)" ]
-
+- "a-schedule":
+    rate: [1, "day"]
 # verbose
 - "another-schedule":
-  rate: [1, "day"]
-  src: "whatever/dir/you/want"
+    rate: [1, "day"]
+    src: "whatever/scheduled/dir/you/want"
+
 ```
 </div>
 </arc-tab>
@@ -130,18 +130,39 @@ scheduled:
 <div slot=content>
 
 ```toml
-# TOML doesn't allow mixed types in an array
-# "simple" entries are omitted
+app = "my-arc-app"
 
+# TOML doesn't allow mixed types in an array
+# "simple" entries are expanded
+
+# simple
+[[http]]
+[http."/foo"]
+method = "get"
+# verbose
+[[http]]
 [http."/bar"]
 method = "get"
-src = "whatever/dir/you/want"
+src = "whatever/http/dir/you/want"
 
+# simple
+[[events]]
+[events."an-event"]
+# verbose
+[[events]]
 [events."another-event"]
-src = "whatever/dir/you/want"
+src = "whatever/events/dir/you/want"
 
+# simple
+[[scheduled]]
+[scheduled."a-schedule"]
+rate = ["1", "day"]
+[[scheduled]]
+# verbose
 [scheduled."another-schedule"]
-src = "whatever/dir/you/want"
+rate = ["1", "day"]
+src = "whatever/scheduled/dir/you/want"
+
 ```
 </div>
 </arc-tab>
