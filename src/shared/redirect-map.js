@@ -1,9 +1,7 @@
-// redirect known v6 arc urls to v8 and then to v9
-const redirects = {
+// these are soft redirects, not forever/caonincal
+const tempRedirects = {
   // tmp until marketing landing page work done
   '/': '/docs/en/guides/get-started/quickstart',
-
-  '/examples': '/docs/en/guides/examples',
 
   // Canonical pragma paths
   '/app':  '/docs/en/reference/project-manifest/app',
@@ -38,6 +36,11 @@ const redirects = {
   '/@views': '/docs/en/reference/project-manifest/views',
   '/ws':  '/docs/en/reference/project-manifest/ws',
   '/@ws': '/docs/en/reference/project-manifest/ws',
+}
+
+// redirect known v6 arc urls to v8 and then to v9
+const permanentRedirects = {
+  '/examples': '/docs/en/guides/examples',
 
   // Intro
   // round 1: Q1 2021
@@ -161,16 +164,23 @@ const redirects = {
 }
 
 module.exports = async function redirect (req) {
-  const path = req.requestContext.http.path
+  const reqPath = req.requestContext.http.path
   const isGet = req.requestContext.http.method.toLowerCase() === 'get'
-  const isPath = Object.keys(redirects).includes(path)
 
-  if (isGet && isPath) {
+  if (isGet && (tempRedirects[reqPath] || permanentRedirects[reqPath])) {
+    let env = process.env.ARC_ENV
+    let url = (stage, path) => `https://${stage}arc.codes${path}`
+
+    let location = tempRedirects[reqPath] || permanentRedirects[reqPath]
+    if (env === 'staging') location = url('staging.', location)
+    if (env === 'production') location = url('', location)
+
     return {
-      statusCode: 301,
+      statusCode: tempRedirects[reqPath] ? 302 : 301,
       headers: {
-        location: redirects[path]
+        location
       }
     }
   }
+  return
 }
