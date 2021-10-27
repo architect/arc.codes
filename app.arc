@@ -1,14 +1,12 @@
 @app
-v8-arc-codes
+arc-codes
 
 @aws
-region us-west-1
+region us-west-2
 profile openjsf
-bucket arc.codes-deploy
-apigateway http
+architecture arm64
 
 @static
-folder public
 fingerprint true
 
 @http

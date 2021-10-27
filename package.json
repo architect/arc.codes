@@ -12,17 +12,11 @@
     "test": "npm run spellcheck && npm run lint && npm run test:unit:frontend && npm run test:unit:backend"
   },
   "dependencies": {
-    "@architect/architect": "^9.1.0",
     "@architect/asap": "^4.1.0",
-    "@architect/eslint-config": "^2.0.1",
     "@architect/functions": "^4.0.0",
     "@architect/inventory": "^2.1.0",
     "@architect/package": "^7.1.1",
-    "@architect/sandbox": "^4.1.1",
-    "@architect/syntaxes": "github:architect/syntaxes#v1.0.1",
-    "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
     "@toycode/markdown-it-class": "^1.2.4",
-    "eslint": "^8.0.0",
     "esm": "^3.2.25",
     "js-yaml": "^4.1.0",
     "markdown-it": "^12.2.0",
@@ -30,12 +24,18 @@
     "markdown-it-front-matter": "^0.2.3",
     "onigasm": "^2.2.5",
     "shiki": "^0.9.12",
-    "slugify": "^1.6.1",
+    "slugify": "^1.6.1"
+  },
+  "devDependencies": {
+    "@architect/architect": "^9.2.0",
+    "@architect/eslint-config": "^2.0.1",
+    "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
+    "@architect/syntaxes": "github:architect/syntaxes#v1.0.1",
+    "eslint": "^8.0.0",
     "spellchecker-cli": "^4.8.0",
     "tap-spec": "^5.0.0",
     "tape": "^5.3.1",
-    "tiny-json-http": "^7.3.0",
-    "vscode-textmate": "^5.4.0"
+    "tiny-json-http": "^7.3.0"
   },
   "eslintConfig": {
     "extends": "@architect/eslint-config"
