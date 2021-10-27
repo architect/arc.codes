@@ -78,7 +78,7 @@ jobs:
           node-version: 14
 
       - name: Install
-        run: npm i --production
+        run: npm i
 
       - name: Staging Deploy
         if: github.ref == 'refs/heads/main'
