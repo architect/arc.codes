@@ -40,6 +40,7 @@ html {
 .left-sidebar {
   /* Hide Sidebar off screen in mobile */
   left: calc(var(--sidebar) * -1);
+  z-index: 1;
 }
 .table-fixed {
   table-layout: fixed;
