@@ -53,6 +53,7 @@ const permanentRedirects = {
   '/quickstart': '/docs/en/guides/get-started/quickstart',
   '/quickstart/install': '/docs/en/guides/get-started/quickstart',
   '/quickstart/layout': '/docs/en/guides/get-started/project-layout',
+  '/quickstart/what-next': '/docs/en/guides/get-started/quickstart',
 
   // Primitives
   // round 1: Q1 2021
@@ -72,6 +73,7 @@ const permanentRedirects = {
   '/guides/testing': '/docs/en/guides/developer-experience/local-development',
   '/guides/project-manifest': '/docs/en/guides/get-started/project-layout',
   '/guides/share-code': '/docs/en/guides/developer-experience/sharing-code',
+  '/guides/sharing-common-code': '/docs/en/guides/developer-experience/sharing-code',
   '/guides/custom-file-paths': '/docs/en/guides/developer-experience/custom-source-paths',
 
   // Reference > Project Manifest
