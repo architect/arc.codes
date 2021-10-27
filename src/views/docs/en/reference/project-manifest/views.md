@@ -18,7 +18,7 @@ You can also specify only the routes you want views copied to with the `@views` 
 This `app.arc` file defines specific `@http` functions to copy `src/views/` to:
 
 <arc-viewer default-tab=arc>
-<div slot=contents class=bg-g4>
+<div slot=contents>
 
 <arc-tab label=arc>
 <h5>arc</h5>

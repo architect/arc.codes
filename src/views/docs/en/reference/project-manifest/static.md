@@ -18,7 +18,7 @@ Configure the static asset S3 bucket.
 This `app.arc` file defines a static bucket:
 
 <arc-viewer default-tab=arc>
-<div slot=contents class=bg-g4>
+<div slot=contents>
 
 <arc-tab label=arc>
 <h5>arc</h5>

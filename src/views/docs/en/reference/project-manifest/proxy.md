@@ -16,7 +16,7 @@ Defines a URL for API Gateway to forward all requests by default. Override with 
 The following configuration file defines a `@proxy` for production that will handle requests for routes not defined in the `@http` section.
 
 <arc-viewer default-tab=arc>
-<div slot=contents class=bg-g4>
+<div slot=contents>
 
 <arc-tab label=arc>
 <h5>arc</h5>

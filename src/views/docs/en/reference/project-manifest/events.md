@@ -18,7 +18,7 @@ category: app.arc
 These configuration examples show how to define events:
 
 <arc-viewer default-tab=arc>
-<div slot=contents class=bg-g4>
+<div slot=contents>
 
 <arc-tab label=arc>
 <h5>arc</h5>

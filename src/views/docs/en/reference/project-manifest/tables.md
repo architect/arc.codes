@@ -63,7 +63,7 @@ DynamoDB has a feature which lets you [recover your data][recovery] to any point
 This `app.arc` file defines two database tables:
 
 <arc-viewer default-tab=arc>
-<div slot=contents class=bg-g4>
+<div slot=contents>
 
 <arc-tab label=arc>
 <h5>arc</h5>

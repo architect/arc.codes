@@ -36,7 +36,7 @@ If you have AWS exports in your `.bashrc` and `@aws` specified in your `app.arc`
 For example, to deploy to the northern California AWS AZ with your AWS `work` profile's credentials, use:
 
 <arc-viewer default-tab=arc>
-<div slot=contents class=bg-g4>
+<div slot=contents>
 
 <arc-tab label=arc>
 <h5>arc</h5>

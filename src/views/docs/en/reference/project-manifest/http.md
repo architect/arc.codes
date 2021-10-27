@@ -31,7 +31,7 @@ Each route is made of two parts: `verb` & `path`
 These configuration examples show how to define `@http` routes:
 
 <arc-viewer default-tab=arc>
-<div slot=contents class=bg-g4>
+<div slot=contents>
 
 <arc-tab label=arc>
 <h5>arc</h5>

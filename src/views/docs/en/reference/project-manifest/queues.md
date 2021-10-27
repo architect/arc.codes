@@ -18,7 +18,7 @@ Define SQS topics with Lambda handler functions.
 This `app.arc` file defines two `@queues`:
 
 <arc-viewer default-tab=arc>
-<div slot=contents class=bg-g4>
+<div slot=contents>
 
 <arc-tab label=arc>
 <h5>arc</h5>

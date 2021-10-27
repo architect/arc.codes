@@ -11,7 +11,7 @@ Extend the functionality of your Architect app with standard CloudFormation. The
 These example configuration files declare a macro saved to `src/macros/my-custom-macro.js`
 
 <arc-viewer default-tab=arc>
-<div slot=contents class=bg-g4>
+<div slot=contents>
 
 <arc-tab label=arc>
 <h5>arc</h5>

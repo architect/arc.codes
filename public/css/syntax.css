@@ -23,6 +23,10 @@
   background-color: var(--g9);
 }
 
+.docs div[slot='content'] pre {
+  border-radius: 0 0.3rem 0.3rem 0.3rem;
+}
+
 /* code copy button */
 .docs pre button.icon {
   width: 1rem;

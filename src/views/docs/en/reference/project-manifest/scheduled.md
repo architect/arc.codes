@@ -22,7 +22,7 @@ Define EventBridge schedule expressions with Lambda handler functions.
 These configuration examples show how to define scheduled functions:
 
 <arc-viewer default-tab=arc>
-<div slot=contents class=bg-g4>
+<div slot=contents>
 
 <arc-tab label=arc>
 <h5>arc</h5>

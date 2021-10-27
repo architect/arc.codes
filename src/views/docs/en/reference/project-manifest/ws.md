@@ -11,7 +11,7 @@ Define WebSocket endpoint and Lambda handler functions.
 This `app.arc` file defines both HTTP and WebSocket endpoints:
 
 <arc-viewer default-tab=arc>
-<div slot=contents class=bg-g4>
+<div slot=contents>
 
 <arc-tab label=arc>
 <h5>arc</h5>
