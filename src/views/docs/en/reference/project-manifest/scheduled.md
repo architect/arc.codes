@@ -17,6 +17,8 @@ Define EventBridge schedule expressions with Lambda handler functions.
 - Interval
   - A valid `rate` or `cron` expression ([more info here](https://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html))
 
+Scheduled functions can use more verbose configuration to allow for [custom source paths](../../guides/developer-experience/custom-source-paths) in your project. Provide a `rate` or `cron` and `src` for each event.
+
 ### Example
 
 These configuration examples show how to define scheduled functions:
@@ -35,6 +37,10 @@ myapp
 @scheduled
 daily-update-buddy rate(1 day)
 friyay-only cron(0 15 ? * FRI *)
+# verbose custom source:
+annual-review
+  rate 1 year
+  src custom/source
 ```
 
 </div>
@@ -49,23 +55,12 @@ friyay-only cron(0 15 ? * FRI *)
   "app": "myapp",
   "scheduled": {
     "daily-update-buddy": "rate(1 day)",
-    "friyay-only": "cron(0 15 ? * FRI *)" }
+    "friyay-only": "cron(0 15 ? * FRI *)" },
+    "annual-review": {
+      "rate": [1, "year"],
+      "src": "whatever/schedueld/dir/you/want"
+    }
 }
-```
-
-</div>
-</arc-tab>
-
-<arc-tab label=toml>
-<h5>toml</h5>
-<div slot=content>
-
-```toml
-app="myapp"
-
-[scheduled]
-daily-update-buddy="rate(1 day)"
-friyay-only="cron(0 15 ? * FRI *)"
 ```
 
 </div>
@@ -81,6 +76,32 @@ app: myapp
 scheduled:
   - daily-update-buddy: rate(1 day)
   - friyay-only: cron(0 15 ? * FRI *)
+  # verbose custom source:
+  - "annual-review":
+      rate: [1, "year"]
+      src: "custom/source"
+```
+
+</div>
+</arc-tab>
+
+<arc-tab label=toml>
+<h5>toml</h5>
+<div slot=content>
+
+```toml
+app="myapp"
+
+[scheduled]
+daily-update-buddy="rate(1 day)"
+friyay-only="cron(0 15 ? * FRI *)"
+
+# TOML doesn't allow mixed types in an array.
+# Theoretically a "table" entry with a custom source would look like:
+
+[scheduled."annual-review"]
+rate = ["1", "year"]
+src = "custom/source"
 ```
 
 </div>
@@ -94,6 +115,8 @@ Which generates the following scaffolding:
 
 ```bash
 /
+├── custom
+│   └── source/
 ├── src/
 │   └── scheduled/
 │       ├── daily-update-buddy/

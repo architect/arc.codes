@@ -13,7 +13,7 @@ category: app.arc
   - Dashes are allowed; underscores are not allowed
   - Must begin with a letter
 
-Events can use more verbose configuration to allow for [custom source paths](../../guides/developer-experience/custom-source-paths) in your project. Provide a  `src` for each event:
+Events can use more verbose configuration to allow for [custom source paths](../../guides/developer-experience/custom-source-paths) in your project. Provide a  `src` for each event.
 
 ## Example
 
@@ -33,7 +33,7 @@ myapp
 @events
 hit-counter
 likes
-# verbose custom source
+# verbose custom source:
 custom-webhook
   src custom/source
 
@@ -72,7 +72,7 @@ app: "myapp"
 events:
 - hit-counter
 - likes
-# verbose custom source
+# verbose custom source:
 - "custom-webhook":
     src: "custom/source"
 ```

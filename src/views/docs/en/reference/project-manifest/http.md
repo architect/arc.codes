@@ -52,7 +52,7 @@ get /pages
 get /pages/:dateID
 get /contact
 post /contact
-# verbose custom source
+# verbose custom source:
 /weather
   method get
   src custom/source
@@ -98,7 +98,7 @@ http:
 - get: "/pages/:dateID"
 - get: "/contact"
 - post: "/contact"
-# verbose custom source
+# verbose custom source:
 - "/weather":
     method: get
     src: "custom/source"
