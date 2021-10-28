@@ -14,9 +14,9 @@ Define AWS specific configuration.
   - Can also be specified in `AWS_PROFILE` environment variable
   - Required to deploy to AWS
 - `runtime`: Lambda runtime, can be [an explicit environment](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) or a runtime alias:
-  - Explicit runtime: `nodejs14.x` (default), `nodejs12.x`, `python3.9`, `python3.8`, `ruby2.7`.
+  - Explicit runtime: `nodejs14.x` (default), `nodejs12.x`, `python3.9`, `python3.8`, `ruby2.7`.  
   Unsupported locally with [Sandbox](../cli/sandbox): `go1.x`, `dotnetcore3.1`, `java11`, `java8`.
-  - Simple runtime alias: `'node`, `rb`, `py`, `java`, `go`, `.net`, [and other variants](https://github.com/architect/lambda-runtimes/blob/cad3b158968805a01103e47c08da48132620594e/cjs/index.js#L70).
+  - Simple runtime alias: `'node`, `rb`, `py`, `java`, `go`, `.net`, [and other variants](https://github.com/architect/lambda-runtimes/blob/cad3b158968805a01103e47c08da48132620594e/cjs/index.js#L70).  
   Aliases always default to the latest version of the matched alias: `ruby` => `ruby2.7`.
 - `bucket`: bucket (in same region) for CloudFormation deployment artifacts
   - If not specified, a secure deployment bucket will be auto-created for your app
