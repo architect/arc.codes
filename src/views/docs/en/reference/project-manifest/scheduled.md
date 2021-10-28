@@ -78,7 +78,9 @@ scheduled:
   - friyay-only: cron(0 15 ? * FRI *)
   # verbose custom source:
   - "annual-review":
-      rate: [1, "year"]
+      rate:
+        - 1,
+        - year
       src: "custom/source"
 ```
 

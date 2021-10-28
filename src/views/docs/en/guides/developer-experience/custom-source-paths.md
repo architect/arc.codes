@@ -14,7 +14,7 @@ Define resources in a more verbose format to configure custom Lambda source dire
 ## Example
 
 <arc-viewer default-tab=arc>
-<div slot=contents class=bg-g4>
+<div slot=contents>
 
 <arc-tab label=arc>
 <h5>arc</h5>
@@ -116,10 +116,14 @@ events:
 scheduled:
 # simple
 - "a-schedule":
-    rate: [1, "day"]
+    rate:
+      - 1
+      - day
 # verbose
 - "another-schedule":
-    rate: [1, "day"]
+    rate:
+      - 1
+      - day
     src: "whatever/scheduled/dir/you/want"
 
 ```
