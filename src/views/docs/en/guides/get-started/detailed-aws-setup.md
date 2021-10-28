@@ -1,7 +1,7 @@
 ---
 title: Detailed AWS setup
 category: Get started
-description: Settingup, installing, and working with Architect and AWS.
+description: Setting up, installing, and working with Architect and AWS.
 ---
 
 > To work locally all you need is [Node](https://nodejs.org), any additional [supported runtimes](#runtime-environments) you plan to use, and the [Architect CLI](#install-architect).
