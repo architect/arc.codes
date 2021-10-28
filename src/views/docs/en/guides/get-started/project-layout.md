@@ -180,6 +180,7 @@ likes
 <div slot="content">
 
 ```yaml
+---
 app: "hello"
 static:
   fingerprint: true
