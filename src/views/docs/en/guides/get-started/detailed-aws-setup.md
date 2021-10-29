@@ -1,55 +1,51 @@
 ---
-title: Detailed setup
+title: Detailed AWS setup
 category: Get started
-description: Setting up and installing Architect.
+description: Setting up, installing, and working with Architect and AWS.
 ---
 
-> To work locally all you need is [Node](https://nodejs.org), any additional [supported runtimes](#supported-runtimes) you plan to use, and the [Architect CLI](#install-architect).
+> To work locally all you need is [Node](https://nodejs.org), any additional [supported runtimes](#runtime-environments) you plan to use, and the [Architect CLI](#install-architect).
 
 ## AWS deployment requirements
 
 1. [Node](https://nodejs.org) for Architect
 2. [Python](https://www.python.org) for the AWS CLI
-3. Any additional [supported runtimes](#supported-runtimes) you plan to use
+3. Any additional [supported runtimes](#runtime-environments) you plan to use
 4. [AWS CLI](#aws-cli)
 5. [AWS credentials](#credentials)
 6. [Architect CLI](#install-architect)
 
 ---
 
-### Supported runtimes
+### Runtime Environments
 
 Architect supports the following runtime versions:
 
-- Node.js `14.x` using `npm`
-- Deno `1.6.x`
-- Ruby `2.5` using `bundle`
-- Python `3.8` using `pip3`
+- **Node.js**: `14.x` (default) using `npm`
+- **Ruby**: `2.7` using `bundle`
+- **Python**: `3.9`, `3.8`, `3.7`, and `3.6` using `pip3`
+- **Deno**: `1.6.x` ([under development](../../reference/runtime-helpers/deno))
 
-> Working locally with the Architect `sandbox` requires target runtimes to be available in your `$PATH`.
+> ⚠️  Working locally with the Architect `sandbox` requires target runtimes to be available in your `$PATH`.
 
-To change the default runtime add it to the `app.arc` under the `@aws` pragma:
+Additionally, standard AWS managed runtimes are supported in live infra, but not while working locally with [Sandbox](../../reference/cli/sandbox) (at present):
+
+- **Go**: `1.x`
+- **.NET**: `3.1`
+- **Java**: `11`, and `8`
+
+Architect also supports _any custom runtime_ in live infra using either [Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) or [Lambda container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html).
+
+Change a project's default runtime by specifying [an explicit environment](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) or an alias in `app.arc` with [the `@aws` pragma](../../reference/project-manifest/aws).
+
+#### Example
 
 ```arc
-# Valid runtimes:
-# - nodejs14.x (default)
-# - deno
-# - python3.8
-# - ruby2.5
-
 @aws
 runtime python3.8
 ```
 
-> This setting can be overridden on a function-by-function basis with [`config.arc`](/docs/en/reference/configuration/function-config).
-
-Architect supports the following standard AWS managed runtimes in live infra, but not while working locally (at present):
-
-- Go: `1.x`,
-- .NET: `2.1`
-- Java: `8`
-
-Architect can support _any custom runtime_ in live infra using either [Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) or [Lambda container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html).
+> ℹ️  This setting can be overridden on a function-by-function basis with [`config.arc`](../../reference/configuration/function-config).
 
 ---
 

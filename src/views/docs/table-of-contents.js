@@ -27,7 +27,7 @@ let Guides = [
           'Dreamhost',
           'GoDaddy',
           'Namecheap',
-          'One'
+          'One',
         ]
       }
     ],
@@ -36,7 +36,7 @@ let Guides = [
       'Plugins',
     ]
   },
-  'Examples'
+  'Examples',
 ]
 
 let Reference = [ {
@@ -54,7 +54,7 @@ let Reference = [ {
     '@static',
     '@tables',
     '@views',
-    '@ws'
+    '@ws',
   ],
   'Configuration': [
     'Function config',
@@ -70,9 +70,9 @@ let Reference = [ {
   ],
   'Runtime helpers': [
     'Node.js',
-    'Deno',
     'Ruby',
-    'Python'
+    'Python',
+    'Deno',
   ],
 } ]
 
@@ -87,5 +87,5 @@ let About = [
 module.exports = {
   Guides,
   Reference,
-  About
+  About,
 }

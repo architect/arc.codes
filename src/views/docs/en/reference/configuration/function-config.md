@@ -12,9 +12,9 @@ sections:
   - 'architecture'
 ---
 
-Configure individual Lambda function properties (e.g. `src/http/get-index/config.arc`) with the `@aws` pragma and the following properties:
+Configure individual Lambda function properties (e.g. `src/http/get-index/config.arc`) with [the `@aws` pragma](../project-manifest/aws) and the following properties:
 
-- [`runtime`](#runtime) - `nodejs14.x` (default), `deno`, `python3.7`, `python3.6`, or `ruby.5`, etc.
+- [`runtime`](#runtime) - string, Lambda runtime or alias: `nodejs14.x` (default), `python3.7`, `dotnetcore3.1`, `node`, `py`, `.net`, etc.
 - [`memory`](#memory) - number, between `128`MB and `3008`MB in 64 MB increments.
 - [`timeout`](#timeout) - number, in seconds (max `900`)
 - [`concurrency`](#concurrency) - number, `0` to AWS account maximum (if not present, concurrency is unthrottled)
@@ -28,7 +28,7 @@ Configure individual Lambda function properties (e.g. `src/http/get-index/config
 
 ```arc
 @aws
-runtime python3.7
+runtime ruby
 memory 256
 timeout 3
 concurrency 1
@@ -44,22 +44,18 @@ Read more about the [Lambda limits](https://docs.aws.amazon.com/lambda/latest/dg
 
 Configure Lambda function `runtime`:
 
-- `nodejs14.x` (default)
-- `deno`
-- `python3.8`
-- `ruby2.5`
+- `nodejs14.x` (default), `nodejs12.x`, `python3.9`, `ruby2.7`
+- Unsupported by Sandbox locally: `dotnetcore3.1`, `go1.x`, `java11`
+- Or a runtime alias: `nodejs`, `python`, `ruby`, `.net`, `go`,  `java`
+  - Aliases always default to the latest version of the matched runtime: `ruby` => `ruby2.7`.
 
-Also configurable but not supported by Architect Sandbox:
-
-- `java8`
-- `go1.x`
-- `dotnetcore2.1`
+See [@aws](../project-manifest/aws) for further reference.
 
 ### Example
 
 ```arc
 @aws
-runtime deno
+runtime ruby
 ```
 
 ## `memory`
