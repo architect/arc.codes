@@ -35,16 +35,6 @@ The frontmatter attributes are technically optional but highly encouraged as the
 | **description** | `string`   | HTML meta description |
 | **sections**    | `string[]` | currently unused      |
 
-## [Shiki](https://github.com/shikijs/shiki) for code highlighting
-
-[Shiki](https://github.com/shikijs/shiki) is used automatically to add highlighting to "fenced" Markdown code blocks.
-
-Providing explicit languages to the highlighter (see `highlighter.js`) increases Shiki's performance.
-
-To slim down Shiki's footprint, we bundle the dependency directly to the docs catchall function with only the grammars for languages we intend to highlight. This can be done automatically with the `hydrate-shiki-des` script.
-
-Use `npm run hydrate-shiki` to move Shiki/dist (+ select languages) and the Arc syntax highlighting grammar to the docs catchall function. This drastically reduces that function's size on disk.
-
 ## Todo
 
 * dynamic category landing page

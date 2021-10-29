@@ -2,7 +2,6 @@
   "name": "@architect/arc.codes",
   "version": "3.6.7",
   "scripts": {
-    "hydrate-shiki": "./scripts/hydrate-shiki-deps",
     "deploy": "./scripts/deploy",
     "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
     "lint": "eslint src --fix",
@@ -40,8 +39,5 @@
   },
   "eslintConfig": {
     "extends": "@architect/eslint-config"
-  },
-  "eslintIgnore": [
-    "**/shiki/**/*.js"
-  ]
+  }
 }

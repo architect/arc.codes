@@ -60,8 +60,6 @@
       const parent = target.closest('pre')
       const codeText = parent.querySelector('code').textContent.trim()
 
-      console.log(target)
-
       navigator.clipboard.writeText(codeText).then(
         () => {
           target.innerHTML = svgCheck
