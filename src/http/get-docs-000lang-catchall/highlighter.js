@@ -1,35 +1,14 @@
-const path = require('path')
-const shiki = require('./shiki/dist')
-const arcGrammar = require('./arc-textmate.json')
+module.exports = function (hljs, escapeHtml, str, lang) {
+  if (lang && hljs.getLanguage(lang)) {
 
-module.exports.forMarkdown = async function () {
-  const theme = await shiki.loadTheme(path.join(__dirname, './themes/atom-one-dark.json'))
-  const highlighter = await shiki.getHighlighter({
-    theme,
-    langs: [
-      'bash',
-      'javascript',
-      'json',
-      'powershell',
-      'python',
-      'ruby',
-      'toml',
-      'yaml',
-      {
-        id: 'arc',
-        scopeName: 'source.arc',
-        grammar: arcGrammar
-      }
-    ],
-  })
-
-  return function (code, lang) {
     try {
-      return highlighter.codeToHtml(code, lang)
+      return `<pre class="hljs mb0 mb1-lg"><code>${hljs.highlight(str, { language: lang, ignoreIllegals: true }).value}</code></pre>`
     }
     catch (error) {
       console.log(`Highlighter unsupported language: ${lang}`)
       return ''
     }
   }
+
+  return `<pre class="hljs mb0 mb1-lg"><code>${escapeHtml(str)}</code></pre>`
 }

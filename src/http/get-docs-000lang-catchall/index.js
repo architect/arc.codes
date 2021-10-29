@@ -12,7 +12,12 @@ const markdownAnchor = require('markdown-it-anchor')
 const frontmatterParser = require('markdown-it-front-matter')
 const yaml = require('js-yaml')
 const classMapping = require('./markdown-class-mappings')
-const highlighter = require('./highlighter')
+const hljs = require('highlight.js')
+const { escapeHtml } = Markdown().utils
+const highlight = require('./highlighter')
+  .bind(null, hljs, escapeHtml)
+const arcGrammar = require('./arc-grammar')
+hljs.registerLanguage('arc', arcGrammar)
 const toc = require('@architect/views/docs/table-of-contents')
 const Html = require('@architect/views/modules/document/html.js').default
 const NotFound = require('@architect/views/modules/components/not-found.js').default
@@ -21,6 +26,7 @@ const algolia = require('@architect/views/modules/components/algolia.js').defaul
 const cache = {} // cheap warm cache
 
 async function handler (req) {
+  console.time('get-docs-000lang-catchall')
   let { pathParameters } = req
   let { lang, proxy } = pathParameters
   let parts = proxy.split('/')
@@ -83,7 +89,7 @@ async function handler (req) {
     linkify: true,
     html: true,
     typographer: true,
-    highlight: await highlighter.forMarkdown()
+    highlight
   })
     .use(markdownClass, classMapping)
     .use(markdownAnchor)
@@ -93,7 +99,7 @@ async function handler (req) {
   const children = markdown.render(file)
   const { category, description, sections, title } = frontmatter
 
-  return {
+  const retval = {
     statusCode: 200,
     headers: {
       'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
@@ -117,6 +123,9 @@ async function handler (req) {
       toc
     })
   }
+  console.timeEnd('get-docs-000lang-catchall')
+
+  return retval
 }
 
 exports.handler = http.async(redirectMiddleware, handler)
