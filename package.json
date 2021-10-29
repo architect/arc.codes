@@ -1,6 +1,6 @@
 {
   "name": "@architect/arc.codes",
-  "version": "3.6.7",
+  "version": "3.6.8",
   "scripts": {
     "deploy": "./scripts/deploy",
     "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
