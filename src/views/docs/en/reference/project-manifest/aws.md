@@ -4,7 +4,7 @@ category: app.arc
 description: Define AWS specific configuration.
 ---
 
-Define AWS specific configuration.
+Define AWS specific configuration for an entire project or [per function](../configuration/function-config).
 
 ## Syntax
 
@@ -13,11 +13,25 @@ Define AWS specific configuration.
 - `profile`: name of the profile you prefer to use with this project, as defined in your local [AWS profile](/quickstart)
   - Can also be specified in `AWS_PROFILE` environment variable
   - Required to deploy to AWS
-- `runtime`: Lambda runtime, can be [an explicit environment](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) or a runtime alias:
-  - Explicit runtime: `nodejs14.x` (default), `nodejs12.x`, `python3.9`, `python3.8`, `ruby2.7`.  
-  Unsupported locally with [Sandbox](../cli/sandbox): `go1.x`, `dotnetcore3.1`, `java11`, `java8`.
-  - Simple runtime alias: `'node`, `rb`, `py`, `java`, `go`, `.net`, [and other variants](https://github.com/architect/lambda-runtimes/blob/cad3b158968805a01103e47c08da48132620594e/cjs/index.js#L70).  
-  Aliases always default to the latest version of the matched alias: `ruby` => `ruby2.7`.
+- `runtime`: Lambda runtime, as defined by the [`lambda-runtimes`](https://github.com/architect/lambda-runtimes/blob/cad3b158968805a01103e47c08da48132620594e/cjs/index.js) lib:
+  - Explicit runtime version:
+    - `nodejs14.x` (default)
+    - `nodejs12.x`
+    - `python3.9`
+    - `python3.8`
+    - `ruby2.7`
+  - Explicit but unsupported locally in [Sandbox](../cli/sandbox):
+    - `dotnetcore3.1`
+    - `go1.x`
+    - `java11`
+    - `java8`
+  - Simple runtime alias (deafults to the latest version):
+    - `node` / `nodejs` / `node.js`
+    - `python` / `py`
+    - `ruby` / `rb`
+    - `java`
+    - `golang` / `go`
+    - `dotnet` / `.net` 
 - `bucket`: bucket (in same region) for CloudFormation deployment artifacts
   - If not specified, a secure deployment bucket will be auto-created for your app
 - `apigateway`: API Gateway API type, can be one of:
@@ -35,7 +49,7 @@ If you have AWS exports in your `.bashrc` and `@aws` specified in your `app.arc`
 
 ## Example
 
-For example, to deploy to the northern California AWS AZ with your AWS `work` profile's credentials, use:
+For example, to deploy Ruby to the northern California AWS AZ with your AWS `work` profile's credentials, use:
 
 <arc-viewer default-tab=arc>
 <div slot=contents>
