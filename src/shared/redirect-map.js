@@ -127,16 +127,16 @@ const permanentRedirects = {
 
   // Reference > Configuration > Local preferences
   // round 1: Q1 2021
-  '/reference/preferences#create': '/docs/en/reference/configuration/local-preferences#%40create',
-  '/reference/preferences#env': '/docs/en/reference/configuration/local-preferences#%40env',
-  '/reference/preferences#.env': '/docs/en/reference/configuration/local-preferences#%40env',
-  '/reference/preferences#sandbox': '/docs/en/reference/configuration/local-preferences#%40sandbox',
+  '/reference/preferences#create': '/docs/en/reference/configuration/local-preferences#@create',
+  '/reference/preferences#env': '/docs/en/reference/configuration/local-preferences#@env',
+  '/reference/preferences#.env': '/docs/en/reference/configuration/local-preferences#@env',
+  '/reference/preferences#sandbox': '/docs/en/reference/configuration/local-preferences#@sandbox',
   // round 2: Q4 2021
-  '/docs/en/reference/prefs.arc/create': '/docs/en/reference/configuration/local-preferences#%40create',
-  '/docs/en/reference/prefs.arc/env': '/docs/en/reference/configuration/local-preferences#%40env',
-  '/docs/en/reference/prefs.arc/.env': '/docs/en/reference/configuration/local-preferences#%40env',
-  '/docs/en/reference/prefs.arc/sandbox': '/docs/en/reference/configuration/local-preferences#%40sandbox',
-  '/docs/en/reference/prefs.arc/sandbox-startup': '/docs/en/reference/configuration/local-preferences#%40sandbox-startup',
+  '/docs/en/reference/prefs.arc/create': '/docs/en/reference/configuration/local-preferences#@create',
+  '/docs/en/reference/prefs.arc/env': '/docs/en/reference/configuration/local-preferences#@env',
+  '/docs/en/reference/prefs.arc/.env': '/docs/en/reference/configuration/local-preferences#@env',
+  '/docs/en/reference/prefs.arc/sandbox': '/docs/en/reference/configuration/local-preferences#@sandbox',
+  '/docs/en/reference/prefs.arc/sandbox-startup': '/docs/en/reference/configuration/local-preferences#@sandbox-startup',
 
   // Reference > CLI
   // round 1: Q1 2021
@@ -172,7 +172,7 @@ const permanentRedirects = {
   '/guides/http': '/docs/en/reference/runtime-helpers/node.js#arc.http',
   '/guides/offline': '/docs/en/guides/developer-experience/local-development',
   '/guides/static-assets': '/docs/en/guides/frontend/static-assets',
-  '/guides/spa': '/docs/en/reference/runtime-helpers/node.js#%40architect%2Fasap',
+  '/guides/spa': '/docs/en/reference/runtime-helpers/node.js#@architect/asap',
   '/guides/sessions': '/docs/en/reference/runtime-helpers/node.js#arc.http.session',
   '/guides/middleware': '/docs/en/reference/runtime-helpers/node.js#arc.http',
   '/guides/data': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
@@ -214,8 +214,8 @@ const permanentRedirects = {
   '/reference/http-helpers': '/docs/en/reference/runtime-helpers/node.js#arc.http',
   '/reference/http-session': '/docs/en/reference/runtime-helpers/node.js#arc.http.session',
   '/reference/middleware': '/docs/en/reference/runtime-helpers/node.js#arc.http',
-  '/reference/proxy-public': '/docs/en/reference/runtime-helpers/node.js#%40architect%2Fasap',
-  '/reference/proxy-read': '/docs/en/reference/runtime-helpers/node.js#%40architect%2Fasap',
+  '/reference/proxy-public': '/docs/en/reference/runtime-helpers/node.js#@architect/Fasap',
+  '/reference/proxy-read': '/docs/en/reference/runtime-helpers/node.js#@architect/Fasap',
   '/reference/queues-publish': '/docs/en/reference/runtime-helpers/node.js#arc.queues',
   '/reference/queues-subscribe': '/docs/en/reference/runtime-helpers/node.js#arc.queues',
   '/reference/tables-destroy': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
