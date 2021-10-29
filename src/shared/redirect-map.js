@@ -1,7 +1,9 @@
-// these are soft redirects, not forever/caonincal
+const currentRoot = '/docs/en/guides/get-started/quickstart'
+
+// these are soft redirects, not forever/canonical
 const tempRedirects = {
   // tmp until marketing landing page work done
-  '/': '/docs/en/guides/get-started/quickstart',
+  '/': currentRoot,
 
   // Canonical pragma paths
   '/app':  '/docs/en/reference/project-manifest/app',
@@ -16,8 +18,8 @@ const tempRedirects = {
   '/@indexes': '/docs/en/reference/project-manifest/indexes',
   '/macros':  '/docs/en/reference/project-manifest/macros',
   '/@macros': '/docs/en/reference/project-manifest/macros',
-  '/plugins':  '/docs/en/reference/project-manifest/plugins',
-  '/@plugins': '/docs/en/reference/project-manifest/plugins',
+  '/plugins':  '/docs/en/reference/project-manifest/macros', // TODO: update with new plugins doc
+  '/@plugins': '/docs/en/reference/project-manifest/macros', // TODO: update with new plugins doc
   '/proxy':  '/docs/en/reference/project-manifest/proxy',
   '/@proxy': '/docs/en/reference/project-manifest/proxy',
   '/queues':  '/docs/en/reference/project-manifest/queues',
@@ -38,7 +40,7 @@ const tempRedirects = {
   '/@ws': '/docs/en/reference/project-manifest/ws',
 }
 
-// redirect known v6 arc urls to v8 and then to v9
+// redirect known v5/6 arc urls to v8 and then to v9
 const permanentRedirects = {
   '/examples': '/docs/en/guides/examples',
 
@@ -69,7 +71,7 @@ const permanentRedirects = {
 
   // Guides
   // round 1: Q1 2021
-  '/guides/upgrade': '/docs/en/about/upgrade',
+  '/guides/upgrade': '/docs/en/about/upgrade-guide',
   '/guides/testing': '/docs/en/guides/developer-experience/local-development',
   '/guides/project-manifest': '/docs/en/guides/get-started/project-layout',
   '/guides/share-code': '/docs/en/guides/developer-experience/sharing-code',
@@ -125,16 +127,16 @@ const permanentRedirects = {
 
   // Reference > Configuration > Local preferences
   // round 1: Q1 2021
-  '/reference/preferences#create': '/docs/en/reference/configuration/local-preferences/create',
-  '/reference/preferences#env': '/docs/en/reference/configuration/local-preferences/env',
-  '/reference/preferences#.env': '/docs/en/reference/configuration/local-preferences/.env',
-  '/reference/preferences#sandbox': '/docs/en/reference/configuration/local-preferences/sandbox',
+  '/reference/preferences#create': '/docs/en/reference/configuration/local-preferences#%40create',
+  '/reference/preferences#env': '/docs/en/reference/configuration/local-preferences#%40env',
+  '/reference/preferences#.env': '/docs/en/reference/configuration/local-preferences#%40env',
+  '/reference/preferences#sandbox': '/docs/en/reference/configuration/local-preferences#%40sandbox',
   // round 2: Q4 2021
-  '/docs/en/reference/prefs.arc/create': '/docs/en/reference/configuration/local-preferences/create',
-  '/docs/en/reference/prefs.arc/env': '/docs/en/reference/configuration/local-preferences/env',
-  '/docs/en/reference/prefs.arc/.env': '/docs/en/reference/configuration/local-preferences/.env',
-  '/docs/en/reference/prefs.arc/sandbox': '/docs/en/reference/configuration/local-preferences/sandbox',
-  '/docs/en/reference/prefs.arc/sandbox-startup': '/docs/en/reference/configuration/local-preferences/sandbox-startup',
+  '/docs/en/reference/prefs.arc/create': '/docs/en/reference/configuration/local-preferences#%40create',
+  '/docs/en/reference/prefs.arc/env': '/docs/en/reference/configuration/local-preferences#%40env',
+  '/docs/en/reference/prefs.arc/.env': '/docs/en/reference/configuration/local-preferences#%40env',
+  '/docs/en/reference/prefs.arc/sandbox': '/docs/en/reference/configuration/local-preferences#%40sandbox',
+  '/docs/en/reference/prefs.arc/sandbox-startup': '/docs/en/reference/configuration/local-preferences#%40sandbox-startup',
 
   // Reference > CLI
   // round 1: Q1 2021
@@ -163,9 +165,79 @@ const permanentRedirects = {
   '/docs/en/reference/runtime/deno': '/docs/en/reference/runtime-helpers/deno',
   '/docs/en/reference/runtime/ruby': '/docs/en/reference/runtime-helpers/ruby',
   '/docs/en/reference/runtime/python': '/docs/en/reference/runtime-helpers/python',
+
+  // v5 and v6 archive
+  // round 1 addendum
+  // TODO: revisit these as new guides and tutorials are added
+  '/guides/http': '/docs/en/reference/runtime-helpers/node.js#arc.http',
+  '/guides/offline': '/docs/en/guides/developer-experience/local-development',
+  '/guides/static-assets': '/docs/en/guides/frontend/static-assets',
+  '/guides/spa': '/docs/en/reference/runtime-helpers/node.js#%40architect%2Fasap',
+  '/guides/sessions': '/docs/en/reference/runtime-helpers/node.js#arc.http.session',
+  '/guides/middleware': '/docs/en/reference/runtime-helpers/node.js#arc.http',
+  '/guides/data': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
+  '/guides/background-tasks': '/docs/en/reference/runtime-helpers/node.js#arc.events',
+  '/guides/cors': '/docs/en/reference/runtime-helpers/node.js#responses',
+  '/guides/logging': '/docs/en/guides/developer-experience/logging-and-monitoring',
+  '/guides/custom-dns': '/docs/en/guides/domains/overview',
+  '/guides/ws': '/docs/en/reference/runtime-helpers/node.js#arc.ws',
+  '/guides/documentdb': currentRoot,
+  '/guides/multiple-aws-accounts': '/docs/en/guides/get-started/detailed-aws-setup',
+  '/guides/iam': '/docs/en/guides/get-started/detailed-aws-setup',
+  '/guides/yaml-and-json': '/docs/en/guides/get-started/project-layout',
+  '/guides/deps': '/docs/en/guides/developer-experience/dependency-management',
+  '/reference/arc-audit': currentRoot,
+  '/reference/arc-config': currentRoot,
+  '/reference/arc-create': '/docs/en/reference/cli/init',
+  '/reference/arc-deploy': '/docs/en/reference/cli/deploy',
+  '/reference/arc-dns': currentRoot,
+  '/reference/arc-env': '/docs/en/reference/cli/env',
+  '/reference/arc-hydrate': '/docs/en/reference/cli/hydrate',
+  '/reference/arc-inventory': currentRoot,
+  '/reference/arc-logs': '/docs/en/reference/cli/logs',
+  '/reference/arc-repl': currentRoot,
+  '/reference/arc-sandbox': '/docs/en/reference/cli/sandbox',
+  '/reference/app': '/docs/en/reference/project-manifest/app',
+  '/reference/aws': '/docs/en/reference/project-manifest/aws',
+  '/reference/domain': currentRoot,
+  '/reference/events': '/docs/en/reference/project-manifest/events',
+  '/reference/http': '/docs/en/reference/project-manifest/http',
+  '/reference/indexes': '/docs/en/reference/project-manifest/indexes',
+  '/reference/queues': '/docs/en/reference/project-manifest/queues',
+  '/reference/scheduled': '/docs/en/reference/project-manifest/scheduled',
+  '/reference/static': '/docs/en/reference/project-manifest/static',
+  '/reference/tables': '/docs/en/reference/project-manifest/tables',
+  '/reference/ws': '/docs/en/reference/project-manifest/ws',
+  '/reference/events-publish': '/docs/en/reference/runtime-helpers/node.js#arc.events',
+  '/reference/events-subscribe': '/docs/en/reference/runtime-helpers/node.js#arc.events',
+  '/reference/http-functions': '/docs/en/reference/runtime-helpers/node.js#arc.http',
+  '/reference/http-helpers': '/docs/en/reference/runtime-helpers/node.js#arc.http',
+  '/reference/http-session': '/docs/en/reference/runtime-helpers/node.js#arc.http.session',
+  '/reference/middleware': '/docs/en/reference/runtime-helpers/node.js#arc.http',
+  '/reference/proxy-public': '/docs/en/reference/runtime-helpers/node.js#%40architect%2Fasap',
+  '/reference/proxy-read': '/docs/en/reference/runtime-helpers/node.js#%40architect%2Fasap',
+  '/reference/queues-publish': '/docs/en/reference/runtime-helpers/node.js#arc.queues',
+  '/reference/queues-subscribe': '/docs/en/reference/runtime-helpers/node.js#arc.queues',
+  '/reference/tables-destroy': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
+  '/reference/tables-insert': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
+  '/reference/tables-update': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
+  '/reference/ws-functions': '/docs/en/reference/runtime-helpers/node.js#arc.ws',
+  '/reference/data': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
+  '/reference/data-name': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
+  '/reference/data-db': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
+  '/reference/data-doc': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
+  '/reference/data-get': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
+  '/reference/data-query': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
+  '/reference/data-scan': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
+  '/reference/data-put': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
+  '/reference/data-update': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
+  '/reference/data-delete': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
 }
 
-module.exports = async function redirect (req) {
+exports.tempRedirects = tempRedirects
+exports.permanentRedirects = permanentRedirects
+
+exports.redirect = async function redirect (req) {
   const reqPath = req.requestContext.http.path
   const isGet = req.requestContext.http.method.toLowerCase() === 'get'
 

@@ -3,7 +3,7 @@ require = require('esm')(module)
 
 const { http } = require('@architect/functions')
 const asap = require('@architect/asap')
-const redirectMiddleware = require('@architect/shared/redirect-map')
+const { redirect: redirectMiddleware } = require('@architect/shared/redirect-map')
 const notFoundResponse = require('@architect/shared/not-found-response')
 const toc = require('@architect/views/docs/table-of-contents')
 const Html = require('@architect/views/modules/document/html.js').default
