@@ -5,7 +5,7 @@
   const menuButton = document.getElementById('menu-button')
   const sidebar = document.getElementById('sidebar')
   const themeButton = document.getElementById('theme-button')
-  const codeBlocks = document.querySelectorAll('pre.shiki')
+  const codeBlocks = document.querySelectorAll('pre.hljs')
 
   // Scroll active sidebar link into view
   if (activeLink)
@@ -59,6 +59,8 @@
       const target = evt.target
       const parent = target.closest('pre')
       const codeText = parent.querySelector('code').textContent.trim()
+
+      console.log(target)
 
       navigator.clipboard.writeText(codeText).then(
         () => {
