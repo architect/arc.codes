@@ -26,7 +26,9 @@ const algolia = require('@architect/views/modules/components/algolia.js').defaul
 const cache = {} // cheap warm cache
 
 async function handler (req) {
-  console.time('get-docs-000lang-catchall')
+  let timerName = `get-docs-000lang-catchall ${req.pathParameters.proxy}`
+  console.time(timerName)
+
   let { pathParameters } = req
   let { lang, proxy } = pathParameters
   let parts = proxy.split('/')
@@ -123,7 +125,7 @@ async function handler (req) {
       toc
     })
   }
-  console.timeEnd('get-docs-000lang-catchall')
+  console.timeEnd(timerName)
 
   return retval
 }
