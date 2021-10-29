@@ -25,7 +25,7 @@ Define AWS specific configuration for an entire project or [per function](../con
     - `go1.x`
     - `java11`
     - `java8`
-  - Simple runtime alias (deafults to the latest version):
+  - Simple runtime alias (defaults to the latest version):
     - `node` / `nodejs` / `node.js`
     - `python` / `py`
     - `ruby` / `rb`
