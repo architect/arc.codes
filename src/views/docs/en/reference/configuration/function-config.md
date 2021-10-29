@@ -47,7 +47,7 @@ Configure Lambda function `runtime`:
 - `nodejs14.x` (default), `nodejs12.x`, `python3.9`, `ruby2.7`
 - Unsupported by Sandbox locally: `dotnetcore3.1`, `go1.x`, `java11`
 - Or a runtime alias: `nodejs`, `python`, `ruby`, `.net`, `go`,  `java`
-  - Aliases always default to the latest version of the matched alias: `ruby` => `ruby2.7`.
+  - Aliases always default to the latest version of the matched runtime: `ruby` => `ruby2.7`.
 
 See [@aws](../project-manifest/aws) for further reference.
 
