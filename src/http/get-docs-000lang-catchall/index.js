@@ -16,8 +16,8 @@ const hljs = require('highlight.js')
 const { escapeHtml } = Markdown().utils
 const highlight = require('./highlighter')
   .bind(null, hljs, escapeHtml)
-const arcGrammar = require('./arc-grammar')
-hljs.registerLanguage('arc', arcGrammar)
+const { arc } = require('@architect/grammars')
+hljs.registerLanguage('arc', arc)
 const toc = require('@architect/views/docs/table-of-contents')
 const Html = require('@architect/views/modules/document/html.js').default
 const NotFound = require('@architect/views/modules/components/not-found.js').default
