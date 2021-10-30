@@ -68,7 +68,10 @@ exports.handler = async function http () {
     </html>
   `
   return {
-    type: 'text/html',
+    statusCode: 200,
+    headers: {
+      'Content-Type': 'text/html',
+    },
     body: html.trim()
   }
 }
