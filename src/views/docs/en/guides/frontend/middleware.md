@@ -215,7 +215,7 @@ exports.handler = arc.http(handler)
 
 6. We can also replace the contents of `/src/http/post-count/index.js` with the following:
 
-``` javascript
+```javascript
 var arc = require('@architect/functions')
 
 function handler(req, res) {
