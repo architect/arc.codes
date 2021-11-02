@@ -2,7 +2,7 @@
   "name": "@architect/arc.codes",
   "version": "3.6.9",
   "scripts": {
-    "deploy": "./scripts/deploy",
+    "dist": "./scripts/dist.sh",
     "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
     "lint": "eslint src --fix",
     "start": "sandbox",
@@ -15,7 +15,7 @@
     "@architect/functions": "^4.0.0",
     "@architect/inventory": "^2.1.1",
     "@architect/package": "^7.1.1",
-    "@architect/syntaxes": "github:architect/syntaxes#v1.2.0",
+    "@architect/syntaxes": "github:architect/syntaxes#v1.2.1",
     "@toycode/markdown-it-class": "^1.2.4",
     "esm": "^3.2.25",
     "highlight.js": "^11.3.1",
