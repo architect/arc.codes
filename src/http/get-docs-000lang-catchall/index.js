@@ -12,12 +12,10 @@ const markdownAnchor = require('markdown-it-anchor')
 const frontmatterParser = require('markdown-it-front-matter')
 const yaml = require('js-yaml')
 const classMapping = require('./markdown-class-mappings')
-const hljs = require('highlight.js')
+const hljs = require('./highlight')
 const { escapeHtml } = Markdown().utils
 const highlight = require('./highlighter')
   .bind(null, hljs, escapeHtml)
-const arc = require('./highlight/languages/arc')
-hljs.registerLanguage('arc', arc)
 const toc = require('@architect/views/docs/table-of-contents')
 const Html = require('@architect/views/modules/document/html.js').default
 const NotFound = require('@architect/views/modules/components/not-found.js').default
@@ -26,9 +24,6 @@ const algolia = require('@architect/views/modules/components/algolia.js').defaul
 const cache = {} // cheap warm cache
 
 async function handler (req) {
-  let timerName = `get-docs-000lang-catchall ${req.pathParameters.proxy}`
-  console.time(timerName)
-
   let { pathParameters } = req
   let { lang, proxy } = pathParameters
   let parts = proxy.split('/')
@@ -125,7 +120,6 @@ async function handler (req) {
       toc
     })
   }
-  console.timeEnd(timerName)
 
   return retval
 }

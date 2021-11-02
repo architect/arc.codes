@@ -40,6 +40,9 @@ jobs:
       - name: Install
         run: npm install
 
+      - name: Vendor dist files
+        run: npm run dist
+
       - name: Hydrate
         run: npx arc hydrate
         env:
