@@ -39,7 +39,7 @@ Using a custom IAM role allows you to limit interactions even further, like rest
 
 Here's how you would add a custom role to your Lambda with a `.arc-config` file.
 
-```md
+```arc
 // src/http/get-orders/.arc-config
 
 @aws
