@@ -73,7 +73,7 @@ These sections deal with Lambda functions and their event sources. Architect con
 
 - [`@http`](../reference/project-manifest/http) HTTP routes (API Gateway)
 - [`@events`](../reference/project-manifest/events) Event pub/sub (SNS)
-- [`@queues`](../reference/project-manifest/queues)  queues and handlers for them (SQS)
+- [`@queues`](../reference/project-manifest/queues) queues and handlers for them (SQS)
 - [`@scheduled`](../reference/project-manifest/scheduled) Invoke functions specified times (CloudWatch Events)
 - [`@ws`](../reference/project-manifest/ws) Web Socket functions (API Gateway)
 
@@ -84,6 +84,7 @@ These pragmas represent persistence resources.
 - [`@static`](../reference/project-manifest/static) Bucket for hosting static assets (S3)
 - [`@tables`](../reference/project-manifest/tables) Database tables and trigger functions (DynamoDB)
 - [`@indexes`](../reference/project-manifest/indexes) Table global secondary indexes (DynamoDB)
+- [`@streams`](../reference/project-manifest/streams) Table stream handler functions (DynamoDB + Lambda)
 
 ## Example
 
@@ -122,12 +123,15 @@ daily-affirmation rate(1 day)
 @tables
 likes
   likeID *String
-  stream true
+
+@streams
+likes
 
 @indexes
 likes
   date *String
 ```
+
 </div>
 </arc-tab>
 
@@ -141,29 +145,24 @@ likes
   "static": {
     "fingerprint": true
   },
-  "ws": [
-    "action",
-    "connect",
-    "default",
-    "disconnect"
-  ],
+  "ws": ["action", "connect", "default", "disconnect"],
   "http": [
     ["get", "/"],
     ["get", "/likes"],
     ["post", "/likes"]
   ],
-  "events": [
-    "hit-counter"
-  ],
+  "events": ["hit-counter"],
   "scheduled": {
-    "daily-affirmation": "rate(1 day)"
+    "daily-affirmation": {
+      "rate": [1, "day"]
+    }
   },
   "tables": {
     "likes": {
-      "likeID": "*String",
-      "stream": true
+      "likeID": "*String"
     }
   },
+  "streams": ["likes"],
   "indexes": {
     "likes": {
       "date": "*String"
@@ -171,9 +170,9 @@ likes
   }
 }
 ```
+
 </div>
 </arc-tab>
-
 
 <arc-tab label=yaml>
 <h5>yaml</h5>
@@ -198,10 +197,13 @@ events:
 scheduled:
   - daily-affirmation: "rate(1 day)"
 tables:
-  - likes: {likeID: "*String", stream: true}
+  - likes: { likeID: "*String" }
+streams:
+  - likes
 indexes:
-  - likes: {date: "*String"}
+  - likes: { date: "*String" }
 ```
+
 </div>
 </arc-tab>
 
@@ -237,12 +239,14 @@ daily-affirmation=["rate(1 day)"]
 
 [tables.likes]
 likeiD="*String"
-stream=true
+
+streams=["likes"]
 
 [[indexes]]
 [indexes.likes]
 date="*String"
 ```
+
 </div>
 </arc-tab>
 
@@ -254,16 +258,19 @@ Running `arc init` in the same directory as the file above generates the followi
 ```bash
 .
 ├── src
+│   ├── events
+│   │   └── hit-counter/
+│   │
 │   ├── http
 │   │   ├── get-index/index.js
 │   │   ├── get-likes/index.js
 │   │   └── post-likes/index.js
 │   │
-│   ├── events
-│   │   └── hit-counter/
-│   │
 │   ├── scheduled
 │   │   └── daily-affirmation/
+│   │
+│   ├── streams
+│   │   └── likes/
 │   │
 │   ├── tables
 │   │   └── likes/

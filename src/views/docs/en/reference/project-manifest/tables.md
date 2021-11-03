@@ -6,14 +6,15 @@ description: Define DynamoDB tables
 
 Define [DynamoDB][ddb] tables with optional:
 
-- [streaming DB changes to Lambda functions][stream]
 - [encryption at rest][encryption]
 - [time-to-live item expiry][ttl]
 - [point-in-time recovery][recovery]
 
-You can additionally define [Global Secondary Indexes][gsi] on each table you define using the [`@indexes`][indexes] pragma.
+[Global Secondary Indexes][gsi] can be specified on each table you define using the [`@indexes`][indexes] pragma.
 
-## Recommended
+Additionally, database changes can be streamed to a function with the [`@streams`][streams] pragma.
+
+## Recommended Resources
 
 [DynamoDB][ddb] is a powerful database, though different from both SQL and NoSQL databases. It is highly recommended to dig into Amazon's resources to familiarize yourself with it:
 
@@ -23,6 +24,7 @@ You can additionally define [Global Secondary Indexes][gsi] on each table you de
 ## Syntax
 
 ### Table name syntax
+
 - Lowercase alphanumeric string
 - Between 3 and 255 characters
 - Dashes are allowed
@@ -30,17 +32,18 @@ You can additionally define [Global Secondary Indexes][gsi] on each table you de
 - Must begin with a letter
 
 ### Table structure syntax
+
 - Keys and Lambdas are defined by indenting two spaces
 - The required partition key is denoted by `*`
 - The optional sort key is denoted by `**`
 - Currently only `*String`, `**String`, `*Number` and `**Number` are supported
-- Streaming data has replaced the `insert`, `update`, and `destroy` events.
+- `insert`, `update`, and `destroy` events can be handled with [`@streams`][streams]
 
 > Note: `app.arc` creates fully isolated tables for `staging` and `production`.
 
 ### Streaming Changes to a Lambda
 
-Define a `stream true` property under a table definition to have Architect create a [Lambda function which will receive events whenever items in the table get inserted, updated or deleted][stream]. Architect will create the Lambda for you locally under `src/streams/<tableName>`.
+In addition to using the [`@streams`][streams] pragma, `@tables` entries can define a `stream true` property to have Architect create a [Lambda function which will receive events whenever items in the table get inserted, updated or deleted][stream]. Architect will create the Lambda for you locally under `src/streams/<tableName>`.
 
 ### Encrypting Tables
 
@@ -60,7 +63,7 @@ DynamoDB has a feature which lets you [recover your data][recovery] to any point
 
 ## Example
 
-This `app.arc` file defines two database tables:
+This `app.arc` file defines three database tables:
 
 <arc-viewer default-tab=arc>
 <div slot=contents>
@@ -128,16 +131,19 @@ fleeting-thoughts
 ```toml
 app="testapp"
 
-[tables]
-[[tables.people]]
+[[tables]]
+
+[tables.people]
 pplID="*String"
 stream=true
-[[tables.cats]]
+
+[tables.cats]
 pplID="*String"
 catID="**String"
 encrypt=true
 PointInTimeRecovery=true
-[[tables.fleeting-thoughts]]
+
+[tables.fleeting-thoughts]
 pplID="*String"
 expires="TTL"
 ```
@@ -171,12 +177,13 @@ tables:
 </div>
 </arc-viewer>
 
-[ddb]: https://aws.amazon.com/documentation/dynamodb/
-[core]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html
-[gsi]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html
 [indexes]: indexes
+[streams]: streams
+[core]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html
+[ddb]: https://aws.amazon.com/documentation/dynamodb/
 [encryption]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EncryptionAtRest.html
+[gsi]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html
+[kms]: https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html
+[recovery]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery.html
 [stream]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.Lambda.html
 [ttl]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html
-[recovery]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery.html
-[kms]: https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html
