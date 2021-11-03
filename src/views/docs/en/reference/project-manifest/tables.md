@@ -79,7 +79,6 @@ testapp
 @tables
 people
   pplID *String
-  stream true
 
 cats
   pplID *String
@@ -90,6 +89,7 @@ cats
 fleeting-thoughts
   pplID *String
   expires TTL
+  stream true
 ```
 </div>
 </arc-tab>
@@ -104,8 +104,7 @@ fleeting-thoughts
   "tables": [
     {
       "people": {
-        "pplID": "*String",
-        "stream": true
+        "pplID": "*String"
       },
       "cats": {
         "pplID": "*String",
@@ -115,7 +114,8 @@ fleeting-thoughts
       },
       "fleeting-thoughts": {
         "pplID": "*String",
-        "expires": "TTL"
+        "expires": "TTL",
+        "stream": true
       }
     }
   ]
@@ -135,7 +135,6 @@ app="testapp"
 
 [tables.people]
 pplID="*String"
-stream=true
 
 [tables.cats]
 pplID="*String"
@@ -146,6 +145,7 @@ PointInTimeRecovery=true
 [tables.fleeting-thoughts]
 pplID="*String"
 expires="TTL"
+stream=true
 ```
 </div>
 </arc-tab>
@@ -161,7 +161,6 @@ app: testapp
 tables:
 - people:
     pplID: "*String"
-    stream: true
 - cats:
     pplID: "*String"
     catID: "**String"
@@ -170,6 +169,7 @@ tables:
 - fleeting-thoughts:
     pplID: "*String"
     expires: "TTL"
+    stream: true
 ```
 </div>
 </arc-tab>
