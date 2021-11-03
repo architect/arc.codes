@@ -24,6 +24,7 @@ In this tutorial you will build a simple note taking application, with multiple 
 
 
 **Sections**
+- [Overview](#overview)
 - [Generating the Data Layer](#generating-the-data-layer)
 - [Implementing an Admin Interface](#implementing-an-admin-interface)
 - [Implementing Signup](#implementing-signup)
@@ -99,13 +100,13 @@ touch src/shared/layout.js
 // src/shared/layout.js
 
 let arc = require('@architect/functions'),
-  url = arc.http.helpers.url,
-  static = arc.http.helpers.static
+    url = arc.http.helpers.url,
+    static = arc.http.helpers.static
 
 module.exports = function layout(contents, showNav = true, isLoggedIn = true) {
-  var nav = ''
+  let nav = ''
 
-  var navLinks = `
+  let navLinks = `
 <a class="button subtle" href="${ url('/login') }">Log in</a>
 <a class="button" href="${ url('/signup') }">Sign up</a>
   `
@@ -132,9 +133,7 @@ module.exports = function layout(contents, showNav = true, isLoggedIn = true) {
 <head>
   <title>Architect demo app</title>
   <link rel=stylesheet href="${ static('/css/style.css') }">
-  <link rel="icon" type="image/png" sizes="16x16" href="${ static('/images/architect-favicon-16.png') }">
-  <link rel="icon" type="image/png" sizes="32x32" href="${ static('/images/architect-favicon-32.png') }">
-  <link rel="icon" type="image/png" sizes="64x64" href="${ static('/images/architect-favicon-64.png') }">
+  <link rel="icon" type="image/png" sizes="64x64" href="${ static('/images/favicon.png') }">
 </head>
 <body>
   ${ nav }
@@ -154,8 +153,8 @@ Next, we require the layout module in the root of our application. This will sho
 // src/http/get-index/index.js
 
 let arc = require('@architect/functions'),
-  layout = require('@architect/shared/layout'),
-  url = arc.http.helpers.url
+    layout = require('@architect/shared/layout'),
+    url = arc.http.helpers.url
 
 require('@architect/shared/globals')
 
@@ -165,7 +164,7 @@ exports.handler = async function http(request) {
 
   let isLoggedIn = !!state.person
 
-  var loggedInPage = `
+  let loggedInPage = `
 <section class="hero">
   <h1>Welcome back <strong>${ email }</strong>!</h1>
   <h2>You've logged in. That's so cool.</p>
@@ -173,7 +172,7 @@ exports.handler = async function http(request) {
 </section>
   `
 
-  var notLoggedInPage = `
+  let notLoggedInPage = `
 <section class="hero">
   <h1>Welcome to the Architect demo app!</h1>
   <h2>It looks like it's your first time here. You should <a href="${ url('/signup') }">sign up</a> now!</p>
@@ -199,9 +198,9 @@ Our signup page is a simple form:
 // src/http/get-signup/index.js
 
 let arc = require('@architect/functions'),
-  layout = require('@architect/shared/layout'),
-  url = arc.http.helpers.url,
-  static = arc.http.helpers.static
+    layout = require('@architect/shared/layout'),
+    url = arc.http.helpers.url,
+    static = arc.http.helpers.static
 
 require('@architect/shared/globals')
 
@@ -216,7 +215,7 @@ exports.handler = async function http(req) {
     }
   }
 
-  var signupPage = `
+  let signupPage = `
 <body class="signup-page dark">
   <form class="signup" method="post" action=${ url('/signup') }>
 
@@ -355,12 +354,12 @@ require('@architect/shared/globals')
 exports.handler = async function http(req) {
   let state = await arc.http.session.read(req)
 
-  var message = null
+  let message = null
   if (state.attemptedEmail) {
     message = `Could not log in as ${ state.attemptedEmail }`
   }
 
-  var loggedInPage = `
+  let loggedInPage = `
     <body>
       <h2>You're already logged in!</h2>
         <p>
@@ -369,7 +368,7 @@ exports.handler = async function http(req) {
       </p>
     </body>`
 
-  var notLoggedInPage = `
+  let notLoggedInPage = `
     <body class="signup-page dark">
       <form class="login" method="post" action=${ url('/login') } >
 
@@ -594,16 +593,16 @@ async function showProtectedPage(request) {
   log(`Showing notes`)
   let state = await arc.http.session.read(request)
 
-  var notes = await getNotes(state.person.email)
+  let notes = await getNotes(state.person.email)
 
-  var greeting = `You don't have any notes! Make some below`
+  let greeting = `You don't have any notes! Make some below`
   if (notes.length) {
     greeting = `You have <strong>${ notes.length }</strong> notes.`
   }
 
-  var existingNotes = ``
+  let existingNotes = ``
   notes.forEach(function(note) {
-    var noteURL = url(`/notes/${ note.noteID }`)
+    let noteURL = url(`/notes/${ note.noteID }`)
     existingNotes += `
       <section class="card">
         <a href="${ noteURL }">
@@ -617,7 +616,7 @@ async function showProtectedPage(request) {
       </section>`
   })
 
-  var contents = `
+  let contents = `
     <section>
       <h2>Welcome to the Notes page <strong>${ state.person.email }</strong>!</h2>
       <p>${ greeting }</p>
@@ -690,7 +689,7 @@ module.exports = async function getNotes(email) {
 
   log(`Searching for notes for "${ email }". Found ${ result.Count } results`)
 
-  var notes = result.Items
+  let notes = result.Items
   return notes
 }
 ```
@@ -897,7 +896,7 @@ npm i @architect/data
 
 Now running `npx repl` opens a REPL into your Dynamo schema running locally and in-memory. If you are running the app with `npx sandbox` in another tab, it connects to that database.
 
-Try starting the REPL and running: `data.notes.scan({}, console.log)` to see all the current notes. The REPL can attach itself to the `staging` and `production` databases also by setting the appropriate `NODE_ENV` environment variable flag.
+Try starting the REPL and running: `data.notes.scan({}, console.log)` to see all the current notes. The REPL can attach itself to the `staging` and `production` databases also by setting the appropriate `NODE_ENV` environment letiable flag.
 
 ---
 
@@ -941,4 +940,3 @@ exports.handler = arc.middleware(requireLogin, deleteNote)
 ```
 
 > 🎩  Tip: `data._db` and `data._doc` return instances of `DynamoDB` and `DynamoDB.DocumentClient` for directly accessing your data; use `data._name` to resolve the table names with the app name and environment prefix.
-
