@@ -31,7 +31,7 @@ const tempRedirects = {
   '/static':  '/docs/en/reference/project-manifest/static',
   '/@static': '/docs/en/reference/project-manifest/static',
   '/streams':  '/docs/en/reference/project-manifest/tables', // TODO: update with new streams doc
-  '/@streams': '/docs/en/reference/project-manifest/tables', // TODO: update with new streams doc
+  '/@streams': '/docs/en/reference/project-manifest/streams',
   '/tables':  '/docs/en/reference/project-manifest/tables',
   '/@tables': '/docs/en/reference/project-manifest/tables',
   '/views':  '/docs/en/reference/project-manifest/views',
