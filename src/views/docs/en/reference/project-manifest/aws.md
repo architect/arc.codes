@@ -10,7 +10,7 @@ Define AWS specific configuration for an entire project or [per function](../con
 
 - `region`: [AWS region ID](https://docs.aws.amazon.com/general/latest/gr/rande.html) of the region you'll deploy this project to
   - If not specified, defaults to `us-west-2`
-- `profile`: name of the profile you prefer to use with this project, as defined in your local [AWS profile](/quickstart)
+- `profile`: name of the profile you prefer to use with this project, as defined in your local AWS profile
   - Can also be specified in `AWS_PROFILE` environment variable
   - Required to deploy to AWS
 - `runtime`: Lambda runtime, as defined by the [`lambda-runtimes`](https://github.com/architect/lambda-runtimes/blob/cad3b158968805a01103e47c08da48132620594e/cjs/index.js) lib:

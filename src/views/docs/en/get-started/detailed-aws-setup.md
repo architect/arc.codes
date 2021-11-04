@@ -24,11 +24,11 @@ Architect supports the following runtime versions:
 - **Node.js**: `14.x` (default) using `npm`
 - **Ruby**: `2.7` using `bundle`
 - **Python**: `3.9`, `3.8`, `3.7`, and `3.6` using `pip3`
-- **Deno**: `1.6.x` ([under development](../../reference/runtime-helpers/deno))
+- **Deno**: `1.6.x` ([under development](../reference/runtime-helpers/deno))
 
 > ⚠️  Working locally with the Architect `sandbox` requires target runtimes to be available in your `$PATH`.
 
-Additionally, standard AWS managed runtimes are supported in live infra, but not while working locally with [Sandbox](../../reference/cli/sandbox) (at present):
+Additionally, standard AWS managed runtimes are supported in live infra, but not while working locally with [Sandbox](../reference/cli/sandbox) (at present):
 
 - **Go**: `1.x`
 - **.NET**: `3.1`
@@ -36,7 +36,7 @@ Additionally, standard AWS managed runtimes are supported in live infra, but not
 
 Architect also supports _any custom runtime_ in live infra using either [Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) or [Lambda container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html).
 
-Change a project's default runtime by specifying [an explicit environment](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) or an alias in `app.arc` with [the `@aws` pragma](../../reference/project-manifest/aws).
+Change a project's default runtime by specifying [an explicit environment](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) or an alias in `app.arc` with [the `@aws` pragma](../reference/project-manifest/aws).
 
 #### Example
 
@@ -45,7 +45,7 @@ Change a project's default runtime by specifying [an explicit environment](https
 runtime python3.8
 ```
 
-> ℹ️  This setting can be overridden on a function-by-function basis with [`config.arc`](../../reference/configuration/function-config).
+> ℹ️  This setting can be overridden on a function-by-function basis with [`config.arc`](../reference/configuration/function-config).
 
 ---
 

@@ -35,4 +35,4 @@ Ship to your built-in `production` environment:
 npx arc deploy --production
 ```
 
-> Be safe! Set the `ARC_APP_SECRET` environment variable in production to secure your HTTP sessions; more information in the [`env` CLI reference](../../reference/cli/env)
+> Be safe! Set the `ARC_APP_SECRET` environment variable in production to secure your HTTP sessions; more information in the [`env` CLI reference](../reference/cli/env)
