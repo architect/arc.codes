@@ -35,7 +35,7 @@ test('redirect map middleware', async t => {
   const expectedTempResponse = {
     statusCode: 302,
     headers: {
-      location: '/docs/en/guides/get-started/quickstart',
+      location: '/docs/en/get-started/quickstart',
     },
   }
   t.deepEqual(tempRedirectResponse, expectedTempResponse, 'Correctly redirect temporary mapped path')
