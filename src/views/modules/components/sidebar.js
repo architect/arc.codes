@@ -102,7 +102,7 @@ function Group (state = {}) {
   "
   ${groupIsActive ? 'open' : ''}
 >
-  <summary class="mb0">${name}</summary>
+  <summary class="text-g6 mb0">${name}</summary>
   <div class="pl0">${children}</div>
 </details>
   `
