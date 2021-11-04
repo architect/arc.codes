@@ -16,7 +16,7 @@ arc env [testing|staging|production] {VARIABLE_NAME} {VARIABLE_VALUE}
 
 It is imperative that the `ARC_APP_SECRET` environment variable be set to
 something secret - especially in your production environment! This secret is
-used to encode HTTP sessions if you use the [`@architect/functions` runtime helpers](../runtime/node#arc.http.session).
+used to encode HTTP sessions if you use the [`@architect/functions` runtime helpers](../runtime-helpers/node.js#arc.http.session).
 
 ## Examples
 

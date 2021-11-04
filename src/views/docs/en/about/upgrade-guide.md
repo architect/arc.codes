@@ -27,7 +27,7 @@ Architect 9 (La Chupacabra) is primarily a maintenance release, dropping support
 
 ### Architect 8 (El Chupacabra)
 
-Architect 8 (El Chupacabra) improves API Gateway `HTTP` APIs by adding [`@proxy`](/docs/en/reference/arc-pragmas/@proxy) support for migrating old APIs, and `any` HTTP method support and `*` catchall syntax, while also improving the default greedy catchall behavior of `get /` to be literal to what's found in the Architect manifest.
+Architect 8 (El Chupacabra) improves API Gateway `HTTP` APIs by adding [`@proxy`](/docs/en/reference/project-manifest/proxy) support for migrating old APIs, and `any` HTTP method support and `*` catchall syntax, while also improving the default greedy catchall behavior of `get /` to be literal to what's found in the Architect manifest.
 
 Although uncommon, certain Architect applications that use `get /` beyond handling `get` requests to `/` may be impacted by this change. [See more below](#architect-7-&rarr;-8).
 
@@ -378,7 +378,7 @@ Architect 6 is a milestone release that solves some of the most crucial feedback
   - This includes Ruby and Python support for the `sandbox` local dev server
   - It also includes ports of the Architect Functions module for [Ruby](https://github.com/architect/arc-functions-ruby) and [Python](https://github.com/architect/arc-functions-python)
     - Note: Functions for Ruby and Python is not yet at feature parity with the Node.js version, largely dictated by the availability and consistency of certain lower-level APIs in those runtimes.
-    - As such, broadly speaking, if using Architect Functions in your [HTTP functions](/en/reference/functions/http-functions) we recommend the Node.js version, which includes the most extensive support for front-end facing use cases.
+    - As such, broadly speaking, if using Architect Functions in your [HTTP functions](/docs/en/reference/project-manifest/http) we recommend the Node.js version, which includes the most extensive support for front-end facing use cases.
 - **Architect 6 now provisions CDNs with the `@cdn` pragma**
   - Finally, provision fast, fully-featured, global CDNs to live in front of your web app
   - This enables your web application to take advantage of crucial features like edge caching and global points of presence
@@ -444,7 +444,7 @@ The following Architect 5 `request` parameters changed in Architect 6:
   - Still one of `GET`, `POST`, `PATCH`, `PUT`, or `DELETE`
 - `body` is no longer a pre-parsed object
   - `body` is now either `null` or a base64-encoded buffer
-  - `body` must first be decoded, then parsed, to make use of it; Architect provides a handy helper to take care of this for you, see: [parsing HTTP request bodies](/en/reference/functions/http-functions#requests)
+  - `body` must first be decoded, then parsed, to make use of it; Architect provides a handy helper to take care of this for you, see: [parsing HTTP request bodies](/docs/en/reference/runtime-helpers/node.js#arc.http)
 - `params` is now `pathParameters`
   - Still an object containing any URL params, if defined in your HTTP function's path (e.g. `foo` in `GET /:foo/bar`)
 - `query` is now `queryStringParameters`
@@ -540,8 +540,8 @@ Architect version 5 is here!
 
 Things we added:
 
-- [WebSocket support](/en/guides/tutorials/adding-websockets-to-your-app)
-- [New middleware](/en/reference/runtime-helper-reference/arc-http) - added later in arc 4, and out of the box in Arc 5
+- [WebSocket support](/docs/en/reference/project-manifest/ws)
+- [New middleware](/docs/en/reference/runtime-helpers/node.js#arc.http) - added later in arc 4, and out of the box in Arc 5
 
 ### 4.x
 
@@ -705,7 +705,7 @@ Yes! It is supported by and forwards compatible in Architect 7, including use wi
 
 ### Does `@architect/functions` work in Architect 6?
 
-Yes! It is supported by and forwards compatible in Architect 6. Additionally, it has been expanded to include [`@tables` support for working with data](/en/reference/databases/tables).
+Yes! It is supported by and forwards compatible in Architect 6. Additionally, it has been expanded to include [`@tables` support for working with data](/docs/en/reference/project-manifest/tables).
 
 ### Will `@architect/functions` continue working in Architect 5?
 
