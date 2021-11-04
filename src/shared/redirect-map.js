@@ -239,10 +239,7 @@ const permanentRedirects = {
   '/reference/data-delete': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
 }
 
-exports.tempRedirects = tempRedirects
-exports.permanentRedirects = permanentRedirects
-
-exports.redirect = async function redirect (req) {
+async function redirect (req) {
   const reqPath = req.requestContext.http.path
   const isGet = req.requestContext.http.method.toLowerCase() === 'get'
 
@@ -262,4 +259,11 @@ exports.redirect = async function redirect (req) {
     }
   }
   return
+}
+
+module.exports = {
+  currentRoot,
+  tempRedirects,
+  permanentRedirects,
+  redirect
 }
