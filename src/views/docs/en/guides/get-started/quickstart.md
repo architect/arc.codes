@@ -20,7 +20,6 @@ npx arc sandbox
 ```
 > `Cmd / Ctrl + c` exits the sandbox
 
-
 ## Deploy to AWS
 
 Deploy to your built-in `staging` environment:
