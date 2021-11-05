@@ -1,5 +1,5 @@
 ---
-title: Project layout
+title: Project manifest format
 category: Get started
 description: The layout and default structure of an Architect project
 ---
@@ -61,29 +61,29 @@ The `app.arc` format follows a few simple rules:
 
 These sections are for global system level env configuration. The most important being the `@app` namespace which is used to prefix all generated resources.
 
-- [`@app`](../../reference/project-manifest/app) **[Required]** application namespace
-- [`@aws`](../../reference/project-manifest/aws) AWS specific configuration
-- [`@views`](../../reference/project-manifest/views) configure path to view source code
-- [`@shared`](../../reference/project-manifest/shared) configure path to shared source code
-- [`@macros`](../../reference/project-manifest/macros) modify generated CloudFormation
+- [`@app`](../reference/project-manifest/app) **[Required]** application namespace
+- [`@aws`](../reference/project-manifest/aws) AWS specific configuration
+- [`@views`](../reference/project-manifest/views) configure path to view source code
+- [`@shared`](../reference/project-manifest/shared) configure path to shared source code
+- [`@macros`](../reference/project-manifest/macros) modify generated CloudFormation
 
 ### Lambda resource definition
 
 These sections deal with Lambda functions and their event sources. Architect conventionally promotes one event source per function. Single responsibility functions are faster to deploy, easier to debug and secure to least privilege.
 
-- [`@http`](../../reference/project-manifest/http) HTTP routes (API Gateway)
-- [`@events`](../../reference/project-manifest/events) Event pub/sub (SNS)
-- [`@queues`](../../reference/project-manifest/queues)  queues and handlers for them (SQS)
-- [`@scheduled`](../../reference/project-manifest/scheduled) Invoke functions specified times (CloudWatch Events)
-- [`@ws`](../../reference/project-manifest/ws) Web Socket functions (API Gateway)
+- [`@http`](../reference/project-manifest/http) HTTP routes (API Gateway)
+- [`@events`](../reference/project-manifest/events) Event pub/sub (SNS)
+- [`@queues`](../reference/project-manifest/queues)  queues and handlers for them (SQS)
+- [`@scheduled`](../reference/project-manifest/scheduled) Invoke functions specified times (CloudWatch Events)
+- [`@ws`](../reference/project-manifest/ws) Web Socket functions (API Gateway)
 
 ### Persistence resource definition
 
 These pragmas represent persistence resources.
 
-- [`@static`](../../reference/project-manifest/static) Bucket for hosting static assets (S3)
-- [`@tables`](../../reference/project-manifest/tables) Database tables and trigger functions (DynamoDB)
-- [`@indexes`](../../reference/project-manifest/indexes) Table global secondary indexes (DynamoDB)
+- [`@static`](../reference/project-manifest/static) Bucket for hosting static assets (S3)
+- [`@tables`](../reference/project-manifest/tables) Database tables and trigger functions (DynamoDB)
+- [`@indexes`](../reference/project-manifest/indexes) Table global secondary indexes (DynamoDB)
 
 ## Example
 

@@ -8,7 +8,7 @@ Fast local development creates a tighter feedback loop maximizing developer velo
 
 ## Preview
 
-Follow the [quickstart](/docs/en/guides/get-started/quickstart) to get everything wired up. To preview a project running locally in a web browser:
+Follow the [quickstart](/docs/en/get-started/quickstart) to get everything wired up. To preview a project running locally in a web browser:
 
 ```bash
 cd myproject

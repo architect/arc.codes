@@ -1,4 +1,4 @@
-const currentRoot = '/docs/en/guides/get-started/quickstart'
+const currentRoot = '/docs/en/get-started/quickstart'
 
 // these are soft redirects, not forever/canonical
 const tempRedirects = {
@@ -46,16 +46,16 @@ const permanentRedirects = {
 
   // Intro
   // round 1: Q1 2021
-  '/intro/philosophy': '/docs/en/guides/get-started/why-architect',
-  '/intro/limits': '/docs/en/guides/get-started/detailed-aws-setup',
+  '/intro/philosophy': '/docs/en/get-started/why-architect',
+  '/intro/limits': '/docs/en/get-started/detailed-aws-setup',
   '/intro/community': '/docs/en/about/contribute',
 
   // Quickstart
   // round 1: Q1 2021
-  '/quickstart': '/docs/en/guides/get-started/quickstart',
-  '/quickstart/install': '/docs/en/guides/get-started/quickstart',
-  '/quickstart/layout': '/docs/en/guides/get-started/project-layout',
-  '/quickstart/what-next': '/docs/en/guides/get-started/quickstart',
+  '/quickstart': '/docs/en/get-started/quickstart',
+  '/quickstart/install': '/docs/en/get-started/quickstart',
+  '/quickstart/layout': '/docs/en/get-started/project-manifest',
+  '/quickstart/what-next': '/docs/en/get-started/quickstart',
 
   // Primitives
   // round 1: Q1 2021
@@ -73,10 +73,15 @@ const permanentRedirects = {
   // round 1: Q1 2021
   '/guides/upgrade': '/docs/en/about/upgrade-guide',
   '/guides/testing': '/docs/en/guides/developer-experience/local-development',
-  '/guides/project-manifest': '/docs/en/guides/get-started/project-layout',
+  '/guides/project-manifest': '/docs/en/get-started/project-manifest',
   '/guides/share-code': '/docs/en/guides/developer-experience/sharing-code',
   '/guides/sharing-common-code': '/docs/en/guides/developer-experience/sharing-code',
   '/guides/custom-file-paths': '/docs/en/guides/developer-experience/custom-source-paths',
+  // round 2: Q4 2021
+  '/docs/en/guides/get-started/why-architect': '/docs/en/get-started/why-architect',
+  '/docs/en/guides/get-started/quickstart': '/docs/en/get-started/quickstart',
+  '/docs/en/guides/get-started/project-layout': '/docs/en/get-started/project-manifest',
+  '/docs/en/guides/get-started/detailed-aws-setup': '/docs/en/get-started/detailed-aws-setup',
 
   // Reference > Project Manifest
   // round 1: Q1 2021
@@ -182,9 +187,9 @@ const permanentRedirects = {
   '/guides/custom-dns': '/docs/en/guides/domains/overview',
   '/guides/ws': '/docs/en/reference/runtime-helpers/node.js#arc.ws',
   '/guides/documentdb': currentRoot,
-  '/guides/multiple-aws-accounts': '/docs/en/guides/get-started/detailed-aws-setup',
-  '/guides/iam': '/docs/en/guides/get-started/detailed-aws-setup',
-  '/guides/yaml-and-json': '/docs/en/guides/get-started/project-layout',
+  '/guides/multiple-aws-accounts': '/docs/en/get-started/detailed-aws-setup',
+  '/guides/iam': '/docs/en/get-started/detailed-aws-setup',
+  '/guides/yaml-and-json': '/docs/en/get-started/project-manifest',
   '/guides/deps': '/docs/en/guides/developer-experience/dependency-management',
   '/reference/arc-audit': currentRoot,
   '/reference/arc-config': currentRoot,

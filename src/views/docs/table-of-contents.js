@@ -1,11 +1,13 @@
+let GetStarted = [
+  'Why Architect',
+  'Quickstart',
+  'Project manifest',
+  // 'Project files & folders',
+  'Detailed AWS setup',
+]
+
 let Guides = [
   {
-    'Get started': [
-      'Why Architect?',
-      'Quickstart',
-      'Project layout',
-      'Detailed AWS setup',
-    ],
     'Developer experience': [
       'Local development',
       'Dependency management',
@@ -85,6 +87,7 @@ let About = [
 ]
 
 module.exports = {
+  'Get Started': GetStarted,
   Guides,
   Reference,
   About,

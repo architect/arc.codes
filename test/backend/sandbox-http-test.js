@@ -10,7 +10,7 @@ test('sandbox HTTP request', async t => {
   await sandbox.start({ quiet: true })
   t.pass(`sandbox started on ${host}`)
 
-  let quickstart = await tiny.get({ url: `${host}/docs/en/guides/get-started/quickstart` })
+  let quickstart = await tiny.get({ url: `${host}/docs/en/get-started/quickstart` })
   t.ok(quickstart.body, 'got quickstart document')
 
   let playground = await tiny.get({ url: `${host}/playground` })
