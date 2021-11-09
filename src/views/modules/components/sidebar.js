@@ -102,7 +102,18 @@ function Group (state = {}) {
   "
   ${groupIsActive ? 'open' : ''}
 >
-  <summary class="text-g6 mb0">${name}</summary>
+  <summary class="text-p1 mb0">${name}
+    <span class="plus-icon inline icon fill-current">
+      <svg style="width: 18px; height: 18px; vertical-align: text-top;">
+        <use xlink:href="#plus"></use>
+      </svg>
+    </span>
+    <span class="minus-icon inline icon fill-current">
+      <svg style="width: 18px; height: 18px; vertical-align: text-top;">
+        <use xlink:href="#minus"></use>
+      </svg>
+    </span>
+  </summary>
   <div class="pl0">${children}</div>
 </details>
   `

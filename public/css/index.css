@@ -91,3 +91,23 @@ label.sidebar-group-title + ul {
     resize: none;
   }
 }
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary .plus-icon {
+  display: inline;
+}
+details summary .minus-icon {
+  display: none;
+}
+details[open] summary .plus-icon {
+  display: none;
+}
+details[open] summary .minus-icon {
+  display: inline;
+}
