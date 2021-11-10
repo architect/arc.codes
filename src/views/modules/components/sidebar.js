@@ -102,14 +102,14 @@ function Group (state = {}) {
   "
   ${groupIsActive ? 'open' : ''}
 >
-  <summary class="text-p1 mb0">${name}
-    <span class="plus-icon inline icon fill-current">
-      <svg style="width: 18px; height: 18px; vertical-align: text-top;">
+  <summary class="text-p1 mb0 flex items-center">${name}
+    <span class="plus-icon inline icon fill-current pl-5">
+      <svg style="width: 18px; height: 18px; vertical-align: baseline;">
         <use xlink:href="#plus"></use>
       </svg>
     </span>
-    <span class="minus-icon inline icon fill-current">
-      <svg style="width: 18px; height: 18px; vertical-align: text-top;">
+    <span class="minus-icon inline icon fill-current pl-5">
+      <svg style="width: 18px; height: 18px; vertical-align: baseline;">
         <use xlink:href="#minus"></use>
       </svg>
     </span>
