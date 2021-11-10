@@ -104,12 +104,12 @@ function Group (state = {}) {
 >
   <summary class="text-p1 mb0 flex items-center">${name}
     <span class="plus-icon inline icon fill-current pl-5">
-      <svg style="width: 18px; height: 18px; vertical-align: baseline;">
+      <svg style="vertical-align: baseline;">
         <use xlink:href="#plus"></use>
       </svg>
     </span>
     <span class="minus-icon inline icon fill-current pl-5">
-      <svg style="width: 18px; height: 18px; vertical-align: baseline;">
+      <svg style="vertical-align: baseline;">
         <use xlink:href="#minus"></use>
       </svg>
     </span>
