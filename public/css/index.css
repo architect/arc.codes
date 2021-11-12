@@ -105,3 +105,32 @@ details summary .plus-icon, details[open] summary .minus-icon {
 details[open] summary .plus-icon, details summary .minus-icon {
   display: none;
 }
+
+main {
+  display: flex;
+}
+
+.right-sidebar {
+  display: block;
+  font-size: .9rem;
+  min-width:16rem;
+}
+
+@media only screen and (max-width:80rem) {
+  main {
+    display: block;
+  }
+
+  .right-sidebar {
+    display: none;
+  }
+}
+
+.right-sidebar a {
+  text-decoration: none;
+}
+
+.right-sidebar a.active, .right-sidebar a.active code {
+  font-weight: 700;
+  color: var(--g10);
+}

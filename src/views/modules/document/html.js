@@ -12,11 +12,13 @@ export default function HTML (props = {}) {
     children = [],
     editURL = '',
     lang = 'en',
+    pageToC = '',
     scripts = '',
     state = {},
     thirdparty = '',
     title = ''
   } = props
+
   let scriptTags = scripts &&
     Array.isArray(props.scripts)
     ? scripts.map(src => Script({ src })).join('')
@@ -71,6 +73,12 @@ ${Symbols}
         <div class="pb4 docs">
           ${children}
           ${EditLink({ editURL })}
+        </div>
+      </div>
+      <div class="pl0 w-toc sticky top0 right-sidebar">
+        <h4>Table of Contents</h4>
+        <div class="pt0 ml-none-lg">
+          ${pageToC.replace(/class="mb1"/g, 'class="list-none"')}
         </div>
       </div>
     </main>
