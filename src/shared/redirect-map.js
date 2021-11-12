@@ -18,8 +18,8 @@ const tempRedirects = {
   '/@indexes': '/docs/en/reference/project-manifest/indexes',
   '/macros':  '/docs/en/reference/project-manifest/macros',
   '/@macros': '/docs/en/reference/project-manifest/macros',
-  '/plugins':  '/docs/en/reference/project-manifest/macros', // TODO: update with new plugins doc
-  '/@plugins': '/docs/en/reference/project-manifest/macros', // TODO: update with new plugins doc
+  '/plugins':  '/docs/en/guides/extend/plugins', // TODO: update with new plugins doc
+  '/@plugins': '/docs/en/guides/extend/plugins', // TODO: update with new plugins doc
   '/proxy':  '/docs/en/reference/project-manifest/proxy',
   '/@proxy': '/docs/en/reference/project-manifest/proxy',
   '/queues':  '/docs/en/reference/project-manifest/queues',
@@ -30,8 +30,8 @@ const tempRedirects = {
   '/@shared': '/docs/en/reference/project-manifest/shared',
   '/static':  '/docs/en/reference/project-manifest/static',
   '/@static': '/docs/en/reference/project-manifest/static',
-  '/streams':  '/docs/en/reference/project-manifest/tables', // TODO: update with new streams doc
-  '/@streams': '/docs/en/reference/project-manifest/streams',
+  '/tables-streams':  '/docs/en/reference/project-manifest/tables-streams',
+  '/@tables-streams': '/docs/en/reference/project-manifest/tables-streams',
   '/tables':  '/docs/en/reference/project-manifest/tables',
   '/@tables': '/docs/en/reference/project-manifest/tables',
   '/views':  '/docs/en/reference/project-manifest/views',

@@ -84,7 +84,7 @@ These pragmas represent persistence resources.
 - [`@static`](../reference/project-manifest/static) Bucket for hosting static assets (S3)
 - [`@tables`](../reference/project-manifest/tables) Database tables and trigger functions (DynamoDB)
 - [`@indexes`](../reference/project-manifest/indexes) Table global secondary indexes (DynamoDB)
-- [`@streams`](../reference/project-manifest/streams) Table stream handler functions (DynamoDB + Lambda)
+- [`@tables-streams`](../reference/project-manifest/tables-streams) Table stream handler functions (DynamoDB + Lambda)
 
 ## Example
 
@@ -124,7 +124,7 @@ daily-affirmation rate(1 day)
 likes
   likeID *String
 
-@streams
+@tables-streams
 likes
 
 @indexes
@@ -162,7 +162,7 @@ likes
       "likeID": "*String"
     }
   },
-  "streams": ["likes"],
+  "tables-streams": ["likes"],
   "indexes": {
     "likes": {
       "date": "*String"
@@ -198,7 +198,7 @@ scheduled:
   - daily-affirmation: "rate(1 day)"
 tables:
   - likes: { likeID: "*String" }
-streams:
+tables-streams:
   - likes
 indexes:
   - likes: { date: "*String" }
@@ -240,7 +240,7 @@ daily-affirmation=["rate(1 day)"]
 [tables.likes]
 likeiD="*String"
 
-streams=["likes"]
+tables-streams=["likes"]
 
 [[indexes]]
 [indexes.likes]
@@ -259,7 +259,7 @@ Running `arc init` in the same directory as the file above generates the followi
 .
 ├── src
 │   ├── events
-│   │   └── hit-counter/
+│   │   └── hit-counter/index.js
 │   │
 │   ├── http
 │   │   ├── get-index/index.js
@@ -267,19 +267,16 @@ Running `arc init` in the same directory as the file above generates the followi
 │   │   └── post-likes/index.js
 │   │
 │   ├── scheduled
-│   │   └── daily-affirmation/
+│   │   └── daily-affirmation/index.js
 │   │
-│   ├── streams
-│   │   └── likes/
-│   │
-│   ├── tables
-│   │   └── likes/
+│   ├── tables-streams
+│   │   └── likes/index.js
 │   │
 │   └── ws
-│       ├── action/
-│       ├── connect/
-│       ├── default/
-│       └── disconnect/
+│       ├── action/index.js
+│       ├── connect/index.js
+│       ├── default/index.js
+│       └── disconnect/index.js
 │
 └── app.arc
 ```

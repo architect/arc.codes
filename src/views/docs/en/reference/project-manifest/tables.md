@@ -12,7 +12,7 @@ Define [DynamoDB][ddb] tables with optional:
 
 [Global Secondary Indexes][gsi] can be specified on each table you define using the [`@indexes`][indexes] pragma.
 
-Additionally, database changes can be streamed to a function with the [`@streams`][streams] pragma.
+Additionally, database changes can be streamed to a function with the [`@tables-streams`][tables-streams] pragma.
 
 ## Recommended Resources
 
@@ -37,13 +37,13 @@ Additionally, database changes can be streamed to a function with the [`@streams
 - The required partition key is denoted by `*`
 - The optional sort key is denoted by `**`
 - Currently only `*String`, `**String`, `*Number` and `**Number` are supported
-- `insert`, `update`, and `destroy` events can be handled with [`@streams`][streams]
+- `insert`, `update`, and `destroy` events can be handled with [`@tables-streams`][tables-streams]
 
 > Note: `app.arc` creates fully isolated tables for `staging` and `production`.
 
 ### Streaming Changes to a Lambda
 
-In addition to using the [`@streams`][streams] pragma, `@tables` entries can define a `stream true` property to have Architect create a [Lambda function which will receive events whenever items in the table get inserted, updated or deleted][stream]. Architect will create the Lambda for you locally under `src/streams/<tableName>`.
+In addition to using the [`@tables-streams`][tables-streams] pragma, `@tables` entries can define a `stream true` property to have Architect create a [Lambda function which will receive events whenever items in the table get inserted, updated or deleted][stream]. Architect will create the Lambda for you locally under `src/tables-streams/<tableName>`.
 
 ### Encrypting Tables
 
@@ -178,7 +178,7 @@ tables:
 </arc-viewer>
 
 [indexes]: indexes
-[streams]: streams
+[tables-streams]: tables-streams
 [core]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html
 [ddb]: https://aws.amazon.com/documentation/dynamodb/
 [encryption]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EncryptionAtRest.html

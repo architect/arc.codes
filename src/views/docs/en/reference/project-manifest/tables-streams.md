@@ -1,5 +1,5 @@
 ---
-title: '@streams'
+title: '@tables-streams'
 category: app.arc
 description: Define DynamoDB tables with streaming changes
 ---
@@ -17,7 +17,7 @@ Define Lambda functions for streaming changes to DynamoDB tables. Respond to `in
 - Lowercase alphanumeric string
 - Must match a `@tables` name
 
-> Using `@streams` requires specifying corresponding `@tables`.
+> Using `@tables-streams` requires specifying corresponding `@tables`.
 
 ## Example
 
@@ -38,7 +38,7 @@ testapp
 people
   pplID *String
 
-@streams
+@tables-streams
 people
 
 ```
@@ -59,7 +59,7 @@ people
       }
     }
   ],
-  "streams": [
+  "tables-streams": [
     "people"
   ]
 }
@@ -78,7 +78,7 @@ app="testapp"
 [tables.people]
 pplID="*String"
 
-streams=["people"]
+tables-streams=["people"]
 ```
 </div>
 </arc-tab>
@@ -95,7 +95,7 @@ tables:
 - people:
     pplID: "*String"
 
-streams:
+tables-streams:
 - people
 ```
 </div>
