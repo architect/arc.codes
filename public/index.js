@@ -88,4 +88,25 @@
     let currentHeight = (el[scrollHeight] || body[scrollHeight]) - body.clientHeight
     return Math.floor((currentTop / currentHeight) * 100)
   }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver(entries => {
+      const allSectionLinks = document.querySelectorAll('.right-sidebar li a')
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id')
+          allSectionLinks.forEach(link => link.classList.remove('active'))
+          document.querySelector(`.right-sidebar a[href="#${id}"]`).classList.add('active')
+        }
+      })
+    }, {
+      root: null,
+      rootMargin: `0% 0% -80% 0%`,
+      threshold: [ 1 ],
+    })
+
+    document.querySelectorAll('h2, h3, h4, h5, h6').forEach((header) => {
+      observer.observe(header)
+    })
+  })
 }())

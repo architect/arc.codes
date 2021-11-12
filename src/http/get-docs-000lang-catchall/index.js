@@ -8,8 +8,8 @@ const { redirect: redirectMiddleware } = require('@architect/shared/redirect-map
 const notFoundResponse = require('@architect/shared/not-found-response')
 const Markdown = require('markdown-it')
 const markdownClass = require('@toycode/markdown-it-class')
-const markdownAnchor = require('markdown-it-anchor')
 const markdownExternalAnchor = require('markdown-it-external-anchor')
+const markdownToC = require('markdown-it-toc-and-anchor').default
 const frontmatterParser = require('markdown-it-front-matter')
 const yaml = require('js-yaml')
 const classMapping = require('./markdown-class-mappings')
@@ -21,6 +21,10 @@ const toc = require('@architect/views/docs/table-of-contents')
 const Html = require('@architect/views/modules/document/html.js').default
 const NotFound = require('@architect/views/modules/components/not-found.js').default
 const algolia = require('@architect/views/modules/components/algolia.js').default
+
+
+// reproduces the slugify algorithm used in markdown-it-anchor
+const slugify = (s) => encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-'))
 
 const cache = {} // cheap warm cache
 
@@ -83,6 +87,7 @@ async function handler (req) {
   }
 
   let frontmatter = {}
+  let pageToC = ''
   const markdown = new Markdown({
     linkify: true,
     html: true,
@@ -90,8 +95,17 @@ async function handler (req) {
     highlight
   })
     .use(markdownClass, classMapping)
-    .use(markdownAnchor)
     .use(markdownExternalAnchor)
+    .use(markdownToC, {
+      anchorLink: false,
+      slugify,
+      tocClassName: 'pageToC',
+      tocFirstLevel: 2,
+      tocLastLevel: 6,
+      tocCallback: function (tocMarkdown, tocArray, tocHtml) {
+        pageToC = tocHtml
+      }
+    })
     .use(frontmatterParser, function (str) {
       frontmatter = yaml.load(str)
     })
@@ -111,6 +125,7 @@ async function handler (req) {
       description,
       editURL,
       lang,
+      pageToC,
       sections,
       scripts: [
         '/index.js',
