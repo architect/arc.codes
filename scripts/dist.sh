@@ -2,7 +2,7 @@
 echo "Copying Architect Highlight.js files & grammars from node_modules to get-docs-000lang-catchall/highlight/..."
 mkdir src/http/get-docs-000lang-catchall/highlight &> /dev/null
 mkdir src/http/get-docs-000lang-catchall/highlight/languages &> /dev/null
-for lang in bash javascript json powershell python ruby yaml
+for lang in bash javascript json powershell python ruby yaml ini
 do
   cp node_modules/highlight.js/lib/languages/$lang.js src/http/get-docs-000lang-catchall/highlight/languages/
 done

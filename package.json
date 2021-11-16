@@ -4,7 +4,7 @@
   "scripts": {
     "dist": "./scripts/dist.sh",
     "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
-    "link-checker": "node ./scripts/link-checker-test.js | tap-spec",
+    "link-checker": "node ./scripts/link-checker.js | tap-spec",
     "lint": "eslint src --fix",
     "start": "sandbox",
     "test:unit:frontend": "tape -r esm 'test/frontend/**/*.js' | tap-spec",

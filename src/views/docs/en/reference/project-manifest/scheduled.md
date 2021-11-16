@@ -8,7 +8,7 @@ Define EventBridge schedule expressions with Lambda handler functions.
 
 ### Syntax
 
-- name
+- Name
   - Lowercase alphanumeric string
   - Maximum of 20 characters
   - Dashes are allowed; underscores are not allowed
