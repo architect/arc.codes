@@ -93,7 +93,7 @@ env staging
 
 ### `useAWS` - Boolean
 
-Advanced option that uses live AWS infrastructure where deployed, specifically: `@tables` / `@indexes` (DynamoDB), `@events` (EventBridge), and `@queues` (SQS). Notes:
+Advanced option that uses live AWS infrastructure where deployed, specifically: `@tables` / `@tables-indexes` (DynamoDB), `@events` (EventBridge), and `@queues` (SQS). Notes:
 - To use this feature, your local AWS credentials file must have valid keys to use this infrastructure (or calls to AWS will fail)
 - If you do not specify an environment, `staging` will be set automatically; you can also use `production`
 

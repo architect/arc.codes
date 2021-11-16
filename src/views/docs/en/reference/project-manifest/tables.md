@@ -10,7 +10,7 @@ Define [DynamoDB][ddb] tables with optional:
 - [time-to-live item expiry][ttl]
 - [point-in-time recovery][recovery]
 
-[Global Secondary Indexes][gsi] can be specified on each table you define using the [`@indexes`][indexes] pragma.
+[Global Secondary Indexes][gsi] can be specified on each table you define using the [`@tables-indexes`][tables-indexes] pragma.
 
 Additionally, database changes can be streamed to a function with the [`@tables-streams`][tables-streams] pragma.
 
@@ -173,7 +173,7 @@ tables:
 </div>
 </arc-viewer>
 
-[indexes]: indexes
+[tables-indexes]: tables-indexes
 [tables-streams]: tables-streams
 [core]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html
 [ddb]: https://aws.amazon.com/documentation/dynamodb/

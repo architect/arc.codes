@@ -83,7 +83,7 @@ These pragmas represent persistence resources.
 
 - [`@static`](../reference/project-manifest/static) Bucket for hosting static assets (S3)
 - [`@tables`](../reference/project-manifest/tables) Database tables and trigger functions (DynamoDB)
-- [`@indexes`](../reference/project-manifest/indexes) Table global secondary indexes (DynamoDB)
+- [`@tables-indexes`](../reference/project-manifest/tables-indexes) Table global secondary indexes (DynamoDB)
 - [`@tables-streams`](../reference/project-manifest/tables-streams) Table stream handler functions (DynamoDB + Lambda)
 
 ## Example
@@ -127,7 +127,7 @@ likes
 @tables-streams
 likes
 
-@indexes
+@tables-indexes
 likes
   date *String
 ```
@@ -163,7 +163,7 @@ likes
     }
   },
   "tables-streams": ["likes"],
-  "indexes": {
+  "tables-indexes": {
     "likes": {
       "date": "*String"
     }
@@ -200,7 +200,7 @@ tables:
   - likes: { likeID: "*String" }
 tables-streams:
   - likes
-indexes:
+tables-indexes:
   - likes: { date: "*String" }
 ```
 
@@ -242,8 +242,8 @@ likeiD="*String"
 
 tables-streams=["likes"]
 
-[[indexes]]
-[indexes.likes]
+[["tables-indexes"]]
+["tables-indexes".likes]
 date="*String"
 ```
 

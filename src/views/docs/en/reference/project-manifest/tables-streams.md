@@ -4,9 +4,7 @@ category: app.arc
 description: Define DynamoDB tables with streaming changes
 ---
 
-Define Lambda functions for streaming changes to DynamoDB tables. Respond to `insert`, `update`, and `destroy` events with a handler function.
-
-> ⚠️  Unfortunately, "dynalite" (used under the hood in Architect [Sandbox](../cli/sandbox)) doesn't support streams, so emulation isn't yet supported for local development.
+Define Lambda functions for streaming changes from DynamoDB tables. Respond to `insert`, `update`, and `destroy` events with a handler function.
 
 ## Recommended Resources
 
@@ -18,7 +16,7 @@ Define Lambda functions for streaming changes to DynamoDB tables. Respond to `in
   - Lowercase alphanumeric string
   - Must match a `@tables` name
 
-Table streams can use more verbose configuration to allow for [custom source paths](../../guides/developer-experience/custom-source-paths) and names in your project. Optionally provide a `name` and/or `src` for each table stream.
+Table streams can use more verbose configuration to allow for [custom source paths](../../guides/developer-experience/custom-source-paths) and names in your project. This is beneficial when creating more than one stream function for a single table. Optionally provide a `name` and/or `src` for each table stream.
 
 - `name` - a string as defined in `@tables`
 - `src` - path to the function source
@@ -130,3 +128,4 @@ src = "custom/source"
 </div>
 </arc-viewer>
 
+> ⚠️  Unfortunately, "dynalite" (used under the hood in Architect [Sandbox](../cli/sandbox)) doesn't support streams, so emulation isn't yet supported for local development.

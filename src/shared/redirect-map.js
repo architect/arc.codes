@@ -14,8 +14,8 @@ const tempRedirects = {
   '/@events': '/docs/en/reference/project-manifest/events',
   '/http':  '/docs/en/reference/project-manifest/http',
   '/@http': '/docs/en/reference/project-manifest/http',
-  '/indexes':  '/docs/en/reference/project-manifest/indexes',
-  '/@indexes': '/docs/en/reference/project-manifest/indexes',
+  '/indexes':  '/docs/en/reference/project-manifest/tables-indexes',
+  '/@indexes': '/docs/en/reference/project-manifest/tables-indexes',
   '/macros':  '/docs/en/reference/project-manifest/macros',
   '/@macros': '/docs/en/reference/project-manifest/macros',
   '/plugins':  '/docs/en/guides/extend/plugins', // TODO: update with new plugins doc
@@ -32,8 +32,8 @@ const tempRedirects = {
   '/@static': '/docs/en/reference/project-manifest/static',
   '/tables':  '/docs/en/reference/project-manifest/tables',
   '/@tables': '/docs/en/reference/project-manifest/tables',
-  '/tables-indexes':  '/docs/en/reference/project-manifest/indexes',
-  '/@tables-indexes': '/docs/en/reference/project-manifest/indexes',
+  '/tables-indexes':  '/docs/en/reference/project-manifest/tables-indexes',
+  '/@tables-indexes': '/docs/en/reference/project-manifest/tables-indexes',
   '/tables-streams':  '/docs/en/reference/project-manifest/tables-streams',
   '/@tables-streams': '/docs/en/reference/project-manifest/tables-streams',
   '/views':  '/docs/en/reference/project-manifest/views',
@@ -91,7 +91,7 @@ const permanentRedirects = {
   '/reference/arc/aws': '/docs/en/reference/project-manifest/aws',
   '/reference/arc/events': '/docs/en/reference/project-manifest/events',
   '/reference/arc/http': '/docs/en/reference/project-manifest/http',
-  '/reference/arc/indexes': '/docs/en/reference/project-manifest/indexes',
+  '/reference/arc/indexes': '/docs/en/reference/project-manifest/tables-indexes',
   '/reference/arc/proxy': '/docs/en/reference/project-manifest/proxy',
   '/reference/arc/queues': '/docs/en/reference/project-manifest/queues',
   '/reference/arc/scheduled': '/docs/en/reference/project-manifest/scheduled',
@@ -103,7 +103,7 @@ const permanentRedirects = {
   '/docs/en/reference/app.arc/aws': '/docs/en/reference/project-manifest/aws',
   '/docs/en/reference/app.arc/events': '/docs/en/reference/project-manifest/events',
   '/docs/en/reference/app.arc/http': '/docs/en/reference/project-manifest/http',
-  '/docs/en/reference/app.arc/indexes': '/docs/en/reference/project-manifest/indexes',
+  '/docs/en/reference/app.arc/indexes': '/docs/en/reference/project-manifest/tables-indexes',
   '/docs/en/reference/app.arc/proxy': '/docs/en/reference/project-manifest/proxy',
   '/docs/en/reference/app.arc/queues': '/docs/en/reference/project-manifest/queues',
   '/docs/en/reference/app.arc/scheduled': '/docs/en/reference/project-manifest/scheduled',
@@ -112,6 +112,8 @@ const permanentRedirects = {
   '/docs/en/reference/app.arc/tables': '/docs/en/reference/project-manifest/tables',
   '/docs/en/reference/app.arc/views': '/docs/en/reference/project-manifest/views',
   '/docs/en/reference/app.arc/ws': '/docs/en/reference/project-manifest/ws',
+  // rename @indexes => @tables-indexes
+  '/docs/en/reference/project-manifest/indexes': '/docs/en/reference/project-manifest/tables-indexes',
 
   // Reference > Configuration > Function config
   // round 1: Q1 2021
@@ -209,7 +211,7 @@ const permanentRedirects = {
   '/reference/domain': currentRoot,
   '/reference/events': '/docs/en/reference/project-manifest/events',
   '/reference/http': '/docs/en/reference/project-manifest/http',
-  '/reference/indexes': '/docs/en/reference/project-manifest/indexes',
+  '/reference/indexes': '/docs/en/reference/project-manifest/tables-indexes',
   '/reference/queues': '/docs/en/reference/project-manifest/queues',
   '/reference/scheduled': '/docs/en/reference/project-manifest/scheduled',
   '/reference/static': '/docs/en/reference/project-manifest/static',

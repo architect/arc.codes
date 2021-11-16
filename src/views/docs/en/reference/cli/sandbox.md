@@ -11,7 +11,7 @@ Architect projects work locally and offline. It emulates most app resources defi
 - `@ws`
 - `@events`
 - `@queues`
-- `@tables` and `@indexes`
+- `@tables` and `@tables-indexes`
 
 > At this time `arc sandbox` does not emulate `@scheduled`
 
@@ -49,7 +49,7 @@ arc sandbox [--port|--verbose|--disable-symlinks|--no-hydrate]
 
 ### Local Database
 
-Sandbox creates an in-memory instance of [dynalite](https://github.com/mhart/dynalite) with `@tables` and `@indexes` found in the `app.arc` file. When Sandbox is terminated, any data written is cleared from memory. The default endpoint is `http://localhost:5000`. You can set a custom port by using an environment variable, `ARC_TABLES_PORT=5555`
+Sandbox creates an in-memory instance of [dynalite](https://github.com/mhart/dynalite) with `@tables` and `@tables-indexes` found in the `app.arc` file. `@tables-streams` is not currently supported by dynalite. When Sandbox is terminated, any data written is cleared from memory. The default endpoint is `http://localhost:5000`. You can set a custom port by using an environment variable, `ARC_TABLES_PORT=5555`
 
 ### Connect sandbox to the staging database
 

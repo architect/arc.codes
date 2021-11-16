@@ -1,12 +1,12 @@
 ---
-title: '@indexes'
+title: '@tables-indexes'
 category: app.arc
 description: Define DynamoDB table global secondary indexes.
 ---
 
-Defines [Global Secondary Indexes][gsi] for your project's [DynamoDB][ddb] tables. `@indexes` should only ever be paired with [`@tables`][tables].
+Defines [Global Secondary Indexes][gsi] for your project's [DynamoDB][ddb] tables. `@tables-indexes` should only ever be paired with [`@tables`][tables].
 
-> ℹ️  As of Architect v9.4, `@tables-indexes` can be used in place of `@indexes`. `@indexes` will be superseded in a future Arc release.
+> ℹ️  As of Architect v9.4, `@tables-indexes` should be used in place of `@indexes`. `@indexes` will be superseded in a future Arc release.
 
 ## Recommended
 
@@ -18,8 +18,8 @@ Defines [Global Secondary Indexes][gsi] for your project's [DynamoDB][ddb] table
 
 ## Syntax
 
-- `@indexes` is a feature subset of [`@tables`][tables]; as such, the names of your declared indexes must match those of your [`@tables`][tables]
-- Otherwise, the basic syntax for defining `@indexes` primary keys is the same as [`@tables`][tables]:
+- `@tables-indexes` is a feature subset of [`@tables`][tables]; as such, the names of your declared indexes must match those of your [`@tables`][tables]
+- Otherwise, the basic syntax for defining `@tables-indexes` primary keys is the same as [`@tables`][tables]:
   - Partition key, defined by a `*`, is required
   - Sort key, defined by `**`, is optional
   - Currently only `*String`, `**String`, `*Number` and `**Number` are supported
@@ -43,7 +43,7 @@ testapp
 accounts
   accountID *String
 
-@indexes
+@tables-indexes
 accounts
   email *String
   name byEmail
@@ -65,7 +65,7 @@ accounts
   "tables": [
     { "accounts": { "accountID": "*String" } }
   ],
-  "indexes": [
+  "tables-indexes": [
     { "accounts": { "email": "*String", "name": "byEmail" } },
     { "accounts": { "created": "*String", "name": "byDate" } }
   ]
@@ -85,7 +85,7 @@ app="testapp"
 [tables.accounts]
 accountID="*String"
 
-indexes = [
+tables-indexes = [
 { "accounts" = { "email" = "*String", "name" = "byEmail" } },
 { "accounts" = { "created" = "*String", "name" = "byDate" } }
 ]
@@ -105,7 +105,7 @@ tables:
 - accounts:
     accountID: "*String"
 
-indexes:
+tables-indexes:
 - accounts:
   - email: "*String"
   - name: "byEmail"
