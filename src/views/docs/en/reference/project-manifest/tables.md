@@ -43,7 +43,7 @@ Additionally, database changes can be streamed to a function with the [`@tables-
 
 ### Streaming Changes to a Lambda
 
-In addition to using the [`@tables-streams`][tables-streams] pragma, `@tables` entries can define a `stream true` property to have Architect create a [Lambda function which will receive events whenever items in the table get inserted, updated or deleted][stream]. Architect will create the Lambda for you locally under `src/tables-streams/<tableName>`.
+Use the [`@tables-streams`][tables-streams] pragma to have Architect create a [Lambda function which will receive events whenever items in the table get inserted, updated or deleted][stream]. Architect will create the Lambda for you locally under `src/tables-streams/<tableName>`.
 
 ### Encrypting Tables
 
@@ -89,7 +89,6 @@ cats
 fleeting-thoughts
   pplID *String
   expires TTL
-  stream true
 ```
 </div>
 </arc-tab>
@@ -114,8 +113,7 @@ fleeting-thoughts
       },
       "fleeting-thoughts": {
         "pplID": "*String",
-        "expires": "TTL",
-        "stream": true
+        "expires": "TTL"
       }
     }
   ]
@@ -145,7 +143,6 @@ PointInTimeRecovery=true
 [tables.fleeting-thoughts]
 pplID="*String"
 expires="TTL"
-stream=true
 ```
 </div>
 </arc-tab>
@@ -169,7 +166,6 @@ tables:
 - fleeting-thoughts:
     pplID: "*String"
     expires: "TTL"
-    stream: true
 ```
 </div>
 </arc-tab>

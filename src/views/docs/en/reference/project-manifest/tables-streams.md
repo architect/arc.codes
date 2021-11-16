@@ -6,7 +6,7 @@ description: Define DynamoDB tables with streaming changes
 
 Define Lambda functions for streaming changes to DynamoDB tables. Respond to `insert`, `update`, and `destroy` events with a handler function.
 
-> ⚠️  Unfortunately, "dynalite" (used under the hood in Architect [Sandbox](../cli/sandbox)) doesn't support streams, so emulation isn't supported for local development.
+> ⚠️  Unfortunately, "dynalite" (used under the hood in Architect [Sandbox](../cli/sandbox)) doesn't support streams, so emulation isn't yet supported for local development.
 
 ## Recommended Resources
 
@@ -14,10 +14,14 @@ Define Lambda functions for streaming changes to DynamoDB tables. Respond to `in
 
 ## Syntax
 
-- Lowercase alphanumeric string
-- Must match a `@tables` name
+- Name
+  - Lowercase alphanumeric string
+  - Must match a `@tables` name
 
-> Using `@tables-streams` requires specifying corresponding `@tables`.
+Table streams can use more verbose configuration to allow for [custom source paths](../../guides/developer-experience/custom-source-paths) and names in your project. Optionally provide a `name` and/or `src` for each table stream.
+
+- `name` - a string as defined in `@tables`
+- `src` - path to the function source
 
 ## Example
 
@@ -40,6 +44,10 @@ people
 
 @tables-streams
 people
+# verbose custom source:
+a-named-table-stream
+ table people
+ src custom/source
 
 ```
 </div>
@@ -60,25 +68,15 @@ people
     }
   ],
   "tables-streams": [
-    "people"
+    "people",
+    {
+      "a-named-table-stream": {
+        "name": "people",
+        "src": "custom/source"
+      }
+    }
   ]
 }
-```
-</div>
-</arc-tab>
-
-<arc-tab label=toml>
-<h5>toml</h5>
-<div slot=content>
-
-```toml
-app="testapp"
-
-[[tables]]
-[tables.people]
-pplID="*String"
-
-tables-streams=["people"]
 ```
 </div>
 </arc-tab>
@@ -97,6 +95,34 @@ tables:
 
 tables-streams:
 - people
+# verbose custom source:
+- "a-named-table-stream":
+    name: "people"
+    src: "custom/source"
+```
+</div>
+</arc-tab>
+
+<arc-tab label=toml>
+<h5>toml</h5>
+<div slot=content>
+
+```toml
+app="testapp"
+
+[[tables]]
+[tables.people]
+pplID="*String"
+
+tables-streams=["people"]
+
+# TOML doesn't allow mixed types in an array.
+# Theoretically a "table" entry with a custom source would look like:
+
+[["tables-streams"]]
+["tables-streams"."a-named-table-stream"]
+name = "people"
+src = "custom/source"
 ```
 </div>
 </arc-tab>

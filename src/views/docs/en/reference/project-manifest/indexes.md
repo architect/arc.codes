@@ -6,6 +6,8 @@ description: Define DynamoDB table global secondary indexes.
 
 Defines [Global Secondary Indexes][gsi] for your project's [DynamoDB][ddb] tables. `@indexes` should only ever be paired with [`@tables`][tables].
 
+> ℹ️  As of Architect v9.4, `@tables-indexes` can be used in place of `@indexes`. `@indexes` will be superseded in a future Arc release.
+
 ## Recommended
 
 [DynamoDB][ddb] is a powerful database, though different from both SQL and NoSQL databases. It is highly recommended to dig into Amazon's resources to familiarize yourself with it:
@@ -26,7 +28,6 @@ Defines [Global Secondary Indexes][gsi] for your project's [DynamoDB][ddb] table
 ## Example
 
 The following `app.arc` file defines a [DynamoDB][ddb] table with two [Global Secondary Indexes][gsi]:
-
 
 <arc-viewer default-tab=arc>
 <div slot=contents>

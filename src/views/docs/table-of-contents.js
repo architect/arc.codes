@@ -54,7 +54,6 @@ let Reference = [ {
     '@scheduled',
     '@shared',
     '@static',
-    '@streams',
     '@tables',
     '@tables-streams',
     '@views',
