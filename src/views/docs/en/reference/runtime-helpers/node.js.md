@@ -628,9 +628,9 @@ exports.handler = asap(params)
 ```javascript
 // asap as arc.http.async middleware
 let arc = require('@architect/functions')
-let asap = require('@architect/asap')()
+let asap = require('@architect/asap')
 
-exports.handler = arc.http.async(render, asap)
+exports.handler = arc.http.async(render, asap())
 
 async function render (req) {
   // If user is logged in, show them a custom logged in page
