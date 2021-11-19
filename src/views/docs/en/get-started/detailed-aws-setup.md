@@ -95,7 +95,7 @@ You will also need to set a default profile and region with the environment vari
 - `AWS_PROFILE`
 - `AWS_REGION`
 
-To set these variables on Linux, macOS, or UNIX, use `export` in your shell's configuration (eg. `~/.zshrc` or `~/.bashrc`):
+To set these variables on Linux, macOS, or UNIX, use `export` in your shell's configuration (e.g. `~/.zshrc` or `~/.bashrc`):
 
 ```bash
 export AWS_PROFILE=work
