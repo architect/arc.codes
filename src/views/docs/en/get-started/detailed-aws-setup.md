@@ -59,6 +59,9 @@ The [AWS Command Line Interface](https://docs.aws.amazon.com/cli/) is the main i
 
 You'll need an Amazon Web Services account and credentials set up on your development machine. If you haven't done it before, here's a useful guide for [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
 
+Architect, as a deployment tool, requires an IAM user account with `AdministratorAccess`. In turn, Architect will create and attach least-privilege IAM roles to runtime resources.  
+It is possible to limit Architect credentials to IAM, CloudFormation, etc., but this is effectively granting `AdministratorAccess` since that role would have the ability to create an IAM role with `AdministratorAccess`.
+
 On \*nix systems AWS Credentials are listed in:
 
 ```bash
@@ -92,7 +95,7 @@ You will also need to set a default profile and region with the environment vari
 - `AWS_PROFILE`
 - `AWS_REGION`
 
-To set these variables on Linux, macOS, or UNIX, use export in your `~/.bashrc` (or equivalent shell configuration):
+To set these variables on Linux, macOS, or UNIX, use `export` in your shell's configuration (eg. `~/.zshrc` or `~/.bashrc`):
 
 ```bash
 export AWS_PROFILE=work
@@ -107,7 +110,6 @@ $env:AWS_REGION='us-west-1'
 ```
 
 > If you prefer, you can also use: *Control Panel » System » Advanced System Settings » Environment Variables*.
-
 
 ### Install Architect
 
