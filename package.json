@@ -4,11 +4,11 @@
   "scripts": {
     "dist": "./scripts/dist.sh",
     "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
-    "link-checker": "node ./scripts/link-checker.js | tap-spec",
+    "link-checker": "node ./scripts/link-checker.js | tap-arc",
     "lint": "eslint src --fix",
     "start": "sandbox",
-    "test:unit:frontend": "tape -r esm 'test/frontend/**/*.js' | tap-spec",
-    "test:unit:backend": "tape 'test/backend/**/*.js' | tap-spec",
+    "test:unit:frontend": "tape -r esm 'test/frontend/**/*.js' | tap-arc",
+    "test:unit:backend": "tape 'test/backend/**/*.js' | tap-arc",
     "test": "npm run spellcheck && npm run lint && npm run test:unit:frontend && npm run test:unit:backend"
   },
   "dependencies": {
@@ -34,7 +34,7 @@
     "eslint": "^8.1.0",
     "linkinator": "^2.14.5",
     "spellchecker-cli": "^4.8.0",
-    "tap-spec": "^5.0.0",
+    "tap-arc": "^0.1.0",
     "tape": "^5.3.1",
     "tiny-json-http": "^7.3.1"
   },
