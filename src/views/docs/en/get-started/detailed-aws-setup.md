@@ -8,59 +8,68 @@ description: Setting up, installing, and working with Architect and AWS.
 
 ## AWS deployment requirements
 
-1. [Node](https://nodejs.org) for Architect
+1. [Node.js](https://nodejs.org) for Architect
 2. [Python](https://www.python.org) for the AWS CLI
-3. Any additional [supported runtimes](#runtime-environments) you plan to use
+3. Any additional [supported runtimes](#runtime-environments) you plan to use in your application
 4. [AWS CLI](#aws-cli)
 5. [AWS credentials](#credentials)
 6. [Architect CLI](#install-architect)
 
 ---
 
-### Runtime Environments
+### Runtime environments
 
 Architect supports the following runtime versions:
 
-- **Node.js**: `14.x` (default) using `npm`
+- **Node.js**: `>= 14.x` using `npm`
+  - Unless otherwise specified in your project manifest, Node.js is the default runtime for new functions
+- **Python**: `3.9`, `3.8`, `3.7`, or `3.6` using `pip3`
 - **Ruby**: `2.7` using `bundle`
-- **Python**: `3.9`, `3.8`, `3.7`, and `3.6` using `pip3`
 - **Deno**: `1.6.x` ([under development](../reference/runtime-helpers/deno))
 
-> ⚠️  Working locally with the Architect `sandbox` requires target runtimes to be available in your `$PATH`.
+> ⚠️ Working locally with the Architect `sandbox` requires target runtimes to be available in your `$PATH`.
 
-Additionally, standard AWS managed runtimes are supported in live infra, but not while working locally with [Sandbox](../reference/cli/sandbox) (at present):
+Additionally, all other standard AWS-managed runtimes are supported in Architect applications (but may not be supported in [Sandbox](../reference/cli/sandbox)), including:
 
 - **Go**: `1.x`
 - **.NET**: `3.1`
 - **Java**: `11`, and `8`
 
-Architect also supports _any custom runtime_ in live infra using either [Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) or [Lambda container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html).
+Architect also supports _any custom runtime_ in using either [Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) or [Lambda container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html).
 
 Change a project's default runtime by specifying [an explicit environment](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) or an alias in `app.arc` with [the `@aws` pragma](../reference/project-manifest/aws).
 
-#### Example
+#### Examples
 
 ```arc
+# version pins the default runtime to Python 3.8
 @aws
 runtime python3.8
 ```
 
-> ℹ️  This setting can be overridden on a function-by-function basis with [`config.arc`](../reference/configuration/function-config).
+```arc
+# always run the latest supported version of Python
+@aws
+runtime python
+```
+
+> ℹ️ This setting can be overridden on a per-function basis with [`config.arc`](../reference/configuration/function-config).
 
 ---
 
 ### AWS CLI
 
-The [AWS Command Line Interface](https://docs.aws.amazon.com/cli/) is the main interface for interacting with all parts of AWS using your computer's terminal. Architect uses the AWS CLI to package and deploy CloudFormation. Follow this guide to [installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) for your preferred environment.
+The [AWS Command Line Interface](https://docs.aws.amazon.com/cli/) is the main interface for interacting with all parts of AWS using your computer's terminal. Architect uses the AWS CLI to package and deploy your app via CloudFormation. Follow this guide to [installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) for your preferred environment.
 
 ---
 
 ### Credentials
 
-You'll need an Amazon Web Services account and credentials set up on your development machine. If you haven't done it before, here's a useful guide for [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
+You'll need an Amazon Web Services account and credentials set up on your development machine and / or CI systems. If you yet set it up, here's a useful guide for [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
 
-Architect, as a deployment tool, requires an IAM user account with `AdministratorAccess`. In turn, Architect will create and attach least-privilege IAM roles to runtime resources.  
-It is possible to limit Architect credentials to IAM, CloudFormation, etc., but this is effectively granting `AdministratorAccess` since that role would have the ability to create an IAM role with `AdministratorAccess`.
+In the context of a deployment tool, Architect requires account credentials with IAM `AdministratorAccess` privileges. In turn, Architect will create and attach least-privilege IAM roles to runtime resources within your application, ensuring strict security boundaries by default.
+
+> ℹ️ While it is possible to limit Architect's deployment credentials to specific IAM and CloudFormation privileges, such an exercise would only be performative. Credentials capable of creating IAM roles can grant and attach new roles with `AdministratorAccess`.
 
 On \*nix systems AWS Credentials are listed in:
 
@@ -90,7 +99,7 @@ aws_access_key_id=xxx
 aws_secret_access_key=xxx
 ```
 
-You will also need to set a default profile and region with the environment variables
+While it is recommended to explicitly declare your application's AWS profile and region, you may also want to use a default profile and region on your machine with the following environment variables:
 
 - `AWS_PROFILE`
 - `AWS_REGION`
@@ -111,16 +120,25 @@ $env:AWS_REGION='us-west-1'
 
 > If you prefer, you can also use: *Control Panel » System » Advanced System Settings » Environment Variables*.
 
+
 ### Install Architect
 
-The following command uses `npm`, the package manager for Node, to install Architect and the AWS SDK globally. This will allow you to use Architect in any directory on your computer.
+The following command uses `npm`, the package manager for Node.js.
 
-```bash
-npm i -g @architect/architect aws-sdk
-```
-
-Or, if you prefer, you can install Architect locally into a project:
+To create an entirely new Architect project:
 
 ```bash
 npm init @architect ./testapp
+```
+
+To install Architect locally into an existing project:
+
+```bash
+npm init @architect ./testapp
+```
+
+Or you can install Architect globally, enabling you to use Architect from any directory on your computer. When doing so, you should also be sure to install the AWS SDK globally as well.
+
+```bash
+npm i -g @architect/architect aws-sdk
 ```
