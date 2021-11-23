@@ -35,7 +35,7 @@ In this tutorial, we will create an event topic, POST JSON data to invoke a subs
 1. We will start with a fresh project and install dependencies.
 
 ``` bash
-npm init @architect ./arc-event-app
+npm exec @architect/create ./arc-event-app
 cd arc-event-app
 ```
 2. Open up your `app.arc` file and add the `@event` pragma along with a POST route
@@ -138,7 +138,7 @@ Another common background task is `@scheduled` functions. These functions are in
 The first thing we will need is a fresh Architect project. We can create one directly from the terminal.
 
 ```bash
-npm init @architect ./arc-scheduled-app
+npm exec @architect/create ./arc-scheduled-app
 cd arc-scheduled-app
 ```
 
@@ -232,7 +232,7 @@ The `Events` property on the `Daily` function shows that this is a scheduled eve
 Let's make an example message queue by starting with a fresh Architect project.
 
 ```bash
-npm init @architect ./arc-queues-app
+npm exec @architect/create ./arc-queues-app
 cd arc-queues-app
 ```
 

@@ -128,13 +128,13 @@ The following command uses `npm`, the package manager for Node.js.
 To create an entirely new Architect project:
 
 ```bash
-npm init @architect ./testapp
+npm exec @architect/create ./testapp
 ```
 
 To install Architect locally into an existing project:
 
 ```bash
-npm init @architect ./testapp
+npm exec @architect/create ./testapp
 ```
 
 Or you can install Architect globally, enabling you to use Architect from any directory on your computer. When doing so, you should also be sure to install the AWS SDK globally as well.

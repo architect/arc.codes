@@ -203,7 +203,7 @@ In this guide, we'll be using the frontend library [React](https://reactjs.org/)
 Initialize an Architect project, change directories into the project folder, create a `package.json` file, and install NPM packages:
 
 ```bash
-npm init @architect --static ./my-spa
+npm exec @architect/create --static ./my-spa
 cd my-spa
 npm init -f
 npm install react react-dom parcel-bundler @architect/sandbox

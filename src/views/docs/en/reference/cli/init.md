@@ -31,5 +31,5 @@ arc init
 ### Create a Node app with Architect installed locally
 
 ```bash
-npm init @architect myapp
+npm exec @architect/create myapp
 ```
