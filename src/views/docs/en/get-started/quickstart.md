@@ -9,13 +9,13 @@ description: Get started quickly with Architect
 Assuming Node.js 14+ is installed, open your terminal and create a new Architect project:
 
 ```bash
-npm init @architect new-app
+npm exec @architect/create your-app
 ```
 
 Start the local dev server:
 
 ```bash
-cd new-app
+cd your-app
 npx arc sandbox
 ```
 > `Cmd / Ctrl + c` exits the sandbox
