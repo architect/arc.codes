@@ -523,7 +523,7 @@ Creates a DynamoDB client for your application's `@tables`. The client is an obj
 > The generated client is facade for <code>AWS.DynamoDB.DocumentClient</code>. The `delete` and `get` methods take a single parameter that is passed on to the `params.Key` attribute in the corresponding <code>DocumentClient</code> method. The `put` method takes a single parameter that is passed on as the `params.Item` attribute in the <code>DocumentClient.put</code> method. The `query`, `scan`, and `update` methods simply pass the `params` argument with the `TableName` parameter prepopulated. [See the official DynamoDB documentation for all available parameters](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html).
 
 
-##### Examples
+#### Examples
 
 Given the following `app.arc` file:
 
@@ -616,7 +616,7 @@ ASAP takes an optional configuration object with the following properties and re
   - Enable single page app mode, all page requests deliver `/index.html`
 
 
-##### Examples
+#### Examples
 
 ```javascript
 // basic usage
