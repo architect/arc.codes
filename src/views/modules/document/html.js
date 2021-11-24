@@ -1,4 +1,5 @@
 import Banner from '../components/banner.js'
+import DocumentOutline from '../components/document-outline.js'
 import EditLink from '../components/edit-link.js'
 import Head from './head.js'
 import Script from './script.js'
@@ -12,8 +13,8 @@ export default function HTML (props = {}) {
     children = [],
     editURL = '',
     lang = 'en',
-    pageToC = '',
     scripts = '',
+    titleSlug = '',
     state = {},
     thirdparty = '',
     title = ''
@@ -62,6 +63,7 @@ ${Symbols}
         "
       >
         <h1
+          id="${titleSlug}"
           class="
             mb1
             font-semibold
@@ -75,12 +77,7 @@ ${Symbols}
           ${EditLink({ editURL })}
         </div>
       </div>
-      <div class="pl0 w-toc sticky top0 right-sidebar">
-        <h4>Table of Contents</h4>
-        <div class="pt0 ml-none-lg">
-          ${pageToC.replace(/class="mb1"/g, 'class="list-none"')}
-        </div>
-      </div>
+      ${DocumentOutline(props)}
     </main>
   </div>
   ${stateTag}

@@ -23,7 +23,7 @@ const NotFound = require('@architect/views/modules/components/not-found.js').def
 const algolia = require('@architect/views/modules/components/algolia.js').default
 
 
-// reproduces the slugify algorithm used in markdown-it-anchor
+// reproduces the slugify algorithm used in markdown-it-external-anchor
 const slugify = (s) => encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-'))
 
 const cache = {} // cheap warm cache
@@ -87,7 +87,7 @@ async function handler (req) {
   }
 
   let frontmatter = {}
-  let pageToC = ''
+  let docOutline = ''
   const markdown = new Markdown({
     linkify: true,
     html: true,
@@ -103,7 +103,7 @@ async function handler (req) {
       tocFirstLevel: 2,
       tocLastLevel: 6,
       tocCallback: function (tocMarkdown, tocArray, tocHtml) {
-        pageToC = tocHtml
+        docOutline = tocHtml
       }
     })
     .use(frontmatterParser, function (str) {
@@ -125,13 +125,14 @@ async function handler (req) {
       description,
       editURL,
       lang,
-      pageToC,
+      docOutline,
       sections,
       scripts: [
         '/index.js',
         '/components/arc-viewer.js',
         '/components/arc-tab.js'
       ],
+      titleSlug: slugify(title),
       thirdparty: algolia(lang),
       title,
       toc

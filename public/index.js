@@ -72,6 +72,7 @@
     codeBlock.appendChild(button)
   }
 
+  // Document percent read progress bar
   let bar = document.querySelector('.indicator')
   bar.style.width = getScrollPercent(main)
   main.onscroll = setReadPercent.bind(null, main)
@@ -89,6 +90,17 @@
     return Math.floor((currentTop / currentHeight) * 100)
   }
 
+  /* Right sidebar behavior */
+  // ↑ Top link fancy scroll enhancement
+  document.getElementById('top-link').onclick = function (e) {
+    e.preventDefault()
+    main
+      .querySelectorAll('div > h1')[0]
+      .scrollIntoView({ behavior: 'smooth' })
+    history.replaceState(null, null, ' ')
+  }
+
+  // highlight doc outline item per scroll position
   window.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver(entries => {
       const allSectionLinks = document.querySelectorAll('.right-sidebar li a')
