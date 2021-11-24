@@ -95,8 +95,9 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const id = entry.target.getAttribute('id')
+          const sectionLink = document.querySelector(`.right-sidebar a[href="#${id}"]`)
           allSectionLinks.forEach(link => link.classList.remove('active'))
-          document.querySelector(`.right-sidebar a[href="#${id}"]`).classList.add('active')
+          if (sectionLink) sectionLink.classList.add('active')
         }
       })
     }, {
