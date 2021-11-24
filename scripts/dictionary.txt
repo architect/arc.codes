@@ -1,14 +1,15 @@
 ℹ
 &rarr
 ACM
+ApiGatewayManagementApi
 arc-example-cors
 Cloudflare
 Dreamhost
 FQDN
+getConnection
 GoDaddy
 Graviton2
 konsumer
 LEANX
 Namecheap
-NameCheap
 ParcelJS

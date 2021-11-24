@@ -73,7 +73,7 @@ Architect sandbox supports loading environment variables from a `.env` file. The
 
 ### Example `.env` file
 
-```shell
+```bash
 A_TESTING_ENV_VAR=something-for-testing
 ANOTHER_VAR=only-for-testing
 ```
