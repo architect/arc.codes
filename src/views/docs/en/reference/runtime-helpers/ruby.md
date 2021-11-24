@@ -1,6 +1,6 @@
 ---
-title: Ruby
-category: Runtime
+title: Ruby runtime helpers
+category: Runtime helpers
 description: Ruby runtime support
 ---
 

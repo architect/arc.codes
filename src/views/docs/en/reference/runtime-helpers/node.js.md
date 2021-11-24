@@ -1,7 +1,7 @@
 ---
-title: Node.js
-category: Runtime
-description: Node.js runtime helpers
+title: Node.js runtime helpers
+category: Runtime helpers
+description: Node.js runtime support
 ---
 
 Architect runtime helpers are optional, and designed to make it significantly easier to work with AWS CloudFormation provisioned resources and related assets.
