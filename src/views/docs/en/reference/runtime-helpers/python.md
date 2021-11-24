@@ -1,6 +1,6 @@
 ---
-title: Python
-category: Runtime
+title: Python runtime helpers
+category: Runtime helpers
 description: Python runtime support
 ---
 
