@@ -57,6 +57,8 @@ cd arc-event-app
 ```
 </div>
 </arc-tab>
+</div>
+</arc-viewer>
 
 2. Open up your `app.arc` file and add the `@event` pragma along with a POST route
 
@@ -180,6 +182,8 @@ cd arc-scheduled-app
 ```
 </div>
 </arc-tab>
+</div>
+</arc-viewer>
 
 Now we can open up the `app.arc` file and add a scheduled function to the manifest.
 
@@ -293,6 +297,8 @@ cd arc-queues-app
 ```
 </div>
 </arc-tab>
+</div>
+</arc-viewer>
 
 Open up the `app.arc` file and modify the manifest to include our `@queues` function as follows:
 

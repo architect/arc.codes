@@ -284,6 +284,8 @@ npm init "@architect" ./myexpress
 ```
 </div>
 </arc-tab>
+</div>
+</arc-viewer>
 
 2. Take a look inside and you will see one HTTP function, `get-index`. This will be a single Lambda that will be our entire Express app behind an API Gateway endpoint.
 

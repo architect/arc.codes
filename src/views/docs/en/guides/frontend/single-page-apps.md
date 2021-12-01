@@ -229,6 +229,8 @@ npm install react react-dom parcel-bundler @architect/sandbox
 ```
 </div>
 </arc-tab>
+</div>
+</arc-viewer>
 
 2. Update the build folder configuration in `app.arc`
 

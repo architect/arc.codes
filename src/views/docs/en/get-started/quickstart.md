@@ -29,6 +29,8 @@ npm init "@architect" your-app
 ```
 </div>
 </arc-tab>
+</div>
+</arc-viewer>
 
 Start the local dev server:
 

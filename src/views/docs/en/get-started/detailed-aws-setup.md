@@ -148,6 +148,8 @@ npm init "@architect" ./testapp
 ```
 </div>
 </arc-tab>
+</div>
+</arc-viewer>
 
 To install Architect locally into an existing project:
 
@@ -172,6 +174,8 @@ npm init "@architect" ./testapp
 ```
 </div>
 </arc-tab>
+</div>
+</arc-viewer>
 
 Or you can install Architect globally, enabling you to use Architect from any directory on your computer. When doing so, you should also be sure to install the AWS SDK globally as well.
 
