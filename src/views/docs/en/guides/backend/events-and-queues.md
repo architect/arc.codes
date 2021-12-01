@@ -34,10 +34,32 @@ In this tutorial, we will create an event topic, POST JSON data to invoke a subs
 
 1. We will start with a fresh project and install dependencies.
 
-``` bash
-npm init @architect ./arc-event-app
+<arc-viewer default-tab=bash>
+<div slot=contents>
+<arc-tab label=bash>
+<h5>Bash/cmd.exe</h5>
+<div slot=content>
+
+```bash
+npm init @architect arc-event-app
 cd arc-event-app
 ```
+</div>
+</arc-tab>
+
+<arc-tab label=PowerShell>
+<h5>PowerShell</h5>
+<div slot=content>
+
+```powershell
+npm init "@architect" arc-event-app
+cd arc-event-app
+```
+</div>
+</arc-tab>
+</div>
+</arc-viewer>
+
 2. Open up your `app.arc` file and add the `@event` pragma along with a POST route
 
 ```arc
@@ -137,10 +159,31 @@ Another common background task is `@scheduled` functions. These functions are in
 
 The first thing we will need is a fresh Architect project. We can create one directly from the terminal.
 
+<arc-viewer default-tab=bash>
+<div slot=contents>
+<arc-tab label=bash>
+<h5>Bash/cmd.exe</h5>
+<div slot=content>
+
 ```bash
 npm init @architect ./arc-scheduled-app
 cd arc-scheduled-app
 ```
+</div>
+</arc-tab>
+
+<arc-tab label=PowerShell>
+<h5>PowerShell</h5>
+<div slot=content>
+
+```powershell
+npm init "@architect" ./arc-scheduled-app
+cd arc-scheduled-app
+```
+</div>
+</arc-tab>
+</div>
+</arc-viewer>
 
 Now we can open up the `app.arc` file and add a scheduled function to the manifest.
 
@@ -231,10 +274,31 @@ The `Events` property on the `Daily` function shows that this is a scheduled eve
 
 Let's make an example message queue by starting with a fresh Architect project.
 
+<arc-viewer default-tab=bash>
+<div slot=contents>
+<arc-tab label=bash>
+<h5>Bash/cmd.exe</h5>
+<div slot=content>
+
 ```bash
 npm init @architect ./arc-queues-app
 cd arc-queues-app
 ```
+</div>
+</arc-tab>
+
+<arc-tab label=PowerShell>
+<h5>PowerShell</h5>
+<div slot=content>
+
+```powershell
+npm init "@architect" ./arc-queues-app
+cd arc-queues-app
+```
+</div>
+</arc-tab>
+</div>
+</arc-viewer>
 
 Open up the `app.arc` file and modify the manifest to include our `@queues` function as follows:
 

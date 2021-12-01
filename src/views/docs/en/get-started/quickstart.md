@@ -8,14 +8,34 @@ description: Get started quickly with Architect
 
 Assuming Node.js 14+ is installed, open your terminal and create a new Architect project:
 
+<arc-viewer default-tab=bash>
+<div slot=contents>
+<arc-tab label=bash>
+<h5>Bash/cmd.exe</h5>
+<div slot=content>
+
 ```bash
-npm init @architect new-app
+npm init @architect your-app
 ```
+</div>
+</arc-tab>
+
+<arc-tab label=PowerShell>
+<h5>PowerShell</h5>
+<div slot=content>
+
+```powershell
+npm init "@architect" your-app
+```
+</div>
+</arc-tab>
+</div>
+</arc-viewer>
 
 Start the local dev server:
 
 ```bash
-cd new-app
+cd your-app
 npx arc sandbox
 ```
 > `Cmd / Ctrl + c` exits the sandbox

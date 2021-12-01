@@ -202,12 +202,35 @@ In this guide, we'll be using the frontend library [React](https://reactjs.org/)
 
 Initialize an Architect project, change directories into the project folder, create a `package.json` file, and install NPM packages:
 
+<arc-viewer default-tab=bash>
+<div slot=contents>
+<arc-tab label=bash>
+<h5>Bash/cmd.exe</h5>
+<div slot=content>
+
 ```bash
 npm init @architect --static ./my-spa
 cd my-spa
 npm init -f
 npm install react react-dom parcel-bundler @architect/sandbox
 ```
+</div>
+</arc-tab>
+
+<arc-tab label=PowerShell>
+<h5>PowerShell</h5>
+<div slot=content>
+
+```powershell
+npm init "@architect" --static ./my-spa
+cd my-spa
+npm init -f
+npm install react react-dom parcel-bundler @architect/sandbox
+```
+</div>
+</arc-tab>
+</div>
+</arc-viewer>
 
 2. Update the build folder configuration in `app.arc`
 
