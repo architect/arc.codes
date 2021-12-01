@@ -24,7 +24,7 @@ Configure individual Lambda function properties (e.g. `src/http/get-index/config
 
 > Note: any function configurations made globally in your project manifest will be overridden by individual functions. For example, if your `app.arc` includes `memory 128`, and `src/http/get-index/config.arc` includes `memory 3008`, all functions except `get /` will be configured with 128MB of memory, while `get /` will override that global with 3008MB.
 
-### Example `config.arc`
+## Example `config.arc`
 
 ```arc
 @aws
@@ -51,8 +51,6 @@ Configure Lambda function `runtime`:
 
 See [@aws](../project-manifest/aws) for further reference.
 
-### Example
-
 ```arc
 @aws
 runtime ruby
@@ -63,8 +61,6 @@ runtime ruby
 Configure Lambda function `memory` between `128` MB to `10240` MB, in `1` MB increments.
 
 Memory size also directly correlates with CPU speed; higher memory levels are available in more capable Lambda clusters
-
-### Example
 
 ```arc
 @aws
@@ -77,8 +73,6 @@ Configure Lambda function `timeout` in seconds to a max of `900`. (`15` minutes.
 
 The default timeout (if no value supplied) is `5`. (`5` seconds.)
 
-### Example
-
 ```arc
 @aws
 timeout 30
@@ -87,8 +81,6 @@ timeout 30
 ## `concurrency`
 
 Configure Lambda function concurrency. If not present concurrency is unthrottled.
-
-#### Examples
 
 Limit execution to one invocation at a time
 
@@ -111,8 +103,6 @@ concurrency 0
 Configure Lambda function `layers` with max 5 Lambda Layer ARNs.
 
 > Warning: Lambda Layers must be in the same region as they are deployed
-
-### Examples
 
 Add one layer:
 
@@ -141,9 +131,6 @@ The `policies` setting takes one or more IAM policy ARNs or AWS-managed policy n
 Configuring one or more policies will completely remove all of Architect's default Lambda privileges. To restore Architect's default privileges, include a policy named `architect-default-policies`.
 
 > Note: `architect-default-policies` is an internal Architect framework setting based on the least-privilege permissions specific to your project. It is not a managed / public IAM policy, and will not be found in your AWS console.
-
-
-### Examples
 
 Lambda only has a single set of permissions (as defined by the AWS-managed `S3CrudPolicy` policy):
 
@@ -179,8 +166,6 @@ policies S3CrudPolicy architect-default-policies
 Configure Lambda function [CPU `architecture`](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) to be one of `x86_64` or `arm64`. This setting defaults to `x86_64` if not specified. `arm64` only available in supported AWS regions.
 
 > Note: locally, Architect Sandbox executes the function's runtime with your machine's native architecture.
-
-### Example
 
 ```arc
 @aws

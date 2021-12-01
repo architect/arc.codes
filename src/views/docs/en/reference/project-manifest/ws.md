@@ -22,7 +22,6 @@ This `app.arc` file defines both HTTP and WebSocket endpoints:
 myapp
 
 @ws
-
 ```
 
 </div>
