@@ -8,48 +8,76 @@ Define AWS specific configuration for an entire project or [per function](../con
 
 ## Syntax
 
-- `region`: [AWS region ID](https://docs.aws.amazon.com/general/latest/gr/rande.html) of the region you'll deploy this project to
-  - If not specified, defaults to `us-west-2`
-- `profile`: name of the profile you prefer to use with this project, as defined in your local AWS profile
-  - Can also be specified in `AWS_PROFILE` environment variable
-  - Required to deploy to AWS
-- `runtime`: Lambda runtime, as defined by the [`lambda-runtimes`](https://github.com/architect/lambda-runtimes/blob/cad3b158968805a01103e47c08da48132620594e/cjs/index.js) lib:
-  - Explicit runtime version:
-    - `nodejs14.x` (default)
-    - `nodejs12.x`
-    - `python3.9`
-    - `python3.8`
-    - `ruby2.7`
-  - Explicit but unsupported locally in [Sandbox](../cli/sandbox):
-    - `dotnetcore3.1`
-    - `go1.x`
-    - `java11`
-    - `java8`
-  - Simple runtime alias (defaults to the latest version):
-    - `node` / `nodejs` / `node.js`
-    - `python` / `py`
-    - `ruby` / `rb`
-    - `java`
-    - `golang` / `go`
-    - `dotnet` / `.net` 
-- `bucket`: bucket (in same region) for CloudFormation deployment artifacts
-  - If not specified, a secure deployment bucket will be auto-created for your app
-- `apigateway`: API Gateway API type, can be one of:
+### `region`
+
+[AWS region ID](https://docs.aws.amazon.com/general/latest/gr/rande.html) where the project will be deployed.
+- Defaults to `us-west-2`
+
+### `profile`
+
+Local AWS profile name to use with this project, as defined in your [local AWS configuration](../../get-started/detailed-aws-setup#credentials).
+- Can also be specified in `AWS_PROFILE` environment variable
+- Required to deploy to AWS
+
+### `runtime`
+
+Lambda runtime, as defined by the [`lambda-runtimes`](https://github.com/architect/lambda-runtimes/blob/cad3b158968805a01103e47c08da48132620594e/cjs/index.js) library.
+
+> ℹ️  Local [Sandbox](../cli/sandbox) support is currently limited to Node.js, Python, and Ruby.
+
+| Runtime | Versions     | Example            | Alias<sup>1</sup>         |
+|---------|--------------|--------------------|---------------------------|
+| Node.js | 12.x, 14.x   | `nodejs14.x`       | `node` `nodejs` `node.js` |
+| Python  | 3.6 - 3.9    | `python3.9`        | `python` `py`             |
+| Ruby    | 2.7          | `ruby2.7`          | `ruby` `rb`               |
+| .NET    | 3.1          | `dotnetcore3.1`    | `dotnet` `.net`           |
+| Go      | 1.x          | `go1.x`            | `golang` `go`             |
+| Java    | 8, 8.al2, 11 | `java11`           | `java`                    |
+
+1. Runtime aliases always default to the latest runtime version; `py` is effectively `python3.9`.
+
+### `bucket`
+
+Bucket name (in same region) for CloudFormation deployment artifacts.
+- If not specified, a secure deployment bucket will be automatically created
+
+### `policies`
+
+Configure custom Lambda function `policies`, enabling granular and specific privileges and access controls.
+
+The `policies` setting takes one or more IAM policy ARNs or AWS-managed policy names (e.g. `AmazonDynamoDBFullAccess`).
+
+Configuring one or more policies will completely remove all of Architect's default Lambda privileges. To restore Architect's default privileges, include a policy named `architect-default-policies`.
+
+> Note: `architect-default-policies` is an internal Architect framework setting based on the least-privilege permissions specific to your project. It is not a managed / public IAM policy, and will not be found in your AWS console.
+
+### `layers`
+
+Configure Lambda function `layers` with max 5 Lambda Layer ARNs. Lambda Layers must be in the same region as they are deployed.
+
+### `apigateway`
+
+API Gateway API type, can be one of:
   - `http` (default) - `HTTP` API + Lambda payload format version 2.0
   - `httpv2` – aliased of `http`
   - `httpv1` - `HTTP` API + Lambda payload format version 1.0
   - `rest` - `REST` API + original API Gateway payload format
-- `architecture`: Lambda [CPU Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) of your functions. (Added in Architect 9.1)
+
+### `architecture`
+
+Lambda [CPU Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) of your functions. (Added in Architect 9.1)
   - `x86_64` (default) - 64-bit x86 architecture
   - `arm64` - (only available in certain AWS regions) 64-bit ARM architecture
 
-Alternatively, if you want a less granular approach, you can declare your preferred region and profile in your `.bashrc` ([more information here](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)).
+## Environment Variables
 
-If you have AWS exports in your `.bashrc` and `@aws` specified in your `app.arc` project, the `@aws` section will win.
+Alternatively, if you want a less granular approach, you can declare your preferred region and profile in your shell config like `.bashrc` ([more information here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)).
 
-## Example
+If you have AWS exports in your shell config and `@aws` specified in your `app.arc` project, the `@aws` section will win.
 
-For example, to deploy Ruby to the northern California AWS AZ with your AWS `work` profile's credentials, use:
+## Examples
+
+For example, to deploy Ruby to the northern California AWS AZ, with your AWS `work` profile's credentials, and specific policies use:
 
 <arc-viewer default-tab=arc>
 <div slot=contents>
@@ -63,6 +91,9 @@ For example, to deploy Ruby to the northern California AWS AZ with your AWS `wor
 runtime ruby
 region us-west-1
 profile work
+policies
+  S3CrudPolicy
+  architect-default-policies
 ```
 
 </div>
@@ -117,17 +148,12 @@ aws:
 </div>
 </arc-viewer>
 
-
-<!-- ### Custom Runtimes with AWS Lambda Layers
-If you want to use a custom runtime with Lambda Layers you need to set `runtime` to `provided` and set the following key:
-  - `layer`: [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) for the [Custom Lambda Runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html)
-
-For example, to deploy to Oregon AWS AZ with your AWS `default` profile's credentials and using a custom Node.js 10 runtime, use:
+To deploy to Oregon AWS AZ with your AWS `default` profile's credential and a [custom Lambda runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) (be sure to set `runtime` to `provided`), use:
 
 ```arc
 @aws
 region us-west-2
 profile default
 runtime provided
-layer arn:aws:lambda:us-west-2:800406105498:layer:nsolid-node-10:6
-``` -->
+layers arn:aws:lambda:us-west-2:800406105498:layer:nsolid-node-10:6
+```
