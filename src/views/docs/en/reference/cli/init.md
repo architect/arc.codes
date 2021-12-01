@@ -30,6 +30,24 @@ arc init
 
 ### Create a Node app with Architect installed locally
 
+<arc-viewer default-tab=bash>
+<div slot=contents>
+<arc-tab label=bash>
+<h5>Bash/cmd.exe</h5>
+<div slot=content>
+
 ```bash
-npm exec @architect/create myapp
+npm init @architect myapp
 ```
+</div>
+</arc-tab>
+
+<arc-tab label=PowerShell>
+<h5>PowerShell</h5>
+<div slot=content>
+
+```powershell
+npm init "@architect" myapp
+```
+</div>
+</arc-tab>

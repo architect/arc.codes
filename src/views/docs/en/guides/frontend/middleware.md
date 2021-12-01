@@ -263,9 +263,27 @@ Architect also has a middleware function to wrap Express.js logic, this is good 
 
 This command will create a new directory, install a local version of Architect, and generate a folder structure.
 
+<arc-viewer default-tab=bash>
+<div slot=contents>
+<arc-tab label=bash>
+<h5>Bash/cmd.exe</h5>
+<div slot=content>
+
 ```bash
-npm exec @architect/create ./myexpress
+npm init @architect ./myexpress
 ```
+</div>
+</arc-tab>
+
+<arc-tab label=PowerShell>
+<h5>PowerShell</h5>
+<div slot=content>
+
+```powershell
+npm init "@architect" ./myexpress
+```
+</div>
+</arc-tab>
 
 2. Take a look inside and you will see one HTTP function, `get-index`. This will be a single Lambda that will be our entire Express app behind an API Gateway endpoint.
 

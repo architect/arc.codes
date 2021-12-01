@@ -127,15 +127,51 @@ The following command uses `npm`, the package manager for Node.js.
 
 To create an entirely new Architect project:
 
+<arc-viewer default-tab=bash>
+<div slot=contents>
+<arc-tab label=bash>
+<h5>Bash/cmd.exe</h5>
+<div slot=content>
+
 ```bash
-npm exec @architect/create ./testapp
+npm init @architect ./testapp
 ```
+</div>
+</arc-tab>
+
+<arc-tab label=PowerShell>
+<h5>PowerShell</h5>
+<div slot=content>
+
+```powershell
+npm init "@architect" ./testapp
+```
+</div>
+</arc-tab>
 
 To install Architect locally into an existing project:
 
+<arc-viewer default-tab=bash>
+<div slot=contents>
+<arc-tab label=bash>
+<h5>Bash/cmd.exe</h5>
+<div slot=content>
+
 ```bash
-npm exec @architect/create ./testapp
+npm init @architect ./testapp
 ```
+</div>
+</arc-tab>
+
+<arc-tab label=PowerShell>
+<h5>PowerShell</h5>
+<div slot=content>
+
+```powershell
+npm init "@architect" ./testapp
+```
+</div>
+</arc-tab>
 
 Or you can install Architect globally, enabling you to use Architect from any directory on your computer. When doing so, you should also be sure to install the AWS SDK globally as well.
 
