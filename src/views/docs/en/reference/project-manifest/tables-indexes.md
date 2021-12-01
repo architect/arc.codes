@@ -8,7 +8,7 @@ Defines [Global Secondary Indexes][gsi] for your project's [DynamoDB][ddb] table
 
 > ℹ️  As of Architect v9.4, `@tables-indexes` should be used in place of `@indexes`. `@indexes` will be superseded in a future Arc release.
 
-## Recommended
+## Recommended Resources
 
 [DynamoDB][ddb] is a powerful database, though different from both SQL and NoSQL databases. It is highly recommended to dig into Amazon's resources to familiarize yourself with it:
 
