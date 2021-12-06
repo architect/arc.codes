@@ -21,6 +21,9 @@ Architect projects work locally and offline. It emulates most app resources defi
 arc sandbox [--port|--verbose|--disable-symlinks|--no-hydrate]
 ```
 
+> 🏗️ "macOS Monterey" [uses port 5000 for AirPlay features](https://developer.apple.com/forums/thread/682332). To avoid port collision, start sandbox with a custom tables port: `ARC_TABLES_PORT=5555 arc sandbox`.  
+The default port may change in Architect 10.
+
 ### Flags
 
 - `-p`, `--port`, `port` Manually specify HTTP port (default `3333`)
@@ -40,7 +43,7 @@ arc sandbox [--port|--verbose|--disable-symlinks|--no-hydrate]
 - `ARC_EVENTS_PORT`- Manually specify event bus port
   - Defaults to `3334`
 - `ARC_TABLES_PORT`- Manually specify local DynamoDB port
-  - Defaults to `3335`
+  - Defaults to `5000`
 - `ARC_LOCAL`- If present and used in conjunction with `NODE_ENV=staging|production`, emulates live `staging` or `production` environment
   - Uses your local `.arc-env` file's `@staging` or `@production` environment variables
   - Connects Sandbox to live AWS events and DynamoDB infra
