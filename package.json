@@ -14,8 +14,8 @@
   "dependencies": {
     "@architect/asap": "^4.1.0",
     "@architect/functions": "^4.1.1",
-    "@architect/inventory": "^2.1.1",
-    "@architect/package": "^7.1.1",
+    "@architect/inventory": "^2.2.1",
+    "@architect/package": "^7.2.0",
     "@architect/syntaxes": "github:architect/syntaxes#v1.2.1",
     "@toycode/markdown-it-class": "^1.2.4",
     "esm": "^3.2.25",
@@ -25,17 +25,17 @@
     "markdown-it-external-anchor": "^1.0.0",
     "markdown-it-front-matter": "^0.2.3",
     "markdown-it-toc-and-anchor": "^4.2.0",
-    "slugify": "^1.6.1"
+    "slugify": "^1.6.3"
   },
   "devDependencies": {
-    "@architect/architect": "^9.2.0",
+    "@architect/architect": "^9.4.2",
     "@architect/eslint-config": "^2.0.1",
     "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
-    "eslint": "^8.1.0",
-    "linkinator": "^2.14.5",
-    "spellchecker-cli": "^4.8.0",
+    "eslint": "^8.4.1",
+    "linkinator": "^2.16.2",
+    "spellchecker-cli": "^4.8.1",
     "tap-arc": "^0.1.1",
-    "tape": "^5.3.1",
+    "tape": "^5.3.2",
     "tiny-json-http": "^7.3.1"
   },
   "eslintConfig": {

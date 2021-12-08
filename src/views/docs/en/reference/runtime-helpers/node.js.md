@@ -499,7 +499,7 @@ Each table has the following methods:
   - Upsert a record; accepts document update object
   - [Additional documentation](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#update-property)
 - `reflect`
-  - TODO
+  - 
 - `name(tablename)`
   - Helper function that accepts a table name string, and returns an AWS resource name when you need to go lower level
     - For example use `data.name('my-table')` to get the human-unfriendly AWS name of the `my-table` `@table` resource
