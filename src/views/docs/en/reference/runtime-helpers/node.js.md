@@ -35,9 +35,6 @@ let arc = require('@architect/functions')
 
 - [`arc.events`](#arc.events) Publish / subscribe helpers for `@events` functions
 - [`arc.http`](#arc.http) Middleware and request/response normalization for `@http` functions using callbacks
-  <!-- - [`arc.http.async`](#arc.http.async) Middleware and request/response normalization for `@http` functions using `async/await`
-  - [`arc.http.express`](#arc.http.express) Express support for `@http` functions
-  - [`arc.http.session`](#arc.http.session) Sessions for `@http` functions -->
 - [`arc.queues`](#arc.queues) Publish/subscribe helpers for `@queues` functions
 - [`arc.services`](#arc.services) Retrieves the Architect service map, exposing metadata for all services making up the application
 - [`arc.static`](#arc.static) Get a `@static` asset path
@@ -476,6 +473,39 @@ let js = arc.static('/index.js', { stagePath: true })
 
 Creates a DynamoDB client for your application's `@tables`. The client is an object, containing a nested object for each table.
 
+#### Client Methods
+
+- `_db(thing[, callback]) → [Promise]`
+  - An instance of [`AWS.DynamoDB`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
+- `_doc(thing[, callback]) → [Promise]`
+  - An instance of [`AWS.DynamoDB.DocumentClient`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
+- `name(tablename)`
+  - Helper function that accepts a table name string, and returns an AWS resource name when you need to go lower level
+    - For example use `client.name('my-table')` to get the human-unfriendly AWS name of the `my-table` `@table` resource
+- `reflect([callback]) → [Promise]`
+  - Returns a dictionary of table names with logical ids
+
+##### Examples
+
+```arc
+@app
+testapp
+
+@tables
+widgets
+  name *String
+```
+
+```javascript
+let arc = require('@architect/functions')
+let client = await arc.tables()
+
+client._db // AWS.DynamoDB
+client._doc // AWS.DynamoDB.DocumentClient
+client.name('widgets') // 'testapp-staging-widgets'
+client.reflect() // { widgets: 'testapp-staging-widgets' }
+```
+
 #### Instance Methods
 
 Each table has the following methods:
@@ -498,20 +528,10 @@ Each table has the following methods:
 - `update(record[, callback]) → [Promise]`
   - Upsert a record; accepts document update object
   - [Additional documentation](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#update-property)
-- `reflect`
-  - 
-- `name(tablename)`
-  - Helper function that accepts a table name string, and returns an AWS resource name when you need to go lower level
-    - For example use `data.name('my-table')` to get the human-unfriendly AWS name of the `my-table` `@table` resource
-    - Previously called `data._name`, which is now deprecated
-- `_db(thing[, callback]) → [Promise]`
-  - An instance of [`AWS.DynamoDB`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
-- `_doc(thing[, callback]) → [Promise]`
-  - An instance of [`AWS.DynamoDB.DocumentClient`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
 
 > The generated client is facade for `AWS.DynamoDB.DocumentClient`. The `delete` and `get` methods take a single parameter that is passed on to the `params.Key` attribute in the corresponding `DocumentClient` method. The `put` method takes a single parameter that is passed on as the `params.Item` attribute in the `DocumentClient.put` method. The `query`, `scan`, and `update` methods simply pass the `params` argument with the `TableName` parameter prepopulated. [See the official DynamoDB documentation for all available parameters](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html).
 
-#### Examples
+##### Examples
 
 Given the following `app.arc` file:
 
@@ -525,22 +545,19 @@ notes
   noteID **String
 ```
 
-You'd generate a data access layer like so:
+A data access layer will be generated like so:
 
 ```javascript
 let arc = require('@architect/functions')
-let data = await arc.tables()
+let client = await arc.tables()
 /*
 {
-  data.notes.get,
-  data.notes.query,
-  data.notes.scan,
-  data.notes.put,
-  data.notes.delete,
-  data.notes.update,
-  data.notes.name,
-  data.notes._db,
-  data.notes._doc,
+  client.notes.get,
+  client.notes.query,
+  client.notes.scan,
+  client.notes.put,
+  client.notes.delete,
+  client.notes.update,
 }
 */
 ```
