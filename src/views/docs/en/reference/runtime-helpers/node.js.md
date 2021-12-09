@@ -49,8 +49,6 @@ Publish & subscribe helpers for `@events` functions.
 
 Subscribe to events with a handler function. The function will be passed an `event` object, and, if not an `async` function, a callback to be called upon completion.
 
-##### Examples
-
 ```javascript
 // async
 let arc = require('@architect/functions')
@@ -80,8 +78,6 @@ function handler (event, callback) {
 Publish an event to an `@events` function. An object containing two properties is required:
 - **`name`** (string) - name of the `@events` function you'd like to publish to
 - **`payload`** (object or array) - payload to be published
-
-##### Examples
 
 ```javascript
 // async
@@ -193,8 +189,6 @@ Define `arc.http` middleware by passing one or more functions as parameters. A f
 - `next` - **function** (if not the final middleware)
   - Callback to invoke the next `arc.http` middleware function
 
-##### Examples
-
 An example of adding an authorization middleware function for JSON API requests made via XHR.
 
 ```javascript
@@ -244,8 +238,6 @@ Define `arc.http.async` middleware by passing one or more `async` functions as p
 
 Each middleware function can invoke the following function by returning the `request` object, or by reaching the end of execution.
 
-##### Examples
-
 ```javascript
 // single function
 let arc = require('@architect/functions')
@@ -284,8 +276,6 @@ async function handler(req) {
 
 [Express](https://expressjs.com) migration helper.
 
-##### Examples
-
 ```javascript
 let arc = require('@architect/functions')
 let express = require('express')
@@ -317,8 +307,6 @@ These operations are automatically handled for you when using `arc.http[.async]`
 
 > Please note that session variable encoding and decoding relies on the `ARC_APP_SECRET` [environment variable](../cli/env) being set to something secret and not easily guessable. If you use Architect sessions, please be sure to [set the `ARC_APP_SECRET` environment variable](../cli/env)!
 
-##### Examples
-
 ```javascript
 let arc = require('@architect/functions')
 
@@ -346,8 +334,6 @@ Publish & subscribe helpers for `@queues` functions.
 #### `arc.queues.subscribe`
 
 Subscribe to queues with a handler function. The function will be passed an `event` object, and, if not an `async` function, a callback to be called upon completion.
-
-##### Examples
 
 ```javascript
 // async
@@ -378,8 +364,6 @@ function handler (event, callback) {
 Publish an event to an `@queues` function. An object containing two properties is required:
 - **`name`** (string) - name of the `@queues` function you'd like to publish to
 - **`payload`** (object or array) - payload to be published
-
-##### Examples
 
 ```javascript
 // async
@@ -414,8 +398,6 @@ CloudFormation resources are generated with names more friendly for machines tha
 This object is lazily-loaded and cached, and thus the first call may incur a delay as the service map is populated (use of [`arc.events`](#arc.events), [`arc.queues`](#arc.queues) and [`arc.tables`](#arc.tables) transparently uses this method in the background).
 
 `arc.services` returns a service map object, with keys equaling any out-of-the-box Architect infrastructure types or plugins used by the Architect application. 
-
-#### Examples
 
 An example service map for an application composed of `@static`, `@events` and an `imagebucket` plugin would have the following structure:
 
@@ -457,8 +439,6 @@ Accepts two parameters:
   - `stagePath` - **boolean**
     - `REST` API compatibility option, enables prepending of the API stage
 
-#### Examples
-
 ```javascript
 let css = arc.static('/index.css')
 // '/_static/index-a1b2c3.css'
@@ -484,8 +464,6 @@ Creates a DynamoDB client for your application's `@tables`. The client is an obj
     - For example use `client.name('my-table')` to get the human-unfriendly AWS name of the `my-table` `@table` resource
 - `reflect([callback]) → [Promise]`
   - Returns a dictionary of table names with logical ids
-
-##### Examples
 
 ```arc
 @app
@@ -530,8 +508,6 @@ Each table has the following methods:
   - [Additional documentation](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#update-property)
 
 > The generated client is facade for `AWS.DynamoDB.DocumentClient`. The `delete` and `get` methods take a single parameter that is passed on to the `params.Key` attribute in the corresponding `DocumentClient` method. The `put` method takes a single parameter that is passed on as the `params.Item` attribute in the `DocumentClient.put` method. The `query`, `scan`, and `update` methods simply pass the `params` argument with the `TableName` parameter prepopulated. [See the official DynamoDB documentation for all available parameters](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html).
-
-##### Examples
 
 Given the following `app.arc` file:
 
@@ -664,8 +640,6 @@ ASAP takes an optional configuration object with the following properties and re
   - Return null if asset is not found (defaults to false)
 - `spa` - **boolean** (defaults to `false`)
   - Enable single page app mode, all page requests deliver `/index.html`
-
-### Examples
 
 ```javascript
 // basic usage
