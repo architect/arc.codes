@@ -2,29 +2,31 @@
 require = require('esm')(module)
 
 const path = require('path')
+const { escape } = require('querystring')
 const { readFile } = require('fs/promises')
+
 const { http } = require('@architect/functions')
-const { redirect: redirectMiddleware } = require('@architect/shared/redirect-map')
-const notFoundResponse = require('@architect/shared/not-found-response')
 const Markdown = require('markdown-it')
 const markdownClass = require('@toycode/markdown-it-class')
 const markdownExternalAnchor = require('markdown-it-external-anchor')
 const markdownToC = require('markdown-it-toc-and-anchor').default
 const frontmatterParser = require('markdown-it-front-matter')
 const yaml = require('js-yaml')
-const classMapping = require('./markdown-class-mappings')
-const hljs = require('./highlight')
-const { escapeHtml } = Markdown().utils
-const highlight = require('./highlighter')
-  .bind(null, hljs, escapeHtml)
+
+const { redirect: redirectMiddleware } = require('@architect/shared/redirect-map')
+const notFoundResponse = require('@architect/shared/not-found-response')
 const toc = require('@architect/views/docs/table-of-contents')
 const Html = require('@architect/views/modules/document/html.js').default
 const NotFound = require('@architect/views/modules/components/not-found.js').default
 const algolia = require('@architect/views/modules/components/algolia.js').default
 
+const classMapping = require('./markdown-class-mappings')
+const { escapeHtml } = Markdown().utils
+const hljs = require('./highlight')
+const highlight = require('./highlighter').bind(null, hljs, escapeHtml)
 
 // reproduces the slugify algorithm used in markdown-it-external-anchor
-const slugify = (s) => encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-'))
+const slugify = (s) => escape(String(s).trim().toLowerCase().replace(/\s+/g, '-').replace(/\(\)/g, ''))
 
 const cache = {} // cheap warm cache
 

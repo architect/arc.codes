@@ -45,7 +45,7 @@ let arc = require('@architect/functions')
 
 Publish & subscribe helpers for `@events` functions.
 
-#### `arc.events.subscribe`
+#### `arc.events.subscribe()`
 
 Subscribe to events with a handler function. The function will be passed an `event` object, and, if not an `async` function, a callback to be called upon completion.
 
@@ -73,7 +73,7 @@ function handler (event, callback) {
 }
 ```
 
-#### `arc.events.publish`
+#### `arc.events.publish()`
 
 Publish an event to an `@events` function. An object containing two properties is required:
 - **`name`** (string) - name of the `@events` function you'd like to publish to
@@ -331,7 +331,7 @@ exports.handler = async function handler (req) {
 
 Publish & subscribe helpers for `@queues` functions.
 
-#### `arc.queues.subscribe`
+#### `arc.queues.subscribe()`
 
 Subscribe to queues with a handler function. The function will be passed an `event` object, and, if not an `async` function, a callback to be called upon completion.
 
@@ -359,7 +359,7 @@ function handler (event, callback) {
 }
 ```
 
-#### `arc.queues.publish`
+#### `arc.queues.publish()`
 
 Publish an event to an `@queues` function. An object containing two properties is required:
 - **`name`** (string) - name of the `@queues` function you'd like to publish to
@@ -582,9 +582,7 @@ await client._doc.transactWrite({
 
 Interact with WebSocket services. Declare endpoints with the [`@ws`](/docs/en/reference/project-manifest/ws) pragma.
 
-#### Methods
-
-- `arc.ws.send`
+#### `arc.ws.send()`
   - Send a message via WebSocket. An object containing two properties is required:
   - **`id`** (string) - API Gateway `connectionId` of the client you'd like to send the message to
   - **`payload`** (object or array) - payload to be sent (as JSON)
@@ -598,7 +596,7 @@ await arc.ws.send({
 })
 ```
 
-- `arc.ws.close`
+#### `arc.ws.close()`
   - Close a WebSocket connection with the provided id:
   - **`id`** (string) - API Gateway `connectionId` of the client you'd like to close
 
@@ -608,7 +606,7 @@ let arc = require('@architect/functions')
 await arc.ws.close({ id: connectionId })
 ```
 
-- `arc.ws.info`
+#### `arc.ws.info()`
   - A pass-thru to the [ApiGatewayManagementApi#getConnection](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/ApiGatewayManagementApi.html#getConnection-property) method.
   - Retrieve information about the connection with the provided id:
   - **`id`** (string) - API Gateway `connectionId` of the client you'd like get information about
@@ -629,7 +627,7 @@ let info = await arc.ws.info({ id: connectionId })
 */
 ```
 
-- `arc.ws._api`
+#### `arc.ws._api()`
   - Return the internal [`ApiGatewayManagementApi`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/ApiGatewayManagementApi.html) instance from `aws-sdk`.
 
 ```javascript
