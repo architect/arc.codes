@@ -513,12 +513,16 @@ Given the following `app.arc` file:
 
 ```arc
 @app
-testapp
+people-app
 
 @tables
-notes
-  personID *String
-  noteID **String
+people
+  email *String
+
+@tables-indexes
+people
+  job *String
+  name peopleByJob
 ```
 
 A data access layer will be generated like so:
@@ -526,16 +530,50 @@ A data access layer will be generated like so:
 ```javascript
 let arc = require('@architect/functions')
 let client = await arc.tables()
-/*
-{
-  client.notes.get,
-  client.notes.query,
-  client.notes.scan,
-  client.notes.put,
-  client.notes.delete,
-  client.notes.update,
-}
-*/
+let people = client.people
+
+// create Chuck and Jana
+let chuck = await people.put({
+  email: 'chuck@example.com',
+  job: 'Web Developer',
+  age: 35,
+})
+let jana = await people.put({
+  email: 'jana@example.com',
+  job: 'Web Developer',
+  age: 64,
+})
+
+// increment Jana's age
+await people.update({
+  Key: { email: jana.email },
+  ExpressionAttributeValues: { ':inc': 1 },
+  UpdateExpression: 'ADD age :inc'
+})
+
+// retrieve Jana's updated record
+jana = await people.get({ email: jana.email })
+
+// query for Web Developers using a secondary index
+let developers = await people.query({
+  IndexName: 'peopleByJob',
+  KeyConditionExpression: 'job = :job',
+  ExpressionAttributeValues: { ':job': 'Web Developer' },
+})
+
+// scan the entire table for people over 64
+let retired = await people.scan({
+  FilterExpression : 'age >= :sixtyfive',
+  ExpressionAttributeValues : {':sixtyfive' : 65},
+})
+
+// delete Chuck and Jana
+await client._doc.transactWrite({
+  TransactItems: [
+    { Delete: { TableName: 'people', Key: { email: chuck.email } } },
+    { Delete: { TableName: 'people', Key: { email: jana.email } } },
+  ]
+})
 ```
 
 <hr class="mt3 border-solid border0 border-b1" />
