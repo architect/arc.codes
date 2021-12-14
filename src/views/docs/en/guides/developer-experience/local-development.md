@@ -6,6 +6,15 @@ description: How to develop locally with Architect sandbox
 
 Fast local development creates a tighter feedback loop maximizing developer velocity.
 
+## Requirements
+
+- **Platforms:** Linux, macOS, Windows
+- **Architect runtime:** Node.js 14+
+- **Function runtimes & package managers:**
+  - Node.js (optional, [supported versions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html)) with [`npm`](https://www.npmjs.com/) 6+ or [`yarn`](https://yarnpkg.com/) 1+
+  - Python (optional, [supported versions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html)) and optionally [`pip3`](https://pip.pypa.io/en/stable/)
+  - Ruby (optional, [supported versions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html)) and optionally [`bundle`](https://bundler.io/)
+
 ## Preview
 
 Follow the [quickstart](/docs/en/get-started/quickstart) to get everything wired up. To preview a project running locally in a web browser:
