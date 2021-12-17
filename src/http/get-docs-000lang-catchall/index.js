@@ -1,32 +1,16 @@
 // eslint-disable-next-line
 require = require('esm')(module)
 
-const path = require('path')
-const { escape } = require('querystring')
 const { readFile } = require('fs/promises')
-
+const path = require('path')
 const { http } = require('@architect/functions')
-const Markdown = require('markdown-it')
-const markdownClass = require('@toycode/markdown-it-class')
-const markdownExternalAnchor = require('markdown-it-external-anchor')
-const markdownToC = require('markdown-it-toc-and-anchor').default
-const frontmatterParser = require('markdown-it-front-matter')
-const yaml = require('js-yaml')
-
+const render = require('./renderer')
 const { redirect: redirectMiddleware } = require('@architect/shared/redirect-map')
-const notFoundResponse = require('@architect/shared/not-found-response')
-const toc = require('@architect/views/docs/table-of-contents')
+const algolia = require('@architect/views/modules/components/algolia.js').default
 const Html = require('@architect/views/modules/document/html.js').default
 const NotFound = require('@architect/views/modules/components/not-found.js').default
-const algolia = require('@architect/views/modules/components/algolia.js').default
-
-const classMapping = require('./markdown-class-mappings')
-const { escapeHtml } = Markdown().utils
-const hljs = require('./highlight')
-const highlight = require('./highlighter').bind(null, hljs, escapeHtml)
-
-// reproduces the slugify algorithm used in markdown-it-external-anchor
-const slugify = (s) => escape(String(s).trim().toLowerCase().replace(/\s+/g, '-').replace(/\(\)/g, ''))
+const notFoundResponse = require('@architect/shared/not-found-response')
+const toc = require('@architect/views/docs/table-of-contents')
 
 const cache = {} // cheap warm cache
 
@@ -46,14 +30,9 @@ async function handler (req) {
     ...parts,
     docName
   )
+  let active = `/${activePath}` // Add leading slash to match anchor href
   let editURL = 'https://github.com/architect/arc.codes/edit/main/src/views/docs/'
-  editURL += path.join(
-    lang,
-    ...parts,
-    doc
-  )
-  // Add leading slash to match anchor href
-  let active = `/${activePath}`
+  editURL += path.join(lang, ...parts, doc)
 
   let filePath = path.join(
     __dirname,
@@ -66,10 +45,10 @@ async function handler (req) {
     doc
   )
   let file
+
   try {
     if (!cache[filePath])
-      cache[filePath] = await readFile(filePath, 'utf8')
-    file = cache[filePath]
+      file = cache[filePath] = await readFile(filePath, 'utf8')
   }
   catch (error) {
     // TODO: Load category "index" landing if available
@@ -88,60 +67,26 @@ async function handler (req) {
     }
   }
 
-  let frontmatter = {}
-  let docOutline = ''
-  const markdown = new Markdown({
-    linkify: true,
-    html: true,
-    typographer: true,
-    highlight
-  })
-    .use(markdownClass, classMapping)
-    .use(markdownExternalAnchor)
-    .use(markdownToC, {
-      anchorLink: false,
-      slugify,
-      tocClassName: 'pageToC',
-      tocFirstLevel: 2,
-      tocLastLevel: 6,
-      tocCallback: function (tocMarkdown, tocArray, tocHtml) {
-        docOutline = tocHtml
-      }
-    })
-    .use(frontmatterParser, function (str) {
-      frontmatter = yaml.load(str)
-    })
-  const children = markdown.render(file)
-  const { category, description, sections, title } = frontmatter
-
-  const retval = {
+  return {
     statusCode: 200,
     headers: {
       'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
       'content-type': 'text/html; charset=utf8'
     },
     body: Html({
+      ...render(file),
       active,
-      category,
-      children,
-      description,
       editURL,
       lang,
-      docOutline,
-      sections,
       scripts: [
         '/index.js',
         '/components/arc-viewer.js',
         '/components/arc-tab.js'
       ],
-      titleSlug: slugify(title),
       thirdparty: algolia(lang),
-      title,
       toc
     })
   }
-
-  return retval
 }
 
 exports.handler = http.async(redirectMiddleware, handler)
