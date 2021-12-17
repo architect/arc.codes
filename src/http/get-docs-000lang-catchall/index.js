@@ -48,7 +48,8 @@ async function handler (req) {
 
   try {
     if (!cache[filePath])
-      file = cache[filePath] = await readFile(filePath, 'utf8')
+      cache[filePath] = await readFile(filePath, 'utf8')
+    file = cache[filePath]
   }
   catch (error) {
     // TODO: Load category "index" landing if available
