@@ -65,7 +65,7 @@ The [AWS Command Line Interface](https://docs.aws.amazon.com/cli/) is the main i
 
 ### Credentials
 
-You'll need an Amazon Web Services account and credentials set up on your development machine and / or CI systems. If you yet set it up, here's a useful guide for [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
+You'll need an Amazon Web Services account and credentials set up on your development machine and / or CI systems. If you haven't yet set it up, here's a useful guide for [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
 
 In the context of a deployment tool, Architect requires account credentials with IAM `AdministratorAccess` privileges. In turn, Architect will create and attach least-privilege IAM roles to runtime resources within your application, ensuring strict security boundaries by default.
 
