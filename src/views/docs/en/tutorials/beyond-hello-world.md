@@ -2,15 +2,6 @@
 title: 'Going beyond "Hello World"'
 category: Tutorials
 description: Next steps in developing an application with Architect
-sections:
-  - "Static assets + CDNs"
-  - "Database tables"
-  - "Environment variables"
-  - "CI/CD"
-  - "Event functions"
-  - "Scheduled Functions"
-  - "Queue functions"
-  - "Macros"
 ---
 
 Let's go beyond a simple "Hello world" HTTP function by incrementally adding features to a new Architect application. For this tutorial we'll:
@@ -68,14 +59,14 @@ We'll get a new folder structure like:
 .
 ├── src
 │   └── http 
-│     ├── get-admin
-│     ├── get-index
-│     ├── get-menu
-│     └── post-orders
+│       ├── get-admin
+│       ├── get-index
+│       ├── get-menu
+│       └── post-orders
 └── app.arc
 ```
 
-> At any step in this tutorial start up the local Sandbox with `npx sandbox` and navigate to `localhost:3333`.
+> At any step in this tutorial start up the local Sandbox with `npx arc sandbox` and navigate to `localhost:3333`.
 
 ## `@static` assets
 
@@ -459,6 +450,28 @@ new-order # do "background" work on new orders
 
 @scheduled
 delivery-report cron(0 8 ? * FRI *) # 8 AM each Friday
+```
+
+And our directory structure:
+
+```sh
+.
+├── public/
+│   └── styles.css
+├── src/
+│   ├── events/
+│   │   └── new-order/index.js
+│   ├── http/
+│   │   ├── get-admin/index.js
+│   │   ├── get-index/index.js
+│   │   ├── get-menu/index.js
+│   │   └── post-orders/index.js
+│   ├── scheduled/
+│   │   └── delivery-report/index.js
+│   └── shared/
+│       └── html.js
+├── app.arc
+└── package.json
 ```
 
 ### Next steps

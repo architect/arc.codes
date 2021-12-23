@@ -41,6 +41,10 @@ let Guides = [
   'Examples',
 ]
 
+let Tutorials = [
+  'Beyond Hello World',
+]
+
 let Reference = [ {
   'Project manifest': [
     '@app',
@@ -90,6 +94,7 @@ let About = [
 module.exports = {
   'Get Started': GetStarted,
   Guides,
+  Tutorials,
   Reference,
   About,
 }
