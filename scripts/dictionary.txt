@@ -13,3 +13,4 @@ konsumer
 LEANX
 Namecheap
 ParcelJS
+sanitization

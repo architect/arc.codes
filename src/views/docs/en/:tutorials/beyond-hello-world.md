@@ -384,5 +384,5 @@ close cron(0 15 ? * MON-FRI *) # 3 PM each weekday
 
 * user management/authentication
 * data validation/sanitization
-* any front end Javascript
+* any front end JavaScript
 * there are no tests 😱
