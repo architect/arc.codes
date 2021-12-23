@@ -13,18 +13,28 @@ sections:
   - "Macros"
 ---
 
-Let's go beyond a simple "Hello world" HTTP function by incrementally adding features to a new Architect application.
-We'll add "pragmas" to our `./app.arc` manifest file and continue using the `arc` CLI to generate scaffolding and code. All while being able to test our features locally with Sandbox.
+Let's go beyond a simple "Hello world" HTTP function by incrementally adding features to a new Architect application. For this tutorial we'll:
+
+* Add "pragmas" to our `./app.arc` manifest file
+* Use features of the `arc` CLI to generate scaffolding and code
+* Preview our application locally with Sandbox
+* Use "vanilla" JavaScript and HTML
+* Forego a front end framework
 
 ## Get started
 
-As an example, let's model a simple meal delivery service, starting with what we get from 
+> If you haven't already, check the Quickstart guide to get set up.
+
+As an example, we'll use a simple meal delivery service as a model. Starting from what is created by running:
 
 ```sh
 npm @architect init dinner-delivery
 ```
 
+The beginning of _Dinner Delivery™️_ lives in our new `app.arc`
+
 ```arc
+# ./app.arc
 @app
 dinner-delivery
 
@@ -34,7 +44,7 @@ get /
 
 ## `@http` routes
 
-Next, we can extend the number of HTTP routes by filling in some obvious endpoints for our dinner delivery service (we'll skip user account management and authentication for this tutorial):
+Next, we can extend the number of HTTP routes by filling in some obvious endpoints for a meal delivery service (we'll skip user account management and authentication for this tutorial) replace the `@http` block with:
 
 ```arc
 @http
@@ -65,6 +75,8 @@ We'll get a new folder structure like:
 └── app.arc
 ```
 
+> At any step in this tutorial start up the local Sandbox with `npx sandbox` and navigate to `localhost:3333`.
+
 ## `@static` assets
 
 We know we'll want to serve things like images and CSS that aren't dynamically created by our functions. To enable a static asset server (backed by S3), add a single pragma to the project's manifest:
@@ -75,7 +87,7 @@ We know we'll want to serve things like images and CSS that aren't dynamically c
 
 Now, by default, files in our project's `./public/` directory can be accessed via HTTP at `/_static/`.
 
-This example will reference `/_static/styles.css`. I won't include the contents here; it provides some simple layout and styles.
+This example will reference `/_static/styles.css`. It provides some simple layout and styles; I won't include the contents here.
 
 ## `@shared` code
 
@@ -122,9 +134,9 @@ let view = html`<h2>Shared code is super helpful</h2>`
 
 ## `@tables` to persist data
 
-The Architect `@tables` pragma gives our project access to DynamoDB so we can save and retrieve orders. We can even create "secondary global indexes" with `@tables-indexes`.
+The Architect `@tables` pragma gives our project access to DynamoDB so we can save and retrieve orders. We can even create "Global Secondary Indexes" with `@tables-indexes`.
 
-### Configure key schema
+### Configure keyed schema
 
 First, let's declare our data schema's important keys in our project manifest (`app.arc`), these are the fields, or partition keys, that will be indexed for queries and sorting:
 
@@ -150,13 +162,13 @@ orders
   name ordersByDate
 ```
 
-Tip: running `npx arc init` again will validate our schema is valid before we restart Sandbox.
+> Tip: running `npx arc init` again will validate our schema is valid before we restart Sandbox.
 
 ## Function implementation
 
 ### Runtime helpers
 
-To simplify our implementation, add the Node.js runtime helpers. This library will help with handling HTTP requests, interacting with tables, and a variety of other features.
+To simplify our implementation, we'll add the Node.js runtime helpers. This library will help with handling HTTP requests, interacting with tables, and a variety of other features. Similar libraries are available for Ruby and Python.
 
 From the project root, run:
 
@@ -336,53 +348,125 @@ exports.handler = arc.http(handler)
 
 ## `@events` for pub/sub
 
-<!-- publish and consume an event for each order -->
+It's really nice to be able to act on events in another process so that our main HTTP functions aren't tied up doing other things that don't need to happen before returning HTML.
+
+For example, we may want to do something for each new order created. Use the `@events` pragma to create a named event our app can subscribe to with a new Lambda function. We'll add the following:
+
+```arc
+@events
+new-order
+```
+
+Again, running `npx arc init` is helpful to create a `.js` file at the correct location for our subscriber.
+
+### Publish an event
+
+Let's add a single line to our `post-orders/index.js` endpoint right after the order is saved: 
+
+```js
+// ./src/http/post-orders/index.js
+
+...
+  // publish a "new-order" event for background processing
+  await arc.events.publish({ name: 'new-order', payload: order })
+...
+```
+
+Super simple. Just specify the event name and use the order as the payload.
+
+### Subscribe to "new-order"
+
+To "listen" for these events, we'll update our fresh event function. Notice the `order` is passed directly as it was created to the handler function:
+
+```js
+// ./src/events/new-order/index.js
+let arc = require('@architect/functions')
+
+async function handler (order) {
+  // maybe send an email or charge a credit card
+  console.log(`${order.email} ordered a ${order.meal} for ${order.deliveryDate}`)
+  return
+}
+
+exports.handler = arc.events.subscribe(handler)
+```
 
 ## `@scheduled` functions
 
-<!-- open and close the storefront -->
+Lambdas are really helpful for scheduled tasks. Architect can provision scheduled functions with the `@scheduled` pragma.  
+Let's say _Dinner Delivery's_ finance team wants a report every Friday morning. We can update our `app.arc` with:
+
+```arc
+@scheduled
+delivery-report cron(0 8 ? * FRI *) # 8 AM each Friday
+```
+
+> `cron()` is powerful, but a simpler `rate()` function is also available. For example: `update-inventory rate(1 hour)` will run the "update-inventory" function each hour.
+
+Once again, run `npx arc init` to scaffold our scheduled function.
+
+From the newly created scheduled function, we can access order data and formulate a report (the requirements from finance are still unclear, so we'll just log the event for now):
+
+```js
+// ./src/scheduled/delivery-report/index.js
+let arc = require('@architect/functions')
+
+exports.handler = async function scheduled (event) {
+  let tables = await arc.tables()
+
+  // look for data in tables.orders
+  
+  console.log(JSON.stringify(event, null, 2))
+
+  return
+}
+```
 
 ## Final Notes
 
 ### Complete `app.arc`
+
+For reference, here's the final `app.arc` project manifest file:
 
 ```arc
 @app
 dinner-delivery
 
 @http
-get  /
+get  / # server root
 get  /menu # see today's dinner offerings
 get  /admin # see my order history
 post /orders # create an order
 
-@static
+@static # static asset server
 
 @tables
-meals
+meals # items on Dinner Delivery's menu
   mealID *String
-orders
+orders # customer orders
   orderID *String
 
 @tables-indexes
-meals
+meals # look up meals by type
   mealType *String
   name mealsByType
-orders
+orders # look up orders by date
   deliveryDate *String
   name ordersByDate
 
 @events
-new-order
+new-order # do "background" work on new orders
 
 @scheduled
-open cron(0 8 ? * MON-FRI *) # 8 AM each weekday
-close cron(0 15 ? * MON-FRI *) # 3 PM each weekday
+delivery-report cron(0 8 ? * FRI *) # 8 AM each Friday
 ```
 
-### Things we didn't do
+### Next steps
 
-* user management/authentication
-* data validation/sanitization
-* any front end JavaScript
-* there are no tests 😱
+This tutorial wasn't intended as a fully-featured demo, but it does show off several common capabilities of Architect. Some next steps would include
+
+* User management/authentication -- check out this example
+* Data validation/sanitization
+* Error handling; each `await` should be wrapped with a try/catch
+* Some front end JavaScript with your favorite framework
+* Testing! We have some suggestions.
