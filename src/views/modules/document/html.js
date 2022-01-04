@@ -1,6 +1,7 @@
 import Banner from '../components/banner.js'
 import DocumentOutline from '../components/document-outline.js'
 import EditLink from '../components/edit-link.js'
+import GoogleAnalytics from './ga.js'
 import Head from './head.js'
 import Script from './script.js'
 import Sidebar from '../components/sidebar.js'
@@ -82,6 +83,7 @@ ${Symbols}
   </div>
   ${stateTag}
   ${scriptTags}
+  ${GoogleAnalytics()}
   ${thirdparty}
 </body>
 </html>
