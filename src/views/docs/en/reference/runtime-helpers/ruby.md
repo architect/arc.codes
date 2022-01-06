@@ -4,26 +4,31 @@ category: Runtime helpers
 description: Ruby runtime support
 ---
 
-[Helpers for working with the Architect generated runtime resources.](https://github.com/architect/functions-ruby)
+[View package source on GitHub](https://github.com/architect/functions-ruby/)
+
+> Ruby is a first-class Lambda runtime. Unfortunately, Architect's helpers (and Sandbox support) have fallen behind. We're actively working on updating Ruby tooling. Contributions are always welcome!
 
 ## Install
 
 ```bash
 cd path/to/lambda
 bundle init
-bundle install --path vendor/bundle
+bundle config set --local path 'vendor/bundle'
 bundle add architect-functions
 ```
+
+See important notes about [deployment configuration for Bundler](../../guides/developer-experience/dependency-management#deployment-configuration).
 
 ## API
 
 ```ruby
 # example lambda function
-require 'json'
+require 'bundler/setup'
 require 'architect/functions'
+require 'json'
 
 def handler
-  {body: JSON.generate(Arc.reflect)}
+  { body: JSON.generate(Arc.reflect) }
 end
 ```
 

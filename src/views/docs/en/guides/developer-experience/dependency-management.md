@@ -36,6 +36,8 @@ Recommended additional reading for working with the Node runtime:
 Architect uses `Gemfile` and `Gemfile.lock` with `bundle` to ensure Lambda function dependencies are deterministic. Code must be relative to the root of Lambda function directory.
 
 ```ruby
+require 'bundler/setup' # initialize Bundler
+
 require 'architect/functions' # is ok if it is vendored in the Lambda folder
 require '../foo' # this will fail
 require './foo' # this will work
@@ -47,8 +49,21 @@ Install runtime helpers for Ruby:
 ```bash
 cd path/to/lambda
 bundle init
-bundle install --path vendor/bundle
+bundle config set --local path 'vendor/bundle'
 bundle add architect-functions
+```
+
+### Deployment Configuration
+
+Prior to deploying, it is recommended to configure Bundler to work in a Lambda environment.
+
+You'll need to let Bundler know about Lambda's platform architecture by adding an entry to the `Gemfile.lock`.  
+Additionally, Bundler often tries to write to the filesystem at runtime. Freeze the bundle by setting the `BUNDLE_FROZEN` environment variable to `1`.
+
+```bash
+bundle lock --add-platform x86_64-linux # declare Lambda's platform
+npx arc env staging BUNDLE_FROZEN 1 # use arc to set an env var
+npx arc env production BUNDLE_FROZEN 1 # do the same for production
 ```
 
 ## Python
