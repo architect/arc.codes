@@ -6,8 +6,6 @@ description: Ruby runtime support
 
 [View package source on GitHub](https://github.com/architect/functions-ruby/)
 
-> Ruby is a first-class Lambda runtime. Unfortunately, Architect's helpers (and Sandbox support) have fallen behind. We're actively working on updating Ruby tooling. Contributions are always welcome!
-
 ## Install
 
 ```bash
