@@ -5,7 +5,9 @@ ApiGatewayManagementApi
 arc-example-cors
 Bundler
 Cloudflare
+CommonJS
 Dreamhost
+ESM
 FQDN
 getConnection
 GoDaddy

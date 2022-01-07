@@ -15,6 +15,7 @@ let Guides = [
       'Custom source paths',
       'Deployment',
       'Logging & monitoring',
+      'Using ESM',
       'Using TypeScript',
     ],
     'Frontend': [
