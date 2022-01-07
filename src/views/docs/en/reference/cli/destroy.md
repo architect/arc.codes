@@ -18,7 +18,7 @@ arc destroy --app MyAppName [production] [--name NamedEnvironment] [--force]
 
 - `[--app MyAppName]` Required. Specify the app name, located under `@app` in your Architect manifest, to delete the app from AWS.
 - `[--name NamedEnvironment]` If you ran [`arc deploy`][deploy] with the `--name` flag to specify a custom named environment to deploy your application to, use this flag to destroy that same named application environment.
-- `[production|--production|-p]` Destroy the production stack of your application. By default, without this flag, the staging stack is removed.
+- `[--production]` Destroy the production stack of your application. By default, without this flag, the staging stack is removed.
 - `[--force|-f]` Force deletion of the application even if it contains DynamoDB tables ([`@tables`][tables]) or S3 bucket containing static assets ([`@static`][static]).
 - `[--no-timeout]` Do not exit the process until all application resources are deleted.
 
