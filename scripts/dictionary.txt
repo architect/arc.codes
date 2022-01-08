@@ -4,8 +4,11 @@ ACM
 ApiGatewayManagementApi
 arc-example-cors
 Bundler
+CJS
 Cloudflare
+CommonJS
 Dreamhost
+ESM
 FQDN
 getConnection
 GoDaddy
@@ -14,3 +17,4 @@ konsumer
 LEANX
 Namecheap
 ParcelJS
+treeshaking
