@@ -4,6 +4,7 @@ ACM
 ApiGatewayManagementApi
 arc-example-cors
 Bundler
+CJS
 Cloudflare
 CommonJS
 Dreamhost
@@ -16,3 +17,4 @@ konsumer
 LEANX
 Namecheap
 ParcelJS
+treeshaking
