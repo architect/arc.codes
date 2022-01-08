@@ -1,6 +1,11 @@
 {
   "name": "@architect/arc.codes",
   "version": "3.6.28",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/architect/arc.codes"
+  },
+  "license": "Apache-2.0",
   "scripts": {
     "dist": "./scripts/dist.sh",
     "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
@@ -27,7 +32,7 @@
     "slugify": "^1.6.5"
   },
   "devDependencies": {
-    "@architect/architect": "^9.5.0",
+    "@architect/architect": "^9.4.2",
     "@architect/eslint-config": "^2.0.1",
     "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
     "eslint": "^8.6.0",
