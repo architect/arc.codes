@@ -1,14 +1,18 @@
 ---
-title: Using ESM (ECMAScript modules)
+title: Using ESM (ECMAScript Modules)
 category: Developer experience
-description: How to use ECMAScript modules in functions
+description: How to use ECMAScript Modules in functions
 ---
 
-As of January 6, 2022 [AWS Lambdas support Node.js ES modules and top-level await](https://aws.amazon.com/blogs/compute/using-node-js-es-modules-and-top-level-await-in-aws-lambda/). Architect shipped an update in version `9.5.0` that adheres to Node.js conventions and the implementation from AWS.
+As of January 6, 2022 [AWS Lambdas support Node.js 14 ES modules and top-level await](https://aws.amazon.com/blogs/compute/using-node-js-es-modules-and-top-level-await-in-aws-lambda/). Architect shipped an update in version `9.5.0` that adheres to Node.js conventions and the implementation from AWS. Lambdas must use the `nodejs14.x` runtime to leverage ESM.
+
+## Example project
+
+A working Architect project with each method for using ESM and CJS, can be found on GitHub: [`architect-examples/arc-example-esm-cjs`](https://github.com/architect-examples/arc-example-esm-cjs).
 
 ## CommonJS by default
 
-New and existing Architect projects will default to CommonJS. In the future `arc init` and `arc create` _might_ generate ESM functions. Join the discussion on [GitHub](https://github.com/architect/architect/discussions) and [Discord](https://discord.gg/y5A2eTsCRX) to help inform the future of Arc.
+New and existing Architect projects will default to CommonJS. In the future (Architect 10+) `arc init` and `arc create` will generate ESM functions. Architect will always support CJS so long as Node.js does.
 
 ## ES Modules with `.mjs`
 
@@ -52,8 +56,19 @@ Alternatively, the `"type"` property of a function's package.json file can be se
 └── app.arc
 ```
 
+Declaring dependencies in a function's `package.json` will disable Lambda treeshaking for that function. This is true no matter the module type.
+
 > ℹ️  Setting `"type": "module"` in the project's root `package.json` will not affect function module types.
 
-## Explicitly setting CommonJS
+## Explicitly using CommonJS
 
-Furthermore, users can explicitly use a `.cjs` file extension or setting a function's `package.json` to `"type": "commonjs"` to declare a JS file is a CommonJS module.
+Users can explicitly use a `.cjs` file extension to declare a JS file is a CommonJS module.
+
+```
+.
+├── src
+│   └── http
+│       └── get-index
+│           └── index.cjs
+└── app.arc
+```
