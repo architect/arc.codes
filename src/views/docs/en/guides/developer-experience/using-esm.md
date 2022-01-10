@@ -20,7 +20,7 @@ The simplest way to start using ESM is to create JavaScript files with a `.mjs` 
 
 ```js
 // ./src/http/get-index/index.mjs
-export const handler = async function (request) {
+export async function handler (request) {
   return { request }
 }
 ```
