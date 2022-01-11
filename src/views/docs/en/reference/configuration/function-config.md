@@ -12,7 +12,15 @@ sections:
   - 'architecture'
 ---
 
-Configure individual Lambda function properties (e.g. `src/http/get-index/config.arc`) with [the `@aws` pragma](../project-manifest/aws) and the following properties:
+Configure individual Lambda function properties (e.g. `src/http/get-index/config.arc`).
+
+Use the `@arc` pragma to let a function opt out of Architect features:
+
+- `env` - boolean, `true` (default) or `false` to load local environment variables.
+- `shared` - boolean, `true` (default) or `false` to skip hydrating project code from `@shared`.
+- `views` - boolean, `true` (default) or `false` to skip hydrating project code from `@views`.
+
+Configure the deployed function with [the `@aws` pragma](../project-manifest/aws) and the following properties:
 
 - [`runtime`](#runtime) - string, Lambda runtime or alias: `nodejs14.x` (default), `python3.7`, `dotnetcore3.1`, `node`, `py`, `.net`, etc.
 - [`memory`](#memory) - number, between `128`MB and `3008`MB in 64 MB increments.
@@ -27,6 +35,11 @@ Configure individual Lambda function properties (e.g. `src/http/get-index/config
 ## Example `config.arc`
 
 ```arc
+@arc
+env false
+shared false
+views false
+
 @aws
 runtime ruby
 memory 256
@@ -37,10 +50,12 @@ policies {ARN}
 architecture arm64
 ```
 
+## `@aws`
+
 Read more about the [Lambda limits](https://docs.aws.amazon.com/lambda/latest/dg/limits.html) and [resource model](https://docs.aws.amazon.com/lambda/latest/dg/resource-model.html).
 
 
-## `runtime`
+### `runtime`
 
 Configure Lambda function `runtime`:
 
@@ -56,7 +71,7 @@ See [@aws](../project-manifest/aws) for further reference.
 runtime ruby
 ```
 
-## `memory`
+### `memory`
 
 Configure Lambda function `memory` between `128` MB to `10240` MB, in `1` MB increments.
 
@@ -67,7 +82,7 @@ Memory size also directly correlates with CPU speed; higher memory levels are av
 memory 1024
 ```
 
-## `timeout`
+### `timeout`
 
 Configure Lambda function `timeout` in seconds to a max of `900`. (`15` minutes.)
 
@@ -78,7 +93,7 @@ The default timeout (if no value supplied) is `5`. (`5` seconds.)
 timeout 30
 ```
 
-## `concurrency`
+### `concurrency`
 
 Configure Lambda function concurrency. If not present concurrency is unthrottled.
 
@@ -98,7 +113,7 @@ Disable invocation by setting concurrency to zero
 concurrency 0
 ```
 
-## `layers`
+### `layers`
 
 Configure Lambda function `layers` with max 5 Lambda Layer ARNs.
 
@@ -122,7 +137,7 @@ layers
 
 > Tip: find [awesome layers](https://github.com/mthenw/awesome-layers)
 
-## `policies`
+### `policies`
 
 Configure custom Lambda function `policies`, enabling granular and specific privileges and access controls.
 
@@ -156,12 +171,12 @@ policies S3CrudPolicy architect-default-policies
 
 ---
 
-### Additional resources
+#### Additional resources
 
 - [AWS IAM policy ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns)
 - [Community-maintained list of AWS-managed policies](https://github.com/z0ph/MAMIP/tree/master/policies)
 
-## `architecture`
+### `architecture`
 
 Configure Lambda function [CPU `architecture`](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) to be one of `x86_64` or `arm64`. This setting defaults to `x86_64` if not specified. `arm64` only available in supported AWS regions.
 
