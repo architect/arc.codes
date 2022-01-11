@@ -44,7 +44,7 @@ In the above example, new `@http` functions will use your `path/to/template/http
 
 ## `@env`
 
-Configure environment variables for `testing` with `arc sandbox` and deployed `staging` and `production` environments.
+Configure environment variables for `testing` with Sandbox and deployed `staging` and `production` environments.
 
 Sync environment variables to your project by using the [`arc env` CLI command](../cli/env). If the preferences file does not exist Architect will generate `preferences.arc` file.
 
@@ -80,7 +80,7 @@ ANOTHER_VAR=only-for-testing
 
 ## `@sandbox`
 
-Define [`arc sandbox`](../cli/sandbox) preferences. If you are not using a `.env` file then any environment variables set using the [`arc env` CLI](../cli/env) will be stored in the preferences file. In this scenario it is best _not_ to revision the preferences file in source control.
+Define [Sandbox](../cli/sandbox) preferences. If you are not using a `.env` file then any environment variables set using the [`arc env` CLI](../cli/env) will be stored in the preferences file. In this scenario it is best _not_ to revision the preferences file in source control.
 
 ### `env` - String
 
@@ -113,7 +113,7 @@ no-hydrate true
 
 ## `@sandbox-startup`
 
-Hook up CLI commands into [`arc sandbox`](../cli/sandbox) startup. Helpful for repetitive tasks like seeding a database or starting up additional services for local development. Each command should be a separate unindented line under the `@sandbox-startup` pragma.
+Hook up CLI commands into [Sandbox](../cli/sandbox) startup. Helpful for repetitive tasks like seeding a database or starting up additional services for local development. Each command should be a separate unindented line under the `@sandbox-startup` pragma.
 
 ### Example
 

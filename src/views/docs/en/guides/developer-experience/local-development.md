@@ -21,9 +21,9 @@ Follow the [quickstart](/docs/en/get-started/quickstart) to get everything wired
 
 ```bash
 cd myproject
-arc sandbox
+npx arc sandbox
 ```
->  `arc sandbox` kicks up a local web server with all the resources defined in your `app.arc` file
+>  `npx arc sandbox` kicks up a local web server with all the resources defined in your `app.arc` file
 ## Testing
 
 Checkout [a complete example project for working locally](https://github.com/architect-examples/arc-example-working-locally).

@@ -349,7 +349,7 @@ module.exports = {
 
 > `invokeFunction({ src, payload }, callback)`
 
-This method should be leveraged inside a plugin's [`sandbox.start`](#sandbox.start) method in order to easily invoke project Lambdas locally within an [`arc sandbox`][sandbox] local development runtime context. For example, if your plugin manages Lambdas related to some AWS service, it may be nice to provide a local development experience for consumers of your plugin. To provide a great local experience, consumers of your plugin will want to exercise your plugin-generated Lambdas when running locally. Using the combination of the [`sandbox.start`](#sandbox.start) and `invokeFunction` methods, plugin authors can implement a local development experience for plugin consumers.
+This method should be leveraged inside a plugin's [`sandbox.start`](#sandbox.start) method in order to easily invoke project Lambdas locally within an [`npx arc sandbox`][sandbox] local development runtime context. For example, if your plugin manages Lambdas related to some AWS service, it may be nice to provide a local development experience for consumers of your plugin. To provide a great local experience, consumers of your plugin will want to exercise your plugin-generated Lambdas when running locally. Using the combination of the [`sandbox.start`](#sandbox.start) and `invokeFunction` methods, plugin authors can implement a local development experience for plugin consumers.
 
 #### Arguments
 
