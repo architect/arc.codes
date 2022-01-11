@@ -4,7 +4,7 @@ category: app.arc
 description: Define AWS specific configuration.
 ---
 
-Define AWS specific configuration for an entire project or [per function](../configuration/function-config).
+Define AWS specific configuration for an entire project or [per function](../configuration/function-config#%40aws).
 
 ## Syntax
 

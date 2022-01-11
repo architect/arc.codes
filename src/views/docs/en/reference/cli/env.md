@@ -45,3 +45,7 @@ arc env remove staging FOO
 - `NODE_ENV`
 - `ARC_APP_NAME`
 - `SESSION_TABLE_NAME`
+
+## Specific function opt-out
+
+A function can be [configured with a `config.arc`](../configuration/function-config#%40arc) to not load local environment variables.

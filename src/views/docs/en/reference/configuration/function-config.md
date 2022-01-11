@@ -14,11 +14,25 @@ sections:
 
 Configure individual Lambda function properties (e.g. `src/http/get-index/config.arc`).
 
-Use the `@arc` pragma to let a function opt out of Architect features:
+## `@arc`
+
+Use the `@arc` pragma to disable Architect functions for a specific function:
 
 - `env` - boolean, `true` (default) or `false` to load local environment variables.
 - `shared` - boolean, `true` (default) or `false` to skip hydrating project code from `@shared`.
 - `views` - boolean, `true` (default) or `false` to skip hydrating project code from `@views`.
+
+### Example `config.arc`
+
+```arc
+# src/function/dir/config.arc
+@arc
+env false
+shared false
+views false
+```
+
+## `@aws`
 
 Configure the deployed function with [the `@aws` pragma](../project-manifest/aws) and the following properties:
 
@@ -32,14 +46,12 @@ Configure the deployed function with [the `@aws` pragma](../project-manifest/aws
 
 > Note: any function configurations made globally in your project manifest will be overridden by individual functions. For example, if your `app.arc` includes `memory 128`, and `src/http/get-index/config.arc` includes `memory 3008`, all functions except `get /` will be configured with 128MB of memory, while `get /` will override that global with 3008MB.
 
-## Example `config.arc`
+Read more about the [Lambda limits](https://docs.aws.amazon.com/lambda/latest/dg/limits.html) and [resource model](https://docs.aws.amazon.com/lambda/latest/dg/resource-model.html).
+
+### Example `config.arc`
 
 ```arc
-@arc
-env false
-shared false
-views false
-
+# src/function/dir/config.arc
 @aws
 runtime ruby
 memory 256
@@ -49,11 +61,6 @@ layers {ARN}
 policies {ARN}
 architecture arm64
 ```
-
-## `@aws`
-
-Read more about the [Lambda limits](https://docs.aws.amazon.com/lambda/latest/dg/limits.html) and [resource model](https://docs.aws.amazon.com/lambda/latest/dg/resource-model.html).
-
 
 ### `runtime`
 
