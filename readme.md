@@ -10,7 +10,7 @@
 
 > ℹ️ We're actively improving Architect documentation, this repository, and this readme
 
-This docs site is its own Architect project 🎉 so it can be run locally with `arc sandbox`
+This docs site is its own Architect project 🎉 so it can be run locally with `npx arc sandbox`
 
 ## Table of Contents & Sidebar
 

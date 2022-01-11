@@ -13,7 +13,7 @@ Architect projects work locally and offline. It emulates most app resources defi
 - `@queues`
 - `@tables` and `@tables-indexes`
 
-> At this time `arc sandbox` does not emulate `@scheduled`
+> At this time Sandbox does not emulate `@scheduled`
 
 ## Usage
 
@@ -21,7 +21,7 @@ Architect projects work locally and offline. It emulates most app resources defi
 arc sandbox [--port|--verbose|--disable-symlinks|--no-hydrate]
 ```
 
-> 🏗️ "macOS Monterey" [uses port 5000 for AirPlay features](https://developer.apple.com/forums/thread/682332). To avoid port collision, start sandbox with a custom tables port: `ARC_TABLES_PORT=5555 arc sandbox`.  
+> 🏗️ "macOS Monterey" [uses port 5000 for AirPlay features](https://developer.apple.com/forums/thread/682332). To avoid port collision, start sandbox with a custom tables port: `ARC_TABLES_PORT=5555 npx arc sandbox`.  
 The default port may change in Architect 10.
 
 ### Flags
@@ -57,7 +57,7 @@ Sandbox creates an in-memory instance of [dynalite](https://github.com/mhart/dyn
 ### Connect sandbox to the staging database
 
 ```bash
-NODE_ENV=staging ARC_LOCAL=1 arc sandbox
+NODE_ENV=staging ARC_LOCAL=1 npx arc sandbox
 ```
 
 ### File watching
