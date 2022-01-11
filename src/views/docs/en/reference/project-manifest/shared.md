@@ -6,14 +6,14 @@ description: Configure src/shared code
 
 Configure the location of shared code.
 
-### Syntax
+## Syntax
 
 - Lowercase alphanumeric string
 - Maximum of 20 characters
 - Dashes are allowed; underscores are not allowed
 - Must begin with a letter
 
-### Example
+## Example
 
 The following configuration examples define a different folder than the default `src/shared` directory.
 
@@ -77,3 +77,7 @@ shared:
 
 </div>
 </arc-viewer>
+
+## Specific function opt-out
+
+A function can be [configured with a `config.arc`](../configuration/function-config#%40arc) to not have `@shared` code automatically hydrated.

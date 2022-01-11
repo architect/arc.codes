@@ -109,3 +109,7 @@ views:
 
 </div>
 </arc-viewer>
+
+## Specific function opt-out
+
+A function can be [configured with a `config.arc`](../configuration/function-config#%40arc) to not have `@views` code automatically hydrated.
