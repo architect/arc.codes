@@ -16,9 +16,9 @@ Configure individual Lambda function properties (e.g. `src/http/get-index/config
 
 ## `@arc`
 
-Use the `@arc` pragma to disable Architect functions for a specific function:
+Use the `@arc` pragma to disable Architect features for a specific function:
 
-- `env` - boolean, `true` (default) or `false` to load local environment variables.
+- `env` - boolean, `true` (default) or `false` to skip loading local environment variables.
 - `shared` - boolean, `true` (default) or `false` to skip hydrating project code from `@shared`.
 - `views` - boolean, `true` (default) or `false` to skip hydrating project code from `@views`.
 

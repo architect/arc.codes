@@ -8,7 +8,7 @@ Architect and TypeScript work great together. Types are available in the [@types
 
 ```json
 "scripts": {
-  "start": "npx arc sandbox",
+  "start": "arc sandbox",
   "prestart": "npm run build",
   "deploy": "arc deploy",
   "predeploy": "npm run build",
