@@ -1,7 +1,8 @@
-let link = require('linkinator')
-let test = require('tape')
-let sandbox = require('@architect/sandbox')
-let { currentRoot } = require('../src/shared/redirect-map')
+import { LinkChecker } from 'linkinator'
+import test from 'tape'
+import sandbox from '@architect/sandbox'
+
+import { currentRoot }  from '../src/shared/redirect-map.js'
 
 const host = 'http://localhost:3333'
 const root = `${host}${currentRoot}`
@@ -10,7 +11,7 @@ test('find broken links', async (t) => {
   await sandbox.start({ quiet: true })
   t.pass(`sandbox started at ${host}`)
 
-  const checker = new link.LinkChecker()
+  const checker = new LinkChecker()
 
   checker.on('link', result => {
     if (result.state === 'BROKEN')

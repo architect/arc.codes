@@ -9,7 +9,7 @@
   "scripts": {
     "dist": "./scripts/dist.sh",
     "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
-    "link-checker": "node ./scripts/link-checker.js | tap-arc",
+    "link-checker": "node ./scripts/link-checker.mjs | tap-arc",
     "lint": "eslint src --fix",
     "start": "sandbox",
     "test:unit:frontend": "tape -r esm 'test/frontend/**/*.js' | tap-arc",
@@ -36,7 +36,7 @@
     "@architect/eslint-config": "^2.0.1",
     "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
     "eslint": "^8.7.0",
-    "linkinator": "^2.16.2",
+    "linkinator": "^3.0.3",
     "spellchecker-cli": "^4.8.1",
     "tap-arc": "^0.1.2",
     "tape": "^5.4.1",
