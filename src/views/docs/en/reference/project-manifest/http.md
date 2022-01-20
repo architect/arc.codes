@@ -25,6 +25,7 @@ Each route is made up of two parts: HTTP verb and a route path.
   - Must begin with a letter
   - Advised maximum of 100 characters for paths
   - URL parameters are defined with a leading colon (`:`)
+  - A trailing asterisk (`*`) denotes a "catchall"
 
 Routes can use more verbose configuration to allow for [custom source paths](../../guides/developer-experience/custom-source-paths) in your project. Provide a  `method` and `src` for each route:
 
@@ -54,6 +55,7 @@ get /pages
 get /pages/:dateID
 get /contact
 post /contact
+get /widgets/* # catch all unmatched routes
 # verbose custom source:
 /weather
   method get
@@ -75,6 +77,7 @@ post /contact
     ["get", "/pages/:dateID"],
     ["get", "/contact"],
     ["post", "/contact"],
+    ["get", "/widgets/*"],
     {
       "/weather": {
         "method": "get",
@@ -100,6 +103,7 @@ http:
 - get: "/pages/:dateID"
 - get: "/contact"
 - post: "/contact"
+- get: "/widgets/*"
 # verbose custom source:
 - "/weather":
     method: get
@@ -120,6 +124,7 @@ http=[
   ["get", "/pages/:dateID"],
   ["get", "/contact"],
   ["post", "/contact"]
+  ["get", "/widgets/*"],
 ]
 
 # TOML doesn't allow mixed types in an array.
@@ -147,6 +152,7 @@ Which utilizes the following project directory structure:
 │       ├── get-pages/
 │       ├── get-pages-000dateID/
 │       ├── get-contact/
+│       ├── get-widgets-catchall/
 │       └── post-contact/
 ├── app.arc
 └── package.json
