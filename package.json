@@ -32,10 +32,10 @@
     "slugify": "^1.6.5"
   },
   "devDependencies": {
-    "@architect/architect": "^9.5.1",
+    "@architect/architect": "^9.5.4",
     "@architect/eslint-config": "^2.0.1",
     "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
-    "eslint": "^8.6.0",
+    "eslint": "^8.7.0",
     "linkinator": "^2.16.2",
     "spellchecker-cli": "^4.8.1",
     "tap-arc": "^0.1.2",
