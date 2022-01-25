@@ -59,6 +59,7 @@ ${Symbols}
     >
       <div
         class="
+          w-full
           max-width-content
           m-auto
         "

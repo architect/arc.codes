@@ -68,8 +68,10 @@ let Reference = [ {
     'deploy',
     'destroy',
     'env',
+    'hydrate',
     'init',
     'logs',
+    'package',
     'sandbox',
   ],
   'Runtime helpers': [

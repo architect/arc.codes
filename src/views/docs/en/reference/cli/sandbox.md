@@ -45,7 +45,7 @@ The default port may change in Architect 10.
 - `ARC_TABLES_PORT`- Manually specify local DynamoDB port
   - Defaults to `5000`
 - `ARC_LOCAL`- If present and used in conjunction with `NODE_ENV=staging|production`, emulates live `staging` or `production` environment
-  - Uses your local `.arc-env` file's `@staging` or `@production` environment variables
+  - Uses your local `preferences.arc` file's `@staging` or `@production` environment variables
   - Connects Sandbox to live AWS events and DynamoDB infra
   - Requires valid AWS credentials with the same profile name as defined in your project manifest
 

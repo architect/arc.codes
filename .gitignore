@@ -1,8 +1,7 @@
-.arc-env
 .DS_Store
-**/static.json
 node_modules
+scratch
 sam.json
 sam.yaml
-scratch
+**/static.json
 src/http/get-docs-000lang-catchall/highlight/
