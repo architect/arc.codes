@@ -71,7 +71,6 @@ let Reference = [ {
     'hydrate',
     'init',
     'logs',
-    'package',
     'sandbox',
   ],
   'Runtime helpers': [
