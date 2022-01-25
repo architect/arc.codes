@@ -6,7 +6,7 @@ description: Install and update dependencies for all functions in a project.
 
 Ensure that all functions managed by Architect have their dependencies installed. Functions containing all its required dependencies are considered to be "hydrated" - thus the name!
 
-Importantly, `arc hydrate` will also copy shared code (from `src/shared` and `src/views`) into all functions.
+Importantly, `arc hydrate` will also copy shared code from `src/shared` into all functions and `src/views` into `@http` GET functions.
 
 When developing locally with Sandbox, it is not necessary to manually run `hydrate` since Sandbox handles this automatically. However, it can be helpful to ensure hydration happens prior to a process like `npm test`.
 
