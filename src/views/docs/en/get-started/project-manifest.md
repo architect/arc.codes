@@ -38,9 +38,6 @@ Architect supports the following manifest files:
 - `arc.yml`
 - `package.json`
 - `arc.json`
-- `arc.toml`
-
-> The maintainers are considering `arc.xml`; if this is something you want let us know!
 
 ## More on `app.arc`
 
@@ -202,49 +199,6 @@ tables-streams:
   - likes
 tables-indexes:
   - likes: { date: "*String" }
-```
-
-</div>
-</arc-tab>
-
-<arc-tab label=toml>
-<h5>toml</h5>
-<div slot=content>
-
-```toml
-app="hello"
-
-[static]
-fingerprint=true
-
-ws=[
-  "action",
-  "connect",
-  "default",
-  "disconnect"
-]
-
-http=[
-  ["get", "/"],
-  ["get", "/likes"],
-  ["post", "/likes"],
-]
-
-events=["hit-counter"]
-
-[scheduled]
-daily-affirmation=["rate(1 day)"]
-
-[[tables]]
-
-[tables.likes]
-likeiD="*String"
-
-tables-streams=["likes"]
-
-[["tables-indexes"]]
-["tables-indexes".likes]
-date="*String"
 ```
 
 </div>

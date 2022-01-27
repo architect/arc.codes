@@ -122,31 +122,6 @@ fleeting-thoughts
 </div>
 </arc-tab>
 
-<arc-tab label=toml>
-<h5>toml</h5>
-<div slot=content>
-
-```toml
-app="testapp"
-
-[[tables]]
-
-[tables.people]
-pplID="*String"
-
-[tables.cats]
-pplID="*String"
-catID="**String"
-encrypt=true
-PointInTimeRecovery=true
-
-[tables.fleeting-thoughts]
-pplID="*String"
-expires="TTL"
-```
-</div>
-</arc-tab>
-
 <arc-tab label=yaml>
 <h5>yaml</h5>
 <div slot=content>

@@ -13,7 +13,6 @@ hljs.registerLanguage('python', require('./languages/python'))
 hljs.registerLanguage('arc', require('./languages/arc'))
 hljs.registerLanguage('json', require('./languages/json'))
 hljs.registerLanguage('yaml', require('./languages/yaml'))
-hljs.registerLanguage('toml', require('./languages/ini'))
 
 hljs.HighlightJS = hljs
 hljs.default = hljs

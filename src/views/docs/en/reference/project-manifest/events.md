@@ -79,27 +79,6 @@ events:
 </div>
 </arc-tab>
 
-<arc-tab label=toml>
-<h5>toml</h5>
-<div slot=content>
-
-```toml
-app="myapp"
-events=[
-  "hit-counter",
-  "likes"
-]
-
-# TOML doesn't allow mixed types in an array.
-# Theoretically a "table" entry with a custom source would look like:
-
-[[events]]
-[events."custom-webhook"]
-src = "custom/source"
-```
-</div>
-</arc-tab>
-
 </div>
 </arc-viewer>
 

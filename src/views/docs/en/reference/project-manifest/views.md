@@ -63,29 +63,6 @@ get /raccoons
 </div>
 </arc-tab>
 
-<arc-tab label=toml>
-<h5>toml</h5>
-<div slot=content>
-
-```toml
-app="myapp"
-
-http=[
-  [ "get", "/" ],
-  [ "get", "/kittens" ],
-  [ "get", "/dogs" ],
-  [ "get", "/raccoons" ]
-]
-
-views=[
-  [ "get", "/kittens" ],
-  [ "get", "/raccoons" ]
-]
-
-```
-</div>
-</arc-tab>
-
 <arc-tab label=yaml>
 <h5>yaml</h5>
 <div slot=content>

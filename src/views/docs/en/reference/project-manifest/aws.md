@@ -116,20 +116,6 @@ policies
 </div>
 </arc-tab>
 
-<arc-tab label=toml>
-<h5>toml</h5>
-<div slot=content>
-
-```toml
-[aws]
-runtime="ruby"
-region="us-west-1"
-profile="work"
-```
-
-</div>
-</arc-tab>
-
 <arc-tab label=yaml>
 <h5>yaml</h5>
 <div slot=content>
