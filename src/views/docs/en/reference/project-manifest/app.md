@@ -42,16 +42,6 @@ foobaz
 </div>
 </arc-tab>
 
-<arc-tab label=toml>
-<h5>toml</h5>
-<div slot=content>
-
-```toml
-app="foobaz"
-```
-</div>
-</arc-tab>
-
 <arc-tab label=yaml>
 <h5>yaml</h5>
 <div slot="content">

@@ -58,25 +58,6 @@ ignore
 </div>
 </arc-tab>
 
-<arc-tab label=toml>
-<h5>toml</h5>
-<div slot=content>
-
-```toml
-app="testapp"
-
-[static]
-fingerprint=true
-ignore=[
-  ".tar.gz",
-  "tmp",
-  "user"
-]
-
-```
-</div>
-</arc-tab>
-
 <arc-tab label=yaml>
 <h5>yaml</h5>
 <div slot=content>

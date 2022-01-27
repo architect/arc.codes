@@ -87,28 +87,6 @@ scheduled:
 </div>
 </arc-tab>
 
-<arc-tab label=toml>
-<h5>toml</h5>
-<div slot=content>
-
-```toml
-app="myapp"
-
-[scheduled]
-daily-update-buddy="rate(1 day)"
-friyay-only="cron(0 15 ? * FRI *)"
-
-# TOML doesn't allow mixed types in an array.
-# Theoretically a "table" entry with a custom source would look like:
-
-[scheduled."annual-review"]
-rate = ["1", "year"]
-src = "custom/source"
-```
-
-</div>
-</arc-tab>
-
 </div>
 </arc-viewer>
 

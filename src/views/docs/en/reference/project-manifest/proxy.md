@@ -59,26 +59,6 @@ production https://example.biz
 </div>
 </arc-tab>
 
-<arc-tab label=toml>
-<h5>toml</h5>
-<div slot=content>
-
-```toml
-app="myapp"
-
-http=[
-  ["get", "/v2/*"],
-  ["post", "/v2/*"]
-]
-
-[proxy]
-testing="http://localhost:4000"
-staging="https://qa.example.biz"
-production="https://example.biz"
-```
-</div>
-</arc-tab>
-
 <arc-tab label=yaml>
 <h5>yaml</h5>
 <div slot=content>

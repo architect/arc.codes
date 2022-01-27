@@ -18,7 +18,7 @@ The Architect project distribution code is bundled in [`architect/architect`](ht
 
 The Architect project is composed of multiple core code repositories on GitHub:
 
-- [`architect/parser`](https://github.com/architect/parser) - parser/lexer for arcfile formats (`.arc`, `app.arc`, `arc.json`, `arc.yaml`, `arc.yml` and `arc.toml`)
+- [`architect/parser`](https://github.com/architect/parser) - parser/lexer for arcfile formats (`.arc`, `app.arc`, `arc.json`, `arc.yaml`, and `arc.yml`)
 - [`architect/package`](https://github.com/architect/package) - a pure function that consumes `architect/parser` output and returns a CloudFormation document
 - [`architect/deploy`](https://github.com/architect/deploy) - a wrapper for the AWS CLI `package` and `deploy` commands
 - [`architect/sandbox`](https://github.com/architect/sandbox) - the local sandbox (mocks API Gateway, SNS, SQS, DynamoDB, and Lambda)

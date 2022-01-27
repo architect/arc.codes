@@ -112,31 +112,6 @@ http:
 </div>
 </arc-tab>
 
-<arc-tab label=toml>
-<h5>toml</h5>
-<div slot=content>
-
-```toml
-app="myapp"
-http=[
-  ["get", "/"],
-  ["get", "/pages"],
-  ["get", "/pages/:dateID"],
-  ["get", "/contact"],
-  ["post", "/contact"]
-  ["get", "/widgets/*"],
-]
-
-# TOML doesn't allow mixed types in an array.
-# Theoretically a "table" entry with a custom source would look like:
-[[http]]
-[http."/weather"]
-method = "get"
-src = "custom/source"
-```
-</div>
-</arc-tab>
-
 </div>
 </arc-viewer>
 
