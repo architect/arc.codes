@@ -19,6 +19,8 @@ This document covers upgrading from previous versions of Architect.
 
 As a general philosophy, Architect's core maintainers endeavor to minimize the frequency and impact of breaking changes wherever possible; in many cases, major releases may have no impact on existing applications.
 
+## Releases
+
 ### Architect 10 (name TBA)
 
 Architect 10 (name TBA) is a major feature release, introducing the Architect plugins API, and cleaning up internal legacy code, module APIs, and other bits from earlier on in Architect's history. While few of these changes should impact existing projects, users should still [see below for potential impacts to upgrading](#architect-9-&rarr;-10).
