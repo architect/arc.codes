@@ -19,7 +19,7 @@ Let's go beyond a simple "Hello world" HTTP function by incrementally adding fea
 As an example, we'll use a simple meal delivery service as a model. Starting from what is created by running:
 
 ```sh
-npm @architect init dinner-delivery
+npm init @architect dinner-delivery
 ```
 
 The beginning of _Dinner Delivery™️_ lives in our new `app.arc`
@@ -320,7 +320,7 @@ exports.handler = arc.http.async(handler)
 // ./src/http/get-index/index.js
 let arc = require('@architect/functions')
 
-async function handler(request) {
+function handler(request) {
   // redirect to the menu
   return {
     statusCode: 301,
@@ -476,7 +476,7 @@ And our directory structure:
 
 ### Next steps
 
-This tutorial wasn't intended as a fully-featured demo, but it does show off several common capabilities of Architect. Some next steps would include
+This tutorial wasn't intended as a fully-featured application, but it does demonstrate several common capabilities of Architect. Some next steps could include
 
 * User management/authentication -- check out this example
 * Data validation/sanitization
