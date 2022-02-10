@@ -11,8 +11,14 @@ Read and write environment variables. This allows apps to centrally store sensit
 ## Usage
 
 ```bash
-arc env [testing|staging|production] {VARIABLE_NAME} {VARIABLE_VALUE}
+arc env [-e environment] [--add|--remove] VARIABLE_NAME VARIABLE_VALUE
 ```
+
+## Flags
+
+- `[-e [testing|staging|production]]` Displays all environment variables for the specified environment
+- `<--add, -a> -e <testing|staging|production> NAME value` Assigns a value to the specified variable name in the specified environment
+- `<--remove, -r> -e <testing|staging|production> NAME` Removes the specified variable from the specified environment
 
 ## Security
 
@@ -31,7 +37,7 @@ arc env
 ### Save an environment variable to the staging environment
 
 ```bash
-arc env staging FOO myvalue
+arc env -e staging --add FOO myvalue
 ```
 
 > Protip: values that contain special characters like email addresses should be wrapped in double quotes
@@ -39,7 +45,7 @@ arc env staging FOO myvalue
 ### Remove an environment variable
 
 ```bash
-arc env remove staging FOO
+arc env -e staging --remove FOO
 ```
 
 ## Reserved names

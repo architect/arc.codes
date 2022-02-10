@@ -9,14 +9,14 @@ Bootstrap new Architect project code. Running `arc init` in an empty directory c
 ## Usage
 
 ```bash
-arc init [-s|--static|static|-r|--runtime|runtime|-v|--verbose|verbose]
+arc init [--static|--runtime]
 ```
 
 ## Flags
 
-- `[-s, --static, static]` create a new project with `@static` folder set to `public`
-- `[-r, --runtime, runtime ]` create a new project with a specified runtime, options are node, deno, python, or ruby
-- `[-v, --verbose, verbose]` even more output
+- `[--static, -s]` Create a new project with `@static` folder set to `public`
+- `[--runtime, -r]` Create a new project with a specified runtime, options are node, deno, python, or ruby
+- `[--verbose, -v]` Even more output
 
 ## Examples
 

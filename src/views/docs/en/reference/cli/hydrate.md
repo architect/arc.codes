@@ -13,15 +13,14 @@ When developing locally with Sandbox, it is not necessary to manually run `hydra
 ## Usage
 
 ```bash
-arc hydrate [install|--s|--shared|-u|--update|-v|--verbose]
+arc hydrate [--shared|--update]
 ```
 
 ## Flags
 
-- `install` - Optional. default command
-- `-s`, `--shared`, `shared` - Hydrates and copies shared files only
-- `-u`, `--update`, `update` - Updates each function's dependencies
-- `-v`, `--verbose`, `verbose` - Prints additional output to the console
+- `[--shared, -s]` Hydrates and copies shared files only
+- `[--update, -u]` Updates each function's dependencies
+- `[--verbose, -v]` Prints additional output to the console
 
 ## Notes
 

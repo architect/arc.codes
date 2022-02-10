@@ -11,7 +11,7 @@ Large applications may take several minutes to delete and by default this comman
 ## Usage
 
 ```bash
-arc destroy --app MyAppName [production] [--name NamedEnvironment] [--force]
+arc destroy <--app MyAppName> [--production] [--name NamedEnvironment] [--force]
 ```
 
 ## Flags
@@ -19,7 +19,7 @@ arc destroy --app MyAppName [production] [--name NamedEnvironment] [--force]
 - `[--app MyAppName]` Required. Specify the app name, located under `@app` in your Architect manifest, to delete the app from AWS.
 - `[--name NamedEnvironment]` If you ran [`arc deploy`][deploy] with the `--name` flag to specify a custom named environment to deploy your application to, use this flag to destroy that same named application environment.
 - `[--production]` Destroy the production stack of your application. By default, without this flag, the staging stack is removed.
-- `[--force|-f]` Force deletion of the application even if it contains DynamoDB tables ([`@tables`][tables]) or S3 bucket containing static assets ([`@static`][static]).
+- `[--force, -f]` Force deletion of the application even if it contains DynamoDB tables ([`@tables`][tables]) or S3 bucket containing static assets ([`@static`][static]).
 - `[--no-timeout]` Do not exit the process until all application resources are deleted.
 
 ## Examples
@@ -33,7 +33,7 @@ arc destroy --app my-app
 ### Destroy the production stack
 
 ```bash
-arc destroy production --app my-app
+arc destroy --app my-app --production
 ```
 
 ### Destroy staging stack with S3 bucket and/or Dynamo tables
@@ -45,7 +45,7 @@ arc destroy --app my-app --force
 ### Destroy custom named stack
 
 ```bash
-arc destroy --app my-app --force --name Dev
+arc destroy --app my-app --name Dev --force
 ```
 
 [deploy]: deploy
