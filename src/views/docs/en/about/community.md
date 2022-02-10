@@ -26,3 +26,6 @@ The `app.arc` manifest takes inspiration from UNIX 'run command' files (like `.v
 
 The code was developed building [Begin](https://begin.com) and granted to [JS Foundation](https://js.foundation/) in July of 2017 under the `Apache-2.0` license.
 
+## Community Call
+
+Join us for our monthly community calls on [Discord](https://discord.gg/y5A2eTsCRX) held on the fourth Wednesday of each month at 10:15 am Pacific Time / 1:15 pm Eastern Time / 18:15 UTC. Meeting agendas will be posted in the announcements channel of the Architect Discord. We will use this time to demo upcoming new features and triage [outstanding issues](https://github.com/architect/architect/issues). Please join us and have your voice heard in the project's direction.
