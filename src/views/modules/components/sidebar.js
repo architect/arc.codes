@@ -19,7 +19,7 @@ const map = {
     let { child = '', children = [], depth, path, active } = state
     let isHeading = children.length
     let mb = isHeading ? 'mb1' : 'mb-4'
-    let ml = depth > 1 ? 'ml-5' : ''
+    let ml = path.length > 3 ? 'ml-1' : ''
     return `
 <li
   class="
@@ -50,7 +50,7 @@ function Anchor (state = {}) {
   let text = isActive ? `→ ${name}` : name
 
   return `
-<a href="${href}" class="w-full inline-block text-p1 text-h1 text-a2 no-underline font-medium ${activeClass}" >${text}</a>
+<a href="${href}" class="w-full inline-block text-p1 text-h1 text-a2 no-underline font-normal ${activeClass}" >${text}</a>
   `
 }
 
@@ -77,7 +77,7 @@ function Heading4 (state = {}) {
   class="
    mb-2
    text0
-   font-semibold
+   font-medium
   "
 >
   ${name}
@@ -106,7 +106,7 @@ function Group (state = {}) {
   <summary class="text-p1 mb-2 flex items-center">${name}
     <span class="plus-icon inline icon fill-current pl-5">
       <svg style="vertical-align: baseline;">
-        <use xlink:href="#plus"></use>
+        <use href="#plus"></use>
       </svg>
     </span>
     <span class="minus-icon inline icon fill-current pl-5">
@@ -115,7 +115,7 @@ function Group (state = {}) {
       </svg>
     </span>
   </summary>
-  <div class="pl0">${children}</div>
+  <div>${children}</div>
 </details>
   `
 }
