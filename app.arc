@@ -13,3 +13,6 @@ fingerprint true
 get /docs/:lang/*
 get /api/package
 any /*
+
+@plugins
+spellcheck
