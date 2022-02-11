@@ -100,7 +100,7 @@ Most of Architect 10's breaking changes were internal; most users should not enc
 ## Breaking changes
 
 - The beta plugins API has been largely refactored; wherever possible, hooks from the beta API have been ported to the final shipping plugin API. However, many things changed, so if you authored plugins against the beta API, please refer to the [new plugin documentation](https://arc.codes/docs/en/reference/plugins/api) to ensure compatibility
-- Due to ongoing issues with unpredictable behavior with certain external libraries, Architect no longer makes use of or deploys apps with `NODE_ENV` environment variable.
+- Due to ongoing issues with unpredictable behavior with certain external libraries, Architect no longer makes use of the `NODE_ENV` environment variable, nor is it automatically added to deployed apps.
   - Remedy: if your code relies on Architect automatically populating `NODE_ENV`, you should add it to your userland environment variables, like so: `npx arc env --add --env testing NODE_ENV testing` (and again for `staging` + `production`)
 - All support for bare CLI flags has been removed from Architect commands
   - All functionality has been retained, but now proper flags must be used

@@ -34,7 +34,7 @@
   "devDependencies": {
     "@architect/architect": "^10.0.0-RC.7",
     "@architect/eslint-config": "^2.0.1",
-    "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
+    "@architect/spellcheck-dictionary": "git+https://github.com/architect/spellcheck-dictionary.git",
     "eslint": "^8.8.0",
     "linkinator": "^3.0.3",
     "spellchecker-cli": "^4.8.1",

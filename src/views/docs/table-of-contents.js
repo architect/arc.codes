@@ -32,7 +32,14 @@ let Guides = [
           'Namecheap',
           'One',
         ]
-      }
+      },
+    ],
+    'Plugins': [
+      'Overview',
+      'deploy',
+      'sandbox',
+      'set',
+      'Inventory',
     ],
     'Extend': [
       'Custom CloudFormation',
@@ -90,7 +97,7 @@ let About = [
 ]
 
 module.exports = {
-  'Get Started': GetStarted,
+  'Get started': GetStarted,
   Guides,
   Reference,
   About,

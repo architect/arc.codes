@@ -70,7 +70,7 @@ ${Symbols}
           class="
             mb1
             font-semibold
-            text2
+            text3
           "
         >
           ${title}
