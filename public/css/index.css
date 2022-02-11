@@ -113,7 +113,7 @@ main {
 .right-sidebar {
   display: block;
   font-size: .9rem;
-  min-width:16rem;
+  min-width: 16rem;
 }
 
 @media only screen and (max-width:80rem) {

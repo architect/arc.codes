@@ -53,7 +53,7 @@ ${Symbols}
       id="main"
       class="
         h-full
-        p3-lg
+        p2-lg
         p1
         overflow-auto
       "

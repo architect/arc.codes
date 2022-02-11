@@ -136,7 +136,7 @@ export default function Sidebar (props = {}) {
     fixed
     left-sidebar
     static-lg
-    pt3
+    pt2
     pr2
     pb3
     pl2
