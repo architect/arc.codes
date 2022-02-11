@@ -14,7 +14,7 @@ html {
   height: 4px;
 }
 .max-width-content {
-  max-width: 60rem;
+  max-width: 50rem;
 }
 .two-column {
   /* Height: Header | Content */

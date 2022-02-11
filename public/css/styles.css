@@ -84,7 +84,7 @@ input {font-family: inherit;}
 
 
 /* TYPEFACE */
-html {font-size: 18px;}
+html {font-size: 17px;}
 body {
   font-weight: normal;
   line-height: 1.5;
@@ -187,9 +187,8 @@ body {
 .bg-a2.active{background-color:var(--a2);}
 .bg-d0:disabled{background-color:var(--d0);}
 .bg-d1:disabled{background-color:var(--d1);}
-
-
-  /* GRADIENT */.bg-image0{background-image:linear-gradient(0.4turn, var(--p1), var(--p0));}
+/* GRADIENT */
+.bg-image0{background-image:linear-gradient(0.4turn, var(--p1), var(--p0));}
 
 
 /* BORDER */
@@ -249,10 +248,10 @@ body {
 .border-a1.active{border-color:var(--a1);}/* #8E8E8E */
 .border-d0:disabled{border-color:var(--d0);}/* #797979 */
 .border-d1:disabled{border-color:var(--d1);}/* #636363 */
-
 .border-current {
   border-color: currentColor;
 }
+
 
 /* RADIUS */
 .radius-none{border-radius:0;}
@@ -278,10 +277,8 @@ body {
 .stroke-current{stroke:currentColor;}
 
 
-
 /* CONTAINER  */
 .container{max-width:100%;}
-
 
 
 /* FAMILY */
@@ -291,17 +288,13 @@ body {
 
 
 /* SIZES */
-.text5{font-size:4.209rem;}/* 75.757px */
-.text4{font-size:3.157rem;}/* 56.832px */
-.text3{font-size:2.369rem;}/* 42.635px */
-.text2{font-size:1.777rem;}/* 31.984px */
-.text1{font-size:1.333rem;}/* 23.994px */
-.text0{font-size:1rem;}/* 18px */
-.text-1{font-size:0.75rem;}/* 13.503px */
-.text-2{font-size:0.563rem;}/* 10.13px */
-.text-3{font-size:0.422rem;}/* 7.599px */
-.text-4{font-size:0.317rem;}/* 5.701px */
-.text-5{font-size:0.238rem;}/* 4.277px */
+.text3{font-size:1.424rem;}/* 24.21px */
+.text2{font-size:1.266rem;}/* 21.52px */
+.text1{font-size:1.125rem;}/* 19.13px */
+.text0{font-size:1rem;}/* 17.00px */
+.text-1{font-size:0.889rem;}/* 15.11px */
+.text-2{font-size:0.79rem;}/* 13.43px */
+.text-3{font-size:0.702rem;}/* 11.94px */
 
 
 /* Style */
@@ -768,7 +761,6 @@ body {
 .container-lg{max-width:48em;}
 
 
-
 /* FAMILY */
 .font-sans-lg{font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";}
 .font-serif-lg{font-family: Georgia, Cambria, "Times New Roman", Times, serif;}
@@ -776,17 +768,13 @@ body {
 
 
 /* SIZES */
-.text5-lg{font-size:4.209rem;}/* 75.757px */
-.text4-lg{font-size:3.157rem;}/* 56.832px */
-.text3-lg{font-size:2.369rem;}/* 42.635px */
-.text2-lg{font-size:1.777rem;}/* 31.984px */
-.text1-lg{font-size:1.333rem;}/* 23.994px */
-.text0-lg{font-size:1rem;}/* 18px */
-.text-1-lg{font-size:0.75rem;}/* 13.503px */
-.text-2-lg{font-size:0.563rem;}/* 10.13px */
-.text-3-lg{font-size:0.422rem;}/* 7.599px */
-.text-4-lg{font-size:0.317rem;}/* 5.701px */
-.text-5-lg{font-size:0.238rem;}/* 4.277px */
+.text3-lg{font-size:1.424rem;}/* 24.21px */
+.text2-lg{font-size:1.266rem;}/* 21.52px */
+.text1-lg{font-size:1.125rem;}/* 19.13px */
+.text0-lg{font-size:1rem;}/* 17.00px */
+.text-1-lg{font-size:0.889rem;}/* 15.11px */
+.text-2-lg{font-size:0.79rem;}/* 13.43px */
+.text-3-lg{font-size:0.702rem;}/* 11.94px */
 
 
 /* Style */
@@ -867,7 +855,6 @@ body {
 .break-all-lg{word-break:break-all;}
 .truncate,
 .ellipsis-lg{text-overflow:ellipsis;}
-
 
 
 /* -----  LAYOUT ----- */
@@ -1037,7 +1024,6 @@ body {
 .z1-lg{z-index:1;}
 .z0-lg{z-index:0;}
 .z-1-lg{z-index:-1;}
-
 
 
 /* MARGIN */
@@ -1242,4 +1228,3 @@ body {
 
 
 }
-

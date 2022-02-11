@@ -7,7 +7,7 @@ const map = {
     return `
 <ul
   class="
-    mb1
+    mb-1
     list-none
   "
 >
@@ -18,11 +18,12 @@ const map = {
   item: function Item (state = {}) {
     let { child = '', children = [], depth, path, active } = state
     let isHeading = children.length
+    let mb = isHeading ? 'mb1' : 'mb-4'
     let ml = depth > 1 ? 'ml-5' : ''
     return `
 <li
   class="
-    mb-1
+    ${mb}
     ${ml}
   "
 >
@@ -65,7 +66,7 @@ function Heading3 (state = {}) {
 >
   ${name}
 </h3>
-<hr class="border-solid border1 border-p1 mb1">
+<hr class="border-solid border1 border-p1 mb-2">
   `
 }
 
@@ -74,7 +75,7 @@ function Heading4 (state = {}) {
   return `
 <h4
   class="
-   mb0
+   mb-2
    text0
    font-semibold
   "
@@ -102,7 +103,7 @@ function Group (state = {}) {
   "
   ${groupIsActive ? 'open' : ''}
 >
-  <summary class="text-p1 mb0 flex items-center">${name}
+  <summary class="text-p1 mb-2 flex items-center">${name}
     <span class="plus-icon inline icon fill-current pl-5">
       <svg style="vertical-align: baseline;">
         <use xlink:href="#plus"></use>
