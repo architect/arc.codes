@@ -8,7 +8,8 @@ exports.handler = async function http (req) {
 
   try {
     let rawArc = Buffer.from(req.queryStringParameters.arc, 'base64').toString()
-    body = JSON.stringify(pkg(await inventory({ rawArc })))
+    let inv = await inventory({ rawArc, deployStage: 'staging' })
+    body = JSON.stringify(pkg(inv))
   }
   catch (e) {
     statusCode = 500
