@@ -694,7 +694,7 @@ module.exports = async function getNotes(email) {
 }
 ```
 
-Now that we've got the form, let's implement the POST handler. We'll use the [hashids](https://hashids.org/) library to help create keys for our notes.
+Now that we've got the form, let's implement the POST handler. We'll use the [`hashids`](https://hashids.org/) library to help create keys for our notes.
 
 ```bash
 cd src/http/post-notes

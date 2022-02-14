@@ -12,24 +12,25 @@ By participating in and contributing to the Architect community — including, b
 
 Lack of familiarity with this Code of Conduct is not an excuse for not adhering to it.
 
+
 ## Project Code Structure
 
 The Architect project distribution code is bundled in [`architect/architect`](https://github.com/architect/architect) which also serves as the [primary project issue tracker](https://github.com/architect/architect/issues).
 
 The Architect project is composed of multiple core code repositories on GitHub:
 
-- [`architect/parser`](https://github.com/architect/parser) - parser/lexer for arcfile formats (`.arc`, `app.arc`, `arc.json`, `arc.yaml`, and `arc.yml`)
+- [`architect/parser`](https://github.com/architect/parser) - parser/lexer for Architect project manifest formats (`app.arc`, `.arc`, `arc.json`, `arc.yaml`, and `arc.yml`)
 - [`architect/package`](https://github.com/architect/package) - a pure function that consumes `architect/parser` output and returns a CloudFormation document
 - [`architect/deploy`](https://github.com/architect/deploy) - a wrapper for the AWS CLI `package` and `deploy` commands
 - [`architect/sandbox`](https://github.com/architect/sandbox) - the local sandbox (mocks API Gateway, SNS, SQS, DynamoDB, and Lambda)
-- [`architect/env`](https://github.com/architect/env) - read/write arcfile project environment variables with SSM
-- [`architect/hydrate`](https://github.com/architect/hydrate) - ensures function deps are synced (including src/shared and src/views)
+- [`architect/env`](https://github.com/architect/env) - read/write project environment variables with SSM
+- [`architect/hydrate`](https://github.com/architect/hydrate) - ensures function deps are synced (including `src/shared` and `src/views`)
 - [`architect/logs`](https://github.com/architect/logs) - read/write function CloudWatch logs
 - [`architect/create`](https://github.com/architect/create) - code generation
 
 Projects built with Architect are encouraged to use the following runtime helper libraries:
 
-- [`architect/functions`](https://github.com/architect/functions) - runtime helpers for NodeJS
+- [`architect/functions`](https://github.com/architect/functions) - runtime helpers for Node.JS
 - [`architect/functions-python`](https://github.com/architect/functions-python) - runtime helpers for Python
 - [`architect/functions-ruby`](https://github.com/architect/functions-ruby) - runtime helpers for Ruby
 

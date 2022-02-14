@@ -131,7 +131,7 @@ Architect supports the following transform plugins:
   - `@architect/proxy-plugin-css-urls` adds `/staging` or `/production` to CSS `@imports` statements
   - `@architect/proxy-plugin-mjs-urls` adds `/staging` or `/production` to JS module `import` statements
 
-- **esmodules**
+- **ES modules**
   - `@architect/proxy-plugin-bare-imports` map bare imports to fully qualified URLs
 
 - **syntax transpilers**

@@ -30,7 +30,7 @@ In this tutorial, we will go over several ways to store session state within you
 
 All `@http` defined routes are session capable via `@architect/functions`.
 
-- Requests are tagged to a session via a stateless, signed, encrypted, httpOnly cookie `_idx`
+- Requests are tagged to a session via a stateless, signed, encrypted, `httpOnly` cookie `_idx`
 - Session data expires after a week of inactivity
 
 This allows you to write fully stateful applications despite Lambda functions being completely stateless.

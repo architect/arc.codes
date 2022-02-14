@@ -724,7 +724,7 @@ exports.handler = arc.http(log, route)
 1. Open up IAM in the AWS Console
 2. Select **Roles** &rarr; **arc-role**
 3. Click **Attach Policies**
-4. Select **AWSLambdaSQSQueueExecutionRole**
+4. Select **`AWSLambdaSQSQueueExecutionRole`**
 5. Click **Attach Policy**
 
 Now existing functions can publish to SQS queues.
@@ -737,9 +737,9 @@ If the command line is more your style you can upgrade with the following:
 aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole --role-name arc-role
 ```
 
-**With NodeJS**
+**With Node.js**
 
-If you prefer to script this upgrade you can use the NodeJS `aws-sdk`:
+If you prefer to script this upgrade you can use the Node.js `aws-sdk`:
 
 ```javascript
 let aws = require('aws-sdk')
