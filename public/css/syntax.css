@@ -51,13 +51,13 @@
   word-break: break-word;
   /* fallback when hljs encounters unknown syntax */
   color: var(--g2);
-  background-color: var(--g9);
+  background-color: var(--g10);
 }
 
 :root[data-theme="dark"] .docs pre {
   /* fallback when hljs encounters unknown syntax */
   color: var(--g8);
-  background-color: var(--g1);
+  background-color: var(--g0);
 }
 
 .docs div[slot='content'] pre {

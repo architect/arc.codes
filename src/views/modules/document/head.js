@@ -1,3 +1,5 @@
+let stripCode = str => str.replace(/\<\/?code\>/g, '')
+
 export default function Head (props = {}) {
   let { category, description, lang = 'en', title } = props
   let descriptionContent = description || 'Architect documentation'
@@ -13,8 +15,8 @@ export default function Head (props = {}) {
 <!-- Primary Meta Tags -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
-<meta name="description" content="${descriptionContent}">
-<title>${fullTitle}</title>
+<meta name="description" content="${stripCode(descriptionContent)}">
+<title>${stripCode(fullTitle)}</title>
 
 <!-- Search Engine -->
 <meta name="description" content="Architect is the quickest way to build serverless web apps on AWS.">

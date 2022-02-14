@@ -61,20 +61,20 @@ module.exports = {
     'border1'
   ],
   th: [
-    'pt0',
-    'pr1',
-    'pl1',
-    'pb0',
+    'pt-3',
+    'pr-3',
+    'pl-3',
+    'pb-3',
     'border-solid',
     'border1',
     'border-g3',
     'bg-g1'
   ],
   td: [
-    'pt0',
-    'pr1',
-    'pl1',
-    'pb0',
+    'pt-3',
+    'pr-3',
+    'pl-3',
+    'pb-3',
     'border-solid',
     'border-g1',
     'border1',
