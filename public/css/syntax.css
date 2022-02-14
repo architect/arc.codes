@@ -35,6 +35,8 @@
 /* all code font family */
 .docs pre code, .docs :not(pre) > code  {
   font-family: Menlo, Monaco, Consolas, monospace;
+}
+.docs pre code, .docs :not(h1, h2, h3, h4, h5, h6) > code {
   font-size: 0.85rem;
 }
 .docs pre code {

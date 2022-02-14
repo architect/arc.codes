@@ -16,7 +16,7 @@ All Deploy methods accept async or synchronous functions, and receive a single a
 | `arc`             | object  | Raw Architect project object                      |
 | `cloudformation`  | object  | CloudFormation deployment                         |
 | `dryRun`          | boolean | `true` if `--dry-run` or `--eject` flags are used |
-| `inventory`       | object  | Inventory object                                  |
+| `inventory`       | object  | [Inventory](./inventory) object                   |
 | `stage`           | string  | `testing`, `staging` or `production`              |
 
 

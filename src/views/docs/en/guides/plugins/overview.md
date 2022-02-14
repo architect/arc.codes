@@ -35,25 +35,24 @@ another-private-plugin  # loads from `foo/index.js`
 
 Architect provides an end-to-end suite of workflows, conventions, and optimized defaults for building excellent serverless web apps and APIs with AWS. Architect plugins enable developers to extend (or override) this functionality in a variety of ways with interfaces into both workflows and resource creation.
 
+To create a fresh plugin, you can run `npx arc create --plugin my-plugin-name`
 
-- The Inventory object
-- [Hooks for workflow lifecycles](#workflow-hooks)
-- [Cloud resource generation](#resource-setters)
+Learn more about [hooks for workflow lifecycles](#workflow-hooks) and [cloud resource generation](#resource-setters) below.
 
 
 ### Workflow hooks
 
 Workflow hooks enable developers to extend Architect workflows
 
-- `deploy`
-  - `start` - run arbitrary pre-deploy operations + customize CloudFormation (formerly `@macros`)
-  - `services` - hook into Architect's service discovery to create references to custom resources, or populate config data
-  - `target` - bypass CloudFormation deployment to AWS, and ship the project to an AWS intermediary
-  - `end` - run arbitrary post-deploy operations
-- `sandbox`
-  - `start` - run arbitrary operations during Sandbox startup
-  - `watcher` - act on project filesystem events (e.g. `src/http/get-foo/auth.js` → `updated`)
-  - `end` - run arbitrary operations during Sandbox shutdown
+- [`deploy`](./deploy)
+  - [`start`](./deploy#deploy.start) - run arbitrary pre-deploy operations + customize CloudFormation (formerly `@macros`)
+  - [`services`](./deploy#deploy.services) - hook into Architect's service discovery to create references to custom resources, or populate config data
+  - [`target`](./deploy#deploy.target) - bypass CloudFormation deployment to AWS, and ship the project to an AWS intermediary
+  - [`end`](./deploy#deploy.end) - run arbitrary post-deploy operations
+- [`sandbox`](./sandbox)
+  - [`start`](./sandbox#sandbox.start) - run arbitrary operations during Sandbox startup
+  - [`watcher`](./sandbox#sandbox.watcher) - act on project filesystem events (e.g. `src/http/get-foo/auth.js` → `updated`)
+  - [`end`](./sandbox#sandbox.end) - run arbitrary operations during Sandbox shutdown
 
 
 ### Resource setters
