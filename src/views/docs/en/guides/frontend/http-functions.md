@@ -95,7 +95,7 @@ Each HTTP Function maps to a logical HTTP route. For example:
 - `get /about` is serviced by `src/http/get-about`
 - `post /form` is serviced by `src/http/post-form`
 
-All HTTP Functions begin with `/`, and can include letters, numbers, and slashes, underscores, dashes, and periods, up to 35 characters.
+All HTTP Functions begin with `/`, and can include letters, numbers, and slashes, underscores, dashes, and periods, with an advised (but not enforced) maximum of 100 characters.
 
 Importantly and uniquely, you can also use URL parameters to build dynamic paths – more on that below.
 

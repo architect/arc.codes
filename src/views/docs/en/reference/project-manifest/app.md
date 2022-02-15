@@ -8,9 +8,9 @@ description: Define the application namespace
 
 ## Syntax
 
-- Lowercase alphanumeric string
-- Maximum of 10 characters
-- Dashes allowed; underscores not allowed
+- Lower + upper case alphanumeric string
+- Maximum of 100 characters
+- Dashes and underscores are allowed
 - Must begin with a letter
 
 ## Example

@@ -101,7 +101,7 @@ Architect supports the following runtime versions:
 - **Ruby**: `2.7` using `bundle`
 - **Deno**: `1.6.x` ([under development](../reference/runtime-helpers/deno))
 
-> ⚠️ Working locally with the Architect `sandbox` requires target runtimes to be available in your `$PATH`.
+> ⚠️ Working locally with the Sandbox requires target runtimes to be available in your `$PATH`.
 
 Additionally, all other standard AWS-managed runtimes are supported in Architect applications (but may not be supported in [Sandbox](../reference/cli/sandbox)), including:
 

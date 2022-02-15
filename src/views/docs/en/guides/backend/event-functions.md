@@ -36,12 +36,13 @@ account-signup
 account-check-email
 ```
 
-### `@events` Syntax
+### `@events` syntax
 
-- Lowercase alphanumeric string
-- Maximum of 50 characters
-- Dashes are allowed; underscores are not allowed
+- Lower + upper case alphanumeric string
+- Maximum of 240 characters
+- Dashes, periods, and underscores are allowed
 - Must begin with a letter
+
 
 ### Provisioning new event functions
 
@@ -172,4 +173,3 @@ function count(payload, callback) {
 
 exports.handler = arc.events.subscribe(count)
 ```
-

@@ -9,7 +9,7 @@ sections:
 
 ## Overview
 
-How we store information is one of the pillars of app development. Durable persistence of structured data is the foundation for all powerful web apps. Data needs to be instantaneous, consistent, secure, and able to scale easily to meet demand. `@tables` defines DynamoDB database tables and trigger functions for them to read and write data with single digit millisecond latency. 
+How we store information is one of the pillars of app development. Durable persistence of structured data is the foundation for all powerful web apps. Data needs to be instantaneous, consistent, secure, and able to scale easily to meet demand. `@tables` defines DynamoDB database tables and trigger functions for them to read and write data with single digit millisecond latency.
 
 Architect `@tables` defines DynamoDB tables and `@indexes` define global secondary indexes to facilitate more advanced access patterns.
 
@@ -61,13 +61,14 @@ accounts
 
 `@tables` defines DynamoDB database tables and trigger functions for them.
 
+
 #### Table name syntax
 
-- Lowercase alphanumeric string
+- Lower + upper case alphanumeric string
 - Between 3 and 255 characters
-- Dashes are allowed
-- Underscores are not allowed
+- Dashes, periods, and underscores are allowed
 - Must begin with a letter
+
 
 #### Table structure syntax
 
@@ -78,6 +79,7 @@ accounts
 - Lambdas can only be values of: `insert`, `update`, or `destroy`
 
 > **Protip:** table names can be anything but choose a consistent naming scheme within your app namespace; one useful scheme is plural nouns like: `accounts` or `email-invites`
+
 
 ### Indexes
 

@@ -3,17 +3,17 @@ title: '@events'
 category: app.arc
 ---
 
- Define SNS topics with Lambda handler functions.
+Define SNS topics with Lambda handler functions.
 
 ## Syntax
 
-- Name
-  - Lowercase alphanumeric string
-  - Maximum of 50 characters
-  - Dashes are allowed; underscores are not allowed
-  - Must begin with a letter
+- Lower + upper case alphanumeric string
+- Maximum of 240 characters
+- Dashes, periods, and underscores are allowed
+- Must begin with a letter
 
-Events can use more verbose configuration to allow for [custom source paths](../../guides/developer-experience/custom-source-paths) in your project. Provide a  `src` for each event.
+Events can use more verbose configuration to allow for [custom source paths](../../guides/developer-experience/custom-source-paths) in your project. Provide a `src` for each event.
+
 
 ## Example
 

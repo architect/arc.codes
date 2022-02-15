@@ -48,9 +48,9 @@ Which generates the corresponding code:
 
 ### Syntax
 
-- Lowercase alphanumeric string
-- Maximum of 50 characters
-- Dashes are allowed; underscores are not allowed
+- Lower + upper case alphanumeric string
+- Maximum of 240 characters
+- Dashes, periods, and underscores are allowed
 - Must begin with a letter
 
 ---
@@ -132,5 +132,3 @@ def handler(request, context):
   arc.queues.publish(name='account-signup', payload={'ok':True})
   return {'statusCode': 201}
 ```
-
-

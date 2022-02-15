@@ -23,9 +23,10 @@ Scheduled functions are functions that are invoked at specified times and can be
 To get started with scheduled functions we must first add the `@scheduled` pragma to our `app.arc` manifest file. There is a specific syntax for setting the frequency for triggering our scheduled functions.
 
 ### Syntax
-- Lowercase alphanumeric string
-- Maximum of 20 characters
-- Dashes are allowed; underscores are not allowed
+
+- Lower + upper case alphanumeric string
+- Maximum of 240 characters
+- Dashes, periods, and underscores are allowed
 - Must begin with a letter
 - Followed by a valid `rate` or `cron` expression ([more info here](https://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html))
 

@@ -8,10 +8,7 @@ Configure the location of shared code.
 
 ## Syntax
 
-- Lowercase alphanumeric string
-- Maximum of 20 characters
-- Dashes are allowed; underscores are not allowed
-- Must begin with a letter
+- File path of the folder containing shared code
 
 ## Example
 

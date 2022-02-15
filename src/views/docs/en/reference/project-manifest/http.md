@@ -21,13 +21,14 @@ Each route is made up of two parts: HTTP verb and a route path.
   - `any`<sup>1</sup>
 
 - Route Path
-  - Dashes and underscores are not allowed
-  - Must begin with a letter
+  - Lower + upper case alphanumeric string
   - Advised maximum of 100 characters for paths
+  - Dashes, periods, and underscores are allowed
+  - Must begin with a letter
   - URL parameters are defined with a leading colon (`:`)
-  - A trailing asterisk (`*`) denotes a "catchall"
+  - A trailing asterisk (`*`) denotes a "catchall" (and can only be used as the final character)
 
-Routes can use more verbose configuration to allow for [custom source paths](../../guides/developer-experience/custom-source-paths) in your project. Provide a  `method` and `src` for each route:
+Routes can use more verbose configuration to allow for [custom source paths](../../guides/developer-experience/custom-source-paths) in your project. Provide a `method` and `src` for each route:
 
 - `method` - HTTP verb
 - `src` - path to the function source
@@ -133,5 +134,5 @@ Which utilizes the following project directory structure:
 └── package.json
 ```
 
-> ⚠️  Handlers generated from routes with URL parameters i.e. `/pages/:dateID`, substitute `:` for `000`.  
+> ⚠️  Handlers generated from routes with URL parameters i.e. `/pages/:dateID`, substitute `:` for `000`.
 > This is a deliberate convention to ensure valid directory names that correspond with your defined parameterized route.

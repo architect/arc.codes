@@ -8,14 +8,11 @@ Define EventBridge schedule expressions with Lambda handler functions.
 
 ### Syntax
 
-- Name
-  - Lowercase alphanumeric string
-  - Maximum of 20 characters
-  - Dashes are allowed; underscores are not allowed
-  - Must begin with a letter
-
-- Interval
-  - A valid `rate` or `cron` expression ([more info here](https://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html))
+- Lower + upper case alphanumeric string
+- Maximum of 240 characters
+- Dashes, periods, and underscores are allowed
+- Must begin with a letter
+- Followed by a valid `rate` or `cron` expression ([more info here](https://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html))
 
 Scheduled functions can use more verbose configuration to allow for [custom source paths](../../guides/developer-experience/custom-source-paths) in your project. Provide a `rate` or `cron` and `src` for each event.
 

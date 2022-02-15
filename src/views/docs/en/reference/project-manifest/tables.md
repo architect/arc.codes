@@ -25,11 +25,11 @@ Additionally, database changes can be streamed to a function with the [`@tables-
 
 ### Table name syntax
 
-- Lowercase alphanumeric string
+- Lower + upper case alphanumeric string
 - Between 3 and 255 characters
-- Dashes are allowed
-- Underscores are not allowed
+- Dashes, periods, and underscores are allowed
 - Must begin with a letter
+
 
 ### Table structure syntax
 
