@@ -48,6 +48,13 @@ module.exports = {
     'text-p1',
     'text-h1'
   ],
+  hr: [
+    'mt3',
+    'mb3',
+    'border-solid',
+    'border0',
+    'border-b1',
+  ],
   strong: [
     'font-semibold',
     'text-g9'

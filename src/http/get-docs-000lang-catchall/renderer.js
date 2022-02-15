@@ -1,7 +1,7 @@
 const { escape } = require('querystring')
 const frontmatter = require('front-matter')
 const Markdown = require('markdown-it')
-const markdownClass = require('@toycode/markdown-it-class')
+const markdownClass = require('./markdown-class')
 const markdownExternalAnchor = require('markdown-it-external-anchor')
 const markdownToC = require('markdown-it-toc-and-anchor').default
 

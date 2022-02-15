@@ -11,7 +11,7 @@ Architect has two primary runtime helpers for Node.js:
 - [`@architect/functions`](#%40architect%2Ffunctions) - General purpose runtime helpers for various Architect resources, such as `@events`, `@http`, `@tables`, etc.
 - [`@architect/asap`](#%40architect%2Fasap) - Helper designed solely for delivering static assets via `@http` endpoints
 
-<hr class="mt3 border-solid border0 border-b1" />
+---
 
 ## `@architect/functions`
 
@@ -99,7 +99,7 @@ arc.events.publish({
 }, (err) => console.log)
 ```
 
-<hr class="mt3 border-solid border0 border-b1" />
+---
 
 ### `arc.http`
 
@@ -224,7 +224,7 @@ function handler(req, res) {
 }
 ```
 
-<hr class="mt3 border-solid border0 border-b1" />
+---
 
 #### `arc.http.async()`
 
@@ -270,7 +270,7 @@ async function handler(req) {
 }
 ```
 
-<hr class="mt3 border-solid border0 border-b1" />
+---
 
 #### `arc.http.express()`
 
@@ -287,7 +287,7 @@ app.get('/cool', (req, res)=> res.send('very cool'))
 exports.handler = arc.http.express(app)
 ```
 
-<hr class="mt3 border-solid border0 border-b1" />
+---
 
 #### `arc.http.session`
 
@@ -325,7 +325,7 @@ exports.handler = async function handler (req) {
 }
 ```
 
-<hr class="mt3 border-solid border0 border-b1" />
+---
 
 ### `arc.queues`
 
@@ -385,7 +385,7 @@ arc.queues.publish({
 }, (err) => console.log)
 ```
 
-<hr class="mt3 border-solid border0 border-b1" />
+---
 
 ### `arc.services()`
 
@@ -397,7 +397,7 @@ CloudFormation resources are generated with names more friendly for machines tha
 
 This object is lazily-loaded and cached, and thus the first call may incur a delay as the service map is populated (use of [`arc.events`](#arc.events), [`arc.queues`](#arc.queues) and [`arc.tables`](#arc.tables) transparently uses this method in the background).
 
-`arc.services` returns a service map object, with keys equaling any out-of-the-box Architect infrastructure types or plugins used by the Architect application. 
+`arc.services` returns a service map object, with keys equaling any out-of-the-box Architect infrastructure types or plugins used by the Architect application.
 
 An example service map for an application composed of `@static`, `@events` and an `imagebucket` plugin would have the following structure:
 
@@ -426,7 +426,7 @@ let services = await arc.services()
 */
 ```
 
-<hr class="mt3 border-solid border0 border-b1" />
+---
 
 ### `arc.static()`
 
@@ -447,7 +447,7 @@ let js = arc.static('/index.js', { stagePath: true })
 // '/staging/_static/index-b2c3d4.js'
 ```
 
-<hr class="mt3 border-solid border0 border-b1" />
+---
 
 ### `arc.tables()`
 
@@ -576,7 +576,7 @@ await client._doc.transactWrite({
 })
 ```
 
-<hr class="mt3 border-solid border0 border-b1" />
+---
 
 ### `arc.ws`
 
@@ -636,7 +636,7 @@ let arc = require('@architect/functions')
 let wsApi = await arc.ws._api()
 ```
 
-<hr class="mt3 border-solid border0 border-b1" />
+---
 
 ## `@architect/asap`
 

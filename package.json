@@ -22,7 +22,6 @@
     "@architect/inventory": "^3.0.0-RC.10",
     "@architect/package": "^8.0.0-RC.2",
     "@architect/syntaxes": "github:architect/syntaxes#v1.2.1",
-    "@toycode/markdown-it-class": "^1.2.4",
     "esm": "^3.2.25",
     "front-matter": "^4.0.2",
     "highlight.js": "^11.4.0",

@@ -9,7 +9,7 @@ description: '<code>deploy</code> lifecycle hook plugins'
 
 ## Plugin parameters
 
-All Deploy methods accept async or synchronous functions, and receive a single argument, which is an object containing the following properties:
+All `deploy` methods accept async or synchronous functions, and receive a single argument, which is an object containing the following properties:
 
 | Property          | Type    | Description                                       |
 |-------------------|---------|---------------------------------------------------|
