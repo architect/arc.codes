@@ -235,7 +235,7 @@ module.exports = { set: {
   env: ({ arc, inventory }) => {
     return {
       testing: {
-        API_SECRET: 'dummy-key'
+        API_SECRET: 'sample-key'
       },
       staging: {
         API_SECRET: process.env.API_SECRET
