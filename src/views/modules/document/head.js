@@ -1,7 +1,7 @@
 let stripCode = str => str.replace(/\<\/?code\>/g, '')
 
 export default function Head (props = {}) {
-  let { category, description, lang = 'en', title } = props
+  let { category, description, lang = 'en', path, title } = props
   let descriptionContent = description || 'Architect documentation'
   let fullTitle = ''
   if (category && title)
@@ -51,6 +51,9 @@ export default function Head (props = {}) {
 <link rel="stylesheet" type="text/css" href="/css/index.css">
 <link rel="stylesheet" type="text/css" href="/css/docsearch.css">
 <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://arc.codes/${path}" />
 
 <!-- Algolia -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css" />

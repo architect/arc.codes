@@ -2,7 +2,7 @@
 require = require('esm')(module)
 
 const { readFile } = require('fs/promises')
-const path = require('path')
+const { join } = require('path')
 const { http } = require('@architect/functions')
 const render = require('./renderer')
 const { redirect: redirectMiddleware } = require('@architect/shared/redirect-map')
@@ -15,7 +15,7 @@ const toc = require('@architect/views/docs/table-of-contents')
 const cache = {} // cheap warm cache
 
 async function handler (req) {
-  let { pathParameters } = req
+  let { path, pathParameters } = req
   let { lang, proxy } = pathParameters
   let parts = proxy.split('/')
   let docName = parts.pop()
@@ -24,7 +24,7 @@ async function handler (req) {
     return { statusCode: 303, headers: { location: '/playground' } }
 
   let doc = `${docName}.md`
-  let activePath = path.join(
+  let activePath = join(
     'docs',
     lang,
     ...parts,
@@ -32,9 +32,9 @@ async function handler (req) {
   )
   let active = `/${activePath}` // Add leading slash to match anchor href
   let editURL = 'https://github.com/architect/arc.codes/edit/main/src/views/docs/'
-  editURL += path.join(lang, ...parts, doc)
+  editURL += join(lang, ...parts, doc)
 
-  let filePath = path.join(
+  let filePath = join(
     __dirname,
     'node_modules',
     '@architect',
@@ -79,13 +79,14 @@ async function handler (req) {
       active,
       editURL,
       lang,
+      path,
       scripts: [
         '/index.js',
         '/components/arc-viewer.js',
         '/components/arc-tab.js'
       ],
       thirdparty: algolia(lang),
-      toc
+      toc,
     })
   }
 }
