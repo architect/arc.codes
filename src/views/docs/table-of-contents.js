@@ -17,6 +17,7 @@ let Guides = [
       'Logging & monitoring',
       'Using ESM',
       'Using TypeScript',
+      'Customizing CloudFormation'
     ],
     'Frontend': [
       'Static assets',
@@ -41,10 +42,6 @@ let Guides = [
       'set',
       // 'Inventory',
     ],
-    // 'Extend': [
-    //   'Custom CloudFormation',
-    //   'Plugins',
-    // ]
   },
   'Examples',
 ]
@@ -94,6 +91,7 @@ let About = [
   'Contribute',
   'Upgrade guide',
   'Playground',
+  'Ejecting from Architect'
 ]
 
 module.exports = {

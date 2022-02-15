@@ -46,6 +46,8 @@ const tempRedirects = {
 const permanentRedirects = {
   '/examples': '/docs/en/guides/examples',
 
+  '/docs/en/guides/extend/custom-cloudformation': '/docs/en/guides/developer-experience/customizing-cloudformation',
+
   // Intro
   // round 1: Q1 2021
   '/intro/philosophy': '/docs/en/get-started/why-architect',
