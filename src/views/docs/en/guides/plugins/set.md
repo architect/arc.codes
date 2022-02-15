@@ -9,7 +9,7 @@ description: '<code>set</code> cloud resource generator plugins'
 Any Lambdas or resources defined by a `set` plugin is treated by Architect as a first-class primitive. For example: if you build a plugin that creates a route with `set.http`, Architect would treat that route as though the user had actually added it to their [project manifest](/docs/en/get-started/project-manifest)'s [`@http` pragma](/docs/en/reference/project-manifest/http).
 
 
-### Caveats
+## Caveats
 
 Unlike [workflow lifecycle plugins](./overview#workflow-hooks), which execute only when needed, all `set` plugins must execute every time Architect (or any of its modules) run. Thus, they are expected to be synchronous and fast.
 
