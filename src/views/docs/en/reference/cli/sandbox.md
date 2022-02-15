@@ -30,15 +30,14 @@ arc sandbox [--port|--disable-symlinks|--no-hydrate|--verbose]
 
 ### Local preferences
 
-Sandbox will take into account [local preferences](../configuration/local-preferences) set in `preferences.arc`
+Sandbox will take into account Architect [local preferences](../configuration/local-preferences).
 
 #### `@sandbox`
 
-The following can be set as a part of the `@sandbox` pragma.
+The following can be set as a part of the [`@sandbox`](../configuration/local-preferences#sandbox) pragma.
 
-- `env`<sup>*</sup> - Override the local environment setting to use `staging` or `production` so that Sandbox uses that stage's env vars as set in `@env` in `preferences.arc` or in the project's `.env` file.
-  - Can be one of `testing`, `staging`, `production`
-  - Defaults to `testing`
+- `env`<sup>*</sup> - Override the local environment setting to use `staging` or `production` so that Sandbox uses that stage's environment variables as set in local preferences `@env` or in the project's `.env` file.
+  - Can be one of `testing` (default), `staging`, or `production`
 - `useAws`<sup>*</sup> - Use live AWS infrastructure from Sandbox. Specifically, `@tables`, `@tables-indexes`, `@events`, and `@queues`. Uses the `staging` environment by default, but `env` can be set to `production`.
   - Defaults to `false`
 - `no-hydrate` - Disable [function hydration](./hydrate) on Sandbox start.
@@ -55,7 +54,7 @@ no-hydrate true
 
 #### `@sandbox-startup`
 
-Additionally, Sandbox can run shell commands on startup by setting `@sandbox-startup` in `preferences.arc`.
+Additionally, Sandbox can run shell commands on startup by setting [`@sandbox-startup`](../configuration/local-preferences#sandbox-startup) in [local preferences](../configuration/local-preferences).
 
 ```arc
 @sandbox-startup
@@ -73,7 +72,7 @@ echo 'hello'
 - `PORT` - Manually specify HTTP port
   - Defaults to `3333`
 - `ARC_LOCAL`- If present and used in conjunction with `NODE_ENV=staging|production`, emulates live `staging` or `production` environment
-  - Uses your local `preferences.arc` file's `@staging` or `@production` environment variables
+  - Uses your local preferences `@staging` or `@production` environment variables
   - Connects Sandbox to live AWS events and DynamoDB infrastructure
   - Requires valid AWS credentials with the same profile name as defined in your [project manifest](../project-manifest/aws#profile)
 - `ARC_QUIET` - If present, disable (most) logging
