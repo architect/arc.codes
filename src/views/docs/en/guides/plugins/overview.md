@@ -61,17 +61,17 @@ Resource setters are small, synchronous methods that enable the rapid programmat
 
 Any Lambdas or resources defined by setters is treated by Architect as a first-class primitive, as though it was built into Architect itself.
 
-- Pragmas
-  - `events` - register async events
-  - `http` - register HTTP routes
-  - `queues` - register async event queues
-  - `scheduled` - register scheduled events
-  - `tables-streams` - register DynamoDB event streams
-  - `ws` - register WebSocket routes
-- Resources
-  - `env` - register environment variables
-  - `customLambdas` - register bare Lambdas without a pre-associated event source
-  - `runtimes` - register custom runtimes
+- [Pragmas](/docs/en/guides/plugins/set#pragmas)
+  - [`events`](/docs/en/guides/plugins/set#set.events) - register async events
+  - [`http`](/docs/en/guides/plugins/set#set.http) - register HTTP routes
+  - [`queues`](/docs/en/guides/plugins/set#set.queues) - register async event queues
+  - [`scheduled`](/docs/en/guides/plugins/set#set.scheduled) - register scheduled events
+  - [`tables-streams`](/docs/en/guides/plugins/set#set%5B'tables-streams'%5D) - register DynamoDB event streams
+  - [`ws`](/docs/en/guides/plugins/set#set.ws) - register WebSocket routes
+- [Resources](/docs/en/guides/plugins/set#resources)
+  - [`env`](/docs/en/guides/plugins/set#set.env) - register environment variables
+  - [`customLambdas`](/docs/en/guides/plugins/set#set.customLambdas) - register bare Lambdas without a pre-associated event source
+  - [`runtimes`](/docs/en/guides/plugins/set#set.runtimes) - register custom runtimes
 
 
 ## Publishing plugins

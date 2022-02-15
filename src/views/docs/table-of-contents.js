@@ -55,7 +55,7 @@ let Reference = [ {
     '@aws',
     '@events',
     '@http',
-    '@macros',
+    '@plugins',
     '@proxy',
     '@queues',
     '@scheduled',

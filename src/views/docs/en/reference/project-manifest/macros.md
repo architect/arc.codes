@@ -1,7 +1,7 @@
 ---
 title: '<code>@macros</code>'
 category: app.arc
-description: Extend Architect app functionality
+description: Customize Architect-generated CloudFormation
 ---
 
 > Notice: `@macros` is no longer the preferred way to extend CloudFormation in Architect, and have been superseded by [`@plugins` `deploy.start`](/docs/en/guides/plugins/deploy#deploy.start). Existing `@macros` extensions will continue to be supported, but are no longer actively improved.
