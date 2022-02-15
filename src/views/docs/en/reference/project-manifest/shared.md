@@ -1,5 +1,5 @@
 ---
-title: '@shared'
+title: '<code>@shared</code>'
 category: app.arc
 description: Configure <code>src/shared</code> code
 ---

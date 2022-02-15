@@ -1,5 +1,5 @@
 ---
-title: '@queues'
+title: '<code>@queues</code>'
 category: app.arc
 description: Define SQS topics
 ---

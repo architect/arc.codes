@@ -1,5 +1,5 @@
 ---
-title: '@static'
+title: '<code>@static</code>'
 category: app.arc
 description: Define S3 bucket
 ---
@@ -91,5 +91,3 @@ Static assets will also be uploaded during an `arc deploy` along with your funct
 `arc deploy static --delete` deletes static assets from the S3 bucket that are not present in the configured static asset folder.
 
 `arc deploy static --prune` is an alias to delete.
-
-

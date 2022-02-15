@@ -1,5 +1,5 @@
 ---
-title: '@events'
+title: '<code>@events</code>'
 category: app.arc
 ---
 

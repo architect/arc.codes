@@ -1,5 +1,5 @@
 ---
-title: '@tables-indexes'
+title: <code>'@tables-indexes</code>'
 category: app.arc
 description: Define DynamoDB table global secondary indexes.
 ---

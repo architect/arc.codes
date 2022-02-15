@@ -1,5 +1,5 @@
 ---
-title: '@tables-streams'
+title: '<code>@tables-streams</code>'
 category: app.arc
 description: Define DynamoDB tables with streaming changes
 ---

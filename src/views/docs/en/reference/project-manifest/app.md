@@ -1,5 +1,5 @@
 ---
-title: '@app'
+title: '<code>@app</code>'
 category: app.arc
 description: Define the application namespace
 ---

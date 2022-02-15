@@ -1,5 +1,5 @@
 ---
-title: '@proxy'
+title: '<code>@proxy</code>'
 category: app.arc
 description: Define a forwarding URL
 ---

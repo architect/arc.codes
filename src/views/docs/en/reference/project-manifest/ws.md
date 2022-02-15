@@ -1,5 +1,5 @@
 ---
-title: '@ws'
+title: '<code>@ws</code>'
 category: app.arc
 description: Define WebSocket endpoints
 ---

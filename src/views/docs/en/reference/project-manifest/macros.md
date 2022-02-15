@@ -1,8 +1,10 @@
 ---
-title: '@macro'
+title: '<code>@macros</code>'
 category: app.arc
 description: Extend Architect app functionality
 ---
+
+> Notice: `@macros` is no longer the preferred way to extend CloudFormation in Architect, and have been superseded by [`@plugins` `deploy.start`](/docs/en/guides/plugins/deploy#deploy.start). Existing `@macros` extensions will continue to be supported, but are no longer actively improved.
 
 Extend the functionality of your Architect app with standard CloudFormation. The `@macro` primitive allows developers to add any resources or modify existing ones extending Architect into the entire AWS ecosystem supported by CloudFormation. Macros also allow you to look for custom directives and add pre-deploy steps. You can find some examples in our [GitHub](https://github.com/architect/?q=macro-&type=source).
 

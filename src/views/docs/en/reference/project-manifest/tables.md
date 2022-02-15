@@ -1,7 +1,7 @@
 ---
-title: '@tables'
+title: '<code>@tables</code>'
 category: app.arc
-description: Define DynamoDB tables
+description: Define DynamoDB database tables
 ---
 
 Define [DynamoDB][ddb] tables with optional:

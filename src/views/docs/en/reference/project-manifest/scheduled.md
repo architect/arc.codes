@@ -1,5 +1,5 @@
 ---
-title: '@scheduled'
+title: '<code>@scheduled</code>'
 category: app.arc
 description: Define EventBridge schedule expressions
 ---
