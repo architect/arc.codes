@@ -4,7 +4,7 @@
   "noSuggestions": true,
   "dictionaries": [
     "./scripts/dictionary.txt",
-    "./node_modules/@architect/spellcheck-dictionary/dictionary.txt"
+    "./node_modules/@architect/spellcheck-dictionary/index.js"
   ],
   "plugins": [
     "spell",
