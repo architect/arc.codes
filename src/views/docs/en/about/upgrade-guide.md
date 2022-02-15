@@ -69,7 +69,7 @@ Architect 4 (Yeti) introduced generic, dependency-free HTTP functions, enhanced 
 
 ---
 
-### Topics
+## Upgrade guides
 
 - [Architect 9 &rarr; 10](#architect-9-&rarr;-10)
 - [Architect 8 &rarr; 9](#architect-8-&rarr;-9)
@@ -86,18 +86,19 @@ Architect 4 (Yeti) introduced generic, dependency-free HTTP functions, enhanced 
 
 Architect 10 (name TBA) is a major feature release, introducing the Architect plugins API, and cleaning up internal legacy code, module APIs, and other bits from earlier on in Architect's history.
 
-Most of Architect 10's breaking changes were internal; most users should not encounter breaking changes when upgrading Architect to v10 and Functions to v5.
+Most of Architect 10's breaking changes were internal; most users should not encounter breaking changes when upgrading Architect to v10, and Functions + ASAP to v5.
 
 
-## Removed
+### Removed
 
-- Removed the `package` command, which was no longer able to represent the final state of Architect projects. Its (improved) replacement is now: `deploy --eject`
-- [Removed `toml` support](https://github.com/architect/architect/discussions/1294) (e.g. `arc.toml`)
+- Removed the `package` command, which was no longer able to represent the final state of Architect projects
+  - Remedy: its (improved) replacement is now: `deploy --eject`
 - Removed support for legacy `.arc-env` env files (initially deprecated in late 2020)
   - Remedy: if you are still using a `.arc-env` file, please move your [local env vars to `prefs.arc`](https://arc.codes/docs/en/reference/configuration/local-preferences#%40env) or [`.env`](https://arc.codes/docs/en/reference/configuration/local-preferences#.env-file-support)
+- [Removed `toml` support](https://github.com/architect/architect/discussions/1294) (e.g. `arc.toml`)
 
 
-## Breaking changes
+### Breaking changes
 
 - The beta plugins API has been largely refactored; wherever possible, hooks from the beta API have been ported to the final shipping plugin API. However, many things changed, so if you authored plugins against the beta API, please refer to the [new plugin documentation](https://arc.codes/docs/en/reference/plugins/api) to ensure compatibility
 - Due to ongoing issues with unpredictable behavior with certain external libraries, Architect no longer makes use of the `NODE_ENV` environment variable, nor is it automatically added to deployed apps.
@@ -114,7 +115,7 @@ Most of Architect 10's breaking changes were internal; most users should not enc
   - Remedy: simply change the `@indexes` pragma name to `@tables-indexes`; no other changes are required
 
 
-## Internal breaking changes
+### Internal breaking changes
 
 The following internal changes should not have any impact on Architect users should Architect v10 be paired with Functions v5, but just in case anyone used these somewhat more obscure internal features, environment variables, etc., we'll enumerate the changes here:
 
@@ -134,7 +135,7 @@ The following internal changes should not have any impact on Architect users sho
   - Remedy: realistically no one ever actually used this feature in production, because to do so would have necessitated defining an `arc-sessions` or `data` table in your project manifest; that said, if you experimented with these default DynamoDB tables and want to use them in production, simply add them to your `@tables` pragma
 
 
-## Important non-breaking change
+### Important non-breaking change
 
 In a future major release, Architect will deprecate all non-namespaced environment variables. For now, Architect prefers the namespaced versions of the same env var, but will support both; some examples:
 
