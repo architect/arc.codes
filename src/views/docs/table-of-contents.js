@@ -39,12 +39,12 @@ let Guides = [
       'deploy',
       'sandbox',
       'set',
-      'Inventory',
+      // 'Inventory',
     ],
-    'Extend': [
-      'Custom CloudFormation',
-      'Plugins',
-    ]
+    // 'Extend': [
+    //   'Custom CloudFormation',
+    //   'Plugins',
+    // ]
   },
   'Examples',
 ]
