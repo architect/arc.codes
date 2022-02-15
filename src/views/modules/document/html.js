@@ -39,6 +39,7 @@ ${Symbols}
     overflow-hidden-lg
   "
 >
+  ${Script({ src: '/get-theme.js' })}
   <div
     class="
       h-full-lg
