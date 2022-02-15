@@ -55,6 +55,60 @@
   --bkg-color: #121212;/* #121212 */
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --p0:#6EE8B5;/* #6EE8B5 */
+    --p1:#46A9CB;/* #46A9CB */
+    --p2:#E4FFDD;/* #E4FFDD */
+    --p3:#ED59B3;/* #ED59B3 */
+    --g0:#222222;/* #222222 */
+    --g1:#383838;/* #383838 */
+    --g2:#4D4D4D;/* #4D4D4D */
+    --g3:#636363;/* #636363 */
+    --g4:#797979;/* #797979 */
+    --g5:#8E8E8E;/* #8E8E8E */
+    --g6:#A4A4A4;/* #A4A4A4 */
+    --g7:#BABABA;/* #BABABA */
+    --g8:#CFCFCF;/* #CFCFCF */
+    --g9:#E5E5E5;/* #E5E5E5 */
+    --g10:#FBFBFB;/* #FBFBFB */
+    --g11:#000;   /* #FFF*/
+    --h6:#CFCFCF;/* #CFCFCF */
+    --a0:#A4A4A4;/* #A4A4A4 */
+    --a1:#8E8E8E;/* #8E8E8E */
+    --a2:#2E82A2;/* #2E82A2 */
+    --d0:#797979;/* #797979 */
+    --d1:#636363;/* #636363 */
+    --text-color: #EEE;/* #EEE */
+    --bkg-color: #121212;/* #121212 */
+  }
+  :root[data-theme="light"] {
+    --p0:#2CDD93;/* clover green */
+    --p1:#2B7D9A;/* blue green */
+    --p2:#BBFFAA;/* key lime */
+    --p3:#E21893;/* Barbie Pink light */
+    --g0:#FBFBFB;/* #FBFBFB */
+    --g1:#E5E5E5;/* #E5E5E5 */
+    --g2:#CFCFCF;/* #CFCFCF */
+    --g3:#BABABA;/* #BABABA */
+    --g4:#A4A4A4;/* #A4A4A4 */
+    --g5:#8E8E8E;/* #8E8E8E */
+    --g6:#797979;/* #797979 */
+    --g7:#636363;/* #636363 */
+    --g8:#4D4D4D;/* #4D4D4D */
+    --g9:#383838;/* #383838 */
+    --g10:#222222;/* #222222 */
+    --g11:#FFF;   /* #FFF*/
+    --h6:#CFCFCF;/* #CFCFCF */
+    --a0:#A4A4A4;/* #A4A4A4 */
+    --a1:#8E8E8E;/* #8E8E8E */
+    --a2:#1D5266;/* #8E8E8E */
+    --d0:#797979;/* #797979 */
+    --d1:#636363;/* #636363 */
+    --text-color: #222;/* #222 */
+    --bkg-color: #FFF;/* #FFF */
+  }
+}
 
 [data-theme='light'] .moon-icon,
 [data-theme='dark'] .sun-icon {

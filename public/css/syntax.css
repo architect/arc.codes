@@ -51,13 +51,14 @@
   border-radius: 0.3rem;
   white-space: pre;
   word-break: break-word;
-  /* fallback when hljs encounters unknown syntax */
+}
+
+/* fallback for when hljs encounters unknown syntax */
+:root[data-theme="light"] .docs pre {
   color: var(--g2);
   background-color: var(--g10);
 }
-
 :root[data-theme="dark"] .docs pre {
-  /* fallback when hljs encounters unknown syntax */
   color: var(--g8);
   background-color: var(--g0);
 }
