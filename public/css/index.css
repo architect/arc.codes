@@ -92,6 +92,13 @@ label.sidebar-group-title + ul {
   }
 }
 
+li > ul.mb1 {
+  margin-bottom: 0;
+}
+li > ol.mb1 {
+  margin-bottom: 0;
+}
+
 details > summary {
   list-style: none;
 }
