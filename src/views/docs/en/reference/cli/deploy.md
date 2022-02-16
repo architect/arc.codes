@@ -28,6 +28,23 @@ arc deploy [--production|--static|--direct]
 - `[--dry-run]` Creates a CloudFormation template but does not deploy it. A dry-run allows you to check the CloudFormation and SAM output before deploying the actual stack.
 - `[--verbose, -v]` Displays the full deploy status messages.
 
+## Local preferences: `@create`
+
+When deploying, Architect can automatically scaffold resources (via [`arc init`](./init)) found in the [application's manifest](../../get-started/project-manifest) that do not yet exist. Options are set with [`@create` in local preferences](../configuration/local-preferences#%40create).
+
+- `autocreate` - Set to `true` to enable automatic creation of boilerplate Lambda handlers and static assets if they do not exist.
+- `templates` - Specify templates for automatic resource scaffolding.
+  - `<pragma name> path/to/template.ext`
+  - Does not enable `autocreate`
+
+```arc
+@create
+autocreate true
+templates
+  http path/to/template/http.js
+  events path/to/template/events.py
+```
+
 ## Examples
 
 ### Deploy a staging stack

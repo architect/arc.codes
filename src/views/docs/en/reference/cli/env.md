@@ -6,7 +6,7 @@ description: Read and write environment variables for Lambda functions.
 
 Read and write environment variables. This allows apps to centrally store sensitive configuration data, such as API keys, outside of the codebase in revision control.
 
-> `arc env` will **not** upload variables from a project's local [`preferences.arc`](../configuration/local-preferences#%40env); however, it will download variables from AWS and overwrite local preferences.
+> `arc env` will **not** upload variables from a project's [local preferences file](../configuration/local-preferences#%40env); however, it will download variables from AWS and overwrite local preference entries.
 
 ## Usage
 
