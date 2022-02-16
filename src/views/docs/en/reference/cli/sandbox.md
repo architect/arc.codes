@@ -21,14 +21,14 @@ Architect projects work locally and offline. Sandbox emulates most app resources
 arc sandbox [--port|--disable-symlinks|--no-hydrate|--verbose]
 ```
 
-### Flags
+## Flags
 
 - `[--port, -p]` Manually specify HTTP port (default `3333`)
 - `[--verbose, -v]` Enable verbose logging
 - `[--disable-symlinks]` Disable symlinking `src/shared` and copy instead
 - `[--no-hydrate]` Disables hydration
 
-### CLI variables
+## CLI variables
 
 The following variables can be set on the command line when running `arc sandbox`. Other variables will be ignored by Sandbox.
 
@@ -45,7 +45,7 @@ The following variables can be set on the command line when running `arc sandbox
   - Requires valid AWS credentials with the same profile name as defined in your [project manifest](../project-manifest/aws#profile)
 - `ARC_QUIET` - If present, disable (most) logging
 
-#### Example
+### Example
 
 Run Sandbox in quiet mode on a different port:
 
@@ -158,7 +158,7 @@ process.env.URL === 'https://arc.codes' // true
 process.env.ADMIN_PASS // undefined
 ```
 
-## Local Database
+## Local database
 
 Sandbox creates an in-memory instance of [dynalite](https://github.com/mhart/dynalite) with `@tables` and `@tables-indexes` found in the `app.arc` file. `@tables-streams` is not currently supported by dynalite.
 
