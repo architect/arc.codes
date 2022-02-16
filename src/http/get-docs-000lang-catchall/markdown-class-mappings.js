@@ -25,6 +25,9 @@ module.exports = {
   p: [
     'mb-1'
   ],
+  ol: [
+    'mb1'
+  ],
   ul: [
     'mb1'
   ],
