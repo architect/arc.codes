@@ -44,12 +44,38 @@ async function handler (req) {
     ...parts,
     doc
   )
-  let file
 
   try {
-    if (!cache[filePath])
-      cache[filePath] = await readFile(filePath, 'utf8')
-    file = cache[filePath]
+    let body, file
+    if (cache[filePath]) {
+      body = cache[filePath]
+    }
+    else {
+      file = await readFile(filePath, 'utf8')
+      body = cache[filePath] = Html({
+        ...render(file),
+        active,
+        editURL,
+        lang,
+        path,
+        scripts: [
+          '/index.js',
+          '/components/arc-viewer.js',
+          '/components/arc-tab.js'
+        ],
+        thirdparty: algolia(lang),
+        toc,
+      })
+    }
+
+    return {
+      statusCode: 200,
+      headers: {
+        'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
+        'content-type': 'text/html; charset=utf8'
+      },
+      body
+    }
   }
   catch (error) {
     // TODO: Load category "index" landing if available
@@ -66,28 +92,6 @@ async function handler (req) {
         toc
       })
     }
-  }
-
-  return {
-    statusCode: 200,
-    headers: {
-      'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
-      'content-type': 'text/html; charset=utf8'
-    },
-    body: Html({
-      ...render(file),
-      active,
-      editURL,
-      lang,
-      path,
-      scripts: [
-        '/index.js',
-        '/components/arc-viewer.js',
-        '/components/arc-tab.js'
-      ],
-      thirdparty: algolia(lang),
-      toc,
-    })
   }
 }
 
