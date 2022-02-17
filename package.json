@@ -27,7 +27,7 @@
     "highlight.js": "^11.4.0",
     "markdown-it": "^12.3.2",
     "markdown-it-external-anchor": "^1.0.0",
-    "markdown-it-toc-and-anchor": "^4.2.0",
+    "markdown-it-toc-and-anchor": "github:macdonst/markdown-it-toc-and-anchor",
     "slugify": "^1.6.5",
     "tiny-frontmatter": "^1.0.0"
   },
