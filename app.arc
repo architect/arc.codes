@@ -16,3 +16,4 @@ any /*
 
 @plugins
 spellcheck
+architect/plugin-node-prune

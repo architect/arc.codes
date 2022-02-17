@@ -1,5 +1,5 @@
 const { escape } = require('querystring')
-const frontmatter = require('front-matter')
+const frontmatter = require('tiny-frontmatter')
 const Markdown = require('markdown-it')
 const markdownClass = require('./markdown-class')
 const markdownExternalAnchor = require('markdown-it-external-anchor')
