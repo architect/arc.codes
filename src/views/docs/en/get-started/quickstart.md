@@ -4,7 +4,7 @@ category: Get started
 description: Get started quickly with Architect
 ---
 
-> Architect is a simple tool to build and deliver powerful cloud function-based web apps and APIs
+> Architect is a simple framework for building and delivering powerful [Functional Web Apps](https://fwa.dev) on AWS
 
 ## Create a new project
 

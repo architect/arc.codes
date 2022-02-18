@@ -1,7 +1,7 @@
 ---
 title: Adding WebSockets to your app
 category: Frontend
-description: Add real-time connections between clients with serverless functions.
+description: Add real-time connections between clients with cloud functions.
 sections:
   - Overview
   - Connecting to your WebSocket
