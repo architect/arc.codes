@@ -79,9 +79,11 @@ module.exports = { deploy: {
 ```
 
 
-## `deploy.target`
+## `deploy.target` (in beta)
 
 Bypass CloudFormation deployment to AWS, and ship the project to an AWS intermediary or provider of your choosing. This endpoint enables Architect to be used to develop and deliver applications without relying solely on AWS CloudFormation.
+
+> Note: this interface should be considered in beta and subject to change; specifically in relation to how Architect otherwise enacts post-deployment operations (such as static asset publishing).
 
 Example:
 

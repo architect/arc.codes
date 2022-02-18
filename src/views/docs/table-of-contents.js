@@ -40,7 +40,7 @@ let Guides = [
       'deploy',
       'sandbox',
       'set',
-      // 'Inventory',
+      'Inventory',
     ],
   },
   'Examples',
