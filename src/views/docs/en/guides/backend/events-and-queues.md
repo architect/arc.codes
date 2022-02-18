@@ -11,7 +11,7 @@ sections:
 
 ## Overview
 
-Background tasks are a common workload and perfect for serverless environments. They reinforce event-driven architecture and allow you to perform asynchronous work across a distributed system. These functions are well suited for processes that don't require an immediate response, or are too resource intensive for a single function.
+Background tasks are a common workload and perfect for [Functional Web Apps](https://fwa.dev). They reinforce event-driven architecture and allow you to perform asynchronous work across a distributed system. These functions are well suited for processes that don't require an immediate response, or are too resource intensive for a single function.
 
 Architect has three main primitives of background functions:
 - [@events](/docs/en/reference/arc-pragmas/@events) - A pub/sub service that uses SNS.

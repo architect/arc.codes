@@ -6,6 +6,7 @@ description: How to use log output in your Architect project
 
 Architect logs to [AWS CloudWatch](https://aws.amazon.com/cloudwatch/).
 
+
 ## Supported runtimes
 
 - **Node** `console.log` or any logging library that writes to stdout or stderr
@@ -13,11 +14,13 @@ Architect logs to [AWS CloudWatch](https://aws.amazon.com/cloudwatch/).
 - **Ruby** `puts` or any logging library that writes to stdout or stderr
 - **Python** `print` or any logging library that writes to stdout or stderr
 
+
 ### See also
 
-- CloudWatch captures many metrics from serverless primitives especially [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html)
+- CloudWatch captures many metrics from [Functional Web App](https://fwa.dev) primitives, especially [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html)
 - [X-Ray](https://aws.amazon.com/xray/) offers deeper service call introspection capabilities
 - There are many third party tools to further extend your app with structured logs
+
 
 ## Example
 

@@ -255,7 +255,8 @@ arc sandbox
 
 ## arc.http.express
 
-Architect also has a middleware function to wrap Express.js logic, this is good for migrating paths from existing Express applications into a serverless environment. It should be noted that bundling an entire web server in a Lambda function will result in poor performance if the entire function payload with dependencies exceeds 5MB. But, if you are already comfortable with understanding Express routing for backend APIs, then this helper can get your app up and running.
+Architect also has a middleware function to wrap Express.js logic, this is good for migrating paths from existing Express applications into the [Functional Web App pattern](https://fwa.dev). It should be noted that bundling an entire web server in a Lambda function will result in poor performance if the entire function payload with dependencies exceeds 5MB. But, if you are already comfortable with understanding Express routing for backend APIs, then this helper can get your app up and running.
+
 
 ### Example
 

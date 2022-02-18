@@ -18,7 +18,8 @@ We accomplish this by using [API Gateway](https://docs.aws.amazon.com/apigateway
 
 Architect provides endpoints pre-configured with Lambda handler functions deployed and ready to iterate, complete with local development and isolated staging and production environments.
 
-### When and why would someone want to use a serverless WebSocket?
+
+### When and why would someone want to use a cloud function WebSocket?
 
 - Your app needs real time push of data; this includes (but is not limited to) web browsers. (Many things speak the `wss` protocol!)
 - You desire a stateless runtime execution model for your app layer; your app receives WebSocket events, processes them, possibly communicates back to socket clients by posting through an HTTP API, and then terminates execution
@@ -31,6 +32,7 @@ Architect provides endpoints pre-configured with Lambda handler functions deploy
 [Custom Routes](#custom-routes)
 [Event Payload](#event-payload)
 [Examples](#examples)
+
 
 ## Getting started
 
@@ -121,6 +123,7 @@ WebSocket functions are always invoked with an `event` payload that contains use
 - `event.requestContext.connectionId` the currently executing WebSocket connection
 - `event.requestContext.apiId` the currently executing WebSocket `apiId`
 - `event.body` the message payload
+
 
 ### Publish event payload (JSON) to a WebSocket client
 
@@ -229,6 +232,7 @@ msg.addEventListener('keyup', function(e) {
   }
 })
 ```
+
 
 ### Send Events from Lambda
 

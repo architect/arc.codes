@@ -33,7 +33,7 @@ another-private-plugin  # loads from `foo/index.js`
 
 ## Authoring plugins
 
-Architect provides an end-to-end suite of workflows, conventions, and optimized defaults for building excellent serverless web apps and APIs with AWS. Architect plugins enable developers to extend (or override) this functionality in a variety of ways with interfaces into both workflows and resource creation.
+Architect provides an end-to-end suite of workflows, conventions, and optimized defaults for building excellent [Functional Web Apps](https://fwa.dev) with AWS. Architect plugins enable developers to extend (or override) this functionality in a variety of ways with interfaces into both workflows and resource creation.
 
 To create a fresh plugin, you can run `npx arc create --plugin my-plugin-name`
 

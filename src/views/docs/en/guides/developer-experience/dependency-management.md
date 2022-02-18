@@ -4,7 +4,7 @@ category: Developer experience
 description: Architect dependency structure and hydration
 ---
 
-All serverless applications have project level dependencies and function level dependencies. Project level dependencies are defined at the root of the project. Lambda functions within a project are deployed individually and subsequently need to package their own dependencies. Different deployment frameworks handle this in different ways depending on the runtime; Architect projects encourage single responsibility functions with the minimum number of dependencies. This intentional isolation leads to easier debugging, faster coldstart and least privilege security.
+All [Functional Web Apps](https://fwa.dev) have project level dependencies and function level dependencies. Project level dependencies are defined at the root of the project. Lambda functions within a project are deployed individually and subsequently need to package their own dependencies. Different deployment frameworks handle this in different ways depending on the runtime; Architect projects encourage single responsibility functions with the minimum number of dependencies. This intentional isolation leads to easier debugging, faster coldstart and least privilege security.
 
 ## Node
 
@@ -57,7 +57,7 @@ bundle add architect-functions
 
 Prior to deploying, it is recommended to configure Bundler to work in a Lambda environment.
 
-You'll need to let Bundler know about Lambda's platform architecture by adding an entry to the `Gemfile.lock`.  
+You'll need to let Bundler know about Lambda's platform architecture by adding an entry to the `Gemfile.lock`.
 Additionally, Bundler often tries to write to the filesystem at runtime. Freeze the bundle by setting the `BUNDLE_FROZEN` environment variable to `1`.
 
 ```bash
