@@ -21,9 +21,9 @@ As a general philosophy, Architect's core maintainers endeavor to minimize the f
 
 ## Releases
 
-### Architect 10 (name TBA)
+### Architect 10 (Taniwha)
 
-Architect 10 (name TBA) is a major feature release, introducing the Architect plugins API, and cleaning up internal legacy code, module APIs, and other bits from earlier on in Architect's history. While few of these changes should impact existing projects, users should still [see below for potential impacts to upgrading](#architect-9-&rarr;-10).
+Architect 10 (Taniwha) is a major feature release, introducing the Architect plugins API, and cleaning up internal legacy code, module APIs, and other bits from earlier on in Architect's history. While few of these changes should impact existing projects, users should still [see below for potential impacts to upgrading](#architect-9-&rarr;-10).
 
 
 ### Architect 9 (La Chupacabra)
@@ -84,7 +84,7 @@ Architect 4 (Yeti) introduced generic, dependency-free HTTP functions, enhanced 
 
 ## Architect 9 &rarr; 10
 
-Architect 10 (name TBA) is a major feature release, introducing the Architect plugins API, and cleaning up internal legacy code, module APIs, and other bits from earlier on in Architect's history.
+Architect 10 (Taniwha) is a major feature release, introducing the Architect plugins API, and cleaning up internal legacy code, module APIs, and other bits from earlier on in Architect's history.
 
 Most of Architect 10's breaking changes were internal; most users should not encounter breaking changes when upgrading Architect to v10, and Functions + ASAP to v5.
 
