@@ -61,6 +61,8 @@ Several Architect [local preferences](../configuration/local-preferences) can be
 
 The following can be set as a part of the [`@sandbox`](../configuration/local-preferences#%40sandbox) pragma.
 
+- `livereload` - Enable automatic reload for `@http` `get` and `any` functions. When a filesystem change is detected in the handler, `@shared`, or `@views` code, the function will be reloaded in open browser sessions.
+  - Defaults to `false`
 - `env`<sup>*</sup> - Override the local environment setting to use `staging` or `production` so that Sandbox uses that stage's environment variables as set in [local preferences `@env`](../configuration/local-preferences#%40env) or in the project's `.env` file.
   - Can be one of `testing` (default), `staging`, or `production`
 - `useAws`<sup>*</sup> - Use live AWS infrastructure from Sandbox. Specifically, `@tables`, `@tables-indexes`, `@events`, and `@queues`.
@@ -71,6 +73,7 @@ The following can be set as a part of the [`@sandbox`](../configuration/local-pr
 
 ```arc
 @sandbox
+livereload true
 env production
 useAws true
 no-hydrate true

@@ -82,6 +82,17 @@ ANOTHER_VAR=only-for-testing
 
 Define [Sandbox](../cli/sandbox) preferences. If you are not using a `.env` file then any environment variables set using the [`arc env` CLI](../cli/env) will be stored in the preferences file. In this scenario it is best _not_ to revision the preferences file in source control.
 
+### `livereload` - Boolean
+
+Enable automatic reload for HTML views when `@http` Lambda (`get` or `any`), `@shared`, or `@views` code changes. `livereload` is helpful when developing view layouts and styling.
+
+```arc
+@sandbox
+livereload true
+```
+
+Note: `livereload` will execute your `@http` handler with each change so long as it is a `get` or `any` path. Traditionally, these routes don't create data, but be mindful of how a reload might interact with your app's data layer before enabling.
+
 ### `env` - String
 
 Advanced option: set the `ARC_ENV` + `NODE_ENV` stage to `staging` or `production` and use the env vars for that stage (see the `@env` pragma above); if not specified, defaults to `testing`. This setting may introduce unexpected side effects, so only use it if you have a specific technical reason.
