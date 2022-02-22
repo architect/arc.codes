@@ -61,7 +61,7 @@ Several Architect [local preferences](../configuration/local-preferences) can be
 
 The following can be set as a part of the [`@sandbox`](../configuration/local-preferences#%40sandbox) pragma.
 
-- `livereload` - Enable automatic reload for `@http` `get` and `any` functions. When a filesystem change is detected in the handler, `@shared`, or `@views` code, the function will be reloaded in open browser sessions.
+- `livereload` - Enable live automatic reload for `@http` `get` and `any` functions that deliver HTML. When a filesystem change is detected in the handler or in [shared or views code](../../guides/developer-experience/sharing-code), open browser sessions will automatically refresh.
   - Defaults to `false`
 - `env`<sup>*</sup> - Override the local environment setting to use `staging` or `production` so that Sandbox uses that stage's environment variables as set in [local preferences `@env`](../configuration/local-preferences#%40env) or in the project's `.env` file.
   - Can be one of `testing` (default), `staging`, or `production`
