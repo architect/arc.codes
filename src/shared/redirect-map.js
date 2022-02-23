@@ -18,8 +18,8 @@ const tempRedirects = {
   '/@indexes': '/docs/en/reference/project-manifest/tables-indexes',
   '/macros':  '/docs/en/reference/project-manifest/macros',
   '/@macros': '/docs/en/reference/project-manifest/macros',
-  '/plugins':  '/docs/en/guides/extend/plugins', // TODO: update with new plugins doc
-  '/@plugins': '/docs/en/guides/extend/plugins', // TODO: update with new plugins doc
+  '/plugins':  '/docs/en/reference/project-manifest/plugins',
+  '/@plugins': '/docs/en/reference/project-manifest/plugins',
   '/proxy':  '/docs/en/reference/project-manifest/proxy',
   '/@proxy': '/docs/en/reference/project-manifest/proxy',
   '/queues':  '/docs/en/reference/project-manifest/queues',
