@@ -47,6 +47,6 @@ You can use TypeScript in as many or few Lambdas as you like, relying on project
 
 ## `@architect/functions`
 
-We recommend using the [`@architect/functions`](http://localhost:3333/docs/en/reference/runtime-helpers/node.js) runtime helper to smooth over some rough edges in working with various aspects of AWS (as well as to add built-in session support, and other niceties).
+We recommend using the [`@architect/functions`](/docs/en/reference/runtime-helpers/node.js) runtime helper to smooth over some rough edges in working with various aspects of AWS (as well as to add built-in session support, and other niceties).
 
 If you do, TypeScript types are available in the [@types/architect__functions](https://www.npmjs.com/package/@types/architect__functions) package.
