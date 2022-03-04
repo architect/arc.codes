@@ -10,7 +10,9 @@ CommonJS
 Dreamhost
 ESM
 FQDN
+FWAs
 getConnection
+getter
 GoDaddy
 Graviton2
 konsumer

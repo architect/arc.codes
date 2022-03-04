@@ -272,23 +272,6 @@ async function handler(req) {
 
 ---
 
-#### `arc.http.express()`
-
-[Express](https://expressjs.com) migration helper.
-
-```javascript
-let arc = require('@architect/functions')
-let express = require('express')
-
-let app = express()
-app.get('/', (req, res) => res.send('Hello World!'))
-app.get('/cool', (req, res)=> res.send('very cool'))
-
-exports.handler = arc.http.express(app)
-```
-
----
-
 #### `arc.http.session`
 
 `arc.http.session` provides methods for reading the current session in an `@http` request, and writing it back to a cookie.
