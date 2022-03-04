@@ -766,7 +766,7 @@ The Architect Functions module is now also available as a dependency for [Ruby](
 
 ### Changes
 
-- `arc.http.express` was deprecated in February 2022, and is now the standalone `@architect/express` module
+- `arc.http.express` was removed in February 2022, and we recommend using `@vendia/serverless-express` or `serverless-http` as replacement modules
 - `arc.http.proxy` (previously `arc.proxy`) was deprecated in July 2021, and is now the standalone `@architect/asap` module
   - Its methods are functionally the same
 - `arc.http.middleware` was deprecated in August 2019, and is now `arc.http.async`
