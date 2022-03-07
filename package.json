@@ -20,7 +20,7 @@
     "@architect/asap": "^5.0.0",
     "@architect/functions": "^5.0.2",
     "@architect/inventory": "^3.0.0",
-    "@architect/package": "^8.0.0",
+    "@architect/package": "^8.0.2",
     "@architect/plugin-node-prune": "^2.0.2",
     "@architect/syntaxes": "github:architect/syntaxes#v1.2.1",
     "esm": "^3.2.25",
