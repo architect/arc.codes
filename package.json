@@ -17,10 +17,10 @@
     "test": "npm run spellcheck && npm run lint && npm run test:unit:frontend && npm run test:unit:backend"
   },
   "dependencies": {
-    "@architect/asap": "^5.0.0",
-    "@architect/functions": "^5.0.2",
+    "@architect/asap": "^5.0.1",
+    "@architect/functions": "^5.0.4",
     "@architect/inventory": "^3.0.0",
-    "@architect/package": "^8.0.0",
+    "@architect/package": "^8.0.3",
     "@architect/plugin-node-prune": "^2.0.2",
     "@architect/syntaxes": "github:architect/syntaxes#v1.2.1",
     "esm": "^3.2.25",
@@ -32,10 +32,10 @@
     "tiny-frontmatter": "^1.0.0"
   },
   "devDependencies": {
-    "@architect/architect": "^10.0.1",
+    "@architect/architect": "^10.0.5",
     "@architect/eslint-config": "^2.0.1",
     "@architect/spellcheck-dictionary": "git+https://github.com/architect/spellcheck-dictionary.git",
-    "eslint": "^8.9.0",
+    "eslint": "^8.10.0",
     "linkinator": "^3.0.3",
     "spellchecker-cli": "^4.8.1",
     "tap-arc": "^0.1.2",
