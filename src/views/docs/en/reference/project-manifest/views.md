@@ -7,6 +7,7 @@ description: Share view code across `@http` functions
 Configure the location of view code.
 Architect copies view code to all HTTP GET handler functions by default.
 You can also specify only the routes you want views copied to with the `@views` pragma.
+For a full example, see [Sharing Code](../../guides/developer-experience/sharing-code).
 
 ## Syntax
 

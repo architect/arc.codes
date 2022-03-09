@@ -4,7 +4,7 @@ category: app.arc
 description: Configure <code>src/shared</code> code
 ---
 
-Configure the location of shared code.
+Configure the location of shared code. For a full example, see [Sharing Code](../../guides/developer-experience/sharing-code).
 
 ## Syntax
 
