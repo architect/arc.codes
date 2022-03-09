@@ -36,16 +36,25 @@ Where utility code lives in `./src/shared` and common view code in `.src/views`:
 .
 ├── src
 │   ├── http
-│   │   ├── get-index/index.js
-│   │   └── post-like/index.js
-│   └── shared
-│       └── authenticate.js
+│   │   ├── get-index
+│   │   │   └── index(.js|.rb|.py)
+│   │   └── post-like
+│   │       └── index(.js|.rb|.py)
+│   ├── shared
+│   │   └── authenticate(.js|.rb|.py)
 │   └── views
-│       └── document.js
+│       └── document(.js|.rb|.py)
 └── app.arc
 ```
 
 `get-index` can use shared code by requiring it from `@architect/shared/<file>` and views code from `@architect/views/<file>`:
+
+<arc-viewer default-tab=js>
+<div slot=contents>
+
+<arc-tab label=js>
+<h5>js</h5>
+<div slot=content>
 
 ```js
 // get-index/index.js
@@ -53,12 +62,81 @@ const auth = require('@architect/shared/authenticate')
 const document = require('@architect/views/document')
 ```
 
+</div>
+</arc-tab>
+
+<arc-tab label=rb>
+<h5>rb</h5>
+<div slot=content>
+
+```rb
+# get-index/index.rb
+require 'architect/shared/authenticate'
+require 'architect/views/document'
+```
+
+</div>
+</arc-tab>
+
+<arc-tab label=py>
+<h5>py</h5>
+<div slot=content>
+
+```py
+# get-index/index.py
+from arc.shared import authenticate
+from arc.views import document
+```
+
+</div>
+</arc-tab>
+
+</div>
+</arc-viewer>
+
 The `post-like` route has access to shared code as well, but not views because it does not respond to a GET request.
+
+<arc-viewer default-tab=js>
+<div slot=contents>
+
+<arc-tab label=js>
+<h5>js</h5>
+<div slot=content>
 
 ```js
 // post-like/index.js
 const auth = require('@architect/shared/authenticate')
 ```
+
+</div>
+</arc-tab>
+
+<arc-tab label=rb>
+<h5>rb</h5>
+<div slot=content>
+
+```rb
+# post-like/index.rb
+require 'architect/shared/authenticate'
+```
+
+</div>
+</arc-tab>
+
+<arc-tab label=py>
+<h5>py</h5>
+<div slot=content>
+
+```py
+# post-like/index.py
+from arc.shared import authenticate
+```
+
+</div>
+</arc-tab>
+
+</div>
+</arc-viewer>
 
 ## Custom shared paths
 
@@ -77,11 +155,50 @@ src path/to/views
 
 They are still required in the same way:
 
+<arc-viewer default-tab=js>
+<div slot=contents>
+
+<arc-tab label=js>
+<h5>js</h5>
+<div slot=content>
+
 ```js
 // get-index/index.js
 const auth = require('@architect/shared/authenticate')
 const document = require('@architect/views/document')
 ```
+
+</div>
+</arc-tab>
+
+<arc-tab label=rb>
+<h5>rb</h5>
+<div slot=content>
+
+```rb
+# get-index/index.rb
+require 'architect/shared/authenticate'
+require 'architect/views/document'
+```
+
+</div>
+</arc-tab>
+
+<arc-tab label=py>
+<h5>py</h5>
+<div slot=content>
+
+```py
+# get-index/index.py
+from arc.shared import authenticate
+from arc.views import document
+```
+
+</div>
+</arc-tab>
+
+</div>
+</arc-viewer>
 
 ## Runtime details
 
