@@ -41,7 +41,7 @@ require 'bundler/setup' # initialize Bundler
 require 'architect/functions' # is ok if it is vendored in the Lambda folder
 require '../foo' # this will fail
 require './foo' # this will work
-require 'architect/shared/foo' # this is also ok (if foo exists in @shared)
+require './vendor/shared/foo' # this is also ok (if foo exists in @shared)
 ```
 
 Install runtime helpers for Ruby:
@@ -74,7 +74,7 @@ Architect uses `requirements.txt` with `pip3` to ensure Lambda function dependen
 import arc # is ok if it is vendored in the Lambda folder
 import ..foo # this will fail
 import .foo # this will work
-from arc.shared import foo # this is also ok (if foo exists in @shared)
+import vendor.shared.foo # this is also ok (if foo exists in @shared)
 ```
 
 Install runtime helpers for Python:
