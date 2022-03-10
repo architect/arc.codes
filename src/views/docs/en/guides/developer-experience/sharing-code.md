@@ -9,9 +9,9 @@ sections:
   - src/views
 ---
 
-Architect makes it easy to share code across Lambda functions. The most common use case is to share business logic and view templates. Architect has [`@shared`](../../reference/project-manifest/shared) and [`@views`](../../reference/project-manifest/views) pragmas to provide this functionality.
+Architect makes it easy to share code across Lambda functions. Share business logic across functions with the [`@shared`](../../reference/project-manifest/shared) pragma and view templates with the [`@views`](../../reference/project-manifest/views) pragma.
 
-Architect automatically copies the contents of `src/shared` into all Lambdas and `src/views` into `@http` GET Lambda functions.
+Enabling these features instructs Architect to automatically copy the contents of `./src/shared` into all Lambdas and `./src/views` into `@http` GET Lambda functions.
 
 ## Example usage
 
@@ -71,8 +71,8 @@ const document = require('@architect/views/document')
 
 ```rb
 # get-index/index.rb
-require 'architect/shared/authenticate'
-require 'architect/views/document'
+require_relative './vendor/shared/authenticate'
+require_relative './vendor/views/document'
 ```
 
 </div>
@@ -84,8 +84,8 @@ require 'architect/views/document'
 
 ```py
 # get-index/index.py
-from arc.shared import authenticate
-from arc.views import document
+import vendor.shared.authenticate
+import vendor.views.document
 ```
 
 </div>
@@ -117,7 +117,7 @@ const auth = require('@architect/shared/authenticate')
 
 ```rb
 # post-like/index.rb
-require 'architect/shared/authenticate'
+require_relative './vendor/shared/authenticate'
 ```
 
 </div>
@@ -129,7 +129,7 @@ require 'architect/shared/authenticate'
 
 ```py
 # post-like/index.py
-from arc.shared import authenticate
+import vendor.shared.authenticate
 ```
 
 </div>
@@ -177,8 +177,8 @@ const document = require('@architect/views/document')
 
 ```rb
 # get-index/index.rb
-require 'architect/shared/authenticate'
-require 'architect/views/document'
+require_relative './vendor/shared/authenticate'
+require_relative './vendor/views/document'
 ```
 
 </div>
@@ -190,8 +190,8 @@ require 'architect/views/document'
 
 ```py
 # get-index/index.py
-from arc.shared import authenticate
-from arc.views import document
+import vendor.shared.authenticate
+import vendor.views.document
 ```
 
 </div>
