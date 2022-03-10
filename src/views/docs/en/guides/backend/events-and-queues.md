@@ -239,7 +239,7 @@ From the terminal, run `arc deploy --dry-run` and take a look at `sam.yaml` in t
             },
             "ARC_APP_NAME": "arc-scheduled-app",
             "ARC_HTTP": "aws_proxy",
-            "NODE_ENV": "staging",
+            "ARC_ENV": "staging",
             "SESSION_TABLE_NAME": "jwe"
           }
         },

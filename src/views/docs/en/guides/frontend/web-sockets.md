@@ -105,7 +105,7 @@ The URL lookup code could use environment variables if hardcoding seems rash.
 // src/http/get-index/get-web-socket-url.js
 
 module.exports = function getWS() {
-  let env = process.env.NODE_ENV
+  let env = process.env.ARC_ENV
   let testing = 'ws://localhost:3333'
   let staging = 'wss:// fixme: these urls are printed after create'
   let production = 'wss:// fixme: these urls are printed after create'

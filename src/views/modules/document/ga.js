@@ -1,5 +1,5 @@
 export default function GoogleAnalytics () {
-  let env = process.env.NODE_ENV
+  let env = process.env.ARC_ENV
   let production = 'production'
   let productionId = 'UA-74655805-3'
   let stagingId = 'G-22723SKNK4'

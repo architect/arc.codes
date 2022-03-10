@@ -95,7 +95,7 @@ Note: `livereload` will execute your `@http` handler with each change so long as
 
 ### `env` - String
 
-Advanced option: set the `ARC_ENV` + `NODE_ENV` stage to `staging` or `production` and use the env vars for that stage (see the `@env` pragma above); if not specified, defaults to `testing`. This setting may introduce unexpected side effects, so only use it if you have a specific technical reason.
+Advanced option: set the `ARC_ENV` stage to `staging` or `production` and use the env vars for that stage (see the `@env` pragma above); if not specified, defaults to `testing`. This setting may introduce unexpected side effects, so only use it if you have a specific technical reason.
 
 ```arc
 @sandbox
