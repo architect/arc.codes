@@ -32,7 +32,7 @@
     "tiny-frontmatter": "^1.0.0"
   },
   "devDependencies": {
-    "@architect/architect": "^10.0.5",
+    "@architect/architect": "^10.1.0",
     "@architect/eslint-config": "^2.0.1",
     "@architect/spellcheck-dictionary": "git+https://github.com/architect/spellcheck-dictionary.git",
     "eslint": "^8.10.0",
