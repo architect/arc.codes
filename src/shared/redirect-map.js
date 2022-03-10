@@ -40,6 +40,16 @@ const tempRedirects = {
   '/@views': '/docs/en/reference/project-manifest/views',
   '/ws':  '/docs/en/reference/project-manifest/ws',
   '/@ws': '/docs/en/reference/project-manifest/ws',
+
+  // Runtimes
+  '/node': '/docs/en/reference/runtime-helpers/node.js',
+  '/ruby': '/docs/en/reference/runtime-helpers/ruby',
+  '/python': '/docs/en/reference/runtime-helpers/python',
+  '/deno': '/docs/en/reference/runtime-helpers/deno',
+
+  // Other aliases
+  '/typescript': '/docs/en/guides/developer-experience/using-typescript',
+  '/esm': '/docs/en/guides/developer-experience/using-esm',
 }
 
 // redirect known v5/6 arc urls to v8 and then to v9
