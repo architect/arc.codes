@@ -15,6 +15,7 @@ Architect projects work locally and offline. Sandbox emulates most app resources
 
 > At this time Sandbox does not emulate `@scheduled`
 
+
 ## Usage
 
 ```bash
@@ -28,22 +29,25 @@ arc sandbox [--port|--disable-symlinks|--no-hydrate|--verbose]
 - `[--disable-symlinks]` Disable symlinking `src/shared` and copy instead
 - `[--no-hydrate]` Disables hydration
 
+
 ## CLI variables
 
 The following variables can be set on the command line when running `arc sandbox`. Other variables will be ignored by Sandbox.
 
-- `NODE_ENV` - `testing|staging|production`
+- `ARC_ENV` - `testing|staging|production`
   - Defaults to `testing`
 - `ARC_API_TYPE` - Set the API Gateway API type
   - Can be one of `http` (aliased to `httpv2`), `httpv1`, `rest`
   - Defaults to `http`
-- `PORT` - Manually specify HTTP port
+- `ARC_PORT` - Manually specify HTTP port
   - Defaults to `3333`
-- `ARC_LOCAL`- If present and used in conjunction with `NODE_ENV=staging|production`, emulates live `staging` or `production` environment
+- `ARC_LOCAL`- If present and used in conjunction with `ARC_ENV=staging|production`, emulates live `staging` or `production` environment
   - Uses your [local preferences `@env`](../configuration/local-preferences#%40env) environment variables for the appropriate stage
   - Connects Sandbox to live AWS events and DynamoDB infrastructure
   - Requires valid AWS credentials with the same profile name as defined in your [project manifest](../project-manifest/aws#profile)
 - `ARC_QUIET` - If present, disable (most) logging
+- `ARC_DB_EXTERNAL` - (Boolean) Use an external DynamoDB tool (such as [AWS NoSQL Workbench](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html))
+
 
 ### Example
 
@@ -52,6 +56,7 @@ Run Sandbox in quiet mode on a different port:
 ```bash
 ARC_QUIET=1 PORT=8888 npx arc sandbox
 ```
+
 
 ## Local preferences
 
@@ -70,6 +75,9 @@ The following can be set as a part of the [`@sandbox`](../configuration/local-pr
   - Defaults to `false`
 - `no-hydrate` - Disable [function hydration](./hydrate) on Sandbox start.
   - Defaults to `false`
+- `seed-data` - Specify a custom file path for seed data to populate `@tables` with on startup
+  - Defaults to `./sandbox-seed.json`, `./sandbox-seed.js`
+- `external-db` - (Boolean) Use an external DynamoDB tool (such as [AWS NoSQL Workbench](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html))
 
 ```arc
 @sandbox
@@ -81,6 +89,7 @@ no-hydrate true
 
 \* These advanced options should be used with care since they will allow local development code to interact with live AWS resources.
 
+
 ### `@sandbox-startup`
 
 Additionally, Sandbox can run shell commands on startup by setting [`@sandbox-startup`](../configuration/local-preferences#%40sandbox-startup) in [local preferences](../configuration/local-preferences).
@@ -90,6 +99,7 @@ Additionally, Sandbox can run shell commands on startup by setting [`@sandbox-st
 node scripts/seed_db.js
 echo 'hello'
 ```
+
 
 ### `@create`
 
@@ -108,27 +118,31 @@ templates
   events path/to/template/events.py
 ```
 
+
 ### `@env`
 
 Architect Sandbox will load variables for Sandbox's current environment (`testing`, `staging`, or `production`) from a [local preferences file with `@env`](../configuration/local-preferences#%40env). If a project contains a `.env` file, Architect will load those variables _instead_.
 
 Variables from local preference files and `.env` will **not** be merged. Further details, including the variable load-strategy are [outlined below](#environment-variables).
 
+
 ## Environment variables
 
 Sandbox automatically loads environment variables for availability at runtime (`process.env.MY_VAR` in Node.js). Environment variables can be set in a few locations. It's important to understand how each source is prioritized when developing locally.
+
 
 ### Load strategy
 
 Sandbox will prioritize...
 
-1. a project's `.env` file (if it exists),
+1. A project's `.env` file (if it exists),
 2. then project-level Architect preferences,
-3. and finally global Architect preferences. 
+3. and finally global Architect preferences.
 
 Variables across these sources are **not** merged.
 
 Using a [local preferences file with `@env`](../configuration/local-preferences#%40env) offers the most flexibility since variables can be specified per environment: `testing`, `staging`, and `production`.
+
 
 ### Example scenario
 
@@ -161,6 +175,7 @@ process.env.URL === 'https://arc.codes' // true
 process.env.ADMIN_PASS // undefined
 ```
 
+
 ## Local database
 
 Sandbox creates an in-memory instance of [dynalite](https://github.com/mhart/dynalite) with `@tables` and `@tables-indexes` found in the `app.arc` file. `@tables-streams` is not currently supported by dynalite.
@@ -169,10 +184,47 @@ When Sandbox is terminated, any data written is cleared from memory.
 
 You can set a custom port by using an environment variable: `ARC_TABLES_PORT=5555`.
 
+
+### Database seed data
+
+You can automatically seed data to Sandbox upon startup by adding a `sandbox-seed.js` or `sandbox-seed.json` file to the root of your project. (You can also specify a custom path with the `seed-data` preference.)
+
+Your seed data should be an object whose properties correspond to `@tables` names, and have arrays of rows to seed. For example:
+
+```arc
+@tables
+things
+  id *String
+  sort **String
+```
+
+```js
+// seed-data.js
+module.exports = {
+  things: [
+    {
+      id: 'foo',
+      sort: 'bar',
+      arbitrary: 'data',
+    },
+    {
+      id: 'fiz',
+      sort: 'buz',
+      arbitrary: 'info',
+    }
+  ]
+}
+```
+
+The above example would add the two rows above to the `things` database each time Sandbox is started.
+
+> Note: This feature is only enabled if the environment is `testing`, so as to prevent the accidental (over)writing of data to a live database.
+
+
 ### Live database example
 
 Connect Sandbox to the DynamoDB staging database on AWS:
 
 ```bash
-NODE_ENV=staging ARC_LOCAL=1 npx arc sandbox
+ARC_ENV=staging ARC_LOCAL=1 npx arc sandbox
 ```
