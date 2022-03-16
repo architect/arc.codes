@@ -22,6 +22,8 @@ Architect has two primary runtime helpers for Node.js:
 Install the Architect runtime helpers for Node.js:
 
 ```bash
+cd path/to/lambda
+npm init
 npm install @architect/functions
 ```
 
