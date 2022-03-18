@@ -21,6 +21,7 @@ let Guides = [
     ],
     'Frontend': [
       'Static assets',
+      'Sessions',
     ],
     'Domains': [
       'Overview',
