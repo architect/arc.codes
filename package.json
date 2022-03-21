@@ -40,7 +40,7 @@
     "spellchecker-cli": "^4.8.1",
     "tap-arc": "^0.1.2",
     "tape": "^5.5.2",
-    "tiny-json-http": "^7.3.1"
+    "tiny-json-http": "^7.4.2"
   },
   "eslintConfig": {
     "extends": "@architect/eslint-config"
