@@ -13,7 +13,7 @@ Architect projects work locally and offline. Sandbox emulates most app resources
 - `@queues`
 - `@tables` and `@tables-indexes`
 
-> At this time Sandbox does not emulate `@scheduled`
+> Additionally, `@scheduled` and `@tables-streams` Lambdas can be emulated via the [@architect/plugin-lambda-invoker](https://www.npmjs.com/package/@architect/plugin-lambda-invoker) plugin
 
 
 ## Usage
