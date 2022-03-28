@@ -19,8 +19,8 @@
   "dependencies": {
     "@architect/asap": "^5.0.1",
     "@architect/functions": "^5.0.4",
-    "@architect/inventory": "^3.0.0",
-    "@architect/package": "^8.0.3",
+    "@architect/inventory": "^3.1.0",
+    "@architect/package": "^8.1.0",
     "@architect/plugin-node-prune": "^2.0.2",
     "@architect/syntaxes": "github:architect/syntaxes#v1.2.1",
     "esm": "^3.2.25",
@@ -32,13 +32,13 @@
     "tiny-frontmatter": "^1.0.0"
   },
   "devDependencies": {
-    "@architect/architect": "^10.1.0",
+    "@architect/architect": "^10.2.0",
     "@architect/eslint-config": "^2.0.1",
     "@architect/spellcheck-dictionary": "git+https://github.com/architect/spellcheck-dictionary.git",
-    "eslint": "^8.11.0",
+    "eslint": "^8.12.0",
     "linkinator": "^3.0.3",
     "spellchecker-cli": "^4.8.1",
-    "tap-arc": "^0.3.0",
+    "tap-arc": "^0.3.3",
     "tape": "^5.5.2",
     "tiny-json-http": "^7.4.2"
   },
