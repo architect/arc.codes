@@ -1,134 +1,86 @@
 ---
-title: HTTP & WebSocket sessions
+title: Architect sessions
 category: Frontend
-description: 160 (or fewer) character description of this document!
+description: Use HTTP sessions in an Architect project
 sections:
   - Overview
   - HTTP sessions
-  - WebSocket sessions
+  - Strong secret key
+  - Example
 ---
 
-## Overview
-
-Developing database backed stateful web applications used to require a web server, a database server, a whole supporting cast of software and frameworks and all the near-constant maintenance those things required. Now anyone with a text editor can handle POST requests directly with a Lambda function and API Gateway.
+Developing database-backed, stateful web applications used to require a web server, a database server, a whole supporting cast of software and frameworks and all the near-constant maintenance those things required. Now anyone with a text editor can handle POST requests directly with a Lambda function and API Gateway. Read more about [Functional Web Apps](https://fwa.dev)
 
 The first primitive to understand for building stateful interactions on the web is session state. HTTP is a stateless protocol which is a fancy way of saying every HTTP request is like a completely clean slate. If we want to remember things between HTTP requests you need a session.
 
-In this tutorial, we will go over several ways to store session state within your app. There is an example app at the end that we will build to display how sessions work within Architect.
+This guide will go over several ways to store session state within your app. There is an example app at the end that demonstrates how sessions work within Architect.
 
-**Sections**
-- [HTTP sessions](#http-sessions)
-- [Database Sessions](#database-sessions)
-- [WebSocket sessions](#websocket-sessions)
-- [Strong Key](#strong-key)
-- [Common Session Use Cases](#common-session-use-cases)
-- [Example](#example)
-
----
 
 ## HTTP sessions
 
 All `@http` defined routes are session capable via `@architect/functions`.
 
-- Requests are tagged to a session via a stateless, signed, encrypted, `httpOnly` cookie `_idx`
+- Requests are tagged to a session via a stateless, signed, encrypted, `httpOnly` cookie: `_idx`
 - Session data expires after a week of inactivity
 
 This allows you to write fully stateful applications despite Lambda functions being completely stateless.
 
-Read the session:
+Manually read and write sessions:
 
 ```javascript
+// a simple request counter
 let arc = require('@architect/functions')
 
 exports.handler = async function http(req) {
-  // reads the session from DynamoDB
+  // reads the session from the request
   let session = await arc.http.session.read(req)
+  // modify the state
+  session.count = (session.count || 0) + 1
+  // write the session to a cookie
+  let cookie = await arc.http.session.write(session)
+  
   return {
-    type: 'text/html; charset=utf8',
+    statusCode: 200,
+    headers: {
+      'content-type': 'text/html; charset=utf8',
+      'set-cookie': cookie
+    },
     body: `<pre>${JSON.stringify(session, null, 2)}</pre>`
   }
 }
 ```
 
-Write the session:
+Alternatively, use `arc.http[.async]`'s built-in session management for a simpler implementation:
 
 ```javascript
 let arc = require('@architect/functions')
 
-exports.handler = async function http(req) {
-  // reads the session from DynamoDB
-  let session = await arc.http.session.read(req)
-
-  // modify the state
+async function handler(req) {
+  let session = req.session
   session.count = (session.count || 0) + 1
-  // save the session state to DynamoDB
-  let cookie = await arc.http.session.write(session)
-  let status = 302
-  let location = '/'
-  // respond (and update the session cookie)
-  return {cookie, status, location}
+
+  return {
+    session,
+    html: `<pre>${JSON.stringify(session, null, 2)}</pre>`
+  }
 }
+
+exports.handler = arc.http.async(handler)
 ```
 
----
+> See [the Node.js sessions reference](../../reference/runtime-helpers/node.js#arc.http.session) for more details on `arc.http` and `arc.http.session`.
 
-## Database Sessions
 
-If you have stricter security requirements and do not want to expose any session state to clients you can opt into sessions backed by DynamoDB tables.
-
-You'll need to define a session table in your `app.arc` file with `_idx` partition key and `_ttl` attribute for token expiry:
-
-```arc
-@app
-testapp
-
-@http
-get /
-
-@tables
-session
-  _idx *String
-  _ttl TTL
-```
-
-Run `npx create` to generate the session database tables. Next opt your Lambda functions into using that table by overriding `SESSION_TABLE_NAME`:
-
-```bash
-npx env staging SESSION_TABLE_NAME jwe
-npx env production SESSION_TABLE_NAME testapp-production-session
-```
-
-This will sync all production lambdas to use the DynamoDB table while testing and staging environments will continue to use the stateless cookie. If you add new routes you will need to remember to sync by running `npx env verify`.
-
----
-
-## WebSocket sessions
-
-ADD ME!
-
----
-
-## Strong Key
+## Strong secret key
 
 Ensure your app has a strong secret key:
 
 ```bash
-npx env production ARC_APP_SECRET something-much-better-than-this
+npx arc --env production --add ARC_APP_SECRET something-much-better-than-this
 ```
 
-Environment variables are automatically synced with all your lambda functions. When you add new functions you will need to sync their env variables by running `npx env verify`.
+Environment variables are automatically synced with all your lambda functions. When you add new functions you will need to sync their env variables by running `npx arc env`.
 
----
-
-## Common Session Use Cases
-
-- Authentication
-- Error messages
-- Shopping carts
-
-> See [the sessions reference](/docs/en/reference/macros/runtime-helper-reference/arc-http-session) for more details.
-
----
 
 ## Example
 
@@ -137,6 +89,8 @@ Environment variables are automatically synced with all your lambda functions. W
 ```bash
 mkdir -p ./mysesh
 cd mysesh
+npm init -f
+npm install @architect/architect
 ```
 
 2. Create a `app.arc` file
@@ -157,29 +111,23 @@ And generate the boilerplate code by running:
 arc init
 ```
 
-3. Add the `@architect/functions` runtime helper library to your functions. This gives the request object a method to read and write sessions.
+3. Add the `@architect/functions` runtime helper library to your project. This gives the request object a method to read and write sessions.
 
 ```bash
-cd src/http/get-index
-npm init -f
-npm i @architect/functions
-
-cd ../post-count
-npm init -f
-npm i @architect/functions
-
-cd ../post-reset
-npm init -f
 npm i @architect/functions
 ```
 
-4. Add `src/http/get-index/render.js` with plain vanilla HTML forms for adding and resetting the session
+4. Modify `src/http/get-index/index.js` to read the session if it exists and render the forms with the session state
 
 ```javascript
-// this is perfectly acceptable and FAST server side rendering
+let arc = require('@architect/functions')
 
-module.exports = function render({ count }) {
-  return `
+async function home(req) {
+  let count = req.session.count || 0
+  
+  return {
+    // this is perfectly acceptable and FAST server side rendering
+    html: `
 <!doctype html>
 <html>
   <body>
@@ -191,28 +139,14 @@ module.exports = function render({ count }) {
     </form>
   </body>
 </html>
-  `
-}
-```
-
-5. Modify `src/http/get-index/index.js` to read the session if it exists and render the forms with the session state
-
-```javascript
-let arc = require('@architect/functions')
-let render = require('./render')
-
-async function home(req) {
-  let count = req.session.count || 0
-  return {
-    html: render({ count })
+    `
   }
 }
 
 exports.handler = arc.http.async(home)
 ```
 
-6. Modify `src/http/post-count/index.js` to mutate the session and redirect home
-
+5. Modify `src/http/post-count/index.js` to mutate the session and redirect home
 
 ```javascript
 let arc = require('@architect/functions')
@@ -230,7 +164,7 @@ exports.handler = arc.http.async(counter)
 
 > FYI: Per recommended security practice Architect applications use `httpOnly` cookies for storing session state; anyone can implement their own mechanism using Set-Cookie headers directly
 
-7. Modify `src/http/post-reset/index.js` to clear the session state
+6. Modify `src/http/post-reset/index.js` to clear the session state
 
 ```javascript
 let arc = require('@architect/functions')
@@ -245,27 +179,12 @@ async function reset(req) {
 exports.handler = arc.http.async(reset)
 ```
 
-> For more information about `arc.http.async` helper, [check out the documentation](/docs/en/reference/macros/runtime-helper-reference/arc-http-async)
+> For more information about `arc.http.async` helper, [check out the documentation](../../reference/runtime-helpers/node.js#arc.http.async)
 
-8. Initialize a `package.json` in the root of your project, and install `@architect/sandbox` for a local development server
-
-```bash
-npm init -f
-npm install @architect/sandbox
-```
-
-9. Add a start command to the scripts section in `package.json` found at the root of your project
-
-```json
-...
-"scripts": {
-  "start": "sandbox"
-}
-...
-```
-
-10. Preview by starting the dev server
+7. Preview by starting the dev server
 
 ```bash
-npm start
+npx arc sandbox
 ```
+
+Navigate to `localhost:3333` to test out the counter.

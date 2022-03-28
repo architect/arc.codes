@@ -19,12 +19,12 @@
   "dependencies": {
     "@architect/asap": "^5.0.1",
     "@architect/functions": "^5.0.4",
-    "@architect/inventory": "^3.0.0",
-    "@architect/package": "^8.0.3",
+    "@architect/inventory": "^3.1.0",
+    "@architect/package": "^8.1.0",
     "@architect/plugin-node-prune": "^2.0.2",
     "@architect/syntaxes": "github:architect/syntaxes#v1.2.1",
     "esm": "^3.2.25",
-    "highlight.js": "^11.4.0",
+    "highlight.js": "^11.5.0",
     "markdown-it": "^12.3.2",
     "markdown-it-external-anchor": "^1.0.0",
     "markdown-it-toc-and-anchor": "github:macdonst/markdown-it-toc-and-anchor",
@@ -32,15 +32,15 @@
     "tiny-frontmatter": "^1.0.0"
   },
   "devDependencies": {
-    "@architect/architect": "^10.1.0",
+    "@architect/architect": "^10.2.0",
     "@architect/eslint-config": "^2.0.1",
     "@architect/spellcheck-dictionary": "git+https://github.com/architect/spellcheck-dictionary.git",
-    "eslint": "^8.10.0",
+    "eslint": "^8.12.0",
     "linkinator": "^3.0.3",
     "spellchecker-cli": "^4.8.1",
-    "tap-arc": "^0.1.2",
+    "tap-arc": "^0.3.3",
     "tape": "^5.5.2",
-    "tiny-json-http": "^7.3.1"
+    "tiny-json-http": "^7.4.2"
   },
   "eslintConfig": {
     "extends": "@architect/eslint-config"

@@ -274,9 +274,9 @@ async function handler(req) {
 
 #### `arc.http.session`
 
-`arc.http.session` provides methods for reading the current session in an `@http` request, and writing it back to a cookie.
+`arc.http.session` provides methods for manually reading the current session in an `@http` request, and writing it back to a cookie.
 
-These operations are automatically handled for you when using `arc.http[.async]`; only use `arc.http.session` if you prefer handling session reads and writes yourself.
+These operations are automatically handled for you when using `arc.http[.async]`; see the second example below.
 
 ##### Methods
 
@@ -288,7 +288,7 @@ These operations are automatically handled for you when using `arc.http[.async]`
   - Returns a `cookie` string
   - Must be `await`ed if no callback is provided
 
-> Please note that session variable encoding and decoding relies on the `ARC_APP_SECRET` [environment variable](../cli/env) being set to something secret and not easily guessable. If you use Architect sessions, please be sure to [set the `ARC_APP_SECRET` environment variable](../cli/env)!
+> Please note that session variable encoding and decoding relies on the `ARC_APP_SECRET` [environment variable](../cli/env#security) being set to something secret and not easily guessable. If you use Architect sessions, please be sure to [set the `ARC_APP_SECRET` environment variable](../../guides/frontend/sessions#strong-secret-key)!
 
 ```javascript
 let arc = require('@architect/functions')
@@ -296,9 +296,10 @@ let arc = require('@architect/functions')
 exports.handler = async function handler (req) {
   // read the session
   let session = await arc.http.session.read(req)
-
-  // save the session and get back a cookie
-  let cookie = await arc.http.session.write({ count: 1 })
+  // modify the state
+  session.count = (session.count || 0) + 1
+  // save the session state
+  let cookie = await arc.http.session.write(session)
 
   // set the client's cookie
   return {
@@ -306,6 +307,22 @@ exports.handler = async function handler (req) {
     headers: { 'set-cookie': cookie },
   }
 }
+```
+
+Alternatively, use `arc.http[.async]`'s automatic session parsing:
+
+```js
+let arc = require('@architect/functions')
+
+async function handler (req) {
+  // session already exists on `req`
+  let session = req.session
+  session.count = (session.count || 0) + 1
+
+  return { session }
+}
+
+exports.handler = arc.http.async(handler)
 ```
 
 ---
