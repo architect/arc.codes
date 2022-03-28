@@ -19,7 +19,7 @@
   "dependencies": {
     "@architect/asap": "^5.0.1",
     "@architect/functions": "^5.0.4",
-    "@architect/inventory": "^3.0.0",
+    "@architect/inventory": "^3.1.0",
     "@architect/package": "^8.0.3",
     "@architect/plugin-node-prune": "^2.0.2",
     "@architect/syntaxes": "github:architect/syntaxes#v1.2.1",
