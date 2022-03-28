@@ -20,8 +20,8 @@ let Guides = [
       'Customizing CloudFormation'
     ],
     'Frontend': [
-      'Static assets',
       'Sessions',
+      'Static assets',
     ],
     'Domains': [
       'Overview',

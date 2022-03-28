@@ -5,7 +5,6 @@ description: Use HTTP sessions in an Architect project
 sections:
   - Overview
   - HTTP sessions
-  - Database backed sessions
   - Strong secret key
   - Example
 ---
@@ -69,35 +68,7 @@ async function handler(req) {
 exports.handler = arc.http.async(handler)
 ```
 
-> See [the Node.js sessions reference](../../reference/runtime-helpers/node.js#arc.http) for more details on `arc.http` and `arc.http.session`.
-
-## Database backed sessions
-
-If you have stricter security requirements and do not want to expose any session state to clients you can opt into sessions backed by DynamoDB tables.
-
-You'll need to define a session table in your `app.arc` file with `_idx` partition key and `_ttl` attribute for token expiry:
-
-```arc
-@app
-testapp
-
-@http
-get /
-
-@tables
-session
-  _idx *String
-  _ttl TTL
-```
-
-Next opt your Lambda functions into using that table by overriding `SESSION_TABLE_NAME`:
-
-```bash
-npx env staging SESSION_TABLE_NAME jwe
-npx env production SESSION_TABLE_NAME testapp-production-session
-```
-
-This will sync all production lambdas to use the DynamoDB table while testing and staging environments will continue to use the stateless cookie. If you add new routes you will need to remember to sync by running `npx env verify`.
+> See [the Node.js sessions reference](../../reference/runtime-helpers/node.js#arc.http.session) for more details on `arc.http` and `arc.http.session`.
 
 
 ## Strong secret key
@@ -105,10 +76,10 @@ This will sync all production lambdas to use the DynamoDB table while testing an
 Ensure your app has a strong secret key:
 
 ```bash
-npx env production ARC_APP_SECRET something-much-better-than-this
+npx arc --env production --add ARC_APP_SECRET something-much-better-than-this
 ```
 
-Environment variables are automatically synced with all your lambda functions. When you add new functions you will need to sync their env variables by running `npx env verify`.
+Environment variables are automatically synced with all your lambda functions. When you add new functions you will need to sync their env variables by running `npx arc env`.
 
 
 ## Example
@@ -146,13 +117,17 @@ arc init
 npm i @architect/functions
 ```
 
-4. Add `src/http/get-index/render.js` with plain vanilla HTML forms for adding and resetting the session
+4. Modify `src/http/get-index/index.js` to read the session if it exists and render the forms with the session state
 
 ```javascript
-// this is perfectly acceptable and FAST server side rendering
+let arc = require('@architect/functions')
 
-module.exports = function render({ count }) {
-  return `
+async function home(req) {
+  let count = req.session.count || 0
+  
+  return {
+    // this is perfectly acceptable and FAST server side rendering
+    html: `
 <!doctype html>
 <html>
   <body>
@@ -164,28 +139,14 @@ module.exports = function render({ count }) {
     </form>
   </body>
 </html>
-  `
-}
-```
-
-5. Modify `src/http/get-index/index.js` to read the session if it exists and render the forms with the session state
-
-```javascript
-let arc = require('@architect/functions')
-let render = require('./render')
-
-async function home(req) {
-  let count = req.session.count || 0
-  return {
-    html: render({ count })
+    `
   }
 }
 
 exports.handler = arc.http.async(home)
 ```
 
-6. Modify `src/http/post-count/index.js` to mutate the session and redirect home
-
+5. Modify `src/http/post-count/index.js` to mutate the session and redirect home
 
 ```javascript
 let arc = require('@architect/functions')
@@ -203,7 +164,7 @@ exports.handler = arc.http.async(counter)
 
 > FYI: Per recommended security practice Architect applications use `httpOnly` cookies for storing session state; anyone can implement their own mechanism using Set-Cookie headers directly
 
-7. Modify `src/http/post-reset/index.js` to clear the session state
+6. Modify `src/http/post-reset/index.js` to clear the session state
 
 ```javascript
 let arc = require('@architect/functions')
@@ -220,18 +181,10 @@ exports.handler = arc.http.async(reset)
 
 > For more information about `arc.http.async` helper, [check out the documentation](../../reference/runtime-helpers/node.js#arc.http.async)
 
-8. Add a start command to the scripts section in `package.json` found at the root of your project
-
-```json
-...
-"scripts": {
-  "start": "npx arc sandbox"
-}
-...
-```
-
-10. Preview by starting the dev server
+7. Preview by starting the dev server
 
 ```bash
-npm start
+npx arc sandbox
 ```
+
+Navigate to `localhost:3333` to test out the counter.

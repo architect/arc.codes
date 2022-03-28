@@ -288,7 +288,7 @@ These operations are automatically handled for you when using `arc.http[.async]`
   - Returns a `cookie` string
   - Must be `await`ed if no callback is provided
 
-> Please note that session variable encoding and decoding relies on the `ARC_APP_SECRET` [environment variable](../cli/env) being set to something secret and not easily guessable. If you use Architect sessions, please be sure to [set the `ARC_APP_SECRET` environment variable](../cli/env)!
+> Please note that session variable encoding and decoding relies on the `ARC_APP_SECRET` [environment variable](../cli/env#security) being set to something secret and not easily guessable. If you use Architect sessions, please be sure to [set the `ARC_APP_SECRET` environment variable](../../guides/frontend/sessions#strong-secret-key)!
 
 ```javascript
 let arc = require('@architect/functions')
