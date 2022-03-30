@@ -50,3 +50,31 @@ You can use TypeScript in as many or few Lambdas as you like, relying on project
 We recommend using the [`@architect/functions`](/docs/en/reference/runtime-helpers/node.js) runtime helper to smooth over some rough edges in working with various aspects of AWS (as well as to add built-in session support, and other niceties).
 
 If you do, TypeScript types are available in the [@types/architect__functions](https://www.npmjs.com/package/@types/architect__functions) package.
+
+
+## Shared code
+
+It is possible to use Architect's built-in shared code folders (`src/shared` + `src/views`) with TypeScript handlers while still maintaining functionality across vanilla JS handlers.
+
+A sample `tsconfig.json` for shared code paths with a custom `shared-ts` folder:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@architect/views": [ "src/views" ],
+      "shared": [ "src/shared-ts" ]
+    }
+  }
+}
+```
+
+In the above example, TypeScript handlers can use a shared backend code folder (`src/shared-ts`), while still making use of shared code in `src/views` (by way of tsconfig.json paths setting). See the [example below](#example-project) for a functioning project with this set up.
+
+
+## Example project
+
+View the [example TypeScript project on GitHub](https://github.com/architect-examples/typescript-example).
+
+This example project demonstrates how to use both TS and JS side-by-side in a project, automatic sourcemaps, and shared code.
