@@ -39,7 +39,8 @@ Lambda runtime, as defined by the [`lambda-runtimes`](https://github.com/archite
 ### `bucket`
 
 Bucket name (in same region) for CloudFormation deployment artifacts.
-- If not specified, a secure deployment bucket will be automatically created
+
+If not specified, a secure deployment bucket will be automatically created.
 
 ### `policies`
 
@@ -55,6 +56,16 @@ Configuring one or more policies will completely remove all of Architect's defau
 
 Configure Lambda function `layers` with max 5 Lambda Layer ARNs. Lambda Layers must be in the same region as they are deployed.
 
+### `architecture`
+
+Lambda [CPU Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) of your functions.
+  - `x86_64` (default) - 64-bit x86 architecture
+  - `arm64` - (only available in certain AWS regions) 64-bit ARM architecture
+
+### `storage`
+
+Lambda ephemeral storage (a "scrath" file system in `/tmp` for each Lambda). A number between `512` - `10240` in MB.
+
 ### `apigateway`
 
 API Gateway API type, can be one of:
@@ -62,12 +73,6 @@ API Gateway API type, can be one of:
   - `httpv2` – aliased of `http`
   - `httpv1` - `HTTP` API + Lambda payload format version 1.0
   - `rest` - `REST` API + original API Gateway payload format
-
-### `architecture`
-
-Lambda [CPU Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) of your functions. (Added in Architect 9.1)
-  - `x86_64` (default) - 64-bit x86 architecture
-  - `arm64` - (only available in certain AWS regions) 64-bit ARM architecture
 
 ## Environment Variables
 
@@ -91,6 +96,8 @@ For example, to deploy Ruby to the northern California AWS AZ, with your AWS `wo
 runtime ruby
 region us-west-1
 profile work
+storage 5000 # in MB
+architecture arm64
 policies
   S3CrudPolicy
   architect-default-policies
@@ -108,7 +115,13 @@ policies
   "aws": {
     "runtime": "ruby",
     "region": "us-west-1",
-    "profile": "work"
+    "profile": "work",
+    "storage": 5000,
+    "architecture": "arm64",
+    "policies": [
+      "S3CrudPolicy",
+      "architect-default-policies"
+    ]
   }
 }
 ```
@@ -126,6 +139,11 @@ aws:
   runtime: ruby
   region: us-west-1
   profile: work
+  storage: 5000
+  architecture: arm64
+  policies:
+      - S3CrudPolicy
+      - architect-default-policies
 ```
 
 </div>

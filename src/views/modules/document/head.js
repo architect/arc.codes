@@ -1,3 +1,4 @@
+let arc = require('@architect/functions')
 let stripCode = str => str.replace(/\<\/?code\>/g, '')
 
 export default function Head (props = {}) {
@@ -44,10 +45,10 @@ export default function Head (props = {}) {
 <link rel="icon" type="image/png" sizes="32x32" href="https://assets.arc.codes/architect-favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://assets.arc.codes/architect-favicon-16.png">
 <link rel="icon" type="image/png" sizes="64x64" href="https://assets.arc.codes/architect-favicon-64.png">
-<link rel="stylesheet" type="text/css" href="/css/styles.css">
-<link rel="stylesheet" type="text/css" href="/css/index.css">
-<link rel="stylesheet" type="text/css" href="/css/docsearch.css">
-<link rel="stylesheet" type="text/css" href="/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="${arc.static('/css/styles.css')}">
+<link rel="stylesheet" type="text/css" href="${arc.static('/css/index.css')}">
+<link rel="stylesheet" type="text/css" href="${arc.static('/css/docsearch.css')}">
+<link rel="stylesheet" type="text/css" href="${arc.static('/css/syntax.css')}">
 
 <!-- Canonical -->
 <link rel="canonical" href="https://arc.codes/${path}" />
