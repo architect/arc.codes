@@ -4,14 +4,28 @@ category: app.arc
 description: Define S3 bucket
 ---
 
-Configure the static asset S3 bucket.
+Configure the static asset S3 bucket deployed by Architect.
+
+Note: `@static` is implied if `@http` is defined.
 
 ## Syntax
 
-- No parameters are required; `@static` is implied if `@http` is defined
-- `folder` defines the folder to upload static assets from. Default is `public`
-- `fingerprint` enables static asset file fingerprinting (and long-lived caching headers)
-- `ignore` defines which assets to be ignored during upload
+All parameters are optional.
+
+- `fingerprint` - **boolean** (defaults to false)
+  - Enable static asset file fingerprinting (and long-lived caching headers)
+- `folder` - **string** (defaults to `./public`)
+  - Designate the local folder to upload static assets from.
+- `ignore` - **list** 
+  - Define which assets in the static `folder` should be ignored during upload
+- `prefix` - **string**
+  - Set a top-level directory in the S3 bucket where files will be deployed
+- `prune` - **boolean** (defaults to false)
+  - Automatically remove assets from S3 bucket not found in the static `folder`
+<!--
+- `spa` - **boolean** (defaults to false)
+  - Enable "Single Page App" delivery
+-->
 
 ## Example
 
@@ -26,14 +40,17 @@ This `app.arc` file defines a static bucket:
 
 ```arc
 @app
-testapp
+test-app
 
 @static
 fingerprint true
+folder ./dist
 ignore
   .tar.gz
   tmp
   user
+prune true
+prefix assets
 ```
 </div>
 </arc-tab>
@@ -44,14 +61,17 @@ ignore
 
 ```json
 {
-  "app": "testapp",
+  "app": "test-app",
   "static": {
     "fingerprint": true,
+    "folder": "./dist",
     "ignore": [
       ".tar.gz",
       "tmp",
       "user"
-    ]
+    ],
+    "prune": true,
+    "prefix": "assets"
   }
 }
 ```
@@ -68,10 +88,13 @@ app: testapp
 
 static:
   fingerprint: true
+  folder: ./dist
   ignore:
     - ".tar.gz"
     - "tmp"
     - "user"
+  prune: true
+  prefix: assets
 ```
 </div>
 </arc-tab>
@@ -80,14 +103,3 @@ static:
 </arc-viewer>
 
 > 📜  The [Frontend Static assets guide](/docs/en/guides/frontend/static-assets) has more information on how to use static assets in your Architect project.
-
-## Deployment
-
-`arc deploy --static` deploys static assets to `staging` from `public/` or configured folder.
-`arc deploy production --static` deploys static assets to `production` from `public/` or configured folder.
-
-Static assets will also be uploaded during an `arc deploy` along with your function code.
-
-`arc deploy static --delete` deletes static assets from the S3 bucket that are not present in the configured static asset folder.
-
-`arc deploy static --prune` is an alias to delete.
