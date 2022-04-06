@@ -22,14 +22,14 @@ All parameters are optional.
   - Set a top-level directory in the S3 bucket where files will be deployed
 - `prune` - **boolean** (defaults to false)
   - Automatically remove assets from S3 bucket not found in the static `folder`
-<!--
 - `spa` - **boolean** (defaults to false)
-  - Enable "Single Page App" delivery
--->
+  - Enable "Single Page App" delivery: all page requests route to the root.
+
+> 📜  The [Frontend Static assets guide](/docs/en/guides/frontend/static-assets) has more information on how to use static assets in your Architect project.
 
 ## Example
 
-This `app.arc` file defines a static bucket:
+This `app.arc` file uses all `@static` options:
 
 <arc-viewer default-tab=arc>
 <div slot=contents>
@@ -51,6 +51,7 @@ ignore
   user
 prune true
 prefix assets
+spa true
 ```
 </div>
 </arc-tab>
@@ -71,7 +72,8 @@ prefix assets
       "user"
     ],
     "prune": true,
-    "prefix": "assets"
+    "prefix": "assets",
+    "spa": true,
   }
 }
 ```
@@ -95,11 +97,10 @@ static:
     - "user"
   prune: true
   prefix: assets
+  spa: true
 ```
 </div>
 </arc-tab>
 
 </div>
 </arc-viewer>
-
-> 📜  The [Frontend Static assets guide](/docs/en/guides/frontend/static-assets) has more information on how to use static assets in your Architect project.
