@@ -93,6 +93,19 @@ livereload true
 
 Note: `livereload` will execute your `@http` handler with each change so long as it is a `get` or `any` path. Traditionally, these routes don't create data, but be mindful of how a reload might interact with your app's data layer before enabling.
 
+### `ports` - List
+
+Designate the local ports used by Sandbox services. Sandbox will scan for and use available ports unless specified. If a specified port is unavailable, Sandbox will fail to boot.
+
+```arc
+@sandbox
+ports
+  http 4200
+  events 4211
+  queues 4222
+  tables 4255
+```
+
 ### `env` - String
 
 Advanced option: set the `ARC_ENV` stage to `staging` or `production` and use the env vars for that stage (see the `@env` pragma above); if not specified, defaults to `testing`. This setting may introduce unexpected side effects, so only use it if you have a specific technical reason.
