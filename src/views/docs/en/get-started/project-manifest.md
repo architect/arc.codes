@@ -12,7 +12,7 @@ Architect projects have the following significant folder structure by default:
 ├── src
 │   ├── shared ...... # Code shared by all Lambda functions
 │   ├── views ....... # Code shared by HTTP GET Lambda functions
-│   ├── macros ...... # Modify the generated CloudFormation
+│   ├── plugins ..... # Modify anything Architect does; including generated CloudFormation
 │   ├── http ........ # @http Lambda functions
 │   ├── events ...... # @event Lambda functions
 │   ├── queues ...... # @queue Lambda functions
