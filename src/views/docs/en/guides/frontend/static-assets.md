@@ -18,10 +18,8 @@ Architect projects support text and binary static assets such as images, styles,
   - Set a top-level directory in the S3 bucket where files will be deployed
 - `prune` - **boolean** (defaults to false)
   - Automatically remove assets from S3 bucket not found in the static `folder`
-<!--
 - `spa` - **boolean** (defaults to false)
-  - Enable "Single Page App" delivery
--->
+  - Enable "Single Page App" delivery: all page requests route to the root.
 
 > Tip: `@static` assets are available at `/_static` which makes them **same-origin** ✨
 
@@ -29,19 +27,23 @@ Architect projects support text and binary static assets such as images, styles,
 
 Fingerprinting adds a unique SHA to a file name based on the file content before uploading to S3. The file can then be cached effectively forever. Whenever the contents of the file changes so does the SHA invalidating the cache.
 
-Enable fingerprinting:
-
 ```arc
 @static
 fingerprint true
 ```
 
+The Node.js runtime helper, [`@architect/functions`, provides a `static`](../../reference/runtime-helpers/node.js#arc.static) method to help create a path for a given fingerprinted asset. See [below for an example](#fingerprinted-file-paths).
+
 ### `folder`
+
+Use a custom folder name or path for static assets.
 
 ```arc
 @static
 folder dist
 ```
+
+Architect will expect assets in the folder `dist` at the root of your project.
 
 ### `ignore`
 
@@ -67,25 +69,30 @@ Advanced option to specify a top-level directory inside the S3 bucket to add sta
 prefix downloads
 ```
 
-> Note: locally in Sandbox HTTP paths to assets will be `/_static/archive.zip`, but once deployed will look like `/_static/downloads/archive.zip`. Additionally, this setting is not accounted for in [`@architect/functions`'s `static` method](../../reference/runtime-helpers/node.js#arcstatic).
+> Note: locally in Sandbox HTTP paths to assets will be `/_static/archive.zip`, but once deployed will look like `/_static/downloads/archive.zip`. Additionally, this setting is not accounted for in [`@architect/functions`'s `static` method](../../reference/runtime-helpers/node.js#arc.static).
 
 ### `prune`
 
-Tell Architect to automatically delete files from the S3 bucket that do not exist in the next deployment. Effectively the same as the `arc deploy --prune` command. Useful for removing old fingerprinted assets and keeping your bucket tidy.
+Tell Architect to automatically delete files from the S3 bucket that do not exist in the next deployment. Effectively the same as running `arc deploy` with the `--prune` flag. Useful for removing old fingerprinted assets and keeping your bucket tidy.
 
 ```arc
 @static
 prune true
 ```
 
-<!--
 ### `spa`
 
+Enable "Single Page Applications" by transforming and redirecting requests to root path. This will allow `/index.html` to handle any requests that do not match a declared [`@http`](../../reference/project-manifest/http) function.
+
+In the following example, pointing a browser to `/`, `/people`, `/any/path`, etc. will render index.html. Getting `/api` will not.
+
 ```arc
+@http
+get /api
+
 @static
 spa true
 ```
--->
 
 ## Deployment
 
@@ -98,7 +105,7 @@ Static assets will also be uploaded during an `arc deploy` along with your funct
 
 ## Fingerprinted file paths
 
-To get the path for generated files at runtime use `arc.static` from `@architect/functions`, the [Architect Node.js runtime helper](../../reference/runtime-helpers/node.js#arcstatic).
+To get the path for generated files at runtime use `arc.static` from `@architect/functions`, the [Architect Node.js runtime helper](../../reference/runtime-helpers/node.js#arc.static).
 
 ```javascript
 // src/http/get-index/index.js
