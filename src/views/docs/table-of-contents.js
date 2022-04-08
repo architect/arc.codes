@@ -19,6 +19,9 @@ let Guides = [
       'Using TypeScript',
       'Customizing CloudFormation'
     ],
+    'Backend': [
+      'Persist data',
+    ],
     'Frontend': [
       'Sessions',
       'Static assets',
