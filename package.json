@@ -39,7 +39,7 @@
     "linkinator": "^3.0.3",
     "spellchecker-cli": "^4.9.1",
     "tap-arc": "^0.3.4",
-    "tape": "^5.5.2",
+    "tape": "^5.5.3",
     "tiny-json-http": "^7.4.2"
   },
   "eslintConfig": {
