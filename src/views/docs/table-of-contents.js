@@ -17,7 +17,13 @@ let Guides = [
       'Logging & monitoring',
       'Using ESM',
       'Using TypeScript',
-      'Customizing CloudFormation'
+      'Customizing CloudFormation',
+      {
+        'Continuous integration': [
+          'GitHub Actions',
+          'AWS EC2',
+        ]
+      }
     ],
     'Frontend': [
       'Sessions',

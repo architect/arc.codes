@@ -59,7 +59,7 @@ It is also worthwhile to take a look at Architect's various supported plugins an
 
 ## Architect releases
 
-- Architect and its constituent libraries follow [SemVer](https://SemVer.org/), taking into consideration [authortime, deploytime, and runtime lifecycle stages](https://github.com/architect/architect/issues/938)
+- Architect and its constituent libraries follow [SemVer](https://SemVer.org/), taking into consideration [author-time, deploy-time, and runtime lifecycle stages](https://github.com/architect/architect/issues/938)
 - Architect (`@architect/architect`) releases are as deterministic as the `package.json` format allows; this is enforced by the following build dependency requirements:
   - All first-order `@architect/architect` dependencies are version-pinned
   - All second order `@architect/*` dependencies must use SemVer `~`
