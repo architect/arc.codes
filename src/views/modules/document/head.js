@@ -17,13 +17,13 @@ export default function Head (props = {}) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
 <meta name="description" content="${stripCode(descriptionContent)}">
-<meta name="image" content="https://arc.codes/arc.codes.png">
+<meta name="image" content="https://arc.codes${arc.static('arc.codes.png')}">
 <title>${stripCode(fullTitle)}</title>
 
 <!-- schema.org -->
 <meta itemprop="name" content="${stripCode(fullTitle)}">
 <meta itemprop="description" content="${stripCode(descriptionContent)}">
-<meta itemprop="image" content="https://arc.codes/arc.codes.png">
+<meta itemprop="image" content="https://arc.codes${arc.static('arc.codes.png')}">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
@@ -31,12 +31,12 @@ export default function Head (props = {}) {
 <meta name="twitter:description" content="${stripCode(descriptionContent)}">
 <meta name="twitter:site" content="@begin">
 <meta name="twitter:creator" content="@begin">
-<meta name="twitter:image:src" content="https://arc.codes/arc.codes.png">
+<meta name="twitter:image:src" content="https://arc.codes${arc.static('arc.codes.png')}">
 
 <!-- Open Graph -->
 <meta name="og:title" content="${stripCode(fullTitle)}">
 <meta name="og:description" content="${stripCode(descriptionContent)}">
-<meta name="og:image" content="https://arc.codes/arc.codes.png">
+<meta name="og:image" content="https://arc.codes${arc.static('arc.codes.png')}">
 <meta name="og:url" content="https://arc.codes/${path}">
 <meta name="og:site_name" content="OpenJSF Architect">
 <meta name="og:type" content="website">
