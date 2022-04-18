@@ -33,13 +33,6 @@ jobs:
 
     # Go
     steps:
-    # Setup
-    needs: build
-    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
-    runs-on: ubuntu-latest
-
-    # Go
-    steps:
       - name: Deploy app
         uses: architect/action-deploy@v1
         with:
