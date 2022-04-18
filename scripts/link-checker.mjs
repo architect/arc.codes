@@ -23,6 +23,7 @@ test('find broken links', async (t) => {
     path: root,
     recurse: true,
     linksToSkip: [
+      'https://arc.codes/_static/arc.codes.png', // final asset is fingerprinted
       'https://www.godaddy.com', // GoDaddy 403s crawlers
       'https://github.com/architect/arc.codes/edit/' // skip all the "Edit on GitHub" links
     ],

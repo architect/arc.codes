@@ -10,7 +10,7 @@ Architect projects can be tested and deployed from GitHub Actions.
 
 Architect has created [`architect/action-build`](https://github.com/architect/action-build) and [`architect/action-deploy`](https://github.com/architect/action-deploy) for GitHub Actions. These can be included as a part of your project's workflows.
 
-> 🔑  Required: Set your project's `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in [your GitHub repository's secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets). 
+> 🔑  Required: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` must be set in [your GitHub repository or organization secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets). 
 
 The deploy action follows a standard pattern where commits to the `main` branch are deployed to a staging environment and git tags that begin with `v` are deployed to production.
 
