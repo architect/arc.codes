@@ -7,7 +7,6 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "dist": "./scripts/dist.sh",
     "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
     "link-checker": "node ./scripts/link-checker.mjs | tap-arc",
     "lint": "eslint src --fix",
