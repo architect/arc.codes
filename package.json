@@ -16,7 +16,7 @@
     "test": "npm run spellcheck && npm run lint && npm run test:unit:frontend && npm run test:unit:backend"
   },
   "dependencies": {
-    "@architect/arc-plugin-render-md": "git+https://github.com:architect/arc-plugin-render-md.git",
+    "@architect/arc-plugin-render-md": "git+https://github.com:architect/arc-render-md.git",
     "@architect/asap": "^5.0.1",
     "@architect/functions": "^5.0.5",
     "@architect/inventory": "^3.1.0",
