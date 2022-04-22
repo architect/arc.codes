@@ -4,7 +4,8 @@ require = require('esm')(module)
 const { readFile } = require('fs/promises')
 const { join } = require('path')
 const { http } = require('@architect/functions')
-const render = require('./renderer')
+const render = require('@architect/arc-plugin-render-md')
+const classMapping = require('./markdown-class-mappings')
 const { redirect: redirectMiddleware } = require('@architect/shared/redirect-map')
 const algolia = require('@architect/views/modules/components/algolia.js').default
 const Html = require('@architect/views/modules/document/html.js').default
@@ -53,7 +54,7 @@ async function handler (req) {
     else {
       file = await readFile(filePath, 'utf8')
       body = cache[filePath] = Html({
-        ...render(file),
+        ...render(file, classMapping),
         active,
         editURL,
         lang,
