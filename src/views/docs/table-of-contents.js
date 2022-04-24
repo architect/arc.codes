@@ -101,8 +101,8 @@ let About = [
   'Ejecting from Architect'
 ]
 
-module.exports = {
-  'Get started': GetStarted,
+export default {
+  'Get Started': GetStarted,
   Guides,
   Reference,
   About,

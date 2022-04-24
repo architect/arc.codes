@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   h1: [
     'mb2',
     'font-semibold',

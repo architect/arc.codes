@@ -1,7 +1,7 @@
 export default function DocumentOutline (props = {}) {
   const {
-    docOutline = '',
-    titleSlug = '',
+    tocHtml = '',
+    slug = '',
     title = 'Top',
   } = props
 
@@ -10,12 +10,12 @@ export default function DocumentOutline (props = {}) {
   <div class="pt0 ml-none-lg">
     <a
       id="top-link"
-      href="#${titleSlug}"
+      href="#${slug}"
       class="block mb-1 font-bold text-p1 text-h1"
     >
       ↑ ${title}
     </a>
-    ${docOutline.replace(/class="mb1"/g, 'class="list-none"')}
+    ${tocHtml.replace(/class="mb1"/g, 'class="list-none"')}
   </div>
 </div>
   `

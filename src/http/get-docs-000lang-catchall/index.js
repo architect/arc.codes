@@ -1,41 +1,39 @@
-// eslint-disable-next-line
-require = require('esm')(module)
-
-const { readFile } = require('fs/promises')
-const { join } = require('path')
-const { http } = require('@architect/functions')
-const render = require('./renderer')
-const { redirect: redirectMiddleware } = require('@architect/shared/redirect-map')
-const algolia = require('@architect/views/modules/components/algolia.js').default
-const Html = require('@architect/views/modules/document/html.js').default
-const NotFound = require('@architect/views/modules/components/not-found.js').default
-const notFoundResponse = require('@architect/shared/not-found-response')
-const toc = require('@architect/views/docs/table-of-contents')
+import { readFileSync } from 'fs'
+import { join } from 'path'
+import arc from '@architect/functions'
+import render from '@architect/arc-render-md'
+import { redirect as redirectMiddleware } from '@architect/shared/redirect-map.js'
+import notFoundResponse from '@architect/shared/not-found-response.js'
+import algolia from '@architect/views/modules/components/algolia.js'
+import Html from '@architect/views/modules/document/html.js'
+import NotFound from '@architect/views/modules/components/not-found.js'
+import toc from '@architect/views/docs/table-of-contents.js'
+import classMap from './markdown-class-mappings.js'
 
 const cache = {} // cheap warm cache
 
 async function handler (req) {
-  let { path, pathParameters } = req
-  let { lang, proxy } = pathParameters
-  let parts = proxy.split('/')
-  let docName = parts.pop()
+  const { path, pathParameters } = req
+  const { lang, proxy } = pathParameters
+  const parts = proxy.split('/')
+  const docName = parts.pop()
 
   if (docName === 'playground')
     return { statusCode: 303, headers: { location: '/playground' } }
 
-  let doc = `${docName}.md`
-  let activePath = join(
+  const doc = `${docName}.md`
+  const activePath = join(
     'docs',
     lang,
     ...parts,
     docName
   )
-  let active = `/${activePath}` // Add leading slash to match anchor href
+  const active = `/${activePath}` // Add leading slash to match anchor href
   let editURL = 'https://github.com/architect/arc.codes/edit/main/src/views/docs/'
   editURL += join(lang, ...parts, doc)
 
-  let filePath = join(
-    __dirname,
+  const filePath = join(
+    new URL('.', import.meta.url).pathname,
     'node_modules',
     '@architect',
     'views',
@@ -46,14 +44,20 @@ async function handler (req) {
   )
 
   try {
-    let body, file
+    let body
+
     if (cache[filePath]) {
       body = cache[filePath]
     }
     else {
-      file = await readFile(filePath, 'utf8')
+      const file = readFileSync(filePath, 'utf8')
+      const renderOptions = {
+        hljs: { classString: 'hljs mb0 mb1-lg relative' },
+        pluginOverrides: { markdownItClass: classMap },
+      }
+      const result = await render(file, renderOptions)
       body = cache[filePath] = Html({
-        ...render(file),
+        ...result,
         active,
         editURL,
         lang,
@@ -84,7 +88,7 @@ async function handler (req) {
       ...notFoundResponse,
       body: Html({
         active,
-        children: NotFound({ term: docName, error }),
+        html: NotFound({ term: docName, error }),
         lang,
         scripts: [ '/index.js' ],
         state: { notFoundTerm: docName },
@@ -95,4 +99,5 @@ async function handler (req) {
   }
 }
 
-exports.handler = http.async(redirectMiddleware, handler)
+const _handler = arc.http.async(redirectMiddleware, handler)
+export { _handler as handler }

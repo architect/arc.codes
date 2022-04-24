@@ -11,11 +11,11 @@ import TopNav from './top-nav.js'
 
 export default function HTML (props = {}) {
   let {
-    children = [],
+    html = '',
     editURL = '',
     lang = 'en',
     scripts = '',
-    titleSlug = '',
+    slug = '',
     state = {},
     thirdparty = '',
     title = ''
@@ -66,7 +66,7 @@ ${Symbols}
         "
       >
         <h1
-          id="${titleSlug}"
+          id="${slug}"
           class="
             mb1
             font-semibold
@@ -76,7 +76,7 @@ ${Symbols}
           ${title}
         </h1>
         <div class="pb4 docs">
-          ${children}
+          ${html}
           ${EditLink({ editURL })}
         </div>
       </div>

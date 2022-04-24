@@ -1,4 +1,5 @@
-let arc = require('@architect/functions')
+import arc from '@architect/functions'
+
 let stripCode = str => str.replace(/\<\/?code\>/g, '')
 
 export default function Head (props = {}) {

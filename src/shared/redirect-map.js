@@ -277,7 +277,7 @@ async function redirect (req) {
   return
 }
 
-module.exports = {
+export {
   currentRoot,
   tempRedirects,
   permanentRedirects,

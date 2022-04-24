@@ -128,6 +128,7 @@ function Heading (state = {}) {
 
 export default function Sidebar (props = {}) {
   let { active, toc } = props
+
   return `
 <aside
   id="sidebar"

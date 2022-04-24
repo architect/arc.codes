@@ -1,48 +1,53 @@
 {
   "name": "@architect/arc.codes",
   "version": "3.7.12",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/architect/arc.codes"
   },
   "license": "Apache-2.0",
   "scripts": {
-    "dist": "./scripts/dist.sh",
     "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
-    "link-checker": "node ./scripts/link-checker.mjs | tap-arc",
+    "link-checker": "node ./scripts/link-checker.js | tap-arc",
     "lint": "eslint src --fix",
-    "start": "sandbox",
-    "test:unit:frontend": "tape -r esm 'test/frontend/**/*.js' | tap-arc",
-    "test:unit:backend": "tape 'test/backend/**/*.js' | tap-arc",
-    "test": "npm run spellcheck && npm run lint && npm run test:unit:frontend && npm run test:unit:backend"
+    "start": "npx arc sandbox",
+    "tape": "tape 'test/**/*.js' | tap-arc",
+    "test": "npm run spellcheck && npm run lint && npm run tape"
   },
   "dependencies": {
+    "@architect/arc-render-md": "github:architect/arc-render-md#esm",
     "@architect/asap": "^5.0.1",
-    "@architect/functions": "^5.0.5",
+    "@architect/functions": "^5.1.0",
     "@architect/inventory": "^3.1.0",
     "@architect/package": "^8.1.0",
     "@architect/plugin-node-prune": "^2.0.2",
     "@architect/syntaxes": "github:architect/syntaxes#v1.2.1",
-    "esm": "^3.2.25",
-    "highlight.js": "^11.5.1",
-    "markdown-it": "^12.3.2",
-    "markdown-it-external-anchor": "^1.0.0",
-    "markdown-it-toc-and-anchor": "github:macdonst/markdown-it-toc-and-anchor",
-    "slugify": "^1.6.5",
-    "tiny-frontmatter": "^1.0.0"
+    "slugify": "^1.6.5"
   },
   "devDependencies": {
-    "@architect/architect": "^10.2.2",
+    "@architect/architect": "^10.3.0",
     "@architect/eslint-config": "^2.0.1",
     "@architect/spellcheck-dictionary": "git+https://github.com/architect/spellcheck-dictionary.git",
-    "eslint": "^8.13.0",
+    "eslint": "^8.14.0",
     "linkinator": "^3.0.3",
-    "spellchecker-cli": "^4.9.1",
+    "spellchecker-cli": "^4.10.0",
     "tap-arc": "^0.3.4",
     "tape": "^5.5.3",
     "tiny-json-http": "^7.4.2"
   },
   "eslintConfig": {
-    "extends": "@architect/eslint-config"
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "extends": "@architect/eslint-config",
+    "rules": {
+      "import/no-unresolved": 2,
+      "import/no-commonjs": 2,
+      "import/extensions": [
+        2,
+        "ignorePackages"
+      ]
+    }
   }
 }

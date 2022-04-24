@@ -1,14 +1,11 @@
-// eslint-disable-next-line
-require = require('esm')(module)
-
-const { http } = require('@architect/functions')
-const asap = require('@architect/asap')
-const { redirect: redirectMiddleware } = require('@architect/shared/redirect-map')
-const notFoundResponse = require('@architect/shared/not-found-response')
-const toc = require('@architect/views/docs/table-of-contents')
-const Html = require('@architect/views/modules/document/html.js').default
-const NotFound = require('@architect/views/modules/components/not-found.js').default
-const algolia = require('@architect/views/modules/components/algolia.js').default
+import arc from '@architect/functions'
+import asap from '@architect/asap'
+import { redirect as redirectMiddleware } from '@architect/shared/redirect-map.js'
+import notFoundResponse from '@architect/shared/not-found-response.js'
+import toc from '@architect/views/docs/table-of-contents.js'
+import Html from '@architect/views/modules/document/html.js'
+import NotFound from '@architect/views/modules/components/not-found.js'
+import algolia from '@architect/views/modules/components/algolia.js'
 
 // middleware proxy s3 assets
 const staticProxy = asap({
@@ -17,7 +14,7 @@ const staticProxy = asap({
   spa: false
 })
 
-function robots (req) {
+async function robots (req) {
   if (req.path === '/robots.txt') {
     let headers = { 'content-type': 'text/plain; charset=utf8' }
     let allow = 'User-agent: *\nDisallow: '
@@ -34,7 +31,7 @@ async function notFound (req) {
     ...notFoundResponse,
     body: Html({
       active: term,
-      children: NotFound({ term }),
+      html: NotFound({ term }),
       scripts: [ '/index.js' ],
       thirdparty: algolia,
       toc
@@ -42,4 +39,4 @@ async function notFound (req) {
   }
 }
 
-exports.handler = http.async(redirectMiddleware, robots, staticProxy, notFound)
+export const handler = arc.http.async(redirectMiddleware, robots, staticProxy, notFound)
