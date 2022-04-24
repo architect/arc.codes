@@ -10,7 +10,7 @@ import Symbols from './symbols.js'
 import TopNav from './top-nav.js'
 
 export default function HTML (props = {}) {
-  let {
+  const {
     html = '',
     editURL = '',
     lang = 'en',
@@ -21,11 +21,11 @@ export default function HTML (props = {}) {
     title = ''
   } = props
 
-  let scriptTags = scripts &&
+  const scriptTags = scripts &&
     Array.isArray(props.scripts)
     ? scripts.map(src => Script({ src })).join('')
     : Script(scripts)
-  let stateTag = state && State(state) || ''
+  const stateTag = state && State(state) || ''
 
   return `
 <!DOCTYPE html>

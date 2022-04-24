@@ -1,8 +1,8 @@
 export default function GoogleAnalytics () {
-  let env = process.env.ARC_ENV
-  let production = 'production'
-  let productionId = 'UA-74655805-3'
-  let stagingId = 'G-22723SKNK4'
+  const env = process.env.ARC_ENV
+  const production = 'production'
+  const productionId = 'UA-74655805-3'
+  const stagingId = 'G-22723SKNK4'
 
   function snippet (env) {
     return `

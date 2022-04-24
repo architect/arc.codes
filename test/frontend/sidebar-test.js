@@ -3,71 +3,66 @@ import listFromObject from '../../src/views/modules/helpers/list.js'
 import strip from './helpers/strip.js'
 import slugify from '../../src/views/modules/helpers/slugify.js'
 
-function Ul(state={}) {
-  let { children } = state
+function Ul (state = {}) {
+  const { children } = state
   return `
 <ul>
-  ${ children }
+  ${children}
 </ul>
   `
 }
 
-function Li(state={}) {
-  let { child='', children='' } = state
+function Li (state = {}) {
+  const { child = '', children = '' } = state
   return `
 <li>
-  ${ child }
-  ${ children }
+  ${child}
+  ${children}
 </li>
   `
 }
 
-function Item(state={}) {
-  let { child='', children='', depth } = state
+function Item (state = {}) {
+  const { child = '', children = '', depth } = state
   return Li({
     children: `
-     ${ child
-          ? Heading3({
-              children: Anchor({
-                children: child,
-                href: slugify(child)
-              }),
-              depth
-          })
-          : ''
-     }
-     ${ children }
+     ${child
+    ? Heading3({
+      children: Anchor({
+        children: child,
+        href: slugify(child)
+      }),
+      depth
+    })
+    : ''
+}
+     ${children}
     `
   })
 }
 
-function Heading(state={}) {
-  let { depth=0 } = state
-  return [ Heading3, Heading4 ][depth](state)
-}
-
-function Heading3(state={}) {
-  let { children } = state
+function Heading3 (state = {}) {
+  const { children } = state
   return `
-<h3>${ children }</h3>
+<h3>${children}</h3>
   `
 }
 
-function Heading4(state={}) {
-  let { children } = state
+function Heading4 (state = {}) {
+  const { children } = state
   return `
-<h4>${ children }</h4>
+<h4>${children}</h4>
   `
 }
 
-function Anchor(state={}) {
-  let { children, href } = state
+function Anchor (state = {}) {
+  const { children, href } = state
   return `
-<a href=${href}>${ children }</a>
+<a href=${href}>${children}</a>
   `
 }
 
-let map = {
+const map = {
   anchor: Anchor,
   list: Ul,
   item: Li,
@@ -78,11 +73,11 @@ let map = {
 }
 
 test('render object to list', t => {
-  let map = {
+  const map = {
     list: Ul,
     item: Li
   }
-  let data = {
+  const data = {
     'one': [
       'a',
       'b',
@@ -94,7 +89,7 @@ test('render object to list', t => {
       'f'
     ]
   }
- let expected = `
+  const expected = `
 <ul>
   <li>
     one
@@ -114,18 +109,18 @@ test('render object to list', t => {
   </li>
 </ul>
   `
-  let actual = listFromObject({ data, map })
+  const actual = listFromObject({ data, map })
 
   t.equal(strip(actual), strip(expected), 'Should render object to list', actual)
   t.end()
 })
 
 test('render nested object to list', t => {
-  let map = {
+  const map = {
     list: Ul,
     item: Li
   }
-  let data = {
+  const data = {
     'label': [
       {
         'one': [
@@ -143,7 +138,7 @@ test('render nested object to list', t => {
       }
     ]
   }
-  let expected = `
+  const expected = `
 <ul>
   <li>
     label
@@ -168,14 +163,14 @@ test('render nested object to list', t => {
   </li>
 </ul>
   `
-  let actual = listFromObject({ data, map })
+  const actual = listFromObject({ data, map })
 
-  t.equal(strip(actual), strip(expected),'Should render object to list', actual)
+  t.equal(strip(actual), strip(expected), 'Should render object to list', actual)
   t.end()
 })
 
 test('render deeply nested object to list', t => {
-  let data = {
+  const data = {
     'label': [
       {
         'one': [
@@ -199,7 +194,7 @@ test('render deeply nested object to list', t => {
       }
     ]
   }
-  let expected = `
+  const expected = `
 <ul>
   <li>
     label
@@ -231,14 +226,14 @@ test('render deeply nested object to list', t => {
   </li>
 </ul>
   `
-  let actual = listFromObject({ data, map })
+  const actual = listFromObject({ data, map })
 
-  t.equal(strip(actual), strip(expected),'Should render object to list', actual)
+  t.equal(strip(actual), strip(expected), 'Should render object to list', actual)
   t.end()
 })
 
 test('should use custom component map', t => {
-  let data = {
+  const data = {
     'one': [
       'a',
       'b',
@@ -250,7 +245,7 @@ test('should use custom component map', t => {
       'f'
     ]
   }
- let expected = `
+  const expected = `
 <ul>
   <li>
     <h3>
@@ -314,7 +309,7 @@ test('should use custom component map', t => {
   </li>
 </ul>
   `
-  let actual = listFromObject({
+  const actual = listFromObject({
     data,
     map: {
       list: Ul,
@@ -327,15 +322,15 @@ test('should use custom component map', t => {
 
 test('Should create correct href', t => {
   t.plan(8)
-  let path = [ 'docs', 'en' ]
-  let map = {
-    item: function hrefTest({ child, depth, path }) {
-      let href = slugify(path.join('/'))
+  const path = [ 'docs', 'en' ]
+  const map = {
+    item: function hrefTest ({ path }) {
+      const href = slugify(path.join('/'))
       t.ok(href, href)
     },
-    list: function list(params) {}
+    list: function list () {}
   }
-  let data = {
+  const data = {
     'one & done': [
       'a',
       'b',

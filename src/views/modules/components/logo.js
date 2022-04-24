@@ -1,5 +1,5 @@
 export default function Logo (props = {}) {
-  let { classes } = props
+  const { classes } = props
   return `
 <div
   class="fill-current ${classes}"

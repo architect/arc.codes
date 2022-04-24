@@ -3,7 +3,7 @@ import slugify from '../helpers/slugify.js'
 
 const map = {
   list: function List (state = {}) {
-    let { children } = state
+    const { children } = state
     return `
 <ul
   class="
@@ -16,10 +16,10 @@ const map = {
     `
   },
   item: function Item (state = {}) {
-    let { child = '', children = [], depth, path, active } = state
-    let isHeading = children.length
-    let mb = isHeading ? 'mb1' : 'mb-4'
-    let ml = path.length > 3 ? 'ml-1' : ''
+    const { child = '', children = [], depth, path, active } = state
+    const isHeading = children.length
+    const mb = isHeading ? 'mb1' : 'mb-4'
+    const ml = path.length > 3 ? 'ml-1' : ''
     return `
 <li
   class="
@@ -39,15 +39,15 @@ const map = {
 }
 
 function Anchor (state = {}) {
-  let { name, path, active } = state
-  let uri = path
+  const { name, path, active } = state
+  const uri = path
     .concat([ name ])
     .map((part) => slugify(part))
     .join('/')
-  let href = `/${uri}`
-  let isActive = active === href
-  let activeClass = isActive ? 'active' : ''
-  let text = isActive ? `→ ${name}` : name
+  const href = `/${uri}`
+  const isActive = active === href
+  const activeClass = isActive ? 'active' : ''
+  const text = isActive ? `→ ${name}` : name
 
   return `
 <a href="${href}" class="w-full inline-block text-p1 text-h1 text-a2 no-underline font-normal ${activeClass}" >${text}</a>
@@ -55,7 +55,7 @@ function Anchor (state = {}) {
 }
 
 function Heading3 (state = {}) {
-  let { name } = state
+  const { name } = state
   return `
 <h3
   class="
@@ -71,7 +71,7 @@ function Heading3 (state = {}) {
 }
 
 function Heading4 (state = {}) {
-  let { name } = state
+  const { name } = state
   return `
 <h4
   class="
@@ -86,9 +86,9 @@ function Heading4 (state = {}) {
 }
 
 function Group (state = {}) {
-  let { name, depth, active, children } = state
-  let slug = slugify(name)
-  let groupIsActive =
+  const { name, depth, active, children } = state
+  const slug = slugify(name)
+  const groupIsActive =
     active.replace('/docs/en', '').split('/').indexOf(slug) === depth
 
   return `
@@ -121,13 +121,13 @@ function Group (state = {}) {
 }
 
 function Heading (state = {}) {
-  let { depth } = state
+  const { depth } = state
   const headings = [ Heading3, Heading4, Group ]
   return headings[depth - 1](state)
 }
 
 export default function Sidebar (props = {}) {
-  let { active, toc } = props
+  const { active, toc } = props
 
   return `
 <aside

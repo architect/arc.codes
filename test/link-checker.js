@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { LinkChecker } from 'linkinator'
 import test from 'tape'
 import sandbox from '@architect/sandbox'

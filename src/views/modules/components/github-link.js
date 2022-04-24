@@ -1,7 +1,7 @@
 import Icon from './icon.js'
 
 export default function GithubLink (state = {}) {
-  let { classes } = state
+  const { classes } = state
   return `
 <a
   rel="noreferrer"

@@ -1,7 +1,7 @@
 import Icon from './icon.js'
 
 export default function ThemeButton (state = {}) {
-  let { classes } = state
+  const { classes } = state
   return `
 <button
   id="theme-button"

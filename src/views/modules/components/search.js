@@ -1,5 +1,5 @@
 export default function Search (state = {}) {
-  let { classes = '' } = state
+  const { classes = '' } = state
   return `
 <input
   type="search"

@@ -1,7 +1,7 @@
-const currentRoot = '/docs/en/get-started/quickstart'
+export const currentRoot = '/docs/en/get-started/quickstart'
 
 // these are soft redirects, not forever/canonical
-const tempRedirects = {
+export const tempRedirects = {
   // tmp until marketing landing page work done
   '/': currentRoot,
 
@@ -53,7 +53,7 @@ const tempRedirects = {
 }
 
 // redirect known v5/6 arc urls to v8 and then to v9
-const permanentRedirects = {
+export const permanentRedirects = {
   '/examples': '/docs/en/guides/examples',
 
   '/docs/en/guides/extend/custom-cloudformation': '/docs/en/guides/developer-experience/customizing-cloudformation',
@@ -255,13 +255,13 @@ const permanentRedirects = {
   '/reference/data-delete': '/docs/en/reference/runtime-helpers/node.js#arc.tables',
 }
 
-async function redirect (req) {
+export async function redirect (req) {
   const reqPath = req.requestContext.http.path
   const isGet = req.requestContext.http.method.toLowerCase() === 'get'
 
   if (isGet && (tempRedirects[reqPath] || permanentRedirects[reqPath])) {
-    let env = process.env.ARC_ENV
-    let url = (stage, path) => `https://${stage}arc.codes${path}`
+    const env = process.env.ARC_ENV
+    const url = (stage, path) => `https://${stage}arc.codes${path}`
 
     let location = tempRedirects[reqPath] || permanentRedirects[reqPath]
     if (env === 'staging') location = url('staging.', location)
@@ -275,11 +275,4 @@ async function redirect (req) {
     }
   }
   return
-}
-
-export {
-  currentRoot,
-  tempRedirects,
-  permanentRedirects,
-  redirect
 }

@@ -1,4 +1,4 @@
-let GetStarted = [
+const GetStarted = [
   'Why Architect',
   'Quickstart',
   'Project manifest',
@@ -6,7 +6,7 @@ let GetStarted = [
   'Detailed AWS setup',
 ]
 
-let Guides = [
+const Guides = [
   {
     'Developer experience': [
       'Local development',
@@ -53,7 +53,7 @@ let Guides = [
   'Examples',
 ]
 
-let Reference = [ {
+const Reference = [ {
   'Project manifest': [
     '@app',
     '@aws',
@@ -92,7 +92,7 @@ let Reference = [ {
   ],
 } ]
 
-let About = [
+const About = [
   'Mission',
   'Community',
   'Contribute',

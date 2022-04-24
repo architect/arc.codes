@@ -6,8 +6,8 @@ export async function handler (req) {
   let body
 
   try {
-    let rawArc = Buffer.from(req.queryStringParameters.arc, 'base64').toString()
-    let inv = await inventory({ rawArc, deployStage: 'staging' })
+    const rawArc = Buffer.from(req.queryStringParameters.arc, 'base64').toString()
+    const inv = await inventory({ rawArc, deployStage: 'staging' })
     body = JSON.stringify(pkg(inv))
   }
   catch (e) {

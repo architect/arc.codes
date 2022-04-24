@@ -1,7 +1,6 @@
 {
   "name": "@architect/arc.codes",
   "version": "3.7.12",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/architect/arc.codes"
@@ -9,10 +8,10 @@
   "license": "Apache-2.0",
   "scripts": {
     "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
-    "link-checker": "node ./scripts/link-checker.js | tap-arc",
+    "link-checker": "node ./test/link-checker.js | tap-arc",
     "lint": "eslint src --fix",
     "start": "npx arc sandbox",
-    "tape": "tape 'test/**/*.js' | tap-arc",
+    "tape": "tape 'test/**/*-test.js' | tap-arc",
     "test": "npm run spellcheck && npm run lint && npm run tape"
   },
   "dependencies": {
@@ -42,10 +41,10 @@
     },
     "extends": "@architect/eslint-config",
     "rules": {
-      "import/no-unresolved": 2,
-      "import/no-commonjs": 2,
+      "import/no-unresolved": "error",
+      "import/no-commonjs": "error",
       "import/extensions": [
-        2,
+        "error",
         "ignorePackages"
       ]
     }

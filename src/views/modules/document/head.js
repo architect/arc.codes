@@ -1,10 +1,10 @@
 import arc from '@architect/functions'
 
-let stripCode = str => str.replace(/\<\/?code\>/g, '')
+const stripCode = str => str.replace(/\<\/?code\>/g, '')
 
 export default function Head (props = {}) {
-  let { category, description, lang = 'en', path, title } = props
-  let descriptionContent = description || 'Architect documentation'
+  const { category, description, lang = 'en', path, title } = props
+  const descriptionContent = description || 'Architect documentation'
   let fullTitle = ''
   if (category && title)
     fullTitle += `${category} > ${title} - `

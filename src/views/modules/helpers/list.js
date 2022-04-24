@@ -1,7 +1,7 @@
 export default function listFromObject ({ data = {}, map = {}, path = [], active = null }) {
-  let depth = 0
-  let { list, item } = map
-  let children = itemsFromObject({ data, list, item, depth, path, active })
+  const depth = 0
+  const { list, item } = map
+  const children = itemsFromObject({ data, list, item, depth, path, active })
   return list({
     children
   })
@@ -10,7 +10,7 @@ export default function listFromObject ({ data = {}, map = {}, path = [], active
 function itemsFromObject ({ data = {}, list, item, depth, path, active }) {
   depth = depth + 1
   return Object.keys(data).map(child => {
-    let children = data[child]
+    const children = data[child]
     return item({
       child,
       children: `
@@ -24,8 +24,8 @@ function itemsFromObject ({ data = {}, list, item, depth, path, active }) {
 }
 
 function listFromArray ({ children = [], list, item, depth, path, active }) {
-  let gi = getItem.bind(null, list, item, depth, path, active)
-  let kids = children.map(gi).join('')
+  const gi = getItem.bind(null, list, item, depth, path, active)
+  const kids = children.map(gi).join('')
   return list({ children: kids })
 }
 

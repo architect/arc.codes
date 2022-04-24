@@ -1,7 +1,7 @@
-const { stat } = require('fs/promises')
-const path = require('path')
-const test = require('tape')
-const { redirect, tempRedirects, permanentRedirects } = require('../../src/shared/redirect-map')
+import { stat } from 'fs/promises'
+import { join } from 'path'
+import test from 'tape'
+import { redirect, tempRedirects, permanentRedirects } from '../../src/shared/redirect-map.js'
 
 test('redirect map middleware', async t => {
   t.plan(5)
@@ -71,7 +71,7 @@ test('all redirect destinations exist', async t => {
   for (const destination of destinations) {
     const filePath = destination.split('#')[0] + '.md'
     try {
-      await stat(path.join(__dirname, '../../src/views', filePath))
+      await stat(join(new URL('.', import.meta.url).pathname, '../../src/views', filePath))
     }
     catch (error) {
       t.fail(error)

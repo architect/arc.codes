@@ -1,8 +1,9 @@
-let { updater } = require('@architect/utils')
-let { spawn } = require('child_process')
-let pkg = require('../../package.json')
-let cmd = pkg.scripts.spellcheck.split(' ')
-let update = updater('Spelling')
+/* eslint-disable import/no-commonjs */
+const { updater } = require('@architect/utils')
+const { spawn } = require('child_process')
+const pkg = require('../../package.json')
+const cmd = pkg.scripts.spellcheck.split(' ')
+const update = updater('Spelling')
 
 module.exports = {
   sandbox: {
@@ -10,11 +11,11 @@ module.exports = {
       if (!filename.endsWith('.md')) return
       return new Promise((res) => {
         update.start('Checking spelling')
-        let start = Date.now()
-        let done = () => update.done(`Checked spelling in ${(Date.now() - start) / 1000} seconds`)
-        let spell = spawn(cmd[0], cmd.slice(1))
+        const start = Date.now()
+        const done = () => update.done(`Checked spelling in ${(Date.now() - start) / 1000} seconds`)
+        const spell = spawn(cmd[0], cmd.slice(1))
         let found = false
-        let log = data => {
+        const log = data => {
           if (!found) {
             done()
             update.warn(`Found spelling or grammar error(s):`)

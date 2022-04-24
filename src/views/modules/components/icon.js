@@ -1,5 +1,5 @@
 export default function Icon (state = {}) {
-  let { classes, href } = state
+  const { classes, href } = state
   return `
 <div class="${classes}">
   <svg>

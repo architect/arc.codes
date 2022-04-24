@@ -16,9 +16,9 @@ const staticProxy = asap({
 
 async function robots (req) {
   if (req.path === '/robots.txt') {
-    let headers = { 'content-type': 'text/plain; charset=utf8' }
-    let allow = 'User-agent: *\nDisallow: '
-    let disallow = 'User-agent: *\nDisallow: /'
+    const headers = { 'content-type': 'text/plain; charset=utf8' }
+    const allow = 'User-agent: *\nDisallow: '
+    const disallow = 'User-agent: *\nDisallow: /'
     if (process.env.ARC_ENV === 'production') return { headers, body: allow }
     return { headers, body: disallow }
   }
