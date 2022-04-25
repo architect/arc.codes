@@ -6,12 +6,16 @@
     "url": "https://github.com/architect/arc.codes"
   },
   "license": "Apache-2.0",
+  "engines": {
+    "node": ">=14.0.0 <15",
+    "npm": ">=6.0.0 <7"
+  },
   "scripts": {
     "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
     "link-checker": "node ./test/link-checker.js | tap-arc",
-    "lint": "eslint src --fix",
+    "lint": "npx eslint src --fix",
     "start": "npx arc sandbox",
-    "tape": "tape 'test/**/*-test.js' | tap-arc",
+    "tape": "npx tape 'test/**/*-test.js' | tap-arc",
     "test": "npm run spellcheck && npm run lint && npm run tape"
   },
   "dependencies": {
@@ -27,7 +31,7 @@
   "devDependencies": {
     "@architect/architect": "^10.3.0",
     "@architect/eslint-config": "^2.0.1",
-    "@architect/spellcheck-dictionary": "git+https://github.com/architect/spellcheck-dictionary.git",
+    "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary#v0.1.7",
     "eslint": "^8.14.0",
     "linkinator": "^3.0.3",
     "spellchecker-cli": "^4.10.0",
