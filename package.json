@@ -45,7 +45,6 @@
     },
     "extends": "@architect/eslint-config",
     "rules": {
-      "import/no-unresolved": "error",
       "import/no-commonjs": "error",
       "import/extensions": [
         "error",
