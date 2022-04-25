@@ -17,6 +17,15 @@ Architect has two primary runtime helpers for Node.js:
 
 [View package source on GitHub](https://github.com/architect/functions/)
 
+::: wc my-aside
+#### Just so you know... {slot=header}
+This is some content. {slot=content}
+:::
+
+::: wc my-aside
+test1 **test2** test3
+:::
+
 ### Setup
 
 Install the Architect runtime helpers for Node.js:

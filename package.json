@@ -26,6 +26,8 @@
     "esm": "^3.2.25",
     "highlight.js": "^11.5.1",
     "markdown-it": "^12.3.2",
+    "markdown-it-attrs": "^4.1.3",
+    "markdown-it-container": "^3.0.0",
     "markdown-it-external-anchor": "^1.0.0",
     "markdown-it-toc-and-anchor": "github:macdonst/markdown-it-toc-and-anchor",
     "slugify": "^1.6.5",
