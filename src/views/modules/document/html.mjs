@@ -1,13 +1,13 @@
-import Banner from '../components/banner.js'
-import DocumentOutline from '../components/document-outline.js'
-import EditLink from '../components/edit-link.js'
-import GoogleAnalytics from './ga.js'
-import Head from './head.js'
-import Script from './script.js'
-import Sidebar from '../components/sidebar.js'
-import State from './state.js'
-import Symbols from './symbols.js'
-import TopNav from './top-nav.js'
+import Banner from '../components/banner.mjs'
+import DocumentOutline from '../components/document-outline.mjs'
+import EditLink from '../components/edit-link.mjs'
+import GoogleAnalytics from './ga.mjs'
+import Head from './head.mjs'
+import Script from './script.mjs'
+import Sidebar from '../components/sidebar.mjs'
+import State from './state.mjs'
+import Symbols from './symbols.mjs'
+import TopNav from './top-nav.mjs'
 
 export default function HTML (props = {}) {
   const {

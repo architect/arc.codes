@@ -15,7 +15,7 @@
     "link-checker": "node ./test/link-checker.js | tap-arc",
     "lint": "npx eslint src --fix",
     "start": "npx arc sandbox",
-    "tape": "npx tape 'test/**/*-test.js' | tap-arc",
+    "tape": "npx tape 'test/**/*-test.mjs' | tap-arc",
     "test": "npm run spellcheck && npm run lint && npm run tape"
   },
   "dependencies": {

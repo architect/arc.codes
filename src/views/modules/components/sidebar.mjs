@@ -1,5 +1,5 @@
-import listFromObject from '../helpers/list.js'
-import slugify from '../helpers/slugify.js'
+import listFromObject from '../helpers/list.mjs'
+import slugify from '../helpers/slugify.mjs'
 
 const map = {
   list: function List (state = {}) {

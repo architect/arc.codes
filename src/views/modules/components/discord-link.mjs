@@ -1,4 +1,4 @@
-import Icon from './icon.js'
+import Icon from './icon.mjs'
 
 export default function DiscordLink (state = {}) {
   const { classes } = state

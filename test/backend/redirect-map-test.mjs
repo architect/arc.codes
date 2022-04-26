@@ -1,7 +1,7 @@
 import { stat } from 'fs/promises'
 import { join } from 'path'
 import test from 'tape'
-import { redirect, tempRedirects, permanentRedirects } from '../../src/shared/redirect-map.js'
+import { redirect, tempRedirects, permanentRedirects } from '../../src/shared/redirect-map.mjs'
 
 test('redirect map middleware', async t => {
   t.plan(5)

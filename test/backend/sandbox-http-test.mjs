@@ -1,7 +1,7 @@
 import test from 'tape'
 import { get } from 'tiny-json-http'
 import { start, end } from '@architect/sandbox'
-import { currentRoot } from '../../src/shared/redirect-map.js'
+import { currentRoot } from '../../src/shared/redirect-map.mjs'
 
 const host = 'http://localhost:3333'
 const root = `${host}${currentRoot}`

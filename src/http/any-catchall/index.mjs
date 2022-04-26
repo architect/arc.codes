@@ -1,11 +1,11 @@
 import arc from '@architect/functions'
 import asap from '@architect/asap'
-import { redirect as redirectMiddleware } from '@architect/shared/redirect-map.js'
-import notFoundResponse from '@architect/shared/not-found-response.js'
-import toc from '@architect/views/docs/table-of-contents.js'
-import Html from '@architect/views/modules/document/html.js'
-import NotFound from '@architect/views/modules/components/not-found.js'
-import algolia from '@architect/views/modules/components/algolia.js'
+import { redirect as redirectMiddleware } from '@architect/shared/redirect-map.mjs'
+import notFoundResponse from '@architect/shared/not-found-response.mjs'
+import toc from '@architect/views/docs/table-of-contents.mjs'
+import Html from '@architect/views/modules/document/html.mjs'
+import NotFound from '@architect/views/modules/components/not-found.mjs'
+import algolia from '@architect/views/modules/components/algolia.mjs'
 
 // middleware proxy s3 assets
 const staticProxy = asap({

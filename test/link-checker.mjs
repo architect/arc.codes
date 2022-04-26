@@ -3,7 +3,7 @@ import { LinkChecker } from 'linkinator'
 import test from 'tape'
 import sandbox from '@architect/sandbox'
 
-import { currentRoot }  from '../src/shared/redirect-map.js'
+import { currentRoot }  from '../src/shared/redirect-map.mjs'
 
 const host = 'http://localhost:3333'
 const root = `${host}${currentRoot}`

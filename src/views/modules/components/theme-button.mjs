@@ -1,4 +1,4 @@
-import Icon from './icon.js'
+import Icon from './icon.mjs'
 
 export default function ThemeButton (state = {}) {
   const { classes } = state
