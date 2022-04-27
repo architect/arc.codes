@@ -12,7 +12,7 @@
   },
   "scripts": {
     "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
-    "link-checker": "node ./test/link-checker.js | tap-arc",
+    "link-checker": "node ./test/link-checker.mjs | tap-arc",
     "lint": "npx eslint src --fix",
     "start": "npx arc sandbox",
     "tape": "npx tape 'test/**/*-test.mjs' | tap-arc",
