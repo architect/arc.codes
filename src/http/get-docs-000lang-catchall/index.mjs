@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import arc from '@architect/functions'
-import render from '@architect/arc-render-md'
+import render from 'arcdown'
 import { redirect as redirectMiddleware } from '@architect/shared/redirect-map.mjs'
 import notFoundResponse from '@architect/shared/not-found-response.mjs'
 import algolia from '@architect/views/modules/components/algolia.mjs'
