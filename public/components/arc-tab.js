@@ -1,5 +1,7 @@
+/* eslint-env browser */
+// eslint-disable-next-line fp/no-class
 class ArcTab extends HTMLElement {
-  constructor() {
+  constructor () {
     super()
     const template = document.createElement('template')
     this.template = this.template.bind(this)
@@ -10,18 +12,18 @@ class ArcTab extends HTMLElement {
     this.content = this.querySelector('[slot=content]')
   }
 
-  template() {
+  template () {
     return `
 <link rel="stylesheet" href="/css/styles.css">
-<slot name=content></slot>
+<slot name="content"></slot>
     `
   }
 
-  connectedCallback() {
+  connectedCallback () {
     this.updateStyles()
   }
 
-  set active(value) {
+  set active (value) {
     const isActive = Boolean(value)
     if (isActive) {
       this.setAttribute('active', '')
@@ -31,34 +33,34 @@ class ArcTab extends HTMLElement {
     }
   }
 
-  set label(value) {
+  set label (value) {
     this.setAttribute('label', value)
   }
 
-  get label() {
+  get label () {
     return this.getAttribute('label')
   }
 
-  get active() {
+  get active () {
     return this.hasAttribute('active')
   }
 
-  static get observedAttributes() {
+  static get observedAttributes () {
     return [
       'active'
     ]
   }
 
-  attributeChangedCallback(name, o, n) {
-    if(name === 'active') {
+  attributeChangedCallback (name, o, n) {
+    if (name === 'active') {
       if (o !== n) {
         this.updateStyles()
       }
     }
   }
 
-  updateStyles() {
-    if(this.hasAttribute('active')) {
+  updateStyles () {
+    if (this.hasAttribute('active')) {
       this.content.classList.remove('hidden')
     }
     else {

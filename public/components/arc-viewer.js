@@ -1,5 +1,7 @@
+/* eslint-env browser */
+// eslint-disable-next-line fp/no-class
 class ArcViewer extends HTMLElement {
-  constructor() {
+  constructor () {
     super()
     this.labels = []
     this.tabs
@@ -18,28 +20,28 @@ class ArcViewer extends HTMLElement {
     this.createTabBar()
   }
 
-  template() {
+  template () {
     return `
 <link rel="stylesheet" href="/css/styles.css">
 <slot name="contents"></slot>
     `
   }
 
-  clickHandler(e) {
+  clickHandler (e) {
     let target = e.target
     let label = target.dataset.label
-    //remove active from all buttons
+    // remove active from all buttons
     let btns = this.shadowRoot.querySelectorAll('.arc--tab-btn')
     btns.forEach(b => b.classList.remove('active'))
-    //add active to the target btn
+    // add active to the target btn
     target.classList.add('active')
     this.updateTabs(label)
   }
 
-  connectedCallback() {
+  connectedCallback () {
   }
 
-  createTabBar() {
+  createTabBar () {
     let fragment = new DocumentFragment()
     this.labels.forEach(l => {
       let btn = document.createElement('button')
@@ -70,9 +72,9 @@ class ArcViewer extends HTMLElement {
     this.shadowRoot.prepend(fragment)
   }
 
-  initTabs(str='') {
+  initTabs (str = '') {
     this.tabs = this.getElementsByTagName('arc-tab')
-    for( let tab of this.tabs ) {
+    for ( let tab of this.tabs ) {
       let label = tab.getAttribute('label')
       if (str === label) {
         tab.setAttribute('active', '')
@@ -81,8 +83,8 @@ class ArcViewer extends HTMLElement {
     }
   }
 
-  updateTabs(str='') {
-    for( let tab of this.tabs ) {
+  updateTabs (str = '') {
+    for ( let tab of this.tabs ) {
       let label = tab.label
       tab.active = str === label
     }
