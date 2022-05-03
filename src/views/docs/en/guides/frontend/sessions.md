@@ -38,7 +38,7 @@ exports.handler = async function http(req) {
   session.count = (session.count || 0) + 1
   // write the session to a cookie
   let cookie = await arc.http.session.write(session)
-  
+
   return {
     statusCode: 200,
     headers: {
@@ -73,7 +73,7 @@ exports.handler = arc.http.async(handler)
 
 ## Strong secret key
 
-Ensure your app has a strong secret key:
+Ensure your app has a strong secret key. It should have a minimum length of 16 bytes.
 
 ```bash
 npx arc --env production --add ARC_APP_SECRET something-much-better-than-this
@@ -124,7 +124,7 @@ let arc = require('@architect/functions')
 
 async function home(req) {
   let count = req.session.count || 0
-  
+
   return {
     // this is perfectly acceptable and FAST server side rendering
     html: `
