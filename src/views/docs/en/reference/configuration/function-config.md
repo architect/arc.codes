@@ -45,6 +45,7 @@ Configure the deployed function with [the `@aws` pragma](../project-manifest/aws
 - [`policies`](#policies) - Configure [AWS SAM policy templates](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html)
 - [`architecture`](#architecture) - [AWS Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) for the function: `x86_64` (default) or `arm64`
 - [`storage`](#storage) - number, between `512` (default) and `10240` MB. The function's ephemeral storage (`/tmp` file system).
+- [`fifo`](#fifo) - boolean, `true` (default) or `false` to use `standard` SQS type
 
 > Note: any function configurations made globally in your project manifest will be overridden by individual functions. For example, if your `app.arc` includes `memory 128`, and `src/http/get-index/config.arc` includes `memory 3008`, all functions except `get /` will be configured with 128MB of memory, while `get /` will override that global with 3008MB.
 
@@ -203,4 +204,13 @@ Ephemeral storage lives at `/tmp` in an AWS Lambda and will not persist between 
 ```arc
 @aws
 storage 5000
+```
+
+### `fifo`
+
+Configure SQS queue type to `fifo` (`true`, default) or `standard` (`false`).
+
+```arc
+@aws
+fifo false
 ```
