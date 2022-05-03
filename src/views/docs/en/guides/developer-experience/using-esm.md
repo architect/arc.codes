@@ -18,7 +18,7 @@ New and existing Architect projects will default to CommonJS. In the future (Arc
 
 The simplest way to start using ESM is to create JavaScript files with a `.mjs` extension. For example, no configuration is needed for the following HTTP GET function to work as an ES module:
 
-```js
+```javascript
 // ./src/http/get-index/index.mjs
 export async function handler (request) {
   return { request }

@@ -11,7 +11,7 @@ Architect makes it very easy to cease using it in favor of any another tool or f
 
 In your project directory, run:
 
-```sh
+```bash
 npx arc deploy --eject
 ```
 

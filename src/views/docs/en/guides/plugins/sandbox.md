@@ -23,7 +23,7 @@ Run arbitrary operations during Sandbox startup. At the time of `sandbox.start` 
 
 Example:
 
-```js
+```javascript
 let { readFile } = require('fs/promises')
 // Invoke a scheduled event whenever its business logic changes
 module.exports = { sandbox: {
@@ -87,7 +87,7 @@ my-scheduled-event rate(1 day)
 
 Your `my-scheduled-event` Lambda could be invoked locally on demand like so:
 
-```js
+```javascript
 let { readFile } = require('fs/promises')
 // Invoke a scheduled event whenever its business logic changes
 module.exports = { sandbox: {

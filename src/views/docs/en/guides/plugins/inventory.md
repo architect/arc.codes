@@ -44,7 +44,7 @@ The basics:
 
 The `inv` object contains a property for each Architect [pragma](/docs/en/get-started/project-manifest#more-on-app.arc), and a handful of meta properties and resource collections. Here is a basic example `inv` object:
 
-```js
+```javascript
 inventory.inv = {
   _arc:             { /* Architect metadata: current version, pragmas, stage, etc. */ },
   _project:         { /* Project metadata: cwd, preferences, env vars, etc. */ },
@@ -58,7 +58,7 @@ Each pragma's Lambdas may contain different properties and configurations; for e
 
 Here's an example of what the above `get /foo` Lambda object might look like:
 
-```js
+```javascript
 inventory.inv.http = [
   {
     name: 'get /foo',
@@ -91,7 +91,7 @@ inventory.inv.http = [
 
 We encourage you to explore the Inventory format on your own; a quick way to inspect your project's Inventory would be to just log it out from a plugin like so:
 
-```js
+```javascript
 module.exports = { sandbox: { start: function ({ inventory }) {
   console.dir(inventory.inv, { depth: null })
 } } }
@@ -117,14 +117,14 @@ fingerprint true
 
 Now say you wanted to get the Inventory Lambda object of `@http get /foo`. You could use `find()` on the `http` array to search for the `name` property of `get /foo` (e.g. `inventory.inv.http.find(({ name }) => name === 'get /foo')`). Or you can use `inventory.get`:
 
-```js
+```javascript
 console.log(get.http('get /foo')) // Your `get /foo` Lambda
 console.log(get.http('get /bar')) // null
 ```
 
 `get` also works on settings pragmas, like `@static` or `@aws`:
 
-```js
+```javascript
 console.log(get.static('fingerprint'))  // true
 console.log(get.static('prune'))        // null
 console.log(get.aws('region'))          // 'us-west-2'

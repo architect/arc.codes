@@ -22,14 +22,14 @@
     "@architect/asap": "^5.0.1",
     "@architect/functions": "~5.0.5",
     "@architect/inventory": "^3.1.0",
-    "@architect/package": "^8.1.1",
+    "@architect/package": "^8.1.2",
     "@architect/plugin-node-prune": "^2.0.2",
     "@architect/syntaxes": "github:architect/syntaxes#v1.2.1",
-    "arcdown": "^0.3.0",
+    "arcdown": "^0.3.1",
     "slugify": "^1.6.5"
   },
   "devDependencies": {
-    "@architect/architect": "^10.3.1",
+    "@architect/architect": "^10.3.2",
     "@architect/eslint-config": "^2.0.1",
     "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary#v0.1.7",
     "eslint": "^8.14.0",

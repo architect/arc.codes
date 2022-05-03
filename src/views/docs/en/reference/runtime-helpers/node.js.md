@@ -311,7 +311,7 @@ exports.handler = async function handler (req) {
 
 Alternatively, use `arc.http[.async]`'s automatic session parsing:
 
-```js
+```javascript
 let arc = require('@architect/functions')
 
 async function handler (req) {

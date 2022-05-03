@@ -53,7 +53,7 @@ Register async events (as in the `@events` pragma). Return a single object or an
 
 Example:
 
-```js
+```javascript
 // Return a single async event
 module.exports = { set: {
   events: ({ arc, inventory }) => {
@@ -78,7 +78,7 @@ Register HTTP routes (as in the `@http` pragma). Return a single object or an ar
 
 Example:
 
-```js
+```javascript
 // Return multiple HTTP routes
 module.exports = { set: {
   http: ({ arc, inventory }) => {
@@ -103,7 +103,7 @@ Register async event queues (as in the `@queues` pragma). Return a single object
 
 Example:
 
-```js
+```javascript
 // Return a single async event queue
 module.exports = { set: {
   queues: ({ arc, inventory }) => {
@@ -131,7 +131,7 @@ Register scheduled event (as in the `@scheduled` pragma). Return a single object
 
 Example:
 
-```js
+```javascript
 // Return two scheduled events: one using rate syntax, and one using cron syntax
 module.exports = { set: {
   scheduled: ({ arc, inventory }) => {
@@ -165,7 +165,7 @@ Register DynamoDB event streams (as in the `@tables-streams` pragma). Return a s
 
 Example:
 
-```js
+```javascript
 // Return a single table stream
 module.exports = { set: {
   'tables-streams': ({ arc, inventory }) => {
@@ -192,7 +192,7 @@ Register WebSocket routes (as in the `@ws` pragma). Return a single object or an
 
 Example:
 
-```js
+```javascript
 // Return a single WebSocket route
 module.exports = { set: {
   ws: ({ arc, inventory }) => {
@@ -218,7 +218,7 @@ Register environment variables for all Lambdas. To create an environment variabl
 
 Examples:
 
-```js
+```javascript
 // Return an environment variable for all Lambdas
 module.exports = { set: {
   env: ({ arc, inventory }) => {
@@ -229,7 +229,7 @@ module.exports = { set: {
 } }
 ```
 
-```js
+```javascript
 // Return a different environment variables for different stages
 module.exports = { set: {
   env: ({ arc, inventory }) => {
@@ -260,7 +260,7 @@ Register bare Lambdas without a pre-associated event source. `set.customLambdas`
 
 Example:
 
-```js
+```javascript
 // Return a single async event
 module.exports = { set: {
   customLambdas: ({ arc, inventory }) => {
@@ -294,7 +294,7 @@ For example, using [Architect TypeScript](https://github.com/architect/plugin-ty
 
 Example:
 
-```js
+```javascript
 // Enable a custom build directory with a custom runtime pragma (`@typescript`)
 module.exports = { set: {
   runtime: ({ arc, inventory }) => {
@@ -333,7 +333,7 @@ These include: `runtime`, `memory`, `timeout`, `concurrency`, `architecture`, an
 
 Example:
 
-```js
+```javascript
 // Returning this event Lambda assumes user project defaults > Architect defaults
 // If the project specifies `@aws runtime python3.9`, and your handler is JS, it will not run
 module.exports = { set: {
@@ -346,7 +346,7 @@ module.exports = { set: {
 } }
 ```
 
-```js
+```javascript
 // Returning a `config` property provides control over the configuration of the returned Lambda
 module.exports = { set: {
   events: ({ arc, inventory }) => {
@@ -389,7 +389,7 @@ delete
 
 Since these Lambdas live in userland, `set.customLambdas` method might look something like this:
 
-```js
+```javascript
 module.exports = { set: {
   customLambdas: ({ arc, inventory }) => {
     let localS3 = arc['local-s3']
@@ -417,7 +417,7 @@ Now let's say you're writing a plugin called `autobundle` to accomplish a specif
 
 Assuming you published your project as `arc-plugin-autobundle`, you might want your `set` plugin to look something like this:
 
-```js
+```javascript
 // node_modules/arc-plugin-autobundle/index.js
 module.exports = { set: {
   http: ({ arc, inventory }) => {

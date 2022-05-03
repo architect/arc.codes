@@ -32,7 +32,7 @@ post /like
 
 Where utility code lives in `./src/shared` and common view code in `.src/views`:
 
-```sh
+```bash
 .
 ├── src
 │   ├── http
@@ -56,7 +56,7 @@ Where utility code lives in `./src/shared` and common view code in `.src/views`:
 <h5>js</h5>
 <div slot=content>
 
-```js
+```javascript
 // get-index/index.js
 const auth = require('@architect/shared/authenticate')
 const document = require('@architect/views/document')
@@ -69,7 +69,7 @@ const document = require('@architect/views/document')
 <h5>rb</h5>
 <div slot=content>
 
-```rb
+```ruby
 # get-index/index.rb
 require_relative './vendor/shared/authenticate'
 require_relative './vendor/views/document'
@@ -82,7 +82,7 @@ require_relative './vendor/views/document'
 <h5>py</h5>
 <div slot=content>
 
-```py
+```python
 # get-index/index.py
 import vendor.shared.authenticate
 import vendor.views.document
@@ -103,7 +103,7 @@ The `post-like` route has access to shared code as well, but not views because i
 <h5>js</h5>
 <div slot=content>
 
-```js
+```javascript
 // post-like/index.js
 const auth = require('@architect/shared/authenticate')
 ```
@@ -115,7 +115,7 @@ const auth = require('@architect/shared/authenticate')
 <h5>rb</h5>
 <div slot=content>
 
-```rb
+```ruby
 # post-like/index.rb
 require_relative './vendor/shared/authenticate'
 ```
@@ -127,7 +127,7 @@ require_relative './vendor/shared/authenticate'
 <h5>py</h5>
 <div slot=content>
 
-```py
+```python
 # post-like/index.py
 import vendor.shared.authenticate
 ```
@@ -162,7 +162,7 @@ They are still required in the same way:
 <h5>js</h5>
 <div slot=content>
 
-```js
+```javascript
 // get-index/index.js
 const auth = require('@architect/shared/authenticate')
 const document = require('@architect/views/document')
@@ -175,7 +175,7 @@ const document = require('@architect/views/document')
 <h5>rb</h5>
 <div slot=content>
 
-```rb
+```ruby
 # get-index/index.rb
 require_relative './vendor/shared/authenticate'
 require_relative './vendor/views/document'
@@ -188,7 +188,7 @@ require_relative './vendor/views/document'
 <h5>py</h5>
 <div slot=content>
 
-```py
+```python
 # get-index/index.py
 import vendor.shared.authenticate
 import vendor.views.document

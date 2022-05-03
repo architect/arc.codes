@@ -29,7 +29,7 @@ extend-arc
 
 The `@macros` API calls for a single function (async or sync) to be exported, and accepts the following arguments:
 
-```js
+```javascript
 // src/macros/extend-arc/index.js
 module.exports = async function macro (arc, cloudformation, stage) {
   // modify cloudformation.Resources here
@@ -54,7 +54,7 @@ extend-arc
 ```
 
 3. Update your function to the new semantics:
-```js
+```javascript
 // src/plugins/extend-arc/index.js
 module.exports = {
   deploy: {

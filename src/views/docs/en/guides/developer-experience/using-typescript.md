@@ -13,7 +13,7 @@ Architect's TypeScript integration takes care of transpiling, source maps, sourc
 
 In your Architect project run:
 
-```sh
+```bash
 npm i @architect/plugin-typescript --save-dev
 ```
 
@@ -31,7 +31,7 @@ architect/plugin-typescript
 
 Author (or port) Lambdas in the `src` tree with `index.ts` handlers. For example:
 
-```js
+```javascript
 // src/http/get-index/index.ts
 export async function handler (request: any, context: any): Promise<any> {
   return request

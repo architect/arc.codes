@@ -22,13 +22,12 @@ async function handler (req) {
     return { statusCode: 303, headers: { location: '/playground' } }
 
   const doc = `${docName}.md`
-  const activePath = join(
-    'docs',
+  const active = join(
+    '/docs',
     lang,
     ...parts,
-    docName
+    docName,
   )
-  const active = `/${activePath}` // Add leading slash to match anchor href
   let editURL = 'https://github.com/architect/arc.codes/edit/main/src/views/docs/'
   editURL += join(lang, ...parts, doc)
 
@@ -40,7 +39,7 @@ async function handler (req) {
     'docs',
     lang,
     ...parts,
-    doc
+    doc,
   )
 
   try {
@@ -65,7 +64,7 @@ async function handler (req) {
         scripts: [
           '/index.js',
           '/components/arc-viewer.js',
-          '/components/arc-tab.js'
+          '/components/arc-tab.js',
         ],
         thirdparty: algolia(lang),
         toc,
@@ -76,9 +75,9 @@ async function handler (req) {
       statusCode: 200,
       headers: {
         'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
-        'content-type': 'text/html; charset=utf8'
+        'content-type': 'text/html; charset=utf8',
       },
-      body
+      body,
     }
   }
   catch (error) {
@@ -93,7 +92,7 @@ async function handler (req) {
         scripts: [ '/index.js' ],
         state: { notFoundTerm: docName },
         thirdparty: algolia(lang),
-        toc
+        toc,
       })
     }
   }

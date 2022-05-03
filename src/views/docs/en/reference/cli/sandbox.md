@@ -170,7 +170,7 @@ testing
 
 The following is true in a Node.js function run with Sandbox:
 
-```js
+```javascript
 process.env.URL === 'https://arc.codes' // true
 process.env.ADMIN_PASS // undefined
 ```
@@ -198,7 +198,7 @@ things
   sort **String
 ```
 
-```js
+```javascript
 // seed-data.js
 module.exports = {
   things: [

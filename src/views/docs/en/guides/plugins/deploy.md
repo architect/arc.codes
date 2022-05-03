@@ -26,7 +26,7 @@ Run arbitrary pre-deploy operations + customize CloudFormation. (This API is a d
 
 Example:
 
-```js
+```javascript
 // Do something only for staging deployments
 module.exports = { deploy: {
   start: async ({ arc, cloudformation, dryRun, inventory, stage }) => {
@@ -47,7 +47,7 @@ Hook into Architect's [service discovery](/docs/en/reference/runtime-helpers/nod
 
 Examples:
 
-```js
+```javascript
 // Create some identifiers associated with custom S3 bucket credentials
 module.exports = { deploy: {
   services: async ({ arc, cloudformation, dryRun, inventory, stage }) => {
@@ -68,7 +68,7 @@ module.exports = { deploy: {
 } }
 ```
 
-```js
+```javascript
 // Make up fo 4KB of configuration data available for your Lambdas to fetch via arc.services()
 module.exports = { deploy: {
   services: async ({ arc, cloudformation, dryRun, inventory, stage }) => {
@@ -87,7 +87,7 @@ Bypass CloudFormation deployment to AWS, and ship the project to an AWS intermed
 
 Example:
 
-```js
+```javascript
 module.exports = { deploy: {
   target: async ({ arc, cloudformation, dryRun, inventory, stage }) => {
     if (dryRun) return
@@ -104,7 +104,7 @@ Run arbitrary post-deploy operations.
 
 Example:
 
-```js
+```javascript
 const { rm } = require('fs/promises')
 module.exports = { deploy: {
   end: async ({ arc, cloudformation, dryRun, inventory, stage }) => {
