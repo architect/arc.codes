@@ -13,6 +13,7 @@ FQDN
 FWAs
 getConnection
 getter
+GitLab
 GoDaddy
 Graviton2
 konsumer

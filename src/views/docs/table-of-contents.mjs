@@ -21,6 +21,7 @@ const Guides = [
       {
         'Continuous integration': [
           'GitHub Actions',
+          'GitLab Pipelines',
           'AWS EC2',
         ]
       }
