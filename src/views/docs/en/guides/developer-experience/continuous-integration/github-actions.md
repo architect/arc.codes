@@ -10,16 +10,17 @@ Architect projects can be tested and deployed from GitHub Actions.
 
 Architect has created [`architect/action-build`](https://github.com/architect/action-build) and [`architect/action-deploy`](https://github.com/architect/action-deploy) for GitHub Actions. These can be included as a part of your project's workflows.
 
-> 🔑  Required: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` must be set in [your GitHub repository or organization secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets). 
+> 🔑  Required: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` must be set in [your GitHub repository or organization secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
 The deploy action follows a standard pattern where commits to the `main` branch are deployed to a staging environment and git tags that begin with `v` are deployed to production.
 
-This allows a workflow where a PR is merged into `main` and automatically promoted to staging. Then a git tag is created (like with `npm version patch|minor|major`) to deploy to production. It is helpful to ["follow tags" when git pushing](https://git-scm.com/docs/git-push#Documentation/git-push.txt---follow-tags).
+This enables a workflow where a pull request can be merged into `main` and automatically promoted to staging. When a git tag is created (like with `npm version patch|minor|major`) the project is deployed to production.  
+It is helpful to ["follow tags" when git pushing](https://git-scm.com/docs/git-push#Documentation/git-push.txt---follow-tags).
 
 ### Usage example
 
 ```yaml
-# ./.github/workflows/build-deploy.yml
+# .github/workflows/build-deploy.yml
 name: Build and deploy
 
 on: [ push, pull_request ]
