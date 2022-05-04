@@ -25,7 +25,7 @@ arc env [-e environment] [--add|--remove] VARIABLE_NAME VARIABLE_VALUE
 ## Security
 
 It is imperative that the `ARC_APP_SECRET` environment variable be set to
-something secret - especially in your production environment! This secret is
+a strong secret - especially in your production environment! It should have a minimum length of 16 bytes. This secret is
 used to encode HTTP sessions if you use the [`@architect/functions` runtime helpers](../runtime-helpers/node.js#arc.http.session).
 
 
