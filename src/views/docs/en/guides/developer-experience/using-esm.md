@@ -4,7 +4,8 @@ category: Developer experience
 description: How to use ECMAScript Modules in functions
 ---
 
-As of January 6, 2022 [AWS Lambdas support Node.js 14 ES modules and top-level await](https://aws.amazon.com/blogs/compute/using-node-js-es-modules-and-top-level-await-in-aws-lambda/). Architect shipped an update in version `9.5.0` that adheres to Node.js conventions and the implementation from AWS. Lambdas must use the `nodejs14.x` runtime to leverage ESM.
+AWS Lambdas support ES modules and top-level await. Architect adheres to Node.js conventions and the AWS implementation.  
+Lambdas must use the `nodejs14.x` or greater runtime to leverage ESM.
 
 ## Example project
 
@@ -12,26 +13,28 @@ A working Architect project with each method for using ESM and CJS, can be found
 
 ## CommonJS by default
 
-New and existing Architect projects will default to CommonJS. In the future (Architect 10+) `arc init` and `arc create` will generate ESM functions. Architect will always support CJS so long as Node.js does.
+Architect projects currently default to CommonJS. In the future `arc init` and `arc create` may generate ESM functions by default. Architect will always support CJS so long as Node.js does.
 
 ## ES Modules with `.mjs`
 
 The simplest way to start using ESM is to create JavaScript files with a `.mjs` extension. For example, no configuration is needed for the following HTTP GET function to work as an ES module:
 
 ```javascript
-// ./src/http/get-index/index.mjs
-export async function handler (request) {
-  return { request }
+// ./src/shared/helper.mjs
+export default function () {
+  return "Don't panic."
 }
 ```
 
-```
-.
-├── src
-│   └── http
-│       └── get-index
-│           └── index.mjs
-└── app.arc
+The shared ESM file can be imported in any function. Remember, ESM import statements require the file extension.
+
+```javascript
+// ./src/http/get-index/index.mjs
+import myHelper from '@architect/shared/helper.mjs'
+
+export async function handler (event) {
+  return { body: myHelper() }
+}
 ```
 
 ## ES Modules with `package.json`
