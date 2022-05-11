@@ -21,20 +21,20 @@ Local AWS profile name to use with this project, as defined in your [local AWS c
 
 ### `runtime`
 
-Lambda runtime, as defined by the [`lambda-runtimes`](https://github.com/architect/lambda-runtimes/blob/cad3b158968805a01103e47c08da48132620594e/cjs/index.js) library.
+[Lambda runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html), as defined by the [`lambda-runtimes`](https://github.com/architect/lambda-runtimes) library.
 
 > ℹ️  Local [Sandbox](../cli/sandbox) support is currently limited to Node.js, Python, and Ruby.
 
-| Runtime | Versions     | Example            | Alias<sup>1</sup>         |
-|---------|--------------|--------------------|---------------------------|
-| Node.js | 12.x, 14.x   | `nodejs14.x`       | `node` `nodejs` `node.js` |
-| Python  | 3.6 - 3.9    | `python3.9`        | `python` `py`             |
-| Ruby    | 2.7          | `ruby2.7`          | `ruby` `rb`               |
-| .NET    | 3.1          | `dotnetcore3.1`    | `dotnet` `.net`           |
-| Go      | 1.x          | `go1.x`            | `golang` `go`             |
-| Java    | 8, 8.al2, 11 | `java11`           | `java`                    |
+| Runtime | Versions                   | Example            | Alias<sup>1</sup>         |
+|---------|----------------------------|--------------------|---------------------------|
+| Node.js | 12.x, 14.x (default), 16.x | `nodejs16.x`       | `node` `nodejs` `node.js` |
+| Python  | 3.6 - 3.9                  | `python3.9`        | `python` `py`             |
+| Ruby    | 2.7                        | `ruby2.7`          | `ruby` `rb`               |
+| .NET    | 3.1                        | `dotnetcore3.1`    | `dotnet` `.net`           |
+| Go      | 1.x                        | `go1.x`            | `golang` `go`             |
+| Java    | 8, 8.al2, 11               | `java11`           | `java`                    |
 
-1. Runtime aliases always default to the latest runtime version; `py` is effectively `python3.9`.
+1. Runtime aliases always use the default runtime version; `py` is effectively `python3.9`.
 
 ### `bucket`
 
