@@ -4,7 +4,7 @@ category: Developer experience
 description: How to use ECMAScript Modules in functions
 ---
 
-AWS Lambdas support ES modules and top-level await. Architect adheres to Node.js conventions and the AWS implementation.  
+[AWS Lambdas support ES modules and top-level await](https://aws.amazon.com/blogs/compute/using-node-js-es-modules-and-top-level-await-in-aws-lambda/). Architect adheres to Node.js conventions and the AWS implementation.  
 Lambdas must use the `nodejs14.x` or greater runtime to leverage ESM.
 
 ## Example project
@@ -13,11 +13,11 @@ A working Architect project with each method for using ESM and CJS, can be found
 
 ## CommonJS by default
 
-Architect projects currently default to CommonJS. In the future `arc init` and `arc create` may generate ESM functions by default. Architect will always support CJS so long as Node.js does.
+Architect projects currently default to CommonJS. In the future, `arc init` and `arc create` may generate ESM functions by default. Architect will always support CJS so long as Node.js does.
 
 ## ES Modules with `.mjs`
 
-The simplest way to start using ESM is to create JavaScript files with a `.mjs` extension. For example, no configuration is needed for the following HTTP GET function to work as an ES module:
+The simplest way to start using ESM is to create JavaScript files with a `.mjs` extension. For example, no configuration is needed for the following shared helper and HTTP GET function to work as ES modules:
 
 ```javascript
 // ./src/shared/helper.mjs
@@ -26,7 +26,7 @@ export default function () {
 }
 ```
 
-The shared ESM file can be imported in any function. Remember, ESM import statements require the file extension.
+The shared ESM file can be imported in any function. Remember, ES module import statements require the file extension.
 
 ```javascript
 // ./src/http/get-index/index.mjs
