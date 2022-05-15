@@ -19,12 +19,13 @@ Architect projects work locally and offline. Sandbox emulates most app resources
 ## Usage
 
 ```bash
-arc sandbox [--port|--disable-symlinks|--no-hydrate|--verbose]
+arc sandbox [--port|--host|--disable-symlinks|--no-hydrate|--verbose]
 ```
 
 ## Flags
 
 - `[--port, -p]` Manually specify HTTP port (default `3333`)
+- `[--host, -h]` Specify which IP addresses the server should listen on. Set this to 0.0.0.0 or true to listen on all addresses, including LAN and public addresses.
 - `[--verbose, -v]` Enable verbose logging
 - `[--disable-symlinks]` Disable symlinking `src/shared` and copy instead
 - `[--no-hydrate]` Disables hydration
