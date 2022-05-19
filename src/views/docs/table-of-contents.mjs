@@ -17,6 +17,7 @@ const Guides = [
       'Logging & monitoring',
       'Using ESM',
       'Using TypeScript',
+      'Using Deno',
       'Customizing CloudFormation',
       {
         'Continuous integration': [
