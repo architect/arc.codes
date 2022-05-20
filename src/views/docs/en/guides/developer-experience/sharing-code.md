@@ -30,7 +30,7 @@ get /
 post /like
 ```
 
-Where utility code lives in `./src/shared` and common view code in `.src/views`:
+Where utility code lives in `./src/shared` and common view code in `./src/views`:
 
 ```bash
 .
