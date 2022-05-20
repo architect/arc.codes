@@ -15,7 +15,7 @@ Additionally, [Sandbox](../../reference/cli/sandbox) will use `deno` to invoke f
 
 ### Project configuration
 
-Set the Deno runtime in your [project (`app.arc`)](../../reference/project-manifest/aws) or [function (`config.arc`)](../configuration/function-config) configuration:
+Set the Deno runtime in your [project (`app.arc`)](../../reference/project-manifest/aws) or [function (`config.arc`)](../../reference/configuration/function-config) configuration:
 
 ```arc
 @aws
