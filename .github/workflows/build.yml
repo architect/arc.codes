@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Build App
         uses: architect/action-build@v3
+        with:
+          node-version: 16
 
   # Assuming all that went fine (and it's main): deploy!
   deploy:
@@ -26,6 +28,7 @@ jobs:
       - name: Deploy app
         uses: architect/action-deploy@v1
         with:
+          node-version: 16
           aws_access_key_id: ${{secrets.AWS_ACCESS_KEY_ID}}
           aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
 
