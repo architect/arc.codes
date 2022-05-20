@@ -4,34 +4,30 @@ category: Developer Experience
 description: Deno runtime support
 ---
 
-The Architect team has a strong interest in [Deno](https://deno.land/) 🦕 as a runtime.
+The Architect team has a strong interest in [Deno](https://deno.land/) as a runtime.
 
 ## Current support
 
-[Sandbox](../../reference/cli/sandbox) will use `deno` to invoke functions locally, but Deno is not currently an officially supported AWS Lambda runtime. It is possible to use a [Lambda _layer_](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-concepts.html#gettingstarted-concepts-layer) to provide the Deno executable, but response times may suffer.
+Deno is not currently an officially supported AWS Lambda runtime, but Architect can add a [Lambda _layer_](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-concepts.html#gettingstarted-concepts-layer) to provide the Deno executable on AWS infrastructure.  
+Additionally, [Sandbox](../../reference/cli/sandbox) will use `deno` to invoke functions while developing locally.
 
-### Sandbox configuration
+> ⚠️  Lambda layers can increase response times when the function is cold. This approach to enabling Deno is not ideal for user interaction.
 
-Set the Deno runtime in your [project (`app.arc`)](../../reference/project-manifest/aws) or [function (`config.arc`)](../configuration/function-config): config
+### Project configuration
+
+Set the Deno runtime in your [project (`app.arc`)](../../reference/project-manifest/aws) or [function (`config.arc`)](../configuration/function-config) configuration:
 
 ```arc
 @aws
 runtime deno
 ```
 
-> 🥇  Make sure you [install Deno locally](https://deno.land/#installation). Architect and Sandbox will still run with Node.js, but will orchestrate `deno` processes when running your functions.
+> 🦕  To enable Sandbox support for Deno, make sure you [install Deno locally](https://deno.land/#installation).  
 
-### Lambda Deno layers
+Architect and Sandbox will still run with Node.js, but will orchestrate `deno` processes when running your functions.
 
-Use Deno for deployed functions by specifying one of [these ARNs](https://github.com/beginner-corp/begin-deno-runtime) in your project or function [`layers` config](../../reference/configuration/function-config#layers):
+### Deno runtime version
 
-```arc
-@aws
-runtime deno
-layers
-  arn:aws:lambda:us-east-1:455488262213:layer:DenoRuntime:37
-```
+The current provided layer is Deno v1.19.1.
 
-## Runtime helper
-
-Track [runtime helper](https://github.com/architect/functions-deno) progress.
+> 🧑‍🔬  The Arc team is actively working on providing up-to-date and configurable Deno layers.
