@@ -7,8 +7,8 @@
   },
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=14.0.0 <15",
-    "npm": ">=6.0.0 <7"
+    "node": ">=16.14.0 <17",
+    "npm": ">=8.5.0 <9"
   },
   "scripts": {
     "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
