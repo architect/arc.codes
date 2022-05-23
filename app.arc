@@ -18,3 +18,8 @@ any /*
 @plugins
 spellcheck
 architect/plugin-node-prune
+
+@tables
+docs
+  path *String
+  expires TTL

@@ -3,50 +3,35 @@ import { join } from 'path'
 import arc from '@architect/functions'
 import render from 'arcdown'
 import { redirect as redirectMiddleware } from '@architect/shared/redirect-map.mjs'
-import notFoundResponse from '@architect/shared/not-found-response.mjs'
 import algolia from '@architect/views/modules/components/algolia.mjs'
+import classMap from '@architect/views/markdown-class-mappings.mjs'
 import Html from '@architect/views/modules/document/html.mjs'
 import NotFound from '@architect/views/modules/components/not-found.mjs'
 import toc from '@architect/views/docs/table-of-contents.mjs'
-import classMap from './markdown-class-mappings.mjs'
+import notFoundResponse from '@architect/shared/not-found-response.mjs'
 
-const cache = {} // cheap warm cache
+async function handler (request) {
+  const { path, pathParameters } = request
+  const { lang } = pathParameters
+  const docName = path.split('/').pop()
 
-async function handler (req) {
-  const { path, pathParameters } = req
-  const { lang, proxy } = pathParameters
-  const parts = proxy.split('/')
-  const docName = parts.pop()
-
-  if (docName === 'playground')
-    return { statusCode: 303, headers: { location: '/playground' } }
-
-  const doc = `${docName}.md`
-  const active = join(
-    '/docs',
-    lang,
-    ...parts,
-    docName,
-  )
-  let editURL = 'https://github.com/architect/arc.codes/edit/main/src/views/docs/'
-  editURL += join(lang, ...parts, doc)
-
+  // ? use `new URL()`
   const filePath = join(
     new URL('.', import.meta.url).pathname,
     'node_modules',
     '@architect',
     'views',
-    'docs',
-    lang,
-    ...parts,
-    doc,
+    `${path}.md`,
   )
 
   try {
+    const docCache = (await arc.tables()).docs
+    const cachedDoc = await docCache.get({ path })
     let body
 
-    if (cache[filePath]) {
-      body = cache[filePath]
+    if (cachedDoc) {
+      console.log('cached', path, cachedDoc.expires)
+      body = cachedDoc.body
     }
     else {
       const file = readFileSync(filePath, 'utf8')
@@ -55,10 +40,9 @@ async function handler (req) {
         pluginOverrides: { markdownItClass: classMap },
       }
       const result = await render(file, renderOptions)
-      body = cache[filePath] = Html({
+      body = Html({
         ...result,
-        active,
-        editURL,
+        active: path,
         lang,
         path,
         scripts: [
@@ -69,6 +53,7 @@ async function handler (req) {
         thirdparty: algolia(lang),
         toc,
       })
+      await docCache.put({ path, body, expires: Date.now() + (1000 * 60 * 60) })
     }
 
     return {
@@ -86,7 +71,7 @@ async function handler (req) {
     return {
       ...notFoundResponse,
       body: Html({
-        active,
+        active: path,
         html: NotFound({ term: docName, error }),
         lang,
         scripts: [ '/index.js' ],

@@ -11,8 +11,8 @@ import TopNav from './top-nav.mjs'
 
 export default function HTML (props = {}) {
   const {
+    active = '',
     html = '',
-    editURL = '',
     lang = 'en',
     scripts = '',
     slug = '',
@@ -77,7 +77,7 @@ ${Symbols}
         </h1>
         <div class="pb4 docs">
           ${html}
-          ${EditLink({ editURL })}
+          ${EditLink({ active })}
         </div>
       </div>
       ${DocumentOutline(props)}
