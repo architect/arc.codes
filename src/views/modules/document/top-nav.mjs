@@ -3,6 +3,7 @@ import Icon from '../components/icon.mjs'
 import Search from '../components/search.mjs'
 import GithubLink from '../components/github-link.mjs'
 import DiscordLink from '../components/discord-link.mjs'
+import TwitterLink from '../components/twitter-link.mjs'
 import ThemeButton from '../components/theme-button.mjs'
 
 export default function TopNav () {
@@ -51,6 +52,7 @@ export default function TopNav () {
   >
     ${Search({ classes: 'hidden inline-block-lg mr0' })}
     ${DiscordLink()}
+    ${TwitterLink({ classes: 'ml0' })}
     ${GithubLink({ classes: 'ml0' })}
     ${ThemeButton({ classes: 'ml0' })}
     <button
