@@ -89,7 +89,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Cancel previous uns
+      - name: Cancel previous runs
         uses: styfle/cancel-workflow-action@0.9.1
       - name: Checkout repository
         uses: actions/checkout@v3
