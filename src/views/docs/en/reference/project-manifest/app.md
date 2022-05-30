@@ -13,6 +13,8 @@ description: Define the application namespace
 - Dashes and underscores are allowed
 - Must begin with a letter
 
+> 🪧  Changing the project's app name or [region](./aws#region) between deployments will create a new CloudFormation stack. The app namespace is used to create a stack name, which is unique to each AWS region.
+
 ## Example
 
 Create an app with the namespace "foobaz":

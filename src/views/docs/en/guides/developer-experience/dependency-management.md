@@ -6,7 +6,7 @@ description: Architect dependency structure and hydration
 
 All [Functional Web Apps](https://fwa.dev) have project level dependencies and function level dependencies. Project level dependencies are defined at the root of the project. Lambda functions within a project are deployed individually and subsequently need to package their own dependencies. Different deployment frameworks handle this in different ways depending on the runtime; Architect projects encourage single responsibility functions with the minimum number of dependencies. This intentional isolation leads to easier debugging, faster coldstart and least privilege security.
 
-## Node
+## Node.js
 
 If there is a `package.json` in the Lambda function folder it will be used. If there is no `package.json` in the function folder Architect will statically analyze the code and transparently tree shake an optimal `node_modules` folder for that specific Lambda function. Imported code must be in a `package.json` file or relative to the root of the function and or the module will not load once it has been deployed!
 

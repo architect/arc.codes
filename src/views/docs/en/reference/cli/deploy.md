@@ -8,7 +8,9 @@ sections:
   - Flags
 ---
 
-Deploys code to AWS.
+Deploy an Architect project to AWS by creating or updating a [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) stack with resources declared in [the project manifest](../../get-started/project-manifest).
+
+CloudFormation stack names are created from the name specified in the `@app` pragma and are unique to an AWS region. Changing the project name or region will create a new CF stack.
 
 ## Usage
 

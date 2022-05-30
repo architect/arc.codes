@@ -4,9 +4,13 @@ category: Developer experience
 description: How to deploy your Architect app
 ---
 
-Architect makes deploying AWS CloudFormation completely painless.
+Architect makes deploying AWS CloudFormation "stacks" painless.
 
-## Deploy to staging
+> 🧑‍🏫  CloudFormation stack identifiers are created from the name specified in the `@app` pragma and are unique to an AWS region. Changing the project name or region will create a new CF stack.
+
+## Command examples
+
+### Deploy to staging
 
 Deploy a CloudFormation template to a `staging` environment.
 
@@ -16,26 +20,28 @@ arc deploy
 
 > Protip: create arbitrary named staging environments with `arc deploy --name [your name]`
 
-## Deploy to production
+### Deploy to production
 
 Deploy a CloudFormation template to an identical `production` environment.
 
 ```bash
-arc deploy production
+arc deploy --production
 ```
 
-## Deploy a function directly to staging
+### Deploy a function directly
 
-Rather than deploying the entire stack with CloudFormation you can quickly deploy code for one function to `staging` by supplying a path.
+Rather than deploying the entire stack with CloudFormation you can quickly deploy code for one function by supplying a path.
 
 ```bash
-arc deploy path/to/code
+arc deploy --direct path/to/code
 ```
 
-## Deploy static assets to S3
+Combine with the `--production` flag to update one function to the production stack.
 
-Sometimes you need to update the frontend!
+### Deploy static assets to S3
+
+Sometimes you need to just update the frontend.
 
 ```bash
-arc deploy static
+arc deploy --static
 ```
