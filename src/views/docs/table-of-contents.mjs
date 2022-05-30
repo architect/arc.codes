@@ -18,7 +18,7 @@ const Guides = [
       'Using ESM',
       'Using TypeScript',
       'Using Deno',
-      'Customizing CloudFormation',
+      'Custom CloudFormation',
       {
         'Continuous integration': [
           'GitHub Actions',

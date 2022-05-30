@@ -14,13 +14,13 @@ html {
   height: 4px;
 }
 .max-width-content {
-  max-width: 50rem;
+  max-width: 53.125rem;
 }
 .two-column {
   /* Height: Header | Content */
   grid-template-rows: 3rem 1fr;
   /* Width: Sidebar | Content */
-  grid-template-columns: 17.666rem 1fr;
+  grid-template-columns: 18.554rem 1fr;
 }
 .icon {
   width: 1.1rem;

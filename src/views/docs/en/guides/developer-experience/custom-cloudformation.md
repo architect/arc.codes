@@ -1,5 +1,5 @@
 ---
-title: Customizing CloudFormation
+title: Custom CloudFormation
 category: Developer experience
 description: How to use Architect Plugins to define or modify AWS resources with CloudFormation
 ---

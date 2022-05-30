@@ -8,7 +8,7 @@ Extend the functionality of your Architect app with `@plugins`.
 
 Architect’s plugin API exposes [workflow lifecycle hooks](#workflow-hooks) (such filesystem events in the [Sandbox](/docs/en/reference/cli/sandbox)) and interfaces for [generating cloud resources](#resource-setters) (such as custom Lambdas, or environment variables).
 
-Plugins can also be used to [customize your AWS deployment via CloudFormation](/docs/en/guides/developer-experience/customizing-cloudformation), enabling access to cloud resources outside of Architect's built-ins.
+Plugins can also be used to [customize your AWS deployment via CloudFormation](../../guides/developer-experience/custom-cloudformation), enabling access to cloud resources outside of Architect's built-ins.
 
 
 ## Getting started

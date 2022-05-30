@@ -56,8 +56,6 @@ export const tempRedirects = {
 export const permanentRedirects = {
   '/examples': '/docs/en/guides/examples',
 
-  '/docs/en/guides/extend/custom-cloudformation': '/docs/en/guides/developer-experience/customizing-cloudformation',
-
   // Intro
   // round 1: Q1 2021
   '/intro/philosophy': '/docs/en/get-started/why-architect',
@@ -96,6 +94,9 @@ export const permanentRedirects = {
   '/docs/en/guides/get-started/quickstart': '/docs/en/get-started/quickstart',
   '/docs/en/guides/get-started/project-layout': '/docs/en/get-started/project-manifest',
   '/docs/en/guides/get-started/detailed-aws-setup': '/docs/en/get-started/detailed-aws-setup',
+  '/docs/en/guides/extend/custom-cloudformation': '/docs/en/guides/developer-experience/custom-cloudformation',
+  // mid-2022
+  '/docs/en/guides/developer-experience/customizing-cloudformation': '/docs/en/guides/developer-experience/custom-cloudformation',
 
   // Reference > Project Manifest
   // round 1: Q1 2021
