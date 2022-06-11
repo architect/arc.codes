@@ -43,7 +43,7 @@ Architect supports the following manifest files:
 
 The `app.arc` format follows a few simple rules:
 
-- whitespace is significant
+- whitespace is significant and must be spaces
 - comments start with `#`
 - a pragma starts with `@`
 - pragmas can be ordered arbitrarily
