@@ -40,17 +40,19 @@ arc env
 
 ### Save an environment variable to the staging environment
 
+Variable values that contain special characters like email addresses should be wrapped in double quotes
+
 ```bash
-arc env -e staging --add FOO myvalue
+arc env -e staging --add SECRET_API_PASSWORD "p@s5w0rd!"
 ```
 
-> Protip: values that contain special characters like email addresses should be wrapped in double quotes
+> 💁  `staging` env variables are also used in named deployments [created with `arc deploy --name <name>`](./deploy).
 
 
 ### Remove an environment variable
 
 ```bash
-arc env -e staging --remove FOO
+arc env -e staging --remove SECRET_API_PASSWORD
 ```
 
 

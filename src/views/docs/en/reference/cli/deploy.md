@@ -55,13 +55,19 @@ templates
 arc deploy
 ```
 
-> Protip: deploy arbitrary named staging stacks with `arc deploy --name my-stack`
-
 ### Deploy a production stack
 
 ```bash
 arc deploy --production
 ```
+
+### Deploy a named environment
+
+```bash
+arc deploy --name my-stack
+```
+
+> 💁  Named stacks use `staging` environment variables [set with `arc env -e staging --add`](./env).
 
 ### Deploy static assets to S3
 

@@ -79,12 +79,17 @@ Ensure your app has a strong secret key. It should have a minimum length of 16 b
 npx arc --env production --add ARC_APP_SECRET something-much-better-than-this
 ```
 
-Environment variables are automatically synced with all your lambda functions. When you add new functions you will need to sync their env variables by running `npx arc env`.
+🎲  Quickly generate a secret with `openssl`:
+
+```
+npx arc env -e staging -a ARC_APP_SECRET $(openssl rand -hex 32)
+npx arc env -e production -a ARC_APP_SECRET $(openssl rand -hex 32)
+```
 
 
 ## Example
 
-1. Create a fresh Architect project
+### 1. Create an Arc project
 
 ```bash
 mkdir -p ./mysesh
@@ -93,9 +98,12 @@ npm init -f
 npm install @architect/architect
 ```
 
-2. Create a `app.arc` file
+### 2. Add `app.arc`
+
+Create a project manifest `app.arc` file at the root of your project.
 
 ```arc
+# ./app.arc
 @app
 bigsesh
 
@@ -108,16 +116,20 @@ post /reset
 And generate the boilerplate code by running:
 
 ```bash
-arc init
+npx arc init
 ```
 
-3. Add the `@architect/functions` runtime helper library to your project. This gives the request object a method to read and write sessions.
+### 3. Install Node.js helpers
+
+Add the `@architect/functions` runtime helper library to your project. This gives the request object a method to read and write sessions.
 
 ```bash
 npm i @architect/functions
 ```
 
-4. Modify `src/http/get-index/index.js` to read the session if it exists and render the forms with the session state
+### 4. Read the session
+
+Modify `src/http/get-index/index.js` to read the session if it exists and render the forms with the session state
 
 ```javascript
 let arc = require('@architect/functions')
@@ -146,7 +158,9 @@ async function home(req) {
 exports.handler = arc.http.async(home)
 ```
 
-5. Modify `src/http/post-count/index.js` to mutate the session and redirect home
+### 5. Mutate the session
+
+Modify `src/http/post-count/index.js` to mutate the session and redirect home
 
 ```javascript
 let arc = require('@architect/functions')
@@ -164,7 +178,9 @@ exports.handler = arc.http.async(counter)
 
 > FYI: Per recommended security practice Architect applications use `httpOnly` cookies for storing session state; anyone can implement their own mechanism using Set-Cookie headers directly
 
-6. Modify `src/http/post-reset/index.js` to clear the session state
+### 6. Clear the session
+
+Modify `src/http/post-reset/index.js` to clear the session state
 
 ```javascript
 let arc = require('@architect/functions')
@@ -181,7 +197,9 @@ exports.handler = arc.http.async(reset)
 
 > For more information about `arc.http.async` helper, [check out the documentation](../../reference/runtime-helpers/node.js#arc.http.async)
 
-7. Preview by starting the dev server
+### 7. Test locally
+
+Preview by starting the dev server
 
 ```bash
 npx arc sandbox
