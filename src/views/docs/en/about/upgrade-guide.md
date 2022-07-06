@@ -110,7 +110,7 @@ Most of Architect 10's breaking changes were internal; most users should not enc
   - Remedy: Lambda invocations in Sandbox are now passed an environment variable called `ARC_SANDBOX`, which contains a JSON serialized `ports` property; use this property to obtain the currently configured port for a given service
   - Should you need to have consistent, non-automatically-selecting ports for Sandbox's internal services, use Sandbox's standard means for explicitly defining port configuration; **do not merely rely on Sandbox's default ports**, as they should be expected to change at any time
 - Breaking change: legacy `@tables` / `@tables-streams` folders (`src/tables/...` and `src/streams/...`) are now deprecated in favor of `src/tables-streams/...`
-  - Remedy: existing stream functions can be simply have their folders renamed to `src/tables-streams/{name}` (or use a custom `src` property on them if you'd prefer to keep your existing folder structure)
+  - Remedy: existing stream functions can simply have their folders renamed to `src/tables-streams/{name}` (or use a custom `src` property on them if you'd prefer to keep your existing folder structure)
 - Breaking change: `@indexes` is now fully deprecated
   - Remedy: simply change the `@indexes` pragma name to `@tables-indexes`; no other changes are required
 
