@@ -20,4 +20,5 @@ konsumer
 LEANX
 Namecheap
 ParcelJS
+provisionedConcurrency
 treeshaking

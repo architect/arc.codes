@@ -7,6 +7,7 @@ sections:
   - 'memory'
   - 'timeout'
   - 'concurrency'
+  - 'provisionedConcurrency'
   - 'layers'
   - 'policies'
   - 'architecture'
@@ -41,6 +42,7 @@ Configure the deployed function with [the `@aws` pragma](../project-manifest/aws
 - [`memory`](#memory) - number, between `128` and `3008` MB in 64 MB increments.
 - [`timeout`](#timeout) - number, in seconds (max `900`)
 - [`concurrency`](#concurrency) - number, `0` to AWS account maximum (if not present, concurrency is unthrottled)
+- [`provisionedConcurrency`](#provisionedconcurrency) - number, `0` to AWS account maximum (if not present, no provisioned concurrency is configured)
 - [`layers`](#layers) - Up to 5 Lambda layer ARNs; **must be in the same region as deployed**
 - [`policies`](#policies) - Configure [AWS SAM policy templates](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html)
 - [`architecture`](#architecture) - [AWS Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) for the function: `x86_64` (default) or `arm64`
@@ -121,6 +123,17 @@ Disable invocation by setting concurrency to zero
 ```arc
 @aws
 concurrency 0
+```
+
+### `provisionedConcurrency`
+
+Configure Lambda function [provisioned concurrency](https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html). If not present, then no provisioned concurrency is configured.
+
+Keep at least 10 instances warm at all times:
+
+```arc
+@aws
+provisionedConcurrency 10
 ```
 
 ### `layers`
