@@ -34,7 +34,7 @@
     "eslint": "^8.17.0",
     "linkinator": "^3.1.0",
     "spellchecker-cli": "^4.11.0",
-    "tap-arc": "^0.3.4",
+    "tap-arc": "^0.3.5",
     "tape": "^5.5.3",
     "tiny-json-http": "^7.4.2"
   },
