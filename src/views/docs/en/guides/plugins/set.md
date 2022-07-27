@@ -30,7 +30,7 @@ All `set` methods are synchronous functions, and receive a single argument, whic
 
 ## Valid returns
 
-All `set` methods can return a single resource object, or an array of resource objects.
+All `set` methods can return a single resource object, and those that create resources (like `set.http`) can return an array of resource objects.
 
 There is no limit to the number of resources a `set` plugin can return, however AWS does have limits on the number of resources in a CloudFormation deployment (and a hard cap on the size of a given CloudFormation document).
 
@@ -44,7 +44,7 @@ By default, Lambdas created by the `set` API are assumed to run the latest versi
 
 ## `set.events`
 
-Register async events (as in the `@events` pragma). Return a single object or an array of objects with the following properties:
+Register async events (as in the [`@events`][events] pragma). Return a single object or an array of objects with the following properties:
 
 | Property  | Type    | Description                                     |
 |-----------|---------|-------------------------------------------------|
@@ -68,7 +68,7 @@ module.exports = { set: {
 
 ## `set.http`
 
-Register HTTP routes (as in the `@http` pragma). Return a single object or an array of objects with the following properties:
+Register HTTP routes (as in the [`@http`][htp] pragma). Return a single object or an array of objects with the following properties:
 
 | Property  | Type    | Description                                     |
 |-----------|---------|-------------------------------------------------|
@@ -92,9 +92,34 @@ module.exports = { set: {
 ```
 
 
+## `set.proxy`
+
+Set URLs for API Gateway to forward all requests by default; individual routes can be overridden by `@http` / `set.http`. Return a single object with the following properties:
+
+| Property    | Type    | Description                                                 |
+|-------------|---------|-------------------------------------------------------------|
+| `testing`   | string  | URL to forward requests to from the testing environment     |
+| `staging`   | string  | ... the same, but for the staging environment     |
+| `production`| string  | ... the same, but for the production environment  |
+
+Example:
+
+```javascript
+module.exports = { set: {
+  proxy: ({ arc, inventory }) => {
+    return {
+      testing: 'https://testing-url.com',
+      staging: 'https://staging-url.com',
+      production: 'https://production-url.com',
+    }
+  }
+} }
+```
+
+
 ## `set.queues`
 
-Register async event queues (as in the `@queues` pragma). Return a single object or an array of objects with the following properties:
+Register async event queues (as in the [`@queues`][queues] pragma). Return a single object or an array of objects with the following properties:
 
 | Property  | Type    | Description                                     |
 |-----------|---------|-------------------------------------------------|
@@ -118,7 +143,7 @@ module.exports = { set: {
 
 ## `set.scheduled`
 
-Register scheduled event (as in the `@scheduled` pragma). Return a single object or an array of objects with the following properties:
+Register scheduled event (as in the [`@scheduled`][scheduled] pragma). Return a single object or an array of objects with the following properties:
 
 | Property  | Type    | Description                                                         |
 |-----------|---------|---------------------------------------------------------------------|
@@ -152,10 +177,125 @@ module.exports = { set: {
 } }
 ```
 
+## `set.shared`
+
+Set a custom source path for Architect's code sharing system ([`@shared`][shared]). Return a single object with the following property:
+
+| Property  | Type    | Description                                             |
+|-----------|---------|---------------------------------------------------------|
+| `src`     | string  | Absolute or relative file path to the shared code path  |
+
+Example:
+
+```javascript
+module.exports = { set: {
+  shared: ({ arc, inventory }) => {
+    return {
+      src: __dirname + '/shared-libs'
+    }
+  }
+} }
+```
+
+
+## `set.static`
+
+Modify settings for static asset handling. Return a single object with the following properties:
+
+| Property      | Type    | Description                                                     |
+|---------------|---------|-----------------------------------------------------------------|
+| `fingerprint` | boolean | Enable Architect's static asset fingerprinting; also accepts `external` (string) to assume assets have filenames fingerprinted by another tool or system |
+| `folder`      | string  | Relative file path of static asset dir (defaults to `public`)   |
+| `ignore`      | array   | File names or paths within `folder` to ignore during deployment |
+| `prefix`      | string  | Path prefix for publishing assets to S3                         |
+| `prune`       | boolean | Enable Architect to prune S3 files not found within `folder`    |
+| `spa`         | boolean | Enable single page app (SPA) mode (defaults to `false`)         |
+| `staging`     | string  | Manually specify an S3 bucket for staging environment           |
+| `production`  | string  | Manually specify an S3 bucket for production environment        |
+
+Example:
+
+```javascript
+module.exports = { set: {
+  static: ({ arc, inventory }) => {
+    return {
+      fingerprint: true,
+      folder: 'static-assets',
+    }
+  }
+} }
+```
+
+
+## `set.tables`
+
+Register DynamoDB tables (as in the [`@tables`][tables]) pragma). Return a single object or an array of objects with the following properties:
+
+| Property            | Type    | Required  | Description                                  |
+|---------------------|---------|-----------|-----------------------------------------------------|
+| `name`              | string  | Yes       | Table name (follows [`@tables` syntax][tables]) |
+| `partitionKey`      | string  | Yes       | Partition key name |
+| `partitionKeyType`  | string  | Yes       | Partition key type (`string` or `number`) |
+| `sortKey`           | string  | No        | Sort key name |
+| `sortKeyType`       | string  | No        | Sort key type (`string` or `number`) |
+| `stream`            | boolean | No        | Enable DynamoDB stream (see [`@tables-streams`][tables-streams]) |
+| `ttl`               | string  | No        | Time-to-live timestamp column to expire records
+| `encrypt`           | boolean | No        | Enable server-side encryption with AWS KMS  |
+| `pitr`              | boolean | No        | Enable point-in-time recovery |
+
+Example:
+
+```javascript
+// Return a single table
+module.exports = { set: {
+  tables: ({ arc, inventory }) => {
+    return {
+      name: 'a-table',
+      partitionKey: 'id',
+      partitionKeyType: 'string',
+      // These are all optional
+      sortKey: 'ts',
+      sortKeyType: 'number',
+      pitr: true,
+    }
+  }
+} }
+```
+
+
+## `set['tables-indexes']`
+
+Register DynamoDB table indexes (as in the [`@tables-indexes`][tables-indexes]) pragma). Return a single object or an array of objects with the following properties:
+
+| Property            | Type    | Required  | Description                                  |
+|---------------------|---------|-----------|-----------------------------------------------------|
+| `name`              | string  | Yes       | Table name (follows [`@tables` syntax][tables]) |
+| `partitionKey`      | string  | Yes       | Partition key name |
+| `partitionKeyType`  | string  | Yes       | Partition key type (`string` or `number`) |
+| `sortKey`           | string  | No        | Sort key name |
+| `sortKeyType`       | string  | No        | Sort key type (`string` or `number`) |
+| `indexName`         | boolean | No        | Custom index name |
+
+Example:
+
+```javascript
+// Return a single table index
+module.exports = { set: {
+  'tables-indexes': ({ arc, inventory }) => {
+    return {
+      name: 'a-table',
+      partitionKey: 'secondary-index',
+      partitionKeyType: 'string',
+      indexName: 'my-custom-index-name', // Optional!
+    }
+  }
+} }
+```
+
 
 ## `set['tables-streams']`
 
-Register DynamoDB event streams (as in the `@tables-streams` pragma). Return a single object or an array of objects with the following properties:
+Register DynamoDB event streams (as in the [`@tables-streams`][tables-streams]) pragma). Return a single object or an array of objects with the following properties:
 
 | Property  | Type    | Description                                                     |
 |-----------|---------|-----------------------------------------------------------------|
@@ -179,9 +319,31 @@ module.exports = { set: {
 ```
 
 
+## `set.views`
+
+Set a custom source path for Architect's frontend views code sharing system ([`@views`][views]). Return a single object with the following property:
+
+| Property  | Type    | Description                                           |
+|-----------|---------|-------------------------------------------------------|
+| `src`     | string  | Absolute or relative file path to the views code path |
+
+Example:
+
+```javascript
+// Return a single async event queue
+module.exports = { set: {
+  views: ({ arc, inventory }) => {
+    return {
+      src: __dirname + '/views-libs'
+    }
+  }
+} }
+```
+
+
 ## `set.ws`
 
-Register WebSocket routes (as in the `@ws` pragma). Return a single object or an array of objects with the following properties:
+Register WebSocket routes (as in the [`@ws`][ws] pragma). Return a single object or an array of objects with the following properties:
 
 | Property  | Type    | Description                                   |
 |-----------|---------|-----------------------------------------------|
@@ -436,9 +598,15 @@ Returning the Lambda above, Architect will look for your `autobundle` Lambda han
 
 [events]: /docs/en/reference/project-manifest/events#syntax
 [http]: /docs/en/reference/project-manifest/http#syntax
+[proxy]: /docs/en/reference/project-manifest/proxy#syntax
 [queues]: /docs/en/reference/project-manifest/queues#syntax
 [scheduled]: /docs/en/reference/project-manifest/scheduled#syntax
+[shared]: /docs/en/reference/project-manifest/shared#syntax
+[static]: /docs/en/reference/project-manifest/static#syntax
+[tables-indexes]: /docs/en/reference/project-manifest/tables-indexes#syntax
 [tables-streams]: /docs/en/reference/project-manifest/tables-streams#syntax
+[tables]: /docs/en/reference/project-manifest/tables#syntax
+[views]: /docs/en/reference/project-manifest/views#syntax
 [ws]: /docs/en/reference/project-manifest/ws#syntax
 [sched-expr]: https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-expressions.html
 [runtime]: /docs/en/reference/configuration/function-config#runtime
