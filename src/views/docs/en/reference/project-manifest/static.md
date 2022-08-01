@@ -12,11 +12,13 @@ Note: `@static` is implied if `@http` is defined.
 
 All parameters are optional.
 
+- `compression` - **boolean** or **string** (defaults to false)
+  - Enable static asset compression; `true` or `br` compresses with brotli, or `gzip` compresses with gzip
 - `fingerprint` - **boolean** (defaults to false)
   - Enable static asset file fingerprinting (and long-lived caching headers)
 - `folder` - **string** (defaults to `./public`)
   - Designate the local folder to upload static assets from.
-- `ignore` - **list** 
+- `ignore` - **list**
   - Define which assets in the static `folder` should be ignored during upload
 - `prefix` - **string**
   - Set a top-level directory in the S3 bucket where files will be deployed

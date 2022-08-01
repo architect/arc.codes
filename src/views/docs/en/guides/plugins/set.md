@@ -204,14 +204,13 @@ Modify settings for static asset handling. Return a single object with the follo
 
 | Property      | Type    | Description                                                     |
 |---------------|---------|-----------------------------------------------------------------|
+| `compression` | string  | Enable static asset compression; `true` or `br` compresses with brotli, or `gzip` compresses with gzip |
 | `fingerprint` | boolean | Enable Architect's static asset fingerprinting; also accepts `external` (string) to assume assets have filenames fingerprinted by another tool or system |
 | `folder`      | string  | Relative file path of static asset dir (defaults to `public`)   |
 | `ignore`      | array   | File names or paths within `folder` to ignore during deployment |
 | `prefix`      | string  | Path prefix for publishing assets to S3                         |
 | `prune`       | boolean | Enable Architect to prune S3 files not found within `folder`    |
 | `spa`         | boolean | Enable single page app (SPA) mode (defaults to `false`)         |
-| `staging`     | string  | Manually specify an S3 bucket for staging environment           |
-| `production`  | string  | Manually specify an S3 bucket for production environment        |
 
 Example:
 
