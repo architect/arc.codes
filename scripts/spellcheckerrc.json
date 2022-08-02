@@ -19,5 +19,8 @@
     "category",
     "description",
     "sections"
+  ],
+  "ignore": [
+    "v\\d?.\\d?"
   ]
 }
