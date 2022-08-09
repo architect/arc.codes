@@ -55,14 +55,16 @@ Example:
 
 ```javascript
 // Return a single async event
-module.exports = { set: {
-  events: ({ arc, inventory }) => {
-    return {
-      name: 'an-async-event',
-      src: __dirname + '/handler' // Points to a handler dir inside the plugin
+module.exports = { 
+  set: {
+    events ({ arc, inventory }) {
+      return {
+        name: 'an-async-event',
+        src: __dirname + '/handler' // Points to a handler dir inside the plugin
+      }
     }
   }
-} }
+}
 ```
 
 
@@ -80,15 +82,18 @@ Example:
 
 ```javascript
 // Return multiple HTTP routes
-module.exports = { set: {
-  http: ({ arc, inventory }) => {
-    let src = __dirname + '/handler' // Multiple Lambdas can use the same handler
-    return [
-      { method: 'get', path: '/foo', src },
-      { method: 'put', name: '/bar', src }
-    ]
-  }
-} }
+module.exports = { 
+  set: {
+    http ({ arc, inventory }) {
+      let src = __dirname + '/handler' 
+      // Multiple Lambdas can use the same handler
+      return [
+        { method: 'get', path: '/foo', src },
+        { method: 'put', name: '/bar', src }
+      ]
+    }
+  } 
+}
 ```
 
 
@@ -105,15 +110,17 @@ Set URLs for API Gateway to forward all requests by default; individual routes c
 Example:
 
 ```javascript
-module.exports = { set: {
-  proxy: ({ arc, inventory }) => {
-    return {
-      testing: 'https://testing-url.com',
-      staging: 'https://staging-url.com',
-      production: 'https://production-url.com',
+module.exports = { 
+  set: {
+    proxy ({ arc, inventory }) {
+      return {
+        testing: 'https://testing-url.com',
+        staging: 'https://staging-url.com',
+        production: 'https://production-url.com',
+      }
     }
-  }
-} }
+  } 
+}
 ```
 
 
@@ -130,14 +137,16 @@ Example:
 
 ```javascript
 // Return a single async event queue
-module.exports = { set: {
-  queues: ({ arc, inventory }) => {
-    return {
-      name: 'a-queue',
-      src: __dirname + '/handler' // Points to a handler dir inside the plugin
+module.exports = { 
+  set: {
+    queues ({ arc, inventory }) {
+      return {
+        name: 'a-queue',
+        src: __dirname + '/handler' // Points to a handler dir inside the plugin
+      }
     }
-  }
-} }
+  } 
+}
 ```
 
 
@@ -158,23 +167,25 @@ Example:
 
 ```javascript
 // Return two scheduled events: one using rate syntax, and one using cron syntax
-module.exports = { set: {
-  scheduled: ({ arc, inventory }) => {
-    let src = __dirname + '/handler'
-    return [
-      {
-        name: 'scheduled-using-rate',
-        rate: '1 day',
-        src,
-      },
-      {
-        name: 'scheduled-using-cron',
-        cron: '15 10 * * ? *',
-        src,
-      }
-    ]
-  }
-} }
+module.exports = { 
+  set: {
+    scheduled ({ arc, inventory }) {
+      let src = __dirname + '/handler'
+      return [
+        {
+          name: 'scheduled-using-rate',
+          rate: '1 day',
+          src,
+        },
+        {
+          name: 'scheduled-using-cron',
+          cron: '15 10 * * ? *',
+          src,
+        }
+      ]
+    }
+  } 
+}
 ```
 
 ## `set.shared`
@@ -188,13 +199,15 @@ Set a custom source path for Architect's code sharing system ([`@shared`][shared
 Example:
 
 ```javascript
-module.exports = { set: {
-  shared: ({ arc, inventory }) => {
-    return {
-      src: __dirname + '/shared-libs'
+module.exports = { 
+  set: {
+    shared ({ arc, inventory }) {
+      return {
+        src: __dirname + '/shared-libs'
+      }
     }
-  }
-} }
+  } 
+}
 ```
 
 
@@ -215,14 +228,16 @@ Modify settings for static asset handling. Return a single object with the follo
 Example:
 
 ```javascript
-module.exports = { set: {
-  static: ({ arc, inventory }) => {
-    return {
-      fingerprint: true,
-      folder: 'static-assets',
+module.exports = { 
+  set: {
+    static ({ arc, inventory }) {
+      return {
+        fingerprint: true,
+        folder: 'static-assets',
+      }
     }
-  }
-} }
+  } 
+}
 ```
 
 
@@ -246,19 +261,21 @@ Example:
 
 ```javascript
 // Return a single table
-module.exports = { set: {
-  tables: ({ arc, inventory }) => {
-    return {
-      name: 'a-table',
-      partitionKey: 'id',
-      partitionKeyType: 'string',
-      // These are all optional
-      sortKey: 'ts',
-      sortKeyType: 'number',
-      pitr: true,
+module.exports = { 
+  set: {
+    tables ({ arc, inventory }) {
+      return {
+        name: 'a-table',
+        partitionKey: 'id',
+        partitionKeyType: 'string',
+        // These are all optional
+        sortKey: 'ts',
+        sortKeyType: 'number',
+        pitr: true,
+      }
     }
-  }
-} }
+  } 
+}
 ```
 
 
@@ -279,16 +296,18 @@ Example:
 
 ```javascript
 // Return a single table index
-module.exports = { set: {
-  'tables-indexes': ({ arc, inventory }) => {
-    return {
-      name: 'a-table',
-      partitionKey: 'secondary-index',
-      partitionKeyType: 'string',
-      indexName: 'my-custom-index-name', // Optional!
+module.exports = { 
+  set: {
+    'tables-indexes': ({ arc, inventory }) => {
+      return {
+        name: 'a-table',
+        partitionKey: 'secondary-index',
+        partitionKeyType: 'string',
+        indexName: 'my-custom-index-name', // Optional!
+      }
     }
-  }
-} }
+  } 
+}
 ```
 
 
@@ -306,15 +325,17 @@ Example:
 
 ```javascript
 // Return a single table stream
-module.exports = { set: {
-  'tables-streams': ({ arc, inventory }) => {
-    return {
-      name: 'a-table-stream-event',
-      table: 'my-logical-table-name',
-      src: __dirname + '/handler' // Points to a handler dir inside the plugin
+module.exports = { 
+  set: {
+    'tables-streams': ({ arc, inventory }) => {
+      return {
+        name: 'a-table-stream-event',
+        table: 'my-logical-table-name',
+        src: __dirname + '/handler' // Points to a handler dir inside the plugin
+      }
     }
-  }
-} }
+  } 
+}
 ```
 
 
@@ -329,14 +350,15 @@ Set a custom source path for Architect's frontend views code sharing system ([`@
 Example:
 
 ```javascript
-// Return a single async event queue
-module.exports = { set: {
-  views: ({ arc, inventory }) => {
-    return {
-      src: __dirname + '/views-libs'
+module.exports = { 
+  set: {
+    views ({ arc, inventory }) {
+      return {
+        src: 'app/views'
+      }
     }
-  }
-} }
+  } 
+}
 ```
 
 
@@ -355,14 +377,16 @@ Example:
 
 ```javascript
 // Return a single WebSocket route
-module.exports = { set: {
-  ws: ({ arc, inventory }) => {
-    return {
-      name: 'refresh',
-      src: __dirname + '/handler' // Points to a handler dir inside the plugin
+module.exports = { 
+  set: {
+    ws ({ arc, inventory }) {
+      return {
+        name: 'refresh',
+        src: __dirname + '/handler' // Points to a handler dir inside the plugin
+      }
     }
-  }
-} }
+  } 
+}
 ```
 
 
@@ -381,32 +405,36 @@ Examples:
 
 ```javascript
 // Return an environment variable for all Lambdas
-module.exports = { set: {
-  env: ({ arc, inventory }) => {
-    return {
-      API_SECRET: process.env.API_SECRET // Handy for exporting secrets in CI/CD
+module.exports = { 
+  set: {
+    env ({ arc, inventory }) {
+      return {
+        API_SECRET: process.env.API_SECRET // Handy for exporting secrets in CI/CD
+      }
     }
-  }
-} }
+  } 
+}
 ```
 
 ```javascript
 // Return a different environment variables for different stages
-module.exports = { set: {
-  env: ({ arc, inventory }) => {
-    return {
-      testing: {
-        API_SECRET: 'sample-key'
-      },
-      staging: {
-        API_SECRET: process.env.API_SECRET
-      },
-      production: {
-        API_SECRET: process.env.API_SECRET
-      },
+module.exports = { 
+  set: {
+    env ({ arc, inventory }) {
+      return {
+        testing: {
+          API_SECRET: 'sample-key'
+        },
+        staging: {
+          API_SECRET: process.env.API_SECRET
+        },
+        production: {
+          API_SECRET: process.env.API_SECRET
+        },
+      }
     }
-  }
-} }
+  } 
+}
 ```
 
 
@@ -457,25 +485,27 @@ Example:
 
 ```javascript
 // Enable a custom build directory with a custom runtime pragma (`@typescript`)
-module.exports = { set: {
-  runtime: ({ arc, inventory }) => {
-    let { arc } = inventory.inv._project
-    let build = '.build'
-    if (arc.typescript) {
-      arc.typescript.forEach(s => {
-        if (Array.isArray(s) && s[0] === 'build' && typeof s[1] === 'string') {
-          build = s[1]
-        }
-      })
+module.exports = { 
+  set: {
+    runtime ({ arc, inventory }) {
+      let { arc } = inventory.inv._project
+      let build = '.build'
+      if (arc.typescript) {
+        arc.typescript.forEach(s => {
+          if (Array.isArray(s) && s[0] === 'build' && typeof s[1] === 'string') {
+            build = s[1]
+          }
+        })
+      }
+      return {
+        name: 'typescript',
+        type: 'transpiled',
+        baseRuntime: 'nodejs14.x',
+        build,
+      }
     }
-    return {
-      name: 'typescript',
-      type: 'transpiled',
-      baseRuntime: 'nodejs14.x',
-      build,
-    }
-  }
-} }
+  } 
+}
 ```
 
 ---
@@ -497,31 +527,35 @@ Example:
 ```javascript
 // Returning this event Lambda assumes user project defaults > Architect defaults
 // If the project specifies `@aws runtime python3.9`, and your handler is JS, it will not run
-module.exports = { set: {
-  events: ({ arc, inventory }) => {
-    return {
-      name: 'an-async-event',
-      src: __dirname + '/handler'
+module.exports = { 
+  set: {
+    events ({ arc, inventory }) {
+      return {
+        name: 'an-async-event',
+        src: __dirname + '/handler'
+      }
     }
-  }
-} }
+  } 
+}
 ```
 
 ```javascript
 // Returning a `config` property provides control over the configuration of the returned Lambda
-module.exports = { set: {
-  events: ({ arc, inventory }) => {
-    return {
-      name: 'an-async-event',
-      src: __dirname + '/handler',
-      config: {
-        runtime: 'nodejs14.x',
-        memory: 3008, // in MB
-        timeout: 10, // in seconds
+module.exports = { 
+  set: {
+    events ({ arc, inventory }) {
+      return {
+        name: 'an-async-event',
+        src: __dirname + '/handler',
+        config: {
+          runtime: 'nodejs14.x',
+          memory: 3008, // in MB
+          timeout: 10, // in seconds
+        }
       }
     }
-  }
-} }
+  } 
+}
 ```
 
 
@@ -551,22 +585,24 @@ delete
 Since these Lambdas live in userland, `set.customLambdas` method might look something like this:
 
 ```javascript
-module.exports = { set: {
-  customLambdas: ({ arc, inventory }) => {
-    let localS3 = arc['local-s3']
-    if (!localS3 || !Array.isArray(localS3)) return
+module.exports = { 
+  set: {
+    customLambdas ({ arc, inventory }) {
+      let localS3 = arc['local-s3']
+      if (!localS3 || !Array.isArray(localS3)) return
 
-    // Create an abritrary number of plugins from the Arc manifest
-    let lambdas = localS3.map((item) => {
-      let name = item[0]
-      return {
-        name,
-        src: `src/local-s3/${name}`
-      }
-    })
-    return lambdas
-  }
-} }
+      // Create an abritrary number of plugins from the Arc manifest
+      let lambdas = localS3.map((item) => {
+        let name = item[0]
+        return {
+          name,
+          src: `src/local-s3/${name}`
+        }
+      })
+      return lambdas
+    }
+  } 
+}
 ```
 
 This approach puts the Lambdas squarely in the realm of your plugin consumers, and empowers them to make customize the resources you're managing with the plugin.
@@ -580,16 +616,18 @@ Assuming you published your project as `arc-plugin-autobundle`, you might want y
 
 ```javascript
 // node_modules/arc-plugin-autobundle/index.js
-module.exports = { set: {
-  http: ({ arc, inventory }) => {
-    return {
-      method: 'get',
-      path: 'get /_bundle/:entry',
-      // Assuming a handler at `node_modules/arc-plugin-autobundle/handler/index.js`
-      src: __dirname + '/handler'
+module.exports = { 
+  set: {
+    http ({ arc, inventory }) {
+      return {
+        method: 'get',
+        path: 'get /_bundle/:entry',
+        // Assuming a handler at `node_modules/arc-plugin-autobundle/handler/index.js`
+        src: __dirname + '/handler'
+      }
     }
-  }
-} }
+  } 
+}
 ```
 
 Returning the Lambda above, Architect will look for your `autobundle` Lambda handler at `node_modules/arc-plugin-autobundle/handler/index.js`. Should your handler have its own dependencies, you must declare them in your plugin's `package.json` file.
