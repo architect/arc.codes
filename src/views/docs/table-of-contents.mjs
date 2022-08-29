@@ -47,6 +47,7 @@ const Guides = [
     'Plugins': [
       'Overview',
       'deploy',
+      'hydrate',
       'sandbox',
       'set',
       'Inventory',
