@@ -46,10 +46,11 @@ By default, Lambdas created by the `set` API are assumed to run the latest versi
 
 Register async events (as in the [`@events`][events] pragma). Return a single object or an array of objects with the following properties:
 
-| Property  | Type    | Description                                     |
-|-----------|---------|-------------------------------------------------|
-| `name`    | string  | Event name (follows [`@events` syntax][events]) |
-| `src`     | string  | Absolute or relative file path to the handler   |
+| Property  | Type    | Description                                                         |
+|-----------|---------|---------------------------------------------------------------------|
+| `name`    | string  | Event name (follows [`@events` syntax][events])                     |
+| `src`     | string  | Absolute or relative file path to the handler                       |
+| `required`| boolean | Fail if plugin conflicts with project manifest (defaults to `false`)|
 
 Example:
 
@@ -72,11 +73,12 @@ module.exports = {
 
 Register HTTP routes (as in the [`@http`][htp] pragma). Return a single object or an array of objects with the following properties:
 
-| Property  | Type    | Description                                     |
-|-----------|---------|-------------------------------------------------|
-| `method`  | string  | HTTP method (follows [`@http` syntax][http])    |
-| `path`    | string  | HTTP path (follows [`@http` syntax][http])      |
-| `src`     | string  | Absolute or relative file path to the handler   |
+| Property  | Type    | Description                                                         |
+|-----------|---------|---------------------------------------------------------------------|
+| `method`  | string  | HTTP method (follows [`@http` syntax][http])                        |
+| `path`    | string  | HTTP path (follows [`@http` syntax][http])                          |
+| `src`     | string  | Absolute or relative file path to the handler                       |
+| `required`| boolean | Fail if plugin conflicts with project manifest (defaults to `false`)|
 
 Example:
 
@@ -128,10 +130,11 @@ module.exports = {
 
 Register async event queues (as in the [`@queues`][queues] pragma). Return a single object or an array of objects with the following properties:
 
-| Property  | Type    | Description                                     |
-|-----------|---------|-------------------------------------------------|
-| `name`    | string  | Event name (follows [`@queues` syntax][queues]) |
-| `src`     | string  | Absolute or relative file path to the handler   |
+| Property  | Type    | Description                                                         |
+|-----------|---------|---------------------------------------------------------------------|
+| `name`    | string  | Event name (follows [`@queues` syntax][queues])                     |
+| `src`     | string  | Absolute or relative file path to the handler                       |
+| `required`| boolean | Fail if plugin conflicts with project manifest (defaults to `false`)|
 
 Example:
 
@@ -160,6 +163,7 @@ Register scheduled event (as in the [`@scheduled`][scheduled] pragma). Return a 
 | `rate`    | string  | [Rate expression][sched-expr], cannot be used with `cron` property  |
 | `cron`    | string  | [Cron expression][sched-expr], cannot be used with `rate` property  |
 | `src`     | string  | Absolute or relative file path to the handler                       |
+| `required`| boolean | Fail if plugin conflicts with project manifest (defaults to `false`)|
 
 > Note: unlike in `@scheduled` pragma use, `rate` + `cron` properties should not be returned in parenthesis.
 
@@ -192,9 +196,10 @@ module.exports = {
 
 Set a custom source path for Architect's code sharing system ([`@shared`][shared]). Return a single object with the following property:
 
-| Property  | Type    | Description                                             |
-|-----------|---------|---------------------------------------------------------|
-| `src`     | string  | Absolute or relative file path to the shared code path  |
+| Property  | Type    | Description                                               |
+|-----------|---------|-----------------------------------------------------------|
+| `src`     | string  | Absolute or relative file path to the shared code path    |
+| `required`| boolean | Enforce the existence of `src` folder (defaults to `false`) |
 
 Example:
 
@@ -315,11 +320,12 @@ module.exports = {
 
 Register DynamoDB event streams (as in the [`@tables-streams`][tables-streams]) pragma). Return a single object or an array of objects with the following properties:
 
-| Property  | Type    | Description                                                     |
-|-----------|---------|-----------------------------------------------------------------|
-| `name`    | string  | Event name (follows [`@tables-streams` syntax][tables-streams]) |
-| `table`   | string  | Logical DynamoDB table name (as in your project manifest)       |
-| `src`     | string  | Absolute or relative file path to the handler                   |
+| Property  | Type    | Description                                                         |
+|-----------|---------|---------------------------------------------------------------------|
+| `name`    | string  | Event name (follows [`@tables-streams` syntax][tables-streams])     |
+| `table`   | string  | Logical DynamoDB table name (as in your project manifest)           |
+| `src`     | string  | Absolute or relative file path to the handler                       |
+| `required`| boolean | Fail if plugin conflicts with project manifest (defaults to `false`)|
 
 Example:
 
@@ -343,9 +349,10 @@ module.exports = {
 
 Set a custom source path for Architect's frontend views code sharing system ([`@views`][views]). Return a single object with the following property:
 
-| Property  | Type    | Description                                           |
-|-----------|---------|-------------------------------------------------------|
-| `src`     | string  | Absolute or relative file path to the views code path |
+| Property  | Type    | Description                                               |
+|-----------|---------|-----------------------------------------------------------|
+| `src`     | string  | Absolute or relative file path to the views code path     |
+| `required`| boolean | Enforce the existence of `src` folder (defaults to `false`) |
 
 Example:
 
@@ -366,10 +373,11 @@ module.exports = {
 
 Register WebSocket routes (as in the [`@ws`][ws] pragma). Return a single object or an array of objects with the following properties:
 
-| Property  | Type    | Description                                   |
-|-----------|---------|-----------------------------------------------|
-| `name`    | string  | Route name (follows [`@ws` syntax][ws])       |
-| `src`     | string  | Absolute or relative file path to the handler |
+| Property  | Type    | Description                                                         |
+|-----------|---------|---------------------------------------------------------------------|
+| `name`    | string  | Route name (follows [`@ws` syntax][ws])                             |
+| `src`     | string  | Absolute or relative file path to the handler                       |
+| `required`| boolean | Fail if plugin conflicts with project manifest (defaults to `false`)|
 
 > Note: WebSockets is required to have three default routes (`$connect`, `$disconnect`, `$default`), which Architect populates with the addition of the `@ws` pragma. If the consumer of your plugin does not specify `@ws` in their manifest, using `set.ws` will infer it for them; you should not attempt to return any of the default routes in your `set.ws` plugin.
 
