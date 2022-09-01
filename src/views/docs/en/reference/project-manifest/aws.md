@@ -64,7 +64,7 @@ Lambda [CPU Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundatio
 
 ### `storage`
 
-Lambda ephemeral storage (a "scrath" file system in `/tmp` for each Lambda). A number between `512` (default) - `10240` in MB.
+Lambda ephemeral storage (a "scratch" file system in `/tmp` for each Lambda). A number between `512` (default) - `10240` in MB.
 
 ### `apigateway`
 
