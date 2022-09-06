@@ -55,7 +55,7 @@ For example, if you specify a `target` of `hi/there.json`, your Lambda will have
 
 ```javascript
 // Copy a single file or folder to the same name
-module.exports = { copy: {
+module.exports = { hydrate: {
   copy: async ({ arc, inventory, copy }) => {
     await copy({
       source: 'project/relative/path/file.txt',
@@ -68,7 +68,7 @@ module.exports = { copy: {
 
 ```javascript
 // Copy multiple files or folders
-module.exports = { copy: {
+module.exports = { hydrate: {
   copy: async ({ arc, inventory, copy }) => {
     await copy([
       {
