@@ -1,64 +1,99 @@
 :root {
   --sidebar: 22rem;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
+body {
+  scrollbar-color: var(--g2) transparent;
+}
+
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: var(--g2);
+}
+
 .font-semibold-active.active {
   font-weight: 600;
 }
+
 .underline-h:hover {
   text-decoration: underline;
 }
+
 .indicator {
   height: 4px;
 }
+
 .max-width-content {
   max-width: 53.125rem;
 }
+
 .two-column {
   /* Height: Header | Content */
   grid-template-rows: 3rem 1fr;
   /* Width: Sidebar | Content */
   grid-template-columns: 18.554rem 1fr;
 }
+
 .icon {
   width: 1.1rem;
   height: 1.1rem;
 }
+
 .discord-icon {
   width: 1.3rem;
   height: 1.3rem;
 }
+
 .logo {
   width: 8rem;
 }
+
 .logo,
 .h-logo {
   height: 1.75rem;
 }
+
 .left-sidebar {
   /* Hide Sidebar off screen in mobile */
   left: calc(var(--sidebar) * -1);
   z-index: 1;
 }
+
 .table-fixed {
   table-layout: fixed;
 }
+
 .border-collapse {
   border-collapse: collapse;
 }
+
 .resize-vertical {
   resize: vertical;
 }
+
 .open,
 .transition-x {
   transition: transform 100ms cubic-bezier(0.23, 1, 0.320, 1);
 }
+
 .open,
 .translate-x-sidebar {
   transform: translateX(var(--sidebar));
 }
+
 .transition-fill {
   transition: fill 2s ease-out;
 }
@@ -67,49 +102,59 @@ html {
 label.sidebar-group-title {
   color: var(--p1);
 }
+
 label.sidebar-group-title:before {
   font-size: .8rem;
   color: var(--g6);
   content: "\25B6";
 }
-label.sidebar-group-title + ul {
+
+label.sidebar-group-title+ul {
   height: 0;
   overflow: hidden;
   padding-left: .7rem;
 }
 
 @media only screen and (min-width:48em) {
+
   .open,
   .transition-x {
     transition: none;
-   }
+  }
+
   .open,
   .translate-x-sidebar {
     transform: translateX(0);
   }
+
   .resize-none-lg {
     resize: none;
   }
 }
 
-li > ul.mb1 {
-  margin-bottom: 0;
-}
-li > ol.mb1 {
+li>ul.mb1 {
   margin-bottom: 0;
 }
 
-details > summary {
+li>ol.mb1 {
+  margin-bottom: 0;
+}
+
+details>summary {
   list-style: none;
 }
-details > summary::-webkit-details-marker {
+
+details>summary::-webkit-details-marker {
   display: none;
 }
 
-details summary .plus-icon, details[open] summary .minus-icon {
+details summary .plus-icon,
+details[open] summary .minus-icon {
   display: inline;
 }
-details[open] summary .plus-icon, details summary .minus-icon {
+
+details[open] summary .plus-icon,
+details summary .minus-icon {
   display: none;
 }
 
@@ -137,7 +182,8 @@ main {
   text-decoration: none;
 }
 
-.right-sidebar a.active, .right-sidebar a.active code {
+.right-sidebar a.active,
+.right-sidebar a.active code {
   font-weight: 700;
   color: var(--g10);
 }
