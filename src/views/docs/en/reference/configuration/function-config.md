@@ -41,6 +41,7 @@ Configure the deployed function with [the `@aws` pragma](../project-manifest/aws
 - [`memory`](#memory) - number, between `128` and `3008` MB in 64 MB increments.
 - [`timeout`](#timeout) - number, in seconds (max `900`)
 - [`concurrency`](#concurrency) - number, `0` to AWS account maximum (if not present, concurrency is unthrottled)
+- [`provisionedConcurrency`](#provisionedconcurrency) - number, `1` to AWS account maximum (disabled by default)
 - [`layers`](#layers) - Up to 5 Lambda layer ARNs; **must be in the same region as deployed**
 - [`policies`](#policies) - Configure [AWS SAM policy templates](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html)
 - [`architecture`](#architecture) - [AWS Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) for the function: `x86_64` (default) or `arm64`
@@ -107,7 +108,7 @@ timeout 30
 
 Configure Lambda function concurrency. If not present concurrency is unthrottled.
 
-Limit execution to one invocation at a time
+Limit execution to one invocation at a time:
 
 ```arc
 @aws
@@ -116,11 +117,32 @@ concurrency 1
 
 > Tip: `@events` functions with `concurrency 1` create a queue-like primitive
 
-Disable invocation by setting concurrency to zero
+Disable invocation by setting concurrency to zero:
 
 ```arc
 @aws
 concurrency 0
+```
+
+### `provisionedConcurrency`
+
+Configure a Lambda's provisioned concurrency, which ensures the concurrency specified will always respond without coldstart. By default, Architect never sets provisioned concurrency, as it costs money whether actively in use or not.
+
+> Note: be warned that this is one of the only features that starts costing money the moment it is enabled. Be especially careful when enabling this feature globally for your project, as it has the potential to run up your costs rather quickly. Please refer to [Lambda's provisioned concurrency pricing guide](https://aws.amazon.com/lambda/pricing/#Provisioned_Concurrency_Pricing).
+
+Set a provisioned concurrency of 10 warm containers for your Lambda:
+
+```arc
+@aws
+provisionedConcurrency 10
+```
+
+Pair with `concurrency` to guarantee a Lambda with 10 warm containers that never exceeds 100 concurrent requests:
+
+```arc
+@aws
+concurrency 100
+provisionedConcurrency 10
 ```
 
 ### `layers`
