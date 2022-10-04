@@ -20,22 +20,22 @@
   },
   "dependencies": {
     "@architect/asap": "^5.0.1",
-    "@architect/functions": "~5.2.1",
-    "@architect/inventory": "^3.2.0",
-    "@architect/package": "^8.1.4",
+    "@architect/functions": "~5.2.2",
+    "@architect/inventory": "^3.3.0",
+    "@architect/package": "^8.2.0",
     "@architect/plugin-node-prune": "^2.0.2",
-    "arcdown": "^1.0.1",
+    "arcdown": "^2.1.0",
     "slugify": "^1.6.5"
   },
   "devDependencies": {
-    "@architect/architect": "^10.3.4",
+    "@architect/architect": "^10.7.0",
     "@architect/eslint-config": "^2.0.1",
     "@architect/spellcheck-dictionary": "git+https://github.com/architect/spellcheck-dictionary.git#v0.1.8",
-    "eslint": "^8.21.0",
-    "linkinator": "^4.0.2",
-    "spellchecker-cli": "^6.0.1",
+    "eslint": "^8.24.0",
+    "linkinator": "^4.0.3",
+    "spellchecker-cli": "^6.0.2",
     "tap-arc": "^0.3.5",
-    "tape": "^5.5.3",
+    "tape": "^5.6.1",
     "tiny-json-http": "^7.4.2"
   },
   "eslintConfig": {

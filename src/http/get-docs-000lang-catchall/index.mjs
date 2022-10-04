@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import arc from '@architect/functions'
-import render from 'arcdown'
+import { Arcdown } from 'arcdown'
 import { redirect as redirectMiddleware } from '@architect/shared/redirect-map.mjs'
 import notFoundResponse from '@architect/shared/not-found-response.mjs'
 import algolia from '@architect/views/modules/components/algolia.mjs'
@@ -49,12 +49,12 @@ async function handler (req) {
       body = cache[filePath]
     }
     else {
-      const file = readFileSync(filePath, 'utf8')
-      const renderOptions = {
+      const md = readFileSync(filePath, 'utf8')
+      const arcdown = new Arcdown({
         hljs: { classString: 'hljs mb0 mb1-lg relative' },
         pluginOverrides: { markdownItClass: classMap },
-      }
-      const result = await render(file, renderOptions)
+      })
+      const result = await arcdown.render(md)
       body = cache[filePath] = Html({
         ...result,
         active,
