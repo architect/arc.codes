@@ -187,3 +187,24 @@ main {
   font-weight: 700;
   color: var(--g10);
 }
+
+nav.toc {
+  padding-left: 0.5rem;
+}
+
+nav.toc ol {
+  list-style: none;
+}
+
+nav.toc ol li {
+  margin-left: 0.5rem;
+}
+
+nav.toc li a {
+  color: var(--p1);
+  font-weight: 500;
+}
+
+nav.toc li a:hover {
+  color: var(--h1);
+}

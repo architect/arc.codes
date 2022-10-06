@@ -6,7 +6,7 @@ export default function DocumentOutline (props = {}) {
   } = props
 
   return `
-<div class="pl0 w-toc sticky top0 right-sidebar">
+<div class="pl0 sticky top0 right-sidebar">
   <div class="pt0 ml-none-lg">
     <a
       id="top-link"
@@ -15,7 +15,7 @@ export default function DocumentOutline (props = {}) {
     >
       ↑ ${title}
     </a>
-    ${tocHtml.replace(/class="mb1"/g, 'class="list-none"')}
+    ${tocHtml}
   </div>
 </div>
   `

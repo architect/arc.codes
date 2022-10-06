@@ -52,7 +52,12 @@ async function handler (req) {
       const md = readFileSync(filePath, 'utf8')
       const arcdown = new Arcdown({
         hljs: { classString: 'hljs mb0 mb1-lg relative' },
-        pluginOverrides: { markdownItClass: classMap },
+        pluginOverrides: {
+          markdownItClass: classMap,
+          markdownItToc: {
+            containerClass: 'toc',
+          },
+        },
       })
       const result = await arcdown.render(md)
       body = cache[filePath] = Html({
