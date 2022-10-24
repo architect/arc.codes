@@ -21,7 +21,7 @@
   "dependencies": {
     "@architect/asap": "^5.0.1",
     "@architect/functions": "~5.2.2",
-    "@architect/inventory": "^3.3.0",
+    "@architect/inventory": "^3.3.2",
     "@architect/package": "^8.2.0",
     "@architect/plugin-node-prune": "^2.0.2",
     "arcdown": "^2.1.0",
