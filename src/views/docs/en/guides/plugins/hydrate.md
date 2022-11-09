@@ -11,7 +11,7 @@ description: '<code>hydrate</code> lifecycle hook plugins'
 
 > Note: this API is currently experimental and [collecting feedback here](https://github.com/architect/architect/issues/1369), please let us know what you think!
 
-Copy arbitrary files or folders into your project's Lambdas' shared code directories (e.g. `./src/$pragma/$name/node_modules/@architect/shared/` or `./src/$pragma/$name/vendor`), and run arbitrary operations.
+Copy arbitrary files or folders into your project's Lambdas' shared code directories (e.g. `./src/$pragma/$name/node_modules/` or `./src/$pragma/$name/vendor`), and run arbitrary operations.
 
 `hydrate.copy` runs after all dependency installation and shared file operations are complete, ensuring that any filesystem mutations will be present in final deployment artifacts.
 
@@ -47,7 +47,7 @@ The `target` path is a relative path of the source file or folder to be copied i
 
 For example, if you specify a `target` of `hi/there.json`, your Lambda will have one of two file paths written (based on its runtime):
 
-- `./src/$pragma/$name/node_modules/@architect/shared/hi/there.json`
+- `./src/$pragma/$name/node_modules/hi/there.json`
 - `./src/$pragma/$name/vendor/hi/there.json`
 
 
