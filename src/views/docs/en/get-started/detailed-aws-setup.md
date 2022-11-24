@@ -109,8 +109,7 @@ While it is recommended to explicitly declare your application's AWS profile and
 Each Lambda runtime version includes its own built-in version of the AWS SDK. These versions are maintained and transparently upgraded by AWS.
 
 Since the AWS SDK is an extremely large library, we strongly recommend you do not ship your own version as a dependency, either in full or as a bundle. Doing so may have some of the following unintended side effects:
-- Significantly slower Lambda coldstart
-- Significantly slower Lambda invocation
+- Slower Lambda coldstart and / or invocation
 - Reduced available code payload size
 - Possibly increased difficulty debugging (in the case of bundles)
 
@@ -132,7 +131,7 @@ Moreover, as the versions imply, v2 is largely incompatible with v3, and per the
 - If you have a Lambda running `nodejs16.x`, we recommend against adding `@aws-sdk/*` modules (until you are ready to migrate to `nodejs18.x`)
 - Likewise, if you intend to run your Lambda on `nodejs18.x`, we recommend against using `aws-sdk`
 
-> ℹ️ Upgrading to `nodejs18.x` (and thus using AWS SDK v3) represents a meaningful change, and should be investigated thoroughly and with care. Key interfaces have been retired (such as `.promise()`), and some core SDK methods have changed significantly. (Example: [`S3.GetObject` no longer returns a Buffer](https://github.com/aws/aws-sdk-js-v3/issues/1877).)
+> ℹ️ Upgrading to `nodejs18.x` (and thus using AWS SDK v3) represents a meaningful change, and should be investigated thoroughly and with care. Key interfaces have been retired (such as `.promise()`), and some core SDK methods have changed significantly. (Example: [`S3.GetObject` no longer returns a Buffer](https://github.com/aws/aws-sdk-js-v3/issues/1877).) However, you can likely safely and reliably upgrade if your handlers make use of [`@architect/functions`](/docs/en/reference/runtime-helpers/node.js#%40architect%2Ffunctions).
 
 
 #### Architect's AWS SDK strategy
@@ -144,6 +143,15 @@ However, in the singular case of AWS SDK, AWS manages that dependency in particu
 Practically speaking, that means if, for example, you rely on Architect's Lambda treeshaking feature – which scans your Lambda code and automatically installs `require`d or `import`ed dependencies at deploy-time – any mismatched versions of the AWS SDK will not be automatically installed by Architect.
 
 Architect will, however, attempt to provide helpful warnings where possible. For example: if your `nodejs18.x` Lambda `import`s `aws-sdk`, which is not built into the Lambda container, Architect will warn you of this during deployment.
+
+
+#### Forward compatibility via `@architect/functions`
+
+[`@architect/functions`](/docs/en/reference/runtime-helpers/node.js#%40architect%2Ffunctions) >= 5.3 papers over all possible breaking changes and incompatibilities between AWS SDK versions 2 and 3. This means if your Lambdas make use of `@architect/functions` (and you otherwise do not directly rely on AWS SDK calls), you would very likely be fully forward-compatible with `nodejs18.x` as of v5.3.
+
+However, if your Lambdas do NOT make use of `@architect/functions`, or make use of AWS SDK calls outside of the methods provided by `@architect/functions`, before opting into Lambda `nodejs18.x` + SDK v3 we strongly advise you investigate thoroughly and with care.
+
+> ℹ️ The one currently known caveat where `@architect/functions` cannot paper over v2 → v3 is in `arc.tables()._db` + `arc.tables()._doc` client methods; [see more here](/docs/en/reference/runtime-helpers/node.js#client-methods).
 
 ---
 
