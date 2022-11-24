@@ -132,6 +132,8 @@ Moreover, as the versions imply, v2 is largely incompatible with v3, and per the
 - If you have a Lambda running `nodejs16.x`, we recommend against adding `@aws-sdk/*` modules (until you are ready to migrate to `nodejs18.x`)
 - Likewise, if you intend to run your Lambda on `nodejs18.x`, we recommend against using `aws-sdk`
 
+> ℹ️ Upgrading to `nodejs18.x` (and thus using AWS SDK v3) represents a meaningful change, and should be investigated thoroughly and with care. Key interfaces have been retired (such as `.promise()`), and some core SDK methods have changed significantly. (Example: [`S3.GetObject` no longer returns a Buffer](https://github.com/aws/aws-sdk-js-v3/issues/1877).)
+
 
 #### Architect's AWS SDK strategy
 
