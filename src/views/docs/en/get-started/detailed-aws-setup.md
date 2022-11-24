@@ -13,7 +13,8 @@ description: Setting up, installing, and working with Architect and AWS.
 3. Any additional [supported runtimes](#runtime-environments) you plan to use in your application
 4. [AWS CLI](#aws-cli)
 5. [AWS credentials](#credentials)
-6. [Architect CLI](#install-architect)
+6. [AWS SDK](#aws-sdk)
+7. [Architect CLI](#install-architect)
 
 ---
 
@@ -22,8 +23,8 @@ description: Setting up, installing, and working with Architect and AWS.
 Architect supports the following runtime versions:
 
 - **Node.js**: `>= 14.x` using `npm`
-  - Unless otherwise specified in your project manifest, Node.js is the default runtime for new functions
-- **Python**: `3.9`, `3.8`, `3.7`, or `3.6` using `pip3`
+  - Unless otherwise specified in your project manifest, Node.js 16.x is the default runtime for new functions
+- **Python**: `3.9`, `3.8`, or `3.7` using `pip3`
 - **Ruby**: `2.7` using `bundle`
 - **Deno**: `1.6.x` ([under development](../reference/runtime-helpers/deno))
 
@@ -32,7 +33,7 @@ Architect supports the following runtime versions:
 Additionally, all other standard AWS-managed runtimes are supported in Architect applications (but may not be supported in [Sandbox](../reference/cli/sandbox)), including:
 
 - **Go**: `1.x`
-- **.NET**: `3.1`
+- **.NET**: `6`, `5`, and `3.1`
 - **Java**: `11`, and `8`
 
 Architect also supports _any custom runtime_ in using either [Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) or [Lambda container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html).
@@ -99,26 +100,50 @@ aws_access_key_id=xxx
 aws_secret_access_key=xxx
 ```
 
-While it is recommended to explicitly declare your application's AWS profile and region, you may also want to use a default profile and region on your machine with the following environment variables:
+While it is recommended to explicitly declare your application's AWS profile and region in the `@aws` pragma of your project's manifest, you may also set a (default) profile and region with the `AWS_PROFILE` + `AWS_REGION` environment variables.
 
-- `AWS_PROFILE`
-- `AWS_REGION`
+---
 
-To set these variables on Linux, macOS, or UNIX, use `export` in your shell's configuration (e.g. `~/.zshrc` or `~/.bashrc`):
+### AWS SDK
 
-```bash
-export AWS_PROFILE=work
-export AWS_REGION=us-west-1
-```
+Each Lambda runtime version includes its own built-in version of the AWS SDK. These versions are maintained and transparently upgraded by AWS.
 
-Or for Windows, add this to your PowerShell `$profile`:
+Since the AWS SDK is an extremely large library, we strongly recommend you do not ship your own version as a dependency, either in full or as a bundle. Doing so may have some of the following unintended side effects:
+- Significantly slower Lambda coldstart
+- Significantly slower Lambda invocation
+- Reduced available code payload size
+- Possibly increased difficulty debugging (in the case of bundles)
 
-```powershell
-$env:AWS_PROFILE='work'
-$env:AWS_REGION='us-west-1'
-```
 
-> If you prefer, you can also use: *Control Panel » System » Advanced System Settings » Environment Variables*.
+#### Node.js AWS SDK versions
+
+AWS maintains two versions of the AWS SDK for Node.js developers:
+
+- v2 - [`aws-sdk`](https://www.npmjs.com/package/aws-sdk)
+- v3 - [`@aws-sdk/*`](https://github.com/aws/aws-sdk-js-v3)
+
+Lambda Node.js runtimes up to `nodejs16.x` include AWS SDK v2 (`aws-sdk`).
+
+As of `nodejs18.x`, Lambda not includes AWS SDK v3 (`@aws-sdk/*`).
+
+While v2 will likely continue to be maintained for some time to come, by making v3 the only available built-in version in `nodejs18.x`, AWS has signaled that they expect user to migrate to the new version, whether or not it is an actual improvement to developer experience.
+
+Moreover, as the versions imply, v2 is largely incompatible with v3, and per the above recommendation, the version you should use in your handler code should correspond to the runtime you use. For example:
+- If you have a Lambda running `nodejs16.x`, we recommend against adding `@aws-sdk/*` modules (until you are ready to migrate to `nodejs18.x`)
+- Likewise, if you intend to run your Lambda on `nodejs18.x`, we recommend against using `aws-sdk`
+
+
+#### Architect's AWS SDK strategy
+
+A core goal of Architect is to make building [Functional Web Apps](https://fwa.dev) simpler, and an important aspect of that objective is to help (automatically) manage the many dependencies in use across your Lambdas, whether your project has one or one hundred of them.
+
+However, in the singular case of AWS SDK, AWS manages that dependency in particular. For the aforementioned reasons Architect does not attempt to automatically manage or include any version of AWS SDK.
+
+Practically speaking, that means if, for example, you rely on Architect's Lambda treeshaking feature – which scans your Lambda code and automatically installs `require`d or `import`ed dependencies at deploy-time – any mismatched versions of the AWS SDK will not be automatically installed by Architect.
+
+Architect will, however, attempt to provide helpful warnings where possible. For example: if your `nodejs18.x` Lambda `import`s `aws-sdk`, which is not built into the Lambda container, Architect will warn you of this during deployment.
+
+---
 
 ### Install Architect
 

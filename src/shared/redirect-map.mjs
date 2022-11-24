@@ -50,6 +50,7 @@ export const tempRedirects = {
   // Other aliases
   '/typescript': '/docs/en/guides/developer-experience/using-typescript',
   '/esm': '/docs/en/guides/developer-experience/using-esm',
+  '/aws-sdk-versions': '/docs/en/get-started/detailed-aws-setup#aws-sdk',
 }
 
 // redirect known v5/6 arc urls to v8 and then to v9
