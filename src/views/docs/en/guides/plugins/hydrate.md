@@ -47,8 +47,6 @@ The `target` path (optional) is a relative path of the being copied into your La
 
 For example, if you specify a `target` of `hi/there.json`, the following file will be written: `./src/$pragma/$name/$node_modules_or_vendor/hi/there.json`
 
-If you specify a `source` of `howdy.json` and **do not** specify a `target`, the following file will be written: `./src/$pragma/$name/$node_modules_or_vendor/hi/there.json`
-
 If you specify a `source` of `howdy.json` and **do not** specify a `target`, the following file will be written: `./src/$pragma/$name/$node_modules_or_vendor/howdy.json`
 
 
