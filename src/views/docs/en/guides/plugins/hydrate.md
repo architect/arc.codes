@@ -26,29 +26,30 @@ Copy arbitrary files or folders into your project's Lambdas' dependency director
 
 ### Copy function
 
-`hydrate.copy` plugins are provided an async `copy` function capable of copying one or more files or folders into all Lambdas in the project (including Lambdas created by plugins with [`set` methods](./set)). Invocations must include the following properties:
+`hydrate.copy` plugins are provided an async `copy` function capable of copying one or more files or folders into all Lambdas in the project (including Lambdas created by plugins with [`set` methods](./set)). Invocations accept the following properties:
 
-| Property  | Type    | Description                                                   |
-|-----------|---------|---------------------------------------------------------------|
-| `source`  | string  | Relative or absolute path of the source file or folder        |
-| `target`  | string  | Relative path of the target file or folder within each Lambda |
+| Property  | Type              | Description                                                   |
+|-----------|-------------------|---------------------------------------------------------------|
+| `source`  | string (required) | Relative or absolute path of the source file or folder        |
+| `target`  | string            | Relative path of the target file or folder within each Lambda |
 
 
 ### Source paths
 
-The `source` path is a relative or absolute file path of the source file or folder to be copied into your Lambdas.
+The `source` path (required) is a relative or absolute file path of the source file or folder to be copied into your Lambdas.
 
 > Note: as of right now, `source` must be found somewhere within the project directory. This may change in the future based on feedback.
 
 
 ### Target paths
 
-The `target` path is a relative path of the being copied into your Lambdas.
+The `target` path (optional) is a relative path of the being copied into your Lambdas. If not provided, `hydrate.copy` will add the file or folder to the root of your dependencies directory.
 
-For example, if you specify a `target` of `hi/there.json`, your Lambda will have one of two file paths written (based on its runtime):
+For example, if you specify a `target` of `hi/there.json`, the following file will be written: `./src/$pragma/$name/$node_modules_or_vendor/hi/there.json`
 
-- `./src/$pragma/$name/node_modules/hi/there.json`
-- `./src/$pragma/$name/vendor/hi/there.json`
+If you specify a `source` of `howdy.json` and **do not** specify a `target`, the following file will be written: `./src/$pragma/$name/$node_modules_or_vendor/hi/there.json`
+
+If you specify a `source` of `howdy.json` and **do not** specify a `target`, the following file will be written: `./src/$pragma/$name/$node_modules_or_vendor/howdy.json`
 
 
 ## Examples
@@ -59,7 +60,7 @@ module.exports = { hydrate: {
   copy: async ({ arc, inventory, copy }) => {
     await copy({
       source: 'project/relative/path/file.txt',
-      target: 'file.txt', // Copied to `./src/$pragma/$name/$node_modules_or_vendor/file.txt`
+      target: 'foo/file.txt', // Copied to `./src/$pragma/$name/$node_modules_or_vendor/foo/file.txt`
     })
   }
 } }
@@ -72,13 +73,25 @@ module.exports = { hydrate: {
     await copy([
       {
         source: 'project/relative/path/file.txt',
-        target: 'file.txt', // Copied to `./src/$pragma/$name/$node_modules_or_vendor/file.txt`
+        target: 'file.txt', // Copied to `./src/$pragma/$name/$node_modules_or_vendor/foo/file.txt`
       },
       {
         source: 'project/relative/path/subfolder',
         target: 'some-subfolder', // Copied to `./src/$pragma/$name/$node_modules_or_vendor/some-subfolder`
       },
     ])
+  }
+} }
+```
+
+```javascript
+// Assume the target is the root dependency dir
+module.exports = { hydrate: {
+  copy: async ({ arc, inventory, copy }) => {
+    await copy({
+      source: 'project/relative/path/file.txt',
+      // Copied to `./src/$pragma/$name/$node_modules_or_vendor/file.txt`
+    })
   }
 } }
 ```
