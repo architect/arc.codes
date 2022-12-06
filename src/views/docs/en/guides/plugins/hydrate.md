@@ -11,7 +11,7 @@ description: '<code>hydrate</code> lifecycle hook plugins'
 
 > Note: this API is currently experimental and [collecting feedback here](https://github.com/architect/architect/issues/1369), please let us know what you think!
 
-Copy arbitrary files or folders into your project's Lambdas' shared code directories (e.g. `./src/$pragma/$name/node_modules/` or `./src/$pragma/$name/vendor`), and run arbitrary operations.
+Copy arbitrary files or folders into your project's Lambdas' dependency directories (e.g. `./src/$pragma/$name/node_modules/` if Node.js, or `./src/$pragma/$name/vendor` for Python, Ruby, etc.), and run arbitrary operations.
 
 `hydrate.copy` runs after all dependency installation and shared file operations are complete, ensuring that any filesystem mutations will be present in final deployment artifacts.
 
@@ -26,12 +26,12 @@ Copy arbitrary files or folders into your project's Lambdas' shared code directo
 
 ### Copy function
 
-`hydrate.copy` plugins are provided an async `copy` function capable of copying one or more files or folders into all Lambdas in the project (including Lambdas created by plugins with [`set` methods](./set)) that have code sharing enabled. Invocations must include the following properties:
+`hydrate.copy` plugins are provided an async `copy` function capable of copying one or more files or folders into all Lambdas in the project (including Lambdas created by plugins with [`set` methods](./set)). Invocations must include the following properties:
 
-| Property  | Type    | Description                                                 |
-|-----------|---------|-------------------------------------------------------------|
-| `source`  | string  | Relative or absolute path of the source file or folder      |
-| `target`  | string  | Relative path of the target file or folder                  |
+| Property  | Type    | Description                                                   |
+|-----------|---------|---------------------------------------------------------------|
+| `source`  | string  | Relative or absolute path of the source file or folder        |
+| `target`  | string  | Relative path of the target file or folder within each Lambda |
 
 
 ### Source paths
@@ -43,7 +43,7 @@ The `source` path is a relative or absolute file path of the source file or fold
 
 ### Target paths
 
-The `target` path is a relative path of the source file or folder to be copied into your Lambdas.
+The `target` path is a relative path of the being copied into your Lambdas.
 
 For example, if you specify a `target` of `hi/there.json`, your Lambda will have one of two file paths written (based on its runtime):
 
@@ -59,9 +59,8 @@ module.exports = { hydrate: {
   copy: async ({ arc, inventory, copy }) => {
     await copy({
       source: 'project/relative/path/file.txt',
-      target: 'file.txt',
+      target: 'file.txt', // Copied to `./src/$pragma/$name/$node_modules_or_vendor/file.txt`
     })
-    //
   }
 } }
 ```
@@ -73,11 +72,11 @@ module.exports = { hydrate: {
     await copy([
       {
         source: 'project/relative/path/file.txt',
-        target: 'file.txt',
+        target: 'file.txt', // Copied to `./src/$pragma/$name/$node_modules_or_vendor/file.txt`
       },
       {
         source: 'project/relative/path/subfolder',
-        target: 'some-subfolder',
+        target: 'some-subfolder', // Copied to `./src/$pragma/$name/$node_modules_or_vendor/some-subfolder`
       },
     ])
   }
