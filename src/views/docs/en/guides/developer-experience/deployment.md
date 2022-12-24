@@ -46,10 +46,10 @@ Sometimes you need to just update the frontend.
 arc deploy --static
 ```
 
-## Deployment Credentials
+## Deployment credentials
 
-To specify your AWS credentials using environment variables, you must also set `ARC_AWS_CREDS=env`. For example:
+If your machine has an AWS credentials file (`~/.aws/credentials`) but you would like to override those credentials using environment variables, you must also set `ARC_AWS_CREDS=env`. For example:
 
 ```bash
-ARC_AWS_CREDS=env AWS_ACCESS_KEY_ID=... AWS_SECRET_ACCESS_KEY="..." arc deploy --production
+ARC_AWS_CREDS=env AWS_ACCESS_KEY_ID=... AWS_SECRET_ACCESS_KEY=... arc deploy --production
 ```
