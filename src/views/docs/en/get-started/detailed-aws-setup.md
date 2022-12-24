@@ -125,9 +125,9 @@ Lambda Node.js runtimes up to `nodejs16.x` include AWS SDK v2 (`aws-sdk`).
 
 As of `nodejs18.x`, Lambda now includes AWS SDK v3 (`@aws-sdk/*`).
 
-While v2 will likely continue to be maintained for some time to come, by making v3 the only available built-in version in `nodejs18.x`, AWS has signaled that they expect user to migrate to the new version, whether or not it is an actual improvement to developer experience.
+While v2 will likely continue to be maintained for some time to come, by making v3 the only available built-in version in `nodejs18.x` AWS has signaled that they expect users to migrate to the new version, whether or not it is an actual improvement to developer experience.
 
-Moreover, as the versions imply, v2 is largely incompatible with v3, and per the above recommendation, the version you should use in your handler code should correspond to the runtime you use. For example:
+Moreover, as the versions imply, v2 is largely incompatible with v3, and per the [above recommendation](#aws-sdk), the version you should use in your handler code should correspond to the runtime you use. For example:
 - If you have a Lambda running `nodejs16.x`, we recommend against adding `@aws-sdk/*` modules (until you are ready to migrate to `nodejs18.x`)
 - Likewise, if you intend to run your Lambda on `nodejs18.x`, we recommend against using `aws-sdk`
 
