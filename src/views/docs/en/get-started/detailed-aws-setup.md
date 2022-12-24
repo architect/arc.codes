@@ -123,7 +123,7 @@ AWS maintains two versions of the AWS SDK for Node.js developers:
 
 Lambda Node.js runtimes up to `nodejs16.x` include AWS SDK v2 (`aws-sdk`).
 
-As of `nodejs18.x`, Lambda not includes AWS SDK v3 (`@aws-sdk/*`).
+As of `nodejs18.x`, Lambda now includes AWS SDK v3 (`@aws-sdk/*`).
 
 While v2 will likely continue to be maintained for some time to come, by making v3 the only available built-in version in `nodejs18.x`, AWS has signaled that they expect user to migrate to the new version, whether or not it is an actual improvement to developer experience.
 
