@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@architect/asap": "^5.1.1",
-    "@architect/functions": "~5.3.3",
+    "@architect/functions": "~5.3.4",
     "@architect/inventory": "^3.4.1",
     "@architect/package": "^8.4.0",
     "@architect/plugin-node-prune": "^2.0.2",
