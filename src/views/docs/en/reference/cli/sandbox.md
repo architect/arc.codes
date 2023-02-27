@@ -24,30 +24,44 @@ arc sandbox [--port|--host|--disable-symlinks|--no-hydrate|--verbose]
 
 ## Flags
 
-- `[--port, -p]` Manually specify HTTP port (default `3333`)
-- `[--host, -h]` Specify which IP addresses the server should listen on. Set this to 0.0.0.0 or true to listen on all addresses, including LAN and public addresses.
-- `[--verbose, -v]` Enable verbose logging
-- `[--disable-symlinks]` Disable symlinking `src/shared` and copy instead
-- `[--no-hydrate]` Disables hydration
+- `-p`, `--port` - Manually specify HTTP port
+  - Defaults to `3333`
+- `-h`, `--host` - Specify the host interface for Sandbox to listen on
+  - Defaults to `0.0.0.0` (all available interfaces on your machine)
+  - To accept local connections only, specify `localhost`
+- `-v`, `--verbose` - Enable verbose logging
+- `-d`, `--debug` - Enable debug logging
+- `-q`, `--quiet` - Disable (most) logging
+- `--disable-symlinks` - Disable symlinking `src/shared` into all functions and use file copying instead
 
 
 ## CLI variables
 
 The following variables can be set on the command line when running `arc sandbox`. Other variables will be ignored by Sandbox.
 
-- `ARC_ENV` - `testing|staging|production`
-  - Defaults to `testing`
 - `ARC_API_TYPE` - Set the API Gateway API type
   - Can be one of `http` (aliased to `httpv2`), `httpv1`, `rest`
   - Defaults to `http`
-- `ARC_PORT` - Manually specify HTTP port
-  - Defaults to `3333`
+- `ARC_ENV` - `testing|staging|production`
+  - Defaults to `testing`
+- `ARC_HOST` - Specify the host interface for Sandbox to listen on
+  - Defaults to `0.0.0.0` (all available interfaces on your machine)
+  - To accept local connections only, specify `localhost`
 - `ARC_LOCAL`- If present and used in conjunction with `ARC_ENV=staging|production`, emulates live `staging` or `production` environment
   - Uses your [local preferences `@env`](../configuration/local-preferences#%40env) environment variables for the appropriate stage
   - Connects Sandbox to live AWS events and DynamoDB infrastructure
   - Requires valid AWS credentials with the same profile name as defined in your [project manifest](../project-manifest/aws#profile)
-- `ARC_QUIET` - If present, disable (most) logging
+- Specify ports:
+  - `ARC_PORT` - Manually specify HTTP port
+    - Defaults to `3333`
+  - `ARC_EVENTS_PORT`- Manually specify event bus port
+    - Defaults to `4444`
+  - `ARC_TABLES_PORT`- Manually specify local DynamoDB port
+    - Defaults to `5555`
+  - `ARC_INTERNAL_PORT`- Manually specify internal Sandbox + AWS services port
+    - Defaults to `2222`
 - `ARC_DB_EXTERNAL` - (Boolean) Use an external DynamoDB tool (such as [AWS NoSQL Workbench](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html))
+- `ARC_QUIET` - If present, disable (most) logging
 
 
 ### Example
