@@ -7,8 +7,8 @@
   },
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=16.14.0",
-    "npm": ">=8.5.0"
+    "node": ">=16",
+    "npm": ">=8"
   },
   "scripts": {
     "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
@@ -20,18 +20,18 @@
   },
   "dependencies": {
     "@architect/asap": "^5.1.1",
-    "@architect/functions": "~5.3.3",
-    "@architect/inventory": "^3.4.1",
-    "@architect/package": "^8.4.0",
+    "@architect/functions": "~5.3.4",
+    "@architect/inventory": "^3.4.2",
+    "@architect/package": "^8.4.1",
     "@architect/plugin-node-prune": "^2.0.2",
     "arcdown": "^2.1.0",
     "slugify": "^1.6.5"
   },
   "devDependencies": {
-    "@architect/architect": "^10.9.3",
+    "@architect/architect": "^10.10.2",
     "@architect/eslint-config": "^2.1.1",
     "@architect/spellcheck-dictionary": "git+https://github.com/architect/spellcheck-dictionary.git#v0.1.8",
-    "eslint": "^8.33.0",
+    "eslint": "^8.35.0",
     "linkinator": "^4.1.2",
     "spellchecker-cli": "^6.1.1",
     "tap-arc": "^0.3.5",
