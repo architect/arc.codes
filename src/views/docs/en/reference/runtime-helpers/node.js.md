@@ -120,13 +120,13 @@ Handler functions passed to `arc.http[.async]` receive a `request` object contai
 - `method` (alias of `httpMethod`) - **string**
   - HTTP method of the request: `GET`, `POST`, `PATCH`, `PUT`, or `DELETE`
 - `params` (alias of `pathParameters`) - **object**
-  - Any URL params, if defined in your HTTP function's path (e.g. `product` in `/shop/:product`); `{}` if request has no path parameters
+  - URL parameters, if defined in your HTTP function's path (e.g. `product` in `/shop/:product`); `{}` if request has none
   - Example: `{ product: 'chocolate-chip-cookies' }`
 - `path` - **string**
   - Root-relative path of the URL being requested
   - Example: `/shop/chocolate-chip-cookies`
 - `query` (alias of `queryStringParameters`) - **object**
-  - Any query params if present in the client request; `{}` if request has no query parameters
+  - Parsed query string parameters present in the client request; `{}` if request has none
   - Example: `{ someParam: someValue }`
 - `session` - **object**
   - Automatically parsed from the request cookie; `{}` if no `session` is found for the requesting client
@@ -147,6 +147,11 @@ Handler functions passed to `arc.http[.async]` receive a `request` object contai
 
 - `cacheControl` - **string**
   - Sets the `cache-control` header (or overrides it if already present)
+- `compression` - **string** or **boolean**
+  - Defaults to Brotli (`br`); sets output compression of non-binary handler responses (e.g. JSON, HTML, etc.)
+  - If requesting client does not support default (`br`), it automatically falls back to gzip (`gzip`), and then disables compression
+  - If a compression type is manually specified (e.g. `compression: 'br'`) and the requesting client does not support it, compression is automatically disabled for that request
+  - To manually disable output compression for non-binary responses, specify `false`
 - `cookie` - **string**
   - Sets the `set-cookie` header (or overrides it if already present)
 - `cors` - **boolean**
