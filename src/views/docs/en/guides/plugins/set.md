@@ -56,7 +56,7 @@ Example:
 
 ```javascript
 // Return a single async event
-module.exports = { 
+module.exports = {
   set: {
     events ({ arc, inventory }) {
       return {
@@ -84,17 +84,17 @@ Example:
 
 ```javascript
 // Return multiple HTTP routes
-module.exports = { 
+module.exports = {
   set: {
     http ({ arc, inventory }) {
-      let src = __dirname + '/handler' 
+      let src = __dirname + '/handler'
       // Multiple Lambdas can use the same handler
       return [
         { method: 'get', path: '/foo', src },
         { method: 'put', name: '/bar', src }
       ]
     }
-  } 
+  }
 }
 ```
 
@@ -112,7 +112,7 @@ Set URLs for API Gateway to forward all requests by default; individual routes c
 Example:
 
 ```javascript
-module.exports = { 
+module.exports = {
   set: {
     proxy ({ arc, inventory }) {
       return {
@@ -121,7 +121,7 @@ module.exports = {
         production: 'https://production-url.com',
       }
     }
-  } 
+  }
 }
 ```
 
@@ -140,7 +140,7 @@ Example:
 
 ```javascript
 // Return a single async event queue
-module.exports = { 
+module.exports = {
   set: {
     queues ({ arc, inventory }) {
       return {
@@ -148,7 +148,7 @@ module.exports = {
         src: __dirname + '/handler' // Points to a handler dir inside the plugin
       }
     }
-  } 
+  }
 }
 ```
 
@@ -171,7 +171,7 @@ Example:
 
 ```javascript
 // Return two scheduled events: one using rate syntax, and one using cron syntax
-module.exports = { 
+module.exports = {
   set: {
     scheduled ({ arc, inventory }) {
       let src = __dirname + '/handler'
@@ -188,7 +188,7 @@ module.exports = {
         }
       ]
     }
-  } 
+  }
 }
 ```
 
@@ -204,14 +204,14 @@ Set a custom source path for Architect's code sharing system ([`@shared`][shared
 Example:
 
 ```javascript
-module.exports = { 
+module.exports = {
   set: {
     shared ({ arc, inventory }) {
       return {
         src: __dirname + '/shared-libs'
       }
     }
-  } 
+  }
 }
 ```
 
@@ -233,7 +233,7 @@ Modify settings for static asset handling. Return a single object with the follo
 Example:
 
 ```javascript
-module.exports = { 
+module.exports = {
   set: {
     static ({ arc, inventory }) {
       return {
@@ -241,7 +241,7 @@ module.exports = {
         folder: 'static-assets',
       }
     }
-  } 
+  }
 }
 ```
 
@@ -266,7 +266,7 @@ Example:
 
 ```javascript
 // Return a single table
-module.exports = { 
+module.exports = {
   set: {
     tables ({ arc, inventory }) {
       return {
@@ -279,7 +279,7 @@ module.exports = {
         pitr: true,
       }
     }
-  } 
+  }
 }
 ```
 
@@ -301,7 +301,7 @@ Example:
 
 ```javascript
 // Return a single table index
-module.exports = { 
+module.exports = {
   set: {
     'tables-indexes': ({ arc, inventory }) => {
       return {
@@ -311,7 +311,7 @@ module.exports = {
         indexName: 'my-custom-index-name', // Optional!
       }
     }
-  } 
+  }
 }
 ```
 
@@ -331,7 +331,7 @@ Example:
 
 ```javascript
 // Return a single table stream
-module.exports = { 
+module.exports = {
   set: {
     'tables-streams': ({ arc, inventory }) => {
       return {
@@ -340,7 +340,7 @@ module.exports = {
         src: __dirname + '/handler' // Points to a handler dir inside the plugin
       }
     }
-  } 
+  }
 }
 ```
 
@@ -357,14 +357,14 @@ Set a custom source path for Architect's frontend views code sharing system ([`@
 Example:
 
 ```javascript
-module.exports = { 
+module.exports = {
   set: {
     views ({ arc, inventory }) {
       return {
         src: 'app/views'
       }
     }
-  } 
+  }
 }
 ```
 
@@ -385,7 +385,7 @@ Example:
 
 ```javascript
 // Return a single WebSocket route
-module.exports = { 
+module.exports = {
   set: {
     ws ({ arc, inventory }) {
       return {
@@ -393,7 +393,7 @@ module.exports = {
         src: __dirname + '/handler' // Points to a handler dir inside the plugin
       }
     }
-  } 
+  }
 }
 ```
 
@@ -413,20 +413,20 @@ Examples:
 
 ```javascript
 // Return an environment variable for all Lambdas
-module.exports = { 
+module.exports = {
   set: {
     env ({ arc, inventory }) {
       return {
         API_SECRET: process.env.API_SECRET // Handy for exporting secrets in CI/CD
       }
     }
-  } 
+  }
 }
 ```
 
 ```javascript
 // Return a different environment variables for different stages
-module.exports = { 
+module.exports = {
   set: {
     env ({ arc, inventory }) {
       return {
@@ -441,7 +441,7 @@ module.exports = {
         },
       }
     }
-  } 
+  }
 }
 ```
 
@@ -493,9 +493,9 @@ Example:
 
 ```javascript
 // Enable a custom build directory with a custom runtime pragma (`@typescript`)
-module.exports = { 
+module.exports = {
   set: {
-    runtime ({ arc, inventory }) {
+    runtimes ({ arc, inventory }) {
       let { arc } = inventory.inv._project
       let build = '.build'
       if (arc.typescript) {
@@ -512,7 +512,7 @@ module.exports = {
         build,
       }
     }
-  } 
+  }
 }
 ```
 
@@ -535,7 +535,7 @@ Example:
 ```javascript
 // Returning this event Lambda assumes user project defaults > Architect defaults
 // If the project specifies `@aws runtime python3.9`, and your handler is JS, it will not run
-module.exports = { 
+module.exports = {
   set: {
     events ({ arc, inventory }) {
       return {
@@ -543,13 +543,13 @@ module.exports = {
         src: __dirname + '/handler'
       }
     }
-  } 
+  }
 }
 ```
 
 ```javascript
 // Returning a `config` property provides control over the configuration of the returned Lambda
-module.exports = { 
+module.exports = {
   set: {
     events ({ arc, inventory }) {
       return {
@@ -562,7 +562,7 @@ module.exports = {
         }
       }
     }
-  } 
+  }
 }
 ```
 
@@ -593,7 +593,7 @@ delete
 Since these Lambdas live in userland, `set.customLambdas` method might look something like this:
 
 ```javascript
-module.exports = { 
+module.exports = {
   set: {
     customLambdas ({ arc, inventory }) {
       let localS3 = arc['local-s3']
@@ -609,7 +609,7 @@ module.exports = {
       })
       return lambdas
     }
-  } 
+  }
 }
 ```
 
@@ -624,7 +624,7 @@ Assuming you published your project as `arc-plugin-autobundle`, you might want y
 
 ```javascript
 // node_modules/arc-plugin-autobundle/index.js
-module.exports = { 
+module.exports = {
   set: {
     http ({ arc, inventory }) {
       return {
@@ -634,7 +634,7 @@ module.exports = {
         src: __dirname + '/handler'
       }
     }
-  } 
+  }
 }
 ```
 

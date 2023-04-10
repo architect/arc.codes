@@ -46,6 +46,7 @@ const Guides = [
     ],
     'Plugins': [
       'Overview',
+      'create',
       'deploy',
       'hydrate',
       'sandbox',

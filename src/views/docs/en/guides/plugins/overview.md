@@ -49,6 +49,11 @@ Workflow hooks enable developers to extend Architect workflows
   - [`services`](./deploy#deploy.services) - hook into Architect's service discovery to create references to custom resources, or populate config data
   - [`target`](./deploy#deploy.target) - bypass CloudFormation deployment to AWS, and ship the project to an AWS intermediary
   - [`end`](./deploy#deploy.end) - run arbitrary post-deploy operations
+- [`create`](./create)
+  - [`register`](./create#create.register) - register runtimes to create handlers for
+  - [`handlers`](./create#create.handlers) - dynamically generate new runtime handlers as you expand your project
+- [`hydrate`](./hydrate)
+  - [`copy`](./hydrate#hydrate.copy) - copy files and folders during dependency hydration
 - [`sandbox`](./sandbox)
   - [`start`](./sandbox#sandbox.start) - run arbitrary operations during Sandbox startup
   - [`watcher`](./sandbox#sandbox.watcher) - act on project filesystem events (e.g. `src/http/get-foo/auth.js` → `updated`)
