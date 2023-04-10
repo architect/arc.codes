@@ -45,7 +45,7 @@ Alternately, you can return a single object or an array of objects with the foll
 module.exports = {
   create: {
     register: 'node',
-    handler: async ({ arc, cloudformation, lambda }) => {
+    handler: async ({ arc, inventory, lambda }) => {
       return [
         {
           filename: 'index.mjs',
@@ -73,7 +73,7 @@ module.exports = {
     }
   },
   create: {
-    handler: async ({ arc, cloudformation, lambda }) => {
+    handler: async ({ arc, inventory, lambda }) => {
       let cmd = `cargo lambda new --http bootstrap`
       execSync(cmd, { cwd: lambda.src })
     }
