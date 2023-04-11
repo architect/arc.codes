@@ -472,13 +472,20 @@ module.exports = { set: {
 
 ## `set.runtimes`
 
-Register custom runtimes for Lambdas. Return a single object or an array of objects. Each runtime type has its own set of requirements; `transpiled` is currently supported, [`compiled` + `interpeted` are coming soon](https://github.com/architect/architect/issues/1295).
+Register custom runtimes for Lambdas. Return a single object or an array of objects. Each runtime type has its own set of requirements; `transpiled` and `compiled` are currently supported, [`interpeted` is coming soon](https://github.com/architect/architect/issues/1295).
+
+No matter which runtime is designated, the source for each Lambda lives within the typical Architect project structure, whether using Architect conventions (e.g. `src/http/$method-$path`) or custom `src` paths.
+
+> Note: Architect's built in [shared code affordances](/docs/en/guides/developer-experience/sharing-code) are permanently disabled for transpiled and compiled handlers and their build artifacts.
+
 
 ### `transpiled`
 
-A transpiled runtime assumes a source tree is authored per Architect's typical project structure, with some form of transpilation step that results in build artifacts in a dist directory composed in an interpreted language (such as JavaScript).
+Lambdas with a `transpiled` runtime (such as those using TypeScript) undergo a transpilation step that publishes build artifacts to separate dist folder; artifacts in the dist folder are, as one would expect, composed in a corresponding interpreted language (e.g. JavaScript).
 
-For example, using [Architect TypeScript](https://github.com/architect/plugin-typescript), the `get /foo` handler is authored in `src/http/get-foo/index.ts`, and automatically transpiled to (and run / deployed from) `build/http/get-foo/index.js`.
+For example, using [Architect TypeScript](https://github.com/architect/plugin-typescript), the `get /foo` handler is authored in `src/http/get-foo/index.ts`, and automatically transpiled to (and run / deployed from) `.build/http/get-foo/index.js`.
+
+A plugin setting a `transpiled` runtime must return an object (or array of objects) containing the following properties:
 
 | Property      | Type    | Required  | Description                                   |
 |---------------|---------|-----------|-----------------------------------------------|
@@ -508,8 +515,50 @@ module.exports = {
       return {
         name: 'typescript',
         type: 'transpiled',
-        baseRuntime: 'nodejs14.x',
+        baseRuntime: 'nodejs18.x',
         build,
+      }
+    }
+  }
+}
+```
+
+
+### `compiled`
+
+Lambdas with a `compiled` runtime (such as those using Rust, Go, Java, etc.) undergo a compilation step that publishes build artifacts to separate dist folder. Per Lambda conventions, this folder is expected to contain a binary artifact called `bootstrap` that will serve as the Lambda handler ([reference](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html)).
+
+> Note: When running in Sandbox, your plugin should account for compiling the `bootstrap` for your local system architecture; likewise, during deployment the plugin should ensure the compile target is Amazon Linux 2 (aka `AL2`). A live AWS deployment is indicated by a `inventory.inv._arc.deployStage` value.
+
+For example, using [Architect Rust](https://github.com/architect/plugin-rust), the `get /foo` handler is authored in `src/http/get-foo/src/main.rs`, and automatically compiled to (and run / deployed from) `.build/http/get-foo/debug/bootstrap`. Remember, during production deploys that dist path may automatically change per your compiler's behavior.
+
+Because `cargo`'s build tooling automatically compiles the `bootstrap` file to a subfolder called `debug`, this plugin makes use of the `buildSubpath` property. (Without it, Architect would look for (and fail to find) your handler at `.build/http/get-foo/bootstrap`.)
+
+A plugin setting a `compiled` runtime must return an object (or array of objects) containing the following properties:
+
+| Property        | Type    | Required  | Description                                     |
+|-----------------|---------|-----------|-------------------------------------------------|
+| `name`          | string  | Yes       | Custom runtime name                             |
+| `type`          | string  | Yes       | Must be `compiled`                              |
+| `build`         | string  | No        | Relative build dir path; defaults to `build`    |
+| `buildSubpath`  | string  | No        | Optional subpath conforming to compiler output  |
+
+
+Example:
+
+```javascript
+// Set `buildSubpath` based on whether the compiler is building locally or for AWS release
+let { join } = require('path')
+module.exports = {
+  set: {
+    runtimes ({ arc, inventory }) {
+      let { deployStage } = inventory.inv._arc
+      let buildSubpath = deployStage ? 'release' : 'debug'
+      return {
+        name: 'rust',
+        type: 'compiled',
+        build,
+        buildSubpath,
       }
     }
   }
