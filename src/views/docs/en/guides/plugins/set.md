@@ -540,6 +540,7 @@ A plugin setting a `compiled` runtime must return an object (or array of objects
 |-----------------|---------|-----------|-------------------------------------------------|
 | `name`          | string  | Yes       | Custom runtime name                             |
 | `type`          | string  | Yes       | Must be `compiled`                              |
+| `baseRuntime`   | string  | No        | Lambda [runtime identifier or alias][runtime]   |
 | `build`         | string  | No        | Relative build dir path; defaults to `build`    |
 | `buildSubpath`  | string  | No        | Optional subpath conforming to compiler output  |
 
