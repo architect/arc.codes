@@ -85,7 +85,7 @@ The following can be set as a part of the [`@sandbox`](../configuration/local-pr
   - Defaults to `false`
 - `env`<sup>*</sup> - Override the local environment setting to use `staging` or `production` so that Sandbox uses that stage's environment variables as set in [local preferences `@env`](../configuration/local-preferences#%40env) or in the project's `.env` file.
   - Can be one of `testing` (default), `staging`, or `production`
-- `useAws`<sup>*</sup> - Use live AWS infrastructure from Sandbox. Specifically, `@tables`, `@tables-indexes`, `@events`, and `@queues`.
+- `useAWS`<sup>*</sup> - Use live AWS infrastructure from Sandbox. Specifically, `@tables`, `@tables-indexes`, `@events`, and `@queues`.
   - Uses the `staging` environment by default, but `env` can be set to `production`.
   - Defaults to `false`
 - `no-hydrate` - Disable [function hydration](./hydrate) on Sandbox start.
