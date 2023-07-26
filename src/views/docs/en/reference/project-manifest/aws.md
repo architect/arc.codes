@@ -27,7 +27,7 @@ Local AWS profile name to use with this project, as defined in your [local AWS c
 
 | Runtime | Versions                   | Example            | Alias<sup>1</sup>         |
 |---------|----------------------------|--------------------|---------------------------|
-| Node.js | 12.x, 14.x (default), 16.x | `nodejs16.x`       | `node` `nodejs` `node.js` |
+| Node.js | 12.x, 14.x, 16.x (default) | `nodejs16.x`       | `node` `nodejs` `node.js` |
 | Python  | 3.6 - 3.9                  | `python3.9`        | `python` `py`             |
 | Ruby    | 2.7                        | `ruby2.7`          | `ruby` `rb`               |
 | .NET    | 3.1                        | `dotnetcore3.1`    | `dotnet` `.net`           |
@@ -59,8 +59,8 @@ Configure Lambda function `layers` with max 5 Lambda Layer ARNs. Lambda Layers m
 ### `architecture`
 
 Lambda [CPU Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) of your functions.
-  - `x86_64` (default) - 64-bit x86 architecture
-  - `arm64` - (only available in certain AWS regions) 64-bit ARM architecture
+  - `arm64` (default) - (only available in certain AWS regions) 64-bit ARM architecture
+  - `x86_64` - 64-bit x86 architecture
 
 ### `storage`
 
