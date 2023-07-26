@@ -37,14 +37,14 @@ views false
 
 Configure the deployed function with [the `@aws` pragma](../project-manifest/aws) and the following properties:
 
-- [`runtime`](#runtime) - string, Lambda runtime or alias: `nodejs14.x` (default), `python3.7`, `dotnetcore3.1`, `node`, `py`, `.net`, etc.
+- [`runtime`](#runtime) - string, Lambda runtime or alias: `nodejs16.x` (default), `python3.7`, `dotnetcore3.1`, `node`, `py`, `.net`, etc.
 - [`memory`](#memory) - number, between `128` and `3008` MB in 64 MB increments.
 - [`timeout`](#timeout) - number, in seconds (max `900`)
 - [`concurrency`](#concurrency) - number, `0` to AWS account maximum (if not present, concurrency is unthrottled)
 - [`provisionedConcurrency`](#provisionedconcurrency) - number, `1` to AWS account maximum (disabled by default)
 - [`layers`](#layers) - Up to 5 Lambda layer ARNs; **must be in the same region as deployed**
 - [`policies`](#policies) - Configure [AWS SAM policy templates](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html)
-- [`architecture`](#architecture) - [AWS Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) for the function: `x86_64` (default) or `arm64`
+- [`architecture`](#architecture) - [AWS Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) for the function: `arm64` (default) or `x86_64`
 - [`storage`](#storage) - number, between `512` (default) and `10240` MB. The function's ephemeral storage (`/tmp` file system).
 - [`fifo`](#fifo) - boolean, `true` (default) or `false` to use `standard` SQS type
 
@@ -70,7 +70,7 @@ architecture arm64
 
 Configure Lambda function `runtime`:
 
-- Like `nodejs14.x` (default), `nodejs16.x`, `python3.9`, `ruby2.7`
+- Like `nodejs16.x` (default), `nodejs14.x`, `python3.9`, `ruby2.7`
 - Unsupported by Sandbox locally: `dotnetcore3.1`, `go1.x`, `java11`
 - Or a runtime alias: `nodejs`, `python`, `ruby`, `.net`, `go`,  `java`
   - Aliases always use the default version of the matched runtime: `ruby` => `ruby2.7`.
