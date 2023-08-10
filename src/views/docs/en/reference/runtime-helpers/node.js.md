@@ -13,11 +13,12 @@ Architect has two primary runtime helpers for Node.js:
 
 ---
 
-## `@architect/functions`
+# `@architect/functions`
 
 [View package source on GitHub](https://github.com/architect/functions/)
 
-### Setup
+
+## Setup
 
 Install the Architect runtime helpers for Node.js:
 
@@ -31,7 +32,7 @@ Ensure `arc` is available to your Lambda function code:
 let arc = require('@architect/functions')
 ```
 
-### Interfaces
+## Interfaces
 
 - [`arc.events`](#arc.events) Publish / subscribe helpers for `@events` functions
 - [`arc.http`](#arc.http) Middleware and request/response normalization for `@http` functions using callbacks
@@ -41,11 +42,13 @@ let arc = require('@architect/functions')
 - [`arc.tables`](#arc.tables()) Generates a DynamoDB client for `@tables`
 - [`arc.ws`](#arc.ws) WebSocket helpers for `@ws` functions
 
-### `arc.events`
+
+## `arc.events`
 
 Publish & subscribe helpers for `@events` functions.
 
-#### `arc.events.subscribe()`
+
+### `arc.events.subscribe()`
 
 Subscribe to events with a handler function. The function will be passed an `event` object, and, if not an `async` function, a callback to be called upon completion.
 
@@ -73,7 +76,7 @@ function handler (event, callback) {
 }
 ```
 
-#### `arc.events.publish()`
+### `arc.events.publish()`
 
 Publish an event to an `@events` function. An object containing two properties is required:
 - **`name`** (string) - name of the `@events` function you'd like to publish to
@@ -101,19 +104,23 @@ arc.events.publish({
 
 ---
 
-### `arc.http`
+## `arc.http`
 
-`arc.http` provides middleware and request/response normalization for `@http` functions using Express-style callbacks.
+`arc.http` provides middleware and request/response normalization for `@http` functions using your choice of `async` functions or Express-style callbacks.
 
-#### Requests
+> A legacy `arc.http.async` middleware interface will remain available exclusively for `async` functions, although we strongly encourage using the unified `arc.http` interface.
 
-`arc.http` (and `arc.http.async`) provide the following:
-- Support for request formats from both AWS API Gateway `HTTP` and `REST` APIs
-- Backward-compatibility for `REST` API properties in `HTTP` APIs, enabling seamless API upgrades
+
+### Requests
+
+`arc.http` provides the following:
+- Built-in session support
 - Added conveniences, such as automatic parsing of `req.body`
+- Support for request formats from both AWS API Gateway `HTTP` and `REST` APIs
 - Added properties commonplace in other web servers, such as `req.params` (as opposed to the much more verbose `req.queryStringParameters`)
+- Backward-compatibility for `REST` API properties in `HTTP` APIs, enabling seamless API upgrades
 
-Handler functions passed to `arc.http[.async]` receive a `request` object containing all of the [API Gateway request properties](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html) specific to `HTTP` and `REST` APIs. Additionally, the following properties are added or improved for convenience:
+Handler functions passed to `arc.http` receive a `request` object containing all of the [API Gateway request properties](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html) specific to `HTTP` and `REST` APIs. Additionally, the following properties are added or improved for convenience:
 
 - `body` - **object**
   - Automatically parsed if present; `{}` if request has no body
@@ -131,7 +138,8 @@ Handler functions passed to `arc.http[.async]` receive a `request` object contai
 - `session` - **object**
   - Automatically parsed from the request cookie; `{}` if no `session` is found for the requesting client
   - Example: `{ accountID: 'a1b2c3' }`
-- Additional backward-compatible `REST` properties available in `HTTP` APIs via `arc.http[.async]`:
+  - See the [sessions guide for more](/docs/en/guides/frontend/sessions)
+- Additional backward-compatible `REST` properties available in `HTTP` APIs via `arc.http`:
   - `resource` (an alias of `req.routeKey`)
   - `path` (an alias of `req.rawPath`)
 
@@ -141,9 +149,10 @@ Handler functions passed to `arc.http[.async]` receive a `request` object contai
 
 > Learn more about [API Gateway request payloads here](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html)
 
-#### Responses
 
-`arc.http` (and `arc.http.async`) honor the standard [API Gateway response payload properties](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html) (`statusCode`, `headers`, `body`, etc.), in addition to adding the following convenience properties:
+### Responses
+
+`arc.http` honors the standard [API Gateway response payload properties](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html) (`statusCode`, `headers`, `body`, etc.), in addition to adding the following convenience properties:
 
 - `cacheControl` - **string**
   - Sets the `cache-control` header (or overrides it if already present)
@@ -159,7 +168,7 @@ Handler functions passed to `arc.http[.async]` receive a `request` object contai
 - `status`, `code` (alias of `statusCode`) - **number**
   - Sets the response HTTP status code
 - `session` - **object**
-  - Create or overwrite a client session
+  - Create or overwrite a client session; see the [sessions guide for more](/docs/en/guides/frontend/sessions)
 - `type` - **string**
   - Sets the `content-type` header (or overrides it if already present)
 
@@ -182,19 +191,80 @@ Finally, you may also return a raw JavaScript Error, which will be interpreted a
 
 > Learn more about [API Gateway response payloads here](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html)
 
-#### `arc.http()`
 
-Define `arc.http` middleware by passing one or more functions as parameters. A function can exit the middleware queue early by calling back with a [valid HTTP response payload](#responses).
+### Middleware
 
-`arc.http` functions are positionally provided three properties:
+Define `arc.http` middleware by passing one or more async or callback functions as parameters.
+
+In a given handler, all middleware functions must be either async or callback – they cannot be mixed.
+
+
+#### `async` middleware
+
+Utilize `async` middleware by passing one or more `async` functions as parameters.
+
+`async` functions are provided two positional arguments:
 - `request` - **object**
-  - [Request object](#requests); mutations to the `request` object **are not** passed along
-- `response` - **function**
-  - Callback that accepts either a [response object](#response) or Error
-- `next` - **function** (if not the final middleware)
-  - Callback to invoke the next `arc.http` middleware function
+  - [Request object](#requests); mutations to the `request` object **are** passed along to future middleware functions
+- `context` - **object**
+  - Standard API Gateway context object
 
-An example of adding an authorization middleware function for JSON API requests made via XHR.
+Execution flow is as follows:
+- To exit the middleware queue early: return a [valid response payload](#responses)
+- To invoke the following middleware function:
+  - Return the `request` object
+  - Return nothing
+  - Reach the end of execution
+- Gracefully error: return an `Error`
+
+```javascript
+// single function
+let arc = require('@architect/functions')
+
+exports.handler = arc.http(async req => {
+  return {
+    json: { ok: true }
+  }
+})
+```
+
+```javascript
+// middleware
+let arc = require('@architect/functions')
+
+exports.handler = arc.http(auth, handler)
+
+async function auth (req) {
+  if (!req.session.accountID) {
+    return { status: 403 }
+  }
+}
+
+async function handler (req) {
+  return {
+    json: { ok: true }
+  }
+}
+```
+
+
+#### `callback` middleware
+
+Utilize `callback` middleware by passing one or more non-`async` functions as parameters.
+
+`callback` functions are provided three positional arguments:
+- `request` - **object**
+  - [Request object](#requests); mutations to the `request` object **are not** passed along to future middleware functions
+- `response` - **function**
+  - Callback that accepts either a [valid response payload](#responses) or `Error` in idiomatic errback style
+- `next` - **function** (if not the final middleware)
+  - Invoke `next` to invoke the following middleware function
+
+Execution flow is as follows:
+- To exit the middleware queue early:
+  - Invoke the `response` callback with a [valid response payload](#responses)
+  - Invoke the `response` callback with an `Error`
+- To invoke the following middleware function: invoke the `next` callback
 
 ```javascript
 // single function
@@ -202,7 +272,7 @@ let arc = require('@architect/functions')
 
 exports.handler = arc.http(handler)
 
-function handler(req, res) {
+function handler (req, res) {
   res({
     json: { ok: true }
   })
@@ -215,14 +285,14 @@ let arc = require('@architect/functions')
 
 exports.handler = arc.http(auth, handler)
 
-function auth(req, res, next) {
+function auth (req, res, next) {
   if (!request.session.accountID) {
     res({ status: 401 })
   }
   else next()
 }
 
-function handler(req, res) {
+function handler (req, res) {
   res({
     json: { ok: true }
   })
@@ -231,82 +301,37 @@ function handler(req, res) {
 
 ---
 
-#### `arc.http.async()`
-
-Define `arc.http.async` middleware by passing one or more `async` functions as parameters. A function can exit the middleware queue early by returning a [valid HTTP response payload](#responses)).
-
-`arc.http.async` functions are provided two properties:
-- `request` - **object**
-  - [Request object](#requests); mutations to the `request` object **are** passed along
-- `context` - **object**
-  - Standard API Gateway context object
-
-Each middleware function can invoke the following function by returning the `request` object, or by reaching the end of execution.
-
-```javascript
-// single function
-let arc = require('@architect/functions')
-
-exports.handler = arc.http.async(handler)
-
-async function handler(request) {
-  return {
-    json: { ok: true }
-  }
-}
-```
-
-```javascript
-// middleware
-let arc = require('@architect/functions')
-
-exports.handler = arc.http.async(auth, handler)
-
-async function auth(req) {
-  if (!req.session.accountID) {
-    return { status: 403 }
-  }
-}
-
-async function handler(req) {
-  return {
-    json: { ok: true }
-  }
-}
-```
-
----
-
-#### `arc.http.session`
+### `arc.http.session`
 
 `arc.http.session` provides methods for manually reading the current session in an `@http` request, and writing it back to a cookie.
 
-These operations are automatically handled for you when using `arc.http[.async]`; see the second example below.
+These methods are exposed to provide additional power and flexibility when working with sessions. Generally we recommend you work with sessions via [`arc.http`](#arc.http) by reading them via the `req` object, and writing them via the `session` property.
 
-##### Methods
+
+#### Methods
 
 - `read(request[, callback]) → [Promise]`
   - Accepts a [request object](#requests)
   - Returns `session` object (or `{}` if none is found)
   - Must be `await`ed if no callback is provided
 - `write(session[, callback]) → [Promise]`
-  - Returns a `cookie` string
+  - Returns a `cookie` string to be passed in your `set-cookie` response headers
+  - If you do not pass the `cookie` in your response, your session may not be properly set or saved
   - Must be `await`ed if no callback is provided
 
-> Please note that session variable encoding and decoding relies on the `ARC_APP_SECRET` [environment variable](../cli/env#security) being set to something secret and not easily guessable. If you use Architect sessions, please be sure to [set the `ARC_APP_SECRET` environment variable](../../guides/frontend/sessions#strong-secret-key)!
+> Please note that session variable encoding and decoding relies on the `ARC_APP_SECRET` [environment variable](../cli/env#security) being set to something secret and not easily guessable. If you use Architect sessions, please be sure to [set the `ARC_APP_SECRET` environment variable](../../guides/frontend/sessions#strong-session-secret)!
 
 ```javascript
 let arc = require('@architect/functions')
 
 exports.handler = async function handler (req) {
-  // read the session
+  // Read the session
   let session = await arc.http.session.read(req)
-  // modify the state
+  // Modify the state
   session.count = (session.count || 0) + 1
-  // save the session state
+  // Save the session state
   let cookie = await arc.http.session.write(session)
-
-  // set the client's cookie
+  // Set the client cookie
   return {
     statusCode: 200,
     headers: { 'set-cookie': cookie },
@@ -314,20 +339,18 @@ exports.handler = async function handler (req) {
 }
 ```
 
-Alternatively, use `arc.http[.async]`'s automatic session parsing:
+Alternatively, use `arc.http`'s automatic session handling:
 
 ```javascript
 let arc = require('@architect/functions')
 
-async function handler (req) {
-  // session already exists on `req`
-  let session = req.session
+exports.handler = arc.http(async req => {
+  // Session already exists on `req`
+  let { session } = req
   session.count = (session.count || 0) + 1
-
+  // Write the session and set it on the client like so:
   return { session }
-}
-
-exports.handler = arc.http.async(handler)
+})
 ```
 
 ---
@@ -491,6 +514,7 @@ client.name('widgets') // 'testapp-staging-widgets'
 client.reflect() // { widgets: 'testapp-staging-widgets' }
 ```
 
+
 #### Instance Methods
 
 Each table has the following methods:
@@ -585,11 +609,11 @@ await client._doc.transactWrite({
 
 ---
 
-### `arc.ws`
+## `arc.ws`
 
 Interact with WebSocket services. Declare endpoints with the [`@ws`](/docs/en/reference/project-manifest/ws) pragma.
 
-#### `arc.ws.send()`
+### `arc.ws.send()`
   - Send a message via WebSocket. An object containing two properties is required:
   - **`id`** (string) - API Gateway `connectionId` of the client you'd like to send the message to
   - **`payload`** (object or array) - payload to be sent (as JSON)
@@ -603,7 +627,7 @@ await arc.ws.send({
 })
 ```
 
-#### `arc.ws.close()`
+### `arc.ws.close()`
   - Close a WebSocket connection with the provided id:
   - **`id`** (string) - API Gateway `connectionId` of the client you'd like to close
 
@@ -613,7 +637,7 @@ let arc = require('@architect/functions')
 await arc.ws.close({ id: connectionId })
 ```
 
-#### `arc.ws.info()`
+### `arc.ws.info()`
   - A pass-thru to the [ApiGatewayManagementApi#getConnection](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/ApiGatewayManagementApi.html#getConnection-property) method.
   - Retrieve information about the connection with the provided id:
   - **`id`** (string) - API Gateway `connectionId` of the client you'd like get information about
@@ -634,7 +658,7 @@ let info = await arc.ws.info({ id: connectionId })
 */
 ```
 
-#### `arc.ws._api()`
+### `arc.ws._api()`
   - Return the internal [`ApiGatewayManagementApi`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/ApiGatewayManagementApi.html) instance from `aws-sdk`.
 
 ```javascript
@@ -645,7 +669,7 @@ let wsApi = await arc.ws._api()
 
 ---
 
-## `@architect/asap`
+# `@architect/asap`
 
 [View package source on GitHub](https://github.com/architect/asap/)
 
@@ -692,11 +716,11 @@ exports.handler = asap(params)
 ```
 
 ```javascript
-// asap as arc.http.async middleware
+// asap as arc.http middleware
 let arc = require('@architect/functions')
 let asap = require('@architect/asap')
 
-exports.handler = arc.http.async(render, asap())
+exports.handler = arc.http(render, asap())
 
 async function render (req) {
   // If user is logged in, show them a custom logged in page

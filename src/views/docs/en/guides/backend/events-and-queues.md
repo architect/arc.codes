@@ -143,7 +143,7 @@ async function yolo() {
   return { location: '/' }
 }
 
-exports.handler = arc.http.async(yolo)
+exports.handler = arc.http(yolo)
 ```
 Test it locally by running `npm start` in your terminal from the project root. Architect's Sandbox environment will emulate the same behavior once your project is deployed. Within the event function, you can split logic among code from `src/shared`.
 

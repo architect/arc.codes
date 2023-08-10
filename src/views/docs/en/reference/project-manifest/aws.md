@@ -69,10 +69,11 @@ Lambda ephemeral storage (a "scratch" file system in `/tmp` for each Lambda). A 
 ### `apigateway`
 
 API Gateway API type, can be one of:
-  - `http` (default) - `HTTP` API + Lambda payload format version 2.0
-  - `httpv2` – aliased of `http`
-  - `httpv1` - `HTTP` API + Lambda payload format version 1.0
-  - `rest` - `REST` API + original API Gateway payload format
+- `http` (default) - `HTTP` API + Lambda payload format version 2.0
+- `httpv2` – alias of `http`
+- `httpv1` - `HTTP` API + Lambda payload format version 1.0 (aka `REST`)
+- `rest` - `REST` API + original API Gateway payload format
+
 
 ## Environment Variables
 

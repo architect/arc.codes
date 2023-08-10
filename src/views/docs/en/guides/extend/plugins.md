@@ -227,7 +227,7 @@ let arc = require('@architect/functions')
 let form = require('./form') // helper that creates a form element we can render for users to upload their assets to our S3 bucket
 let aws = require('aws-sdk')
 
-exports.handler = arc.http.async(async function getIndex (req) {
+exports.handler = arc.http(async function getIndex (req) {
   const services = await arc.services()
   const { bucketName, accessKey, secretKey } = services.imagebucket // plugin variables are namespaced under the plugin name; here we assume the plugin name is called 'imagebucket' and is present in the app's app.arc file as 'imagebucket' under the @plugins section
   const region = process.env.AWS_REGION

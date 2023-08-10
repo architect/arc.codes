@@ -29,7 +29,7 @@ The API route `src/http/get-api` is CORS enabled with one flag:
 // src/http/get-api/index.js
 let arc = require('@architect/functions')
 
-exports.handler = arc.http.async(handler)
+exports.handler = arc.http(handler)
 
 async function handler (req) {
   return {
@@ -64,4 +64,3 @@ exports.handler = async function http(req) {
   }
 }
 ```
-
