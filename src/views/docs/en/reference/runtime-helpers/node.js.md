@@ -303,9 +303,9 @@ function handler (req, res) {
 
 ### `arc.http.session`
 
-`arc.http.session` provides methods for manually reading the current session in an `@http` request, and writing it back to a cookie.
+Generally we recommend working with sessions via [`arc.http`](#arc.http) by reading them via the `req` object, and writing them via the `session` property.
 
-These methods are exposed to provide additional power and flexibility when working with sessions. Generally we recommend you work with sessions via [`arc.http`](#arc.http) by reading them via the `req` object, and writing them via the `session` property.
+However, should you need additional power and flexibility, we expose `arc.http.session` methods for manually reading the current session in an `@http` request, and writing it back to a cookie.
 
 
 #### Methods
@@ -481,7 +481,7 @@ let js = arc.static('/index.js', { stagePath: true })
 
 Creates a DynamoDB client for your application's `@tables`. The client is an object, containing a nested object for each table.
 
-#### Client Methods
+#### Client methods
 
 - `_db(thing[, callback]) → [Promise]`
   - `nodejs16.x` (or lower) - instance of [`AWS.DynamoDB`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
@@ -515,7 +515,7 @@ client.reflect() // { widgets: 'testapp-staging-widgets' }
 ```
 
 
-#### Instance Methods
+#### Instance methods
 
 Each table has the following methods:
 
@@ -543,6 +543,9 @@ Each table has the following methods:
   - [Additional documentation](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#update-property)
 
 > The generated client is facade for `AWS.DynamoDB.DocumentClient`. The `delete` and `get` methods take a single parameter that is passed on to the `params.Key` attribute in the corresponding `DocumentClient` method. The `put` method takes a single parameter that is passed on as the `params.Item` attribute in the `DocumentClient.put` method. The `query`, `scan`, and `update` methods simply pass the `params` argument with the `TableName` parameter prepopulated. [See the official DynamoDB documentation for all available parameters](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html).
+
+
+#### Examples
 
 Given the following `app.arc` file:
 
@@ -708,7 +711,7 @@ ASAP takes an optional configuration object with the following properties and re
   - Set response headers
   - Example: `{ 'some-header': 'ok=true' }`
 - `passthru` - **boolean** (defaults to `false`)
-  - Return null if asset is not found (defaults to false)
+  - Return null if asset is not found
 - `spa` - **boolean** (defaults to `false`)
   - Enable single page app mode, all page requests deliver `/index.html`
 
