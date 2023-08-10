@@ -1,12 +1,12 @@
 ---
 title: Node.js runtime helpers
 category: Runtime helpers
-description: Node.js runtime support
+description: "Node.js runtime utility libraries: `@architect/functions` `@architect/asap`"
 ---
 
-Architect runtime helpers are optional, and designed to make it significantly easier to work with AWS CloudFormation provisioned resources and related assets.
+Architect provides optional runtime utility libraries designed to make it significantly easier to work with provisioned resources and related assets.
 
-Architect has two primary runtime helpers for Node.js:
+Architect has two primary helper libraries for Node.js:
 
 - [`@architect/functions`](#%40architect%2Ffunctions) - General purpose runtime helpers for various Architect resources, such as `@events`, `@http`, `@tables`, etc.
 - [`@architect/asap`](#%40architect%2Fasap) - Helper designed solely for delivering static assets via `@http` endpoints
