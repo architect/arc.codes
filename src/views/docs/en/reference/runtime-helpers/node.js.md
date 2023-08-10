@@ -532,7 +532,11 @@ Each table has the following methods:
   - Query a table by passing a full document query object
   - [Additional documentation](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#query-property)
 - `scan([options][, callback]) → [Promise]`
-  - Scan the entire table; accepts document filter object
+  - Scan the table until pagination; accepts document filter object
+  - [Additional documentation](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#scan-property)
+- `scanAll([options][, callback]) → [Promise]`
+  - Scan the entire table with pagination handled automatically; accepts document filter object
+  - Larger tables generally equate to greater latency as `scanAll` paginates through all contents
   - [Additional documentation](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#scan-property)
 - `update(record[, callback]) → [Promise]`
   - Upsert a record; accepts document update object
