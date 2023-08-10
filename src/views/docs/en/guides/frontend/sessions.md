@@ -167,7 +167,7 @@ Assumes you have [`@architect/functions`](https://www.npmjs.com/package/@archite
 <h5>Node.js</h5>
 <div slot="content">
 
-```js
+```javascript
 import arc from '@architect/functions'
 
 export const handler = arc.http(async req => {
@@ -213,7 +213,7 @@ Assumes you have [`@architect/functions`](https://www.npmjs.com/package/@archite
 <h5>Node.js</h5>
 <div slot="content">
 
-```js
+```javascript
 import arc from '@architect/functions'
 
 export const handler = arc.http(async req => {
