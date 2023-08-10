@@ -1,8 +1,17 @@
 ---
-title: Ruby runtime helpers
+title: Ruby runtime helpers [deprecated]
 category: Runtime helpers
 description: Ruby runtime support
 ---
+
+## ⚠️ Architect's Ruby runtime utility library is now deprecated
+
+Architect continues to support Ruby Lambda, but no longer actively maintains a Ruby utility library. For more information, please see our [runtime support doc](/docs/en/get-started/runtime-support).
+
+The information presented below is for reference only.
+
+---
+
 
 [View package source on GitHub](https://github.com/architect/functions-ruby/)
 
@@ -78,4 +87,3 @@ Example output:
 ### `Arc::Tables`
 
 - `name(table)` return the CloudFormation name for the given table name
-

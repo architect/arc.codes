@@ -4,6 +4,7 @@ const GetStarted = [
   'Project manifest',
   // 'Project files & folders',
   'Detailed AWS setup',
+  'Runtime support',
 ]
 
 const Guides = [
@@ -90,7 +91,6 @@ const Reference = [ {
   ],
   'Runtime helpers': [
     'Node.js',
-    'Ruby',
     'Python',
     'Deno',
   ],
