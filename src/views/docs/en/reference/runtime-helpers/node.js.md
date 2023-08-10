@@ -35,13 +35,14 @@ let arc = require('@architect/functions')
 ## Interfaces
 
 - [`arc.events`](#arc.events) Publish / subscribe helpers for `@events` functions
-- [`arc.http`](#arc.http) Middleware and request/response normalization for `@http` functions using callbacks
+- [`arc.http`](#arc.http) Middleware and request/response normalization and session support for `@http` functions
 - [`arc.queues`](#arc.queues) Publish/subscribe helpers for `@queues` functions
 - [`arc.services`](#arc.services()) Retrieves the Architect service map, exposing metadata for all services making up the application
 - [`arc.static`](#arc.static()) Get a `@static` asset path
 - [`arc.tables`](#arc.tables()) Generates a DynamoDB client for `@tables`
 - [`arc.ws`](#arc.ws) WebSocket helpers for `@ws` functions
 
+---
 
 ## `arc.events`
 
