@@ -46,7 +46,7 @@ let arc = require('@architect/functions')
 
 ## `arc.events`
 
-Publish & subscribe helpers for `@events` functions.
+Publish & subscribe helpers for `@events` functions. Declare events with the [`@events`](/docs/en/reference/project-manifest/events) pragma.
 
 
 ### `arc.events.subscribe()`
@@ -107,7 +107,7 @@ arc.events.publish({
 
 ## `arc.http`
 
-`arc.http` provides middleware and request/response normalization for `@http` functions using your choice of `async` functions or Express-style callbacks.
+`arc.http` provides middleware and request/response normalization for `@http` functions using your choice of `async` functions or Express-style callbacks. Declare HTTP routes with the [`@http`](/docs/en/reference/project-manifest/http) pragma.
 
 > A legacy `arc.http.async` middleware interface will remain available exclusively for `async` functions, although we strongly encourage using the unified `arc.http` interface.
 
@@ -361,7 +361,7 @@ exports.handler = arc.http(async req => {
 
 ### `arc.queues`
 
-Publish & subscribe helpers for `@queues` functions.
+Publish & subscribe helpers for `@queues` functions. Declare queues with the [`@queues`](/docs/en/reference/project-manifest/queues) pragma.
 
 #### `arc.queues.subscribe()`
 
@@ -421,15 +421,15 @@ arc.queues.publish({
 
 ### `arc.services()`
 
-CloudFormation resources are generated with names more friendly for machines than people. Other frameworks leave resource discovery up to end users, which leads to ad hoc implementations becoming a frequent bug vector. Architect treats runtime discovery as a first class concern.
+Cloud resources are generated with names more friendly for machines than people. Other frameworks leave resource discovery up to end users, which leads to ad hoc implementations becoming a frequent bug vector. Architect treats service discovery as a first class concern.
 
 > Amazon Resource Names (ARNs) are available at runtime to all Lambda functions defined in the same Architect project manifest. Things such as DynamoDB tables, SNS topics, SQS queues, API Gateway endpoints, and S3 static bucket ARNs are baked into `@architect/functions` so your runtime program logic interacts with resources using readable, people-friendly names defined in your Architect project manifest.
 
-`arc.services` retrieves the Architect service map: an object mapping the plugins and out-of-the-box Architect infrastructure that makes up the application.
+`arc.services()` retrieves the Architect service map: an object mapping the plugins and out-of-the-box Architect infrastructure that makes up your application.
 
 This object is lazily-loaded and cached, and thus the first call may incur a delay as the service map is populated (use of [`arc.events`](#arc.events), [`arc.queues`](#arc.queues) and [`arc.tables`](#arc.tables) transparently uses this method in the background).
 
-`arc.services` returns a service map object, with keys equaling any out-of-the-box Architect infrastructure types or plugins used by the Architect application.
+`arc.services()` returns a service map object, with keys equaling any out-of-the-box Architect infrastructure types or plugins used by the Architect application.
 
 An example service map for an application composed of `@static`, `@events` and an `imagebucket` plugin would have the following structure:
 
@@ -483,7 +483,8 @@ let js = arc.static('/index.js', { stagePath: true })
 
 ### `arc.tables()`
 
-Creates a DynamoDB client for your application's `@tables`. The client is an object, containing a nested object for each table.
+Creates a DynamoDB client for your application's `@tables`. The client is an object, containing a nested object for each table. Declare tables with the [`@tables`](/docs/en/reference/project-manifest/tables) pragma.
+
 
 #### Client methods
 
@@ -494,8 +495,8 @@ Creates a DynamoDB client for your application's `@tables`. The client is an obj
   - `nodejs16.x` (or lower) - instance of [`AWS.DynamoDB.DocumentClient`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
   - `nodejs18.x` (or higher) - instance of [`DynamoDBDocument`](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_lib_dynamodb.html)
 - `name(tablename)`
-  - Helper function that accepts a table name string, and returns an AWS resource name when you need to go lower level
-    - For example use `client.name('my-table')` to get the human-unfriendly AWS name of the `my-table` `@table` resource
+  - Helper method that accepts a logical table name string, and returns a physical AWS resource name. Helpful for when you need to go lower level.
+    - For example use `client.name('my-table')` to get the human-unfriendly AWS name of the `my-table` `@tables` resource
 - `reflect([callback]) → [Promise]`
   - Returns a dictionary of table names with logical ids
 
@@ -624,10 +625,12 @@ await client._doc.transactWrite({
 
 Interact with WebSocket services. Declare endpoints with the [`@ws`](/docs/en/reference/project-manifest/ws) pragma.
 
+
 ### `arc.ws.send()`
-  - Send a message via WebSocket. An object containing two properties is required:
-  - **`id`** (string) - API Gateway `connectionId` of the client you'd like to send the message to
-  - **`payload`** (object or array) - payload to be sent (as JSON)
+
+Send a message via WebSocket. An object containing two properties is required:
+- **`id`** (string) - API Gateway `connectionId` of the client you'd like to send the message to
+- **`payload`** (object or array) - payload to be sent to the WebSocket client (as JSON)
 
 ```javascript
 let arc = require('@architect/functions')
@@ -638,9 +641,11 @@ await arc.ws.send({
 })
 ```
 
+
 ### `arc.ws.close()`
-  - Close a WebSocket connection with the provided id:
-  - **`id`** (string) - API Gateway `connectionId` of the client you'd like to close
+
+Close a WebSocket connection with the provided id:
+- **`id`** (string) - API Gateway `connectionId` of the client you'd like to close
 
 ```javascript
 let arc = require('@architect/functions')
@@ -648,10 +653,11 @@ let arc = require('@architect/functions')
 await arc.ws.close({ id: connectionId })
 ```
 
+
 ### `arc.ws.info()`
-  - A pass-thru to the [ApiGatewayManagementApi#getConnection](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/ApiGatewayManagementApi.html#getConnection-property) method.
-  - Retrieve information about the connection with the provided id:
-  - **`id`** (string) - API Gateway `connectionId` of the client you'd like get information about
+
+A pass-through to the [ApiGatewayManagementApi#getConnection](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/ApiGatewayManagementApi.html#getConnection-property) method. Retrieve information about the connection with the provided id:
+- **`id`** (string) - API Gateway `connectionId` of the client you'd like get information about
 
 ```javascript
 let arc = require('@architect/functions')
@@ -669,8 +675,10 @@ let info = await arc.ws.info({ id: connectionId })
 */
 ```
 
+
 ### `arc.ws._api()`
-  - Return the internal [`ApiGatewayManagementApi`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/ApiGatewayManagementApi.html) instance from `aws-sdk`.
+
+Return the internal [`ApiGatewayManagementApi` client](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/ApiGatewayManagementApi.html) from `aws-sdk`.
 
 ```javascript
 let arc = require('@architect/functions')
