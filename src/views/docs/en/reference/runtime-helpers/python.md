@@ -42,7 +42,7 @@ import arc
 
 ## `arc.events`
 
-Publish & subscribe helpers for `@events` functions.
+Publish & subscribe helpers for `@events` functions. Declare events with the [`@events`](/docs/en/reference/project-manifest/events) pragma.
 
 
 ### `arc.events.parse()`
@@ -76,7 +76,7 @@ def handler(event):
 
 ## `arc.http`
 
-Request, response, and session methods for `@http` functions.
+Request, response, and session methods for `@http` functions. Declare HTTP routes with the [`@http`](/docs/en/reference/project-manifest/http) pragma.
 
 
 ### `arc.http.parse_body()`
@@ -224,32 +224,181 @@ def handler(req, context):
 
 ## `arc.queues`
 
+Publish & subscribe helpers for `@queues` functions. Declare queues with the [`@queues`](/docs/en/reference/project-manifest/queues) pragma.
+
+
 ### `arc.queues.parse()`
+
+Parse the incoming (somewhat complicated, deeply-nested, JSON-encoded) `event`:
+
+```python
+import arc
+
+def handler(evt):
+    event = arc.queues.parse(evt)
+    print("incoming event:", event)
+```
+
 
 ### `arc.queues.publish()`
 
+Publish an event to an `@queues` function. Accepts two required arguments:
+- **`name`** (string) - name of the `@queues` function you'd like to publish to
+- **`payload`** (dict or array) - payload to be published
+
+```python
+import arc
+
+def handler(event):
+    payload = {"hello": "there"}
+    arc.queues.publish("some-event", payload)
+```
+
 ---
 
-## `arc.services`
+## `arc.services()`
+
+Cloud resources are generated with names more friendly for machines than people. Other frameworks leave resource discovery up to end users, which leads to ad hoc implementations becoming a frequent bug vector. Architect treats service discovery as a first class concern.
+
+> Amazon Resource Names (ARNs) are available at runtime to all Lambda functions defined in the same Architect project manifest. Things such as DynamoDB tables, SNS topics, SQS queues, API Gateway endpoints, and S3 static bucket ARNs are baked into `@architect/functions` so your runtime program logic interacts with resources using readable, people-friendly names defined in your Architect project manifest.
+
+`arc.services()` retrieves the Architect service map: an object mapping the plugins and out-of-the-box Architect infrastructure that makes up your application.
+
+This object is lazily-loaded and cached, and thus the first call may incur a delay as the service map is populated (use of [`arc.events`](#arc.events), [`arc.queues`](#arc.queues) and [`arc.tables`](#arc.tables) transparently uses this method in the background).
+
+`arc.services()` returns a service map object, with keys equaling any out-of-the-box Architect infrastructure types or plugins used by the Architect application.
+
+An example service map for an application composed of `@static`, `@events` and an `imagebucket` plugin would have the following structure:
+
+```python
+import arc
+
+def handler(event):
+    services = arc.services()
+    print(services)
+    # {
+    #   # a plugin named 'imagebucket' exposing some service discovery variables
+    #   "imagebucket": {
+    #     "accessKey": "someAccessKey",
+    #     "name": "arc-plugin-s3-image-bucket-example-image-buket",
+    #     "secretKey": "someSecretKey"
+    #   },
+    #   # built-in @static service discovery variables
+    #   "static": {
+    #     "bucket": "arcplugins3imagebucketexamplestaging-staticbucket-g8rsuk82ancj",
+    #     "fingerprint": "false"
+    #   },
+    #   # built-in @events service discovery variables
+    #   "events": {
+    #     "myevent": "https://some-sns-url.amazon.us-east-2.com"
+    #   }
+    # }
+```
 
 ---
 
 ## `arc.tables`
 
+Client & resource helpers for DynamoDB tables. Declare tables with the [`@tables`](/docs/en/reference/project-manifest/tables) pragma.
+
+
 ### `arc.tables.name()`
 
+Helper method that accepts a logical table name string, and returns a physical AWS resource name. Helpful for when you need to go lower level than the DynamoDB resource provided by `arc.tables.table()`.
+
+For example use `arc.tables.name('my-table')` to get the human-unfriendly AWS name of the `my-table` `@tables` resource.
+
+```python
+import arc
+
+def handler(event):
+    name = arc.tables.name('my-table')
+    print(name)
+    # MyTableStagingABC123
+```
+
+
 ### `arc.tables.table()`
+
+Accepts a logical table name string and returns a DynamoDB client (specifically, a [DynamoDB resource](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/dynamodb/table/index.html)) for your application's `@tables`.
+
+```python
+import arc
+
+def handler(event):
+    data = arc.tables.table('my-table')
+    items = data.scan()
+    print("all data from my-table:", items.get("Items"))
+```
 
 ---
 
 ## `arc.ws`
 
-### `arc.ws.api()`
+Interact with WebSocket services. Declare endpoints with the [`@ws`](/docs/en/reference/project-manifest/ws) pragma.
 
-### `arc.ws.close()`
-
-### `arc.ws.info()`
 
 ### `arc.ws.send()`
 
----
+Send a message via WebSocket. Accepts two required positional parameters:
+- **`id`** (string) - API Gateway `ConnectionId` of the client you'd like to send the message to
+- **`payload`** (dict or list) - payload to be sent to the WebSocket client (as JSON)
+
+```python
+# src/ws/connect/lambda.py
+import arc
+
+def handler(req, context):
+    connection_id = req["requestContext"]["connectionID"]
+    arc.ws.send(connection_id, {"hello": "there"})
+```
+
+
+### `arc.ws.api()`
+
+Return the internal [`ApiGatewayManagementApi` client](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/apigatewaymanagementapi.html) from `boto3`.
+
+```python
+import arc
+
+def handler(req, context):
+    api = arc.ws.api()
+```
+
+
+### `arc.ws.close()`
+
+Close a WebSocket connection with the provided id:
+- **`id`** (string) - API Gateway `connectionId` of the client you'd like to close
+
+```python
+import arc
+
+def handler(req, context):
+    connection_id = req["requestContext"]["connectionID"]
+    arc.ws.close(connection_id)
+```
+
+
+### `arc.ws.info()`
+
+A pass-through to the [ApiGatewayManagementApi#get_connection](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/apigatewaymanagementapi/client/get_connection.html) method. Retrieve information about the connection with the provided id:
+- **`id`** (string) - API Gateway `ConnectionId` of the client you'd like get information about
+
+```python
+# src/ws/connect/lambda.py
+import arc
+
+def handler(req, context):
+    connection_id = req["requestContext"]["connectionID"]
+    info = arc.ws.info(connection_id)
+    print(info)
+    # {
+    #     "ConnectedAt": datetime(2023, 1, 1),
+    #     "Identity": {
+    #         "SourceIp": "10.0.0.1",
+    #         "UserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)..."
+    #     },
+    #     "LastActiveAt": datetime(2023, 8, 11)
+    # }
+```
