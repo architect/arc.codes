@@ -164,6 +164,7 @@ Handler functions passed to `arc.http` receive a `request` object containing all
   - To manually disable output compression for non-binary responses, specify `false`
 - `cookie` - **string**
   - Sets the `set-cookie` header (or overrides it if already present)
+  - Note: this convenience property predates API Gateway HTTP v2.0's `cookies` property; if using that payload format (which is Architect's default), passing `cookies` (an array) is probably better
 - `cors` - **boolean**
   - Sets the `access-control-allow-origin` header to `*` (or overrides it if already present)
 - `status`, `code` (alias of `statusCode`) - **number**
@@ -197,7 +198,7 @@ Finally, you may also return a raw JavaScript Error, which will be interpreted a
 
 Define `arc.http` middleware by passing one or more async or callback functions as parameters.
 
-In a given handler, all middleware functions must be either async or callback – they cannot be mixed.
+In a given handler, all middleware functions must be either [async](#async-middleware) or [callback](#callback-middleware) – they cannot be mixed.
 
 
 #### `async` middleware
@@ -211,12 +212,13 @@ Utilize `async` middleware by passing one or more `async` functions as parameter
   - Standard API Gateway context object
 
 Execution flow is as follows:
-- To exit the middleware queue early: return a [valid response payload](#responses)
+- To exit the middleware queue early:
+  - Return a [valid response payload](#responses), or
+  - Return an `Error` (to gracefully error out)
 - To invoke the following middleware function:
-  - Return the `request` object
-  - Return nothing
+  - Return the `request` object, or
+  - Return nothing, or
   - Reach the end of execution
-- Gracefully error: return an `Error`
 
 ```javascript
 // single function
@@ -263,9 +265,10 @@ Utilize `callback` middleware by passing one or more non-`async` functions as pa
 
 Execution flow is as follows:
 - To exit the middleware queue early:
-  - Invoke the `response` callback with a [valid response payload](#responses)
-  - Invoke the `response` callback with an `Error`
-- To invoke the following middleware function: invoke the `next` callback
+  - Invoke the `response` callback with a [valid response payload](#responses), or
+  - Invoke the `response` callback with an `Error` (to gracefully error out)
+- To invoke the following middleware function:
+  - Invoke the `next` callback
 
 ```javascript
 // single function
@@ -306,7 +309,7 @@ function handler (req, res) {
 
 Generally we recommend working with sessions via [`arc.http`](#arc.http) by reading them via the `req` object, and writing them via the `session` property.
 
-However, should you need additional power and flexibility, we expose `arc.http.session` methods for manually reading the current session in an `@http` request, and writing it back to a cookie.
+However, should you need additional power and flexibility, we expose `arc.http.session` methods for manually reading the current session in an `@http` request, and writing it back to a cookie (that must then be sent back to the client via the `set-cookie` header).
 
 
 #### Methods
