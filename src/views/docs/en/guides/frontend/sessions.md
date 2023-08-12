@@ -20,7 +20,7 @@ This guide will go over several ways to store session state within your Architec
 
 ## HTTP sessions
 
-Architect provides built-in session capabilities for `@http` defined routes via [`@architect/functions`](http://localhost:3333/docs/en/reference/runtime-helpers/node.js) (Node.js) and [`architect-functions`](http://localhost:3333/docs/en/reference/runtime-helpers/python) (Python).
+Architect provides built-in session capabilities for `@http` defined routes via [`@architect/functions`](/docs/en/reference/runtime-helpers/node.js) (Node.js) and [`architect-functions`](/docs/en/reference/runtime-helpers/python) (Python).
 
 - Requests are tagged to a session via a stateless, signed, `httpOnly` cookie: `_idx`
 - By default session data is stored in JWE, but we suggest making use of Architect's built-in database-backed session storage (more on that below)
