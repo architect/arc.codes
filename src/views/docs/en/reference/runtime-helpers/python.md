@@ -9,7 +9,7 @@ Architect provides an optional runtime utility package designed to make it signi
 We strongly suggest making use of this package when developing Python handlers with Architect.
 
 
-# `architect-functions`
+## `architect-functions`
 
 [View package source on GitHub](https://github.com/architect/functions-python/)
 

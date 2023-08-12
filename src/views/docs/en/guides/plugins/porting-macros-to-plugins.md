@@ -4,7 +4,7 @@ category: Plugins
 description: 'How-to port existing <code>@macros</code> to <code>@plugins</code>'
 ---
 
-With the introduction of Architect 10, [`@macros`](/docs/en/reference/project-manifest/macros) were superseded by [`@plugins`](/docs/en/reference/project-manifest/plugins). It is important to note that [`@macros` will not cease to work, and will not be deprecated](http://localhost:3333/docs/en/guides/plugins/deploy#deploy.start). You do not need to port any macros you may have written for Architect.
+With the introduction of Architect 10, [`@macros`](/docs/en/reference/project-manifest/macros) were superseded by [`@plugins`](/docs/en/reference/project-manifest/plugins). It is important to note that [`@macros` will not cease to work, and will not be deprecated](/docs/en/guides/plugins/deploy#deploy.start). You do not need to port any macros you may have written for Architect.
 
 However, there are a number of reasons that you may want to port your existing macro to a plugin:
 
