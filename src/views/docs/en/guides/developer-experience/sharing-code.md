@@ -70,7 +70,7 @@ const document = require('@architect/views/document')
 <div slot=content>
 
 ```ruby
-# get-index/index.rb
+# get-index/lambda.rb
 require_relative './vendor/shared/authenticate'
 require_relative './vendor/views/document'
 ```
@@ -83,7 +83,7 @@ require_relative './vendor/views/document'
 <div slot=content>
 
 ```python
-# get-index/index.py
+# get-index/lambda.py
 import vendor.shared.authenticate
 import vendor.views.document
 ```
@@ -116,7 +116,7 @@ const auth = require('@architect/shared/authenticate')
 <div slot=content>
 
 ```ruby
-# post-like/index.rb
+# post-like/lambda.rb
 require_relative './vendor/shared/authenticate'
 ```
 
@@ -128,7 +128,7 @@ require_relative './vendor/shared/authenticate'
 <div slot=content>
 
 ```python
-# post-like/index.py
+# post-like/lambda.py
 import vendor.shared.authenticate
 ```
 
@@ -176,7 +176,7 @@ const document = require('@architect/views/document')
 <div slot=content>
 
 ```ruby
-# get-index/index.rb
+# get-index/lambda.rb
 require_relative './vendor/shared/authenticate'
 require_relative './vendor/views/document'
 ```
@@ -189,7 +189,7 @@ require_relative './vendor/views/document'
 <div slot=content>
 
 ```python
-# get-index/index.py
+# get-index/lambda.py
 import vendor.shared.authenticate
 import vendor.views.document
 ```

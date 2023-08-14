@@ -196,14 +196,18 @@ Architect installs per-Lambda dependencies with `bundle` according to each `Gemf
 
 ### Relative modules & code sharing
 
-Code must be relative to the root of Lambda function directory.
+Individual Lambdas can `require` code from within their own path, but it is important to understand they cannot make use of local files that descend into other Lambdas. Attempting to do so will not work once deployed.
+
+To share code across multiple Lambdas, please make use of `@shared` and `@views`, and refer to our [guide on code sharing](/docs/en/guides/developer-experience/sharing-code).
+
+For example, assume the following `src/http/get-index/lambda.rb` handler:
 
 ```ruby
-require 'bundler/setup' # initialize Bundler
+# Initialize Bundler
+require 'bundler/setup'
 
 # This is ok if it exists in the Lambda's Gemfile
 require 'architect/functions'
-
 
 # This will fail
 require '../foo'
@@ -221,11 +225,13 @@ require './vendor/shared/foo'
 Prior to deploying, it is recommended to configure Bundler to work in a Lambda environment.
 
 You'll need to let Bundler know about Lambda's platform architecture by adding an entry to the `Gemfile.lock` (see below).
+
 Additionally, Bundler often tries to write to the filesystem at runtime. Freeze the bundle by setting the `BUNDLE_FROZEN` environment variable to `1`.
 
 ```bash
-# Declare the Lambda platform; assumes you have not configured ARM Lambdas
+# Declare the Lambda platform; assumes you have not configured your Lambda to use ARM
 bundle lock --add-platform x86_64-linux
+
 # Use Architect to set a Bundler-specific env var for staging & production
 npx arc env -a -e staging BUNDLE_FROZEN 1
 npx arc env -a -e production BUNDLE_FROZEN 1
