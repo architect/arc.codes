@@ -44,7 +44,7 @@ Configure the deployed function with [the `@aws` pragma](../project-manifest/aws
 - [`provisionedConcurrency`](#provisionedconcurrency) - number, `1` to AWS account maximum (disabled by default)
 - [`layers`](#layers) - Up to 5 Lambda layer ARNs; **must be in the same region as deployed**
 - [`policies`](#policies) - Configure [AWS SAM policy templates](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html)
-- [`architecture`](#architecture) - [AWS Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) for the function: `arm64` (default) or `x86_64`
+- [`architecture`](#architecture) - [AWS Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) for the function: `x86_64` (default) or `arm64`
 - [`storage`](#storage) - number, between `512` (default) and `10240` MB. The function's ephemeral storage (`/tmp` file system).
 - [`fifo`](#fifo) - boolean, `true` (default) or `false` to use `standard` SQS type
 

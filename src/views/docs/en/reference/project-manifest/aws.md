@@ -59,8 +59,8 @@ Configure Lambda function `layers` with max 5 Lambda Layer ARNs. Lambda Layers m
 ### `architecture`
 
 Lambda [CPU Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) of your functions.
-  - `arm64` (default) - (only available in certain AWS regions) 64-bit ARM architecture
-  - `x86_64` - 64-bit x86 architecture
+  - `x86_64` (default) - 64-bit x86 architecture
+  - `arm64` - (only available in certain AWS regions) 64-bit ARM architecture
 
 ### `storage`
 
