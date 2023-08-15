@@ -13,34 +13,38 @@ Define AWS specific configuration for an entire project or [per function](../con
 [AWS region ID](https://docs.aws.amazon.com/general/latest/gr/rande.html) where the project will be deployed.
 - Defaults to `us-west-2`
 
+
 ### `profile`
 
 Local AWS profile name to use with this project, as defined in your [local AWS configuration](../../get-started/detailed-aws-setup#credentials).
 - Can also be specified in `AWS_PROFILE` environment variable
 - Required to deploy to AWS
 
+
 ### `runtime`
 
 [Lambda runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html), as defined by the [`lambda-runtimes`](https://github.com/architect/lambda-runtimes) library.
 
-> ℹ️  Local [Sandbox](../cli/sandbox) support is currently limited to Node.js, Python, and Ruby.
+> Note: please refer to the [runtime support matrix](/docs/en/get-started/runtime-support) for local [Sandbox](../cli/sandbox) support
 
 | Runtime | Versions                   | Example            | Alias<sup>1</sup>         |
 |---------|----------------------------|--------------------|---------------------------|
 | Node.js | 12.x, 14.x, 16.x (default) | `nodejs16.x`       | `node` `nodejs` `node.js` |
-| Python  | 3.6 - 3.9                  | `python3.9`        | `python` `py`             |
+| Python  | 3.7, 3.8, 3.9 (default)    | `python3.9`        | `python` `py`             |
 | Ruby    | 2.7                        | `ruby2.7`          | `ruby` `rb`               |
-| .NET    | 3.1                        | `dotnetcore3.1`    | `dotnet` `.net`           |
+| .NET    | 5.0, 6 (default)           | `dotnetcore6`      | `dotnet` `.net`           |
 | Go      | 1.x                        | `go1.x`            | `golang` `go`             |
-| Java    | 8, 8.al2, 11               | `java11`           | `java`                    |
+| Java    | 8, 8.al2, 11 (default)     | `java11`           | `java`                    |
 
-1. Runtime aliases always use the default runtime version; `py` is effectively `python3.9`.
+1. Runtime aliases always use Architect's current default runtime version; `py` is effectively `python3.9`.
+
 
 ### `bucket`
 
 Bucket name (in same region) for CloudFormation deployment artifacts.
 
 If not specified, a secure deployment bucket will be automatically created.
+
 
 ### `policies`
 
@@ -52,19 +56,23 @@ Configuring one or more policies will completely remove all of Architect's defau
 
 > Note: `architect-default-policies` is an internal Architect framework setting based on the least-privilege permissions specific to your project. It is not a managed / public IAM policy, and will not be found in your AWS console.
 
+
 ### `layers`
 
 Configure Lambda function `layers` with max 5 Lambda Layer ARNs. Lambda Layers must be in the same region as they are deployed.
 
+
 ### `architecture`
 
 Lambda [CPU Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) of your functions.
-  - `x86_64` (default) - 64-bit x86 architecture
-  - `arm64` - (only available in certain AWS regions) 64-bit ARM architecture
+- `x86_64` (default) - 64-bit x86 architecture
+- `arm64` - 64-bit ARM architecture (now available in nearly all mainstream AWS regions)
+
 
 ### `storage`
 
 Lambda ephemeral storage (a "scratch" file system in `/tmp` for each Lambda). A number between `512` (default) - `10240` in MB.
+
 
 ### `apigateway`
 
@@ -80,6 +88,7 @@ API Gateway API type, can be one of:
 Alternatively, if you want a less granular approach, you can declare your preferred region and profile in your shell config like `.bashrc` ([more information here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)).
 
 If you have AWS exports in your shell config and `@aws` specified in your `app.arc` project, the `@aws` section will win.
+
 
 ## Examples
 

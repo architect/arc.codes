@@ -118,7 +118,7 @@ arc.events.publish({
 - Built-in session support
 - Added conveniences, such as automatic parsing of `req.body`
 - Support for request formats from both AWS API Gateway `HTTP` and `REST` APIs
-- Added properties commonplace in other web servers, such as `req.params` (as opposed to the much more verbose `req.queryStringParameters`)
+- Added properties commonplace in other web servers, such as `req.params` and `req.query` (as opposed to the much more verbose `req.pathParameters` and `req.queryStringParameters`, respectively)
 - Backward-compatibility for `REST` API properties in `HTTP` APIs, enabling seamless API upgrades
 
 Handler functions passed to `arc.http` receive a `request` object containing all of the [API Gateway request properties](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html) specific to `HTTP` and `REST` APIs. Additionally, the following properties are added or improved for convenience:
