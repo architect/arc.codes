@@ -121,9 +121,8 @@ As with Node.js, we suggest Architect developers using Python utilize Architect'
 - `import` your dependencies as normal
 - When working locally, [Sandbox](/docs/en/reference/cli/sandbox) will find your dependencies from your system $PATH
 - During deployment, Architect statically analyzes your code and resolves your `import` statements into `pypi` packages
-  - Options in your root `requirements.txt` file are respected, such as `--extra-index-url https://test.pypi.org/simple/`
+  - Supported options in your root `requirements.txt` file are respected, such as `--extra-index-url https://test.pypi.org/simple/`
 - Dependencies are installed to and deployed with your Lambda
-  - **Important note:** if any of your dependencies come in the form of Python wheels (and eggs), you may need to adjust how you deploy your app; see below for more info
 - For debugging purposes, the automatically generated `requirements.txt` can be found in your Lambda's `vendor/` dir (until the next deployment or Sandbox run)
   - Example path: `src/http/get-index/vendor/_arc_autoinstall/requirements.txt`
 
@@ -144,11 +143,11 @@ def handler(req):
 
 #### Native packages
 
-By default, `pip` attempts to [install packages as wheels](https://packaging.python.org/en/latest/tutorials/installing-packages/#source-distributions-vs-wheels). When `pip` installs a package, it is downloaded to match the platform it's running on. For example: if you're running a Mac, `pip` will download the Mac wheel. (Even when specifying the [`--no-binary=:all:`](https://pip.pypa.io/en/latest/cli/pip_install/#install-no-binary) option, `pip` will still install platform native packages if source distributions are unavailable.)
+By default, `pip` attempts to [install packages as wheels](https://packaging.python.org/en/latest/tutorials/installing-packages/#source-distributions-vs-wheels) that match the platform it's running on. For example: if you're running a Mac, `pip` will attempt to download the Mac wheel of the package you're installing. This is great for working locally in Sandbox.
 
-This means that if any of your Lambdas utilize packages that ship as platform-native wheels, they will be broken once deployed to AWS unless they have an AWS Linux 2 (AL2) compatible wheel available, and you are deploying your app from an AL2-based system or Docker image.
+During deployment to AWS, Architect's dependency hydration makes a best-effort attempt to guide `pip` to download wheels compatible with AWS Linux 2 (AL2), the underlying OS of Lambda (and many other AWS compute services). However, not all packages publish AL2 compatible wheels. Packages that do not publish source distributions, or that incorrectly tag `glibc` versions in their wheel distributions, for example, may have issues running in AWS.
 
-Unfortunately, per `pip`'s current functionality, Architect cannot paper over this right now.
+Due to this potential variability in dependency compatibility, we advise thoroughly testing your Python deployments in staging before promoting to production.
 
 
 ### Manual dependency management
