@@ -349,7 +349,7 @@ Send a message via WebSocket. Accepts two required positional parameters:
 import arc
 
 def handler(req, context):
-    connection_id = req["requestContext"]["connectionID"]
+    connection_id = req["requestContext"]["connectionId"]
     arc.ws.send(connection_id, {"hello": "there"})
 ```
 
@@ -375,7 +375,7 @@ Close a WebSocket connection with the provided id:
 import arc
 
 def handler(req, context):
-    connection_id = req["requestContext"]["connectionID"]
+    connection_id = req["requestContext"]["connectionId"]
     arc.ws.close(connection_id)
 ```
 
@@ -390,7 +390,7 @@ A pass-through to the [ApiGatewayManagementApi#get_connection](https://boto3.ama
 import arc
 
 def handler(req, context):
-    connection_id = req["requestContext"]["connectionID"]
+    connection_id = req["requestContext"]["connectionId"]
     info = arc.ws.info(connection_id)
     print(info)
     # {
