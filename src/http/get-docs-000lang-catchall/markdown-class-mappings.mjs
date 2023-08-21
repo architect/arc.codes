@@ -1,26 +1,32 @@
 export default {
   h1: [
-    'mb2',
+    'mb3',
     'font-semibold',
-    'text3'
+    'text5'
   ],
   h2: [
     'mt3',
     'mb-1',
     'font-semibold',
-    'text2'
+    'text4'
   ],
   h3: [
     'mt3',
     'mb-1',
     'font-semibold',
-    'text1'
+    'text3'
   ],
   h4: [
     'mt3',
     'mb-1',
     'font-semibold',
-    'text0'
+    'text2'
+  ],
+  h5: [
+    'mt3',
+    'mb-1',
+    'font-semibold',
+    'text1'
   ],
   p: [
     'mb-1'
