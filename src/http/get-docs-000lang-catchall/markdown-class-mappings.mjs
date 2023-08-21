@@ -49,7 +49,8 @@ export default {
   a: [
     'font-medium',
     'text-p1',
-    'text-h1'
+    'text-h1',
+    'no-underline',
   ],
   hr: [
     'mt3',

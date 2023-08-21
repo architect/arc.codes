@@ -46,11 +46,11 @@ function Anchor (state = {}) {
     .join('/')
   const href = `/${uri}`
   const isActive = active === href
-  const activeClass = isActive ? 'active' : ''
+  const activeClass = isActive ? ' active' : ''
   const text = isActive ? `→ ${name}` : name
 
   return `
-<a href="${href}" class="w-full inline-block text-p1 text-h1 text-a2 no-underline font-normal ${activeClass}" >${text}</a>
+<a href="${href}" class="w-full inline-block text-p1 text-h1 text-a2 no-underline font-normal${activeClass}">${text}</a>
   `
 }
 

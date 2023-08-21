@@ -2,6 +2,7 @@ import { readFileSync } from 'fs'
 import { join } from 'path'
 import arc from '@architect/functions'
 import { Arcdown } from 'arcdown'
+import anchor from 'markdown-it-anchor'
 import { redirect as redirectMiddleware } from '@architect/shared/redirect-map.mjs'
 import notFoundResponse from '@architect/shared/not-found-response.mjs'
 import algolia from '@architect/views/modules/components/algolia.mjs'
@@ -56,6 +57,11 @@ async function handler (req) {
           markdownItClass: classMap,
           markdownItToc: {
             containerClass: 'toc',
+          },
+          markdownItAnchor: {
+            permalink: anchor.permalink.headerLink({
+              class: 'text-p1 text-h1 text-a2 no-underline underline-h',
+            })
           },
         },
       })
