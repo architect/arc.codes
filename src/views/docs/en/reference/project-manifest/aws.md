@@ -29,12 +29,12 @@ Local AWS profile name to use with this project, as defined in your [local AWS c
 
 | Runtime | Versions                   | Example            | Alias<sup>1</sup>         |
 |---------|----------------------------|--------------------|---------------------------|
-| Node.js | 12.x, 14.x, 16.x (default) | `nodejs16.x`       | `node` `nodejs` `node.js` |
-| Python  | 3.7, 3.8, 3.9 (default)    | `python3.9`        | `python` `py`             |
-| Ruby    | 2.7                        | `ruby2.7`          | `ruby` `rb`               |
-| .NET    | 5.0, 6 (default)           | `dotnetcore6`      | `dotnet` `.net`           |
+| Node.js | 14.x, 16.x (default), 18.x | `nodejs16.x`       | `node` `nodejs` `node.js` |
+| Python  | 3.7, 3.8, 3.9 (default), 3.10, 3.11    | `python3.9`        | `python` `py`             |
+| Ruby    | 2.7 (default). 3.2         | `ruby2.7`          | `ruby` `rb`               |
+| .NET    | 6.0 (default), 7.0         | `dotnetcore6`      | `dotnet` `.net`           |
 | Go      | 1.x                        | `go1.x`            | `golang` `go`             |
-| Java    | 8, 8.al2, 11 (default)     | `java11`           | `java`                    |
+| Java    | 8, 8.al2, 11 (default), 17 | `java11`           | `java`                    |
 
 1. Runtime aliases always use Architect's current default runtime version; `py` is effectively `python3.9`.
 
