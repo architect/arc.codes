@@ -28,7 +28,7 @@
     "slugify": "^1.6.6"
   },
   "devDependencies": {
-    "@architect/architect": "^10.14.0",
+    "@architect/architect": "^10.14.1",
     "@architect/eslint-config": "^2.1.1",
     "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
     "eslint": "^8.47.0",
