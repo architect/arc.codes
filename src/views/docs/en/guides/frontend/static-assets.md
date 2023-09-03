@@ -12,7 +12,7 @@ Architect projects support text and binary static assets such as images, styles,
   - Enable static asset file fingerprinting (and long-lived caching headers)
 - `folder` - **string** (defaults to `./public`)
   - Designate the local folder to upload static assets from.
-- `ignore` - **list** 
+- `ignore` - **list**
   - Define which assets in the static `folder` should be ignored during upload
 - `prefix` - **string**
   - Set a top-level directory in the S3 bucket where files will be deployed
@@ -69,7 +69,7 @@ Advanced option to specify a top-level directory inside the S3 bucket to add sta
 prefix downloads
 ```
 
-> Note: locally in Sandbox HTTP paths to assets will be `/_static/archive.zip`, but once deployed will look like `/_static/downloads/archive.zip`. Additionally, this setting is not accounted for in [`@architect/functions`'s `static` method](../../reference/runtime-helpers/node.js#arc.static).
+> Note: this setting is not accounted for in [`@architect/functions`'s `static` method](../../reference/runtime-helpers/node.js#arc.static).
 
 ### `prune`
 
