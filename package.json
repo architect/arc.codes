@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@architect/architect": "^10.14.1",
-    "@architect/eslint-config": "^2.1.1",
+    "@architect/eslint-config": "^2.1.2",
     "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
     "eslint": "^8.48.0",
     "linkinator": "^5.0.2",
