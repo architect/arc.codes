@@ -24,17 +24,17 @@
     "@architect/inventory": "^3.6.1",
     "@architect/package": "^8.5.2",
     "@architect/plugin-node-prune": "^2.0.2",
-    "arcdown": "^2.2.0",
+    "arcdown": "^2.2.1",
     "slugify": "^1.6.6"
   },
   "devDependencies": {
-    "@architect/architect": "^10.14.1",
-    "@architect/eslint-config": "^2.1.1",
+    "@architect/architect": "^10.14.2",
+    "@architect/eslint-config": "^2.1.2",
     "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
-    "eslint": "^8.48.0",
+    "eslint": "^8.49.0",
     "linkinator": "^5.0.2",
     "spellchecker-cli": "^6.1.1",
-    "tap-arc": "^0.4.0",
+    "tap-arc": "^1.0.0",
     "tape": "^5.6.6",
     "tiny-json-http": "^7.5.1"
   },
