@@ -21,21 +21,21 @@
   "dependencies": {
     "@architect/asap": "^6.0.3",
     "@architect/functions": "~7.0.0",
-    "@architect/inventory": "^3.6.1",
+    "@architect/inventory": "^3.6.2",
     "@architect/package": "^8.5.2",
     "@architect/plugin-node-prune": "^2.0.2",
     "arcdown": "^2.2.1",
     "slugify": "^1.6.6"
   },
   "devDependencies": {
-    "@architect/architect": "^10.14.2",
+    "@architect/architect": "^10.15.1",
     "@architect/eslint-config": "^2.1.2",
     "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
-    "eslint": "^8.51.0",
-    "linkinator": "^5.0.2",
+    "eslint": "^8.52.0",
+    "linkinator": "^6.0.0",
     "spellchecker-cli": "^6.1.1",
-    "tap-arc": "^1.0.2",
-    "tape": "^5.7.0",
+    "tap-arc": "^1.1.0",
+    "tape": "^5.7.2",
     "tiny-json-http": "^7.5.1"
   },
   "eslintConfig": {
