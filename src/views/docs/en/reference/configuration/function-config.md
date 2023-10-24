@@ -53,6 +53,7 @@ Configure the deployed function with [the `@aws` pragma](../project-manifest/aws
 
 Read more about the [Lambda limits](https://docs.aws.amazon.com/lambda/latest/dg/limits.html) and [resource model](https://docs.aws.amazon.com/lambda/latest/dg/resource-model.html).
 
+
 ### Example `config.arc`
 
 ```arc
@@ -67,43 +68,18 @@ policies {ARN}
 architecture arm64
 ```
 
-### `runtime`
 
-Configure Lambda function `runtime`:
+### `architecture`
 
-- Like `nodejs16.x` (default), `nodejs14.x`, `python3.9`, `ruby2.7`
-- Unsupported by Sandbox locally: `dotnetcore3.1`, `go1.x`, `java11`
-- Or a runtime alias: `nodejs`, `python`, `ruby`, `.net`, `go`,  `java`
-  - Aliases always use the default version of the matched runtime: `ruby` => `ruby2.7`.
+Configure Lambda function [CPU `architecture`](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) to be one of `x86_64` or `arm64`. This setting defaults to `x86_64` if not specified. `arm64` only available in supported AWS regions.
 
-See [@aws](../project-manifest/aws) and official [Lambda documentation](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) for further reference.
+> Note: locally, Architect Sandbox executes the function's runtime with your machine's native architecture.
 
 ```arc
 @aws
-runtime ruby
+architecture arm64
 ```
 
-### `memory`
-
-Configure Lambda function `memory` between `128` MB to `10240` MB, in `1` MB increments.
-
-Memory size also directly correlates with CPU speed; higher memory levels are available in more capable Lambda clusters
-
-```arc
-@aws
-memory 1024
-```
-
-### `timeout`
-
-Configure Lambda function `timeout` in seconds to a max of `900`. (`15` minutes.)
-
-The default timeout (if no value supplied) is `5`. (`5` seconds.)
-
-```arc
-@aws
-timeout 30
-```
 
 ### `concurrency`
 
@@ -125,26 +101,16 @@ Disable invocation by setting concurrency to zero:
 concurrency 0
 ```
 
-### `provisionedConcurrency`
 
-Configure a Lambda's provisioned concurrency, which ensures the concurrency specified will always respond without coldstart. By default, Architect never sets provisioned concurrency, as it costs money whether actively in use or not.
+### `fifo`
 
-> Note: be warned that this is one of the only features that starts costing money the moment it is enabled. Be especially careful when enabling this feature globally for your project, as it has the potential to run up your costs rather quickly. Please refer to [Lambda's provisioned concurrency pricing guide](https://aws.amazon.com/lambda/pricing/#Provisioned_Concurrency_Pricing).
-
-Set a provisioned concurrency of 10 warm containers for your Lambda:
+Configure SQS queue type to `fifo` (`true`, default) or `standard` (`false`).
 
 ```arc
 @aws
-provisionedConcurrency 10
+fifo false
 ```
 
-Pair with `concurrency` to guarantee a Lambda with 10 warm containers that never exceeds 100 concurrent requests:
-
-```arc
-@aws
-concurrency 100
-provisionedConcurrency 10
-```
 
 ### `layers`
 
@@ -169,6 +135,19 @@ layers
 ```
 
 > Tip: find [awesome layers](https://github.com/mthenw/awesome-layers)
+
+
+### `memory`
+
+Configure Lambda function `memory` between `128` MB to `10240` MB, in `1` MB increments.
+
+Memory size also directly correlates with CPU speed; higher memory levels are available in more capable Lambda clusters
+
+```arc
+@aws
+memory 1024
+```
+
 
 ### `policies`
 
@@ -207,16 +186,45 @@ policies S3CrudPolicy architect-default-policies
 - [AWS IAM policy ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns)
 - [Community-maintained list of AWS-managed policies](https://github.com/z0ph/MAMIP/tree/master/policies)
 
-### `architecture`
 
-Configure Lambda function [CPU `architecture`](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) to be one of `x86_64` or `arm64`. This setting defaults to `x86_64` if not specified. `arm64` only available in supported AWS regions.
+### `provisionedConcurrency`
 
-> Note: locally, Architect Sandbox executes the function's runtime with your machine's native architecture.
+Configure a Lambda's provisioned concurrency, which ensures the concurrency specified will always respond without coldstart. By default, Architect never sets provisioned concurrency, as it costs money whether actively in use or not.
+
+> Note: be warned that this is one of the only features that starts costing money the moment it is enabled. Be especially careful when enabling this feature globally for your project, as it has the potential to run up your costs rather quickly. Please refer to [Lambda's provisioned concurrency pricing guide](https://aws.amazon.com/lambda/pricing/#Provisioned_Concurrency_Pricing).
+
+Set a provisioned concurrency of 10 warm containers for your Lambda:
 
 ```arc
 @aws
-architecture arm64
+provisionedConcurrency 10
 ```
+
+Pair with `concurrency` to guarantee a Lambda with 10 warm containers that never exceeds 100 concurrent requests:
+
+```arc
+@aws
+concurrency 100
+provisionedConcurrency 10
+```
+
+
+### `runtime`
+
+Configure Lambda function `runtime`:
+
+- Like `nodejs16.x` (default), `nodejs14.x`, `python3.9`, `ruby2.7`
+- Unsupported by Sandbox locally: `dotnetcore3.1`, `go1.x`, `java11`
+- Or a runtime alias: `nodejs`, `python`, `ruby`, `.net`, `go`,  `java`
+  - Aliases always use the default version of the matched runtime: `ruby` => `ruby2.7`.
+
+See [@aws](../project-manifest/aws) and official [Lambda documentation](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) for further reference.
+
+```arc
+@aws
+runtime ruby
+```
+
 
 ### `storage`
 
@@ -229,11 +237,14 @@ Ephemeral storage lives at `/tmp` in an AWS Lambda and will not persist between 
 storage 5000
 ```
 
-### `fifo`
 
-Configure SQS queue type to `fifo` (`true`, default) or `standard` (`false`).
+### `timeout`
+
+Configure Lambda function `timeout` in seconds to a max of `900`. (`15` minutes.)
+
+The default timeout (if no value supplied) is `5`. (`5` seconds.)
 
 ```arc
 @aws
-fifo false
+timeout 30
 ```
