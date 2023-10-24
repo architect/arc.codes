@@ -3,14 +3,15 @@ title: Function config
 category: Configuration
 description: Lambda function configuration
 sections:
-  - 'runtime'
-  - 'memory'
-  - 'timeout'
-  - 'concurrency'
-  - 'layers'
-  - 'policies'
   - 'architecture'
+  - 'concurrency'
+  - 'fifo'
+  - 'layers'
+  - 'memory'
+  - 'policies'
+  - 'runtime'
   - 'storage'
+  - 'timeout'
 ---
 
 Configure individual Lambda function properties (e.g. `src/http/get-index/config.arc`).
@@ -37,16 +38,16 @@ views false
 
 Configure the deployed function with [the `@aws` pragma](../project-manifest/aws) and the following properties:
 
-- [`runtime`](#runtime) - string, Lambda runtime or alias: `nodejs16.x` (default), `python3.7`, `dotnetcore3.1`, `node`, `py`, `.net`, etc.
-- [`memory`](#memory) - number, between `128` and `3008` MB in 64 MB increments.
-- [`timeout`](#timeout) - number, in seconds (max `900`)
-- [`concurrency`](#concurrency) - number, `0` to AWS account maximum (if not present, concurrency is unthrottled)
-- [`provisionedConcurrency`](#provisionedconcurrency) - number, `1` to AWS account maximum (disabled by default)
-- [`layers`](#layers) - Up to 5 Lambda layer ARNs; **must be in the same region as deployed**
-- [`policies`](#policies) - Configure [AWS SAM policy templates](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html)
 - [`architecture`](#architecture) - [AWS Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) for the function: `x86_64` (default) or `arm64`
-- [`storage`](#storage) - number, between `512` (default) and `10240` MB. The function's ephemeral storage (`/tmp` file system).
+- [`concurrency`](#concurrency) - number, `0` to AWS account maximum (if not present, concurrency is unthrottled)
 - [`fifo`](#fifo) - boolean, `true` (default) or `false` to use `standard` SQS type
+- [`layers`](#layers) - Up to 5 Lambda layer ARNs; **must be in the same region as deployed**
+- [`memory`](#memory) - number, between `128` and `3008` MB in 64 MB increments.
+- [`policies`](#policies) - Configure [AWS SAM policy templates](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html)
+- [`provisionedConcurrency`](#provisionedconcurrency) - number, `1` to AWS account maximum (disabled by default)
+- [`runtime`](#runtime) - string, Lambda runtime or alias: `nodejs16.x` (default), `python3.7`, `dotnetcore3.1`, `node`, `py`, `.net`, etc.
+- [`storage`](#storage) - number, between `512` (default) and `10240` MB. The function's ephemeral storage (`/tmp` file system).
+- [`timeout`](#timeout) - number, in seconds (max `900`)
 
 > Note: any function configurations made globally in your project manifest will be overridden by individual functions. For example, if your `app.arc` includes `memory 128`, and `src/http/get-index/config.arc` includes `memory 3008`, all functions except `get /` will be configured with 128MB of memory, while `get /` will override that global with 3008MB.
 
