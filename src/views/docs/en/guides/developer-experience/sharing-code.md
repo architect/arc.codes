@@ -9,41 +9,41 @@ sections:
   - src/views
 ---
 
-Architect makes it easy to share code across Lambda functions. Share business logic across functions with the [`@shared`](../../reference/project-manifest/shared) pragma and view templates with the [`@views`](../../reference/project-manifest/views) pragma.
+Architect makes it easy to share code across Lambda functions. Out of the box, with zero configuration, code is shared across Lambdas as follows:
 
-Enabling these features instructs Architect to automatically copy the contents of `./src/shared` into all Lambdas and `./src/views` into `@http` GET Lambda functions.
+- `src/shared/` - files in this dir are shared across all Lambdas
+- `src/views/` - files in this dir are shared to all `@http` `get` Lambdas (if any)
+
+Additional configuration (such as folder configuration) can be managed with the [`@shared`](../../reference/project-manifest/shared) and [`@views`](../../reference/project-manifest/views) pragmas.
+
 
 ## Example usage
 
-Given a simple `app.arc` where `@shared` and `@views` are declared:
+Given a simple `app.arc`:
 
 ```arc
 @app
 myapp
-
-@shared
-
-@views
 
 @http
 get /
 post /like
 ```
 
-Where utility code lives in `./src/shared` and common view code in `./src/views`:
+Where utility code lives in `./src/shared/` and common view code in `./src/views/`:
 
 ```bash
 .
 ├── src
 │   ├── http
 │   │   ├── get-index
-│   │   │   └── index(.js|.rb|.py)
+│   │   │   └── index(.js|.py|.rb)
 │   │   └── post-like
-│   │       └── index(.js|.rb|.py)
+│   │       └── index(.js|.py|.rb)
 │   ├── shared
-│   │   └── authenticate(.js|.rb|.py)
+│   │   └── authenticate(.js|.py|.rb)
 │   └── views
-│       └── document(.js|.rb|.py)
+│       └── document(.js|.py|.rb)
 └── app.arc
 ```
 
@@ -94,7 +94,7 @@ import vendor.views.document
 </div>
 </arc-viewer>
 
-The `post-like` route has access to shared code as well, but not views because it does not respond to a GET request.
+The `post-like` route has access to shared code as well, but not views because it is a `post` request handler, not a `get` handler.
 
 <arc-viewer default-tab=js>
 <div slot=contents>
