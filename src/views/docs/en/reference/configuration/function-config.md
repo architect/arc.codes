@@ -3,6 +3,10 @@ title: Function config
 category: Configuration
 description: Lambda function configuration
 sections:
+  - 'env'
+  - 'ignoredDependencies'
+  - 'shared'
+  - 'views'
   - 'architecture'
   - 'concurrency'
   - 'fifo'
@@ -20,9 +24,10 @@ Configure individual Lambda function properties (e.g. `src/http/get-index/config
 
 Use the `@arc` pragma to disable Architect features for a specific function:
 
-- `env` - boolean, `true` (default) or `false` to skip loading local environment variables.
-- `shared` - boolean, `true` (default) or `false` to skip hydrating project code from `@shared`.
-- `views` - boolean, `true` (default) or `false` to skip hydrating project code from `@views`.
+- [`env`](#env) - boolean, `true` (default) or `false` to disable loading environment variables
+- [`ignoredDependencies`](#ignoredDependencies) - array, specific dependency names to ignore during Lambda treeshaking
+- [`shared`](#shared) - boolean, `true` (default) or `false` to skip hydrating project code from `@shared`.
+- [`views`](#views) - boolean, `true` (default) or `false` to skip hydrating project code from `@views`.
 
 ### Example `config.arc`
 
@@ -30,9 +35,33 @@ Use the `@arc` pragma to disable Architect features for a specific function:
 # src/function/dir/config.arc
 @arc
 env false
+ignoredDependencies
+  some-special-dependency
 shared false
 views false
 ```
+
+### `env`
+
+Sometimes it's necessary to have an even more isolated, locked down Lambda within an Architect project; in such cases, it can be helpful to set `env` to `false`, which deactivates all project-level environment variables.
+
+Note: even with `env` set to false, your function still has access to credentials with whatever IAM privileges the Lambda has been granted. To isolate permissions further, please see [`policies`](#policies).
+
+
+### `ignoredDependencies`
+
+Disable specific dependencies from being installed in Lambdas that rely on [automated dependency treeshaking](/docs/en/guides/developer-experience/dependency-management#automated-dependency-treeshaking). This setting is currently only supported in Node.js Lambdas.
+
+
+### `shared`
+
+Disable hydrating [shared code](/docs/en/guides/developer-experience/sharing-code) into a given Lambda. This can be helpful for reducing code payload size when shared code is not being used, or if you are running arbitrary code within a Lambda that may expose internal business logic.
+
+
+### `views`
+
+Disable hydrating [views code](/docs/en/guides/developer-experience/sharing-code) into a given Lambda. As with [`shared`](#shared), this can be helpful for reducing code payload size for Lambdas in customer hot paths.
+
 
 ## `@aws`
 
