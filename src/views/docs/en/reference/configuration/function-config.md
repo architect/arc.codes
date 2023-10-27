@@ -37,6 +37,7 @@ Use the `@arc` pragma to disable Architect features for a specific function:
 env false
 ignoredDependencies
   some-special-dependency
+  '@scoped/dependency'
 shared false
 views false
 ```
@@ -50,7 +51,7 @@ Note: even with `env` set to false, your function still has access to credential
 
 ### `ignoredDependencies`
 
-Disable specific dependencies from being installed in Lambdas that rely on [automated dependency treeshaking](/docs/en/guides/developer-experience/dependency-management#automated-dependency-treeshaking). This setting is currently only supported in Node.js Lambdas.
+Disable specific dependencies from being installed in Lambdas that rely on [automated dependency treeshaking](/docs/en/guides/developer-experience/dependency-management#automated-dependency-treeshaking). When a dependency has a scope (preceded by '@'), place the name inside quotes. This setting is currently only supported in Node.js Lambdas.
 
 
 ### `shared`
