@@ -29,7 +29,7 @@ Local AWS profile name to use with this project, as defined in your [local AWS c
 
 | Runtime | Versions                            | Example       | Alias<sup>1</sup>         |
 |---------|-------------------------------------|---------------|---------------------------|
-| Node.js | 14.x, 16.x (default), 18.x          | `nodejs16.x`  | `node` `nodejs` `node.js` |
+| Node.js | 14.x, 16.x (default), 18.x, 20.x    | `nodejs16.x`  | `node` `nodejs` `node.js` |
 | Python  | 3.7, 3.8, 3.9 (default), 3.10, 3.11 | `python3.9`   | `python` `py`             |
 | Ruby    | 2.7 (default). 3.2                  | `ruby2.7`     | `ruby` `rb`               |
 | .NET    | 6 (default), 7                      | `dotnet6`     | `dotnet` `.net`           |
