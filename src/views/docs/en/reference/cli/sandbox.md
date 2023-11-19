@@ -136,7 +136,7 @@ templates
 
 ### `@env`
 
-Architect Sandbox will load variables for Sandbox's current environment (`testing`, `staging`, or `production`) from a [local preferences file with `@env`](../configuration/local-preferences#%40env). If a project contains a `.env` file, Architect will load those variables _instead_.
+Architect Sandbox will load variables for Sandbox's current environment (`testing`, `staging`, or `production`) from a [local preferences file with `@env`](../configuration/local-preferences#%40env). If a project contains a `.env` file, Architect will load those variables _instead_, and only for the `testing` environment.
 
 Variables from local preference files and `.env` will **not** be merged. Further details, including the variable load-strategy are [outlined below](#environment-variables).
 
@@ -161,7 +161,7 @@ Using a [local preferences file with `@env`](../configuration/local-preferences#
 
 ### Example scenario
 
-If `.env` is found, Sandbox will not load any variables from any Arc preferences. Given the following case with 3 environment variable sources:
+If `.env` is found, Sandbox will only use the variables for the `testing` environment, and not load any variables from any Arc preferences files. Given the following case with 3 environment variable sources:
 
 ```bash
 # ./.env

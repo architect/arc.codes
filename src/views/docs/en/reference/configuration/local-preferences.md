@@ -67,9 +67,9 @@ production
 
 ### `.env` file support
 
-Architect sandbox supports loading environment variables from a `.env` file. The `.env` will override your `preferences.arc` or `prefs.arc` and environment variables it defines will be loaded for whichever environment the sandbox is running (`testing`, `staging`, or `production`).
+Architect Sandbox supports loading environment variables from a `.env` file. The `.env` will override your `preferences.arc` or `prefs.arc`, and environment variables it defines are only loaded for the `testing` environment. If you require locally configured env vars for `staging` or `production` environments, you must use `pref[erence]s.arc`.
 
-(NB: Recall that key/value pairs in `.env` files are separated by the `=` symbol)
+Note: as a friendly reminder, key / value pairs in `.env` files are separated by the `=` symbol.
 
 ### Example `.env` file
 
@@ -77,6 +77,7 @@ Architect sandbox supports loading environment variables from a `.env` file. The
 A_TESTING_ENV_VAR=something-for-testing
 ANOTHER_VAR=only-for-testing
 ```
+
 
 ## `@sandbox`
 
