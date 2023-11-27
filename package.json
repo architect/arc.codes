@@ -19,7 +19,7 @@
     "test": "npm run spellcheck && npm run lint && npm run tape"
   },
   "dependencies": {
-    "@architect/asap": "^6.0.3",
+    "@architect/asap": "^6.0.4",
     "@architect/functions": "~7.0.0",
     "@architect/inventory": "^3.6.2",
     "@architect/package": "^8.5.2",
