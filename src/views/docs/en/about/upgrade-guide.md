@@ -113,6 +113,8 @@ Most of Architect 10's breaking changes were internal; most users should not enc
   - Remedy: existing stream functions can simply have their folders renamed to `src/tables-streams/{name}` (or use a custom `src` property on them if you'd prefer to keep your existing folder structure)
 - Breaking change: `@indexes` is now fully deprecated
   - Remedy: simply change the `@indexes` pragma name to `@tables-indexes`; no other changes are required
+- Breaking change: moved legacy API Gateway REST API provisioning to `@architect/plugin-rest-api` plugin; to continue deploying REST APIs with Architect:
+  - Remedy: install `@architect/plugin-rest-api` to your project's dependencies, add `@plugins architect/plugin-rest-api` and `@aws apigateway rest` to your project manifest
 
 
 ### Internal breaking changes

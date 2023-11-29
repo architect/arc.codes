@@ -82,6 +82,8 @@ API Gateway API type, can be one of:
 - `httpv1` - `HTTP` API + Lambda payload format version 1.0 (aka `REST`)
 - `rest` - `REST` API + original API Gateway payload format
 
+> Note: if configuring `apigateway rest` mode, you must use the `@architect/plugin-rest-api` in order to deploy your `REST` API to AWS
+
 
 ## Environment Variables
 
