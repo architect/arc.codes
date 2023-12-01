@@ -34,7 +34,7 @@ import arc
 - [`arc.http`](#arc.http) Request/response normalization and session support for `@http` functions
 - [`arc.queues`](#arc.queues) Publish/subscribe helpers for `@queues` functions
 - [`arc.services`](#arc.services()) Retrieves the Architect service map, exposing metadata for all services making up the application
-- [`arc.tables`](#arc.tables()) Generates a DynamoDB client for `@tables`
+- [`arc.tables`](#arc.tables) Generates a DynamoDB client for `@tables`
 - [`arc.ws`](#arc.ws) WebSocket helpers for `@ws` functions
 <!-- - [`arc.static`](#arc.static()) Get a `@static` asset path -->
 
