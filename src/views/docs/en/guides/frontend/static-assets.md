@@ -8,8 +8,8 @@ Architect projects support text and binary static assets such as images, styles,
 
 ## `@static` configuration
 
-- `fingerprint` - **boolean** (defaults to false)
-  - Enable static asset file fingerprinting (and long-lived caching headers)
+- `fingerprint` - **boolean** or **string** (defaults to false)
+  - Enable long-lived caching headers by static asset file fingerprinting
 - `folder` - **string** (defaults to `./public`)
   - Designate the local folder to upload static assets from.
 - `ignore` - **list**
@@ -25,7 +25,7 @@ Architect projects support text and binary static assets such as images, styles,
 
 ### `fingerprint`
 
-Fingerprinting adds a unique SHA to a file name based on the file content before uploading to S3. The file can then be cached effectively forever. Whenever the contents of the file changes so does the SHA invalidating the cache.
+When set to `true`, fingerprinting adds a unique SHA to a file name based on the file content before uploading to S3. The file can then be cached effectively forever. Whenever the contents of the file changes so does the SHA invalidating the cache.
 
 ```arc
 @static
@@ -33,6 +33,14 @@ fingerprint true
 ```
 
 The Node.js runtime helper, [`@architect/functions`, provides a `static`](../../reference/runtime-helpers/node.js#arc.static) method to help create a path for a given fingerprinted asset. See [below for an example](#fingerprinted-file-paths).
+
+
+By setting fingerprinting to `external`, the file name is not changed before uploading to S3. You should only do this if you can ensure that the file name changes when you change the file content. This setting is incompatible with the the Node.js runtime helper mentioned above.
+
+```arc
+@static
+fingerprint external
+```
 
 ### `folder`
 
