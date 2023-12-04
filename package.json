@@ -31,7 +31,7 @@
     "@architect/architect": "^10.16.3",
     "@architect/eslint-config": "^2.1.2",
     "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
-    "eslint": "^8.54.0",
+    "eslint": "^8.55.0",
     "linkinator": "^6.0.2",
     "spellchecker-cli": "^6.1.1",
     "tap-arc": "^1.2.2",
