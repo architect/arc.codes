@@ -35,7 +35,7 @@ fingerprint true
 The Node.js runtime helper, [`@architect/functions`, provides a `static`](../../reference/runtime-helpers/node.js#arc.static) method to help create a path for a given fingerprinted asset. See [below for an example](#fingerprinted-file-paths).
 
 
-By setting fingerprinting to `external`, the file name is not changed before uploading to S3. You should only do this if you can ensure that the file name changes when you change the file content. This setting is incompatible with the the Node.js runtime helper mentioned above.
+By setting fingerprinting to `external`, the file name is not changed before uploading to S3. You should only do this if you can ensure that the file name changes when you change the file content. This setting is incompatible with the Node.js runtime helper mentioned above.
 
 ```arc
 @static
