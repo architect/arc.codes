@@ -494,7 +494,7 @@ Creates a DynamoDB client for your application's `@tables`. The client is an obj
 - `_doc(thing[, callback]) → [Promise]`
   - `nodejs16.x` (or lower) - instance of [`AWS.DynamoDB.DocumentClient`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
   - `nodejs18.x` (or higher) - instance of [`DynamoDBDocument`](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_lib_dynamodb.html)
-- `name(tablename)`
+- `name(tablename) -> [string]`
   - Helper method that accepts a logical table name string, and returns a physical AWS resource name. Helpful for when you need to go lower level.
     - For example use `client.name('my-table')` to get the human-unfriendly AWS name of the `my-table` `@tables` resource
 - `reflect() → [object]`
