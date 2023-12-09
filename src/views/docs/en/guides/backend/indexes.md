@@ -34,7 +34,8 @@ In this example you can query for an account by their username or email!
 - Otherwise, the basic syntax for defining `@indexes` is the same as `@tables`:
   - Partition key, defined by a `*`, is required
   - Sort key, defined by `**`, is optional
-  - Currently only `*String`, `**String`, `*Number` and `**Number` are supported
+  - Currently only `*String`, `**String`, `*Number`, `**Number`, `*TTL`, `**TTL`  are supported
+    - `*TTL` and `**TTL` is equivalent to `*Number` and `**Number` respectively, but also turns [time-to-live](./tables.md#time-to-live) on. 
 
 ## Examples
 

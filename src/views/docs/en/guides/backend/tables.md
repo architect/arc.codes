@@ -76,6 +76,7 @@ accounts
 - The required partition key is denoted by `*`
 - The optional sort key is denoted by `**`
 - Currently only `*String`, `**String`, `*Number` and `**Number` are supported
+  - `*TTL` and `**TTL` is equivalent to `*Number` and `**Number` respectively, but also turns [time-to-live](#time-to-live) on. 
 - Lambdas can only be values of: `insert`, `update`, or `destroy`
 
 > **Protip:** table names can be anything but choose a consistent naming scheme within your app namespace; one useful scheme is plural nouns like: `accounts` or `email-invites`
