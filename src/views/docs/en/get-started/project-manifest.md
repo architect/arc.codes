@@ -22,7 +22,7 @@ Architect projects have the following significant folder structure by default:
 └── app.arc
 ```
 
-> All folders are **OPTIONAL**. Architect ignores any additional folders. All source paths can be reconfigured to suit unique project needs.
+> All folders are **optional**. Architect ignores any additional folders, and all source paths can be reconfigured to suit unique project needs.
 
 ---
 
@@ -38,6 +38,7 @@ Architect supports the following manifest files:
 - `arc.yml`
 - `package.json`
 - `arc.json`
+
 
 ## More on `app.arc`
 
