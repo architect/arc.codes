@@ -483,15 +483,21 @@ let js = arc.static('/index.js', { stagePath: true })
 
 ### `arc.tables()`
 
-Creates a DynamoDB client for your application's `@tables`. The client is an object, containing a nested object for each table. Declare tables with the [`@tables`](/docs/en/reference/project-manifest/tables) pragma.
+Creates a DynamoDB data layer, with raw client and other helpers, for your application's `@tables`. The client is an object, containing a nested object for each table. Declare tables with the [`@tables`](/docs/en/reference/project-manifest/tables) pragma.
+
+By default, an [`@aws-lite/dynamodb`](https://aws-lite.org/services/dynamodb) client is provided; access to AWS SDK-based DynamoDB clients can be opted into by passing a boolean `awsSdkClient` property.
+
+> Note: instantiating AWS SDK DynamoDB clients can take a very long time (>1000 ms), and is generally not advised for user hot paths. [Learn more here](https://aws-lite.org/performance).
 
 
 #### Client methods
 
-- `_db(thing[, callback]) → [Promise]`
+- `_client() → [Promise]`
+  - Instance of [`@aws-lite/dynamodb`](https://aws-lite.org/services/dynamodb)
+- `_db(params[, callback]) → [Promise]`
   - `nodejs16.x` (or lower) - instance of [`AWS.DynamoDB`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
   - `nodejs18.x` (or higher) - instance of [`DynamoDB`](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/classes/dynamodb.html)
-- `_doc(thing[, callback]) → [Promise]`
+- `_doc(params[, callback]) → [Promise]`
   - `nodejs16.x` (or lower) - instance of [`AWS.DynamoDB.DocumentClient`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
   - `nodejs18.x` (or higher) - instance of [`DynamoDBDocument`](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_lib_dynamodb.html)
 - `name(tablename)`
@@ -512,11 +518,14 @@ widgets
 ```javascript
 let arc = require('@architect/functions')
 let client = await arc.tables()
-
-client._db // AWS.DynamoDB
-client._doc // AWS.DynamoDB.DocumentClient
+client._client // aws-lite DynamoDB client
 client.name('widgets') // 'testapp-staging-widgets'
 client.reflect() // { widgets: 'testapp-staging-widgets' }
+
+client = await arc.tables({ awsSdkClient: true })
+client._db // AWS.DynamoDB
+client._doc // AWS.DynamoDB.DocumentClient
+// ... the above methods are still available
 ```
 
 
@@ -678,7 +687,7 @@ let info = await arc.ws.info({ id: connectionId })
 
 ### `arc.ws._api()`
 
-Return the internal [`ApiGatewayManagementApi` client](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/ApiGatewayManagementApi.html) from `aws-sdk`.
+Return the internal [`ApiGatewayManagementApi` client](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/ApiGatewayManagementApi.html) from [`aws-lite`](https://aws-lite.org).
 
 ```javascript
 let arc = require('@architect/functions')
