@@ -69,7 +69,7 @@ Disable hydrating [views code](/docs/en/guides/developer-experience/sharing-code
 
 Configure the deployed function with [the `@aws` pragma](../project-manifest/aws) and the following properties:
 
-- [`architecture`](#architecture) - [AWS Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) for the function: `x86_64` (default) or `arm64`
+- [`architecture`](#architecture) - [AWS Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) for the function: `arm64` (default) or `x86_64`
 - [`concurrency`](#concurrency) - number, `0` to AWS account maximum (if not present, concurrency is unthrottled)
 - [`fifo`](#fifo) - boolean, `true` (default) or `false` to use `standard` SQS type
 - [`layers`](#layers) - Up to 5 Lambda layer ARNs; **must be in the same region as deployed**
@@ -96,19 +96,19 @@ timeout 3
 concurrency 1
 layers {ARN}
 policies {ARN}
-architecture arm64
+architecture x86_64
 ```
 
 
 ### `architecture`
 
-Configure Lambda function [CPU `architecture`](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) to be one of `x86_64` or `arm64`. This setting defaults to `x86_64` if not specified. `arm64` only available in supported AWS regions.
+Configure Lambda function [CPU `architecture`](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) to be one of `arm64` or `x86_64`. This setting defaults to `arm64` if not specified.
 
 > Note: locally, Architect Sandbox executes the function's runtime with your machine's native architecture.
 
 ```arc
 @aws
-architecture arm64
+architecture x86_64
 ```
 
 
