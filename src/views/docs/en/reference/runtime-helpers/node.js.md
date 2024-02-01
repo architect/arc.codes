@@ -646,7 +646,11 @@ let arc = require('@architect/functions')
 
 await arc.ws.send({
   id: connectionId,
-  payload: { message: 'hai 🐶' }
+  payload: {
+    // Invokes @ws greetings, if defined
+    action: 'greetings',
+    message: 'Hello, friend!',
+  }
 })
 ```
 
