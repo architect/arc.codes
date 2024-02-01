@@ -9,32 +9,26 @@ description: Setting up, installing, and working with Architect and AWS.
 ## AWS deployment requirements
 
 1. [Node.js](https://nodejs.org) for Architect
-2. [Python](https://www.python.org) for the AWS CLI
-3. Any additional [supported runtimes](#runtime-environments) you plan to use in your application
-4. [AWS CLI](#aws-cli)
-5. [AWS credentials](#credentials)
-6. [AWS SDK](#aws-sdk)
-7. [Architect CLI](#install-architect)
+2. Any additional [supported runtimes](#runtime-environments) you plan to use in your application
+3. [AWS credentials](#credentials)
+4. [Architect CLI](#install-architect)
 
 ---
 
 ### Runtime environments
 
-Architect supports the following runtime versions:
+Architect supports the following runtimes for composing your application's business logic:
 
-- **Node.js**: `>= 14.x` using `npm`
-  - Unless otherwise specified in your project manifest, Node.js 16.x is the default runtime for new functions
-- **Python**: `3.9`, `3.8`, or `3.7` using `pip3`
-- **Ruby**: `2.7` using `bundle`
+- **Node.js**: >= 16.x using `npm`
+  - Unless otherwise specified in your project manifest, Node.js 20.x is the default runtime for new functions
+- **Python**: >= 3.8 using `pip3`
+  - Unless otherwise specified in your project manifest, Python 3.12 is the default Python runtime
+- **Ruby**: `3.2` using `bundle`
 - **Deno**: `1.6.x` ([under development](../reference/runtime-helpers/deno))
 
 > ⚠️ Working locally with the Sandbox requires target runtimes to be available in your `$PATH`.
 
-Additionally, all other standard AWS-managed runtimes are supported in Architect applications (but may not be supported in [Sandbox](../reference/cli/sandbox)), including:
-
-- **Go**: `1.x`
-- **.NET**: `6`, `5`, and `3.1`
-- **Java**: `11`, and `8`
+Additionally, other standard AWS-managed runtimes are supported in Architect applications (but may not be supported in [Sandbox](../reference/cli/sandbox)). Learn more about [Architect's runtime support](/docs/en/get-started/runtime-support).
 
 Architect also supports _any custom runtime_ in using either [Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) or [Lambda container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html).
 
@@ -55,12 +49,6 @@ runtime python
 ```
 
 > ℹ️ This setting can be overridden on a per-function basis with [`config.arc`](../reference/configuration/function-config).
-
----
-
-### AWS CLI
-
-The [AWS Command Line Interface](https://docs.aws.amazon.com/cli/) is the main interface for interacting with all parts of AWS using your computer's terminal. Architect uses the AWS CLI to package and deploy your app via CloudFormation. Follow this guide to [installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) for your preferred environment.
 
 ---
 
@@ -104,57 +92,6 @@ While it is recommended to explicitly declare your application's AWS profile and
 
 ---
 
-### AWS SDK
-
-Each Lambda runtime version includes its own built-in version of the AWS SDK. These versions are maintained and transparently upgraded by AWS.
-
-Since the AWS SDK is an extremely large library, we strongly recommend you do not ship your own version as a dependency, either in full or as a bundle. Doing so may have some of the following unintended side effects:
-- Slower Lambda coldstart and / or invocation
-- Reduced available code payload size
-- Possibly increased difficulty debugging (in the case of bundles)
-
-
-#### Node.js AWS SDK versions
-
-AWS maintains two versions of the AWS SDK for Node.js developers:
-
-- v2 - [`aws-sdk`](https://www.npmjs.com/package/aws-sdk)
-- v3 - [`@aws-sdk/*`](https://github.com/aws/aws-sdk-js-v3)
-
-Lambda Node.js runtimes up to `nodejs16.x` include AWS SDK v2 (`aws-sdk`).
-
-As of `nodejs18.x`, Lambda now includes AWS SDK v3 (`@aws-sdk/*`).
-
-While v2 will likely continue to be maintained for some time to come, by making v3 the only available built-in version in `nodejs18.x` AWS has signaled that they expect users to migrate to the new version, whether or not it is an actual improvement to developer experience.
-
-Moreover, as the versions imply, v2 is largely incompatible with v3, and per the [above recommendation](#aws-sdk), the version you should use in your handler code should correspond to the runtime you use. For example:
-- If you have a Lambda running `nodejs16.x`, we recommend against adding `@aws-sdk/*` modules (until you are ready to migrate to `nodejs18.x`)
-- Likewise, if you intend to run your Lambda on `nodejs18.x`, we recommend against using `aws-sdk`
-
-> ℹ️ Upgrading to `nodejs18.x` (and thus using AWS SDK v3) represents a meaningful change, and should be investigated thoroughly and with care. Key interfaces have been retired (such as `.promise()`), and some core SDK methods have changed significantly. (Example: [`S3.GetObject` no longer returns a Buffer](https://github.com/aws/aws-sdk-js-v3/issues/1877).) However, you can likely safely and reliably upgrade if your handlers make use of [`@architect/functions`](/docs/en/reference/runtime-helpers/node.js#%40architect%2Ffunctions).
-
-
-#### Architect's AWS SDK strategy
-
-A core goal of Architect is to make building [Functional Web Apps](https://fwa.dev) simpler, and an important aspect of that objective is to help (automatically) manage the many dependencies in use across your Lambdas, whether your project has one or one hundred of them.
-
-However, in the singular case of AWS SDK, AWS manages that dependency in particular. For the aforementioned reasons Architect does not attempt to automatically manage or include any version of AWS SDK.
-
-Practically speaking, that means if, for example, you rely on Architect's Lambda treeshaking feature – which scans your Lambda code and automatically installs `require`d or `import`ed dependencies at deploy-time – any mismatched versions of the AWS SDK will not be automatically installed by Architect.
-
-Architect will, however, attempt to provide helpful warnings where possible. For example: if your `nodejs18.x` Lambda `import`s `aws-sdk`, which is not built into the Lambda container, Architect will warn you of this during deployment.
-
-
-#### Forward compatibility via `@architect/functions`
-
-[`@architect/functions`](/docs/en/reference/runtime-helpers/node.js#%40architect%2Ffunctions) >= 5.3 papers over all possible breaking changes and incompatibilities between AWS SDK versions 2 and 3. This means if your Lambdas make use of `@architect/functions` (and you otherwise do not directly rely on AWS SDK calls), you would very likely be fully forward-compatible with `nodejs18.x` as of v5.3.
-
-However, if your Lambdas do NOT make use of `@architect/functions`, or make use of AWS SDK calls outside of the methods provided by `@architect/functions`, before opting into Lambda `nodejs18.x` + SDK v3 we strongly advise you investigate thoroughly and with care.
-
-> ℹ️ The one currently known caveat where `@architect/functions` cannot paper over v2 → v3 is in `arc.tables()._db` + `arc.tables()._doc` client methods; [see more here](/docs/en/reference/runtime-helpers/node.js#client-methods).
-
----
-
 ### Install Architect
 
 The following command uses `npm`, the package manager for Node.js.
@@ -194,7 +131,7 @@ To install Architect locally into an existing project:
 <div slot=content>
 
 ```bash
-npm init @architect ./testapp
+npm i -D @architect/architect
 ```
 </div>
 </arc-tab>
@@ -204,15 +141,60 @@ npm init @architect ./testapp
 <div slot=content>
 
 ```powershell
-npm init "@architect" ./testapp
+npm i -D "@architect/architect"
 ```
 </div>
 </arc-tab>
 </div>
 </arc-viewer>
 
-Or you can install Architect globally, enabling you to use Architect from any directory on your computer. When doing so, you should also be sure to install the AWS SDK globally as well.
+Or you can install Architect globally, enabling you to use Architect from any directory on your computer.
 
 ```bash
-npm i -g @architect/architect aws-sdk
+npm i -g @architect/architect
 ```
+
+---
+
+## Interacting with AWS services
+
+Each Lambda runtime version includes its own built-in version of the AWS SDK. However, due to ongoing performance and developer ergonomics issues with the AWS SDK, we recommend utilizing the community-driven [`aws-lite`](https://aws-lite.org) SDK.
+
+
+### Using `aws-lite`
+
+Since the AWS SDK is an extremely large library, we strongly recommend you do not ship your own version as a dependency, either in full or as a bundle. Doing so may have some of the following unintended side effects:
+
+- Slower Lambda coldstart and / or invocation
+- Reduced available code payload size
+- Possibly increased difficulty debugging (in the case of bundles)
+
+Instead, we recommend interacting with AWS services via [`aws-lite`](https://aws-lite.org) where possible, as it is 2-5x faster, and hundreds of megabytes smaller than the AWS SDK. [Learn more here](https://aws-lite.org/performance).
+
+Where that is not possible, we recommend using AWS Lambda's provided, *non-bundled* version of the AWS SDK. See [below for details](#node.js-aws-sdk-versions).
+
+
+### Architect's AWS SDK strategy
+
+A core goal of Architect is to make building [Functional Web Apps](https://fwa.dev) simpler, and an important aspect of that objective is to help (automatically) manage the many dependencies in use across your Lambdas, whether your project has one or one hundred of them.
+
+However, in the of AWS SDK, AWS manages that dependency within the Lambda environment. For the aforementioned reasons, Architect does not attempt to automatically manage or include any version of AWS SDK in the resources it manages on your behalf.
+
+Practically speaking, that means if you rely on Architect's Lambda treeshaking feature – which scans your Lambda code and automatically installs `require`d or `import`ed dependencies at deploy-time – versions of the AWS SDK will not be automatically added to your Lambda dependencies by Architect (as it is already expected to be present in the Lambda environment).
+
+Architect will, however, attempt to provide helpful warnings where possible. For example: if your `nodejs18.x` Lambda `import`s `aws-sdk`, the now-deprecated v2 that is not built into the Lambda container, Architect will warn you of this during deployment.
+
+
+### Node.js AWS SDK versions
+
+AWS has opted Node.js developers into a migration from AWS SDK v2 ([`aws-sdk`](https://www.npmjs.com/package/aws-sdk), now deprecated)) to v3 ([`@aws-sdk/*`](https://github.com/aws/aws-sdk-js-v3)):
+
+- Lambda `nodejs18.x` and greater use AWS SDK v3 (`@aws-sdk/*`)
+- Lambda `nodejs16.x` and prior use AWS SDK v2 (`aws-sdk`)
+  - The last Lambda runtime to use SDK v2, `nodejs16.x`, is deprecated mid-2024
+
+Migrating from AWS SDK v2 to v3 represents a meaningful change, and should be investigated thoroughly and with care. Key interfaces have been retired (such as `.promise()`), and some core SDK methods have changed significantly. (Example: [`S3.GetObject` no longer returns a Buffer](https://github.com/aws/aws-sdk-js-v3/issues/1877).)
+
+Instead of adopting the forced breaking changes of a migration to AWS SDK v3, we instead recommend migrating (and contributing, where possible) to the [`aws-lite`](https://aws-lite.org) SDK.
+
+> Architect maintains an ongoing commitment to backward compatibility wherever possible; as such, [`@architect/functions`](/docs/en/reference/runtime-helpers/node.js#%40architect%2Ffunctions) users can likely safely and reliably upgrade handlers in most cases. For additional details, please refer to the [Architect upgrade guide](/docs/en/about/upgrade-guide).
