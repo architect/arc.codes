@@ -112,7 +112,13 @@ Architect 11 now installs significantly faster, with a size on disk of roughly 4
   - This change only impacts projects that utilize native modules or Lambda layers with binaries; projects that make use of regular Node.js packages will not be impacted by this change
   - Remedy: if your native modules / layers aren't yet available for `arm64` Linux, or you just aren't certain about the state of your dependency tree, add `runtime x86_64` to the `@aws` pragma in your project manifest
 - Removed support for Node.js 14.x (now EOL, and no longer available to created in AWS Lambda)
-- Notable, but not necessarily breaking change: Deploy no longer writes `sam.json` + `sam.yaml` files upon each deploy
+
+
+### Notable changes
+
+- Added experimental `--fast` flag, which ships project to AWS without waiting around to determine if the deployment completed successfully. Use with care!
+- Architect no longer requires the AWS CLI, nor Python. So if you'd like to remove either or both, feel free!
+- Deploy no longer writes `sam.json` + `sam.yaml` files upon each deploy
   - However, if you do want to see the `sam.json` being deployed, use the `--dry-run` or `--debug|-d` CLI flags
 
 
