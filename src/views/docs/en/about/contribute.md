@@ -73,7 +73,6 @@ Architect releases are published via CI / CD, with a degree of manual input. The
 1. In the project to be changed, open a PR
   - Ensure test coverage is maintained or added, and that tests pass (of course)
   - Ideally: verify your changes locally before asking others to review your work. Sometimes the fastest path to doing this is simply to monkey-patch your local Architect installation
-  - If you're updating any dependencies, make sure `aws-sdk` remains pinned to the same version as all the other Architect libraries are currently using; this is intended to keep it in sync with the [current JS SDK version included in Lambda](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html)
 2. If the PR is in good shape and approved by a maintainer, merge the PR to `main`
 3. Make sure the `changelog.md` file is updated with the correct version, date, and description of changes
 4. Use **`npm version`** to publish a new version (from `main`)
