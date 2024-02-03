@@ -6,7 +6,7 @@ sections:
   - '@create'
   - '@env'
   - '@sandbox'
-  - '@sandbox-startup'
+  - '@sandbox-start'
 ---
 
 > Architect preferences (`preferences.arc`, or `prefs.arc`) defines settings for local Architect workflows. This file is intended to be added to `.gitignore`.
@@ -14,7 +14,7 @@ sections:
 - [`@create`](#%40create) - Preferences for resource creation with `arc init`
 - [`@env`](#%40env) - Configure environment variables
 - [`@sandbox`](#%40sandbox) - Define Sandbox preferences
-- [`@sandbox-startup`](#%40sandbox-startup) - Hook into Sandbox's startup
+- [`@sandbox-start`](#%40sandbox-start) - Hook into Sandbox's startup
 
 ## `@create`
 
@@ -136,14 +136,17 @@ Disables hydration
 no-hydrate true
 ```
 
-## `@sandbox-startup`
+## `@sandbox-start`
 
-Hook up CLI commands into [Sandbox](../cli/sandbox) startup. Helpful for repetitive tasks like seeding a database or starting up additional services for local development. Each command should be a separate unindented line under the `@sandbox-startup` pragma.
+Hook up CLI commands into [Sandbox](../cli/sandbox) startup. Helpful for repetitive tasks like seeding a database or starting up additional services for local development. Each command should be a separate unindented line under the `@sandbox-start` pragma.
+
 
 ### Example
 
 ```arc
-@sandbox-startup
+@sandbox-start
 node scripts/seed_db.js
 echo 'hello'
 ```
+
+> Note: the older alias `@sandbox-startup` still works, but will be deprecated in a future release. Please use `@sandbox-start`

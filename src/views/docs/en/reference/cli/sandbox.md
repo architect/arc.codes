@@ -105,12 +105,12 @@ no-hydrate true
 \* These advanced options should be used with care since they will allow local development code to interact with live AWS resources.
 
 
-### `@sandbox-startup`
+### `@sandbox-start`
 
-Additionally, Sandbox can run shell commands on startup by setting [`@sandbox-startup`](../configuration/local-preferences#%40sandbox-startup) in [local preferences](../configuration/local-preferences).
+Additionally, Sandbox can run shell commands on startup by setting [`@sandbox-start`](../configuration/local-preferences#%40sandbox-start) in [local preferences](../configuration/local-preferences) like so:
 
 ```arc
-@sandbox-startup
+@sandbox-start
 node scripts/seed_db.js
 echo 'hello'
 ```
