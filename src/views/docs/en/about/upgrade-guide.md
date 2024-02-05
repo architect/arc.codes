@@ -22,9 +22,9 @@ As a general philosophy, Architect's core maintainers endeavor to minimize the f
 
 ## Releases
 
-### Architect 11
+### Architect 11 (Cadborosaurus)
 
-Architect 11 is a speed, stability, and security release, marking the first version utilizing [`aws-lite`](https://aws-lite.org) instead of the AWS SDK. Architect 11 now installs significantly faster, with a size on disk of roughly 49 MB, down from 191 MB, a 74% reduction. Arc can now also deploy in seconds with *fast mode*.
+Architect 11 (Cadborosaurus) is a speed, stability, and security release, marking the first version utilizing [`aws-lite`](https://aws-lite.org) instead of the AWS SDK. Architect 11 now installs significantly faster, with a size on disk of roughly 49 MB, down from 191 MB, a 74% reduction. Arc can now also deploy in seconds with *fast mode*.
 
 Because Architect no longer includes the AWS SDK, any projects that use it to make calls to AWS services must install the AWS SDK as a dependency. [See more below](#architect-10-&rarr;-11).
 
@@ -93,7 +93,7 @@ Architect 4 (Yeti) introduced generic, dependency-free HTTP functions, enhanced 
 
 ## Architect 10 &rarr; 11
 
-Architect 11 is a speed, stability, and security release, marking the first version utilizing [`aws-lite`](https://aws-lite.org) instead of the AWS SDK.
+Architect 11 (Cadborosaurus) is a speed, stability, and security release, marking the first version utilizing [`aws-lite`](https://aws-lite.org) instead of the AWS SDK.
 
 Architect 11 now installs significantly faster, with a size on disk of roughly 49 MB, down from 191 MB (a 74% reduction!). Arc also no longer makes use of the AWS CLI, and can now also deploy in seconds with *fast mode*.
 
@@ -129,7 +129,9 @@ Architect 11 now installs significantly faster, with a size on disk of roughly 4
 
 Arc 11 also ships with Architect Functions 8, which also makes use of `aws-lite`. This is an important upgrade, as version 8 no longer suffers from 500-1000ms cold starts due to instantiating the AWS SDK. Version 8 is now between 2-5x faster, and uses 2-4x less memory.
 
-However, it also introduces two important breaking changes noted below. While we do not recommend it due to the deprecation of AWS SDK v2 and ongoing performance issues with AWS SDK v3, you may continue to use `@architect/functions` 7 (so long as the AWS SDK is installed in your project's dependencies).
+Version 8 also introduces two important breaking changes noted below; while we do not recommend using use version 7 due to the deprecation of AWS SDK v2 and ongoing performance issues with AWS SDK v3, you may continue to do so as long as the AWS SDK is installed in your project's dependencies.
+
+Additionally, you can use Architect Functions 8 in Arc 10 projects.
 
 
 #### DynamoDB client instantiation
