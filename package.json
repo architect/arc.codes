@@ -33,7 +33,7 @@
     "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
     "eslint": "^8.56.0",
     "linkinator": "^6.0.4",
-    "spellchecker-cli": "^6.1.1",
+    "spellchecker-cli": "^6.2.0",
     "tap-arc": "^1.2.2",
     "tape": "^5.7.4",
     "tiny-json-http": "^7.5.1"
