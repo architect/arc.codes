@@ -19,23 +19,23 @@
     "test": "npm run spellcheck && npm run lint && npm run tape"
   },
   "dependencies": {
-    "@architect/asap": "^7.0.4",
-    "@architect/functions": "^8.0.1",
-    "@architect/inventory": "^4.0.2",
-    "@architect/package": "^9.0.0",
+    "@architect/asap": "^7.0.7",
+    "@architect/functions": "^8.0.4",
+    "@architect/inventory": "^4.0.3",
+    "@architect/package": "^9.0.1",
     "@architect/plugin-node-prune": "^2.0.2",
-    "arcdown": "^2.2.1",
+    "arcdown": "^2.3.0",
     "slugify": "^1.6.6"
   },
   "devDependencies": {
-    "@architect/architect": "^11.0.2",
+    "@architect/architect": "^11.0.5",
     "@architect/eslint-config": "^2.1.2",
     "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
     "eslint": "^8.56.0",
     "linkinator": "^6.0.4",
-    "spellchecker-cli": "^6.1.1",
+    "spellchecker-cli": "^6.2.0",
     "tap-arc": "^1.2.2",
-    "tape": "^5.7.4",
+    "tape": "^5.7.5",
     "tiny-json-http": "^7.5.1"
   },
   "eslintConfig": {
