@@ -214,7 +214,7 @@ things
 ```
 
 ```javascript
-// seed-data.js
+// sandbox-seed.js
 module.exports = {
   things: [
     {
