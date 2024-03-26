@@ -483,18 +483,51 @@ let js = arc.static('/index.js', { stagePath: true })
 
 ### `arc.tables()`
 
-Creates a DynamoDB client for your application's `@tables`. The client is an object, containing a nested object for each table. Declare tables with the [`@tables`](/docs/en/reference/project-manifest/tables) pragma.
+Creates a DynamoDB data layer, with raw client and other helpers, for your application's `@tables`. The client is an object, containing a nested object for each table. Declare tables with the [`@tables`](/docs/en/reference/project-manifest/tables) pragma.
+
+
+#### Options
+
+`arc.tables()` accepts an optional object of additional options:
+
+- `awsSdkClient` - **boolean**
+  - Opt into instantiating and attaching an AWS SDK-based DynamoDB client to the `tables` client
+  - **Important note:** instantiating AWS SDK DynamoDB clients can take a very long time (>1000 ms), and is generally not advised for user hot paths! [Learn more here](https://aws-lite.org/performance).
+- `awsjsonMarshall` - **object**
+  - Options for overriding default settings for [AWS flavored JSON marshalling](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-util-dynamodb/Interface/marshallOptions/)
+- `awsjsonUnmarshall` - **object**
+  - Options for overriding default settings for [AWS flavored JSON unmarshalling](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-util-dynamodb/Interface/unmarshallOptions/)
+
+
+```javascript
+let arc = require('@architect/functions')
+let client = await arc.tables()
+client._client  // aws-lite DynamoDB client
+client._db      // undefined
+client._doc     // undefined
+
+client = await arc.tables({
+  awsSdkClient: true,
+  awsjsonMarshall: { convertClassInstanceToMap: true },
+  awsjsonUnmarshall: { convertWithoutMapWrapper: false },
+})
+client._db      // AWS.DynamoDB
+client._doc     // AWS.DynamoDB.DocumentClient
+// ... the above methods are still available
+```
 
 
 #### Client methods
 
-- `_db(thing[, callback]) → [Promise]`
+- `_client() → [Promise]`
+  - Instance of [`@aws-lite/dynamodb`](https://aws-lite.org/services/dynamodb)
+- `_db(params[, callback]) → [Promise]`
   - `nodejs16.x` (or lower) - instance of [`AWS.DynamoDB`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
   - `nodejs18.x` (or higher) - instance of [`DynamoDB`](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/classes/dynamodb.html)
-- `_doc(thing[, callback]) → [Promise]`
-  - `nodejs16.x` (or lower) - instance of [`AWS.DynamoDB.DocumentClient`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html)
-  - `nodejs18.x` (or higher) - instance of [`DynamoDBDocument`](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_lib_dynamodb.html)
-- `name(tablename) -> [string]`
+- `_doc(params[, callback]) → [Promise]`
+  - `nodejs16.x` (or lower) - instance of [`AWS.DynamoDB.DocumentClient`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html) if instantiated with `awsSdkClient: true`
+  - `nodejs18.x` (or higher) - instance of [`DynamoDBDocument`](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_lib_dynamodb.html) if instantiated with `awsSdkClient: true`
+- `name(tablename)`
   - Helper method that accepts a logical table name string, and returns a physical AWS resource name. Helpful for when you need to go lower level.
     - For example use `client.name('my-table')` to get the human-unfriendly AWS name of the `my-table` `@tables` resource
 - `reflect() → [object]`
@@ -512,11 +545,9 @@ widgets
 ```javascript
 let arc = require('@architect/functions')
 let client = await arc.tables()
-
-client._db // AWS.DynamoDB
-client._doc // AWS.DynamoDB.DocumentClient
-client.name('widgets') // 'testapp-staging-widgets'
-client.reflect() // { widgets: 'testapp-staging-widgets' }
+client._client          // aws-lite DynamoDB client
+client.name('widgets')  // 'testapp-staging-widgets'
+client.reflect()        // { widgets: 'testapp-staging-widgets' }
 ```
 
 
@@ -637,7 +668,11 @@ let arc = require('@architect/functions')
 
 await arc.ws.send({
   id: connectionId,
-  payload: { message: 'hai 🐶' }
+  payload: {
+    // Invokes @ws greetings, if defined
+    action: 'greetings',
+    message: 'Hello, friend!',
+  }
 })
 ```
 
@@ -678,7 +713,7 @@ let info = await arc.ws.info({ id: connectionId })
 
 ### `arc.ws._api()`
 
-Return the internal [`ApiGatewayManagementApi` client](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/ApiGatewayManagementApi.html) from `aws-sdk`.
+Return the internal [`ApiGatewayManagementApi` client](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/ApiGatewayManagementApi.html) from [`aws-lite`](https://aws-lite.org).
 
 ```javascript
 let arc = require('@architect/functions')

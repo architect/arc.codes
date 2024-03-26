@@ -64,39 +64,68 @@ ws: ~
 </div>
 </arc-viewer>
 
-Running `arc create` generates the following functions:
+Running `arc create` generates the following WebSocket handlers, each mapping to a required WebSocket event (referred to as an action):
 
 ```bash
 /
-├── ws
+├── src/ws
 │   ├── connect
 │   ├── default
-│   ├── disconnect
+│   └── disconnect
 ├── app.arc
 └── package.json
 ```
 
-Each function responds to WebSocket events from a client.
+Each handler responds to WebSocket actions from clients. In the [payload delivered to the function](#function-payload) there is a `connectionId` that uniquely identifies a client. Use this `connectionId` to send messages to the correct client (if needed).
 
-In the [payload delivered to the function](#function-payload) there is a `connectionId` that uniquely identifies a client. This `connectionId` can be used to send messages to the correct client.
 
-### Functions
+### Default actions
 
-The functions created by the `@ws` pragma handle events from a WebSocket client.
+Each action handler created by the `@ws` pragma receives events from WebSocket clients.
 
-* Connect - This function is invoked when a WebSocket client connects to the application
-* Default - This function is invoked when a WebSocket client sends a message to the application
-* Disconnect - This function is invoked when a WebSocket client disconnects from your application
+- `connect` - Invoked when a WebSocket client connects to the application
+- `default` - Invoked when a WebSocket client sends any (un-routed) message to the application
+- `disconnect` - Invoked when a WebSocket client disconnects from your application
 
-#### Function Payload
+
+### Custom actions
+
+In addition to the three default WebSocket actions (`connect`, `default`, `disconnect`), you can create custom actions to be routed via message payloads like so:
+
+```arc
+@ws
+some-custom-action
+another-custom-action
+```
+
+These will generate additional handlers in your `src/ws` dir (e.g. `src/ws/some-custom-action/`). Custom action invocation routing is performed by sending a JSON payload with the corresponding `action` property; for example:
+
+```js
+// Assuming the client is already connected
+ws.send(JSON.stringify({
+  whatever: 'some data'
+})) // Invokes `default`
+
+ws.send(JSON.stringify({
+  action: 'some-custom-action',
+  whatever: 'related data'
+})) // Invokes `some-custom-action`
+```
+
+
+#### Payload
+
+WebSocket event payloads may contain a fair bit of data, but here are a few key bits:
 
 | Argument | Description |
 | --- | --- |
 | `req` | The WebSocket request payload |
-| `req.requestContext.connectionId` | An id that uniquely identifies a client |
+| `req.requestContext.connectionId` | An ID that uniquely identifies the client |
+| `req.body` | Body payload sent by the client (if present) |
 
-#### Send Messages
 
-To publish a message to a WebSocket client you can use arc's runtime library `@architect/functions`' `ws.send` method. You can call this method from any of your application's functions.
+#### Send messages
 
-Docs: [Node.js](/docs/en/reference/runtime-helpers/node.js#arc.ws) - [Ruby](/docs/en/reference/runtime-helpers/ruby#arc.ws) - [Python](/docs/en/reference/runtime-helpers/python#arc.ws)
+To publish a message to a WebSocket client you can use Arc's runtime library `@architect/functions`' `ws.send` method. You can call this method from any of your application's functions so long as you have a valid `connectionId`.
+
+Docs: [Node.js](/docs/en/reference/runtime-helpers/node.js#arc.ws) | [Ruby](/docs/en/reference/runtime-helpers/ruby#arc.ws) | [Python](/docs/en/reference/runtime-helpers/python#arc.ws)

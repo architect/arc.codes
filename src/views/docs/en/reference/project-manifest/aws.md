@@ -27,16 +27,15 @@ Local AWS profile name to use with this project, as defined in your [local AWS c
 
 > Note: please refer to the [runtime support matrix](/docs/en/get-started/runtime-support) for local [Sandbox](../cli/sandbox) support
 
-| Runtime | Versions                            | Example       | Alias<sup>1</sup>         |
-|---------|-------------------------------------|---------------|---------------------------|
-| Node.js | 14.x, 16.x (default), 18.x, 20.x    | `nodejs16.x`  | `node` `nodejs` `node.js` |
-| Python  | 3.7, 3.8, 3.9 (default), 3.10, 3.11 | `python3.9`   | `python` `py`             |
-| Ruby    | 2.7 (default). 3.2                  | `ruby2.7`     | `ruby` `rb`               |
-| .NET    | 6 (default), 7                      | `dotnet6`     | `dotnet` `.net`           |
-| Go      | 1.x                                 | `go1.x`       | `golang` `go`             |
-| Java    | 8, 8.al2, 11 (default), 17          | `java11`      | `java`                    |
+| Runtime | Versions                              | Example       | Alias<sup>1</sup>         |
+|---------|---------------------------------------|---------------|---------------------------|
+| Node.js | 20.x (default), 18.x, 16.x            | `nodejs20.x`  | `node` `nodejs` `node.js` |
+| Python  | 3.12 (default), 3.11, 3.10, 3.9, 3.8  | `python3.12`  | `python` `py`             |
+| Ruby    | 3.2 (default)                         | `ruby3.2`     | `ruby` `rb`               |
+| .NET    | 6 (default), 7                        | `dotnet6`     | `dotnet` `.net`           |
+| Java    | 21 (default), 17, 11, 8.al2, 11       | `java21`      | `java`                    |
 
-1. Runtime aliases always use Architect's current default runtime version (e.g. `py` is effectively `python3.9`).
+1. Runtime aliases always use Architect's current default runtime version (e.g. `py` is effectively `python3.12`).
 
 
 ### `bucket`
@@ -65,8 +64,8 @@ Configure Lambda function `layers` with max 5 Lambda Layer ARNs. Lambda Layers m
 ### `architecture`
 
 Lambda [CPU Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) of your functions.
-- `x86_64` (default) - 64-bit x86 architecture
-- `arm64` - 64-bit ARM architecture (now available in nearly all mainstream AWS regions)
+- `arm64` (default) - 64-bit ARM architecture
+- `x86_64` - 64-bit x86 architecture
 
 
 ### `storage`
@@ -109,7 +108,6 @@ runtime ruby
 region us-west-1
 profile work
 storage 5000 # in MB
-architecture arm64
 policies
   S3CrudPolicy
   architect-default-policies
@@ -129,7 +127,6 @@ policies
     "region": "us-west-1",
     "profile": "work",
     "storage": 5000,
-    "architecture": "arm64",
     "policies": [
       "S3CrudPolicy",
       "architect-default-policies"

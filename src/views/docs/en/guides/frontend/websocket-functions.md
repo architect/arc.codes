@@ -134,7 +134,7 @@ let arc = require('@achitect/functions')
 
 await arc.ws.send({
   id: event.context.connectionId
-  payload: {action: 'ping'},
+  payload: { action: 'ping' },
 })
 ```
 
@@ -143,7 +143,7 @@ Ruby
 ```ruby
 require 'architect/functions'
 
-Arc::WS.send id: event.context.connectionId, payload: {action: 'ping'}
+Arc::WS.send id: event.context.connectionId, payload: { action: 'ping' }
 ```
 
 Python
@@ -151,7 +151,7 @@ Python
 ```python
 import arc.ws
 
-arc.ws.send(id=event.context.connectionId, payload={'action': 'ping'})
+arc.ws.send(id=event.context.connectionId, payload={ 'action': 'ping' })
 ```
 
 ---
@@ -228,7 +228,7 @@ msg.addEventListener('keyup', function(e) {
   if (e.key == 'Enter') {
     let text = e.target.value // get the text
     e.target.value = ''       // clear the text
-    ws.send(JSON.stringify({text}))
+    ws.send(JSON.stringify({ text }))
   }
 })
 ```
@@ -245,8 +245,8 @@ let arc = require('@architect/functions')
 
 exports.handler = async function connected(event) {
   let id = event.requestContext.connectionId
-  let payload = {ok: true, ts: Date.now()}
-  await arc.ws.send({id, payload})
-  return {statusCode: 200}
+  let payload = { ok: true, ts: Date.now() }
+  await arc.ws.send({ id, payload })
+  return { statusCode: 200 }
 }
 ```

@@ -20,15 +20,18 @@ arc deploy [--production|--static|--direct]
 
 ## Flags
 
-- `[--production, -p]` Deploys a CloudFormation stack to a production stack.
-- `[--static, -s]` Deploys only the files in the static folder.
-- `[--direct, -d path/to/function]` Overwrite staging Lambda with local source. A faster way to deploy and test small changes to individual functions without redeploying an entire stack.
-- `[--name, -n]` Deploy a custom named staging stack.
-- `[--tags, -t]` Adds resource tags to the CloudFormation stack.
-- `[--prune]` Remove assets not present in the local static folder.
-- `[--no-hydrate]` Do not automatically run `npm`, `bundle` or `pip`
+- `[--debug, -d]` Displays debug (and verbose) logging.
+- `[--direct path/to/function]` Overwrite staging Lambda with local source. A faster way to deploy and test small changes to individual functions without redeploying an entire stack.
 - `[--dry-run]` Creates a CloudFormation template but does not deploy it. A dry-run allows you to check the CloudFormation and SAM output before deploying the actual stack.
-- `[--verbose, -v]` Displays the full deploy status messages.
+- `[--fast, -f]` Deploy the stack, but do not hold the process open to determine whether the deployment succeeded or failed within AWS
+- `[--name, -n]` Deploy a custom named staging stack.
+- `[--no-hydrate]` Do not automatically run `npm`, `bundle`, or `pip`
+- `[--production, -p]` Deploys a CloudFormation stack to a production stack.
+- `[--prune]` Remove assets not present in the local static folder.
+- `[--static, -s]` Deploys only the files in the static folder.
+- `[--tags, -t]` Adds resource tags to the CloudFormation stack.
+  - The required tag format is `key=value`, e.g. `--tags key1=value1 key2=value2`
+- `[--verbose, -v]` Displays verbose logging.
 
 ## Local preferences: `@create`
 
@@ -88,4 +91,3 @@ This is useful for testing `@macros`; it will still generate `sam.json`.
 ```bash
 arc deploy --dry-run
 ```
-

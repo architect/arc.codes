@@ -68,7 +68,7 @@ inventory.inv.http = [
     config: {
       timeout: 10,
       memory: 3008,
-      runtime: 'nodejs14.x',
+      runtime: 'nodejs20.x',
       architecture: 'arm64',
       handler: 'index.handler',
       state: 'n/a',

@@ -159,7 +159,7 @@ export const permanentRedirects = {
   '/docs/en/reference/prefs.arc/env': '/docs/en/reference/configuration/local-preferences#@env',
   '/docs/en/reference/prefs.arc/.env': '/docs/en/reference/configuration/local-preferences#@env',
   '/docs/en/reference/prefs.arc/sandbox': '/docs/en/reference/configuration/local-preferences#@sandbox',
-  '/docs/en/reference/prefs.arc/sandbox-startup': '/docs/en/reference/configuration/local-preferences#@sandbox-startup',
+  '/docs/en/reference/prefs.arc/sandbox-startup': '/docs/en/reference/configuration/local-preferences#@sandbox-start',
 
   // Reference > CLI
   // round 1: Q1 2021
