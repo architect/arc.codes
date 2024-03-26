@@ -530,7 +530,7 @@ client._doc     // AWS.DynamoDB.DocumentClient
 - `name(tablename)`
   - Helper method that accepts a logical table name string, and returns a physical AWS resource name. Helpful for when you need to go lower level.
     - For example use `client.name('my-table')` to get the human-unfriendly AWS name of the `my-table` `@tables` resource
-- `reflect([callback]) → [Promise]`
+- `reflect() → [object]`
   - Returns a dictionary of table names with logical ids
 
 ```arc
