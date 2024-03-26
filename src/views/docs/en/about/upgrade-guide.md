@@ -170,7 +170,7 @@ Most of Architect 10's breaking changes were internal; most users should not enc
 - Removed support for legacy `.arc-env` env files (initially deprecated in late 2020)
   - Remedy: if you are still using a `.arc-env` file, please move your [local env vars to `prefs.arc`](https://arc.codes/docs/en/reference/configuration/local-preferences#%40env) or [`.env`](https://arc.codes/docs/en/reference/configuration/local-preferences#.env-file-support)
 - [Removed `toml` support](https://github.com/architect/architect/discussions/1294) (e.g. `arc.toml`)
-- Removed built-in support for the `REST` API Gateway. Support is moved to an external plugin, [plugin-rest-api](https://github.com/architect/plugin-rest-api).
+- Removed built-in support for the `REST` API Gateway. Support is moved to an external plugin, [`plugin-rest-api`](https://github.com/architect/plugin-rest-api).
 
 
 ### Breaking changes
