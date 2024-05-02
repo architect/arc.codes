@@ -4,7 +4,7 @@ const { cloudFormation: helloWorldCf, arc: helloWorldArc } = await renderHelloWo
 const { cloudFormation: arcCodesCf, arc: arcCodesArc } = await renderArcCodes()
 const { cloudFormation: kitchenSinkCf, arc: kitchenSinkArc } = await renderKitchenSink()
 
-export default function CloudFormation({ html }) {
+export default function CloudFormation ({ html }) {
   return html`
     <style>
       label {
@@ -14,16 +14,10 @@ export default function CloudFormation({ html }) {
         cursor: pointer;
       }
 
-      form:has([value="hello-world"]:checked) ~ #hello-world {
-        display: grid !important;
-      }
-
-      form:has([value="arc-codes"]:checked) ~ #arc-codes {
-        display: grid !important;
-      }
-
+      form:has([value="hello-world"]:checked) ~ #hello-world,
+      form:has([value="arc-codes"]:checked) ~ #arc-codes,
       form:has([value="kitchen-sink"]:checked) ~ #kitchen-sink {
-        display: grid !important;
+        display: grid;
       }
 
       pre {

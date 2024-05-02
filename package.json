@@ -43,6 +43,7 @@
   },
   "eslintConfig": {
     "parserOptions": {
+      "ecmaVersion": "2022",
       "sourceType": "module"
     },
     "extends": "@architect/eslint-config",
