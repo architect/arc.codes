@@ -24,6 +24,9 @@
     "@architect/inventory": "^4.0.4",
     "@architect/package": "^9.0.2",
     "@architect/plugin-node-prune": "^2.0.2",
+    "@enhance/arc-plugin-styles": "^5.0.6",
+    "@enhance/enhance-style-transform": "^0.1.2",
+    "@enhance/ssr": "^4.0.1",
     "arcdown": "^2.3.0",
     "slugify": "^1.6.6"
   },
