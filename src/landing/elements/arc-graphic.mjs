@@ -1,12 +1,11 @@
 export default function ArcGraphic ({ html }) {
   return html`
     <style>
-
-        @keyframes rotate {
-          0% { rotate: 0deg; scale: 1; }
-          50% { scale: 1.25; }
-          100%   { rotate: 360deg; scale: 1; }
-        }
+      @keyframes rotate {
+        0% { rotate: 0deg; scale: 1; }
+        50% { scale: 1.25; }
+        100%   { rotate: 360deg; scale: 1; }
+      }
 
       #halftone {
         color: var(--blue-200);

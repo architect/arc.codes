@@ -2,7 +2,6 @@ export default function ArcLanding ({ html }) {
   return html`
     <style scope="global">
       arc-logo {
-        display: block;
         inline-size: clamp(120px, 25vw, 12.5em);
       }
 
@@ -28,7 +27,7 @@ export default function ArcLanding ({ html }) {
     <arc-container class="pbs4 relative">
       <header class="mbe4">
         <h1>
-          <arc-logo></arc-logo>
+          <arc-logo class="block"></arc-logo>
           <span class="screenreader-only">Architect</span>
         </h1>
       </header>
