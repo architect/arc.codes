@@ -92,7 +92,7 @@ export async function handler () {
     </style>
     <link rel="stylesheet" href="${arc.static('css/landing-syntax.min.css')}" />
   </head>
-  <body class="font-sans leading4 overflow-x-hidden overflow-y-auto">
+  <body class="font-sans leading4">
     <arc-landing></arc-landing>
   </body>
 </html>

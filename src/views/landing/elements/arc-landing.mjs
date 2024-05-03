@@ -5,6 +5,29 @@ export default function ArcLanding ({ html }) {
         inline-size: clamp(120px, 25vw, 12.5em);
       }
 
+      nav {
+        background-color: var(--body);
+        color: white;
+      }
+
+      nav arc-logo {
+        inline-size: 128px;
+      }
+
+      @media (min-width: 48em) {
+        nav ul {
+          font-size: 1rem;
+        }
+      }
+
+      nav ul li a {
+        border-radius: 99em;
+      }
+
+      nav ul li a.active {
+        background-color: hsl(0deg 0% 40%);
+      }
+
       h2 span,
       h3 span {
         color: var(--arc-blue);
@@ -24,15 +47,18 @@ export default function ArcLanding ({ html }) {
       }
     </style>
 
-    <arc-container class="pbs4 relative">
-      <header class="mbe4">
-        <h1>
-          <arc-logo class="block"></arc-logo>
-          <span class="screenreader-only">Architect</span>
-        </h1>
-      </header>
+    <nav class="sticky z1 inset-bs-0">
+      <arc-container class="flex align-items-center gap2 pb-1">
+        <arc-logo class="block"></arc-logo>
+        <ul class="inline-flex align-items-center gap2 list-none font-medium text-1 mis-auto mis-none-lg">
+          <li><a class="pi-2 pb-6 active" href="/">Home</a></li>
+          <li><a class="pi-2 pb-6" href="/docs/en/get-started/quickstart">Docs</a></li>
+        </ul>
+      </arc-container>
+    </nav>
 
-      <h2 class="font-medium text6 text7-lg leading0 uppercase tracking-2 mbe4">
+    <arc-container class="pbs4 relative">
+      <h2 class="font-medium text6 text7-lg leading0 uppercase tracking-2 mbs3 mbe5">
         Cloud infra<br class="hidden block-lg" /> for <span class="font-extrabold">humans</span>
       </h2>
       

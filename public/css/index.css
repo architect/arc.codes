@@ -208,3 +208,12 @@ nav.toc li a {
 nav.toc li a:hover {
   color: var(--h1);
 }
+
+.navButton {
+  border-radius: 99em;
+  padding-block: 0.25em;
+}
+
+.navButton.active {
+  background-color: hsl(0deg 0% 40%);
+}
