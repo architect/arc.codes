@@ -55,8 +55,8 @@ export async function handler () {
 
       @font-face {
         font-family: Montserrat;
-        src: ${arc.static('font/montserrat-italic-subset-var.woff2')} format("woff2-variations");
-        src: ${arc.static('font/montserrat-italic-subset-var.woff2')} format("woff2") tech("variations");
+        src: url('${arc.static('fonts/montserrat-italic-subset-var.woff2')}') format("woff2-variations");
+        src: url('${arc.static('fonts/montserrat-italic-subset-var.woff2')}') format("woff2") tech("variations");
         font-weight: 100 900;
         font-style: italic;
       }
