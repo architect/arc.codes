@@ -59,7 +59,7 @@ export default function CloudFormation ({ html }) {
       </p>
 
       
-      <form class="flex gap0 text-1 font-semibold mbe2">
+      <form class="flex flex-wrap gap0 text-1 font-semibold mbe2">
         <label class="inline-flex align-items-center gap-4 pi0 pb-4">
           <input type="radio" name="demo" value="hello-world" checked />
           Hello world
