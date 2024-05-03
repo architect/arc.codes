@@ -210,10 +210,15 @@ nav.toc li a:hover {
 }
 
 .navButton {
+  border: 1px solid transparent;
   border-radius: 99em;
   padding-block: 0.25em;
 }
 
 .navButton.active {
   background-color: hsl(0deg 0% 40%);
+}
+
+.navButton:not(.active):hover {
+  border-color: hsl(0deg 0% 80%);
 }

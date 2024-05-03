@@ -21,11 +21,16 @@ export default function ArcLanding ({ html }) {
       }
 
       nav ul li a {
+        border: 1px solid transparent;
         border-radius: 99em;
       }
 
       nav ul li a.active {
         background-color: hsl(0deg 0% 40%);
+      }
+
+      nav ul li a:not(.active):hover {
+        border-color: hsl(0deg 0% 80%);
       }
 
       h2 span,
@@ -51,8 +56,8 @@ export default function ArcLanding ({ html }) {
       <arc-container class="flex align-items-center gap2 pb-1">
         <arc-logo class="block"></arc-logo>
         <ul class="inline-flex align-items-center gap2 list-none font-medium text-1 mis-auto mis-none-lg">
-          <li><a class="pi-2 pb-6 active" href="/">Home</a></li>
-          <li><a class="pi-2 pb-6" href="/docs/en/get-started/quickstart">Docs</a></li>
+          <li><a class="pi-1 pb-4 active" href="/">Home</a></li>
+          <li><a class="pi-1 pb-4" href="/docs/en/get-started/quickstart">Docs</a></li>
         </ul>
       </arc-container>
     </nav>
