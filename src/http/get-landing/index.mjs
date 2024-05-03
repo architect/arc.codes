@@ -68,24 +68,6 @@ export async function handler () {
         scrollbar-width: thin;
       }
 
-      ::-webkit-scrollbar {
-        inline-size: 8px;
-        block-size: 8px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background-color: transparent;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background-color: var(--gray-300);
-        border-radius: 8px;
-      }
-
-      ::-webkit-scrollbar-corner {
-        background-color: transparent;
-      }
-
       .underline {
         text-underline-offset: 0.075em;
       }

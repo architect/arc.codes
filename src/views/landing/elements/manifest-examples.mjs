@@ -24,6 +24,25 @@ export default function CloudFormation ({ html }) {
         overflow: scroll;
         max-block-size: 66dvh;
       }
+
+      pre::-webkit-scrollbar {
+        inline-size: 8px;
+        block-size: 8px;
+      }
+
+      pre::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      pre::-webkit-scrollbar-thumb {
+        background-color: var(--gray-300);
+        border-radius: 8px;
+      }
+
+      pre::-webkit-scrollbar-corner {
+        background-color: transparent;
+      }
+
     </style>
 
     <arc-container class="pbe4">
