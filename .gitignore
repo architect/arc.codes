@@ -6,3 +6,5 @@ sam.yaml
 public/static.json
 **/static.json
 src/http/get-docs-000lang-catchall/highlight/
+.enhance
+src/shared/enhance-styles
