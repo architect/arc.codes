@@ -23,7 +23,7 @@ export async function handler () {
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content"Architect is a simple framework for building and delivering powerful Functional Web Apps (FWAs) on AWS." />
+    <meta name="description" content="Architect is a simple framework for building and delivering powerful Functional Web Apps (FWAs) on AWS." />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
