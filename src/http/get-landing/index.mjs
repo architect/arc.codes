@@ -66,6 +66,7 @@ export async function handler () {
         color: var(--body);
         scrollbar-color: var(--gray-300) transparent;
         scrollbar-width: thin;
+        overflow-x: clip;
       }
 
       .underline {
