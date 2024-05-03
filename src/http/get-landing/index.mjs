@@ -22,9 +22,29 @@ export async function handler () {
 <html lang="en" class="overflow-x-hidden overflow-y-auto">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content"Architect is a simple framework for building and delivering powerful Functional Web Apps (FWAs) on AWS." />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@begin">
+    <meta name="twitter:creator" content="@begin">
+    <meta name="twitter:image:src" content="https://arc.codes${arc.static('arc.codes.png')}">
+
+    <!-- Open Graph -->
+    <meta name="og:image" content="https://arc.codes${arc.static('arc.codes.png')}">
+    <meta name="og:site_name" content="OpenJSF Architect">
+    <meta name="og:type" content="website">
+
+    <!-- Styles + favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://assets.arc.codes/architect-favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://assets.arc.codes/architect-favicon-16.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="https://assets.arc.codes/architect-favicon-64.png">
+
     <title>Architect</title>
+
     ${getStyles.styleTag()}
+
     <style>
       @font-face {
         font-family: Montserrat;
