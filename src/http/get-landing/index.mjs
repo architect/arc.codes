@@ -3,7 +3,7 @@ import enhance from '@enhance/ssr'
 import styleTransform from '@enhance/enhance-style-transform'
 import { getStyles } from '@enhance/arc-plugin-styles'
 
-import elements from '../../landing/elements.mjs'
+import elements from '../../views/landing/elements.mjs'
 
 export async function handler () {
   const html = enhance({
