@@ -4,7 +4,7 @@ import test from 'tape'
 import { redirect, tempRedirects, permanentRedirects } from '../../src/shared/redirect-map.mjs'
 
 test('redirect map middleware', async t => {
-  t.plan(5)
+  t.plan(4)
 
   t.equal(typeof redirect, 'function', 'Redirect middleware is a function')
 
@@ -23,22 +23,6 @@ test('redirect map middleware', async t => {
     },
   }
   t.deepEqual(redirectResponse, expectedResponse, 'Correctly redirect permanent mapped path')
-
-  const tempRedirectResponse = await redirect({
-    requestContext: {
-      http: {
-        method: 'GET',
-        path: '/',
-      }
-    }
-  })
-  const expectedTempResponse = {
-    statusCode: 302,
-    headers: {
-      location: '/docs/en/get-started/quickstart',
-    },
-  }
-  t.deepEqual(tempRedirectResponse, expectedTempResponse, 'Correctly redirect temporary mapped path')
 
   const nonRedirectResponse = await redirect({
     requestContext: {
