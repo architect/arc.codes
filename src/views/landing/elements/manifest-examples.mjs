@@ -130,7 +130,7 @@ export default function CloudFormation ({ html }) {
 
         <div>
           <h3 class="text1 tracking-1 font-medium">CloudFormation</h3>
-          <p class="text-1 mbe-2">${kitchenSinkCfLoc} lines of code</p>
+          <p class="text-1 mbe-2">${kitchenSinkCfLoc.toLocaleString()} lines of IaC template</p>
           ${kitchenSinkCf}
         </div>
       </article>
