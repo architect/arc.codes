@@ -9,10 +9,10 @@ profile openjsf
 fingerprint true
 
 @http
+get /
 get /docs/:lang/*
 get /api/package
 any /*
-get /landing
 
 @plugins
 spellcheck
