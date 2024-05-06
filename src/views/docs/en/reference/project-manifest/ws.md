@@ -100,7 +100,7 @@ another-custom-action
 
 These will generate additional handlers in your `src/ws` dir (e.g. `src/ws/some-custom-action/`). Custom action invocation routing is performed by sending a JSON payload with the corresponding `action` property; for example:
 
-```js
+```javascript
 // Assuming the client is already connected
 ws.send(JSON.stringify({
   whatever: 'some data'
