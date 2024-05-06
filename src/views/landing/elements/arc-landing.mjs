@@ -51,7 +51,7 @@ export default function ArcLanding ({ html }) {
         filter: blur(3px);
       }
 
-      a svg {
+      nav a svg {
         block-size: 1em;
         inline-size: auto;
       }
