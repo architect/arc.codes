@@ -29,7 +29,7 @@
   },
   "properties": {},
   "grid": {
-    "steps": 6
+    "steps": 7
   },
   "queries": {
     "lg": "48em"

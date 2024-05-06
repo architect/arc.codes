@@ -1,8 +1,25 @@
 import { renderHelloWorld, renderArcCodes, renderKitchenSink } from '../support/render-examples.mjs'
 
-const { cloudFormation: helloWorldCf, arc: helloWorldArc } = await renderHelloWorld()
-const { cloudFormation: arcCodesCf, arc: arcCodesArc } = await renderArcCodes()
-const { cloudFormation: kitchenSinkCf, arc: kitchenSinkArc } = await renderKitchenSink()
+const {
+  arc: helloWorldArc,
+  arcLoc: helloWorldArcLoc,
+  cfLoc: helloWorldCfLoc,
+  cloudFormation: helloWorldCf,
+} = await renderHelloWorld()
+
+const {
+  arc: arcCodesArc,
+  arcLoc: arcCodesArcLoc,
+  cfLoc: arcCodesCfLoc,
+  cloudFormation: arcCodesCf,
+} = await renderArcCodes()
+
+const {
+  arc: kitchenSinkArc,
+  arcLoc: kitchenSinkArcLoc,
+  cfLoc: kitchenSinkCfLoc,
+  cloudFormation: kitchenSinkCf,
+} = await renderKitchenSink()
 
 export default function CloudFormation ({ html }) {
   return html`
@@ -78,36 +95,42 @@ export default function CloudFormation ({ html }) {
 
       <article id="hello-world" class="hidden col-1 col-2-lg gap0 align-items-start">
         <div>
-          <h3 class="text1 tracking-1 font-medium mbe-4">Architect manifest</h3>
+          <h3 class="text1 tracking-1 font-medium">Architect manifest</h3>
+          <p class="text-1 mbe-2">${helloWorldArcLoc} lines of code</p>
           ${helloWorldArc}
         </div>
 
         <div>
-          <h3 class="text1 tracking-1 font-medium mbe-4">CloudFormation</h3>
+          <h3 class="text1 tracking-1 font-medium">CloudFormation</h3>
+          <p class="text-1 mbe-2">${helloWorldCfLoc} lines of code</p>
           ${helloWorldCf}
         </div>
       </article>
 
       <article id="arc-codes" class="hidden col-1 col-2-lg gap0 align-items-start">
         <div>
-          <h3 class="text1 tracking-1 font-medium mbe-4">Architect manifest</h3>
+          <h3 class="text1 tracking-1 font-medium">Architect manifest</h3>
+          <p class="text-1 mbe-2">${arcCodesArcLoc} lines of code</p>
           ${arcCodesArc}
         </div>
 
         <div>
-          <h3 class="text1 tracking-1 font-medium mbe-4">CloudFormation</h3>
+          <h3 class="text1 tracking-1 font-medium">CloudFormation</h3>
+          <p class="text-1 mbe-2">${arcCodesCfLoc} lines of code</p>
           ${arcCodesCf}
         </div>
       </article>
 
       <article id="kitchen-sink" class="hidden col-1 col-2-lg gap0 align-items-start">
         <div>
-          <h3 class="text1 tracking-1 font-medium mbe-4">Architect manifest</h3>
+          <h3 class="text1 tracking-1 font-medium">Architect manifest</h3>
+          <p class="text-1 mbe-2">${kitchenSinkArcLoc} lines of code</p>
           ${kitchenSinkArc}
         </div>
 
         <div>
-          <h3 class="text1 tracking-1 font-medium mbe-4">CloudFormation</h3>
+          <h3 class="text1 tracking-1 font-medium">CloudFormation</h3>
+          <p class="text-1 mbe-2">${kitchenSinkCfLoc} lines of code</p>
           ${kitchenSinkCf}
         </div>
       </article>
