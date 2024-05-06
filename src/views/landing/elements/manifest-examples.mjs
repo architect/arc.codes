@@ -96,13 +96,13 @@ export default function CloudFormation ({ html }) {
       <article id="hello-world" class="hidden col-1 col-2-lg gap0 align-items-start">
         <div>
           <h3 class="text1 tracking-1 font-medium">Architect manifest</h3>
-          <p class="text-1 mbe-2">${helloWorldArcLoc} lines of code</p>
+          <p class="text-1 mbe-2">${helloWorldArcLoc} lines of config</p>
           ${helloWorldArc}
         </div>
 
         <div>
           <h3 class="text1 tracking-1 font-medium">CloudFormation</h3>
-          <p class="text-1 mbe-2">${helloWorldCfLoc} lines of code</p>
+          <p class="text-1 mbe-2">${helloWorldCfLoc} lines of IaC template</p>
           ${helloWorldCf}
         </div>
       </article>
@@ -110,13 +110,13 @@ export default function CloudFormation ({ html }) {
       <article id="arc-codes" class="hidden col-1 col-2-lg gap0 align-items-start">
         <div>
           <h3 class="text1 tracking-1 font-medium">Architect manifest</h3>
-          <p class="text-1 mbe-2">${arcCodesArcLoc} lines of code</p>
+          <p class="text-1 mbe-2">${arcCodesArcLoc} lines of config</p>
           ${arcCodesArc}
         </div>
 
         <div>
           <h3 class="text1 tracking-1 font-medium">CloudFormation</h3>
-          <p class="text-1 mbe-2">${arcCodesCfLoc} lines of code</p>
+          <p class="text-1 mbe-2">${arcCodesCfLoc} lines of IaC template</p>
           ${arcCodesCf}
         </div>
       </article>
@@ -124,7 +124,7 @@ export default function CloudFormation ({ html }) {
       <article id="kitchen-sink" class="hidden col-1 col-2-lg gap0 align-items-start">
         <div>
           <h3 class="text1 tracking-1 font-medium">Architect manifest</h3>
-          <p class="text-1 mbe-2">${kitchenSinkArcLoc} lines of code</p>
+          <p class="text-1 mbe-2">${kitchenSinkArcLoc} lines of config</p>
           ${kitchenSinkArc}
         </div>
 
