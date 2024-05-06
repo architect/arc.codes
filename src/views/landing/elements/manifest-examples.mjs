@@ -68,14 +68,14 @@ export default function CloudFormation ({ html }) {
       </h2>
 
       <p class="measure mbe0">
-        Infrastructure as Code (IaC) can be intimidating for even the most experienced developers. Architect’s manifest file — which can be written in multiple open text formats — codifies cloud infrastructure provisioning as a minimal build artefact, turning formerly complex work into approachable, maintainable code.
+        Infrastructure as Code (IaC) can be intimidating for even the most experienced developers. Architect's manifest file — which can be written in multiple open text formats — codifies cloud infrastructure provisioning as a minimal build artifact, turning formerly complex work into approachable, maintainable code.
       </p>
 
       <p class="measure mbe4">
         See the difference for yourself by exploring the examples of Architect project manifests and the CloudFormation configurations they generate below. Or <a class="underline font-semibold" href="https://arc.codes/playground">try the interactive Architect playground</a>.
       </p>
 
-      
+
       <form class="flex flex-wrap gap0 text-1 font-semibold mbe2">
         <label class="inline-flex align-items-center gap-4 pi0 pb-4">
           <input type="radio" name="demo" value="hello-world" checked />
