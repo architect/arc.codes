@@ -79,6 +79,6 @@ proxy:
 </arc-tab>
 
 </div>
-<arc-viewer>
+</arc-viewer>
 
 With the above Architect file, your new app will respond to all get and post requests to `/v2/*`, and forward along requests to `/v1` to your existing API.
