@@ -67,7 +67,7 @@ queues:
 </arc-tab>
 
 </div>
-<arc-viewer>
+</arc-viewer>
 
 Which generates the corresponding code:
 
