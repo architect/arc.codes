@@ -62,8 +62,8 @@ export async function handler () {
       }
 
       body {
-        background-color: #efefef;
-        color: var(--body);
+        background-color: var(--back);
+        color: var(--fore);
         scrollbar-color: var(--gray-300) transparent;
         scrollbar-width: thin;
         overflow-x: clip;

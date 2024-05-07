@@ -15,6 +15,17 @@ export default function ArcTerminal ({ html }) {
         padding: 0.5em 1em;
       }
 
+      @media (prefers-color-scheme: dark) {
+        figure {
+          background: #222;
+          border-color: #444;
+        }
+
+        .process {
+          border-color: #444;
+        }
+      }
+
       .dot:first-of-type { color: salmon; }
       .dot:nth-of-type(2) { color: goldenrod; }
       .dot:nth-of-type(3) { color: mediumseagreen; }
@@ -22,6 +33,12 @@ export default function ArcTerminal ({ html }) {
       [slot="command"] {
         font-weight: 500;
         color: var(--blue-500);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        [slot="command"] {
+          color: var(--bright-blue);
+        }
       }
 
       [slot="output"] {

@@ -6,8 +6,14 @@ export default function ArcLanding ({ html }) {
       }
 
       nav {
-        background-color: var(--body);
+        background-color: var(--fore);
         color: white;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        nav {
+          background-color: #1e1d1a;
+        }
       }
 
       nav arc-logo {
@@ -38,6 +44,13 @@ export default function ArcLanding ({ html }) {
         color: var(--arc-blue);
       }
 
+      @media (prefers-color-scheme: dark) {
+        h2 span,
+        h3 span {
+          color: var(--bright-blue);
+        }
+      }
+
       .measure {
         max-inline-size: 64ch;
       }
@@ -49,6 +62,12 @@ export default function ArcLanding ({ html }) {
         inline-size: clamp(320px, 60vw, 1400px);
         z-index: -1;
         filter: blur(3px);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        arc-graphic {
+          opacity: 0.05;
+        }
       }
 
       nav a svg {

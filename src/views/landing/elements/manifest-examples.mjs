@@ -31,6 +31,12 @@ export default function CloudFormation ({ html }) {
         cursor: pointer;
       }
 
+      @media (prefers-color-scheme: dark) {
+        label {
+          background-color: var(--arc-blue);
+        }
+      }
+
       form:has([value="hello-world"]:checked) ~ #hello-world,
       form:has([value="arc-codes"]:checked) ~ #arc-codes,
       form:has([value="kitchen-sink"]:checked) ~ #kitchen-sink {

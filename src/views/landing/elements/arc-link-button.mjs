@@ -4,7 +4,7 @@ export default function ArcLinkButton ({ html }) {
       .linkButton {
         background: var(--blue-600);
         border-radius: 0.5em;
-        box-shadow: 0 0 0 4px #efefef;
+        box-shadow: 0 0 0 4px var(--back);
         color: white;
         transition: background-color 0.15s linear;
       }
