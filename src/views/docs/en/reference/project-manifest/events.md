@@ -82,16 +82,15 @@ events:
 </div>
 </arc-viewer>
 
-Which generates the following scaffolding:
+Running `arc create` generates the following handlers:
 
 ```bash
 /
-├── custom
+├── custom/
 │   └── source/
-├── src
-│   └── events
-│     ├── hit-counter/
-│     └── likes/
+├── src/events/
+│   ├── hit-counter/
+│   └── likes/
 ├── app.arc
 └── package.json
 ```

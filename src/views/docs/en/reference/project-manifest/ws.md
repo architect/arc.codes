@@ -68,7 +68,7 @@ Running `arc create` generates the following WebSocket handlers, each mapping to
 
 ```bash
 /
-├── src/ws
+├── src/ws/
 │   ├── connect
 │   ├── default
 │   └── disconnect
