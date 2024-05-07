@@ -1,5 +1,5 @@
 ---
-title: "<code>@queues</code>"
+title: '<code>@queues</code>'
 category: app.arc
 description: Define SQS topics
 ---
@@ -42,8 +42,11 @@ publish-log
 
 ```json
 {
-	"app": "myapp",
-	"queues": ["convert-image", "publish-log"]
+  "app": "myapp",
+  "queues": [
+    "convert-image",
+    "publish-log"
+  ]
 }
 ```
 
@@ -58,8 +61,8 @@ publish-log
 ---
 app: myapp
 queues:
-  - convert-image
-  - publish-log
+- convert-image
+- publish-log
 ```
 
 </div>
@@ -68,14 +71,13 @@ queues:
 </div>
 </arc-viewer>
 
-Which generates the corresponding code:
+Running `arc create` generates the following handlers:
 
 ```bash
 /
-├── src
-│   └── queues
-│       ├── convert-image/
-│       └── publish-log/
+├── src/queues/
+│   ├── convert-image/
+│   └── publish-log/
 ├── app.arc
 └── package.json
 ```

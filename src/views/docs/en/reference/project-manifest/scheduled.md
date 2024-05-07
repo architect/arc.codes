@@ -87,17 +87,14 @@ scheduled:
 </div>
 </arc-viewer>
 
-
-Which generates the following scaffolding:
+Running `arc create` generates the following handlers:
 
 ```bash
 /
-├── custom
-│   └── source/
-├── src/
-│   └── scheduled/
-│       ├── daily-update-buddy/
-│       └── friyay-only/
+├── custom/source/
+├── src/scheduled/
+│   ├── daily-update-buddy/
+│   └── friyay-only/
 ├── app.arc
 └── package.json
 ```
