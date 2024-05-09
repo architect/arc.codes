@@ -11,19 +11,8 @@ export default function ArcTerminal ({ html }) {
 
       .process {
         border-block-end: 1px solid #ccc;
-        color: #777;
+        color: var(--gray-600);
         padding: 0.5em 1em;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        figure {
-          background: #222;
-          border-color: #444;
-        }
-
-        .process {
-          border-color: #444;
-        }
       }
 
       .dot:first-of-type { color: salmon; }
@@ -35,15 +24,30 @@ export default function ArcTerminal ({ html }) {
         color: var(--blue-500);
       }
 
+      [slot="output"] {
+        color: var(--gray-600);
+      }
+
       @media (prefers-color-scheme: dark) {
+        figure {
+          background: #222;
+          border-color: #444;
+        }
+
+        .process {
+          color: var(--gray-400);
+          border-color: #444;
+        }
+
         [slot="command"] {
           color: var(--bright-blue);
         }
+
+        [slot="output"] {
+          color: var(--gray-400);
+        }
       }
 
-      [slot="output"] {
-        color: var(--gray-400);
-      }
     </style>
     <figure class="text-1 inline-block si-100">
       <div class="process">
