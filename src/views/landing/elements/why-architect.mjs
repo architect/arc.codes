@@ -10,7 +10,7 @@ export default function WhyArchitect ({ html }) {
       <section class="grid col-1 gap4 mb5">
         <article class="grid-lg col-2 gap0">
           <h3 class="uppercase tracking1 font-bold mbe0"><span>Fullstack, for real</span></h3>
-          <p class="measure">Architect not only supports cloud functions for HTTP but also web sockets, queues (FIFO), events (fan-out), and scheduled tasks all powered by a world class database that boasts millisecond latency no matter how much data you store or how many people concurrently access it. All with terse but determinstic Infra-as-Code (IaC).</p>
+          <p class="measure">Architect not only supports cloud functions for HTTP but also web sockets, queues (FIFO), events (fan-out), and scheduled tasks backed by a world class database that boasts millisecond latency no matter how much data you store or how many people concurrently access it. All these capabilities, and more, with terse but determinstic Infra-as-Code (IaC). </p>
         </article>
         
         <article class="grid-lg col-2 gap0">
