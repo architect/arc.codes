@@ -178,7 +178,7 @@ Where that is not possible, we recommend using AWS Lambda's provided, *non-bundl
 
 A core goal of Architect is to make building [Functional Web Apps](https://fwa.dev) simpler, and an important aspect of that objective is to help (automatically) manage the many dependencies in use across your Lambdas, whether your project has one or one hundred of them.
 
-However, in the of AWS SDK, AWS manages that dependency within the Lambda environment. For the aforementioned reasons, Architect does not attempt to automatically manage or include any version of AWS SDK in the resources it manages on your behalf.
+However, in the case of AWS SDK, AWS manages that dependency within the Lambda environment. For the aforementioned reasons, Architect does not attempt to automatically manage or include any version of AWS SDK in the resources it manages on your behalf.
 
 Practically speaking, that means if you rely on Architect's Lambda treeshaking feature – which scans your Lambda code and automatically installs `require`d or `import`ed dependencies at deploy-time – versions of the AWS SDK will not be automatically added to your Lambda dependencies by Architect (as it is already expected to be present in the Lambda environment).
 
