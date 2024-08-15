@@ -2,7 +2,6 @@ const GetStarted = [
   'Why Architect',
   'Quickstart',
   'Project manifest',
-  // 'Project files & folders',
   'Detailed AWS setup',
   'Runtime support',
 ]
@@ -20,6 +19,7 @@ const Guides = [
       'Using TypeScript',
       'Using Deno',
       'Custom CloudFormation',
+      'Create AWS credentials',
       {
         'Continuous integration': [
           'GitHub Actions',
