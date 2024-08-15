@@ -54,7 +54,7 @@ runtime python
 
 ### Credentials
 
-You'll need an Amazon Web Services account and credentials set up on your development machine and / or CI systems. If you haven't yet set it up, here's a useful guide for [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
+You'll need an Amazon Web Services account and credentials set up on your development machine and / or CI systems. If you don't yet have credentials on your development machine (like from [configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)), here's a guide for [gathering credentials from the AWS Console](./create-aws-credentials).
 
 In the context of a deployment tool, Architect requires account credentials with IAM `AdministratorAccess` privileges. In turn, Architect will create and attach least-privilege IAM roles to runtime resources within your application, ensuring strict security boundaries by default.
 

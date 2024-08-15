@@ -17,7 +17,6 @@ any /*
 @plugins
 spellcheck
 architect/plugin-node-prune
-enhance/ssr
 enhance/arc-plugin-styles
 
 @enhance-styles

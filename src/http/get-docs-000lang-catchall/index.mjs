@@ -3,6 +3,7 @@ import { join } from 'path'
 import arc from '@architect/functions'
 import { Arcdown } from 'arcdown'
 import anchor from 'markdown-it-anchor'
+import markdownItArcStaticImg from 'markdown-it-arc-static-img'
 import { redirect as redirectMiddleware } from '@architect/shared/redirect-map.mjs'
 import notFoundResponse from '@architect/shared/not-found-response.mjs'
 import algolia from '@architect/views/modules/components/algolia.mjs'
@@ -53,6 +54,7 @@ async function handler (req) {
       const md = readFileSync(filePath, 'utf8')
       const arcdown = new Arcdown({
         hljs: { classString: 'hljs mb0 mb1-lg relative' },
+        plugins: { markdownItArcStaticImg },
         pluginOverrides: {
           markdownItClass: classMap,
           markdownItToc: {
