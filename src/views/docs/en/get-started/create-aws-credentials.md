@@ -36,7 +36,7 @@ From the "Set permissions" section choose "Attach policies directly"
 Search for and select "AdministratorAccess".  
 _Click "Next"_
 
-![AdministratorAccess is checked in Set permissions](/images/aws-credentials/3.png)
+!["AdministratorAccess" is checked in Set permissions](/images/aws-credentials/3.png)
 
 Proceed to "Review and create" and _click "Create user"_ to finish creating the user.
 
@@ -59,7 +59,7 @@ Navigate to the new user. _Click "View user"_ on the success notice.
 Visit the "Security credentials" tab below "Summary".  
 _Click "Create access key"_.
 
-![Secutiry credentials tab for the new user](/images/aws-credentials/6.png)
+![Security credentials tab for the new user](/images/aws-credentials/6.png)
 
 Select "Other" for "Use Case".  
 _Click "Next"_
