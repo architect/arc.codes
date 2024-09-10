@@ -32,7 +32,7 @@ arc deploy
 Ship a `production` stack:
 
 ```bash
-arc deploy production
+arc deploy --production
 ```
 
 All done!
