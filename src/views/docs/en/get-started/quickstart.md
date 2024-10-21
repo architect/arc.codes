@@ -8,7 +8,7 @@ description: Get started quickly with Architect
 
 ## Create a new project
 
-Assuming Node.js 14+ is installed, open your terminal and create a new Architect project:
+Assuming Node.js 16+ is installed, open your terminal and create a new Architect project:
 
 <arc-viewer default-tab=bash>
 <div slot=contents>
