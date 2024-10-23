@@ -34,16 +34,17 @@ const Guides = [
     ],
     'Domains': [
       'Overview',
-      {
-        'Registrars': [
-          'Route53',
-          'Route53 & CloudFront',
-          'Dreamhost',
-          'GoDaddy',
-          'Namecheap',
-          'One',
-        ]
-      },
+      'Custom domain',
+      // {
+      //   'Registrars': [
+      //     'Route53',
+      //     'Route53 & CloudFront',
+      //     'Dreamhost',
+      //     'GoDaddy',
+      //     'Namecheap',
+      //     'One',
+      //   ]
+      // },
     ],
     'Plugins': [
       'Overview',
