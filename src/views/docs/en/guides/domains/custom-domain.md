@@ -54,7 +54,7 @@ Depending on the functionality of your application, you should be able to see it
 
 We will create two public certificates in Amazon Certificate Manager (ACM)
 
-1. AMZN Cert Manager > request
+1. AWS Cert Manager > request
 
 ![ACM request](/images/custom-domain/2.png)
 

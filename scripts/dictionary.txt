@@ -17,6 +17,7 @@ getter
 GitLab
 GoDaddy
 Graviton2
+HostedZone
 konsumer
 LEANX
 Namecheap
