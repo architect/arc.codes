@@ -11,7 +11,7 @@ import algolia from '@architect/views/modules/components/algolia.mjs'
 const staticProxy = asap({
   alias: { '/playground': '/playground.html' },
   passthru: true,
-  spa: false
+  spa: false,
 })
 
 async function robots (req) {
@@ -34,8 +34,8 @@ async function notFound (req) {
       html: NotFound({ term }),
       scripts: [ '/index.js' ],
       thirdparty: algolia,
-      toc
-    })
+      toc,
+    }),
   }
 }
 

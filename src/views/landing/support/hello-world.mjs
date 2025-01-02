@@ -19,11 +19,11 @@ export const cloudformation = {
             {
               'Effect': 'Allow',
               'Principal': {
-                'Service': 'lambda.amazonaws.com'
+                'Service': 'lambda.amazonaws.com',
               },
-              'Action': 'sts:AssumeRole'
-            }
-          ]
+              'Action': 'sts:AssumeRole',
+            },
+          ],
         },
         'Policies': [
           {
@@ -36,12 +36,12 @@ export const cloudformation = {
                     'logs:CreateLogGroup',
                     'logs:CreateLogStream',
                     'logs:PutLogEvents',
-                    'logs:DescribeLogStreams'
+                    'logs:DescribeLogStreams',
                   ],
-                  'Resource': 'arn:aws:logs:*:*:*'
-                }
-              ]
-            }
+                  'Resource': 'arn:aws:logs:*:*:*',
+                },
+              ],
+            },
           },
           {
             'PolicyName': 'ArcStaticBucketPolicy',
@@ -54,7 +54,7 @@ export const cloudformation = {
                     's3:PutObject',
                     's3:PutObjectAcl',
                     's3:DeleteObject',
-                    's3:ListBucket'
+                    's3:ListBucket',
                   ],
                   'Resource': [
                     {
@@ -62,28 +62,28 @@ export const cloudformation = {
                         'arn:aws:s3:::${bukkit}',
                         {
                           'bukkit': {
-                            'Ref': 'StaticBucket'
-                          }
-                        }
-                      ]
+                            'Ref': 'StaticBucket',
+                          },
+                        },
+                      ],
                     },
                     {
                       'Fn::Sub': [
                         'arn:aws:s3:::${bukkit}/*',
                         {
                           'bukkit': {
-                            'Ref': 'StaticBucket'
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                            'Ref': 'StaticBucket',
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     },
     'StaticBucketParam': {
       'Type': 'AWS::SSM::Parameter',
@@ -93,14 +93,14 @@ export const cloudformation = {
           'Fn::Sub': [
             '/${AWS::StackName}/static/${key}',
             {
-              'key': 'bucket'
-            }
-          ]
+              'key': 'bucket',
+            },
+          ],
         },
         'Value': {
-          'Ref': 'StaticBucket'
-        }
-      }
+          'Ref': 'StaticBucket',
+        },
+      },
     },
     'StaticFingerprintParam': {
       'Type': 'AWS::SSM::Parameter',
@@ -110,12 +110,12 @@ export const cloudformation = {
           'Fn::Sub': [
             '/${AWS::StackName}/static/${key}',
             {
-              'key': 'fingerprint'
-            }
-          ]
+              'key': 'fingerprint',
+            },
+          ],
         },
-        'Value': 'false'
-      }
+        'Value': 'false',
+      },
     },
     'ParameterStorePolicy': {
       'Type': 'AWS::IAM::Policy',
@@ -128,49 +128,49 @@ export const cloudformation = {
               'Effect': 'Allow',
               'Action': [
                 'ssm:GetParametersByPath',
-                'ssm:GetParameter'
+                'ssm:GetParameter',
               ],
               'Resource': {
                 'Fn::Sub': [
                   'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${AWS::StackName}',
-                  {}
-                ]
-              }
+                  {},
+                ],
+              },
             },
             {
               'Effect': 'Allow',
               'Action': [
                 'ssm:GetParametersByPath',
-                'ssm:GetParameter'
+                'ssm:GetParameter',
               ],
               'Resource': {
                 'Fn::Sub': [
                   'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${AWS::StackName}/*',
-                  {}
-                ]
-              }
+                  {},
+                ],
+              },
             },
             {
               'Effect': 'Allow',
               'Action': [
                 'ssm:GetParametersByPath',
-                'ssm:GetParameter'
+                'ssm:GetParameter',
               ],
               'Resource': {
                 'Fn::Sub': [
                   'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${AWS::StackName}/*/*',
-                  {}
-                ]
-              }
-            }
-          ]
+                  {},
+                ],
+              },
+            },
+          ],
         },
         'Roles': [
           {
-            'Ref': 'Role'
-          }
-        ]
-      }
+            'Ref': 'Role',
+          },
+        ],
+      },
     },
     'HTTP': {
       'Type': 'AWS::Serverless::HttpApi',
@@ -180,8 +180,8 @@ export const cloudformation = {
           'openapi': '3.0.1',
           'info': {
             'title': {
-              'Ref': 'AWS::StackName'
-            }
+              'Ref': 'AWS::StackName',
+            },
           },
           'paths': {
             '/': {
@@ -191,11 +191,11 @@ export const cloudformation = {
                   'type': 'aws_proxy',
                   'httpMethod': 'POST',
                   'uri': {
-                    'Fn::Sub': 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetIndexHTTPLambda.Arn}/invocations'
+                    'Fn::Sub': 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetIndexHTTPLambda.Arn}/invocations',
                   },
-                  'connectionType': 'INTERNET'
-                }
-              }
+                  'connectionType': 'INTERNET',
+                },
+              },
             },
             '/_static/{proxy+}': {
               'get': {
@@ -208,19 +208,19 @@ export const cloudformation = {
                       'https://${bukkit}.s3.${AWS::Region}.amazonaws.com/{proxy}',
                       {
                         'bukkit': {
-                          'Ref': 'StaticBucket'
-                        }
-                      }
-                    ]
+                          'Ref': 'StaticBucket',
+                        },
+                      },
+                    ],
                   },
                   'connectionType': 'INTERNET',
-                  'timeoutInMillis': 30000
-                }
-              }
-            }
-          }
-        }
-      }
+                  'timeoutInMillis': 30000,
+                },
+              },
+            },
+          },
+        },
+      },
     },
     'GetIndexHTTPLambda': {
       'Type': 'AWS::Serverless::Function',
@@ -229,11 +229,11 @@ export const cloudformation = {
         'CodeUri': '/var/task/src/http/get-index',
         'Runtime': 'nodejs20.x',
         'Architectures': [
-          'arm64'
+          'arm64',
         ],
         'MemorySize': 1152,
         'EphemeralStorage': {
-          'Size': 512
+          'Size': 512,
         },
         'Timeout': 5,
         'Environment': {
@@ -241,27 +241,27 @@ export const cloudformation = {
             'ARC_APP_NAME': 'myapp',
             'ARC_ENV': 'staging',
             'ARC_ROLE': {
-              'Ref': 'Role'
+              'Ref': 'Role',
             },
             'ARC_SESSION_TABLE_NAME': 'jwe',
             'ARC_STACK_NAME': {
-              'Ref': 'AWS::StackName'
+              'Ref': 'AWS::StackName',
             },
             'ARC_STATIC_BUCKET': {
-              'Ref': 'StaticBucket'
+              'Ref': 'StaticBucket',
             },
-            'ARC_STATIC_SPA': false
-          }
+            'ARC_STATIC_SPA': false,
+          },
         },
         'Role': {
           'Fn::Sub': [
             'arn:aws:iam::${AWS::AccountId}:role/${roleName}',
             {
               'roleName': {
-                'Ref': 'Role'
-              }
-            }
-          ]
+                'Ref': 'Role',
+              },
+            },
+          ],
         },
         'Events': {
           'GetIndexHTTPEvent': {
@@ -270,18 +270,18 @@ export const cloudformation = {
               'Path': '/',
               'Method': 'GET',
               'ApiId': {
-                'Ref': 'HTTP'
-              }
-            }
-          }
-        }
+                'Ref': 'HTTP',
+              },
+            },
+          },
+        },
       },
       'ArcMetadata': {
         'pragma': 'http',
         'name': 'get /',
         'method': 'get',
-        'path': '/'
-      }
+        'path': '/',
+      },
     },
     'StaticBucket': {
       'Type': 'AWS::S3::Bucket',
@@ -289,34 +289,34 @@ export const cloudformation = {
         'OwnershipControls': {
           'Rules': [
             {
-              'ObjectOwnership': 'BucketOwnerEnforced'
-            }
-          ]
+              'ObjectOwnership': 'BucketOwnerEnforced',
+            },
+          ],
         },
         'WebsiteConfiguration': {
           'IndexDocument': 'index.html',
-          'ErrorDocument': '404.html'
+          'ErrorDocument': '404.html',
         },
         'PublicAccessBlockConfiguration': {
           'BlockPublicAcls': false,
           'BlockPublicPolicy': false,
           'IgnorePublicAcls': false,
-          'RestrictPublicBuckets': false
-        }
-      }
+          'RestrictPublicBuckets': false,
+        },
+      },
     },
     'StaticBucketPolicy': {
       'Type': 'AWS::S3::BucketPolicy',
       'Properties': {
         'Bucket': {
-          'Ref': 'StaticBucket'
+          'Ref': 'StaticBucket',
         },
         'PolicyDocument': {
           'Version': '2012-10-17',
           'Statement': [
             {
               'Action': [
-                's3:GetObject'
+                's3:GetObject',
               ],
               'Effect': 'Allow',
               'Principal': '*',
@@ -326,18 +326,18 @@ export const cloudformation = {
                     'arn:aws:s3:::${bukkit}/*',
                     {
                       'bukkit': {
-                        'Ref': 'StaticBucket'
-                      }
-                    }
-                  ]
-                }
+                        'Ref': 'StaticBucket',
+                      },
+                    },
+                  ],
+                },
               ],
-              'Sid': 'PublicReadGetObject'
-            }
-          ]
-        }
-      }
-    }
+              'Sid': 'PublicReadGetObject',
+            },
+          ],
+        },
+      },
+    },
   },
   'Outputs': {
     'API': {
@@ -347,17 +347,17 @@ export const cloudformation = {
           'https://${ApiId}.execute-api.${AWS::Region}.amazonaws.com',
           {
             'ApiId': {
-              'Ref': 'HTTP'
-            }
-          }
-        ]
-      }
+              'Ref': 'HTTP',
+            },
+          },
+        ],
+      },
     },
     'ApiId': {
       'Description': 'API ID (ApiId)',
       'Value': {
-        'Ref': 'HTTP'
-      }
+        'Ref': 'HTTP',
+      },
     },
     'BucketURL': {
       'Description': 'Bucket URL',
@@ -366,11 +366,11 @@ export const cloudformation = {
           'http://${bukkit}.s3-website-${AWS::Region}.amazonaws.com',
           {
             'bukkit': {
-              'Ref': 'StaticBucket'
-            }
-          }
-        ]
-      }
-    }
-  }
+              'Ref': 'StaticBucket',
+            },
+          },
+        ],
+      },
+    },
+  },
 }

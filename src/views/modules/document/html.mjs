@@ -18,14 +18,14 @@ export default function HTML (props = {}) {
     slug = '',
     state = {},
     thirdparty = '',
-    title = ''
+    title = '',
   } = props
 
   const scriptTags = scripts &&
     Array.isArray(props.scripts)
     ? scripts.map(src => Script({ src })).join('')
     : Script(scripts)
-  const stateTag = state && State(state) || ''
+  const stateTag = (state && State(state)) || ''
 
   return `
 <!DOCTYPE html>

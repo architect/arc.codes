@@ -34,6 +34,7 @@ async function handler (req) {
   editURL += join(lang, ...parts, doc)
 
   const filePath = join(
+
     new URL('.', import.meta.url).pathname,
     'node_modules',
     '@architect',
@@ -63,7 +64,7 @@ async function handler (req) {
           markdownItAnchor: {
             permalink: anchor.permalink.headerLink({
               class: 'text-p1 text-h1 text-a2 no-underline underline-h',
-            })
+            }),
           },
         },
       })
@@ -106,7 +107,7 @@ async function handler (req) {
         state: { notFoundTerm: docName },
         thirdparty: algolia(lang),
         toc,
-      })
+      }),
     }
   }
 }

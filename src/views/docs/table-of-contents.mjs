@@ -25,8 +25,8 @@ const Guides = [
           'GitHub Actions',
           'GitLab Pipelines',
           'AWS EC2',
-        ]
-      }
+        ],
+      },
     ],
     'Frontend': [
       'Sessions',
@@ -103,7 +103,7 @@ const About = [
   'Contribute',
   'Upgrade guide',
   'Playground',
-  'Ejecting from Architect'
+  'Ejecting from Architect',
 ]
 
 export default {

@@ -48,11 +48,11 @@ export const cloudformation = {
             {
               'Effect': 'Allow',
               'Principal': {
-                'Service': 'lambda.amazonaws.com'
+                'Service': 'lambda.amazonaws.com',
               },
-              'Action': 'sts:AssumeRole'
-            }
-          ]
+              'Action': 'sts:AssumeRole',
+            },
+          ],
         },
         'Policies': [
           {
@@ -65,12 +65,12 @@ export const cloudformation = {
                     'logs:CreateLogGroup',
                     'logs:CreateLogStream',
                     'logs:PutLogEvents',
-                    'logs:DescribeLogStreams'
+                    'logs:DescribeLogStreams',
                   ],
-                  'Resource': 'arn:aws:logs:*:*:*'
-                }
-              ]
-            }
+                  'Resource': 'arn:aws:logs:*:*:*',
+                },
+              ],
+            },
           },
           {
             'PolicyName': 'ArcStaticBucketPolicy',
@@ -83,7 +83,7 @@ export const cloudformation = {
                     's3:PutObject',
                     's3:PutObjectAcl',
                     's3:DeleteObject',
-                    's3:ListBucket'
+                    's3:ListBucket',
                   ],
                   'Resource': [
                     {
@@ -91,25 +91,25 @@ export const cloudformation = {
                         'arn:aws:s3:::${bukkit}',
                         {
                           'bukkit': {
-                            'Ref': 'StaticBucket'
-                          }
-                        }
-                      ]
+                            'Ref': 'StaticBucket',
+                          },
+                        },
+                      ],
                     },
                     {
                       'Fn::Sub': [
                         'arn:aws:s3:::${bukkit}/*',
                         {
                           'bukkit': {
-                            'Ref': 'StaticBucket'
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
+                            'Ref': 'StaticBucket',
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
           },
           {
             'PolicyName': 'ArcDynamoPolicy',
@@ -124,32 +124,32 @@ export const cloudformation = {
                         'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}',
                         {
                           'tablename': {
-                            'Ref': 'LikesTable'
-                          }
-                        }
-                      ]
+                            'Ref': 'LikesTable',
+                          },
+                        },
+                      ],
                     },
                     {
                       'Fn::Sub': [
                         'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}/*',
                         {
                           'tablename': {
-                            'Ref': 'LikesTable'
-                          }
-                        }
-                      ]
-                    }
-                  ]
+                            'Ref': 'LikesTable',
+                          },
+                        },
+                      ],
+                    },
+                  ],
                 },
                 {
                   'Effect': 'Deny',
                   'Action': 'dynamodb:DeleteTable',
                   'Resource': {
-                    'Fn::Sub': 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/*'
-                  }
-                }
-              ]
-            }
+                    'Fn::Sub': 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/*',
+                  },
+                },
+              ],
+            },
           },
           {
             'PolicyName': 'ArcSimpleNotificationServicePolicy',
@@ -158,20 +158,20 @@ export const cloudformation = {
                 {
                   'Effect': 'Allow',
                   'Action': [
-                    'sns:Publish'
+                    'sns:Publish',
                   ],
                   'Resource': {
                     'Fn::Sub': [
                       'arn:aws:sns:${AWS::Region}:${AWS::AccountId}:${AWS::StackName}*',
-                      {}
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      {},
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     },
     'LikesParam': {
       'Type': 'AWS::SSM::Parameter',
@@ -181,14 +181,14 @@ export const cloudformation = {
           'Fn::Sub': [
             '/${AWS::StackName}/tables/${tablename}',
             {
-              'tablename': 'likes'
-            }
-          ]
+              'tablename': 'likes',
+            },
+          ],
         },
         'Value': {
-          'Ref': 'LikesTable'
-        }
-      }
+          'Ref': 'LikesTable',
+        },
+      },
     },
     'HitCounterEventTopicParam': {
       'Type': 'AWS::SSM::Parameter',
@@ -198,14 +198,14 @@ export const cloudformation = {
           'Fn::Sub': [
             '/${AWS::StackName}/events/${event}',
             {
-              'event': 'hit-counter'
-            }
-          ]
+              'event': 'hit-counter',
+            },
+          ],
         },
         'Value': {
-          'Ref': 'HitCounterEventTopic'
-        }
-      }
+          'Ref': 'HitCounterEventTopic',
+        },
+      },
     },
     'StaticBucketParam': {
       'Type': 'AWS::SSM::Parameter',
@@ -215,14 +215,14 @@ export const cloudformation = {
           'Fn::Sub': [
             '/${AWS::StackName}/static/${key}',
             {
-              'key': 'bucket'
-            }
-          ]
+              'key': 'bucket',
+            },
+          ],
         },
         'Value': {
-          'Ref': 'StaticBucket'
-        }
-      }
+          'Ref': 'StaticBucket',
+        },
+      },
     },
     'StaticFingerprintParam': {
       'Type': 'AWS::SSM::Parameter',
@@ -232,12 +232,12 @@ export const cloudformation = {
           'Fn::Sub': [
             '/${AWS::StackName}/static/${key}',
             {
-              'key': 'fingerprint'
-            }
-          ]
+              'key': 'fingerprint',
+            },
+          ],
         },
-        'Value': 'true'
-      }
+        'Value': 'true',
+      },
     },
     'ParameterStorePolicy': {
       'Type': 'AWS::IAM::Policy',
@@ -250,49 +250,49 @@ export const cloudformation = {
               'Effect': 'Allow',
               'Action': [
                 'ssm:GetParametersByPath',
-                'ssm:GetParameter'
+                'ssm:GetParameter',
               ],
               'Resource': {
                 'Fn::Sub': [
                   'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${AWS::StackName}',
-                  {}
-                ]
-              }
+                  {},
+                ],
+              },
             },
             {
               'Effect': 'Allow',
               'Action': [
                 'ssm:GetParametersByPath',
-                'ssm:GetParameter'
+                'ssm:GetParameter',
               ],
               'Resource': {
                 'Fn::Sub': [
                   'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${AWS::StackName}/*',
-                  {}
-                ]
-              }
+                  {},
+                ],
+              },
             },
             {
               'Effect': 'Allow',
               'Action': [
                 'ssm:GetParametersByPath',
-                'ssm:GetParameter'
+                'ssm:GetParameter',
               ],
               'Resource': {
                 'Fn::Sub': [
                   'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${AWS::StackName}/*/*',
-                  {}
-                ]
-              }
-            }
-          ]
+                  {},
+                ],
+              },
+            },
+          ],
         },
         'Roles': [
           {
-            'Ref': 'Role'
-          }
-        ]
-      }
+            'Ref': 'Role',
+          },
+        ],
+      },
     },
     'HTTP': {
       'Type': 'AWS::Serverless::HttpApi',
@@ -302,8 +302,8 @@ export const cloudformation = {
           'openapi': '3.0.1',
           'info': {
             'title': {
-              'Ref': 'AWS::StackName'
-            }
+              'Ref': 'AWS::StackName',
+            },
           },
           'paths': {
             '/likes': {
@@ -313,10 +313,10 @@ export const cloudformation = {
                   'type': 'aws_proxy',
                   'httpMethod': 'POST',
                   'uri': {
-                    'Fn::Sub': 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetLikesHTTPLambda.Arn}/invocations'
+                    'Fn::Sub': 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetLikesHTTPLambda.Arn}/invocations',
                   },
-                  'connectionType': 'INTERNET'
-                }
+                  'connectionType': 'INTERNET',
+                },
               },
               'post': {
                 'x-amazon-apigateway-integration': {
@@ -324,11 +324,11 @@ export const cloudformation = {
                   'type': 'aws_proxy',
                   'httpMethod': 'POST',
                   'uri': {
-                    'Fn::Sub': 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${PostLikesHTTPLambda.Arn}/invocations'
+                    'Fn::Sub': 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${PostLikesHTTPLambda.Arn}/invocations',
                   },
-                  'connectionType': 'INTERNET'
-                }
-              }
+                  'connectionType': 'INTERNET',
+                },
+              },
             },
             '/': {
               'get': {
@@ -337,11 +337,11 @@ export const cloudformation = {
                   'type': 'aws_proxy',
                   'httpMethod': 'POST',
                   'uri': {
-                    'Fn::Sub': 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetIndexHTTPLambda.Arn}/invocations'
+                    'Fn::Sub': 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetIndexHTTPLambda.Arn}/invocations',
                   },
-                  'connectionType': 'INTERNET'
-                }
-              }
+                  'connectionType': 'INTERNET',
+                },
+              },
             },
             '/_static/{proxy+}': {
               'get': {
@@ -354,19 +354,19 @@ export const cloudformation = {
                       'https://${bukkit}.s3.${AWS::Region}.amazonaws.com/{proxy}',
                       {
                         'bukkit': {
-                          'Ref': 'StaticBucket'
-                        }
-                      }
-                    ]
+                          'Ref': 'StaticBucket',
+                        },
+                      },
+                    ],
                   },
                   'connectionType': 'INTERNET',
-                  'timeoutInMillis': 30000
-                }
-              }
-            }
-          }
-        }
-      }
+                  'timeoutInMillis': 30000,
+                },
+              },
+            },
+          },
+        },
+      },
     },
     'GetLikesHTTPLambda': {
       'Type': 'AWS::Serverless::Function',
@@ -375,11 +375,11 @@ export const cloudformation = {
         'CodeUri': '/var/task/src/http/get-likes',
         'Runtime': 'nodejs20.x',
         'Architectures': [
-          'arm64'
+          'arm64',
         ],
         'MemorySize': 1152,
         'EphemeralStorage': {
-          'Size': 512
+          'Size': 512,
         },
         'Timeout': 5,
         'Environment': {
@@ -387,32 +387,32 @@ export const cloudformation = {
             'ARC_APP_NAME': 'hello',
             'ARC_ENV': 'staging',
             'ARC_ROLE': {
-              'Ref': 'Role'
+              'Ref': 'Role',
             },
             'ARC_SESSION_TABLE_NAME': 'jwe',
             'ARC_STACK_NAME': {
-              'Ref': 'AWS::StackName'
+              'Ref': 'AWS::StackName',
             },
             'ARC_STATIC_BUCKET': {
-              'Ref': 'StaticBucket'
+              'Ref': 'StaticBucket',
             },
             'ARC_WSS_URL': {
               'Fn::Sub': [
                 'wss://${WS}.execute-api.${AWS::Region}.amazonaws.com/staging',
-                {}
-              ]
-            }
-          }
+                {},
+              ],
+            },
+          },
         },
         'Role': {
           'Fn::Sub': [
             'arn:aws:iam::${AWS::AccountId}:role/${roleName}',
             {
               'roleName': {
-                'Ref': 'Role'
-              }
-            }
-          ]
+                'Ref': 'Role',
+              },
+            },
+          ],
         },
         'Events': {
           'GetLikesHTTPEvent': {
@@ -421,18 +421,18 @@ export const cloudformation = {
               'Path': '/likes',
               'Method': 'GET',
               'ApiId': {
-                'Ref': 'HTTP'
-              }
-            }
-          }
-        }
+                'Ref': 'HTTP',
+              },
+            },
+          },
+        },
       },
       'ArcMetadata': {
         'pragma': 'http',
         'name': 'get /likes',
         'method': 'get',
-        'path': '/likes'
-      }
+        'path': '/likes',
+      },
     },
     'GetIndexHTTPLambda': {
       'Type': 'AWS::Serverless::Function',
@@ -441,11 +441,11 @@ export const cloudformation = {
         'CodeUri': '/var/task/src/http/get-index',
         'Runtime': 'nodejs20.x',
         'Architectures': [
-          'arm64'
+          'arm64',
         ],
         'MemorySize': 1152,
         'EphemeralStorage': {
-          'Size': 512
+          'Size': 512,
         },
         'Timeout': 5,
         'Environment': {
@@ -453,33 +453,33 @@ export const cloudformation = {
             'ARC_APP_NAME': 'hello',
             'ARC_ENV': 'staging',
             'ARC_ROLE': {
-              'Ref': 'Role'
+              'Ref': 'Role',
             },
             'ARC_SESSION_TABLE_NAME': 'jwe',
             'ARC_STACK_NAME': {
-              'Ref': 'AWS::StackName'
+              'Ref': 'AWS::StackName',
             },
             'ARC_STATIC_BUCKET': {
-              'Ref': 'StaticBucket'
+              'Ref': 'StaticBucket',
             },
             'ARC_WSS_URL': {
               'Fn::Sub': [
                 'wss://${WS}.execute-api.${AWS::Region}.amazonaws.com/staging',
-                {}
-              ]
+                {},
+              ],
             },
-            'ARC_STATIC_SPA': false
-          }
+            'ARC_STATIC_SPA': false,
+          },
         },
         'Role': {
           'Fn::Sub': [
             'arn:aws:iam::${AWS::AccountId}:role/${roleName}',
             {
               'roleName': {
-                'Ref': 'Role'
-              }
-            }
-          ]
+                'Ref': 'Role',
+              },
+            },
+          ],
         },
         'Events': {
           'GetIndexHTTPEvent': {
@@ -488,18 +488,18 @@ export const cloudformation = {
               'Path': '/',
               'Method': 'GET',
               'ApiId': {
-                'Ref': 'HTTP'
-              }
-            }
-          }
-        }
+                'Ref': 'HTTP',
+              },
+            },
+          },
+        },
       },
       'ArcMetadata': {
         'pragma': 'http',
         'name': 'get /',
         'method': 'get',
-        'path': '/'
-      }
+        'path': '/',
+      },
     },
     'PostLikesHTTPLambda': {
       'Type': 'AWS::Serverless::Function',
@@ -508,11 +508,11 @@ export const cloudformation = {
         'CodeUri': '/var/task/src/http/post-likes',
         'Runtime': 'nodejs20.x',
         'Architectures': [
-          'arm64'
+          'arm64',
         ],
         'MemorySize': 1152,
         'EphemeralStorage': {
-          'Size': 512
+          'Size': 512,
         },
         'Timeout': 5,
         'Environment': {
@@ -520,32 +520,32 @@ export const cloudformation = {
             'ARC_APP_NAME': 'hello',
             'ARC_ENV': 'staging',
             'ARC_ROLE': {
-              'Ref': 'Role'
+              'Ref': 'Role',
             },
             'ARC_SESSION_TABLE_NAME': 'jwe',
             'ARC_STACK_NAME': {
-              'Ref': 'AWS::StackName'
+              'Ref': 'AWS::StackName',
             },
             'ARC_STATIC_BUCKET': {
-              'Ref': 'StaticBucket'
+              'Ref': 'StaticBucket',
             },
             'ARC_WSS_URL': {
               'Fn::Sub': [
                 'wss://${WS}.execute-api.${AWS::Region}.amazonaws.com/staging',
-                {}
-              ]
-            }
-          }
+                {},
+              ],
+            },
+          },
         },
         'Role': {
           'Fn::Sub': [
             'arn:aws:iam::${AWS::AccountId}:role/${roleName}',
             {
               'roleName': {
-                'Ref': 'Role'
-              }
-            }
-          ]
+                'Ref': 'Role',
+              },
+            },
+          ],
         },
         'Events': {
           'PostLikesHTTPEvent': {
@@ -554,18 +554,18 @@ export const cloudformation = {
               'Path': '/likes',
               'Method': 'POST',
               'ApiId': {
-                'Ref': 'HTTP'
-              }
-            }
-          }
-        }
+                'Ref': 'HTTP',
+              },
+            },
+          },
+        },
       },
       'ArcMetadata': {
         'pragma': 'http',
         'name': 'post /likes',
         'method': 'post',
-        'path': '/likes'
-      }
+        'path': '/likes',
+      },
     },
     'LikesTable': {
       'Type': 'AWS::DynamoDB::Table',
@@ -573,18 +573,18 @@ export const cloudformation = {
         'KeySchema': [
           {
             'AttributeName': 'likeID',
-            'KeyType': 'HASH'
-          }
+            'KeyType': 'HASH',
+          },
         ],
         'AttributeDefinitions': [
           {
             'AttributeName': 'likeID',
-            'AttributeType': 'S'
+            'AttributeType': 'S',
           },
           {
             'AttributeName': 'date',
-            'AttributeType': 'S'
-          }
+            'AttributeType': 'S',
+          },
         ],
         'BillingMode': 'PAY_PER_REQUEST',
         'GlobalSecondaryIndexes': [
@@ -593,18 +593,18 @@ export const cloudformation = {
             'KeySchema': [
               {
                 'AttributeName': 'date',
-                'KeyType': 'HASH'
-              }
+                'KeyType': 'HASH',
+              },
             ],
             'Projection': {
-              'ProjectionType': 'ALL'
-            }
-          }
+              'ProjectionType': 'ALL',
+            },
+          },
         ],
         'StreamSpecification': {
-          'StreamViewType': 'NEW_AND_OLD_IMAGES'
-        }
-      }
+          'StreamViewType': 'NEW_AND_OLD_IMAGES',
+        },
+      },
     },
     'HitCounterEventLambda': {
       'Type': 'AWS::Serverless::Function',
@@ -613,11 +613,11 @@ export const cloudformation = {
         'CodeUri': '/var/task/src/events/hit-counter',
         'Runtime': 'nodejs20.x',
         'Architectures': [
-          'arm64'
+          'arm64',
         ],
         'MemorySize': 1152,
         'EphemeralStorage': {
-          'Size': 512
+          'Size': 512,
         },
         'Timeout': 5,
         'Environment': {
@@ -625,55 +625,55 @@ export const cloudformation = {
             'ARC_APP_NAME': 'hello',
             'ARC_ENV': 'staging',
             'ARC_ROLE': {
-              'Ref': 'Role'
+              'Ref': 'Role',
             },
             'ARC_SESSION_TABLE_NAME': 'jwe',
             'ARC_STACK_NAME': {
-              'Ref': 'AWS::StackName'
+              'Ref': 'AWS::StackName',
             },
             'ARC_STATIC_BUCKET': {
-              'Ref': 'StaticBucket'
+              'Ref': 'StaticBucket',
             },
             'ARC_WSS_URL': {
               'Fn::Sub': [
                 'wss://${WS}.execute-api.${AWS::Region}.amazonaws.com/staging',
-                {}
-              ]
-            }
-          }
+                {},
+              ],
+            },
+          },
         },
         'Role': {
           'Fn::Sub': [
             'arn:aws:iam::${AWS::AccountId}:role/${roleName}',
             {
               'roleName': {
-                'Ref': 'Role'
-              }
-            }
-          ]
+                'Ref': 'Role',
+              },
+            },
+          ],
         },
         'Events': {
           'HitCounterEvent': {
             'Type': 'SNS',
             'Properties': {
               'Topic': {
-                'Ref': 'HitCounterEventTopic'
-              }
-            }
-          }
-        }
+                'Ref': 'HitCounterEventTopic',
+              },
+            },
+          },
+        },
       },
       'ArcMetadata': {
         'pragma': 'events',
-        'name': 'hit-counter'
-      }
+        'name': 'hit-counter',
+      },
     },
     'HitCounterEventTopic': {
       'Type': 'AWS::SNS::Topic',
       'Properties': {
         'DisplayName': 'HitCounter',
-        'Subscription': []
-      }
+        'Subscription': [],
+      },
     },
     'DailyAffirmationScheduledLambda': {
       'Type': 'AWS::Serverless::Function',
@@ -682,11 +682,11 @@ export const cloudformation = {
         'CodeUri': '/var/task/src/scheduled/daily-affirmation',
         'Runtime': 'nodejs20.x',
         'Architectures': [
-          'arm64'
+          'arm64',
         ],
         'MemorySize': 1152,
         'EphemeralStorage': {
-          'Size': 512
+          'Size': 512,
         },
         'Timeout': 5,
         'Environment': {
@@ -694,39 +694,39 @@ export const cloudformation = {
             'ARC_APP_NAME': 'hello',
             'ARC_ENV': 'staging',
             'ARC_ROLE': {
-              'Ref': 'Role'
+              'Ref': 'Role',
             },
             'ARC_SESSION_TABLE_NAME': 'jwe',
             'ARC_STACK_NAME': {
-              'Ref': 'AWS::StackName'
+              'Ref': 'AWS::StackName',
             },
             'ARC_STATIC_BUCKET': {
-              'Ref': 'StaticBucket'
+              'Ref': 'StaticBucket',
             },
             'ARC_WSS_URL': {
               'Fn::Sub': [
                 'wss://${WS}.execute-api.${AWS::Region}.amazonaws.com/staging',
-                {}
-              ]
-            }
-          }
+                {},
+              ],
+            },
+          },
         },
         'Role': {
           'Fn::Sub': [
             'arn:aws:iam::${AWS::AccountId}:role/${roleName}',
             {
               'roleName': {
-                'Ref': 'Role'
-              }
-            }
-          ]
+                'Ref': 'Role',
+              },
+            },
+          ],
         },
-        'Events': {}
+        'Events': {},
       },
       'ArcMetadata': {
         'pragma': 'scheduled',
-        'name': 'daily-affirmation'
-      }
+        'name': 'daily-affirmation',
+      },
     },
     'DailyAffirmationScheduledEvent': {
       'Type': 'AWS::Events::Rule',
@@ -737,29 +737,29 @@ export const cloudformation = {
             'Arn': {
               'Fn::GetAtt': [
                 'DailyAffirmationScheduledLambda',
-                'Arn'
-              ]
+                'Arn',
+              ],
             },
-            'Id': 'DailyAffirmationScheduledLambda'
-          }
-        ]
-      }
+            'Id': 'DailyAffirmationScheduledLambda',
+          },
+        ],
+      },
     },
     'DailyAffirmationScheduledPermission': {
       'Type': 'AWS::Lambda::Permission',
       'Properties': {
         'Action': 'lambda:InvokeFunction',
         'FunctionName': {
-          'Ref': 'DailyAffirmationScheduledLambda'
+          'Ref': 'DailyAffirmationScheduledLambda',
         },
         'Principal': 'events.amazonaws.com',
         'SourceArn': {
           'Fn::GetAtt': [
             'DailyAffirmationScheduledEvent',
-            'Arn'
-          ]
-        }
-      }
+            'Arn',
+          ],
+        },
+      },
     },
     'StaticBucket': {
       'Type': 'AWS::S3::Bucket',
@@ -767,34 +767,34 @@ export const cloudformation = {
         'OwnershipControls': {
           'Rules': [
             {
-              'ObjectOwnership': 'BucketOwnerEnforced'
-            }
-          ]
+              'ObjectOwnership': 'BucketOwnerEnforced',
+            },
+          ],
         },
         'WebsiteConfiguration': {
           'IndexDocument': 'index.html',
-          'ErrorDocument': '404.html'
+          'ErrorDocument': '404.html',
         },
         'PublicAccessBlockConfiguration': {
           'BlockPublicAcls': false,
           'BlockPublicPolicy': false,
           'IgnorePublicAcls': false,
-          'RestrictPublicBuckets': false
-        }
-      }
+          'RestrictPublicBuckets': false,
+        },
+      },
     },
     'StaticBucketPolicy': {
       'Type': 'AWS::S3::BucketPolicy',
       'Properties': {
         'Bucket': {
-          'Ref': 'StaticBucket'
+          'Ref': 'StaticBucket',
         },
         'PolicyDocument': {
           'Version': '2012-10-17',
           'Statement': [
             {
               'Action': [
-                's3:GetObject'
+                's3:GetObject',
               ],
               'Effect': 'Allow',
               'Principal': '*',
@@ -804,17 +804,17 @@ export const cloudformation = {
                     'arn:aws:s3:::${bukkit}/*',
                     {
                       'bukkit': {
-                        'Ref': 'StaticBucket'
-                      }
-                    }
-                  ]
-                }
+                        'Ref': 'StaticBucket',
+                      },
+                    },
+                  ],
+                },
               ],
-              'Sid': 'PublicReadGetObject'
-            }
-          ]
-        }
-      }
+              'Sid': 'PublicReadGetObject',
+            },
+          ],
+        },
+      },
     },
     'LikesTableStreamLambda': {
       'Type': 'AWS::Serverless::Function',
@@ -823,11 +823,11 @@ export const cloudformation = {
         'CodeUri': '/var/task/src/tables-streams/likes',
         'Runtime': 'nodejs20.x',
         'Architectures': [
-          'arm64'
+          'arm64',
         ],
         'MemorySize': 1152,
         'EphemeralStorage': {
-          'Size': 512
+          'Size': 512,
         },
         'Timeout': 5,
         'Environment': {
@@ -835,39 +835,39 @@ export const cloudformation = {
             'ARC_APP_NAME': 'hello',
             'ARC_ENV': 'staging',
             'ARC_ROLE': {
-              'Ref': 'Role'
+              'Ref': 'Role',
             },
             'ARC_SESSION_TABLE_NAME': 'jwe',
             'ARC_STACK_NAME': {
-              'Ref': 'AWS::StackName'
+              'Ref': 'AWS::StackName',
             },
             'ARC_STATIC_BUCKET': {
-              'Ref': 'StaticBucket'
+              'Ref': 'StaticBucket',
             },
             'ARC_WSS_URL': {
               'Fn::Sub': [
                 'wss://${WS}.execute-api.${AWS::Region}.amazonaws.com/staging',
-                {}
-              ]
-            }
-          }
+                {},
+              ],
+            },
+          },
         },
         'Role': {
           'Fn::Sub': [
             'arn:aws:iam::${AWS::AccountId}:role/${roleName}',
             {
               'roleName': {
-                'Ref': 'Role'
-              }
-            }
-          ]
+                'Ref': 'Role',
+              },
+            },
+          ],
         },
-        'Events': {}
+        'Events': {},
       },
       'ArcMetadata': {
         'pragma': 'tables-streams',
-        'name': 'likes'
-      }
+        'name': 'likes',
+      },
     },
     'LikesTableStreamEvent': {
       'Type': 'AWS::Lambda::EventSourceMapping',
@@ -876,50 +876,50 @@ export const cloudformation = {
         'EventSourceArn': {
           'Fn::GetAtt': [
             'LikesTable',
-            'StreamArn'
-          ]
+            'StreamArn',
+          ],
         },
         'FunctionName': {
           'Fn::GetAtt': [
             'LikesTableStreamLambda',
-            'Arn'
-          ]
+            'Arn',
+          ],
         },
-        'StartingPosition': 'TRIM_HORIZON'
-      }
+        'StartingPosition': 'TRIM_HORIZON',
+      },
     },
     'WS': {
       'Type': 'AWS::ApiGatewayV2::Api',
       'Properties': {
         'Name': 'HelloWebsocketStaging',
         'ProtocolType': 'WEBSOCKET',
-        'RouteSelectionExpression': '$request.body.action'
-      }
+        'RouteSelectionExpression': '$request.body.action',
+      },
     },
     'WebsocketDeployment': {
       'Type': 'AWS::ApiGatewayV2::Deployment',
       'DependsOn': [
         'ConnectWSRoute',
         'DefaultWSRoute',
-        'DisconnectWSRoute'
+        'DisconnectWSRoute',
       ],
       'Properties': {
         'ApiId': {
-          'Ref': 'WS'
-        }
-      }
+          'Ref': 'WS',
+        },
+      },
     },
     'WebsocketStage': {
       'Type': 'AWS::ApiGatewayV2::Stage',
       'Properties': {
         'StageName': 'staging',
         'DeploymentId': {
-          'Ref': 'WebsocketDeployment'
+          'Ref': 'WebsocketDeployment',
         },
         'ApiId': {
-          'Ref': 'WS'
-        }
-      }
+          'Ref': 'WS',
+        },
+      },
     },
     'WebSocketPolicy': {
       'Type': 'AWS::IAM::Policy',
@@ -932,7 +932,7 @@ export const cloudformation = {
               'Effect': 'Allow',
               'Action': [
                 'execute-api:Invoke',
-                'execute-api:ManageConnections'
+                'execute-api:ManageConnections',
               ],
               'Resource': [
                 {
@@ -940,21 +940,21 @@ export const cloudformation = {
                     'arn:aws:execute-api:${AWS::Region}:*:${api}/*',
                     {
                       'api': {
-                        'Ref': 'WS'
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+                        'Ref': 'WS',
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
         },
         'Roles': [
           {
-            'Ref': 'Role'
-          }
-        ]
-      }
+            'Ref': 'Role',
+          },
+        ],
+      },
     },
     'ActionWSLambda': {
       'Type': 'AWS::Serverless::Function',
@@ -963,11 +963,11 @@ export const cloudformation = {
         'CodeUri': '/var/task/src/ws/action',
         'Runtime': 'nodejs20.x',
         'Architectures': [
-          'arm64'
+          'arm64',
         ],
         'MemorySize': 1152,
         'EphemeralStorage': {
-          'Size': 512
+          'Size': 512,
         },
         'Timeout': 5,
         'Environment': {
@@ -975,45 +975,45 @@ export const cloudformation = {
             'ARC_APP_NAME': 'hello',
             'ARC_ENV': 'staging',
             'ARC_ROLE': {
-              'Ref': 'Role'
+              'Ref': 'Role',
             },
             'ARC_SESSION_TABLE_NAME': 'jwe',
             'ARC_STACK_NAME': {
-              'Ref': 'AWS::StackName'
+              'Ref': 'AWS::StackName',
             },
             'ARC_STATIC_BUCKET': {
-              'Ref': 'StaticBucket'
+              'Ref': 'StaticBucket',
             },
             'ARC_WSS_URL': {
               'Fn::Sub': [
                 'wss://${WS}.execute-api.${AWS::Region}.amazonaws.com/staging',
-                {}
-              ]
-            }
-          }
+                {},
+              ],
+            },
+          },
         },
         'Role': {
           'Fn::Sub': [
             'arn:aws:iam::${AWS::AccountId}:role/${roleName}',
             {
               'roleName': {
-                'Ref': 'Role'
-              }
-            }
-          ]
+                'Ref': 'Role',
+              },
+            },
+          ],
         },
-        'Events': {}
+        'Events': {},
       },
       'ArcMetadata': {
         'pragma': 'ws',
-        'name': 'action'
-      }
+        'name': 'action',
+      },
     },
     'ActionWSRoute': {
       'Type': 'AWS::ApiGatewayV2::Route',
       'Properties': {
         'ApiId': {
-          'Ref': 'WS'
+          'Ref': 'WS',
         },
         'RouteKey': 'action',
         'OperationName': 'ActionWSRoute',
@@ -1023,41 +1023,41 @@ export const cloudformation = {
             [
               'integrations',
               {
-                'Ref': 'ActionWSIntegration'
-              }
-            ]
-          ]
-        }
-      }
+                'Ref': 'ActionWSIntegration',
+              },
+            ],
+          ],
+        },
+      },
     },
     'ActionWSIntegration': {
       'Type': 'AWS::ApiGatewayV2::Integration',
       'Properties': {
         'ApiId': {
-          'Ref': 'WS'
+          'Ref': 'WS',
         },
         'IntegrationType': 'AWS_PROXY',
         'IntegrationUri': {
           'Fn::Sub': [
             'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ActionWSLambda.Arn}/invocations',
-            {}
-          ]
-        }
-      }
+            {},
+          ],
+        },
+      },
     },
     'ActionWSPermission': {
       'Type': 'AWS::Lambda::Permission',
       'DependsOn': [
         'WS',
-        'ActionWSLambda'
+        'ActionWSLambda',
       ],
       'Properties': {
         'Action': 'lambda:InvokeFunction',
         'FunctionName': {
-          'Ref': 'ActionWSLambda'
+          'Ref': 'ActionWSLambda',
         },
-        'Principal': 'apigateway.amazonaws.com'
-      }
+        'Principal': 'apigateway.amazonaws.com',
+      },
     },
     'ConnectWSLambda': {
       'Type': 'AWS::Serverless::Function',
@@ -1066,11 +1066,11 @@ export const cloudformation = {
         'CodeUri': '/var/task/src/ws/connect',
         'Runtime': 'nodejs20.x',
         'Architectures': [
-          'arm64'
+          'arm64',
         ],
         'MemorySize': 1152,
         'EphemeralStorage': {
-          'Size': 512
+          'Size': 512,
         },
         'Timeout': 5,
         'Environment': {
@@ -1078,45 +1078,45 @@ export const cloudformation = {
             'ARC_APP_NAME': 'hello',
             'ARC_ENV': 'staging',
             'ARC_ROLE': {
-              'Ref': 'Role'
+              'Ref': 'Role',
             },
             'ARC_SESSION_TABLE_NAME': 'jwe',
             'ARC_STACK_NAME': {
-              'Ref': 'AWS::StackName'
+              'Ref': 'AWS::StackName',
             },
             'ARC_STATIC_BUCKET': {
-              'Ref': 'StaticBucket'
+              'Ref': 'StaticBucket',
             },
             'ARC_WSS_URL': {
               'Fn::Sub': [
                 'wss://${WS}.execute-api.${AWS::Region}.amazonaws.com/staging',
-                {}
-              ]
-            }
-          }
+                {},
+              ],
+            },
+          },
         },
         'Role': {
           'Fn::Sub': [
             'arn:aws:iam::${AWS::AccountId}:role/${roleName}',
             {
               'roleName': {
-                'Ref': 'Role'
-              }
-            }
-          ]
+                'Ref': 'Role',
+              },
+            },
+          ],
         },
-        'Events': {}
+        'Events': {},
       },
       'ArcMetadata': {
         'pragma': 'ws',
-        'name': 'connect'
-      }
+        'name': 'connect',
+      },
     },
     'ConnectWSRoute': {
       'Type': 'AWS::ApiGatewayV2::Route',
       'Properties': {
         'ApiId': {
-          'Ref': 'WS'
+          'Ref': 'WS',
         },
         'RouteKey': '$connect',
         'OperationName': 'ConnectWSRoute',
@@ -1126,41 +1126,41 @@ export const cloudformation = {
             [
               'integrations',
               {
-                'Ref': 'ConnectWSIntegration'
-              }
-            ]
-          ]
-        }
-      }
+                'Ref': 'ConnectWSIntegration',
+              },
+            ],
+          ],
+        },
+      },
     },
     'ConnectWSIntegration': {
       'Type': 'AWS::ApiGatewayV2::Integration',
       'Properties': {
         'ApiId': {
-          'Ref': 'WS'
+          'Ref': 'WS',
         },
         'IntegrationType': 'AWS_PROXY',
         'IntegrationUri': {
           'Fn::Sub': [
             'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ConnectWSLambda.Arn}/invocations',
-            {}
-          ]
-        }
-      }
+            {},
+          ],
+        },
+      },
     },
     'ConnectWSPermission': {
       'Type': 'AWS::Lambda::Permission',
       'DependsOn': [
         'WS',
-        'ConnectWSLambda'
+        'ConnectWSLambda',
       ],
       'Properties': {
         'Action': 'lambda:InvokeFunction',
         'FunctionName': {
-          'Ref': 'ConnectWSLambda'
+          'Ref': 'ConnectWSLambda',
         },
-        'Principal': 'apigateway.amazonaws.com'
-      }
+        'Principal': 'apigateway.amazonaws.com',
+      },
     },
     'DefaultWSLambda': {
       'Type': 'AWS::Serverless::Function',
@@ -1169,11 +1169,11 @@ export const cloudformation = {
         'CodeUri': '/var/task/src/ws/default',
         'Runtime': 'nodejs20.x',
         'Architectures': [
-          'arm64'
+          'arm64',
         ],
         'MemorySize': 1152,
         'EphemeralStorage': {
-          'Size': 512
+          'Size': 512,
         },
         'Timeout': 5,
         'Environment': {
@@ -1181,45 +1181,45 @@ export const cloudformation = {
             'ARC_APP_NAME': 'hello',
             'ARC_ENV': 'staging',
             'ARC_ROLE': {
-              'Ref': 'Role'
+              'Ref': 'Role',
             },
             'ARC_SESSION_TABLE_NAME': 'jwe',
             'ARC_STACK_NAME': {
-              'Ref': 'AWS::StackName'
+              'Ref': 'AWS::StackName',
             },
             'ARC_STATIC_BUCKET': {
-              'Ref': 'StaticBucket'
+              'Ref': 'StaticBucket',
             },
             'ARC_WSS_URL': {
               'Fn::Sub': [
                 'wss://${WS}.execute-api.${AWS::Region}.amazonaws.com/staging',
-                {}
-              ]
-            }
-          }
+                {},
+              ],
+            },
+          },
         },
         'Role': {
           'Fn::Sub': [
             'arn:aws:iam::${AWS::AccountId}:role/${roleName}',
             {
               'roleName': {
-                'Ref': 'Role'
-              }
-            }
-          ]
+                'Ref': 'Role',
+              },
+            },
+          ],
         },
-        'Events': {}
+        'Events': {},
       },
       'ArcMetadata': {
         'pragma': 'ws',
-        'name': 'default'
-      }
+        'name': 'default',
+      },
     },
     'DefaultWSRoute': {
       'Type': 'AWS::ApiGatewayV2::Route',
       'Properties': {
         'ApiId': {
-          'Ref': 'WS'
+          'Ref': 'WS',
         },
         'RouteKey': '$default',
         'OperationName': 'DefaultWSRoute',
@@ -1229,41 +1229,41 @@ export const cloudformation = {
             [
               'integrations',
               {
-                'Ref': 'DefaultWSIntegration'
-              }
-            ]
-          ]
-        }
-      }
+                'Ref': 'DefaultWSIntegration',
+              },
+            ],
+          ],
+        },
+      },
     },
     'DefaultWSIntegration': {
       'Type': 'AWS::ApiGatewayV2::Integration',
       'Properties': {
         'ApiId': {
-          'Ref': 'WS'
+          'Ref': 'WS',
         },
         'IntegrationType': 'AWS_PROXY',
         'IntegrationUri': {
           'Fn::Sub': [
             'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DefaultWSLambda.Arn}/invocations',
-            {}
-          ]
-        }
-      }
+            {},
+          ],
+        },
+      },
     },
     'DefaultWSPermission': {
       'Type': 'AWS::Lambda::Permission',
       'DependsOn': [
         'WS',
-        'DefaultWSLambda'
+        'DefaultWSLambda',
       ],
       'Properties': {
         'Action': 'lambda:InvokeFunction',
         'FunctionName': {
-          'Ref': 'DefaultWSLambda'
+          'Ref': 'DefaultWSLambda',
         },
-        'Principal': 'apigateway.amazonaws.com'
-      }
+        'Principal': 'apigateway.amazonaws.com',
+      },
     },
     'DisconnectWSLambda': {
       'Type': 'AWS::Serverless::Function',
@@ -1272,11 +1272,11 @@ export const cloudformation = {
         'CodeUri': '/var/task/src/ws/disconnect',
         'Runtime': 'nodejs20.x',
         'Architectures': [
-          'arm64'
+          'arm64',
         ],
         'MemorySize': 1152,
         'EphemeralStorage': {
-          'Size': 512
+          'Size': 512,
         },
         'Timeout': 5,
         'Environment': {
@@ -1284,45 +1284,45 @@ export const cloudformation = {
             'ARC_APP_NAME': 'hello',
             'ARC_ENV': 'staging',
             'ARC_ROLE': {
-              'Ref': 'Role'
+              'Ref': 'Role',
             },
             'ARC_SESSION_TABLE_NAME': 'jwe',
             'ARC_STACK_NAME': {
-              'Ref': 'AWS::StackName'
+              'Ref': 'AWS::StackName',
             },
             'ARC_STATIC_BUCKET': {
-              'Ref': 'StaticBucket'
+              'Ref': 'StaticBucket',
             },
             'ARC_WSS_URL': {
               'Fn::Sub': [
                 'wss://${WS}.execute-api.${AWS::Region}.amazonaws.com/staging',
-                {}
-              ]
-            }
-          }
+                {},
+              ],
+            },
+          },
         },
         'Role': {
           'Fn::Sub': [
             'arn:aws:iam::${AWS::AccountId}:role/${roleName}',
             {
               'roleName': {
-                'Ref': 'Role'
-              }
-            }
-          ]
+                'Ref': 'Role',
+              },
+            },
+          ],
         },
-        'Events': {}
+        'Events': {},
       },
       'ArcMetadata': {
         'pragma': 'ws',
-        'name': 'disconnect'
-      }
+        'name': 'disconnect',
+      },
     },
     'DisconnectWSRoute': {
       'Type': 'AWS::ApiGatewayV2::Route',
       'Properties': {
         'ApiId': {
-          'Ref': 'WS'
+          'Ref': 'WS',
         },
         'RouteKey': '$disconnect',
         'OperationName': 'DisconnectWSRoute',
@@ -1332,42 +1332,42 @@ export const cloudformation = {
             [
               'integrations',
               {
-                'Ref': 'DisconnectWSIntegration'
-              }
-            ]
-          ]
-        }
-      }
+                'Ref': 'DisconnectWSIntegration',
+              },
+            ],
+          ],
+        },
+      },
     },
     'DisconnectWSIntegration': {
       'Type': 'AWS::ApiGatewayV2::Integration',
       'Properties': {
         'ApiId': {
-          'Ref': 'WS'
+          'Ref': 'WS',
         },
         'IntegrationType': 'AWS_PROXY',
         'IntegrationUri': {
           'Fn::Sub': [
             'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DisconnectWSLambda.Arn}/invocations',
-            {}
-          ]
-        }
-      }
+            {},
+          ],
+        },
+      },
     },
     'DisconnectWSPermission': {
       'Type': 'AWS::Lambda::Permission',
       'DependsOn': [
         'WS',
-        'DisconnectWSLambda'
+        'DisconnectWSLambda',
       ],
       'Properties': {
         'Action': 'lambda:InvokeFunction',
         'FunctionName': {
-          'Ref': 'DisconnectWSLambda'
+          'Ref': 'DisconnectWSLambda',
         },
-        'Principal': 'apigateway.amazonaws.com'
-      }
-    }
+        'Principal': 'apigateway.amazonaws.com',
+      },
+    },
   },
   'Outputs': {
     'API': {
@@ -1377,23 +1377,23 @@ export const cloudformation = {
           'https://${ApiId}.execute-api.${AWS::Region}.amazonaws.com',
           {
             'ApiId': {
-              'Ref': 'HTTP'
-            }
-          }
-        ]
-      }
+              'Ref': 'HTTP',
+            },
+          },
+        ],
+      },
     },
     'ApiId': {
       'Description': 'API ID (ApiId)',
       'Value': {
-        'Ref': 'HTTP'
-      }
+        'Ref': 'HTTP',
+      },
     },
     'HitCounterEventTopic': {
       'Description': 'An SNS Topic',
       'Value': {
-        'Ref': 'HitCounterEventTopic'
-      }
+        'Ref': 'HitCounterEventTopic',
+      },
     },
     'BucketURL': {
       'Description': 'Bucket URL',
@@ -1402,20 +1402,20 @@ export const cloudformation = {
           'http://${bukkit}.s3-website-${AWS::Region}.amazonaws.com',
           {
             'bukkit': {
-              'Ref': 'StaticBucket'
-            }
-          }
-        ]
-      }
+              'Ref': 'StaticBucket',
+            },
+          },
+        ],
+      },
     },
     'WSS': {
       'Description': 'WebSocket Endpoint',
       'Value': {
         'Fn::Sub': [
           'wss://${WS}.execute-api.${AWS::Region}.amazonaws.com/staging',
-          {}
-        ]
-      }
-    }
-  }
+          {},
+        ],
+      },
+    },
+  },
 }
