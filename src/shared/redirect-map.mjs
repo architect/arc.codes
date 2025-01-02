@@ -269,8 +269,8 @@ export async function redirect (req) {
     return {
       statusCode: tempRedirects[reqPath] ? 302 : 301,
       headers: {
-        location
-      }
+        location,
+      },
     }
   }
   return

@@ -5,7 +5,7 @@ import { cloudformation as arcCodesCf, arc as arcCodesArc } from './arc-codes.mj
 import { cloudformation as kitchenSinkCf, arc as kitchenSinkArc } from './kitchen-sink.mjs'
 
 const hljs = {
-  classString: 'hljs text-1 p-2'
+  classString: 'hljs text-1 p-2',
 }
 
 const arcdown = new Arcdown({ hljs })

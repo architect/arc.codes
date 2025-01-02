@@ -15,12 +15,12 @@ export async function handler (req) {
     body = JSON.stringify({
       name: e.name,
       message: e.message,
-      stack: e.stack
+      stack: e.stack,
     })
   }
 
   return {
     statusCode,
-    body
+    body,
   }
 }

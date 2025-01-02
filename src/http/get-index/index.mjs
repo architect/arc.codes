@@ -17,7 +17,7 @@ export async function handler () {
       'cache-control': process.env.ARC_ENV === 'production'
         ? 'max-age=86400'
         : 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
-      'content-type': 'text/html; charset=utf8'
+      'content-type': 'text/html; charset=utf8',
     },
     body: html`
 <!DOCTYPE html>
@@ -81,6 +81,6 @@ export async function handler () {
     <arc-landing></arc-landing>
   </body>
 </html>
-`
+`,
   }
 }
