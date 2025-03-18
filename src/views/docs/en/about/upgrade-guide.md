@@ -106,7 +106,7 @@ Architect 11 now installs significantly faster, with a size on disk of roughly 4
     - AWS SDK v3 - `npm i -D @aws-sdk/client-apigatewaymanagementapi @aws-sdk/client-dynamodb @aws-sdk/client-s3 @aws-sdk/client-sns @aws-sdk/client-sqs @aws-sdk/client-ssm @aws-sdk/lib-dynamodb`
   - Alternative remedy: begin transitioning to [`aws-lite`](https://aws-lite.org), which is 2-5x faster, has nice docs, excellent errors, support for types, and is fully open to community contribution
 - Due to the upcoming deprecation of `nodejs16.x` and AWS SDK v2 in Lambda, Architect now defaults to `nodejs20.x`
-  - Remedy: if you still use SDK v2 in your Lambdas by default, add `@aws runtime nodejs16.x` to your [project manifest](https://arc.codes/docs/en/reference/project-manifest/aws#runtime) or any relevant [config.arc files](https://arc.codes/docs/en/reference/configuration/function-config)
+  - Remedy: if you still use SDK v2 in your Lambdas by default, add `@aws runtime nodejs16.x` to your [project manifest](/docs/en/reference/project-manifest/aws#runtime) or any relevant [config.arc files](/docs/en/reference/configuration/function-config)
   - However, it must be noted that Lambda is retiring `nodejs16.x` with AWS SDK v2 later this year; as above, we are now encouraging folks to transition to `aws-lite`, where possible
 - `arm64` is now the default Lambda architecture
   - This change only impacts projects that utilize native modules or Lambda layers with binaries; projects that make use of regular Node.js packages will not be impacted by this change
@@ -168,14 +168,14 @@ Most of Architect 10's breaking changes were internal; most users should not enc
 - Removed the `package` command, which was no longer able to represent the final state of Architect projects
   - Remedy: its (improved) replacement is now: `deploy --eject`
 - Removed support for legacy `.arc-env` env files (initially deprecated in late 2020)
-  - Remedy: if you are still using a `.arc-env` file, please move your [local env vars to `prefs.arc`](https://arc.codes/docs/en/reference/configuration/local-preferences#%40env) or [`.env`](https://arc.codes/docs/en/reference/configuration/local-preferences#.env-file-support)
+  - Remedy: if you are still using a `.arc-env` file, please move your [local env vars to `prefs.arc`](/docs/en/reference/configuration/local-preferences#%40env) or [`.env`](/docs/en/reference/configuration/local-preferences#.env-file-support)
 - [Removed `toml` support](https://github.com/architect/architect/discussions/1294) (e.g. `arc.toml`)
 - Removed built-in support for the `REST` API Gateway. Support is moved to an external plugin, [`plugin-rest-api`](https://github.com/architect/plugin-rest-api).
 
 
 ### Breaking changes
 
-- The beta plugins API has been largely refactored; wherever possible, hooks from the beta API have been ported to the final shipping plugin API. However, many things changed, so if you authored plugins against the beta API, please refer to the [new plugin documentation](https://arc.codes/docs/en/reference/plugins/api) to ensure compatibility
+- The beta plugins API has been largely refactored; wherever possible, hooks from the beta API have been ported to the final shipping plugin API. However, many things changed, so if you authored plugins against the beta API, please refer to the [new plugin documentation](/docs/en/reference/plugins/overview) to ensure compatibility
 - Due to ongoing issues with unpredictable behavior with certain external libraries, Architect no longer makes use of the `NODE_ENV` environment variable, nor is it automatically added to deployed apps.
   - Remedy: if your code relies on Architect automatically populating `NODE_ENV`, you should add it to your userland environment variables, like so: `npx arc env --add --env testing NODE_ENV testing` (and again for `staging` + `production`)
 - All support for bare CLI flags has been removed from Architect commands
