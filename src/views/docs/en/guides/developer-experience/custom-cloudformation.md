@@ -16,7 +16,7 @@ Architect [`@plugins`](/docs/en/guides/plugins/overview) are implemented as a No
 ```javascript
 // Do something only for staging deployments
 module.exports = { deploy: {
-  start: async ({ arc, cloudformation, dryRun, inventory, stage }) => {
+  start: async ({ arc, cloudformation, dryRun, inventory, stackName, stage }) => {
     if (stage !== 'staging') return
 
     let config = await getSomeConfig()
