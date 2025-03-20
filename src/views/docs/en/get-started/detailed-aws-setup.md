@@ -19,11 +19,11 @@ description: Setting up, installing, and working with Architect and AWS.
 
 Architect supports the following runtimes for composing your application's business logic:
 
-- **Node.js**: >= 16.x using `npm`
-  - Unless otherwise specified in your project manifest, Node.js 20.x is the default runtime for new functions
-- **Python**: >= 3.8 using `pip3`
-  - Unless otherwise specified in your project manifest, Python 3.12 is the default Python runtime
-- **Ruby**: `3.2` using `bundle`
+- **Node.js**: >= 18.x using `npm`
+  - Unless otherwise specified in your project manifest, Node.js 22.x is the default runtime for new functions
+- **Python**: >= 3.9 using `pip3`
+  - Unless otherwise specified in your project manifest, Python 3.13 is the default Python runtime
+- **Ruby**: >= 3.2 using `bundle`
 - **Deno**: `1.6.x` ([under development](../reference/runtime-helpers/deno))
 
 > ⚠️ Working locally with the Sandbox requires target runtimes to be available in your `$PATH`.
@@ -37,9 +37,9 @@ Change a project's default runtime by specifying [an explicit environment](https
 #### Examples
 
 ```arc
-# version pins the default runtime to Python 3.8
+# version pins the default runtime to Python 3.13
 @aws
-runtime python3.8
+runtime python3.13
 ```
 
 ```arc

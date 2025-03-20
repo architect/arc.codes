@@ -95,10 +95,10 @@ $env:AWS_REGION='us-west-1'
 
 Architect supports the following runtime versions:
 
-- **Node.js**: `>= 14.x` using `npm`
+- **Node.js**: `>= 18.x` using `npm`
   - Unless otherwise specified in your project manifest, Node.js is the default runtime for new functions
-- **Python**: `3.9`, `3.8`, `3.7`, or `3.6` using `pip3`
-- **Ruby**: `2.7` using `bundle`
+- **Python**: `3.13`, `3.12`, `3.11`, `3.10`, or `3.9` using `pip3`
+- **Ruby**: `3.3`, or `3.2` using `bundle`
 - **Deno**: `1.6.x` ([under development](../reference/runtime-helpers/deno))
 
 > ⚠️ Working locally with the Sandbox requires target runtimes to be available in your `$PATH`.
@@ -106,8 +106,8 @@ Architect supports the following runtime versions:
 Additionally, all other standard AWS-managed runtimes are supported in Architect applications (but may not be supported in [Sandbox](../reference/cli/sandbox)), including:
 
 - **Go**: `1.x`
-- **.NET**: `3.1`
-- **Java**: `11`, and `8`
+- **.NET**: `8`, and `9`
+- **Java**: `21`, `17`, `11`, and `8`
 
 Architect also supports _any custom runtime_ in using either [Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) or [Lambda container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html).
 
@@ -116,9 +116,9 @@ Change a project's default runtime by specifying [an explicit environment](https
 ### Examples
 
 ```arc
-# version pins the default runtime to Python 3.8
+# version pins the default runtime to Python 3.13
 @aws
-runtime python3.8
+runtime python3.13
 ```
 
 ```arc

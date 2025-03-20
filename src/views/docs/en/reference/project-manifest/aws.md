@@ -29,13 +29,13 @@ Local AWS profile name to use with this project, as defined in your [local AWS c
 
 | Runtime | Versions                              | Example       | Alias<sup>1</sup>         |
 |---------|---------------------------------------|---------------|---------------------------|
-| Node.js | 20.x (default), 18.x, 16.x            | `nodejs20.x`  | `node` `nodejs` `node.js` |
-| Python  | 3.12 (default), 3.11, 3.10, 3.9, 3.8  | `python3.12`  | `python` `py`             |
-| Ruby    | 3.2 (default)                         | `ruby3.2`     | `ruby` `rb`               |
-| .NET    | 6 (default), 7                        | `dotnet6`     | `dotnet` `.net`           |
-| Java    | 21 (default), 17, 11, 8.al2, 11       | `java21`      | `java`                    |
+| Node.js | 22.x (default), 20.x, 18.x            | `nodejs20.x`  | `node` `nodejs` `node.js` |
+| Python  | 3.13 (default), 3.12, 3.11, 3.10, 3.9 | `python3.12`  | `python` `py`             |
+| Ruby    | 3.3 (default), 3.2                    | `ruby3.2`     | `ruby` `rb`               |
+| .NET    | 9 (default), 8                        | `dotnet8`     | `dotnet` `.net`           |
+| Java    | 21 (default), 17, 11, 8.al2           | `java21`      | `java`                    |
 
-1. Runtime aliases always use Architect's current default runtime version (e.g. `py` is effectively `python3.12`).
+1. Runtime aliases always use Architect's current default runtime version (e.g. `py` is effectively `python3.13`).
 
 
 ### `bucket`
