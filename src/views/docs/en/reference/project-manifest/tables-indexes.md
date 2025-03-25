@@ -19,6 +19,7 @@ Defines [Global Secondary Indexes][gsi] for your project's [DynamoDB][ddb] table
 ## Syntax
 
 - `@tables-indexes` is a feature subset of [`@tables`][tables]; as such, the names of your declared indexes must match those of your [`@tables`][tables]
+- AWS supports a maximum of 20 indexes per table
 - Otherwise, the basic syntax for defining `@tables-indexes` primary keys is the same as [`@tables`][tables]:
   - Partition key, defined by a `*`, is required
   - Sort key, defined by `**`, is optional
@@ -31,6 +32,16 @@ Defines [Global Secondary Indexes][gsi] for your project's [DynamoDB][ddb] table
     - `all` (default): all item attributes from the table are projected into the index
     - `keys`: only the base table and index primary keys (and sort keys, if defined) are projected into the index
     - Custom: otherwise, you may define one or more attribute names to explicitly project into the index. Note that the base table and index keys always get projected
+
+## Deployment Considerations
+
+⚠️ Be careful when [`arc deploy`](../cli/deploy) indexes! There are a few unique CloudFormation behaviors that happen behind the scenes that you should be aware of, please see the [Important note on the CloudFormation reference page for Global Secondary Indexes](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-globalsecondaryindexes). In particular:
+
+- Creating a new index on an existing table can take time. While the index is being populated, you cannot update the table or use the index. Furthermore, CloudFormation will not block while the index is populating, so you should keep tabs on its state after creation.
+- CloudFormation generally does not support index updating, aside from a few specific properties.
+- You can only add or delete one index in each deploy.
+
+Given the above, it's generally recommended to silo application updates to just the bare minimum when working with indexes.
 
 ## Example
 
