@@ -25,7 +25,7 @@ Configure individual Lambda function properties (e.g. `src/http/get-index/config
 Use the `@arc` pragma to disable Architect features for a specific function:
 
 - [`env`](#env) - boolean, `true` (default) or `false` to disable loading environment variables
-- [`ignoreDependencies`](#ignoreDependencies) - array, specific dependency names to ignore during Lambda treeshaking
+- [`ignoreDependencies`](#ignoredependencies) - array, specific dependency names to ignore during Lambda treeshaking
 - [`shared`](#shared) - boolean, `true` (default) or `false` to skip hydrating project code from `@shared`.
 - [`views`](#views) - boolean, `true` (default) or `false` to skip hydrating project code from `@views`.
 
@@ -51,7 +51,9 @@ Note: even with `env` set to false, your function still has access to credential
 
 ### `ignoreDependencies`
 
-Disable specific dependencies from being installed in Lambdas that rely on [automated dependency treeshaking](/docs/en/guides/developer-experience/dependency-management#automated-dependency-treeshaking). When a dependency has a scope (preceded by '@'), place the name inside quotes. This setting is currently only supported in Node.js Lambdas.
+Disable specific dependencies from being installed in Lambdas that rely on [automated dependency treeshaking](/docs/en/guides/developer-experience/dependency-management#automated-dependency-treeshaking). When a dependency has a scope (preceded by '@'), place the name inside quotes.
+
+> ⚠️ This setting is currently only supported in Node.js Lambdas and does _not_ support ignoring dependencies from the `shared` folder ([#1476](https://github.com/architect/architect/issues/1476)).
 
 The alternate spelling of `ignoredDependencies` may also be used, although `ignoreDependencies` is preferred.
 
