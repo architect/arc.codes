@@ -14,11 +14,11 @@ sections:
 
 Start a local development server that emulates AWS infrastructure for your Architect application. Sandbox provides a complete local development environment that includes:
 
-- HTTP server for your `@http` routes
-- WebSocket server for `@ws` routes
-- Dynalite in-memory database for `@tables` and `@tables-indexes`
-- Local event bus for `@events` and `@queues`
-- Static asset serving for `@static` assets
+- HTTP server for your [`@http` routes][http]
+- WebSocket server for [`@ws` routes][ws]
+- Dynalite in-memory database for [`@tables`][tables] and [`@tables-indexes`][indexes]
+- Local event bus for [`@events`][events] and [`@queues`][queues]
+- Static asset serving for [`@static`][static] assets
 - File watching and live reloading
 
 > Additionally, `@scheduled` and `@tables-streams` Lambdas can be emulated via the [@architect/plugin-lambda-invoker](https://www.npmjs.com/package/@architect/plugin-lambda-invoker) plugin
@@ -31,13 +31,13 @@ arc sandbox [flags]
 
 ## Flags
 
-- `-p`, `--port` - Port the HTTP server will listen on (default is `3333`)
-- `-h`, `--host` - Host the server will bind to (default is `0.0.0.0`)
-- `--disable-symlinks` - Do not use symlinks for shared code; use file copying instead (slower)
-- `--disable-delete-vendor` - Do not delete node_modules or vendor directories upon startup
-- `-q`, `--quiet` - Minimize console output during operation
-- `-v`, `--verbose` - Print more detailed output during operation
-- `-d`, `--debug` - Print even more detailed information for debugging
+- `-p`, `--port`: Port the HTTP server will listen on (default is `3333`)
+- `-h`, `--host`: Host the server will bind to (default is `0.0.0.0`)
+- `--disable-symlinks`: Do not use symbolic links for [shared code][sharing]; use file copying instead (slower)
+- `--disable-delete-vendor`: Do not delete `node_modules` or `vendor` directories upon startup
+- `-q`, `--quiet`: Minimize console output during operation
+- `-v`, `--verbose`: Print more detailed output during operation
+- `-d`, `--debug`: Print even more detailed information for debugging
 
 ## Environment Variables
 
@@ -48,12 +48,6 @@ The following variables can be set on the command line when running `arc sandbox
 - `ARC_TABLES_PORT` - Set the DynamoDB emulator port (default `5555`)
 - `ARC_HOST` - Set the host the server will bind to
 - `ARC_QUIET`, `QUIET` - Minimize console output (same as `--quiet`)
-
-### Additional Environment Variables
-
-- `ARC_API_TYPE` - Set the API Gateway API type
-  - Can be one of `http` (aliased to `httpv2`), `httpv1`, `rest`
-  - Defaults to `http`
 - `ARC_ENV` - `testing|staging|production`
   - Defaults to `testing`
 - `ARC_LOCAL`- If present and used in conjunction with `ARC_ENV=staging|production`, emulates live `staging` or `production` environment
@@ -76,31 +70,20 @@ ARC_QUIET=1 PORT=8888 npx arc sandbox
 
 Sandbox registers keyboard shortcuts to help with local development (note: they are all capital letters!):
 
-- `S` - Rehydrate only `src/shared`
-- `V` - Rehydrate only `src/views`
-- `H` - Rehydrate both `src/shared` and `src/views`
+- `S` - Hydrate only `src/shared`
+- `V` - Hydrate only `src/views`
+- `H` - Hydrate both `src/shared` and `src/views`
 - `Ctrl+C` - Gracefully shut down the sandbox
 
 ## Local preferences
 
-Several Architect [local preferences](../configuration/local-preferences) can be leveraged to change how Sandbox works while developing locally.
+Several Architect [local preferences][prefs] can be leveraged to change how Sandbox works while developing locally.
 
-### `@sandbox`
+### Sandbox preferences
 
-The following can be set as a part of the [`@sandbox`](../configuration/local-preferences#%40sandbox) pragma.
+Check out the [`@sandbox` preferences](../configuration/local-preferences#%40sandbox) reference for more information.
 
-- `livereload` - Enable live automatic reload for `@http` `get` and `any` functions that deliver HTML. When a filesystem change is detected in the handler or in [shared or views code](../../guides/developer-experience/sharing-code), open browser sessions will automatically refresh.
-  - Defaults to `false`
-- `env`<sup>*</sup> - Override the local environment setting to use `staging` or `production` so that Sandbox uses that stage's environment variables as set in [local preferences `@env`](../configuration/local-preferences#%40env) or in the project's `.env` file.
-  - Can be one of `testing` (default), `staging`, or `production`
-- `useAWS`<sup>*</sup> - Use live AWS infrastructure from Sandbox. Specifically, `@tables`, `@tables-indexes`, `@events`, and `@queues`.
-  - Uses the `staging` environment by default, but `env` can be set to `production`.
-  - Defaults to `false`
-- `no-hydrate` - Disable [function hydration](./hydrate) on Sandbox start.
-  - Defaults to `false`
-- `seed-data` - Specify a custom file path for seed data to populate `@tables` with on startup
-  - Defaults to `./sandbox-seed.json`, `./sandbox-seed.js`
-- `external-db` - (Boolean) Use an external DynamoDB tool (such as [AWS NoSQL Workbench](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html))
+> ⚠️ These preferences should be used with care as they can allow your local development sandbox to use live deployed infrastructure and data.
 
 ```arc
 @sandbox
@@ -110,11 +93,9 @@ useAws true
 no-hydrate true
 ```
 
-\* These advanced options should be used with care since they will allow local development code to interact with live AWS resources.
+### Sandbox startup scripts
 
-### `@sandbox-start`
-
-Additionally, Sandbox can run shell commands on startup by setting [`@sandbox-start`](../configuration/local-preferences#%40sandbox-start) in [local preferences](../configuration/local-preferences) like so:
+Sandbox can run shell commands on startup by setting [`@sandbox-start`](../configuration/local-preferences#%40sandbox-start) in [local preferences][prefs] like so:
 
 ```arc
 @sandbox-start
@@ -125,11 +106,6 @@ echo 'hello'
 ### `@create`
 
 Upon starting, Sandbox can automatically scaffold resources (via [`init`](init)) found in the [application's manifest](../../get-started/project-manifest) that do not yet exist. Options are set with [`@create` in local preferences](../configuration/local-preferences#%40create).
-
-- `autocreate` - Set to `true` to enable automatic creation of boilerplate Lambda handlers and static assets if they do not exist.
-- `templates` - Specify templates for automatic resource scaffolding.
-  - `<pragma name> path/to/template.ext`
-  - Does not enable `autocreate`
 
 ```arc
 @create
@@ -194,7 +170,7 @@ process.env.ADMIN_PASS // undefined
 
 ## Local database
 
-Sandbox creates an in-memory instance of [dynalite](https://github.com/mhart/dynalite) with `@tables` and `@tables-indexes` found in the `app.arc` file. `@tables-streams` is not currently supported by dynalite.
+Sandbox creates an in-memory instance of [dynalite](https://github.com/architect/dynalite) with [`@tables`][tables] and [`@tables-indexes`][indexes] found in the `app.arc` file. `@tables-streams` is not currently supported by dynalite.
 
 When Sandbox is terminated, any data written is cleared from memory.
 
@@ -242,3 +218,13 @@ Connect Sandbox to the DynamoDB staging database on AWS:
 ```bash
 ARC_ENV=staging ARC_LOCAL=1 npx arc sandbox
 ```
+
+[http]: ../project-manifest/http
+[ws]: ../project-manifest/ws
+[tables]: ../project-manifest/tables
+[indexes]: ../project-manifest/tables-indexes
+[events]: ../project-manifest/events
+[queues]: ../project-manifest/queues
+[static]: ../project-manifest/static
+[sharing]: ../../guides/developer-experience/sharing-code
+[prefs]: ../configuration/local-preferences

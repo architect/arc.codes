@@ -1,14 +1,14 @@
 ---
-title: hydrate
+title: arc hydrate
 category: CLI
 description: Install and update dependencies for all functions in a project.
 ---
 
-Ensure that all functions managed by Architect have their dependencies installed. Functions containing all its required dependencies are considered to be "hydrated" - thus the name!
+Ensure that all functions managed by Architect have their dependencies installed. Functions containing all their required dependencies are considered to be "hydrated" - thus the name!
 
-Importantly, `arc hydrate` will also copy shared code from `src/shared` into all functions and `src/views` into `@http` GET functions.
+Importantly, `arc hydrate` will also copy [shared code][sharing] from `src/shared` into all functions and `src/views` into [`@http`][http] GET functions.
 
-When developing locally with Sandbox, it is not necessary to manually run `hydrate` since Sandbox handles this automatically. However, it can be helpful to ensure hydration happens prior to a process like `npm test`.
+When [developing locally with Sandbox][local-dev], it is not necessary to manually run `hydrate` since Sandbox handles this automatically. However, it can be helpful to ensure hydration happens prior to a process like `npm test`.
 
 ## Usage
 
@@ -18,9 +18,9 @@ arc hydrate [--shared|--update]
 
 ## Flags
 
-- `[--shared, -s]` Hydrates and copies shared files only
-- `[--update, -u]` Updates each function's dependencies
-- `[--verbose, -v]` Prints additional output to the console
+- `--shared`, `-s`: Hydrates and copies [shared files][sharing] only
+- `--update` `-u`: Updates each function's dependencies to latest versions
+- `--verbose`, `-v`: Prints additional output to the console
 
 ## Notes
 
@@ -37,3 +37,7 @@ Hydrate uses the following commands under the hood, depending on project's or fu
 - **node.js**: `npm update`
 - **python**: `pip3 install -U --upgrade-strategy eager`
 - **ruby**: `bundle update`
+
+[local-dev]: ../../guides/developer-experience/local-development
+[sharing]: ../../guides/developer-experience/sharing-code
+[http]: ../project-manifest/http

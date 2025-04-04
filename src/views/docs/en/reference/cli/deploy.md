@@ -23,15 +23,15 @@ arc deploy [flags]
 - `--direct path/to/function`: Directly deploy the specified Lambda. A faster way to deploy and test small changes to individual functions without redeploying an entire Stack.
 - `--dry-run`: Generate a [CloudFormation][cfn] template but do not deploy it. A dry run allows you to check the [CloudFormation][cfn] and SAM output before deploying the actual stack.
 - `--eject`: Generate a [CloudFormation][cfn] template but do not deploy it. Instead, print out the `aws cloudformation` CLI invocation to execute the deployment.
-- `-f`, `--fast`: Deploy the stack, but do not block the process until deployment completed.
-- `-n`, `--name`: Deploy a custom named staging Stack. E.g. `--name CI` will deploy a `AppnameStagingCI` [CloudFormation][cfn] Stack.
+- `--fast`, `-f`: Deploy the stack, but do not block the process until deployment completed.
+- `--name`, `-n`: Deploy a custom named staging Stack. E.g. `--name CI` will deploy a `AppnameStagingCI` [CloudFormation][cfn] Stack.
 - `--no-hydrate`: Do not automatically [`hydrate`](hydrate) functions prior to deployment.
-- `-p`, `--production`: Deploys a [CloudFormation][cfn] Stack to a production Stack. If not specified, will default to deploy to a staging Stack.
+- `--production`, `-p`: Deploys a [CloudFormation][cfn] Stack to a production Stack. If not specified, will default to deploy to a staging Stack.
 - `--prune`: Remove static assets deployed to S3 bucket not present in the local [`@static`][static] folder.
-- `-s`, `--static`: Deploys only the files in the [`@static`][static] folder.
-- `-t`, `--tags`: Adds resource tags to the CloudFormation stack. The required tag format is `key=value`, e.g. `--tags key1=value1 key2=value2`
-- `-v`, `--verbose`: Displays verbose logging.
-- `-d`, `--debug`: Displays debug (and verbose) logging.
+- `--static`, `-s`: Deploys only the files in the [`@static`][static] folder.
+- `--tags`, `-t`: Adds resource tags to the CloudFormation stack. The required tag format is `key=value`, e.g. `--tags key1=value1 key2=value2`
+- `--verbose`, `-v`: Displays verbose logging.
+- `--debug`, `-d`: Displays debug (and verbose) logging.
 
 ## Local preferences: `@create`
 
