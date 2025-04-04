@@ -18,7 +18,7 @@ sections:
   - 'timeout'
 ---
 
-Configure individual Lambda function properties (e.g. `src/http/get-index/config.arc`).
+Individual Lambda function properties can be customized and configured by modifying the `config.arc` file present in each Lambda functions' directory.
 
 ## `@arc`
 
@@ -79,7 +79,7 @@ Configure the deployed function with [the `@aws` pragma](../project-manifest/aws
 - [`memory`](#memory) - number, between `128` and `3008` MB in 64 MB increments.
 - [`policies`](#policies) - Configure [AWS SAM policy templates](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html)
 - [`provisionedConcurrency`](#provisionedconcurrency) - number, `1` to AWS account maximum (disabled by default)
-- [`runtime`](#runtime) - string, Lambda runtime or alias: `nodejs16.x` (default), `python3.7`, `dotnetcore3.1`, `node`, `py`, `.net`, etc.
+- [`runtime`](#runtime) - string, Lambda runtime or alias, see [below](#runtime) for details.
 - [`storage`](#storage) - number, between `512` (default) and `10240` MB. The function's ephemeral storage (`/tmp` file system).
 - [`timeout`](#timeout) - number, in seconds (max `900`)
 
@@ -245,14 +245,7 @@ provisionedConcurrency 10
 
 ### `runtime`
 
-Configure Lambda function `runtime`:
-
-- Like `nodejs16.x` (default), `nodejs14.x`, `python3.9`, `ruby2.7`
-- Unsupported by Sandbox locally: `dotnetcore3.1`, `go1.x`, `java11`
-- Or a runtime alias: `nodejs`, `python`, `ruby`, `.net`, `go`,  `java`
-  - Aliases always use the default version of the matched runtime: `ruby` => `ruby2.7`.
-
-See [@aws](../project-manifest/aws) and official [Lambda documentation](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) for further reference.
+Sets the Lambda function runtime to use. A version-less alias always references the latest available version for that runtime. See the [@aws `runtime`](../project-manifest/aws) documentation for full list of supported runtimes in Architect, and official [Lambda documentation](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) for further reference.
 
 ```arc
 @aws
