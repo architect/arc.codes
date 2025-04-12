@@ -4,16 +4,16 @@ category: Plugins
 description: Overview of Architect's plugin API
 ---
 
-Architect's plugin API exposes [workflow lifecycle hooks](#workflow-hooks) (such filesystem events in the [Sandbox](/docs/en/reference/cli/sandbox)) and interfaces for [generating cloud resources](#resource-setters) (such as custom Lambdas, or environment variables).
+Architect's plugin API exposes [workflow lifecycle hooks][hooks] (such filesystem events in the [Sandbox][sandbox]) and interfaces for [generating cloud resources][setters] (such as custom Lambdas, or environment variables).
 
-This document assumes some existing knowledge of how Architect works, including the [project manifest](/docs/en/get-started/project-manifest), deterministic deployment to AWS via CloudFormation, etc.
+This document assumes some existing knowledge of how Architect works, including the [project manifest][manifest], [deterministic deployment][deployment] to AWS via CloudFormation, etc.
 
 
 ## Finding & installing plugins
 
-[Architect maintains a list of officially supported and community developed plugins](https://github.com/architect/plugins); npm is also a great place to [find plugins](https://www.npmjs.com/search?q=arc-plugin-) (and [legacy macros](#macros)).
+[Architect maintains a list of officially supported and community developed plugins](https://github.com/architect/plugins); npm is also a great place to [find plugins](https://www.npmjs.com/search?q=arc-plugin-) (and [legacy macros][macros]).
 
-To install a plugin, add a `@plugins` pragma to your project manifest. For example, if you wanted to `npm install` and use both `@architect/plugin-typescript` and `arc-macro-cors`, this is what you'd add to your manifest:
+To install a plugin, add a [`@plugins` pragma][plugins] to your [project manifest][manifest]. For example, if you wanted to `npm install` and use both `@architect/plugin-typescript` and `arc-macro-cors`, this is what you'd add to your manifest:
 
 ```arc
 @plugins
@@ -25,7 +25,7 @@ You can also use unpublished local plugins like so:
 
 ```arc
 @plugins
-my-private-plugin       # loads from `src/plugins/my-private-plugin[.js|/index.js]`
+my-private-plugin       # loads from `src/plugins/my-private-plugin[.[m]js|/index.[m]js]`
 another-private-plugin  # loads from `foo/index.js`
   src foo
 ```
@@ -33,31 +33,31 @@ another-private-plugin  # loads from `foo/index.js`
 
 ## Authoring plugins
 
-Architect provides an end-to-end suite of workflows, conventions, and optimized defaults for building excellent [Functional Web Apps](https://fwa.dev) with AWS. Architect plugins enable developers to extend (or override) this functionality in a variety of ways with interfaces into both workflows and resource creation.
+Architect provides a suite of workflows, conventions, and optimized defaults for building excellent [Functional Web Apps][fwa] with AWS. Architect plugins enable developers to extend (or override) this functionality in a variety of ways with interfaces into both workflows and resource creation.
 
 To create a fresh plugin, you can run `npx arc create --plugin my-plugin-name`
 
-Learn more about [hooks for workflow lifecycles](#workflow-hooks) and [cloud resource generation](#resource-setters) below.
+Learn more about [hooks for workflow lifecycles][hooks] and [cloud resource generation][setters] below.
 
 
 ### Workflow hooks
 
-Workflow hooks enable developers to extend Architect workflows
+Workflow hooks enable developers to extend Architect workflows and hook into the various Architect CLI commands.
 
-- [`deploy`](./deploy)
-  - [`start`](./deploy#deploy.start) - run arbitrary pre-deploy operations + customize CloudFormation (formerly `@macros`)
-  - [`services`](./deploy#deploy.services) - hook into Architect's service discovery to create references to custom resources, or populate config data
+- [`deploy`](./deploy) - hooks for [the `deploy` command][deploy]
+  - [`start`](./deploy#deploy.start) - run arbitrary pre-deploy operations like adding custom resources or modifying first-class Architect-created resources by customizing CloudFormation (formerly `@macros`)
+  - [`services`](./deploy#deploy.services) - hook into Architect's service discovery to create runtime references to custom resources, or populate config data
   - [`target`](./deploy#deploy.target) - bypass CloudFormation deployment to AWS, and ship the project to an AWS intermediary
   - [`end`](./deploy#deploy.end) - run arbitrary post-deploy operations
-- [`create`](./create)
+- [`create`](./create) - hooks for [the `init` command][init]
   - [`register`](./create#create.register) - register runtimes to create handlers for
   - [`handlers`](./create#create.handlers) - dynamically generate new runtime handlers as you expand your project
-- [`hydrate`](./hydrate)
-  - [`copy`](./hydrate#hydrate.copy) - copy files and folders during dependency hydration
-- [`sandbox`](./sandbox)
-  - [`start`](./sandbox#sandbox.start) - run arbitrary operations during Sandbox startup
+- [`hydrate`](./hydrate) - hooks for [the `hydrate` command][hydrate]
+  - [`copy`](./hydrate#hydrate.copy) - copy files and folders during [dependency hydration][hydrate]
+- [`sandbox`](./sandbox) - hooks for [the `sandbox` command][sandbox]
+  - [`start`](./sandbox#sandbox.start) - run arbitrary operations during [Sandbox][sandbox] startup
   - [`watcher`](./sandbox#sandbox.watcher) - act on project filesystem events (e.g. `src/http/get-foo/auth.js` → `updated`)
-  - [`end`](./sandbox#sandbox.end) - run arbitrary operations during Sandbox shutdown
+  - [`end`](./sandbox#sandbox.end) - run arbitrary operations during [Sandbox][sandbox] shutdown
 
 
 ### Resource setters
@@ -94,7 +94,7 @@ Long-time Architect users may be familiar with macros (`@macros` – extensions 
 
 [Learn more about porting existing macros to plugins](./porting-macros-to-plugins).
 
-If you have [existing macros](#macros), they can live side by side in their respective pragma (so long as plugins and macros do not have any conflicting names):
+If you have existing macros, they can live side by side in their respective pragma (so long as plugins and macros do not have any conflicting names):
 
 ```arc
 @plugins
@@ -103,3 +103,15 @@ my-private-plugin
 @macros
 my-private-macro
 ```
+
+[hooks]: #workflow-hooks
+[sandbox]: ../../reference/cli/sandbox
+[plugins]: ../../reference/project-manifest/plugins
+[setters]: #resource-setters
+[manifest]: ../../get-started/project-manifest
+[deployment]: ../developer-experience/deployment 
+[macros]: #macros
+[fwa]: https://fwa.dev
+[hydrate]: ../../reference/cli/hydrate
+[deploy]: ../../reference/cli/deploy
+[init]: ../../reference/cli/init
