@@ -178,7 +178,7 @@ You can set a custom port by using an environment variable: `ARC_TABLES_PORT=555
 
 ### Database seed data
 
-You can automatically seed data to Sandbox upon startup by adding a `sandbox-seed.js` or `sandbox-seed.json` file to the root of your project. (You can also specify a custom path with the `seed-data` preference.)
+You can automatically seed data to Sandbox upon startup by adding a `sandbox-seed.[c|m]js` or `sandbox-seed.json` file to the root of your project. (You can also specify a custom path with [the `seed-data` preference](../configuration/local-preferences#seed-data---string).)
 
 Your seed data should be an object whose properties correspond to `@tables` names, and have arrays of rows to seed. For example:
 
@@ -202,6 +202,16 @@ module.exports = {
       id: 'fiz',
       sort: 'buz',
       arbitrary: 'info',
+    }
+  ]
+}
+// sandbox-seed.mjs
+export default {
+  things: [
+    {
+      id: 'foo',
+      sort: 'bar',
+      arbitrary: 'data',
     }
   ]
 }
