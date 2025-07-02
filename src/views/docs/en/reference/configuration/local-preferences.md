@@ -115,6 +115,15 @@ Advanced option: override the local environment to use `staging` or `production`
 env staging
 ```
 
+### `external-db` - Boolean
+
+Use an external database instead of Sandbox's built-in dynalite DynamoDB simulator. Useful if you'd rather work with a separate tool like [AWS NoSQL Workbench](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html).
+
+```arc
+@sandbox
+external-db true
+```
+
 ### `useAWS` - Boolean
 
 Advanced option that instruct [Sandbox][sandbox] to use live AWS infrastructure where deployed, specifically: [`@tables`][tables] / [`@tables-indexes`][indexes] (DynamoDB), [`@events`][events] (EventBridge), and [`@queues`][queues] (SQS). Defaults to `false`. Notes:
@@ -133,6 +142,15 @@ Disables [hydration][hydrate]. Defaults to `false`.
 ```arc
 @sandbox
 no-hydrate true
+```
+
+### `seed-data` - String
+
+Specifies a custom file path to [Sandbox database seed data](../cli/sandbox#database-seed-data).
+
+```arc
+@sandbox
+seed-data scripts/sandbox-database-seed.mjs
 ```
 
 ## `@sandbox-start`
