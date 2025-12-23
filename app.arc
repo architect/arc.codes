@@ -12,6 +12,8 @@ fingerprint true
 get /
 get /docs/:lang/*
 get /api/package
+get /llms.txt
+get /llms-full.txt
 any /*
 
 @plugins

@@ -74,6 +74,7 @@ async function handler (req) {
         active,
         editURL,
         lang,
+        markdown: md,
         path,
         scripts: [
           '/index.js',
