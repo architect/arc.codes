@@ -17,7 +17,6 @@ const Guides = [
       'Logging & monitoring',
       'Using ESM',
       'Using TypeScript',
-      'Using Deno',
       'Custom CloudFormation',
       'Create AWS credentials',
       {
@@ -93,7 +92,6 @@ const Reference = [ {
   'Runtime helpers': [
     'Node.js',
     'Python',
-    'Deno',
   ],
 } ]
 

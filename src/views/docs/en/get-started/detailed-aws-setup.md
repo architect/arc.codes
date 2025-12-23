@@ -24,7 +24,6 @@ Architect supports the following runtimes for composing your application's busin
 - **Python**: >= 3.9 using `pip3`
   - Unless otherwise specified in your project manifest, Python 3.13 is the default Python runtime
 - **Ruby**: >= 3.2 using `bundle`
-- **Deno**: `1.6.x` ([under development](../reference/runtime-helpers/deno))
 
 > ⚠️ Working locally with the Sandbox requires target runtimes to be available in your `$PATH`.
 
