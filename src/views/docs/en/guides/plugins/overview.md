@@ -33,7 +33,7 @@ another-private-plugin  # loads from `foo/index.js`
 
 ## Authoring plugins
 
-Architect provides a suite of workflows, conventions, and optimized defaults for building excellent [Functional Web Apps][fwa] with AWS. Architect plugins enable developers to extend (or override) this functionality in a variety of ways with interfaces into both workflows and resource creation.
+Architect provides a suite of workflows, conventions, and optimized defaults for building excellent functional web apps with AWS. Architect plugins enable developers to extend (or override) this functionality in a variety of ways with interfaces into both workflows and resource creation.
 
 To create a fresh plugin, you can run `npx arc create --plugin my-plugin-name`
 
@@ -111,7 +111,6 @@ my-private-macro
 [manifest]: ../../get-started/project-manifest
 [deployment]: ../developer-experience/deployment 
 [macros]: #macros
-[fwa]: https://fwa.dev
 [hydrate]: ../../reference/cli/hydrate
 [deploy]: ../../reference/cli/deploy
 [init]: ../../reference/cli/init

@@ -11,7 +11,7 @@ Architect is an open source project and you can totally help out! Contributing d
 
 We are always happy to review and potentially accept pull request to Architect repositories. In general, we suggest opening an issue and starting a discussion in the [Discord](https://discord.gg/y5A2eTsCRX) before you embark on any large project, as there may be requirements or considerations that you may not be aware of in advance.
 
-If you have a larger problem to solve or idea for a new feature, please file an issue for community discussion. If you have a time-sensitive problem and need to talk things through, you can almost always find someone online in our [Discord](https://discord.gg/y5A2eTsCRX). (It's also a great place to socialize new ideas and to solicit help on how to model specific [Functional Web App (FWA)](https://fwa.dev) patterns.)
+If you have a larger problem to solve or idea for a new feature, please file an issue for community discussion. If you have a time-sensitive problem and need to talk things through, you can almost always find someone online in our [Discord](https://discord.gg/y5A2eTsCRX). (It's also a great place to socialize new ideas and to solicit help on how to model specific functional web app patterns.)
 
 Please help us by making it easy for us to help you! If you are experiencing a bug, please have a reduced test case and steps to reproduce prepared. In our process, the first step to resolution is to create a failing test case so we can ensure there are no future regressions. By having a reduced case (even just an example project) and steps to reproduce, you will dramatically reduce the time to getting your bug fixed.
 
