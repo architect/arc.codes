@@ -1,12 +1,11 @@
 import { stat } from 'fs/promises'
 import { join } from 'path'
-import test from 'tape'
+import test from 'node:test'
+import assert from 'node:assert'
 import { redirect, tempRedirects, permanentRedirects } from '../../src/shared/redirect-map.mjs'
 
 test('redirect map middleware', async t => {
-  t.plan(4)
-
-  t.equal(typeof redirect, 'function', 'Redirect middleware is a function')
+  assert.strictEqual(typeof redirect, 'function', 'Redirect middleware is a function')
 
   const redirectResponse = await redirect({
     requestContext: {
@@ -22,7 +21,7 @@ test('redirect map middleware', async t => {
       location: '/docs/en/guides/examples',
     },
   }
-  t.deepEqual(redirectResponse, expectedResponse, 'Correctly redirect permanent mapped path')
+  assert.deepStrictEqual(redirectResponse, expectedResponse, 'Correctly redirect permanent mapped path')
 
   const nonRedirectResponse = await redirect({
     requestContext: {
@@ -32,7 +31,7 @@ test('redirect map middleware', async t => {
       }
     }
   })
-  t.notOk(nonRedirectResponse, "Don't respond to unmapped path")
+  assert.ok(!nonRedirectResponse, "Don't respond to unmapped path")
 
   const postResponse = await redirect({
     requestContext: {
@@ -42,14 +41,12 @@ test('redirect map middleware', async t => {
       }
     }
   })
-  t.notOk(postResponse, "Don't respond to POST method")
+  assert.ok(!postResponse, "Don't respond to POST method")
 })
 
 test('all redirect destinations exist', async t => {
-  t.plan(3)
-
-  t.equal(typeof tempRedirects, 'object', 'tempRedirects map')
-  t.equal(typeof permanentRedirects, 'object', 'permanentRedirects map')
+  assert.strictEqual(typeof tempRedirects, 'object', 'tempRedirects map')
+  assert.strictEqual(typeof permanentRedirects, 'object', 'permanentRedirects map')
 
   const destinations = [ ...Object.values(tempRedirects), ...Object.values(permanentRedirects) ]
   for (const destination of destinations) {
@@ -58,9 +55,9 @@ test('all redirect destinations exist', async t => {
       await stat(join(new URL('.', import.meta.url).pathname, '../../src/views', filePath))
     }
     catch (error) {
-      t.fail(error)
+      assert.fail(error)
     }
   }
 
-  t.pass(`Checked for ${destinations.length} files`)
+  assert.ok(true, `Checked for ${destinations.length} files`)
 })
