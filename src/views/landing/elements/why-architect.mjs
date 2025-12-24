@@ -4,7 +4,7 @@ export default function WhyArchitect ({ html }) {
       <h2 class="text5 leading1 tracking-2 font-medium mbs0 mbe4">Why <span class="font-bold">Architect</span>?</h2>
       
       <p class="text1 tracking-1 measure">
-        Architect provides everything you need to build massively scalable <a class="underline" href="https://fwa.dev">Functional Web Apps</a> on AWS with low code, clear and terse config, and zero ceremony.
+        Architect provides everything you need to build massively scalable functional web apps on AWS with low code, clear and terse config, and zero ceremony.
       </p>
 
       <section class="grid col-1 gap4 mb5">

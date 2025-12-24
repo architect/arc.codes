@@ -6,7 +6,7 @@ description: Architect dependency structure and hydration
 
 ## Overview
 
-[Functional Web Apps](https://fwa.dev) have both project-level dependencies and individual function-level dependencies.
+Functional web apps have both project-level dependencies and individual function-level dependencies.
 
 Project-level dependencies are defined at the root of the project, and may include things like developer dependencies.
 

@@ -7,7 +7,7 @@ Define resources in a more verbose format to configure custom Lambda source dire
 
 ## Use cases
 
-- Migrate existing repos to the [Functional Web App pattern](https://fwa.dev)
+- Migrate existing repos to the functional web app pattern
 - Use frontend frameworks that have their own folder requirements
 - Better enable local code transpilation by pointing to generated `./dist` directories
 
