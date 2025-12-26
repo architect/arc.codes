@@ -1,4 +1,5 @@
 import Banner from '../components/banner.mjs'
+import CopyMarkdown from '../components/copy-markdown.mjs'
 import DocumentOutline from '../components/document-outline.mjs'
 import EditLink from '../components/edit-link.mjs'
 import GoogleAnalytics from './ga.mjs'
@@ -14,6 +15,7 @@ export default function HTML (props = {}) {
     html = '',
     editURL = '',
     lang = 'en',
+    markdown = '',
     scripts = '',
     slug = '',
     state = {},
@@ -75,9 +77,14 @@ ${Symbols}
         >
           ${title}
         </h1>
+        <div class="mb2">
+          ${CopyMarkdown({ markdown })}
+        </div>
         <div class="pb4 docs">
           ${html}
-          ${EditLink({ editURL })}
+          <div class="flex justify-end align-items-center gap0 mt4 flex-wrap">
+            ${EditLink({ editURL })}
+          </div>
         </div>
       </div>
       ${DocumentOutline(props)}

@@ -7,20 +7,20 @@ export default [
     languageOptions: {
       parserOptions: {
         ecmaVersion: 2022,
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     },
     plugins: {
-      import: importPlugin.flatConfigs.recommended.plugins.import
+      import: importPlugin.flatConfigs.recommended.plugins.import,
     },
     rules: {
       'import/no-commonjs': 'error',
       'import/extensions': [
         'error',
-        'ignorePackages'
+        'ignorePackages',
       ],
       // Additive to our old `import` config, but everything seems quite sane!
       ...importPlugin.flatConfigs.recommended.rules,
-    }
+    },
   },
 ]

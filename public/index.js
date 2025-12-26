@@ -30,6 +30,30 @@
     localStorage.setItem('theme', targetTheme)
   }
 
+  // Copy Markdown button for LLM use
+  const copyMarkdownBtn = document.getElementById('copy-markdown-btn')
+  if (copyMarkdownBtn) {
+    copyMarkdownBtn.onclick = () => {
+      const markdown = copyMarkdownBtn.getAttribute('data-markdown')
+        .replace(/&quot;/g, '"')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&')
+      const textSpan = document.getElementById('copy-markdown-text')
+
+      navigator.clipboard.writeText(markdown).then(
+        () => {
+          textSpan.textContent = 'Copied!'
+          setTimeout(() => textSpan.textContent = 'Copy for LLM', 2000)
+        },
+        () => {
+          textSpan.textContent = 'Error!'
+          setTimeout(() => textSpan.textContent = 'Copy for LLM', 2000)
+        }
+      )
+    }
+  }
+
   // Copy-Paste function for code blocks
   const buttonClassList = [
     'icon',
