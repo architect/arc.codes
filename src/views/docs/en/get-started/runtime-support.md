@@ -6,7 +6,7 @@ description: Architect runtime support documentation
 
 ## Overview
 
-This document outlines the current runtime support commitments Architect makes, both for official AWS Lambda runtimes (such as Node.js), and Architect-specific runtimes (such as TypeScript and Deno).
+This document outlines the current runtime support commitments Architect makes, both for official AWS Lambda runtimes (such as Node.js), and Architect-specific runtimes (such as TypeScript).
 
 
 ## Runtime support definitions
@@ -40,7 +40,6 @@ Runtime     | [Deployment][1] | [Sandbox][2]  | [Runtime utils][3]  | [Automated
 Node.js     | **✓**           | **✓**         | [**✓**][5]          | **✓**
 TypeScript¹ | **✓**           | **✓**         | [**✓**][5]          | **✓**
 Python      | **✓**           | **✓**         | [**✓**][6]          | **✓**
-Deno²       | **✓**           | **✓**         | [~²][7]             |
 Ruby        | **✓**           | **✓**         |                     |
 Rust³       | **✓**           | **✓**         |                     |
 Go⁴         | **✓**           | **✓**         |                     |
@@ -56,8 +55,6 @@ Legend:
 
 ¹ TypeScript supported via [official plugin](https://github.com/architect/plugin-typescript)
 
-² Deno support may not be current or stable due to ongoing issues related to [Deno compiling to AWS Linux](https://github.com/denoland/deno/issues/17925); an [in-development Deno utility library can be found here](https://github.com/architect/functions-deno)
-
 ³ Rust supported via [official plugin](https://github.com/architect/plugin-rust)
 
 ⁴ Go supported via [official plugin](https://github.com/architect/plugin-go)
@@ -68,4 +65,3 @@ Legend:
 [4]: #automated-dependency-management
 [5]: /docs/en/reference/runtime-helpers/node.js
 [6]: /docs/en/reference/runtime-helpers/python
-[7]: /docs/en/reference/runtime-helpers/deno

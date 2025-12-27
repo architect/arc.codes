@@ -99,7 +99,6 @@ Architect supports the following runtime versions:
   - Unless otherwise specified in your project manifest, Node.js is the default runtime for new functions
 - **Python**: `3.13`, `3.12`, `3.11`, `3.10`, or `3.9` using `pip3`
 - **Ruby**: `3.3`, or `3.2` using `bundle`
-- **Deno**: `1.6.x` ([under development](../reference/runtime-helpers/deno))
 
 > ⚠️ Working locally with the Sandbox requires target runtimes to be available in your `$PATH`.
 

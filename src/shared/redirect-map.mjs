@@ -42,7 +42,6 @@ export const tempRedirects = {
   '/node': '/docs/en/reference/runtime-helpers/node.js',
   '/ruby': '/docs/en/reference/runtime-helpers/ruby',
   '/python': '/docs/en/reference/runtime-helpers/python',
-  '/deno': '/docs/en/reference/runtime-helpers/deno',
 
   // Other aliases
   '/typescript': '/docs/en/guides/developer-experience/using-typescript',
@@ -182,7 +181,6 @@ export const permanentRedirects = {
   // round 2: Q4 2021
   '/docs/en/reference/runtime/node': '/docs/en/reference/runtime-helpers/node.js',
   '/docs/en/reference/runtime/node.js': '/docs/en/reference/runtime-helpers/node.js',
-  '/docs/en/reference/runtime/deno': '/docs/en/reference/runtime-helpers/deno',
   '/docs/en/reference/runtime/ruby': '/docs/en/reference/runtime-helpers/ruby',
   '/docs/en/reference/runtime/python': '/docs/en/reference/runtime-helpers/python',
 
