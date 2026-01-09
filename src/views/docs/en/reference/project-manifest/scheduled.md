@@ -13,6 +13,7 @@ Define EventBridge schedule expressions with Lambda handler functions.
 - Dashes, periods, and underscores are allowed
 - Must begin with a letter
 - Followed by a valid `rate` or `cron` expression ([more info here](https://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html))
+- Optional IANA `timezone` property ([more info here](https://time.now/iana-time-zone/)). The timezone in which the scheduling expression is evaluated.
 
 Scheduled functions can use more verbose configuration to allow for [custom source paths](../../guides/developer-experience/custom-source-paths) in your project. Provide a `rate` or `cron` and `src` for each event.
 
@@ -38,6 +39,7 @@ friyay-only cron(0 15 ? * FRI *)
 annual-review
   rate 1 year
   src custom/source
+  timezone US/Pacific
 ```
 
 </div>
@@ -55,7 +57,8 @@ annual-review
     "friyay-only": "cron(0 15 ? * FRI *)" },
     "annual-review": {
       "rate": [1, "year"],
-      "src": "whatever/schedueld/dir/you/want"
+      "src": "whatever/schedueld/dir/you/want",
+      "timezone": "US/Pacific"
     }
 }
 ```
@@ -79,6 +82,7 @@ scheduled:
         - 1,
         - year
       src: "custom/source"
+      timezone: "US/Pacific"
 ```
 
 </div>
