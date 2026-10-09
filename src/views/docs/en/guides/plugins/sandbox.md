@@ -11,7 +11,7 @@ description: '<code>sandbox</code> lifecycle hook plugins'
 
 Run arbitrary operations during Sandbox startup. At the time of `sandbox.start` execution, all core Sandbox services are guaranteed to be running.
 
-> This method is similar to [`@sandbox-startup` scripts](/docs/en/reference/configuration/local-preferences#%40sandbox-startup), but authored in JS, and controlled entirely via plugin. If in doubt, we suggest using `sandbox.start` over [`@sandbox-startup` scripts.
+> This method is similar to [`@sandbox-start` scripts](/docs/en/reference/configuration/local-preferences#%40sandbox-start), but authored in JS, and controlled entirely via plugin. If in doubt, we suggest using `sandbox.start` over [`@sandbox-start` scripts.
 
 `sandbox.start` plugins are either async or synchronous functions, and receive a single argument, which is an object containing the following properties:
 

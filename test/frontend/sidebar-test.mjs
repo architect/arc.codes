@@ -1,4 +1,5 @@
-import test from 'tape'
+import test from 'node:test'
+import assert from 'node:assert'
 import listFromObject from '../../src/views/modules/helpers/list.mjs'
 import strip from './helpers/strip.mjs'
 import slugify from '../../src/views/modules/helpers/slugify.mjs'
@@ -30,14 +31,14 @@ function Item (state = {}) {
     ? Heading3({
       children: Anchor({
         children: child,
-        href: slugify(child)
+        href: slugify(child),
       }),
-      depth
+      depth,
     })
     : ''
 }
      ${children}
-    `
+    `,
   })
 }
 
@@ -68,26 +69,26 @@ const map = {
   item: Li,
   headings: [
     Heading3,
-    Heading4
-  ]
+    Heading4,
+  ],
 }
 
 test('render object to list', t => {
   const map = {
     list: Ul,
-    item: Li
+    item: Li,
   }
   const data = {
     'one': [
       'a',
       'b',
-      'c'
+      'c',
     ],
     'two': [
       'd',
       'e',
-      'f'
-    ]
+      'f',
+    ],
   }
   const expected = `
 <ul>
@@ -111,14 +112,13 @@ test('render object to list', t => {
   `
   const actual = listFromObject({ data, map })
 
-  t.equal(strip(actual), strip(expected), 'Should render object to list', actual)
-  t.end()
+  assert.strictEqual(strip(actual), strip(expected), 'Should render object to list', actual)
 })
 
 test('render nested object to list', t => {
   const map = {
     list: Ul,
-    item: Li
+    item: Li,
   }
   const data = {
     'label': [
@@ -126,17 +126,17 @@ test('render nested object to list', t => {
         'one': [
           'a',
           'b',
-          'c'
-        ]
+          'c',
+        ],
       },
       {
         'two': [
           'd',
           'e',
-          'f'
-        ]
-      }
-    ]
+          'f',
+        ],
+      },
+    ],
   }
   const expected = `
 <ul>
@@ -165,8 +165,7 @@ test('render nested object to list', t => {
   `
   const actual = listFromObject({ data, map })
 
-  t.equal(strip(actual), strip(expected), 'Should render object to list', actual)
-  t.end()
+  assert.strictEqual(strip(actual), strip(expected), 'Should render object to list', actual)
 })
 
 test('render deeply nested object to list', t => {
@@ -178,21 +177,21 @@ test('render deeply nested object to list', t => {
             'a': [
               '1',
               '2',
-              '3'
-            ]
+              '3',
+            ],
           },
           'b',
-          'c'
-        ]
+          'c',
+        ],
       },
       {
         'two': [
           'd',
           'e',
-          'f'
-        ]
-      }
-    ]
+          'f',
+        ],
+      },
+    ],
   }
   const expected = `
 <ul>
@@ -228,8 +227,7 @@ test('render deeply nested object to list', t => {
   `
   const actual = listFromObject({ data, map })
 
-  t.equal(strip(actual), strip(expected), 'Should render object to list', actual)
-  t.end()
+  assert.strictEqual(strip(actual), strip(expected), 'Should render object to list', actual)
 })
 
 test('should use custom component map', t => {
@@ -237,13 +235,13 @@ test('should use custom component map', t => {
     'one': [
       'a',
       'b',
-      'c'
+      'c',
     ],
     'two': [
       'd',
       'e',
-      'f'
-    ]
+      'f',
+    ],
   }
   const expected = `
 <ul>
@@ -313,34 +311,32 @@ test('should use custom component map', t => {
     data,
     map: {
       list: Ul,
-      item: Item
-    }
+      item: Item,
+    },
   })
-  t.equal(strip(actual), strip(expected), 'Should render object to custom list', actual)
-  t.end()
+  assert.strictEqual(strip(actual), strip(expected), 'Should render object to custom list', actual)
 })
 
 test('Should create correct href', t => {
-  t.plan(8)
   const path = [ 'docs', 'en' ]
   const map = {
     item: function hrefTest ({ path }) {
       const href = slugify(path.join('/'))
-      t.ok(href, href)
+      assert.ok(href, href)
     },
-    list: function list () {}
+    list: function list () {},
   }
   const data = {
     'one & done': [
       'a',
       'b',
-      'c'
+      'c',
     ],
     'ok "maybe" one or two': [
       'd',
       'e',
-      'f'
-    ]
+      'f',
+    ],
   }
   listFromObject({ data, map, path })
 })

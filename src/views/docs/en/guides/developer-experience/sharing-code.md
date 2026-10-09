@@ -84,8 +84,8 @@ require_relative './vendor/views/document'
 
 ```python
 # get-index/lambda.py
-import vendor.shared.authenticate
-import vendor.views.document
+from vendor.shared.authenticate import foo
+from vendor.views.document import bar
 ```
 
 </div>
@@ -129,7 +129,7 @@ require_relative './vendor/shared/authenticate'
 
 ```python
 # post-like/lambda.py
-import vendor.shared.authenticate
+from vendor.shared.authenticate import foo
 ```
 
 </div>
@@ -190,8 +190,8 @@ require_relative './vendor/views/document'
 
 ```python
 # get-index/lambda.py
-import vendor.shared.authenticate
-import vendor.views.document
+from vendor.shared.authenticate import foo
+from vendor.views.document import bar
 ```
 
 </div>

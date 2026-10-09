@@ -2,7 +2,6 @@ const GetStarted = [
   'Why Architect',
   'Quickstart',
   'Project manifest',
-  // 'Project files & folders',
   'Detailed AWS setup',
   'Runtime support',
 ]
@@ -18,15 +17,15 @@ const Guides = [
       'Logging & monitoring',
       'Using ESM',
       'Using TypeScript',
-      'Using Deno',
       'Custom CloudFormation',
+      'Create AWS credentials',
       {
         'Continuous integration': [
           'GitHub Actions',
           'GitLab Pipelines',
           'AWS EC2',
-        ]
-      }
+        ],
+      },
     ],
     'Frontend': [
       'Sessions',
@@ -34,16 +33,17 @@ const Guides = [
     ],
     'Domains': [
       'Overview',
-      {
-        'Registrars': [
-          'Route53',
-          'Route53 & CloudFront',
-          'Dreamhost',
-          'GoDaddy',
-          'Namecheap',
-          'One',
-        ]
-      },
+      'Custom domain',
+      // {
+      //   'Registrars': [
+      //     'Route53',
+      //     'Route53 & CloudFront',
+      //     'Dreamhost',
+      //     'GoDaddy',
+      //     'Namecheap',
+      //     'One',
+      //   ]
+      // },
     ],
     'Plugins': [
       'Overview',
@@ -92,7 +92,6 @@ const Reference = [ {
   'Runtime helpers': [
     'Node.js',
     'Python',
-    'Deno',
   ],
 } ]
 
@@ -102,7 +101,7 @@ const About = [
   'Contribute',
   'Upgrade guide',
   'Playground',
-  'Ejecting from Architect'
+  'Ejecting from Architect',
 ]
 
 export default {

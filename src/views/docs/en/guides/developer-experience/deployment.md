@@ -4,7 +4,9 @@ category: Developer experience
 description: How to deploy your Architect app
 ---
 
-Architect makes deploying AWS CloudFormation "stacks" painless.
+Architect makes deploying AWS CloudFormation "stacks" painless.  
+AWS credentials are required to deploy.
+Learn about [AWS setup](../../get-started/detailed-aws-setup) and [gathering credentials from the AWS Console](./create-aws-credentials)
 
 > 🧑‍🏫  CloudFormation stack identifiers are created from the name specified in the `@app` pragma and are unique to an AWS region. Changing the project name or region will create a new CF stack.
 

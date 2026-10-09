@@ -1,5 +1,5 @@
 /* eslint-env browser */
-(function (){
+(function () {
   const activeLink = document.querySelector('a.active')
   const main = document.getElementById('main')
   const menuButton = document.getElementById('menu-button')
@@ -11,7 +11,7 @@
   if (activeLink)
     activeLink.scrollIntoView({
       behavior: 'smooth',
-      block:  'center'
+      block:  'center',
     })
 
   // Toggle sidebar on mobile
@@ -28,6 +28,32 @@
     let targetTheme = currentTheme === 'dark' ? 'light' : 'dark'
     document.documentElement.setAttribute('data-theme', targetTheme)
     localStorage.setItem('theme', targetTheme)
+  }
+
+  // Copy Markdown button for LLM use
+  const copyMarkdownBtn = document.getElementById('copy-markdown-btn')
+  if (copyMarkdownBtn) {
+    const svgCopy = '<svg><use xlink:href="#copy"></use></svg>'
+    const svgCheck = '<svg><use xlink:href="#check"></use></svg>'
+    copyMarkdownBtn.onclick = () => {
+      const markdown = copyMarkdownBtn.getAttribute('data-markdown')
+        .replace(/&quot;/g, '"')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&')
+      const iconSpan = copyMarkdownBtn.querySelector('.icon')
+
+      navigator.clipboard.writeText(markdown).then(
+        () => {
+          iconSpan.innerHTML = svgCheck
+          setTimeout(() => iconSpan.innerHTML = svgCopy, 2000)
+        },
+        () => {
+          iconSpan.innerHTML = 'Error!'
+          setTimeout(() => iconSpan.innerHTML = svgCopy, 2000)
+        },
+      )
+    }
   }
 
   // Copy-Paste function for code blocks
@@ -65,7 +91,7 @@
           target.innerHTML = svgCheck
           setTimeout(() => target.innerHTML = svgCopy, 2000)
         },
-        () => target.innerHTML = 'Error copying!'
+        () => target.innerHTML = 'Error copying!',
       )
     }
 

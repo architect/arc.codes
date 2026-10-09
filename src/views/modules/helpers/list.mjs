@@ -3,7 +3,7 @@ export default function listFromObject ({ data = {}, map = {}, path = [], active
   const { list, item } = map
   const children = itemsFromObject({ data, list, item, depth, path, active })
   return list({
-    children
+    children,
   })
 }
 

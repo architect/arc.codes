@@ -13,7 +13,6 @@ Define SQS topics with Lambda handler functions.
 - Dashes, periods, and underscores are allowed
 - Must begin with a letter
 
-
 ### Example
 
 This `app.arc` file defines two `@queues`:
@@ -33,6 +32,7 @@ myapp
 convert-image
 publish-log
 ```
+
 </div>
 </arc-tab>
 
@@ -49,6 +49,7 @@ publish-log
   ]
 }
 ```
+
 </div>
 </arc-tab>
 
@@ -63,18 +64,20 @@ queues:
 - convert-image
 - publish-log
 ```
+
 </div>
 </arc-tab>
 
 </div>
-<arc-viewer>
+</arc-viewer>
 
-Which generates the corresponding code:
+Running `arc create` generates the following handlers:
 
 ```bash
 /
-├── queues
+├── src/queues/
 │   ├── convert-image/
 │   └── publish-log/
-└── app.arc
+├── app.arc
+└── package.json
 ```

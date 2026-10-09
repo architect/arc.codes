@@ -2,7 +2,7 @@
 /* VARIABLES */
 :root {
   --p0:#2CDD93;/* clover green */
-  --p1:#2B7D9A;/* blue green */
+  --p1:#365c91;/* Arc blue */
   --p2:#BBFFAA;/* key lime */
   --p3:#E21893;/* Barbie Pink light */
   --g0:#FBFBFB;/* #FBFBFB */
@@ -23,14 +23,14 @@
   --a2:#1D5266;/* #8E8E8E */
   --d0:#797979;/* #797979 */
   --d1:#636363;/* #636363 */
-  --text-color: #222;/* #222 */
+  --text-color: #45413a;/* #45413a */
   --bkg-color: #FFF;/* #FFF */
 }
 
 
 :root[data-theme="dark"] {
   --p0:#6EE8B5;/* #6EE8B5 */
-  --p1:#46A9CB;/* #46A9CB */
+  --p1:#1496fa;/* #1496fa */
   --p2:#E4FFDD;/* #E4FFDD */
   --p3:#ED59B3;/* #ED59B3 */
   --g0:#222222;/* #222222 */
@@ -84,7 +84,7 @@
   }
   :root[data-theme="light"] {
     --p0:#2CDD93;/* clover green */
-    --p1:#2B7D9A;/* blue green */
+    --p1:#365c91;/* blue green */
     --p2:#BBFFAA;/* key lime */
     --p3:#E21893;/* Barbie Pink light */
     --g0:#FBFBFB;/* #FBFBFB */
@@ -105,7 +105,7 @@
     --a2:#1D5266;/* #8E8E8E */
     --d0:#797979;/* #797979 */
     --d1:#636363;/* #636363 */
-    --text-color: #222;/* #222 */
+    --text-color: #45413a;/* #45413a */
     --bkg-color: #FFF;/* #FFF */
   }
 }

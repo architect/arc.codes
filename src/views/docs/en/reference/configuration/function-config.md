@@ -18,14 +18,14 @@ sections:
   - 'timeout'
 ---
 
-Configure individual Lambda function properties (e.g. `src/http/get-index/config.arc`).
+Individual Lambda function properties can be customized and configured by modifying the `config.arc` file present in each Lambda functions' directory.
 
 ## `@arc`
 
 Use the `@arc` pragma to disable Architect features for a specific function:
 
 - [`env`](#env) - boolean, `true` (default) or `false` to disable loading environment variables
-- [`ignoreDependencies`](#ignoreDependencies) - array, specific dependency names to ignore during Lambda treeshaking
+- [`ignoreDependencies`](#ignoredependencies) - array, specific dependency names to ignore during Lambda treeshaking
 - [`shared`](#shared) - boolean, `true` (default) or `false` to skip hydrating project code from `@shared`.
 - [`views`](#views) - boolean, `true` (default) or `false` to skip hydrating project code from `@views`.
 
@@ -37,6 +37,7 @@ Use the `@arc` pragma to disable Architect features for a specific function:
 env false
 ignoreDependencies
   some-special-dependency
+  '@scoped/dependency'
 shared false
 views false
 ```
@@ -50,7 +51,9 @@ Note: even with `env` set to false, your function still has access to credential
 
 ### `ignoreDependencies`
 
-Disable specific dependencies from being installed in Lambdas that rely on [automated dependency treeshaking](/docs/en/guides/developer-experience/dependency-management#automated-dependency-treeshaking). This setting is currently only supported in Node.js Lambdas.
+Disable specific dependencies from being installed in Lambdas that rely on [automated dependency treeshaking](/docs/en/guides/developer-experience/dependency-management#automated-dependency-treeshaking). When a dependency has a scope (preceded by '@'), place the name inside quotes.
+
+> ⚠️ This setting is currently only supported in Node.js Lambdas and does _not_ support ignoring dependencies from the `shared` folder ([#1476](https://github.com/architect/architect/issues/1476)).
 
 The alternate spelling of `ignoredDependencies` may also be used, although `ignoreDependencies` is preferred.
 
@@ -69,14 +72,14 @@ Disable hydrating [views code](/docs/en/guides/developer-experience/sharing-code
 
 Configure the deployed function with [the `@aws` pragma](../project-manifest/aws) and the following properties:
 
-- [`architecture`](#architecture) - [AWS Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) for the function: `x86_64` (default) or `arm64`
+- [`architecture`](#architecture) - [AWS Architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) for the function: `arm64` (default) or `x86_64`
 - [`concurrency`](#concurrency) - number, `0` to AWS account maximum (if not present, concurrency is unthrottled)
 - [`fifo`](#fifo) - boolean, `true` (default) or `false` to use `standard` SQS type
 - [`layers`](#layers) - Up to 5 Lambda layer ARNs; **must be in the same region as deployed**
 - [`memory`](#memory) - number, between `128` and `3008` MB in 64 MB increments.
 - [`policies`](#policies) - Configure [AWS SAM policy templates](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html)
 - [`provisionedConcurrency`](#provisionedconcurrency) - number, `1` to AWS account maximum (disabled by default)
-- [`runtime`](#runtime) - string, Lambda runtime or alias: `nodejs16.x` (default), `python3.7`, `dotnetcore3.1`, `node`, `py`, `.net`, etc.
+- [`runtime`](#runtime) - string, Lambda runtime or alias, see [below](#runtime) for details.
 - [`storage`](#storage) - number, between `512` (default) and `10240` MB. The function's ephemeral storage (`/tmp` file system).
 - [`timeout`](#timeout) - number, in seconds (max `900`)
 
@@ -96,19 +99,19 @@ timeout 3
 concurrency 1
 layers {ARN}
 policies {ARN}
-architecture arm64
+architecture x86_64
 ```
 
 
 ### `architecture`
 
-Configure Lambda function [CPU `architecture`](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) to be one of `x86_64` or `arm64`. This setting defaults to `x86_64` if not specified. `arm64` only available in supported AWS regions.
+Configure Lambda function [CPU `architecture`](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) to be one of `arm64` or `x86_64`. This setting defaults to `arm64` if not specified.
 
 > Note: locally, Architect Sandbox executes the function's runtime with your machine's native architecture.
 
 ```arc
 @aws
-architecture arm64
+architecture x86_64
 ```
 
 
@@ -242,14 +245,7 @@ provisionedConcurrency 10
 
 ### `runtime`
 
-Configure Lambda function `runtime`:
-
-- Like `nodejs16.x` (default), `nodejs14.x`, `python3.9`, `ruby2.7`
-- Unsupported by Sandbox locally: `dotnetcore3.1`, `go1.x`, `java11`
-- Or a runtime alias: `nodejs`, `python`, `ruby`, `.net`, `go`,  `java`
-  - Aliases always use the default version of the matched runtime: `ruby` => `ruby2.7`.
-
-See [@aws](../project-manifest/aws) and official [Lambda documentation](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) for further reference.
+Sets the Lambda function runtime to use. A version-less alias always references the latest available version for that runtime. See the [@aws `runtime`](../project-manifest/aws) documentation for full list of supported runtimes in Architect, and official [Lambda documentation](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) for further reference.
 
 ```arc
 @aws

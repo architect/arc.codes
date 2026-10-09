@@ -8,31 +8,34 @@ sections:
   - Flags
 ---
 
-Deploy an Architect project to AWS by creating or updating a [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) stack with resources declared in [the project manifest](../../get-started/project-manifest).
+Deploy an Architect project to AWS by creating or updating a [CloudFormation][cfn] Stack with resources declared in [the project manifest][manifest].
 
-CloudFormation stack names are created from the name specified in the `@app` pragma and are unique to an AWS region. Changing the project name or region will create a new CF stack.
+[CloudFormation][cfn] Stack names are created from the name specified in [the `@app` pragma][app] and are unique to an AWS region. Changing the project name or region will create a new [CloudFormation][cfn] Stack.
 
 ## Usage
 
 ```bash
-arc deploy [--production|--static|--direct]
+arc deploy [flags]
 ```
 
 ## Flags
 
-- `[--production, -p]` Deploys a CloudFormation stack to a production stack.
-- `[--static, -s]` Deploys only the files in the static folder.
-- `[--direct, -d path/to/function]` Overwrite staging Lambda with local source. A faster way to deploy and test small changes to individual functions without redeploying an entire stack.
-- `[--name, -n]` Deploy a custom named staging stack.
-- `[--tags, -t]` Adds resource tags to the CloudFormation stack.
-- `[--prune]` Remove assets not present in the local static folder.
-- `[--no-hydrate]` Do not automatically run `npm`, `bundle` or `pip`
-- `[--dry-run]` Creates a CloudFormation template but does not deploy it. A dry-run allows you to check the CloudFormation and SAM output before deploying the actual stack.
-- `[--verbose, -v]` Displays the full deploy status messages.
+- `--direct path/to/function`: Directly deploy the specified Lambda. A faster way to deploy and test small changes to individual functions without redeploying an entire Stack.
+- `--dry-run`: Generate a [CloudFormation][cfn] template but do not deploy it. A dry run allows you to check the [CloudFormation][cfn] and SAM output before deploying the actual stack.
+- `--eject`: Generate a [CloudFormation][cfn] template but do not deploy it. Instead, print out the `aws cloudformation` CLI invocation to execute the deployment.
+- `--fast`, `-f`: Deploy the stack, but do not block the process until deployment completed.
+- `--name`, `-n`: Deploy a custom named staging Stack. E.g. `--name CI` will deploy a `AppnameStagingCI` [CloudFormation][cfn] Stack.
+- `--no-hydrate`: Do not automatically [`hydrate`](hydrate) functions prior to deployment.
+- `--production`, `-p`: Deploys a [CloudFormation][cfn] Stack to a production Stack. If not specified, will default to deploy to a staging Stack.
+- `--prune`: Remove static assets deployed to S3 bucket not present in the local [`@static`][static] folder.
+- `--static`, `-s`: Deploys only the files in the [`@static`][static] folder.
+- `--tags`, `-t`: Adds resource tags to the CloudFormation stack. The required tag format is `key=value`, e.g. `--tags key1=value1 key2=value2`
+- `--verbose`, `-v`: Displays verbose logging.
+- `--debug`, `-d`: Displays debug (and verbose) logging.
 
 ## Local preferences: `@create`
 
-When deploying, Architect can automatically scaffold resources (via [`arc init`](./init)) found in the [application's manifest](../../get-started/project-manifest) that do not yet exist. Options are set with [`@create` in local preferences](../configuration/local-preferences#%40create).
+When deploying, Architect can automatically scaffold resources (via [`init`](init)) found in the [application's manifest][manifest] that do not yet exist. Options are set with [`@create` in local preferences](../configuration/local-preferences#%40create).
 
 - `autocreate` - Set to `true` to enable automatic creation of boilerplate Lambda handlers and static assets if they do not exist.
 - `templates` - Specify templates for automatic resource scaffolding.
@@ -49,25 +52,25 @@ templates
 
 ## Examples
 
-### Deploy a staging stack
+### Deploy a staging Stack
 
 ```bash
 arc deploy
 ```
 
-### Deploy a production stack
+### Deploy a production Stack
 
 ```bash
 arc deploy --production
 ```
 
-### Deploy a named environment
+### Deploy a named staging Stack
 
 ```bash
 arc deploy --name my-stack
 ```
 
-> 💁  Named stacks use `staging` environment variables [set with `arc env -e staging --add`](./env).
+> 💁  Named stacks use `staging` environment variables [set with the `env` command](env).
 
 ### Deploy static assets to S3
 
@@ -75,7 +78,7 @@ arc deploy --name my-stack
 arc deploy --static
 ```
 
-### Deploy code directly to the staging Lambda
+### Deploy the index route directly to staging
 
 ```bash
 arc deploy --direct src/http/get-index
@@ -83,9 +86,14 @@ arc deploy --direct src/http/get-index
 
 ### Run deploy without deploying
 
-This is useful for testing `@macros`; it will still generate `sam.json`.
+This is useful for testing [`@plugins`][plugins]; it will still generate `sam.json`.
 
 ```bash
 arc deploy --dry-run
 ```
 
+[cfn]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html
+[manifest]: ../../get-started/project-manifest
+[static]: ../project-manifest/static
+[app]: ../project-manifest/app
+[plugins]: ../project-manifest/plugins

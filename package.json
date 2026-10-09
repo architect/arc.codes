@@ -1,54 +1,44 @@
 {
   "name": "@architect/arc.codes",
-  "version": "3.12.9",
+  "version": "3.13.16",
   "repository": {
     "type": "git",
     "url": "https://github.com/architect/arc.codes"
   },
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=16",
+    "node": ">=20",
     "npm": ">=8"
   },
   "scripts": {
     "spellcheck": "npx spellchecker --config ./scripts/spellcheckerrc.json",
-    "link-checker": "node ./test/link-checker.mjs | tap-arc",
+    "link-checker": "node --test ./test/link-checker.mjs",
     "lint": "npx eslint src --fix",
     "start": "npx arc sandbox",
-    "tape": "npx tape 'test/**/*-test.mjs' | tap-arc",
-    "test": "npm run spellcheck && npm run lint && npm run tape"
+    "test:unit": "node --test --test-concurrency=1",
+    "test:coverage": "node --test --test-concurrency=1 --experimental-test-coverage",
+    "test": "npm run spellcheck && npm run lint && npm run test:unit"
   },
   "dependencies": {
-    "@architect/asap": "^6.0.4",
-    "@architect/functions": "~7.0.0",
-    "@architect/inventory": "^3.6.3",
-    "@architect/package": "^8.5.2",
+    "@architect/asap": "^7.0.10",
+    "@architect/functions": "^8.1.6",
+    "@architect/inventory": "^6.0.0",
     "@architect/plugin-node-prune": "^2.0.2",
-    "arcdown": "^2.2.1",
+    "@enhance/arc-plugin-styles": "^5.0.6",
+    "@enhance/enhance-style-transform": "^0.1.2",
+    "@enhance/ssr": "^4.0.3",
+    "arcdown": "^2.3.0",
+    "markdown-it-arc-static-img": "^2.1.0",
     "slugify": "^1.6.6"
   },
   "devDependencies": {
-    "@architect/architect": "^10.16.3",
-    "@architect/eslint-config": "^2.1.2",
+    "@architect/architect": "^12.0.0",
+    "@architect/eslint-config": "^3.0.0",
     "@architect/spellcheck-dictionary": "github:architect/spellcheck-dictionary",
-    "eslint": "^8.54.0",
-    "linkinator": "^6.0.2",
-    "spellchecker-cli": "^6.1.1",
-    "tap-arc": "^1.2.2",
-    "tape": "^5.7.2",
+    "eslint": "^9.17.0",
+    "eslint-plugin-import": "^2.31.0",
+    "linkinator": "^6.1.2",
+    "spellchecker-cli": "^7.0.0",
     "tiny-json-http": "^7.5.1"
-  },
-  "eslintConfig": {
-    "parserOptions": {
-      "sourceType": "module"
-    },
-    "extends": "@architect/eslint-config",
-    "rules": {
-      "import/no-commonjs": "error",
-      "import/extensions": [
-        "error",
-        "ignorePackages"
-      ]
-    }
   }
 }

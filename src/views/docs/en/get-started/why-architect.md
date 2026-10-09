@@ -4,12 +4,12 @@ category: Get started
 description: Why is Architect important to you?
 ---
 
-> Architect provides everything you need to build massively scalable [Functional Web Apps (FWAs)](https://fwa.dev) with low code, clear and terse config, and zero ceremony
+> Architect provides everything you need to build massively scalable functional web apps  with low code, clear and terse config, and zero ceremony
 
 
 ## The best developer experience
 
-Building a functional web app can be fraught with complex vendor arcana and market noise. This is where Architect comes in. Architect is an opinionated developer experience (DX) for building database backed web apps with AWS. We remove all the noise and friction to building FWAs. We prioritize speed with fast local dev, smart configurable defaults and flexible Infrastructure as Code. And then we get out of your way so you can focus on business logic instead of glue code and only pay for services while in use, on-demand, and otherwise _scale to zero_.
+Building a functional web app can be fraught with complex vendor arcana and market noise. This is where Architect comes in. Architect is an opinionated developer experience (DX) for building database backed web apps with AWS. We remove all the noise and friction to building functional web apps. We prioritize speed with fast local dev, smart configurable defaults and flexible Infrastructure as Code. And then we get out of your way so you can focus on business logic instead of glue code and only pay for services while in use, on-demand, and otherwise _scale to zero_.
 
 
 ### Work locally

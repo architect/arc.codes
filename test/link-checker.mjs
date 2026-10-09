@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import { LinkChecker } from 'linkinator'
-import test from 'tape'
+import test from 'node:test'
+import assert from 'node:assert'
 import sandbox from '@architect/sandbox'
 
 import { currentRoot }  from '../src/shared/redirect-map.mjs'
@@ -10,7 +11,7 @@ const root = `${host}${currentRoot}`
 
 test('find broken links', async (t) => {
   await sandbox.start({ quiet: true })
-  t.pass(`sandbox started at ${host}`)
+  assert.ok(true, `sandbox started at ${host}`)
 
   const checker = new LinkChecker()
 
@@ -34,11 +35,9 @@ test('find broken links', async (t) => {
   const brokenCount = result.links.filter(x => x.state === 'BROKEN').length
   const okCount = result.links.filter(x => x.state === 'OK').length
 
-  t.ok(brokenCount === 0, `${brokenCount} broken link${brokenCount > 1 || brokenCount === 0 ? 's' : ''}`)
-  t.pass(`${okCount} working link${okCount > 1 || okCount === 0 ? 's' : ''}`)
+  assert.ok(brokenCount === 0, `${brokenCount} broken link${brokenCount > 1 || brokenCount === 0 ? 's' : ''}`)
+  assert.ok(true, `${okCount} working link${okCount > 1 || okCount === 0 ? 's' : ''}`)
 
   await sandbox.end()
-  t.pass('sandbox ended')
-
-  t.end()
+  assert.ok(true, 'sandbox ended')
 })

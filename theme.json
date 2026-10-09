@@ -1,0 +1,43 @@
+{
+  "typeScale": {
+    "steps": 9,
+    "viewportMin": 320,
+    "viewportMax": 1500,
+    "baseMin": 16,
+    "baseMax": 20,
+    "scaleMin": "minor-third",
+    "scaleMax": "perfect-fourth"
+  },
+  "spaceScale": {
+    "steps": 12,
+    "viewportMin": 320,
+    "viewportMax": 1500,
+    "baseMin": 16,
+    "baseMax": 18,
+    "scaleMin": "minor-third",
+    "scaleMax": "perfect-fourth"
+  },
+  "fonts": {
+    "sans": "Montserrat,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif"
+  },
+  "theme": {
+    "blue": "#4075bf",
+    "fore": "#45413a",
+    "back": "#efefef",
+    "dark": {
+      "fore": "#efefef",
+      "back": "#24231e"
+    }
+  },
+  "color": {
+    "arc-blue": "#365c91",
+    "bright-blue": "#4785ff"
+  },
+  "properties": {},
+  "grid": {
+    "steps": 7
+  },
+  "queries": {
+    "lg": "48em"
+  }
+}

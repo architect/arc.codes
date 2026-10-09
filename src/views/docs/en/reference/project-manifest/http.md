@@ -116,20 +116,19 @@ http:
 </div>
 </arc-viewer>
 
-Which utilizes the following project directory structure:
+Running `arc create` generates the following handlers:
 
 ```bash
 /
-├── custom
+├── custom/
 │   └── source/
-├── src
-│   └── http
-│       ├── get-index/
-│       ├── get-pages/
-│       ├── get-pages-000dateID/
-│       ├── get-contact/
-│       ├── get-widgets-catchall/
-│       └── post-contact/
+├── src/http/
+│   ├── get-index/
+│   ├── get-pages/
+│   ├── get-pages-000dateID/
+│   ├── get-contact/
+│   ├── get-widgets-catchall/
+│   └── post-contact/
 ├── app.arc
 └── package.json
 ```

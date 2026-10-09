@@ -7,6 +7,7 @@ Bundler
 CJS
 Cloudflare
 CommonJS
+csv|CSV|.csv
 Dreamhost
 ESM
 FQDN
@@ -16,8 +17,11 @@ getter
 GitLab
 GoDaddy
 Graviton2
+HostedZone
 konsumer
 LEANX
 Namecheap
 ParcelJS
 treeshaking
+scaffolded
+IANA

@@ -10,7 +10,7 @@ export default function TopNav () {
   return `
 <header
   class="
-    pt-1-lg
+    pt0-lg
     pr2-lg
     pb0-lg
     pl2-lg
@@ -22,7 +22,6 @@ export default function TopNav () {
     relative-lg
     flex
     items-center
-    justify-between
     top0
     bg-g9
     col-start-1
@@ -43,11 +42,17 @@ export default function TopNav () {
   >
     ${Logo({ classes: 'logo' })}
   </a>
+
+  <div class="hidden flex-lg items-center gap0 pl2 text-1">
+    <a class="navButton font-medium text-g0 no-underline font-medium pl-1 pr-1" href="/">Home</a>
+    <a class="navButton font-medium text-g0 no-underline font-medium pl-1 pr-1 active" href="/docs/en/get-started/quickstart">Docs</a>
+  </div>
   <div
     class="
       flex
       items-center
       justify-between
+      ml-auto
     "
   >
     ${Search({ classes: 'hidden inline-block-lg mr0' })}

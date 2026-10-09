@@ -17,7 +17,7 @@ Architect logs to [AWS CloudWatch](https://aws.amazon.com/cloudwatch/).
 
 ### See also
 
-- CloudWatch captures many metrics from [Functional Web App](https://fwa.dev) primitives, especially [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html)
+- CloudWatch captures many metrics from functional web app primitives, especially [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html)
 - [X-Ray](https://aws.amazon.com/xray/) offers deeper service call introspection capabilities
 - There are many third party tools to further extend your app with structured logs
 

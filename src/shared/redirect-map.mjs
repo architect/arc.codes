@@ -2,50 +2,46 @@ export const currentRoot = '/docs/en/get-started/quickstart'
 
 // these are soft redirects, not forever/canonical
 export const tempRedirects = {
-  // tmp until marketing landing page work done
-  '/': currentRoot,
-
   // Canonical pragma paths
-  '/app':  '/docs/en/reference/project-manifest/app',
+  '/app': '/docs/en/reference/project-manifest/app',
   '/@app': '/docs/en/reference/project-manifest/app',
-  '/aws':  '/docs/en/reference/project-manifest/aws',
+  '/aws': '/docs/en/reference/project-manifest/aws',
   '/@aws': '/docs/en/reference/project-manifest/aws',
-  '/events':  '/docs/en/reference/project-manifest/events',
+  '/events': '/docs/en/reference/project-manifest/events',
   '/@events': '/docs/en/reference/project-manifest/events',
-  '/http':  '/docs/en/reference/project-manifest/http',
+  '/http': '/docs/en/reference/project-manifest/http',
   '/@http': '/docs/en/reference/project-manifest/http',
-  '/indexes':  '/docs/en/reference/project-manifest/tables-indexes',
+  '/indexes': '/docs/en/reference/project-manifest/tables-indexes',
   '/@indexes': '/docs/en/reference/project-manifest/tables-indexes',
-  '/macros':  '/docs/en/reference/project-manifest/macros',
+  '/macros': '/docs/en/reference/project-manifest/macros',
   '/@macros': '/docs/en/reference/project-manifest/macros',
-  '/plugins':  '/docs/en/reference/project-manifest/plugins',
+  '/plugins': '/docs/en/reference/project-manifest/plugins',
   '/@plugins': '/docs/en/reference/project-manifest/plugins',
-  '/proxy':  '/docs/en/reference/project-manifest/proxy',
+  '/proxy': '/docs/en/reference/project-manifest/proxy',
   '/@proxy': '/docs/en/reference/project-manifest/proxy',
-  '/queues':  '/docs/en/reference/project-manifest/queues',
+  '/queues': '/docs/en/reference/project-manifest/queues',
   '/@queues': '/docs/en/reference/project-manifest/queues',
-  '/scheduled':  '/docs/en/reference/project-manifest/scheduled',
+  '/scheduled': '/docs/en/reference/project-manifest/scheduled',
   '/@scheduled': '/docs/en/reference/project-manifest/scheduled',
-  '/shared':  '/docs/en/reference/project-manifest/shared',
+  '/shared': '/docs/en/reference/project-manifest/shared',
   '/@shared': '/docs/en/reference/project-manifest/shared',
-  '/static':  '/docs/en/reference/project-manifest/static',
+  '/static': '/docs/en/reference/project-manifest/static',
   '/@static': '/docs/en/reference/project-manifest/static',
-  '/tables':  '/docs/en/reference/project-manifest/tables',
+  '/tables': '/docs/en/reference/project-manifest/tables',
   '/@tables': '/docs/en/reference/project-manifest/tables',
-  '/tables-indexes':  '/docs/en/reference/project-manifest/tables-indexes',
+  '/tables-indexes': '/docs/en/reference/project-manifest/tables-indexes',
   '/@tables-indexes': '/docs/en/reference/project-manifest/tables-indexes',
-  '/tables-streams':  '/docs/en/reference/project-manifest/tables-streams',
+  '/tables-streams': '/docs/en/reference/project-manifest/tables-streams',
   '/@tables-streams': '/docs/en/reference/project-manifest/tables-streams',
-  '/views':  '/docs/en/reference/project-manifest/views',
+  '/views': '/docs/en/reference/project-manifest/views',
   '/@views': '/docs/en/reference/project-manifest/views',
-  '/ws':  '/docs/en/reference/project-manifest/ws',
+  '/ws': '/docs/en/reference/project-manifest/ws',
   '/@ws': '/docs/en/reference/project-manifest/ws',
 
   // Runtimes
   '/node': '/docs/en/reference/runtime-helpers/node.js',
   '/ruby': '/docs/en/reference/runtime-helpers/ruby',
   '/python': '/docs/en/reference/runtime-helpers/python',
-  '/deno': '/docs/en/reference/runtime-helpers/deno',
 
   // Other aliases
   '/typescript': '/docs/en/guides/developer-experience/using-typescript',
@@ -159,7 +155,7 @@ export const permanentRedirects = {
   '/docs/en/reference/prefs.arc/env': '/docs/en/reference/configuration/local-preferences#@env',
   '/docs/en/reference/prefs.arc/.env': '/docs/en/reference/configuration/local-preferences#@env',
   '/docs/en/reference/prefs.arc/sandbox': '/docs/en/reference/configuration/local-preferences#@sandbox',
-  '/docs/en/reference/prefs.arc/sandbox-startup': '/docs/en/reference/configuration/local-preferences#@sandbox-startup',
+  '/docs/en/reference/prefs.arc/sandbox-startup': '/docs/en/reference/configuration/local-preferences#@sandbox-start',
 
   // Reference > CLI
   // round 1: Q1 2021
@@ -185,7 +181,6 @@ export const permanentRedirects = {
   // round 2: Q4 2021
   '/docs/en/reference/runtime/node': '/docs/en/reference/runtime-helpers/node.js',
   '/docs/en/reference/runtime/node.js': '/docs/en/reference/runtime-helpers/node.js',
-  '/docs/en/reference/runtime/deno': '/docs/en/reference/runtime-helpers/deno',
   '/docs/en/reference/runtime/ruby': '/docs/en/reference/runtime-helpers/ruby',
   '/docs/en/reference/runtime/python': '/docs/en/reference/runtime-helpers/python',
 
@@ -272,8 +267,8 @@ export async function redirect (req) {
     return {
       statusCode: tempRedirects[reqPath] ? 302 : 301,
       headers: {
-        location
-      }
+        location,
+      },
     }
   }
   return

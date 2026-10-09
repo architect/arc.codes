@@ -6,7 +6,7 @@ description: Architect dependency structure and hydration
 
 ## Overview
 
-[Functional Web Apps](https://fwa.dev) have both project-level dependencies and individual function-level dependencies.
+Functional web apps have both project-level dependencies and individual function-level dependencies.
 
 Project-level dependencies are defined at the root of the project, and may include things like developer dependencies.
 
@@ -166,17 +166,17 @@ To share code across multiple Lambdas, please make use of `@shared` and `@views`
 For example, assume the following `src/http/get-index/lambda.py` handler:
 
 ```python
-# This is ok if it exists in the root requirements.txt file
+# This is ok if it exists in the `requirements.txt` file
 import arc # → architect-functions
 
 # This will fail
-import ..foo
+from ..foo import bar
 
-# This will work (if present, of course)
-import .foo
+# This will work (assuming `foo.py` exists in the same directory, of course)
+from foo import bar
 
-# This is also ok (if foo exists in @shared)
-import vendor.shared.foo
+# This is also ok (if `foo.py` exists in @shared)
+from vendor.shared.foo import bar
 ```
 
 ---

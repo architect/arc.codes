@@ -2,43 +2,43 @@ export default {
   h1: [
     'mb3',
     'font-semibold',
-    'text5'
+    'text5',
   ],
   h2: [
     'mt3',
     'mb-1',
     'font-semibold',
-    'text4'
+    'text4',
   ],
   h3: [
     'mt3',
     'mb-1',
     'font-semibold',
-    'text3'
+    'text3',
   ],
   h4: [
     'mt3',
     'mb-1',
     'font-semibold',
-    'text2'
+    'text2',
   ],
   h5: [
     'mt3',
     'mb-1',
     'font-semibold',
-    'text1'
+    'text1',
   ],
   p: [
-    'mb-1'
+    'mb-1',
   ],
   ol: [
-    'mb1'
+    'mb1',
   ],
   ul: [
-    'mb1'
+    'mb1',
   ],
   li: [
-    'ml-1'
+    'ml-1',
   ],
   blockquote: [
     'mb-1',
@@ -50,7 +50,7 @@ export default {
     'border-r0',
     'border-b0',
     'border-l4',
-    'border-g3'
+    'border-g3',
   ],
   a: [
     'font-medium',
@@ -67,7 +67,7 @@ export default {
   ],
   strong: [
     'font-semibold',
-    'text-g9'
+    'text-g9',
   ],
   table: [
     'w-full',
@@ -75,7 +75,7 @@ export default {
     'border-collapse',
     'border-solid',
     'border-g3',
-    'border1'
+    'border1',
   ],
   th: [
     'pt-3',
@@ -85,7 +85,7 @@ export default {
     'border-solid',
     'border1',
     'border-g3',
-    'bg-g1'
+    'bg-g1',
   ],
   td: [
     'pt-3',
@@ -96,5 +96,5 @@ export default {
     'border-g1',
     'border1',
     'bg-g0',
-  ]
+  ],
 }

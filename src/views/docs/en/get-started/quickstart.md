@@ -4,11 +4,11 @@ category: Get started
 description: Get started quickly with Architect
 ---
 
-> Architect is a simple framework for building and delivering powerful [Functional Web Apps (FWAs)](https://fwa.dev) on AWS
+> Architect is a simple framework for building and delivering powerful functional web apps on AWS
 
 ## Create a new project
 
-Assuming Node.js 14+ is installed, open your terminal and create a new Architect project:
+Assuming Node.js 22+ is installed, open your terminal and create a new Architect project:
 
 <arc-viewer default-tab=bash>
 <div slot=contents>

@@ -4,7 +4,7 @@ category: Plugins
 description: '<code>deploy</code> lifecycle hook plugins'
 ---
 
-`deploy` lifecycle hook plugins expose functionality to extend the capabilities of Architect deployments.
+`deploy` lifecycle hook plugins expose functionality to extend the capabilities of [Architect deployments](../../../cli/reference/deploy).
 
 
 ## Plugin parameters
@@ -14,9 +14,10 @@ All `deploy` methods accept async or synchronous functions, and receive a single
 | Property          | Type    | Description                                       |
 |-------------------|---------|---------------------------------------------------|
 | `arc`             | object  | Raw Architect project object                      |
-| `cloudformation`  | object  | CloudFormation deployment                         |
+| `cloudformation`  | object  | [CloudFormation template][cfn-json] in JSON       |
 | `dryRun`          | boolean | `true` if `--dry-run` or `--eject` flags are used |
 | `inventory`       | object  | [Inventory](./inventory) object                   |
+| `stackName`       | string  | [CloudFormation stack][cfn-stack] name            |
 | `stage`           | string  | `testing`, `staging` or `production`              |
 
 
@@ -29,7 +30,7 @@ Example:
 ```javascript
 // Do something only for staging deployments
 module.exports = { deploy: {
-  start: async ({ arc, cloudformation, dryRun, inventory, stage }) => {
+  start: async ({ arc, cloudformation, dryRun, inventory, stackName, stage }) => {
     if (stage !== 'staging') return
 
     let config = await getSomeConfig()
@@ -50,7 +51,7 @@ Examples:
 ```javascript
 // Create some identifiers associated with custom S3 bucket credentials
 module.exports = { deploy: {
-  services: async ({ arc, cloudformation, dryRun, inventory, stage }) => {
+  services: async ({ arc, cloudformation, dryRun, inventory, stackName, stage }) => {
     // If the user isn't using this plugin, you can just return
     if (!arc['myS3Bucket']) return
 
@@ -89,7 +90,7 @@ Example:
 
 ```javascript
 module.exports = { deploy: {
-  target: async ({ arc, cloudformation, dryRun, inventory, stage }) => {
+  target: async ({ arc, cloudformation, dryRun, inventory, stackName, stage }) => {
     if (dryRun) return
 
     deployToAnotherService({ inventory, stage })
@@ -107,8 +108,11 @@ Example:
 ```javascript
 const { rm } = require('fs/promises')
 module.exports = { deploy: {
-  end: async ({ arc, cloudformation, dryRun, inventory, stage }) => {
+  end: async ({ arc, cloudformation, dryRun, inventory, stackName, stage }) => {
     await rm(someBuildArtifact)
   }
 } }
 ```
+
+[cfn-json]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-overview.html#cfn-concepts-templates
+[cfn-stack]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-overview.html#cfn-concepts-stacks

@@ -3,6 +3,7 @@ import { join } from 'path'
 import arc from '@architect/functions'
 import { Arcdown } from 'arcdown'
 import anchor from 'markdown-it-anchor'
+import markdownItArcStaticImg from 'markdown-it-arc-static-img'
 import { redirect as redirectMiddleware } from '@architect/shared/redirect-map.mjs'
 import notFoundResponse from '@architect/shared/not-found-response.mjs'
 import algolia from '@architect/views/modules/components/algolia.mjs'
@@ -33,6 +34,7 @@ async function handler (req) {
   editURL += join(lang, ...parts, doc)
 
   const filePath = join(
+
     new URL('.', import.meta.url).pathname,
     'node_modules',
     '@architect',
@@ -53,6 +55,7 @@ async function handler (req) {
       const md = readFileSync(filePath, 'utf8')
       const arcdown = new Arcdown({
         hljs: { classString: 'hljs mb0 mb1-lg relative' },
+        plugins: { markdownItArcStaticImg },
         pluginOverrides: {
           markdownItClass: classMap,
           markdownItToc: {
@@ -61,7 +64,7 @@ async function handler (req) {
           markdownItAnchor: {
             permalink: anchor.permalink.headerLink({
               class: 'text-p1 text-h1 text-a2 no-underline underline-h',
-            })
+            }),
           },
         },
       })
@@ -71,6 +74,7 @@ async function handler (req) {
         active,
         editURL,
         lang,
+        markdown: md,
         path,
         scripts: [
           '/index.js',
@@ -104,7 +108,7 @@ async function handler (req) {
         state: { notFoundTerm: docName },
         thirdparty: algolia(lang),
         toc,
-      })
+      }),
     }
   }
 }

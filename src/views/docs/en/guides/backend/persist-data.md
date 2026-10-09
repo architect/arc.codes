@@ -308,8 +308,7 @@ Requiring `@architect/data` reads your app's `app.arc` manifest and generates a 
 
 The following API was generated from the `app.arc` file above:
 
-- `data._db` - an instance of `DynamoDB` from the `aws-sdk`
-- `data._doc` - an instance of `DynamoDB.DocumentClient` from the `aws-sdk`
+- `data._client` - an instance of `DynamoDB` from [`aws-lite`](https://aws-lite.org)
 - `data._name` - a helper for returning an environment appropriate table name
 - `data.people.get` - get a person
 - `data.people.query` - query people
@@ -939,4 +938,4 @@ let deleteNote = async function route(request) {
 exports.handler = arc.middleware(requireLogin, deleteNote)
 ```
 
-> 🎩  Tip: `data._db` and `data._doc` return instances of `DynamoDB` and `DynamoDB.DocumentClient` for directly accessing your data; use `data._name` to resolve the table names with the app name and environment prefix.
+> Use `data._name` to resolve table names with the app name and environment prefix
